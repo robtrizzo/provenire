@@ -4,30 +4,37 @@
     "score": -2,
     "color": "1864ab",
     "progress": 0,
+    "description": "Intellect is your raw knowledge and sense-making ability.",
     "abilities": [
       {
         "name": "Logic",
-        "ranks": 0
+        "ranks": 0,
+        "description": "Logic is your ability to connect multiple pieces of information into a coherent whole."
       },
       {
         "name": "Encyclopedia",
-        "ranks": 0
+        "ranks": 0,
+        "description": "Encyclopedia is your knowledge of the world, its people, places, and things."
       },
       {
         "name": "Rhetoric",
-        "ranks": 0
+        "ranks": 0,
+        "description": "Rhetoric is your ability to state your opinion and listen to others' opinions."
       },
       {
         "name": "Drama",
-        "ranks": 0
+        "ranks": 0,
+        "description": "Drama is your ability to use nonfactual words and actions to affect others."
       },
       {
         "name": "Conceptualization",
-        "ranks": 0
+        "ranks": 0,
+        "description": "Conceptualization is your ability to understand and create art."
       },
       {
         "name": "Visual Calculus",
-        "ranks": 0
+        "ranks": 0,
+        "description": "Visual Calculus is your ability to understand physical objects and their relation to each other."
       }
     ]
   },
@@ -36,30 +43,37 @@
     "score": -2,
     "color": "5f3dc4",
     "progress": 0,
+    "description": "Psyche is your raw power over yourself and your ability to exert influence over others.",
     "abilities": [
       {
         "name": "Volition",
-        "ranks": 0
+        "ranks": 0,
+        "description": "Volition is your ability to control your own thoughts and actions."
       },
       {
         "name": "Contemporary",
-        "ranks": 0
+        "ranks": 0,
+        "description": "Contemporary is your ability to understand how the world works in the here and now."
       },
       {
         "name": "Empathy",
-        "ranks": 0
+        "ranks": 0,
+        "description": "Empathy is your ability to understand and share the feelings of others."
       },
       {
         "name": "Authority",
-        "ranks": 0
+        "ranks": 0,
+        "description": "Authority is your ability to project your will onto others."
       },
       {
         "name": "Introspection",
-        "ranks": 0
+        "ranks": 0,
+        "description": "Introspection is your ability to understand your own feelings and thoughts."
       },
       {
         "name": "Suggestion",
-        "ranks": 0
+        "ranks": 0,
+        "description": "Suggestion is your ability to influence others through only your words."
       }
     ]
   },
@@ -68,30 +82,37 @@
     "score": -2,
     "color": "c92a2a",
     "progress": 0,
+    "description": "Physique is your raw ability to physically affect the world.",
     "abilities": [
       {
         "name": "Endurance",
-        "ranks": 0
+        "ranks": 0,
+        "description": "Endurance is your ability to keep going when your body wants to stop."
       },
       {
         "name": "Stoicism",
-        "ranks": 0
+        "ranks": 0,
+        "description": "Stoicism is your ability to endure pain and discomfort."
       },
       {
         "name": "Execution",
-        "ranks": 0
+        "ranks": 0,
+        "description": "Execution is your skill and natural ability at physically affecting the world with your body."
       },
       {
         "name": "Impunity",
-        "ranks": 0
+        "ranks": 0,
+        "description": "Impunity is your ability to withstand the affects of internal ailments."
       },
       {
         "name": "Animal Instinct",
-        "ranks": 0
+        "ranks": 0,
+        "description": "Animal Instinct is your ability to get a gut feeling about a situation."
       },
       {
         "name": "Menace",
-        "ranks": 0
+        "ranks": 0,
+        "description": "Menace is your ability to intimidate others with your physical presence."
       }
     ]
   },
@@ -100,30 +121,37 @@
     "score": -2,
     "color": "2b8a3e",
     "progress": 0,
+    "description": "Motorics is your raw ability to use your mind and body together.",
     "abilities": [
       {
         "name": "Coordination",
-        "ranks": 0
+        "ranks": 0,
+        "description": "Coordination is your ability be accurate with tools and weapons"
       },
       {
         "name": "Preception",
-        "ranks": 0
+        "ranks": 0,
+        "description": "Perception is your ability to sense something unusual in your environment."
       },
       {
         "name": "Reaction",
-        "ranks": 0
+        "ranks": 0,
+        "description": "Reaction is your ability to quickly respond to a change in the environment."
       },
       {
         "name": "Grace",
-        "ranks": 0
+        "ranks": 0,
+        "description": "Grace is your ability to move your body in a precise or pleasing way."
       },
       {
         "name": "Interfacing",
-        "ranks": 0
+        "ranks": 0,
+        "description": "Interfacing is your ability to use tools and technology."
       },
       {
         "name": "Composure",
-        "ranks": 0
+        "ranks": 0,
+        "description": "Composure is your ability to keep your cool and not give away your thoughts."
       }
     ]
   }

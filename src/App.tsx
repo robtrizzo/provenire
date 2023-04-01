@@ -124,24 +124,104 @@ function App() {
 
   console.log(abilities);
 
+  const [blood, setBlood] = useState(3);
+  const [maxBlood, setMaxBlood] = useState(3);
+  const [donum, setDonum] = useState(3);
+  const [maxDonum, setMaxDonum] = useState(3);
+  const [selected, setSelected] = useState({});
+
   return (
     <div className="App">
       <header className="App-header">
         <h1>PTBA + Disco Elysium = ???</h1>
       </header>
       <main>
-        <article>
-          <section>Blood</section>
-          <section>Donum</section>
+        <article className="resources">
+          <section className="resource">
+            <h3
+              className="resource-content"
+              style={{
+                color: 'crimson',
+                textShadow:
+                  '0px 0px 0px crimson, 0 0 0.5em crimson, 0 0 0.1em crimson',
+              }}
+            >
+              Blood{' '}
+              <span>
+                <input
+                  type="text"
+                  value={blood}
+                  onChange={(e) => {
+                    e.stopPropagation();
+                    setBlood(parseInt(e.target.value));
+                  }}
+                  className="resource-input"
+                />
+                /{' '}
+                <input
+                  type="text"
+                  value={maxBlood}
+                  onChange={(e) => {
+                    e.stopPropagation();
+                    setMaxBlood(parseInt(e.target.value));
+                  }}
+                  className="resource-input"
+                />
+              </span>
+            </h3>
+          </section>
+          <section className="resource">
+            <h3
+              className="resource-content"
+              style={{
+                color: 'steelblue',
+                textShadow:
+                  '0px 0px 0px steelblue, 0 0 0.5em steelblue, 0 0 0.1em steelblue',
+              }}
+            >
+              Donum{' '}
+              <span>
+                <input
+                  type="text"
+                  value={donum}
+                  onChange={(e) => {
+                    e.stopPropagation();
+                    setDonum(parseInt(e.target.value));
+                  }}
+                  className="resource-input"
+                />
+                /{' '}
+                <input
+                  type="text"
+                  value={maxDonum}
+                  onChange={(e) => {
+                    e.stopPropagation();
+                    setMaxDonum(parseInt(e.target.value));
+                  }}
+                  className="resource-input"
+                />
+              </span>
+            </h3>
+          </section>
         </article>
         <div className="abilities-wrapper">
           <article className="abilities-article">
             {abilities.map(
-              ({ category, abilities, score, progress, color }) => (
+              ({
+                category,
+                abilities,
+                score,
+                progress,
+                color,
+                description,
+              }) => (
                 <section key={`category-${category}`} className="abilities-row">
                   <div
                     className={`ability-category ability-category-${category}`}
                     style={{ backgroundColor: `#${color}${score + 3}a` }}
+                    onClick={() => {
+                      setSelected({ title: category, color, description });
+                    }}
                   >
                     <h3>{category}</h3>
                     <h4 className="category-score">{score}</h4>
@@ -156,7 +236,7 @@ function App() {
                       )}
                     </div>
                   </div>
-                  {abilities.map(({ name, ranks }) => (
+                  {abilities.map(({ name, ranks, description }) => (
                     <div
                       key={`ability-${name}`}
                       className={`ability ability-category-${category}`}
@@ -165,6 +245,9 @@ function App() {
                           Math.max(ranks + score + 3, 1),
                           10
                         )}a`,
+                      }}
+                      onClick={() => {
+                        setSelected({ title: name, color, description });
                       }}
                     >
                       <h4 className="ability-name">{name}</h4>
@@ -203,16 +286,16 @@ function App() {
               )
             )}
           </article>
-          <aside className="abilities-progression-wrapper">
+          <article className="abilities-progression-wrapper">
             <section className="abilities-progression-section">
               <div className="abilities-progression-column">
                 <h5 className="abilities-progression-name">Genius</h5>
                 <div className="abilities-progression-bar">
-                  <ProgressionBarSection />
-                  <ProgressionBarSection />
-                  <ProgressionBarSection />
-                  <ProgressionBarSection />
-                  <ProgressionBarSection />
+                  <ProgressionBarSection color="#3518ab" />
+                  <ProgressionBarSection color="#3518ab" />
+                  <ProgressionBarSection color="#3518ab" />
+                  <ProgressionBarSection color="#3518ab" />
+                  <ProgressionBarSection color="#3518ab" />
                 </div>
               </div>
             </section>
@@ -220,11 +303,11 @@ function App() {
               <div className="abilities-progression-column">
                 <h5 className="abilities-progression-name">Power</h5>
                 <div className="abilities-progression-bar">
-                  <ProgressionBarSection />
-                  <ProgressionBarSection />
-                  <ProgressionBarSection />
-                  <ProgressionBarSection />
-                  <ProgressionBarSection />
+                  <ProgressionBarSection color="#c7401f" />
+                  <ProgressionBarSection color="#c7401f" />
+                  <ProgressionBarSection color="#c7401f" />
+                  <ProgressionBarSection color="#c7401f" />
+                  <ProgressionBarSection color="#c7401f" />
                 </div>
               </div>
             </section>
@@ -232,15 +315,28 @@ function App() {
               <div className="abilities-progression-column">
                 <h5 className="abilities-progression-name">Fate</h5>
                 <div className="abilities-progression-bar">
-                  <ProgressionBarSection />
-                  <ProgressionBarSection />
-                  <ProgressionBarSection />
-                  <ProgressionBarSection />
-                  <ProgressionBarSection />
+                  <ProgressionBarSection color="#e9de1e" />
+                  <ProgressionBarSection color="#e9de1e" />
+                  <ProgressionBarSection color="#e9de1e" />
+                  <ProgressionBarSection color="#e9de1e" />
+                  <ProgressionBarSection color="#e9de1e" />
                 </div>
               </div>
             </section>
-          </aside>
+          </article>
+          {selected.title ? (
+            <article
+              className="info-section"
+              style={
+                selected.color
+                  ? { backgroundColor: `#${selected.color}1a` }
+                  : {}
+              }
+            >
+              <h3>{selected.title}</h3>
+              <p className="info-section-description">{selected.description}</p>
+            </article>
+          ) : null}
         </div>
 
         <aside></aside>
@@ -250,14 +346,13 @@ function App() {
   );
 }
 
-const ProgressionBarSection = () => {
+const ProgressionBarSection = ({ color }) => {
   const [selected, setSelected] = useState(false);
 
   return (
     <div
-      className={`abilities-progression-bar-section${
-        selected ? ' active' : ''
-      }`}
+      className={`abilities-progression-bar-section`}
+      style={selected ? { backgroundColor: color } : {}}
       onClick={() => setSelected(!selected)}
     ></div>
   );
