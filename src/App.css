@@ -40,4 +40,100 @@
   .read-the-docs {
     color: #888;
   }
-  
+
+  .abilities-article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .abilities-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    height: 150px;
+  }
+
+  .ability-category {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 150px;
+    border: 1px solid #ccc;
+    transition: all 0.5s ease-in-out 0.1s;
+  }
+
+  .ability-category-Intellect {
+    background-color: #1864ab1a;
+  }
+  .ability-category-Psyche {
+    background-color: #5f3dc41a;
+  }
+  .ability-category-Physique {
+    background-color: #c92a2a1a;
+  }
+  .ability-category-Motorics {
+    background-color: #2b8a3e1a;
+  }
+
+  .ability-category-Intellect:hover {
+    box-shadow: inset 0px 0px 20px 20px #1864ab3a;
+    background-color: #242424;
+    cursor: pointer;
+  }
+  .ability-category-Psyche:hover {
+    box-shadow: inset 0px 0px 20px 20px #5f3dc43a;
+    background-color: #242424;
+    cursor: pointer;
+  }
+  .ability-category-Physique:hover {
+    box-shadow: inset 0px 0px 20px 20px #c92a2a3a;
+    background-color: #242424;
+    cursor: pointer;
+  }
+  .ability-category-Motorics:hover {
+    box-shadow: inset 0px 0px 20px 20px #2b8a3e3a;
+    background-color: #242424;
+    cursor: pointer;
+  }
+
+  .ability {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    transition: all 0.5s ease-in-out 0.1s;
+  }
+
+  .ability-score, .category-score {
+    font-size: large;
+    margin-top: 2px;
+    margin-bottom: 2px;
+  }
+
+  .ability-score-button {
+    width: 27px;
+    border-radius: 50%;
+    transition: background-color 0.5s ease-in-out;
+  }
+  .ability-score-button:hover {
+    cursor: pointer;
+    background-color: #2d2d2d;
+  }
+
+  .ability-score-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
