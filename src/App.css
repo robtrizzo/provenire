@@ -196,3 +196,44 @@
               user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome, Edge, Opera and Firefox */
   }
+
+  .abilities-progression-column {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+  }
+
+  .abilities-progression-name, .abilities-progression-bar {
+    margin: 10px
+  }
+  .abilities-progression-bar {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+  }
+
+  .abilities-progression-bar-section {
+    height: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .abilities-progression-bar-section:hover {
+    cursor: pointer;
+    background-color: #888;
+  }
+
+  .abilities-progression-bar-section:active {
+    background-color: #1864ab;
+  }
+
+  .abilities-progression-bar-section.active {
+    background-color: green;
+  }

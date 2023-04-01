@@ -205,18 +205,39 @@ function App() {
           </article>
           <aside className="abilities-progression-wrapper">
             <section className="abilities-progression-section">
-              <div>
-                <h5>Genius</h5>
+              <div className="abilities-progression-column">
+                <h5 className="abilities-progression-name">Genius</h5>
+                <div className="abilities-progression-bar">
+                  <ProgressionBarSection />
+                  <ProgressionBarSection />
+                  <ProgressionBarSection />
+                  <ProgressionBarSection />
+                  <ProgressionBarSection />
+                </div>
               </div>
             </section>
             <section className="abilities-progression-section">
-              <div>
-                <h5>Power</h5>
+              <div className="abilities-progression-column">
+                <h5 className="abilities-progression-name">Power</h5>
+                <div className="abilities-progression-bar">
+                  <ProgressionBarSection />
+                  <ProgressionBarSection />
+                  <ProgressionBarSection />
+                  <ProgressionBarSection />
+                  <ProgressionBarSection />
+                </div>
               </div>
             </section>
             <section className="abilities-progression-section">
-              <div>
-                <h5>Fate</h5>
+              <div className="abilities-progression-column">
+                <h5 className="abilities-progression-name">Fate</h5>
+                <div className="abilities-progression-bar">
+                  <ProgressionBarSection />
+                  <ProgressionBarSection />
+                  <ProgressionBarSection />
+                  <ProgressionBarSection />
+                  <ProgressionBarSection />
+                </div>
               </div>
             </section>
           </aside>
@@ -228,5 +249,18 @@ function App() {
     </div>
   );
 }
+
+const ProgressionBarSection = () => {
+  const [selected, setSelected] = useState(false);
+
+  return (
+    <div
+      className={`abilities-progression-bar-section${
+        selected ? ' active' : ''
+      }`}
+      onClick={() => setSelected(!selected)}
+    ></div>
+  );
+};
 
 export default App;
