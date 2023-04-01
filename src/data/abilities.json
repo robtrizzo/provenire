@@ -2,124 +2,128 @@
   {
     "category": "Intellect",
     "score": -2,
-    "color": "1864ab1a",
+    "color": "1864ab",
+    "progress": 0,
     "abilities": [
       {
         "name": "Logic",
-        "score": -2
+        "ranks": 0
       },
       {
         "name": "Encyclopedia",
-        "score": -2
+        "ranks": 0
       },
       {
         "name": "Rhetoric",
-        "score": -2
+        "ranks": 0
       },
       {
         "name": "Drama",
-        "score": -2
+        "ranks": 0
       },
       {
         "name": "Conceptualization",
-        "score": -2
+        "ranks": 0
       },
       {
         "name": "Visual Calculus",
-        "score": -2
+        "ranks": 0
       }
     ]
   },
   {
     "category": "Psyche",
     "score": -2,
-    "color": "5f3dc41a",
+    "color": "5f3dc4",
+    "progress": 0,
     "abilities": [
       {
         "name": "Volition",
-        "score": -2
+        "ranks": 0
       },
       {
         "name": "Contemporary",
-        "score": -2
+        "ranks": 0
       },
       {
         "name": "Empathy",
-        "score": -2
+        "ranks": 0
       },
       {
         "name": "Authority",
-        "score": -2
+        "ranks": 0
       },
       {
         "name": "Introspection",
-        "score": -2
+        "ranks": 0
       },
       {
         "name": "Suggestion",
-        "score": -2
+        "ranks": 0
       }
     ]
   },
   {
     "category": "Physique",
     "score": -2,
-    "color": "c92a2a1a",
+    "color": "c92a2a",
+    "progress": 0,
     "abilities": [
       {
         "name": "Endurance",
-        "score": -2
+        "ranks": 0
       },
       {
         "name": "Stoicism",
-        "score": -2
+        "ranks": 0
       },
       {
         "name": "Execution",
-        "score": -2
+        "ranks": 0
       },
       {
         "name": "Impunity",
-        "score": -2
+        "ranks": 0
       },
       {
         "name": "Animal Instinct",
-        "score": -2
+        "ranks": 0
       },
       {
         "name": "Menace",
-        "score": -2
+        "ranks": 0
       }
     ]
   },
   {
     "category": "Motorics",
     "score": -2,
-    "color": "2b8a3e1a",
+    "color": "2b8a3e",
+    "progress": 0,
     "abilities": [
       {
         "name": "Coordination",
-        "score": -2
+        "ranks": 0
       },
       {
         "name": "Preception",
-        "score": -2
+        "ranks": 0
       },
       {
         "name": "Reaction",
-        "score": -2
+        "ranks": 0
       },
       {
         "name": "Grace",
-        "score": -2
+        "ranks": 0
       },
       {
         "name": "Interfacing",
-        "score": -2
+        "ranks": 0
       },
       {
         "name": "Composure",
-        "score": -2
+        "ranks": 0
       }
     ]
   }
