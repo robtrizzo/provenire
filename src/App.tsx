@@ -335,6 +335,7 @@ function App() {
             >
               <h3>{selected.title}</h3>
               <p className="info-section-description">{selected.description}</p>
+              <Move />
             </article>
           ) : null}
         </div>
@@ -355,6 +356,31 @@ const ProgressionBarSection = ({ color }) => {
       style={selected ? { backgroundColor: color } : {}}
       onClick={() => setSelected(!selected)}
     ></div>
+  );
+};
+
+const Move = () => {
+  return (
+    <article className="move">
+      <h3>Gut Check</h3>
+      <div className="result-row">
+        <h4 className="result-row-value">10+</h4>
+        <p className="result-row-description">
+          Ask the GM 3 questions from the list below.
+        </p>
+      </div>
+      <div className="result-row">
+        <h4 className="result-row-value">7-9</h4>
+        <p className="result-row-description">
+          Ask the GM 1 question from the list below.
+        </p>
+      </div>
+      <p>Take +1 while acting on the answers</p>
+      <ul className="result-row-list">
+        <li className="result-row-list-item">Am I in imminent danger?</li>
+        <li className="result-row-list-item">Is there someone watching me?</li>
+      </ul>
+    </article>
   );
 };
 
