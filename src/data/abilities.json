@@ -1,7 +1,7 @@
 [
   {
     "category": "Intellect",
-    "score": -2,
+    "score": -3,
     "color": "1864ab",
     "progress": 0,
     "description": "Intellect is your raw knowledge and sense-making ability.",
@@ -36,11 +36,12 @@
         "ranks": 0,
         "description": "Visual Calculus is your ability to understand physical objects and their relation to each other."
       }
-    ]
+    ],
+    "moves": ["Assess the Situation"]
   },
   {
     "category": "Psyche",
-    "score": -2,
+    "score": -3,
     "color": "5f3dc4",
     "progress": 0,
     "description": "Psyche is your raw power over yourself and your ability to exert influence over others.",
@@ -75,11 +76,12 @@
         "ranks": 0,
         "description": "Suggestion is your ability to influence others through only your words."
       }
-    ]
+    ],
+    "moves": ["New Donum Application"]
   },
   {
     "category": "Physique",
-    "score": -2,
+    "score": -3,
     "color": "c92a2a",
     "progress": 0,
     "description": "Physique is your raw ability to physically affect the world.",
@@ -107,18 +109,20 @@
       {
         "name": "Animal Instinct",
         "ranks": 0,
-        "description": "Animal Instinct is your ability to get a gut feeling about a situation."
+        "description": "Animal Instinct is your ability to get a gut feeling about a situation.",
+        "moves": ["Gut Check"]
       },
       {
         "name": "Menace",
         "ranks": 0,
         "description": "Menace is your ability to intimidate others with your physical presence."
       }
-    ]
+    ],
+    "moves": ["Directly Engage a Threat"]
   },
   {
     "category": "Motorics",
-    "score": -2,
+    "score": -3,
     "color": "2b8a3e",
     "progress": 0,
     "description": "Motorics is your raw ability to use your mind and body together.",
@@ -129,7 +133,7 @@
         "description": "Coordination is your ability be accurate with tools and weapons"
       },
       {
-        "name": "Preception",
+        "name": "Perception",
         "ranks": 0,
         "description": "Perception is your ability to sense something unusual in your environment."
       },
@@ -153,6 +157,7 @@
         "ranks": 0,
         "description": "Composure is your ability to keep your cool and not give away your thoughts."
       }
-    ]
+    ],
+    "moves": ["Defend"]
   }
 ]

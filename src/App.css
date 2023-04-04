@@ -52,6 +52,17 @@
   .resource {
     width: 100%;
     border: 1px solid #ccc;
+    transition: all 0.5s ease-in-out 0.1s;
+  }
+
+  .donum:hover {
+    cursor: pointer;
+    box-shadow: inset 0px 0px 20px 10px slateblue;
+  }
+
+  .blood:hover {
+    cursor: pointer;
+    box-shadow: inset 0px 0px 20px 10px crimson;
   }
 
   .resource-content {

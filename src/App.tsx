@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import baseAbilities from './data/abilities.json';
 import './App.css';
+import Moves, { GutCheck } from './Moves';
 
 function App() {
   const [abilities, setAbilities] = useState(baseAbilities);
@@ -47,7 +48,7 @@ function App() {
         if (cat.category === category) {
           let newCategoryProgress = cat.progress + 1;
           console.log('newCategoryProgress', newCategoryProgress);
-          if (newCategoryProgress >= 3 + cat.score) {
+          if (newCategoryProgress >= 5 + cat.score) {
             catIncrease = true;
             return {
               ...cat,
@@ -76,7 +77,7 @@ function App() {
             catDecrease = true;
             return {
               ...cat,
-              progress: 3 + cat.score - 2,
+              progress: 5 + cat.score - 2,
             };
           }
           return {
@@ -122,8 +123,6 @@ function App() {
     setAbilities(newAbilities);
   };
 
-  console.log(abilities);
-
   const [blood, setBlood] = useState(3);
   const [maxBlood, setMaxBlood] = useState(3);
   const [donum, setDonum] = useState(3);
@@ -137,7 +136,18 @@ function App() {
       </header>
       <main>
         <article className="resources">
-          <section className="resource">
+          <section
+            className="resource blood"
+            onClick={(e) => {
+              e.preventDefault();
+              setSelected({
+                title: 'Blood',
+                description: 'Blooood',
+                color: 'DC143C',
+                moves: ['Take a Powerful Blow'],
+              });
+            }}
+          >
             <h3
               className="resource-content"
               style={{
@@ -170,13 +180,24 @@ function App() {
               </span>
             </h3>
           </section>
-          <section className="resource">
+          <section
+            className="resource donum"
+            onClick={(e) => {
+              e.preventDefault();
+              setSelected({
+                title: 'Donum',
+                description: 'Powaaah',
+                color: '6a5acd',
+                moves: ['Unleash Donum'],
+              });
+            }}
+          >
             <h3
               className="resource-content"
               style={{
-                color: 'steelblue',
+                color: 'slateblue',
                 textShadow:
-                  '0px 0px 0px steelblue, 0 0 0.5em steelblue, 0 0 0.1em steelblue',
+                  '0px 0px 0px slateblue, 0 0 0.5em slateblue, 0 0 0.1em slateblue',
               }}
             >
               Donum{' '}
@@ -214,13 +235,19 @@ function App() {
                 progress,
                 color,
                 description,
+                moves,
               }) => (
                 <section key={`category-${category}`} className="abilities-row">
                   <div
                     className={`ability-category ability-category-${category}`}
-                    style={{ backgroundColor: `#${color}${score + 3}a` }}
+                    style={{ backgroundColor: `#${color}${score + 4}a` }}
                     onClick={() => {
-                      setSelected({ title: category, color, description });
+                      setSelected({
+                        title: category,
+                        color,
+                        description,
+                        moves,
+                      });
                     }}
                   >
                     <h3>{category}</h3>
@@ -229,14 +256,14 @@ function App() {
                       {Array.from(Array(progress).keys()).map(() => (
                         <div className="category-progress active"></div>
                       ))}
-                      {Array.from(Array(3 + score - progress).keys()).map(
+                      {Array.from(Array(5 + score - progress).keys()).map(
                         () => (
                           <div className="category-progress"></div>
                         )
                       )}
                     </div>
                   </div>
-                  {abilities.map(({ name, ranks, description }) => (
+                  {abilities.map(({ name, ranks, description, moves }) => (
                     <div
                       key={`ability-${name}`}
                       className={`ability ability-category-${category}`}
@@ -247,7 +274,7 @@ function App() {
                         )}a`,
                       }}
                       onClick={() => {
-                        setSelected({ title: name, color, description });
+                        setSelected({ title: name, color, description, moves });
                       }}
                     >
                       <h4 className="ability-name">{name}</h4>
@@ -335,7 +362,11 @@ function App() {
             >
               <h3>{selected.title}</h3>
               <p className="info-section-description">{selected.description}</p>
-              <Move />
+              {selected.moves
+                ? selected.moves.map((move) => {
+                    return Moves.get(move)();
+                  })
+                : null}
             </article>
           ) : null}
         </div>
@@ -359,29 +390,37 @@ const ProgressionBarSection = ({ color }) => {
   );
 };
 
-const Move = () => {
-  return (
-    <article className="move">
-      <h3>Gut Check</h3>
-      <div className="result-row">
-        <h4 className="result-row-value">10+</h4>
-        <p className="result-row-description">
-          Ask the GM 3 questions from the list below.
-        </p>
-      </div>
-      <div className="result-row">
-        <h4 className="result-row-value">7-9</h4>
-        <p className="result-row-description">
-          Ask the GM 1 question from the list below.
-        </p>
-      </div>
-      <p>Take +1 while acting on the answers</p>
-      <ul className="result-row-list">
-        <li className="result-row-list-item">Am I in imminent danger?</li>
-        <li className="result-row-list-item">Is there someone watching me?</li>
-      </ul>
-    </article>
-  );
-};
+// const Move = () => {
+//   return (
+//     <article className="move">
+//       <h3>Gut Check</h3>
+//       <div className="result-row">
+//         <h4 className="result-row-value">19+</h4>
+//         <p className="result-row-description">
+//           Ask the GM 3 questions from the list below.
+//         </p>
+//       </div>
+//       <div className="result-row">
+//         <h4 className="result-row-value">13-18</h4>
+//         <p className="result-row-description">
+//           Ask the GM 1 question from the list below.
+//         </p>
+//       </div>
+//       <p>Take +1 while acting on the answers</p>
+//       <ul className="result-row-list">
+//         <li className="result-row-list-item">Am I in imminent danger?</li>
+//         <li className="result-row-list-item">Is there someone watching me?</li>
+//         <li className="result-row-list-item">Does something smell off?</li>
+//         <li className="result-row-list-item">
+//           What's the quickest way to escape?
+//         </li>
+//         <li className="result-row-list-item">
+//           Who is everyone else afraid of?
+//         </li>
+//         <li className="result-row-list-item">Who is afraid of me?</li>
+//       </ul>
+//     </article>
+//   );
+// };
 
 export default App;
