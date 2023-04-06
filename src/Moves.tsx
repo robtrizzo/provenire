@@ -1,4 +1,12 @@
-const Move = ({ title, preface, hit, partial, miss, children }) => {
+interface MoveProps {
+  title: string;
+  preface?: React.ReactNode;
+  hit?: React.ReactNode;
+  partial?: React.ReactNode;
+  miss?: React.ReactNode;
+  children?: React.ReactNode;
+}
+const Move = ({ title, preface, hit, partial, miss, children }: MoveProps) => {
   return (
     <article className="move">
       <h3>{title}</h3>
@@ -29,7 +37,7 @@ const Move = ({ title, preface, hit, partial, miss, children }) => {
   );
 };
 
-const ResultList = ({ results }) => {
+const ResultList = ({ results }: { results: string[] }) => {
   return (
     <ul className="result-row-list">
       {results.map((result, idx) => [
@@ -107,9 +115,7 @@ export const DirectlyEngageThreat = () => {
       <ResultList
         results={[
           'Resist or avoid their blows',
-          'Take something from them',
           'Create an opportunity for your allies',
-          'Impress, surprise, or frighten your opposition.',
         ]}
       />
     </Move>
@@ -150,6 +156,7 @@ export const TakePowerfulBlow = () => {
             results={[
               'You lash out verbally: provoke a teammate to foolhardy action or take advantage of your influence to inflict a condition on them.',
               'You give ground: your opposition gets an opportunity or you struggle past the pain: mark two conditions.',
+              'You boil your blood, healing your body as you take the blow. Spend 1 blood.',
             ]}
           />
         </>
@@ -161,6 +168,7 @@ export const TakePowerfulBlow = () => {
             results={[
               'You must remove yourself from the situation, flee, pass out, etc.',
               'You lose control of yourself or your powers in a terrible way',
+              'You boil your blood, healing your body as you take the blow. Spend 2 blood.',
               'Two options from the 13-18 list',
             ]}
           />
@@ -189,6 +197,180 @@ const AssessSituation = () => {
   );
 };
 
+const ComfortOrSupport = () => {
+  return (
+    <Move
+      title="Comfort or Support"
+      preface="On a hit, they hear you: they mark fate or clear a condition."
+      hit="You can also add a Team to the pool or clear a condition yourself."
+    />
+  );
+};
+
+const ProvokeSomeone = () => {
+  return (
+    <Move title="Provoke Someone">
+      <p>
+        For NPCs: on a 10+, they rise to the bait and do what you want. On a
+        7-9, choose one.
+        <ResultList
+          results={[
+            'they stumble: you take +1 forward when taking advantage of it',
+            'they err: you gain a critical opportunity over them',
+            'they overreact: you gain Influence over them',
+          ]}
+        />
+      </p>
+      <p>
+        For PCs: on a 10+, choose both. On a 7-9, choose one.{' '}
+        <ResultList
+          results={[
+            'if they do it, add a Team to the pool',
+            'if they don’t do it, they mark a condition',
+          ]}
+        />
+      </p>
+    </Move>
+  );
+};
+
+const DiscernIntentions = () => {
+  return (
+    <Move title="Discern Intentions" hit="ask three" partial="ask one">
+      <ResultList
+        results={[
+          'What are you really planning?',
+          'What do you want me to do?',
+          'What do you intend to do?',
+        ]}
+      />
+    </Move>
+  );
+};
+
+const CheckItOut = () => {
+  return (
+    <Move
+      title="Check it Out"
+      hit="ask two"
+      partial="ask one"
+      miss="You're in over your head, the GM will tell you why this is a bad spot"
+    >
+      <ResultList
+        results={[
+          "What's my best way in/out/through?",
+          "What's happened here recently?",
+          'What here is worth grabbing?',
+          'Who or what is not what they seem?',
+        ]}
+      />
+    </Move>
+  );
+};
+
+const Order = () => {
+  return (
+    <Move
+      title="Order"
+      hit="NPC chooses one and you take +1 forward against them"
+      partial="NPC chooses one"
+      miss="They do as they please and you take -1 forward against them"
+    >
+      <ResultList
+        results={[
+          'They do what you say',
+          'They get out of your way',
+          'They attack you at a disadvantage',
+          'They freeze',
+        ]}
+      />
+    </Move>
+  );
+};
+
+const RecallInformation = () => {
+  return (
+    <Move
+      title="Recall Information"
+      preface="Tell the team one important detail you've learned from your studies. The GM will tell you what, if anything, seems different from what you remember."
+      hit="ask the GM a follow-up question; they will answer it honestly"
+      miss="the situation is well outside your base of knowledge; the GM will tell you why"
+    />
+  );
+};
+
+const Intimidate = () => {
+  return (
+    <Move
+      title="Intimidate"
+      preface="On a hit, they are thrown off and make themselves vulnerable to you, or they flee."
+      hit="choose one"
+      partial="choose two"
+      miss="they react with violence, hatred, and paranoia, and you suffer the brunt of it"
+    >
+      <ResultList
+        results={[
+          'you frighten others you had not intended to',
+          "you hurt someone or break something you shouldn't have",
+          "you feel remorse for your actions, mark a condition (GM's choice)",
+        ]}
+      />
+    </Move>
+  );
+};
+
+const QuickHands = () => {
+  return (
+    <Move
+      title="Quick Hands"
+      hit="you do it, no problem"
+      partial="you still do it, but the GM will offer you two options between suspicion, danger, or cost"
+    />
+  );
+};
+
+const DeftlyEngageAThreat = () => {
+  return (
+    <Move
+      title="Deftly Engage a Threat"
+      preface="On a hit, you trade blows"
+      hit="choose two"
+      partial="choose one"
+      miss="you give away your plans, your position, or a tactical advantage"
+    >
+      <ResultList
+        results={[
+          'you take something from them',
+          'you create an opportunity for your allies',
+          'you avoid their blows',
+          'you impress or surprise the opposition',
+        ]}
+      />
+    </Move>
+  );
+};
+
+const FerociouslyEngageAThreat = () => {
+  return (
+    <Move
+      title="Ferociously Engage a Threat"
+      preface="On a hit, you trade blows"
+      hit="choose two"
+      partial="choose one"
+      miss="you give ground, destroy something you shouldn't have, or expose yourself to danger"
+    >
+      <ResultList
+        results={[
+          'you avoid their blows',
+          'you deliver a devastating blow',
+          'you impress or frighten the oppositon',
+          'you force them where you want them',
+        ]}
+      />
+    </Move>
+  );
+};
+
 const Moves = new Map([
   ['Gut Check', GutCheck],
   ['Unleash Donum', UnleashDonum],
@@ -197,5 +379,15 @@ const Moves = new Map([
   ['Defend', Defend],
   ['Take a Powerful Blow', TakePowerfulBlow],
   ['Assess the Situation', AssessSituation],
+  ['Comfort or Support', ComfortOrSupport],
+  ['Provoke Someone', ProvokeSomeone],
+  ['Discern Intentions', DiscernIntentions],
+  ['Check it Out', CheckItOut],
+  ['Order', Order],
+  ['Recall Information', RecallInformation],
+  ['Intimidate', Intimidate],
+  ['Quick Hands', QuickHands],
+  ['Deftly Engage a Threat', DeftlyEngageAThreat],
+  ['Ferociously Engage a Threat', FerociouslyEngageAThreat],
 ]);
 export default Moves;

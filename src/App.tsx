@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import baseAbilities from './data/abilities.json';
 import './App.css';
-import Moves, { GutCheck } from './Moves';
+import Moves from './Moves';
 
 function App() {
   const [abilities, setAbilities] = useState(baseAbilities);
@@ -127,7 +127,12 @@ function App() {
   const [maxBlood, setMaxBlood] = useState(3);
   const [donum, setDonum] = useState(3);
   const [maxDonum, setMaxDonum] = useState(3);
-  const [selected, setSelected] = useState({});
+  const [selected, setSelected] = useState<{
+    title?: string;
+    color?: string;
+    description?: string;
+    moves?: string[];
+  }>({});
 
   return (
     <div className="App">
@@ -142,7 +147,8 @@ function App() {
               e.preventDefault();
               setSelected({
                 title: 'Blood',
-                description: 'Blooood',
+                description:
+                  'Blood goes beyond being essential for life. It can be used to empower your body and enhance your mind for short periods of time. You may spend 1 blood to take +1 forward on your next roll.',
                 color: 'DC143C',
                 moves: ['Take a Powerful Blow'],
               });
@@ -378,7 +384,7 @@ function App() {
   );
 }
 
-const ProgressionBarSection = ({ color }) => {
+const ProgressionBarSection = ({ color }: { color: string }) => {
   const [selected, setSelected] = useState(false);
 
   return (
@@ -389,38 +395,5 @@ const ProgressionBarSection = ({ color }) => {
     ></div>
   );
 };
-
-// const Move = () => {
-//   return (
-//     <article className="move">
-//       <h3>Gut Check</h3>
-//       <div className="result-row">
-//         <h4 className="result-row-value">19+</h4>
-//         <p className="result-row-description">
-//           Ask the GM 3 questions from the list below.
-//         </p>
-//       </div>
-//       <div className="result-row">
-//         <h4 className="result-row-value">13-18</h4>
-//         <p className="result-row-description">
-//           Ask the GM 1 question from the list below.
-//         </p>
-//       </div>
-//       <p>Take +1 while acting on the answers</p>
-//       <ul className="result-row-list">
-//         <li className="result-row-list-item">Am I in imminent danger?</li>
-//         <li className="result-row-list-item">Is there someone watching me?</li>
-//         <li className="result-row-list-item">Does something smell off?</li>
-//         <li className="result-row-list-item">
-//           What's the quickest way to escape?
-//         </li>
-//         <li className="result-row-list-item">
-//           Who is everyone else afraid of?
-//         </li>
-//         <li className="result-row-list-item">Who is afraid of me?</li>
-//       </ul>
-//     </article>
-//   );
-// };
 
 export default App;

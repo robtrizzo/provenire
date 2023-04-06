@@ -14,12 +14,14 @@
       {
         "name": "Encyclopedia",
         "ranks": 0,
-        "description": "Encyclopedia is your knowledge of the world, its people, places, and things."
+        "description": "Encyclopedia is your knowledge of the world, its people, places, and things.",
+        "moves": ["Recall Information"]
       },
       {
         "name": "Rhetoric",
         "ranks": 0,
-        "description": "Rhetoric is your ability to state your opinion and listen to others' opinions."
+        "description": "Rhetoric is your ability to state your opinion and listen to others' opinions.",
+        "moves": ["Discern Intentions"]
       },
       {
         "name": "Drama",
@@ -59,12 +61,14 @@
       {
         "name": "Empathy",
         "ranks": 0,
-        "description": "Empathy is your ability to understand and share the feelings of others."
+        "description": "Empathy is your ability to understand and share the feelings of others.",
+        "moves": ["Comfort or Support"]
       },
       {
         "name": "Authority",
         "ranks": 0,
-        "description": "Authority is your ability to project your will onto others."
+        "description": "Authority is your ability to project your will onto others.",
+        "moves": ["Order"]
       },
       {
         "name": "Introspection",
@@ -74,7 +78,8 @@
       {
         "name": "Suggestion",
         "ranks": 0,
-        "description": "Suggestion is your ability to influence others through only your words."
+        "description": "Suggestion is your ability to influence others through only your words.",
+        "moves": ["Provoke Someone"]
       }
     ],
     "moves": ["New Donum Application"]
@@ -99,7 +104,8 @@
       {
         "name": "Execution",
         "ranks": 0,
-        "description": "Execution is your skill and natural ability at physically affecting the world with your body."
+        "description": "Execution is your skill and natural ability at physically affecting the world with your body.",
+        "moves": ["Ferociously Engage a Threat"]
       },
       {
         "name": "Impunity",
@@ -115,7 +121,8 @@
       {
         "name": "Menace",
         "ranks": 0,
-        "description": "Menace is your ability to intimidate others with your physical presence."
+        "description": "Menace is your ability to intimidate others with your physical presence.",
+        "moves": ["Intimidate"]
       }
     ],
     "moves": ["Directly Engage a Threat"]
@@ -130,12 +137,14 @@
       {
         "name": "Coordination",
         "ranks": 0,
-        "description": "Coordination is your ability be accurate with tools and weapons"
+        "description": "Coordination is your ability be accurate with tools and weapons",
+        "moves": ["Deftly Engage a Threat"]
       },
       {
         "name": "Perception",
         "ranks": 0,
-        "description": "Perception is your ability to sense something unusual in your environment."
+        "description": "Perception is your ability to sense something unusual in your environment.",
+        "moves": ["Check it Out"]
       },
       {
         "name": "Reaction",
@@ -150,7 +159,8 @@
       {
         "name": "Interfacing",
         "ranks": 0,
-        "description": "Interfacing is your ability to use tools and technology."
+        "description": "Interfacing is your ability to use tools and technology.",
+        "moves": ["Quick Hands"]
       },
       {
         "name": "Composure",
