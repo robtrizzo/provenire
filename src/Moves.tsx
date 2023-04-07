@@ -371,6 +371,47 @@ const FerociouslyEngageAThreat = () => {
   );
 };
 
+const PutThePiecesTogether = () => {
+  return (
+    <Move
+      title="Put the Pieces Together"
+      hit="ask one, then you get to ask a follow-up question. The GM must answer it honestly."
+      partial="choose one"
+      miss="you critically misunderstand the situation, leaving yourself open to danger or too slow to respond"
+    >
+      <ResultList
+        results={[
+          'who’s really in control here?',
+          'how would ___ react to ___?',
+          "what's the key to the enemy's plan?",
+        ]}
+      />
+    </Move>
+  );
+};
+
+const Rouse = () => {
+  return (
+    <Move
+      title="Rouse"
+      preface="On a hit, your words stir them: they get +1 forward"
+      hit="You can also add a Team to the pool or the roused ally gets +1 ongoing for the encounter"
+      miss="Your words fall flat: both you and they take -1 forward"
+    />
+  );
+};
+
+const WorkOfArt = () => {
+  return (
+    <Move
+      title="Work of Art"
+      preface="On a hit, you create a piece of art significant to you or someone you know."
+      hit="If you made the art for yourself, clear a condition. If you made it for someone else, you gain influence over them."
+      miss="Your best efforts resulted in a mess. Mark a condition."
+    />
+  );
+};
+
 const Moves = new Map([
   ['Gut Check', GutCheck],
   ['Unleash Donum', UnleashDonum],
@@ -389,5 +430,8 @@ const Moves = new Map([
   ['Quick Hands', QuickHands],
   ['Deftly Engage a Threat', DeftlyEngageAThreat],
   ['Ferociously Engage a Threat', FerociouslyEngageAThreat],
+  ['Put the Pieces Together', PutThePiecesTogether],
+  ['Rouse', Rouse],
+  ['Work of Art', WorkOfArt],
 ]);
 export default Moves;

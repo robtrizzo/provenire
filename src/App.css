@@ -83,6 +83,36 @@
     background-color: inherit;
   }
 
+  .condition-columns {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+  }
+  .condition-column {
+    width: 100%;
+    border: 1px solid #ccc;
+  }
+  .condition-wounded {
+    width: 200px;
+     flex-shrink: 0;
+     border: 1px solid #ccc;
+  }
+  .condition-rows {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 2px;
+  }
+  .condition-row {
+    height: 305px;
+    border: 1px solid #ccc;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+
   .abilities-wrapper {
     width: 100%;
     display: flex;

@@ -231,152 +231,174 @@ function App() {
             </h3>
           </section>
         </article>
-        <div className="abilities-wrapper">
-          <article className="abilities-article">
-            {abilities.map(
-              ({
-                category,
-                abilities,
-                score,
-                progress,
-                color,
-                description,
-                moves,
-              }) => (
-                <section key={`category-${category}`} className="abilities-row">
-                  <div
-                    className={`ability-category ability-category-${category}`}
-                    style={{ backgroundColor: `#${color}${score + 4}a` }}
-                    onClick={() => {
-                      setSelected({
-                        title: category,
-                        color,
-                        description,
-                        moves,
-                      });
-                    }}
+        <article className="condition-columns">
+          <section className="condition-wounded">Wounded</section>
+          <section className="condition-column">Hopeless</section>
+          <section className="condition-column">Guilty</section>
+          <section className="condition-column">Insecure</section>
+        </article>
+        <div style={{ display: 'flex', gap: '2px' }}>
+          <div className="abilities-wrapper">
+            <article className="abilities-article">
+              {abilities.map(
+                ({
+                  category,
+                  abilities,
+                  score,
+                  progress,
+                  color,
+                  description,
+                  moves,
+                }) => (
+                  <section
+                    key={`category-${category}`}
+                    className="abilities-row"
                   >
-                    <h3>{category}</h3>
-                    <h4 className="category-score">{score}</h4>
-                    <div className="category-progress-section">
-                      {Array.from(Array(progress).keys()).map(() => (
-                        <div className="category-progress active"></div>
-                      ))}
-                      {Array.from(Array(5 + score - progress).keys()).map(
-                        () => (
-                          <div className="category-progress"></div>
-                        )
-                      )}
-                    </div>
-                  </div>
-                  {abilities.map(({ name, ranks, description, moves }) => (
                     <div
-                      key={`ability-${name}`}
-                      className={`ability ability-category-${category}`}
-                      style={{
-                        backgroundColor: `#${color}${Math.min(
-                          Math.max(ranks + score + 3, 1),
-                          10
-                        )}a`,
-                      }}
+                      className={`ability-category ability-category-${category}`}
+                      style={{ backgroundColor: `#${color}${score + 4}a` }}
                       onClick={() => {
-                        setSelected({ title: name, color, description, moves });
+                        setSelected({
+                          title: category,
+                          color,
+                          description,
+                          moves,
+                        });
                       }}
                     >
-                      <h4 className="ability-name">{name}</h4>
-                      <div className="ability-score-section">
-                        <h5
-                          className="ability-score ability-score-button noselect"
-                          onClick={() => {
-                            handleAbilityScoreChange(
-                              category,
-                              name,
-                              Math.max(ranks - 1, 0)
-                            );
-                          }}
-                        >
-                          -
-                        </h5>
-                        <h5 className="ability-score noselect">
-                          {score + ranks}
-                        </h5>
-                        <h5
-                          className="ability-score ability-score-button noselect"
-                          onClick={() => {
-                            handleAbilityScoreChange(
-                              category,
-                              name,
-                              Math.min(ranks + 1, 5)
-                            );
-                          }}
-                        >
-                          +
-                        </h5>
+                      <h3>{category}</h3>
+                      <h4 className="category-score">{score}</h4>
+                      <div className="category-progress-section">
+                        {Array.from(Array(progress).keys()).map(() => (
+                          <div className="category-progress active"></div>
+                        ))}
+                        {Array.from(Array(5 + score - progress).keys()).map(
+                          () => (
+                            <div className="category-progress"></div>
+                          )
+                        )}
                       </div>
                     </div>
-                  ))}
-                </section>
-              )
-            )}
-          </article>
-          <article className="abilities-progression-wrapper">
-            <section className="abilities-progression-section">
-              <div className="abilities-progression-column">
-                <h5 className="abilities-progression-name">Genius</h5>
-                <div className="abilities-progression-bar">
-                  <ProgressionBarSection color="#3518ab" />
-                  <ProgressionBarSection color="#3518ab" />
-                  <ProgressionBarSection color="#3518ab" />
-                  <ProgressionBarSection color="#3518ab" />
-                  <ProgressionBarSection color="#3518ab" />
-                </div>
-              </div>
-            </section>
-            <section className="abilities-progression-section">
-              <div className="abilities-progression-column">
-                <h5 className="abilities-progression-name">Power</h5>
-                <div className="abilities-progression-bar">
-                  <ProgressionBarSection color="#c7401f" />
-                  <ProgressionBarSection color="#c7401f" />
-                  <ProgressionBarSection color="#c7401f" />
-                  <ProgressionBarSection color="#c7401f" />
-                  <ProgressionBarSection color="#c7401f" />
-                </div>
-              </div>
-            </section>
-            <section className="abilities-progression-section">
-              <div className="abilities-progression-column">
-                <h5 className="abilities-progression-name">Fate</h5>
-                <div className="abilities-progression-bar">
-                  <ProgressionBarSection color="#e9de1e" />
-                  <ProgressionBarSection color="#e9de1e" />
-                  <ProgressionBarSection color="#e9de1e" />
-                  <ProgressionBarSection color="#e9de1e" />
-                  <ProgressionBarSection color="#e9de1e" />
-                </div>
-              </div>
-            </section>
-          </article>
-          {selected.title ? (
-            <article
-              className="info-section"
-              style={
-                selected.color
-                  ? { backgroundColor: `#${selected.color}1a` }
-                  : {}
-              }
-            >
-              <h3>{selected.title}</h3>
-              <p className="info-section-description">{selected.description}</p>
-              {selected.moves
-                ? selected.moves.map((move) => {
-                    return Moves.get(move)();
-                  })
-                : null}
+                    {abilities.map(({ name, ranks, description, moves }) => (
+                      <div
+                        key={`ability-${name}`}
+                        className={`ability ability-category-${category}`}
+                        style={{
+                          backgroundColor: `#${color}${Math.min(
+                            Math.max(ranks + score + 3, 1),
+                            10
+                          )}a`,
+                        }}
+                        onClick={() => {
+                          setSelected({
+                            title: name,
+                            color,
+                            description,
+                            moves,
+                          });
+                        }}
+                      >
+                        <h4 className="ability-name">{name}</h4>
+                        <div className="ability-score-section">
+                          <h5
+                            className="ability-score ability-score-button noselect"
+                            onClick={() => {
+                              handleAbilityScoreChange(
+                                category,
+                                name,
+                                Math.max(ranks - 1, 0)
+                              );
+                            }}
+                          >
+                            -
+                          </h5>
+                          <h5 className="ability-score noselect">
+                            {score + ranks}
+                          </h5>
+                          <h5
+                            className="ability-score ability-score-button noselect"
+                            onClick={() => {
+                              handleAbilityScoreChange(
+                                category,
+                                name,
+                                Math.min(ranks + 1, 5)
+                              );
+                            }}
+                          >
+                            +
+                          </h5>
+                        </div>
+                      </div>
+                    ))}
+                  </section>
+                )
+              )}
             </article>
-          ) : null}
+            <article className="abilities-progression-wrapper">
+              <section className="abilities-progression-section">
+                <div className="abilities-progression-column">
+                  <h5 className="abilities-progression-name">Genius</h5>
+                  <div className="abilities-progression-bar">
+                    <ProgressionBarSection color="#3518ab" />
+                    <ProgressionBarSection color="#3518ab" />
+                    <ProgressionBarSection color="#3518ab" />
+                    <ProgressionBarSection color="#3518ab" />
+                    <ProgressionBarSection color="#3518ab" />
+                  </div>
+                </div>
+              </section>
+              <section className="abilities-progression-section">
+                <div className="abilities-progression-column">
+                  <h5 className="abilities-progression-name">Power</h5>
+                  <div className="abilities-progression-bar">
+                    <ProgressionBarSection color="#c7401f" />
+                    <ProgressionBarSection color="#c7401f" />
+                    <ProgressionBarSection color="#c7401f" />
+                    <ProgressionBarSection color="#c7401f" />
+                    <ProgressionBarSection color="#c7401f" />
+                  </div>
+                </div>
+              </section>
+              <section className="abilities-progression-section">
+                <div className="abilities-progression-column">
+                  <h5 className="abilities-progression-name">Fate</h5>
+                  <div className="abilities-progression-bar">
+                    <ProgressionBarSection color="#e9de1e" />
+                    <ProgressionBarSection color="#e9de1e" />
+                    <ProgressionBarSection color="#e9de1e" />
+                    <ProgressionBarSection color="#e9de1e" />
+                    <ProgressionBarSection color="#e9de1e" />
+                  </div>
+                </div>
+              </section>
+            </article>
+            {selected.title ? (
+              <article
+                className="info-section"
+                style={
+                  selected.color
+                    ? { backgroundColor: `#${selected.color}1a` }
+                    : {}
+                }
+              >
+                <h3>{selected.title}</h3>
+                <p className="info-section-description">
+                  {selected.description}
+                </p>
+                {selected.moves
+                  ? selected.moves.map((move) => {
+                      return Moves.get(move)();
+                    })
+                  : null}
+              </article>
+            ) : null}
+          </div>
+          <article className="condition-rows">
+            <section className="condition-row">Angry</section>
+            <section className="condition-row">Afraid</section>
+            <div style={{ height: '42px', flexShrink: 0 }}></div>
+          </article>
         </div>
-
         <aside></aside>
       </main>
       <footer></footer>

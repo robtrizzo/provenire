@@ -9,7 +9,8 @@
       {
         "name": "Logic",
         "ranks": 0,
-        "description": "Logic is your ability to connect multiple pieces of information into a coherent whole."
+        "description": "Logic is your ability to connect multiple pieces of information into a coherent whole.",
+        "moves": ["Put the Pieces Together"]
       },
       {
         "name": "Encyclopedia",
@@ -26,12 +27,14 @@
       {
         "name": "Drama",
         "ranks": 0,
-        "description": "Drama is your ability to use nonfactual words and actions to affect others."
+        "description": "Drama is your ability to use nonfactual words and actions to affect others.",
+        "moves": ["Rouse"]
       },
       {
         "name": "Conceptualization",
         "ranks": 0,
-        "description": "Conceptualization is your ability to understand and create art."
+        "description": "Conceptualization is your ability to understand and create art.",
+        "moves": ["Work of Art"]
       },
       {
         "name": "Visual Calculus",
