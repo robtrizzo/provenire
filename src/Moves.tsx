@@ -76,17 +76,17 @@ export const UnleashDonum = () => {
     <Move
       title="Unleash your Donum"
       preface="Spend a donum as part of using this move. On a hit, it works"
-      hit="Choose 1 from the list below."
+      hit="Choose one"
+      partial="Choose two"
       miss="Something bad happens"
     >
-      <p>
-        If you don't choose an option from the list below, assume the opposite
-        is true.
-      </p>
       <ResultList
         results={[
-          "There's no collateral damage",
-          "You don't expose yourself to danger",
+          "There's unwanted collateral damage",
+          'You expose yourself to danger',
+          'The effect is unstable or temporary',
+          'You lose control of your powers in a terrible way',
+          'You take a condition',
         ]}
       />
     </Move>
@@ -412,6 +412,49 @@ const WorkOfArt = () => {
   );
 };
 
+const ShrewdlyEngageAThreat = () => {
+  return (
+    <Move
+      title="Shrewdly Engage a Threat"
+      preface="On a hit, you trade blows"
+      hit="choose two"
+      partial="choose one"
+      miss="your plan backfires, or a new complication you couldn't have accounted for appears"
+    >
+      <ResultList
+        results={[
+          'you avoid their blows',
+          'you impress or confuse the opposition',
+          'you disrupt the enemy’s plans',
+          'you set up your next move, take +1 forward to it',
+        ]}
+      />
+    </Move>
+  );
+};
+
+const WeildDonum = () => {
+  return (
+    <Move
+      title="Weild your Donum"
+      preface="Spend a donum as part of using this move."
+      hit={
+        <>
+          <p>Choose one:</p>
+          <ResultList
+            results={[
+              'take hold of something vulnerable to you',
+              'create something useful from your environment',
+              'neutralize an opponent or threat... for now',
+            ]}
+          />
+        </>
+      }
+      miss="You lose control of your donum. The GM will tell you how."
+    ></Move>
+  );
+};
+
 const Moves = new Map([
   ['Gut Check', GutCheck],
   ['Unleash Donum', UnleashDonum],
@@ -433,5 +476,7 @@ const Moves = new Map([
   ['Put the Pieces Together', PutThePiecesTogether],
   ['Rouse', Rouse],
   ['Work of Art', WorkOfArt],
+  ['Shrewdly Engage a Threat', ShrewdlyEngageAThreat],
+  ['Weild your Donum', WeildDonum],
 ]);
 export default Moves;

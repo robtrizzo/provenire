@@ -45,7 +45,8 @@
         "name": "Visual Calculus",
         "ranks": 0,
         "description": "Visual Calculus is your ability to understand physical objects and their relation to each other.",
-        "conditions": ["Wounded", "Insecure", "Angry"]
+        "conditions": ["Wounded", "Insecure", "Angry"],
+        "moves": ["Shrewdly Engage a Threat"]
       }
     ],
     "moves": ["Assess the Situation"]
@@ -61,7 +62,8 @@
         "name": "Volition",
         "ranks": 0,
         "description": "Volition is your ability to control your own thoughts and actions.",
-        "conditions": ["Wounded", "Hopeless", "Angry"]
+        "conditions": ["Wounded", "Hopeless", "Angry"],
+        "moves": ["Weild your Donum"]
       },
       {
         "name": "Contemporary",
