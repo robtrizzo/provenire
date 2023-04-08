@@ -52,7 +52,7 @@
   .resource {
     width: 100%;
     border: 1px solid #ccc;
-    transition: all 0.5s ease-in-out 0.1s;
+    transition: all 0.5s ease-in-out;
   }
 
   .donum:hover {
@@ -93,24 +93,32 @@
   .condition-column {
     width: 100%;
     border: 1px solid #ccc;
+    transition: all 0.5s ease-in-out;
   }
   .condition-wounded {
     width: 200px;
      flex-shrink: 0;
      border: 1px solid #ccc;
+     transition: all 0.5s ease-in-out;
   }
   .condition-rows {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 2px;
   }
   .condition-row {
-    height: 305px;
+    height: 303px;
     border: 1px solid #ccc;
     writing-mode: vertical-rl;
     text-orientation: mixed;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .condition-row:hover, .condition-column:hover, .condition-wounded:hover {
+    cursor: pointer;
+    box-shadow: inset 0px 0px 5px 5px crimson;
   }
 
   .abilities-wrapper {
@@ -162,7 +170,7 @@
     width: 200px;
     height: 150px;
     border: 1px solid #ccc;
-    transition: all 0.5s ease-in-out 0.1s;
+    transition: all 0.5s ease-in-out;
   }
 
   .ability-category-Intellect {
@@ -207,7 +215,7 @@
     align-items: center;
     justify-content: center;
     border: 1px solid #ccc;
-    transition: all 0.5s ease-in-out 0.1s;
+    transition: all 0.5s ease-in-out;
   }
 
   .ability-score, .category-score {

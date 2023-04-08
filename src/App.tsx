@@ -133,6 +133,19 @@ function App() {
     description?: string;
     moves?: string[];
   }>({});
+  const [currentConditions, setCurrentConditions] = useState<string[]>([]);
+  const handleClickCondition = (condition: string) => {
+    if (currentConditions.includes(condition)) {
+      setCurrentConditions(currentConditions.filter((c) => c !== condition));
+    } else {
+      setCurrentConditions([...currentConditions, condition]);
+    }
+  };
+  const conditionStyle = (condition: string) => {
+    return currentConditions.includes(condition)
+      ? { boxShadow: 'inset 0px 0px 5px 5px crimson' }
+      : {};
+  };
 
   return (
     <div className="App">
@@ -232,10 +245,42 @@ function App() {
           </section>
         </article>
         <article className="condition-columns">
-          <section className="condition-wounded">Wounded</section>
-          <section className="condition-column">Hopeless</section>
-          <section className="condition-column">Guilty</section>
-          <section className="condition-column">Insecure</section>
+          <section
+            className="condition-wounded"
+            style={conditionStyle('Wounded')}
+            onClick={() => {
+              handleClickCondition('Wounded');
+            }}
+          >
+            Wounded
+          </section>
+          <section
+            className="condition-column"
+            style={conditionStyle('Hopeless')}
+            onClick={() => {
+              handleClickCondition('Hopeless');
+            }}
+          >
+            Hopeless
+          </section>
+          <section
+            className="condition-column"
+            style={conditionStyle('Guilty')}
+            onClick={() => {
+              handleClickCondition('Guilty');
+            }}
+          >
+            Guilty
+          </section>
+          <section
+            className="condition-column"
+            style={conditionStyle('Insecure')}
+            onClick={() => {
+              handleClickCondition('Insecure');
+            }}
+          >
+            Insecure
+          </section>
         </article>
         <div style={{ display: 'flex', gap: '2px' }}>
           <div className="abilities-wrapper">
@@ -267,7 +312,10 @@ function App() {
                       }}
                     >
                       <h3>{category}</h3>
-                      <h4 className="category-score">{score}</h4>
+                      <h4 className="category-score">
+                        {score -
+                          (currentConditions.includes('Wounded') ? 1 : 0)}
+                      </h4>
                       <div className="category-progress-section">
                         {Array.from(Array(progress).keys()).map(() => (
                           <div className="category-progress active"></div>
@@ -279,57 +327,63 @@ function App() {
                         )}
                       </div>
                     </div>
-                    {abilities.map(({ name, ranks, description, moves }) => (
-                      <div
-                        key={`ability-${name}`}
-                        className={`ability ability-category-${category}`}
-                        style={{
-                          backgroundColor: `#${color}${Math.min(
-                            Math.max(ranks + score + 3, 1),
-                            10
-                          )}a`,
-                        }}
-                        onClick={() => {
-                          setSelected({
-                            title: name,
-                            color,
-                            description,
-                            moves,
-                          });
-                        }}
-                      >
-                        <h4 className="ability-name">{name}</h4>
-                        <div className="ability-score-section">
-                          <h5
-                            className="ability-score ability-score-button noselect"
-                            onClick={() => {
-                              handleAbilityScoreChange(
-                                category,
-                                name,
-                                Math.max(ranks - 1, 0)
-                              );
-                            }}
-                          >
-                            -
-                          </h5>
-                          <h5 className="ability-score noselect">
-                            {score + ranks}
-                          </h5>
-                          <h5
-                            className="ability-score ability-score-button noselect"
-                            onClick={() => {
-                              handleAbilityScoreChange(
-                                category,
-                                name,
-                                Math.min(ranks + 1, 5)
-                              );
-                            }}
-                          >
-                            +
-                          </h5>
+                    {abilities.map(
+                      ({ name, ranks, description, moves, conditions }) => (
+                        <div
+                          key={`ability-${name}`}
+                          className={`ability ability-category-${category}`}
+                          style={{
+                            backgroundColor: `#${color}${Math.min(
+                              Math.max(ranks + score + 3, 1),
+                              10
+                            )}a`,
+                          }}
+                          onClick={() => {
+                            setSelected({
+                              title: name,
+                              color,
+                              description,
+                              moves,
+                            });
+                          }}
+                        >
+                          <h4 className="ability-name">{name}</h4>
+                          <div className="ability-score-section">
+                            <h5
+                              className="ability-score ability-score-button noselect"
+                              onClick={() => {
+                                handleAbilityScoreChange(
+                                  category,
+                                  name,
+                                  Math.max(ranks - 1, 0)
+                                );
+                              }}
+                            >
+                              -
+                            </h5>
+                            <h5 className="ability-score noselect">
+                              {score +
+                                ranks -
+                                currentConditions.filter(
+                                  (n) => conditions.indexOf(n) > -1
+                                ).length}
+                            </h5>
+                            <h5
+                              className="ability-score ability-score-button noselect"
+                              onClick={() => {
+                                handleAbilityScoreChange(
+                                  category,
+                                  name,
+                                  Math.min(ranks + 1, 5)
+                                );
+                              }}
+                            >
+                              +
+                            </h5>
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      )
+                    )}
                   </section>
                 )
               )}
@@ -394,8 +448,24 @@ function App() {
             ) : null}
           </div>
           <article className="condition-rows">
-            <section className="condition-row">Angry</section>
-            <section className="condition-row">Afraid</section>
+            <section
+              className="condition-row"
+              style={conditionStyle('Angry')}
+              onClick={() => {
+                handleClickCondition('Angry');
+              }}
+            >
+              Angry
+            </section>
+            <section
+              className="condition-row"
+              style={conditionStyle('Afraid')}
+              onClick={() => {
+                handleClickCondition('Afraid');
+              }}
+            >
+              Afraid
+            </section>
             <div style={{ height: '42px', flexShrink: 0 }}></div>
           </article>
         </div>
