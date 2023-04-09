@@ -155,7 +155,8 @@ export const TakePowerfulBlow = () => {
           <ResultList
             results={[
               'You lash out verbally: provoke a teammate to foolhardy action or take advantage of your influence to inflict a condition on them.',
-              'You give ground: your opposition gets an opportunity or you struggle past the pain: mark two conditions.',
+              'You give ground: your opposition gets an opportunity to push their advantage',
+              'You struggle past the pain: mark a condition.',
               'You boil your blood, healing your body as you take the blow. Spend 1 blood.',
             ]}
           />
@@ -381,7 +382,7 @@ const PutThePiecesTogether = () => {
     >
       <ResultList
         results={[
-          'who’s really in control here?',
+          "if I do nothing, what's most likely to happen?",
           'how would ___ react to ___?',
           "what's the key to the enemy's plan?",
         ]}
@@ -455,6 +456,93 @@ const WeildDonum = () => {
   );
 };
 
+const ReadTheRoom = () => {
+  return (
+    <Move
+      title="Read the Room"
+      preface="On a hit, ask one. The GM will answer honestly."
+      hit="take +1 forward when acting on the answer"
+      miss="you misread the situation, and the GM will tell you how"
+    >
+      <ResultList
+        results={[
+          "what's the biggest threat?",
+          'how could I gain influence over ___?',
+          'who is really in charge here?',
+          'how can I avoid trouble or hide here?',
+        ]}
+      />
+    </Move>
+  );
+};
+
+const LookInward = () => {
+  return (
+    <Move
+      title="Look Inward"
+      preface="When you mark a condition other than wounded, you can use this move. On a hit, pick a condition and ignore it for the rest of the encounter."
+      hit="Pick a condition; you can't be made to mark that condition for the rest of the encounter"
+      miss="Your inner turmoil overcomes your sensibilities, mark another condition."
+    />
+  );
+};
+
+const WithstandAPowerfulBlow = () => {
+  return (
+    <Move
+      title="Withstand a Powerful Blow"
+      hit="Stand strong. Mark potential and say how you weather the blow."
+      partial={
+        <>
+          <span>Choose 1</span>
+          <ResultList
+            results={[
+              "You don't flinch, and shock the opposition: take +1 forward against them. Spend two blood or mark two conditions.",
+              'You keep moving despite the blow, repositioning yourself to your advantage. Spend two blood or mark two conditions.',
+              'You stand strong despite the pain: add 1 to the team pool. Spend two blood or mark two conditions.',
+              'You grit your teeth and bear it: spend a blood or mark a condition.',
+            ]}
+          />
+        </>
+      }
+      miss={
+        <>
+          <span>Choose 1</span>
+          <ResultList
+            results={[
+              'You buckle under the blow: spend two blood or mark two conditions.',
+              "You're knocked back and off balance: take -1 forward and mark a condition.",
+              "You're seriously injured: maimed, broken, or otherwise disabled, your choice.",
+              'Two options from the 13-18 list',
+            ]}
+          />
+        </>
+      }
+    />
+  );
+};
+
+const PushYourBody = () => {
+  return (
+    <Move
+      title="Push your Body"
+      preface="On a hit, perform a feat of strength or overcome a physical obstacle."
+      partial="You hurt yourself in the process. Spend one blood or mark a condition."
+    />
+  );
+};
+
+const ShrugItOff = () => {
+  return (
+    <Move
+      title="Shrug it Off"
+      preface="On a hit, your body handles the ailment, no sweat."
+      hit="Impress any opponent who knows what you overcame. Take +1 forward against them."
+      miss="The effect takes its toll, take a powerful blow"
+    ></Move>
+  );
+};
+
 const Moves = new Map([
   ['Gut Check', GutCheck],
   ['Unleash Donum', UnleashDonum],
@@ -478,5 +566,10 @@ const Moves = new Map([
   ['Work of Art', WorkOfArt],
   ['Shrewdly Engage a Threat', ShrewdlyEngageAThreat],
   ['Weild your Donum', WeildDonum],
+  ['Read the Room', ReadTheRoom],
+  ['Look Inward', LookInward],
+  ['Withstand a Powerful Blow', WithstandAPowerfulBlow],
+  ['Push your Body', PushYourBody],
+  ['Shrug it Off', ShrugItOff],
 ]);
 export default Moves;
