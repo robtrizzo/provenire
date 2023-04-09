@@ -203,7 +203,7 @@ const ComfortOrSupport = () => {
     <Move
       title="Comfort or Support"
       preface="On a hit, they hear you: they mark fate or clear a condition."
-      hit="You can also add a Team to the pool or clear a condition yourself."
+      hit="You can also add a Team to the pool, mark genius, or clear a condition yourself."
     />
   );
 };
@@ -543,6 +543,58 @@ const ShrugItOff = () => {
   );
 };
 
+const TakeTheInitiative = () => {
+  return (
+    <Move
+      title="Take the Initiative"
+      preface="When the environment or situation dramatically changes, use this move."
+      hit="choose two"
+      partial="choose one"
+      miss="you're caught off-guard. take -1 forward."
+    >
+      <ResultList
+        results={[
+          'you act before anyone else has a chance to react',
+          'you add a Team to the pool',
+          'you gain an opportunity or opening',
+          'you avoid danger',
+        ]}
+      />
+    </Move>
+  );
+};
+
+const TraverseTreacherousGround = () => {
+  return (
+    <Move
+      title="Traverse Treacherous Ground"
+      hit="you do it, no problem"
+      partial="you do it, but you expose yourself to danger or escalate the situation: your choice"
+    />
+  );
+};
+
+const KeepYourCool = () => {
+  return (
+    <Move
+      title="Keep your Cool"
+      preface="When the environment or situation changes for the worse, use this move."
+      hit="choose two"
+      partial="choose one"
+      miss="you buckle under the pressure, mark a condition"
+    >
+      <ResultList
+        results={[
+          'you reassure someone, they clear a condition',
+          'you impress, surprise, or frighten someone',
+          'you deny the opposition an opportunity or opening',
+          'mark power',
+        ]}
+      />
+    </Move>
+  );
+};
+
 const Moves = new Map([
   ['Gut Check', GutCheck],
   ['Unleash Donum', UnleashDonum],
@@ -571,5 +623,8 @@ const Moves = new Map([
   ['Withstand a Powerful Blow', WithstandAPowerfulBlow],
   ['Push your Body', PushYourBody],
   ['Shrug it Off', ShrugItOff],
+  ['Take the Initiative', TakeTheInitiative],
+  ['Traverse Treacherous Ground', TraverseTreacherousGround],
+  ['Keep your Cool', KeepYourCool],
 ]);
 export default Moves;

@@ -1,10 +1,65 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import baseAbilities from './data/abilities.json';
 import './App.css';
 import Moves from './Moves';
 
 function App() {
   const [abilities, setAbilities] = useState(baseAbilities);
+
+  const fileUploadHandler = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    event.preventDefault();
+    const fileReader = new FileReader();
+    const { files } = event.target;
+
+    if (files && files.length > 0) {
+      fileReader.readAsText(files[0], 'UTF-8');
+      fileReader.onload = (e) => {
+        const content = JSON.parse(e.target?.result?.toString() || '');
+        setAbilities(content.abilities);
+        setCurrentConditions(content.conditions);
+        setBlood(content.blood);
+        setMaxBlood(content.maxBlood);
+        setDonum(content.donum);
+        setMaxDonum(content.maxDonum);
+        setGenius(content.genius);
+        setPower(content.power);
+        setFate(content.fate);
+      };
+    }
+  };
+
+  const handleDownloadFile = () => {
+    const element = document.createElement('a');
+    const file = new Blob(
+      [
+        JSON.stringify(
+          {
+            abilities: abilities,
+            conditions: currentConditions,
+            blood: blood,
+            maxBlood: maxBlood,
+            donum: donum,
+            maxDonum: maxDonum,
+            genius,
+            power,
+            fate,
+          },
+          null,
+          2
+        ),
+      ],
+      {
+        type: 'application/json',
+      }
+    );
+    element.href = URL.createObjectURL(file);
+    element.download = 'character.json';
+    document.body.appendChild(element); // Required for this to work in FireFox
+    element.click();
+  };
+
   const handleAbilityScoreChange = (
     category: string,
     ability: string,
@@ -44,7 +99,7 @@ function App() {
     if (newRanks > oldRanks) {
       let catIncrease = false;
       console.log('new score > old score');
-      const newAbilities = abilities.map((cat) => {
+      const newAbilities = abilities.map((cat: any) => {
         if (cat.category === category) {
           let newCategoryProgress = cat.progress + 1;
           console.log('newCategoryProgress', newCategoryProgress);
@@ -68,7 +123,7 @@ function App() {
       }
     } else if (newRanks < oldRanks) {
       let catDecrease = false;
-      const newAbilities = abilities.map((cat) => {
+      const newAbilities = abilities.map((cat: any) => {
         if (cat.category === category) {
           let newCategoryProgress = cat.progress - 1;
           console.log('newCategoryProgress', newCategoryProgress);
@@ -97,7 +152,7 @@ function App() {
 
   const handleCategoryIncrease = (abilities: any, category: string) => {
     console.log('category increase', category);
-    const newAbilities = abilities.map((cat) => {
+    const newAbilities = abilities.map((cat: any) => {
       if (cat.category === category) {
         return {
           ...cat,
@@ -111,7 +166,7 @@ function App() {
   };
 
   const handleCategoryDecrease = (abilities: any, category: string) => {
-    const newAbilities = abilities.map((cat) => {
+    const newAbilities = abilities.map((cat: any) => {
       if (cat.category === category) {
         return {
           ...cat,
@@ -146,6 +201,46 @@ function App() {
       ? { boxShadow: 'inset 0px 0px 5px 5px crimson' }
       : {};
   };
+  const totalRanks = useMemo(() => {
+    return abilities.reduce((total, cat) => {
+      return (
+        total +
+        cat.abilities.reduce((total, ab) => {
+          return total + ab.ranks;
+        }, 0)
+      );
+    }, 0);
+  }, [abilities]);
+  const [genius, setGenius] = useState([false, false, false]);
+  const handleChangeGenius = (index: number) => {
+    const newGenius = genius.map((g, i) => {
+      if (i === index) {
+        return !g;
+      }
+      return g;
+    });
+    setGenius(newGenius);
+  };
+  const [power, setPower] = useState([false, false, false]);
+  const handleChangePower = (index: number) => {
+    const newPower = power.map((p, i) => {
+      if (i === index) {
+        return !p;
+      }
+      return p;
+    });
+    setPower(newPower);
+  };
+  const [fate, setFate] = useState([false, false, false]);
+  const handleChangeFate = (index: number) => {
+    const newFate = fate.map((f, i) => {
+      if (i === index) {
+        return !f;
+      }
+      return f;
+    });
+    setFate(newFate);
+  };
 
   return (
     <div className="App">
@@ -153,6 +248,19 @@ function App() {
         <h1>PTBA + Disco Elysium = ???</h1>
       </header>
       <main>
+        <section className="file-section">
+          <button
+            onClick={() => {
+              handleDownloadFile();
+            }}
+          >
+            Save
+          </button>
+          <label htmlFor="file-upload" className="custom-file-upload">
+            <input id="file-upload" type="file" onChange={fileUploadHandler} />
+            Load
+          </label>
+        </section>
         <article className="resources">
           <section
             className="resource blood"
@@ -381,6 +489,14 @@ function App() {
                               +
                             </h5>
                           </div>
+                          <div className="category-progress-section">
+                            {Array.from(Array(ranks).keys()).map(() => (
+                              <div className="category-progress active"></div>
+                            ))}
+                            {Array.from(Array(5 - ranks).keys()).map(() => (
+                              <div className="category-progress"></div>
+                            ))}
+                          </div>
                         </div>
                       )
                     )}
@@ -393,11 +509,14 @@ function App() {
                 <div className="abilities-progression-column">
                   <h5 className="abilities-progression-name">Genius</h5>
                   <div className="abilities-progression-bar">
-                    <ProgressionBarSection color="#3518ab" />
-                    <ProgressionBarSection color="#3518ab" />
-                    <ProgressionBarSection color="#3518ab" />
-                    <ProgressionBarSection color="#3518ab" />
-                    <ProgressionBarSection color="#3518ab" />
+                    {genius.map((g, i) => (
+                      <ProgressionBarSection
+                        color="#3518ab"
+                        selected={g}
+                        index={i}
+                        setProgress={handleChangeGenius}
+                      />
+                    ))}
                   </div>
                 </div>
               </section>
@@ -405,11 +524,14 @@ function App() {
                 <div className="abilities-progression-column">
                   <h5 className="abilities-progression-name">Power</h5>
                   <div className="abilities-progression-bar">
-                    <ProgressionBarSection color="#c7401f" />
-                    <ProgressionBarSection color="#c7401f" />
-                    <ProgressionBarSection color="#c7401f" />
-                    <ProgressionBarSection color="#c7401f" />
-                    <ProgressionBarSection color="#c7401f" />
+                    {power.map((p, i) => (
+                      <ProgressionBarSection
+                        color="#c7401f"
+                        selected={p}
+                        index={i}
+                        setProgress={handleChangePower}
+                      />
+                    ))}
                   </div>
                 </div>
               </section>
@@ -417,13 +539,21 @@ function App() {
                 <div className="abilities-progression-column">
                   <h5 className="abilities-progression-name">Fate</h5>
                   <div className="abilities-progression-bar">
-                    <ProgressionBarSection color="#e9de1e" />
-                    <ProgressionBarSection color="#e9de1e" />
-                    <ProgressionBarSection color="#e9de1e" />
-                    <ProgressionBarSection color="#e9de1e" />
-                    <ProgressionBarSection color="#e9de1e" />
+                    {fate.map((f, i) => (
+                      <ProgressionBarSection
+                        color="#e9de1e"
+                        selected={f}
+                        index={i}
+                        setProgress={handleChangeFate}
+                      />
+                    ))}
                   </div>
                 </div>
+              </section>
+              <section className="abilities-progression-section">
+                <h5 className="abilities-progression-name">
+                  Ranks: {totalRanks}
+                </h5>
               </section>
             </article>
             {selected.title ? (
@@ -476,14 +606,22 @@ function App() {
   );
 }
 
-const ProgressionBarSection = ({ color }: { color: string }) => {
-  const [selected, setSelected] = useState(false);
-
+const ProgressionBarSection = ({
+  color,
+  selected,
+  index,
+  setProgress,
+}: {
+  color: string;
+  selected: boolean;
+  index: number;
+  setProgress: { (index: number): void };
+}) => {
   return (
     <div
       className={`abilities-progression-bar-section`}
       style={selected ? { backgroundColor: color } : {}}
-      onClick={() => setSelected(!selected)}
+      onClick={() => setProgress(index)}
     ></div>
   );
 };

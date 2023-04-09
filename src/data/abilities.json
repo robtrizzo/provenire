@@ -180,13 +180,15 @@
         "name": "Reaction",
         "ranks": 0,
         "description": "Reaction is your ability to quickly respond to a change in the environment.",
-        "conditions": ["Wounded", "Guilty", "Afraid"]
+        "conditions": ["Wounded", "Guilty", "Afraid"],
+        "moves": ["Take the Initiative"]
       },
       {
         "name": "Grace",
         "ranks": 0,
         "description": "Grace is your ability to move your body in a precise or pleasing way.",
-        "conditions": ["Wounded", "Guilty", "Afraid"]
+        "conditions": ["Wounded", "Guilty", "Afraid"],
+        "moves": ["Traverse Treacherous Ground"]
       },
       {
         "name": "Interfacing",
@@ -199,7 +201,8 @@
         "name": "Composure",
         "ranks": 0,
         "description": "Composure is your ability to keep your cool and not give away your thoughts.",
-        "conditions": ["Wounded", "Insecure", "Afraid"]
+        "conditions": ["Wounded", "Insecure", "Afraid"],
+        "moves": ["Keep your Cool"]
       }
     ],
     "moves": ["Defend"]
