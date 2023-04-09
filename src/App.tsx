@@ -569,11 +569,13 @@ function App() {
                 <p className="info-section-description">
                   {selected.description}
                 </p>
-                {selected.moves
-                  ? selected.moves.map((move) => {
-                      return Moves.get(move)();
-                    })
-                  : null}
+                {selected.moves?.map((move) => {
+                  const selectedMove = Moves.get(move);
+                  if (selectedMove) {
+                    return selectedMove();
+                  }
+                  return null;
+                })}
               </article>
             ) : null}
           </div>
