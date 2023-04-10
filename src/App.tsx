@@ -182,6 +182,15 @@ function App() {
   const [maxBlood, setMaxBlood] = useState(3);
   const [donum, setDonum] = useState(3);
   const [maxDonum, setMaxDonum] = useState(3);
+  const handleSetNumberField = (setter: any, value: string) => {
+    const newNumber = parseInt(value);
+    console.log(newNumber, value);
+    if (newNumber && !isNaN(newNumber)) {
+      setter(newNumber);
+    } else {
+      setter(0);
+    }
+  };
   const [selected, setSelected] = useState<{
     title?: string;
     color?: string;
@@ -289,8 +298,9 @@ function App() {
                   type="text"
                   value={blood}
                   onChange={(e) => {
+                    console.log(e.target.value);
                     e.stopPropagation();
-                    setBlood(parseInt(e.target.value));
+                    handleSetNumberField(setBlood, e.target.value);
                   }}
                   className="resource-input"
                 />
@@ -300,7 +310,7 @@ function App() {
                   value={maxBlood}
                   onChange={(e) => {
                     e.stopPropagation();
-                    setMaxBlood(parseInt(e.target.value));
+                    handleSetNumberField(setMaxBlood, e.target.value);
                   }}
                   className="resource-input"
                 />
@@ -334,7 +344,7 @@ function App() {
                   value={donum}
                   onChange={(e) => {
                     e.stopPropagation();
-                    setDonum(parseInt(e.target.value));
+                    handleSetNumberField(setDonum, e.target.value);
                   }}
                   className="resource-input"
                 />
@@ -344,7 +354,7 @@ function App() {
                   value={maxDonum}
                   onChange={(e) => {
                     e.stopPropagation();
-                    setMaxDonum(parseInt(e.target.value));
+                    handleSetNumberField(setMaxDonum, e.target.value);
                   }}
                   className="resource-input"
                 />

@@ -212,8 +212,8 @@ const ProvokeSomeone = () => {
   return (
     <Move title="Provoke Someone">
       <p>
-        For NPCs: on a 10+, they rise to the bait and do what you want. On a
-        7-9, choose one.
+        For NPCs: on a 19+, they rise to the bait and do what you want. On a
+        13-18, choose one.
         <ResultList
           results={[
             'they stumble: you take +1 forward when taking advantage of it',
@@ -223,7 +223,7 @@ const ProvokeSomeone = () => {
         />
       </p>
       <p>
-        For PCs: on a 10+, choose both. On a 7-9, choose one.{' '}
+        For PCs: on a 10+, choose both. On a 13-18, choose one.{' '}
         <ResultList
           results={[
             'if they do it, add a Team to the pool',
