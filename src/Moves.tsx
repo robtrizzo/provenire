@@ -53,6 +53,18 @@ export const GutCheck = () => {
   return (
     <Move
       title="Gut Check"
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>let your instincts tell you what you need to know</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#c92a2a 1px 0 10px' }}>
+            <em>Physique</em>
+          </strong>
+        </span>
+      }
       hit="Ask the GM 3 questions from the list below."
       partial="Ask the GM 1 question from the list below."
     >
@@ -75,7 +87,19 @@ export const UnleashDonum = () => {
   return (
     <Move
       title="Unleash your Donum"
-      preface="Spend a donum as part of using this move. On a hit, it works"
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>push your powers beyond normal</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#6a5acd 1px 0 10px' }}>
+            <em>Donum</em>
+          </strong>
+          . Spend a donum as part of using this move. On a hit, it works
+        </span>
+      }
       hit="Choose one"
       partial="Choose two"
       miss="Something bad happens"
@@ -97,6 +121,18 @@ export const NewDonumApplication = () => {
   return (
     <Move
       title="New Application of your Donum"
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>develop new powers or evolve an existing one</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#5f3dc4 1px 0 10px' }}>
+            <em>Psyche</em>
+          </strong>
+        </span>
+      }
       hit="You do it, and this is now a new way you can use your powers without requiring a roll."
       partial="You do it, but just this time. +1 forward to attempting this move for this particular new application."
       miss="You mess it up, or aren't ready to use your power in this way. +1 forward to attemtping this move for this particular new application."
@@ -108,7 +144,19 @@ export const DirectlyEngageThreat = () => {
   return (
     <Move
       title="Directly Engage a Threat"
-      preface="On a hit, you trade blows."
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>engage your opposition with straightforward determination</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#c92a2a 1px 0 10px' }}>
+            <em>Physique</em>
+          </strong>
+          . On a hit, you trade blows.
+        </span>
+      }
       hit="Pick 2 from the list below."
       partial="Pick 1 from the list below."
     >
@@ -126,7 +174,19 @@ export const Defend = () => {
   return (
     <Move
       title="Defend"
-      preface="On a hit, you keep them safe and choose 1 from the list below."
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>defend someone or something from an immediate threat</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#2b8a3e 1px 0 10px' }}>
+            <em>Motorics</em>
+          </strong>
+          . On a hit, you keep them safe and choose 1 from the list below.
+        </span>
+      }
       partial="It costs you: expose yourself to danger or escalate the situation"
     >
       <ResultList
@@ -148,6 +208,18 @@ export const TakePowerfulBlow = () => {
   return (
     <Move
       title="Take a Powerful Blow"
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>take a powerful blow</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: 'crimson 1px 0 10px' }}>
+            <em>Blood</em>
+          </strong>
+        </span>
+      }
       hit="Stand strong. Mark potential and say how you weather the blow."
       partial={
         <>
@@ -183,6 +255,18 @@ const AssessSituation = () => {
   return (
     <Move
       title="Assess the Situation"
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>quickly gather your thoughts about what's happening</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#1864ab 1px 0 10px' }}>
+            <em>Intellect</em>
+          </strong>
+        </span>
+      }
       hit="Ask 2 questions from the list below"
       partial="Ask 1 question from the list below"
     >
@@ -202,7 +286,19 @@ const ComfortOrSupport = () => {
   return (
     <Move
       title="Comfort or Support"
-      preface="On a hit, they hear you: they mark fate or clear a condition."
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>comfort or support someone</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#5f3dc4 1px 0 10px' }}>
+            <em>Empathy</em>
+          </strong>
+          . On a hit, they hear you: they mark fate or clear a condition.
+        </span>
+      }
       hit="You can also add a Team to the pool, mark genius, or clear a condition yourself."
     />
   );
@@ -210,7 +306,21 @@ const ComfortOrSupport = () => {
 
 const ProvokeSomeone = () => {
   return (
-    <Move title="Provoke Someone">
+    <Move
+      title="Provoke Someone"
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>provoke someone into foolhardy action</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#5f3dc4 1px 0 10px' }}>
+            <em>Suggestion</em>
+          </strong>
+        </span>
+      }
+    >
       <p>
         For NPCs: on a 19+, they rise to the bait and do what you want. On a
         13-18, choose one.
@@ -237,7 +347,23 @@ const ProvokeSomeone = () => {
 
 const DiscernIntentions = () => {
   return (
-    <Move title="Discern Intentions" hit="ask three" partial="ask one">
+    <Move
+      title="Discern Intentions"
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>understand the true intention of someone's words</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#1864ab 1px 0 10px' }}>
+            <em>Rhetoric</em>
+          </strong>
+        </span>
+      }
+      hit="ask three"
+      partial="ask one"
+    >
       <ResultList
         results={[
           'What are you really planning?',
@@ -253,6 +379,18 @@ const CheckItOut = () => {
   return (
     <Move
       title="Check it Out"
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>learn more about a location by using your senses</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#2b8a3e 1px 0 10px' }}>
+            <em>Perception</em>
+          </strong>
+        </span>
+      }
       hit="ask two"
       partial="ask one"
       miss="You're in over your head, the GM will tell you why this is a bad spot"
@@ -273,6 +411,18 @@ const Order = () => {
   return (
     <Move
       title="Order"
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>bend someone to your will</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#5f3dc4 1px 0 10px' }}>
+            <em>Authority</em>
+          </strong>
+        </span>
+      }
       hit="NPC chooses one and you take +1 forward against them"
       partial="NPC chooses one"
       miss="They do as they please and you take -1 forward against them"
@@ -293,7 +443,21 @@ const RecallInformation = () => {
   return (
     <Move
       title="Recall Information"
-      preface="Tell the team one important detail you've learned from your studies. The GM will tell you what, if anything, seems different from what you remember."
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>recall information you've learned in the past</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#1864ab 1px 0 10px' }}>
+            <em>Encyclopedia</em>
+          </strong>
+          . Tell the team one important detail you've learned from your studies.
+          The GM will tell you what, if anything, seems different from what you
+          remember.
+        </span>
+      }
       hit="ask the GM a follow-up question; they will answer it honestly"
       miss="the situation is well outside your base of knowledge; the GM will tell you why"
     />
@@ -304,7 +468,20 @@ const Intimidate = () => {
   return (
     <Move
       title="Intimidate"
-      preface="On a hit, they are thrown off and make themselves vulnerable to you, or they flee."
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>frighten someone</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#c92a2a 1px 0 10px' }}>
+            <em>Menace</em>
+          </strong>
+          . On a hit, they are thrown off and make themselves vulnerable to you,
+          or they flee.
+        </span>
+      }
       hit="choose one"
       partial="choose two"
       miss="they react with violence, hatred, and paranoia, and you suffer the brunt of it"
@@ -324,6 +501,18 @@ const QuickHands = () => {
   return (
     <Move
       title="Quick Hands"
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>use tools that require fine motor skills</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#2b8a3e 1px 0 10px' }}>
+            <em>Interfacing</em>
+          </strong>
+        </span>
+      }
       hit="you do it, no problem"
       partial="you still do it, but the GM will offer you two options between suspicion, danger, or cost"
     />
@@ -334,7 +523,19 @@ const DeftlyEngageAThreat = () => {
   return (
     <Move
       title="Deftly Engage a Threat"
-      preface="On a hit, you trade blows"
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>engage your opposition with precision and quick wits</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#2b8a3e 1px 0 10px' }}>
+            <em>Coordination</em>
+          </strong>
+          . On a hit, you trade blows
+        </span>
+      }
       hit="choose two"
       partial="choose one"
       miss="you give away your plans, your position, or a tactical advantage"
@@ -355,7 +556,19 @@ const FerociouslyEngageAThreat = () => {
   return (
     <Move
       title="Ferociously Engage a Threat"
-      preface="On a hit, you trade blows"
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>engage your opposition with overwhelming force and skill</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#c92a2a 1px 0 10px' }}>
+            <em>Execution</em>
+          </strong>
+          . On a hit, you trade blows.
+        </span>
+      }
       hit="choose two"
       partial="choose one"
       miss="you give ground, destroy something you shouldn't have, or expose yourself to danger"
@@ -376,6 +589,18 @@ const PutThePiecesTogether = () => {
   return (
     <Move
       title="Put the Pieces Together"
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>forsee the situation's chain of cause/effect</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#1864ab 1px 0 10px' }}>
+            <em>Logic</em>
+          </strong>
+        </span>
+      }
       hit="ask one, then you get to ask a follow-up question. The GM must answer it honestly."
       partial="choose one"
       miss="you critically misunderstand the situation, leaving yourself open to danger or too slow to respond"
@@ -395,7 +620,19 @@ const Rouse = () => {
   return (
     <Move
       title="Rouse"
-      preface="On a hit, your words stir them: they get +1 forward"
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>use your words to inspire someone</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#1864ab 1px 0 10px' }}>
+            <em>Drama</em>
+          </strong>
+          . On a hit, your words stir them: they get +1 forward
+        </span>
+      }
       hit="You can also add a Team to the pool or the roused ally gets +1 ongoing for the encounter"
       miss="Your words fall flat: both you and they take -1 forward"
     />
@@ -406,7 +643,20 @@ const WorkOfArt = () => {
   return (
     <Move
       title="Work of Art"
-      preface="On a hit, you create a piece of art significant to you or someone you know."
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>create a piece of art</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#1864ab 1px 0 10px' }}>
+            <em>Conceptualization</em>
+          </strong>
+          . On a hit, you create a piece of art significant to you or someone
+          you know.
+        </span>
+      }
       hit="If you made the art for yourself, clear a condition. If you made it for someone else, you gain influence over them."
       miss="Your best efforts resulted in a mess. Mark a condition."
     />
@@ -417,7 +667,19 @@ const ShrewdlyEngageAThreat = () => {
   return (
     <Move
       title="Shrewdly Engage a Threat"
-      preface="On a hit, you trade blows"
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>engage your opposition with tactics and careful planning</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#1864ab 1px 0 10px' }}>
+            <em>Visual Calculus</em>
+          </strong>
+          . On a hit, you trade blows.
+        </span>
+      }
       hit="choose two"
       partial="choose one"
       miss="your plan backfires, or a new complication you couldn't have accounted for appears"
@@ -438,7 +700,19 @@ const WeildDonum = () => {
   return (
     <Move
       title="Weild your Donum"
-      preface="Spend a donum as part of using this move."
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>skillfully weild your powers</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#5f3dc4 1px 0 10px' }}>
+            <em>Volition</em>
+          </strong>
+          . Spend a donum as part of using this move.
+        </span>
+      }
       hit={
         <>
           <p>Choose one:</p>
@@ -460,7 +734,19 @@ const ReadTheRoom = () => {
   return (
     <Move
       title="Read the Room"
-      preface="On a hit, ask one. The GM will answer honestly."
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>assess the social forces at play</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#5f3dc4 1px 0 10px' }}>
+            <em>Contemporary</em>
+          </strong>
+          . On a hit, ask one. The GM will answer honestly.
+        </span>
+      }
       hit="take +1 forward when acting on the answer"
       miss="you misread the situation, and the GM will tell you how"
     >
@@ -480,8 +766,22 @@ const LookInward = () => {
   return (
     <Move
       title="Look Inward"
-      preface="When you mark a condition other than wounded, you can use this move. On a hit, pick a condition and ignore it for the rest of the encounter."
-      hit="Pick a condition; you can't be made to mark that condition for the rest of the encounter"
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>seek to understand the root of your emotions</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#5f3dc4 1px 0 10px' }}>
+            <em>Introspection</em>
+          </strong>
+          . On a hit, pick a condition; the GM will tell you a constructive way
+          to remove that condition rather than the self-destructive
+          alternatives.
+        </span>
+      }
+      hit="When you overcome the condition, mark Genius."
       miss="Your inner turmoil overcomes your sensibilities, mark another condition."
     />
   );
@@ -491,6 +791,18 @@ const WithstandAPowerfulBlow = () => {
   return (
     <Move
       title="Withstand a Powerful Blow"
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>take a powerful blow straight on</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#c92a2a 1px 0 10px' }}>
+            <em>Stoicism</em>
+          </strong>
+        </span>
+      }
       hit="Stand strong. Mark potential and say how you weather the blow."
       partial={
         <>
@@ -526,7 +838,19 @@ const PushYourBody = () => {
   return (
     <Move
       title="Push your Body"
-      preface="On a hit, perform a feat of strength or overcome a physical obstacle."
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>perform a feat of strength or overcome a physical obstacle</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#c92a2a 1px 0 10px' }}>
+            <em>Endurance</em>
+          </strong>
+          . On a hit, you do it.
+        </span>
+      }
       partial="You hurt yourself in the process. Spend one blood or mark a condition."
     />
   );
@@ -536,7 +860,19 @@ const ShrugItOff = () => {
   return (
     <Move
       title="Shrug it Off"
-      preface="On a hit, your body handles the ailment, no sweat."
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>withstand an enironmental or internal ailment</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#c92a2a 1px 0 10px' }}>
+            <em>Impunity</em>
+          </strong>
+          . On a hit, your body handles it, no sweat.
+        </span>
+      }
       hit="Impress any opponent who knows what you overcame. Take +1 forward against them."
       miss="The effect takes its toll, take a powerful blow"
     ></Move>
@@ -547,7 +883,18 @@ const TakeTheInitiative = () => {
   return (
     <Move
       title="Take the Initiative"
-      preface="When the environment or situation dramatically changes, use this move."
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>react to a dramatic change in situation or environment</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#2b8a3e 1px 0 10px' }}>
+            <em>Reaction</em>
+          </strong>
+        </span>
+      }
       hit="choose two"
       partial="choose one"
       miss="you're caught off-guard. take -1 forward."
@@ -568,6 +915,18 @@ const TraverseTreacherousGround = () => {
   return (
     <Move
       title="Traverse Treacherous Ground"
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>traverse treacherous ground</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#2b8a3e 1px 0 10px' }}>
+            <em>Grace</em>
+          </strong>
+        </span>
+      }
       hit="you do it, no problem"
       partial="you do it, but you expose yourself to danger or escalate the situation: your choice"
     />
@@ -578,7 +937,20 @@ const KeepYourCool = () => {
   return (
     <Move
       title="Keep your Cool"
-      preface="When the environment or situation changes for the worse, use this move."
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>
+              stay focused despite a dramatic change in situation or environment
+            </em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#2b8a3e 1px 0 10px' }}>
+            <em>Composure</em>
+          </strong>
+        </span>
+      }
       hit="choose two"
       partial="choose one"
       miss="you buckle under the pressure, mark a condition"
@@ -592,6 +964,26 @@ const KeepYourCool = () => {
         ]}
       />
     </Move>
+  );
+};
+
+const RaiseTheDeathFlag = () => {
+  return (
+    <Move
+      title="Raise the Death Flag"
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>put your life on the line in a bad situation</em>
+          </strong>
+          , add 2 Team to the pool and raise your death flag. While raised, you
+          get +1 ongoing, but you die if you miss on a powerful blow or if you
+          would mark a condiiton while wounded. When the scene ends, you can
+          lower your death flag and mark Fate.
+        </span>
+      }
+    />
   );
 };
 
@@ -626,5 +1018,6 @@ const Moves = new Map([
   ['Take the Initiative', TakeTheInitiative],
   ['Traverse Treacherous Ground', TraverseTreacherousGround],
   ['Keep your Cool', KeepYourCool],
+  ['Raise the Death Flag', RaiseTheDeathFlag],
 ]);
 export default Moves;

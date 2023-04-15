@@ -83,19 +83,48 @@
     background-color: inherit;
   }
 
-  .condition-columns {
+  .condition-columns, .achievment-columns {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 2px;
   }
-  .condition-column {
+  .condition-column, .achievment-column {
     width: 100%;
+    position: relative;
     border: 1px solid #ccc;
     transition: all 0.5s ease-in-out;
   }
-  .condition-wounded {
+  .condition-checkbox-column {
+    position: absolute;
+    opacity: 0;
+    height: 18px;
+    width: 18px;
+    top: 0;
+    right: 10px;
+    transition: all 0.5s ease-in-out;
+  }
+  .condition-checkbox-row {
+    position: absolute;
+    opacity: 0;
+    height: 18px;
+    width: 18px;
+    bottom: 10px;
+    right: 0;
+    transition: all 0.5s ease-in-out;
+
+  }
+  .condition-checkbox-column:checked {
+    opacity: 1;
+    accent-color: crimson;
+  }
+  .condition-checkbox-row:checked {
+    opacity: 1;
+    accent-color: crimson;
+  }
+  .condition-wounded, .achievment-empowered {
+    position: relative;
     width: 200px;
      flex-shrink: 0;
      border: 1px solid #ccc;
@@ -109,6 +138,7 @@
     gap: 2px;
   }
   .condition-row {
+    position: relative;
     height: 303px;
     border: 1px solid #ccc;
     writing-mode: vertical-rl;
@@ -119,6 +149,9 @@
   .condition-row:hover, .condition-column:hover, .condition-wounded:hover {
     cursor: pointer;
     box-shadow: inset 0px 0px 5px 5px crimson;
+  }
+  .condition-column:hover .condition-checkbox-column, .condition-row:hover .condition-checkbox-row, .condition-wounded:hover .condition-checkbox-column {
+    opacity: 1;
   }
 
   .abilities-wrapper {
@@ -320,6 +353,15 @@
     padding: 10px;
     border: 1px solid #ccc;
     transition: background-color 0.5s ease-in-out;
+  }
+  
+  .info-moves-section {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
   }
 
   .move {

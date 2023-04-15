@@ -194,7 +194,7 @@ function App() {
   const [selected, setSelected] = useState<{
     title?: string;
     color?: string;
-    description?: string;
+    description?: React.ReactNode;
     moves?: string[];
   }>({});
   const [currentConditions, setCurrentConditions] = useState<string[]>([]);
@@ -210,16 +210,32 @@ function App() {
       ? { boxShadow: 'inset 0px 0px 5px 5px crimson' }
       : {};
   };
+  const [currentAchievments, setCurrentAchievments] = useState<string[]>([]);
+  const handleClickAchievment = (achievment: string) => {
+    if (currentAchievments.includes(achievment)) {
+      setCurrentAchievments(currentAchievments.filter((c) => c !== achievment));
+    } else {
+      setCurrentAchievments([...currentAchievments, achievment]);
+    }
+  };
+  const achievmentStyle = (achievment: string) => {
+    return currentAchievments.includes(achievment)
+      ? { boxShadow: 'inset 0px 0px 5px 5px steelblue' }
+      : {};
+  };
   const totalRanks = useMemo(() => {
-    return abilities.reduce((total, cat) => {
-      return (
-        total +
-        cat.abilities.reduce((total, ab) => {
-          return total + ab.ranks;
-        }, 0)
-      );
-    }, 0);
-  }, [abilities]);
+    return (
+      abilities.reduce((total, cat) => {
+        return (
+          total +
+          cat.abilities.reduce((total, ab) => {
+            return total + ab.ranks;
+          }, 0)
+        );
+      }, 0) +
+      (maxBlood + maxDonum - 6)
+    );
+  }, [abilities, maxBlood, maxDonum]);
   const [genius, setGenius] = useState([false, false, false]);
   const handleChangeGenius = (index: number) => {
     const newGenius = genius.map((g, i) => {
@@ -280,7 +296,7 @@ function App() {
                 description:
                   'Blood goes beyond being essential for life. It can be used to empower your body and enhance your mind for short periods of time. You may spend 1 blood to take +1 forward on your next roll.',
                 color: 'DC143C',
-                moves: ['Take a Powerful Blow'],
+                moves: ['Take a Powerful Blow', 'Raise the Death Flag'],
               });
             }}
           >
@@ -362,43 +378,174 @@ function App() {
             </h3>
           </section>
         </article>
+        <article className="achievment-columns">
+          <section
+            className="achievment-empowered"
+            style={achievmentStyle('Empowered')}
+            onClick={() => {
+              handleClickAchievment('Empowered');
+            }}
+          >
+            Empowered
+          </section>
+          <section
+            className="achievment-column"
+            style={achievmentStyle('Joyous')}
+            onClick={() => {
+              handleClickAchievment('Joyous');
+            }}
+          >
+            Joyous
+          </section>
+          <section
+            className="achievment-column"
+            style={achievmentStyle('Joyous')}
+            onClick={() => {
+              handleClickAchievment('Joyous');
+            }}
+          >
+            Joyous
+          </section>
+          <section
+            className="achievment-column"
+            style={achievmentStyle('Joyous')}
+            onClick={() => {
+              handleClickAchievment('Joyous');
+            }}
+          >
+            Joyous
+          </section>
+          <section
+            className="achievment-column"
+            style={achievmentStyle('Joyous')}
+            onClick={() => {
+              handleClickAchievment('Joyous');
+            }}
+          >
+            Joyous
+          </section>
+          <section
+            className="achievment-column"
+            style={achievmentStyle('Joyous')}
+            onClick={() => {
+              handleClickAchievment('Joyous');
+            }}
+          >
+            Joyous
+          </section>
+          <section
+            className="achievment-column"
+            style={achievmentStyle('Joyous')}
+            onClick={() => {
+              handleClickAchievment('Joyous');
+            }}
+          >
+            Joyous
+          </section>
+        </article>
         <article className="condition-columns">
           <section
             className="condition-wounded"
             style={conditionStyle('Wounded')}
             onClick={() => {
-              handleClickCondition('Wounded');
+              setSelected({
+                title: 'Wounded',
+                description: (
+                  <span>
+                    You've been seriously injured. Your vision is swimming, your
+                    body aching. You don't know for how much longer you can keep
+                    going. By{' '}
+                    <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                      <em>receiving significant medical attention</em>
+                    </strong>
+                    , you can recover from this condition and mark Fate.
+                  </span>
+                ),
+              });
             }}
           >
             Wounded
+            <input
+              type="checkbox"
+              className="condition-checkbox-column"
+              checked={currentConditions.includes('Wounded')}
+              onChange={() => handleClickCondition('Wounded')}
+            />
           </section>
-          <section
-            className="condition-column"
-            style={conditionStyle('Hopeless')}
-            onClick={() => {
-              handleClickCondition('Hopeless');
+          <Condition
+            orientation="column"
+            conditionStyle={conditionStyle}
+            handleClickCondition={handleClickCondition}
+            condition="Hopeless"
+            handleOnClick={() => {
+              setSelected({
+                title: 'Hopeless',
+                description: (
+                  <span>
+                    The state of the world, or your own personal situation is so
+                    bad that you feel like there is no hope for you or anyone
+                    else. By{' '}
+                    <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                      <em>flinging yourself into easy relief</em>
+                    </strong>
+                    , you can escape the pain of your situation for a time.
+                    Doing so clears the Hopeless condition and gives you +1
+                    forward to your next roll.
+                  </span>
+                ),
+              });
             }}
-          >
-            Hopeless
-          </section>
-          <section
-            className="condition-column"
-            style={conditionStyle('Guilty')}
-            onClick={() => {
-              handleClickCondition('Guilty');
+            currentConditions={currentConditions}
+          />
+          <Condition
+            orientation="column"
+            conditionStyle={conditionStyle}
+            handleClickCondition={handleClickCondition}
+            condition="Guilty"
+            handleOnClick={() => {
+              setSelected({
+                title: 'Guilty',
+                description: (
+                  <span>
+                    You've done something wrong, or failed to do something
+                    right: it's eating at you. You can't shake the feeling that
+                    you're a bad person, and that you have to make up for it
+                    somehow. By{' '}
+                    <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                      <em>making a personal sacrifice to absolve your guilt</em>
+                    </strong>{' '}
+                    , you can clear the Guilty condition and give yourself +1
+                    forward to your next roll.
+                  </span>
+                ),
+              });
             }}
-          >
-            Guilty
-          </section>
-          <section
-            className="condition-column"
-            style={conditionStyle('Insecure')}
-            onClick={() => {
-              handleClickCondition('Insecure');
+            currentConditions={currentConditions}
+          />
+          <Condition
+            orientation="column"
+            conditionStyle={conditionStyle}
+            handleClickCondition={handleClickCondition}
+            condition="Insecure"
+            handleOnClick={() => {
+              setSelected({
+                title: 'Insecure',
+                description: (
+                  <span>
+                    You're not sure you're good enough, smart enough, strong
+                    enough, brave enough, worthy of respect, or worthy of love.
+                    Proving yourself to yoursel by{' '}
+                    <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                      <em>taking foolhardy action without consulting anyone</em>
+                    </strong>{' '}
+                    clears the Insecure condition and gives you +1 forward to
+                    your next roll.
+                  </span>
+                ),
+              });
             }}
-          >
-            Insecure
-          </section>
+            currentConditions={currentConditions}
+          />
         </article>
         <div style={{ display: 'flex', gap: '2px' }}>
           <div className="abilities-wrapper">
@@ -579,35 +726,70 @@ function App() {
                 <p className="info-section-description">
                   {selected.description}
                 </p>
-                {selected.moves?.map((move) => {
-                  const selectedMove = Moves.get(move);
-                  if (selectedMove) {
-                    return selectedMove();
-                  }
-                  return null;
-                })}
+                <section className="info-moves-section">
+                  {selected.moves?.map((move) => {
+                    const selectedMove = Moves.get(move);
+                    if (selectedMove) {
+                      return selectedMove();
+                    }
+                    return null;
+                  })}
+                </section>
               </article>
             ) : null}
           </div>
           <article className="condition-rows">
-            <section
-              className="condition-row"
-              style={conditionStyle('Angry')}
-              onClick={() => {
-                handleClickCondition('Angry');
+            <Condition
+              orientation="row"
+              conditionStyle={conditionStyle}
+              handleClickCondition={handleClickCondition}
+              condition="Angry"
+              handleOnClick={() => {
+                setSelected({
+                  title: 'Angry',
+                  description: (
+                    <span>
+                      The pressure in your head and chest is building. You're
+                      ready to explode. You can't think straight. But you can
+                      act. By{' '}
+                      <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                        <em>
+                          hurting someone or by breaking something important
+                        </em>
+                      </strong>{' '}
+                      , you can release some of that pressure. Doing so clears
+                      the Angry condition and gives you +1 forward to your next
+                      roll.
+                    </span>
+                  ),
+                });
               }}
-            >
-              Angry
-            </section>
-            <section
-              className="condition-row"
-              style={conditionStyle('Afraid')}
-              onClick={() => {
-                handleClickCondition('Afraid');
+              currentConditions={currentConditions}
+            />
+            <Condition
+              orientation="row"
+              conditionStyle={conditionStyle}
+              handleClickCondition={handleClickCondition}
+              condition="Afraid"
+              handleOnClick={() => {
+                setSelected({
+                  title: 'Afraid',
+                  description: (
+                    <span>
+                      Something precious is at stake. Your loved ones, your
+                      friends, your future, your life? You can't take the
+                      thought of losing that thing. By{' '}
+                      <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                        <em>running away from something hard</em>
+                      </strong>{' '}
+                      , you can escape the fear. Doing so clears the Afraid
+                      condition and gives you +1 forward to your next roll.
+                    </span>
+                  ),
+                });
               }}
-            >
-              Afraid
-            </section>
+              currentConditions={currentConditions}
+            />
             <div style={{ height: '42px', flexShrink: 0 }}></div>
           </article>
         </div>
@@ -635,6 +817,40 @@ const ProgressionBarSection = ({
       style={selected ? { backgroundColor: color } : {}}
       onClick={() => setProgress(index)}
     ></div>
+  );
+};
+
+interface ConditionProps {
+  orientation: 'row' | 'column';
+  conditionStyle: (condition: string) => React.CSSProperties;
+  handleClickCondition: (condition: string) => void;
+  condition: string;
+  handleOnClick: () => void;
+  currentConditions: string[];
+}
+
+const Condition: React.FC<ConditionProps> = ({
+  orientation,
+  conditionStyle,
+  handleClickCondition,
+  condition,
+  handleOnClick,
+  currentConditions,
+}) => {
+  return (
+    <section
+      className={`condition-${orientation}`}
+      style={conditionStyle(condition)}
+      onClick={handleOnClick}
+    >
+      {condition}
+      <input
+        type="checkbox"
+        className={`condition-checkbox-${orientation}`}
+        checked={currentConditions.includes(condition)}
+        onChange={() => handleClickCondition(condition)}
+      />
+    </section>
   );
 };
 
