@@ -11,42 +11,48 @@
         "ranks": 0,
         "description": "Logic is your ability to connect multiple pieces of information into a coherent whole.",
         "moves": ["Put the Pieces Together"],
-        "conditions": ["Wounded", "Hopeless", "Angry"]
+        "conditions": ["Wounded", "Hopeless", "Angry"],
+        "achievments": ["Destined", "Determined", "Interested"]
       },
       {
         "name": "Encyclopedia",
         "ranks": 0,
         "description": "Encyclopedia is your knowledge of the world, its people, places, and things.",
         "moves": ["Recall Information"],
-        "conditions": ["Wounded", "Hopeless", "Angry"]
+        "conditions": ["Wounded", "Hopeless", "Angry"],
+        "achievments": ["Destined", "Hopeful", "Interested"]
       },
       {
         "name": "Rhetoric",
         "ranks": 0,
         "description": "Rhetoric is your ability to state your opinion and listen to others' opinions.",
         "moves": ["Discern Intentions"],
-        "conditions": ["Wounded", "Guilty", "Angry"]
+        "conditions": ["Wounded", "Guilty", "Angry"],
+        "achievments": ["Destined", "Passionate", "Interested"]
       },
       {
         "name": "Drama",
         "ranks": 0,
         "description": "Drama is your ability to use nonfactual words and actions to affect others.",
         "moves": ["Rouse"],
-        "conditions": ["Wounded", "Guilty", "Angry"]
+        "conditions": ["Wounded", "Guilty", "Angry"],
+        "achievments": ["Destined", "Content", "Interested"]
       },
       {
         "name": "Conceptualization",
         "ranks": 0,
         "description": "Conceptualization is your ability to understand and create art.",
         "moves": ["Work of Art"],
-        "conditions": ["Wounded", "Insecure", "Angry"]
+        "conditions": ["Wounded", "Insecure", "Angry"],
+        "achievments": ["Destined", "Serene", "Interested"]
       },
       {
         "name": "Visual Calculus",
         "ranks": 0,
         "description": "Visual Calculus is your ability to understand physical objects and their relation to each other.",
         "conditions": ["Wounded", "Insecure", "Angry"],
-        "moves": ["Shrewdly Engage a Threat"]
+        "moves": ["Shrewdly Engage a Threat"],
+        "achievments": ["Destined", "Confident", "Interested"]
       }
     ],
     "moves": ["Assess the Situation"]
@@ -63,42 +69,48 @@
         "ranks": 0,
         "description": "Volition is your ability to control your own thoughts and actions.",
         "conditions": ["Wounded", "Hopeless", "Angry"],
-        "moves": ["Weild your Donum"]
+        "moves": ["Weild your Donum"],
+        "achievments": ["Destined", "Determined", "Inspired"]
       },
       {
         "name": "Contemporary",
         "ranks": 0,
         "description": "Contemporary is your ability to understand how the world works in the here and now.",
         "conditions": ["Wounded", "Hopeless", "Angry"],
-        "moves": ["Read the Room"]
+        "moves": ["Read the Room"],
+        "achievments": ["Destined", "Hopeful", "Inspired"]
       },
       {
         "name": "Empathy",
         "ranks": 0,
         "description": "Empathy is your ability to understand and share the feelings of others.",
         "moves": ["Comfort or Support"],
-        "conditions": ["Wounded", "Guilty", "Angry"]
+        "conditions": ["Wounded", "Guilty", "Angry"],
+        "achievments": ["Destined", "Passionate", "Inspired"]
       },
       {
         "name": "Authority",
         "ranks": 0,
         "description": "Authority is your ability to project your will onto others.",
         "moves": ["Order"],
-        "conditions": ["Wounded", "Guilty", "Angry"]
+        "conditions": ["Wounded", "Guilty", "Angry"],
+        "achievments": ["Destined", "Content", "Inspired"]
       },
       {
         "name": "Introspection",
         "ranks": 0,
         "description": "Introspection is your ability to understand your own feelings and thoughts.",
         "conditions": ["Wounded", "Insecure", "Angry"],
-        "moves": ["Look Inward"]
+        "moves": ["Look Inward"],
+        "achievments": ["Destined", "Serene", "Inspired"]
       },
       {
         "name": "Suggestion",
         "ranks": 0,
         "description": "Suggestion is your ability to influence others through only your words.",
         "moves": ["Provoke Someone"],
-        "conditions": ["Wounded", "Insecure", "Angry"]
+        "conditions": ["Wounded", "Insecure", "Angry"],
+        "achievments": ["Destined", "Confident", "Inspired"]
       }
     ],
     "moves": ["New Donum Application"]
@@ -115,42 +127,48 @@
         "ranks": 0,
         "description": "Endurance is your ability to keep going when your body wants to stop.",
         "conditions": ["Wounded", "Hopeless", "Afraid"],
-        "moves": ["Push your Body"]
+        "moves": ["Push your Body"],
+        "achievments": ["Destined", "Determined", "Excited"]
       },
       {
         "name": "Stoicism",
         "ranks": 0,
         "description": "Stoicism is your ability to endure pain and discomfort.",
         "conditions": ["Wounded", "Hopeless", "Afraid"],
-        "moves": ["Withstand a Powerful Blow"]
+        "moves": ["Withstand a Powerful Blow"],
+        "achievments": ["Destined", "Hopeful", "Excited"]
       },
       {
         "name": "Execution",
         "ranks": 0,
         "description": "Execution is your skill and natural ability at physically affecting the world with your body.",
         "moves": ["Ferociously Engage a Threat"],
-        "conditions": ["Wounded", "Guilty", "Afraid"]
+        "conditions": ["Wounded", "Guilty", "Afraid"],
+        "achievments": ["Destined", "Passionate", "Excited"]
       },
       {
         "name": "Impunity",
         "ranks": 0,
         "description": "Impunity is your ability to withstand the affects of internal ailments.",
         "conditions": ["Wounded", "Guilty", "Afraid"],
-        "moves": ["Shrug it Off"]
+        "moves": ["Shrug it Off"],
+        "achievments": ["Destined", "Content", "Excited"]
       },
       {
         "name": "Animal Instinct",
         "ranks": 0,
         "description": "Animal Instinct is your ability to get a gut feeling about a situation.",
         "moves": ["Gut Check"],
-        "conditions": ["Wounded", "Insecure", "Afraid"]
+        "conditions": ["Wounded", "Insecure", "Afraid"],
+        "achievments": ["Destined", "Serene", "Excited"]
       },
       {
         "name": "Menace",
         "ranks": 0,
         "description": "Menace is your ability to intimidate others with your physical presence.",
         "moves": ["Intimidate"],
-        "conditions": ["Wounded", "Insecure", "Afraid"]
+        "conditions": ["Wounded", "Insecure", "Afraid"],
+        "achievments": ["Destined", "Confident", "Excited"]
       }
     ],
     "moves": ["Directly Engage a Threat"]
@@ -167,42 +185,48 @@
         "ranks": 0,
         "description": "Coordination is your ability be accurate with tools and weapons",
         "moves": ["Deftly Engage a Threat"],
-        "conditions": ["Wounded", "Hopeless", "Afraid"]
+        "conditions": ["Wounded", "Hopeless", "Afraid"],
+        "achievments": ["Destined", "Determined", "Courageous"]
       },
       {
         "name": "Perception",
         "ranks": 0,
         "description": "Perception is your ability to sense something unusual in your environment.",
         "moves": ["Check it Out"],
-        "conditions": ["Wounded", "Hopeless", "Afraid"]
+        "conditions": ["Wounded", "Hopeless", "Afraid"],
+        "achievments": ["Destined", "Hopeful", "Courageous"]
       },
       {
         "name": "Reaction",
         "ranks": 0,
         "description": "Reaction is your ability to quickly respond to a change in the environment.",
         "conditions": ["Wounded", "Guilty", "Afraid"],
-        "moves": ["Take the Initiative"]
+        "moves": ["Take the Initiative"],
+        "achievments": ["Destined", "Passionate", "Courageous"]
       },
       {
         "name": "Grace",
         "ranks": 0,
         "description": "Grace is your ability to move your body in a precise or pleasing way.",
         "conditions": ["Wounded", "Guilty", "Afraid"],
-        "moves": ["Traverse Treacherous Ground"]
+        "moves": ["Traverse Treacherous Ground"],
+        "achievments": ["Destined", "Content", "Courageous"]
       },
       {
         "name": "Interfacing",
         "ranks": 0,
         "description": "Interfacing is your ability to use tools and technology.",
         "moves": ["Quick Hands"],
-        "conditions": ["Wounded", "Insecure", "Afraid"]
+        "conditions": ["Wounded", "Insecure", "Afraid"],
+        "achievments": ["Destined", "Serene", "Courageous"]
       },
       {
         "name": "Composure",
         "ranks": 0,
         "description": "Composure is your ability to keep your cool and not give away your thoughts.",
         "conditions": ["Wounded", "Insecure", "Afraid"],
-        "moves": ["Keep your Cool"]
+        "moves": ["Keep your Cool"],
+        "achievments": ["Destined", "Confident", "Courageous"]
       }
     ],
     "moves": ["Defend"]

@@ -1,10 +1,16 @@
 import { useMemo, useState } from 'react';
 import baseAbilities from './data/abilities.json';
+import statusesData from './data/statuses.json';
 import './App.css';
 import Moves from './Moves';
 
+interface Statuses {
+  [key: string]: string[] | never[];
+}
+
 function App() {
   const [abilities, setAbilities] = useState(baseAbilities);
+  const statuses: Statuses = statusesData;
 
   const fileUploadHandler = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -19,6 +25,7 @@ function App() {
         const content = JSON.parse(e.target?.result?.toString() || '');
         setAbilities(content.abilities);
         setCurrentConditions(content.conditions);
+        setCurrentAchievments(content.achievments);
         setBlood(content.blood);
         setMaxBlood(content.maxBlood);
         setDonum(content.donum);
@@ -38,6 +45,7 @@ function App() {
           {
             abilities: abilities,
             conditions: currentConditions,
+            achievments: currentAchievments,
             blood: blood,
             maxBlood: maxBlood,
             donum: donum,
@@ -202,6 +210,15 @@ function App() {
     if (currentConditions.includes(condition)) {
       setCurrentConditions(currentConditions.filter((c) => c !== condition));
     } else {
+      const status = Object.keys(statuses).find((s) => s === condition);
+      if (status) {
+        const achievments: string[] = statuses[status];
+        const filteredAchievments = currentAchievments.filter(
+          (a) => !achievments.includes(a)
+        );
+        setCurrentAchievments(filteredAchievments);
+      }
+
       setCurrentConditions([...currentConditions, condition]);
     }
   };
@@ -215,6 +232,14 @@ function App() {
     if (currentAchievments.includes(achievment)) {
       setCurrentAchievments(currentAchievments.filter((c) => c !== achievment));
     } else {
+      const status = Object.keys(statuses).find((s) => s === achievment);
+      if (status) {
+        const conditions: string[] = statuses[status];
+        const filteredConditions = currentConditions.filter(
+          (c) => !conditions.includes(c)
+        );
+        setCurrentConditions(filteredConditions);
+      }
       setCurrentAchievments([...currentAchievments, achievment]);
     }
   };
@@ -380,68 +405,172 @@ function App() {
         </article>
         <article className="achievment-columns">
           <section
-            className="achievment-empowered"
-            style={achievmentStyle('Empowered')}
+            className="achievment-destined"
+            style={achievmentStyle('Destined')}
             onClick={() => {
-              handleClickAchievment('Empowered');
+              setSelected({
+                title: 'Destined',
+                description: (
+                  <span>
+                    This is your destiny. Your time, your place, your purpose.
+                    When{' '}
+                    <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                      <em>
+                        you put everything on the line to fulfill your destiny
+                      </em>
+                    </strong>
+                    , you recover from all conditions and Raise your Death Flag.
+                  </span>
+                ),
+              });
             }}
           >
-            Empowered
+            Destined
+            <input
+              type="checkbox"
+              className="achievment-checkbox-column"
+              checked={currentAchievments.includes('Destined')}
+              onChange={() => handleClickAchievment('Destined')}
+            />
           </section>
-          <section
-            className="achievment-column"
-            style={achievmentStyle('Joyous')}
-            onClick={() => {
-              handleClickAchievment('Joyous');
-            }}
-          >
-            Joyous
-          </section>
-          <section
-            className="achievment-column"
-            style={achievmentStyle('Joyous')}
-            onClick={() => {
-              handleClickAchievment('Joyous');
-            }}
-          >
-            Joyous
-          </section>
-          <section
-            className="achievment-column"
-            style={achievmentStyle('Joyous')}
-            onClick={() => {
-              handleClickAchievment('Joyous');
-            }}
-          >
-            Joyous
-          </section>
-          <section
-            className="achievment-column"
-            style={achievmentStyle('Joyous')}
-            onClick={() => {
-              handleClickAchievment('Joyous');
-            }}
-          >
-            Joyous
-          </section>
-          <section
-            className="achievment-column"
-            style={achievmentStyle('Joyous')}
-            onClick={() => {
-              handleClickAchievment('Joyous');
-            }}
-          >
-            Joyous
-          </section>
-          <section
-            className="achievment-column"
-            style={achievmentStyle('Joyous')}
-            onClick={() => {
-              handleClickAchievment('Joyous');
-            }}
-          >
-            Joyous
-          </section>
+          <Achievment
+            achievment="Determined"
+            achievmentStyle={achievmentStyle}
+            currentAchievments={currentAchievments}
+            handleClickAchievment={handleClickAchievment}
+            handleOnClick={() =>
+              setSelected({
+                title: 'Determined',
+                description: (
+                  <span>
+                    You've made your decision: and you're resolved not to change
+                    it. When{' '}
+                    <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                      <em>
+                        you commit to a difficult task you've failed many times
+                        before
+                      </em>
+                    </strong>
+                    , you mark Determined and recover from the Hopeless
+                    condition
+                  </span>
+                ),
+              })
+            }
+            orientation="column"
+          />
+          <Achievment
+            achievment="Hopeful"
+            achievmentStyle={achievmentStyle}
+            currentAchievments={currentAchievments}
+            handleClickAchievment={handleClickAchievment}
+            handleOnClick={() =>
+              setSelected({
+                title: 'Hopeful',
+                description: (
+                  <span>
+                    The future is bright and full of possibilities. When{' '}
+                    <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                      <em>you overcome insurmountable odds</em>
+                    </strong>
+                    , you mark Hopeful and recover from the Hopeless condition
+                  </span>
+                ),
+              })
+            }
+            orientation="column"
+          />
+          <Achievment
+            achievment="Passionate"
+            achievmentStyle={achievmentStyle}
+            currentAchievments={currentAchievments}
+            handleClickAchievment={handleClickAchievment}
+            handleOnClick={() =>
+              setSelected({
+                title: 'Passionate',
+                description: (
+                  <span>
+                    Devotion and love warm your heart and embolden you to
+                    action. When{' '}
+                    <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                      <em>you find love or a cause you truly believe in</em>
+                    </strong>
+                    , you mark Passionate and recover from the Guilty condition
+                  </span>
+                ),
+              })
+            }
+            orientation="column"
+          />
+          <Achievment
+            achievment="Content"
+            achievmentStyle={achievmentStyle}
+            currentAchievments={currentAchievments}
+            handleClickAchievment={handleClickAchievment}
+            handleOnClick={() =>
+              setSelected({
+                title: 'Content',
+                description: (
+                  <span>
+                    You have everything you want. Your mind is free to wander
+                    and focus without the distractions of want. When{' '}
+                    <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                      <em>you accomplish a significant personal goal</em>
+                    </strong>
+                    , you mark Content and recover from the Guilty condition
+                  </span>
+                ),
+              })
+            }
+            orientation="column"
+          />
+          <Achievment
+            achievment="Serene"
+            achievmentStyle={achievmentStyle}
+            currentAchievments={currentAchievments}
+            handleClickAchievment={handleClickAchievment}
+            handleOnClick={() =>
+              setSelected({
+                title: 'Serene',
+                description: (
+                  <span>
+                    Despite the turmoil and chaos within and without, you have
+                    found inner tranquility. When{' '}
+                    <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                      <em>you let go of something you desperately want</em>
+                    </strong>
+                    , you mark Serene and recover from the Insecure condition
+                  </span>
+                ),
+              })
+            }
+            orientation="column"
+          />
+          <Achievment
+            achievment="Confident"
+            achievmentStyle={achievmentStyle}
+            currentAchievments={currentAchievments}
+            handleClickAchievment={handleClickAchievment}
+            handleOnClick={() =>
+              setSelected({
+                title: 'Confident',
+                description: (
+                  <span>
+                    You understand and accept who you are and what you are
+                    capable of. When{' '}
+                    <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                      <em>
+                        you accept a fact about yourself which you previously
+                        rejected
+                      </em>
+                    </strong>
+                    , you mark Confident and recover from the Insecure condition
+                  </span>
+                ),
+              })
+            }
+            orientation="column"
+          />
         </article>
         <article className="condition-columns">
           <section
@@ -593,7 +722,14 @@ function App() {
                       </div>
                     </div>
                     {abilities.map(
-                      ({ name, ranks, description, moves, conditions }) => (
+                      ({
+                        name,
+                        ranks,
+                        description,
+                        moves,
+                        conditions,
+                        achievments,
+                      }) => (
                         <div
                           key={`ability-${name}`}
                           className={`ability ability-category-${category}`}
@@ -631,6 +767,9 @@ function App() {
                                 ranks -
                                 currentConditions.filter(
                                   (n) => conditions.indexOf(n) > -1
+                                ).length +
+                                currentAchievments.filter(
+                                  (n) => achievments.indexOf(n) > -1
                                 ).length}
                             </h5>
                             <h5
@@ -792,6 +931,107 @@ function App() {
             />
             <div style={{ height: '42px', flexShrink: 0 }}></div>
           </article>
+          <article className="achievment-rows">
+            <Achievment
+              achievment="Interested"
+              achievmentStyle={achievmentStyle}
+              currentAchievments={currentAchievments}
+              handleClickAchievment={handleClickAchievment}
+              handleOnClick={() =>
+                setSelected({
+                  title: 'Interested',
+                  description: (
+                    <span>
+                      The cogs and wheels of your mind are spinning: concieving
+                      of possibilities you'd never considered before. When{' '}
+                      <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                        <em>
+                          you find a new subject or idea that fascinates you
+                        </em>
+                      </strong>
+                      , mark Interested and recover from the Angry condition
+                    </span>
+                  ),
+                })
+              }
+              orientation="row"
+            />
+            <Achievment
+              achievment="Inspired"
+              achievmentStyle={achievmentStyle}
+              currentAchievments={currentAchievments}
+              handleClickAchievment={handleClickAchievment}
+              handleOnClick={() =>
+                setSelected({
+                  title: 'Inspired',
+                  description: (
+                    <span>
+                      An internal urge to action, a motivation to do great
+                      things and make your own mark. When{' '}
+                      <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                        <em>
+                          you see someone accomplish something incredible, or if
+                          you witness a piece of art that truly moves you
+                        </em>
+                      </strong>
+                      , mark Inspired and recover from the Angry condition
+                    </span>
+                  ),
+                })
+              }
+              orientation="row"
+            />
+            <Achievment
+              achievment="Excited"
+              achievmentStyle={achievmentStyle}
+              currentAchievments={currentAchievments}
+              handleClickAchievment={handleClickAchievment}
+              handleOnClick={() =>
+                setSelected({
+                  title: 'Excited',
+                  description: (
+                    <span>
+                      You'd rather be nowhere else; you'd rather be doing
+                      nothing else, than where you are and what you're about to
+                      do right now. When{' '}
+                      <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                        <em>
+                          you get a chance to do something you've always wanted
+                          to do
+                        </em>
+                      </strong>
+                      , mark Excited and recover from the Afraid condition
+                    </span>
+                  ),
+                })
+              }
+              orientation="row"
+            />
+            <Achievment
+              achievment="Courageous"
+              achievmentStyle={achievmentStyle}
+              currentAchievments={currentAchievments}
+              handleClickAchievment={handleClickAchievment}
+              handleOnClick={() =>
+                setSelected({
+                  title: 'Courageous',
+                  description: (
+                    <span>
+                      Fear and doubt: present but overcome with perseverence and
+                      dicipline. When{' '}
+                      <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                        <em>
+                          you face down and overcome a great fear of yours
+                        </em>
+                      </strong>
+                      , mark Courageous and recover from the Afraid condition
+                    </span>
+                  ),
+                })
+              }
+              orientation="row"
+            />
+          </article>
         </div>
         <aside></aside>
       </main>
@@ -849,6 +1089,40 @@ const Condition: React.FC<ConditionProps> = ({
         className={`condition-checkbox-${orientation}`}
         checked={currentConditions.includes(condition)}
         onChange={() => handleClickCondition(condition)}
+      />
+    </section>
+  );
+};
+
+interface AchievmentProps {
+  orientation: 'row' | 'column';
+  achievmentStyle: (achievment: string) => React.CSSProperties;
+  handleClickAchievment: (achievment: string) => void;
+  achievment: string;
+  handleOnClick: () => void;
+  currentAchievments: string[];
+}
+
+const Achievment: React.FC<AchievmentProps> = ({
+  orientation,
+  achievmentStyle,
+  handleClickAchievment,
+  achievment,
+  handleOnClick,
+  currentAchievments,
+}) => {
+  return (
+    <section
+      className={`achievment-${orientation}`}
+      style={achievmentStyle(achievment)}
+      onClick={handleOnClick}
+    >
+      {achievment}
+      <input
+        type="checkbox"
+        className={`achievment-checkbox-${orientation}`}
+        checked={currentAchievments.includes(achievment)}
+        onChange={() => handleClickAchievment(achievment)}
       />
     </section>
   );

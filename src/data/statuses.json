@@ -1,0 +1,19 @@
+{
+  "Destined": ["Wounded", "Hopeless", "Guilty", "Insecure", "Angry", "Afraid"],
+  "Wounded": [],
+  "Hopeless": ["Hopeful", "Determined"],
+  "Guilty": ["Passionate", "Content"],
+  "Insecure": ["Serene", "Confident"],
+  "Angry": ["Interested", "Inspired"],
+  "Afraid": ["Excited", "Courageous"],
+  "Hopeful": ["Hopeless"],
+  "Determined": ["Hopeless"],
+  "Passionate": ["Guilty"],
+  "Content": ["Guilty"],
+  "Serene": ["Insecure"],
+  "Confident": ["Insecure"],
+  "Interested": ["Angry"],
+  "Inspired": ["Angry"],
+  "Excited": ["Afraid"],
+  "Courageous": ["Afraid"]
+}

@@ -113,7 +113,6 @@
     bottom: 10px;
     right: 0;
     transition: all 0.5s ease-in-out;
-
   }
   .condition-checkbox-column:checked {
     opacity: 1;
@@ -123,14 +122,14 @@
     opacity: 1;
     accent-color: crimson;
   }
-  .condition-wounded, .achievment-empowered {
+  .condition-wounded, .achievment-destined {
     position: relative;
     width: 200px;
      flex-shrink: 0;
      border: 1px solid #ccc;
      transition: all 0.5s ease-in-out;
   }
-  .condition-rows {
+  .condition-rows, .achievment-rows {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -139,11 +138,46 @@
   }
   .condition-row {
     position: relative;
-    height: 303px;
+    height: 303.5px;
     border: 1px solid #ccc;
     writing-mode: vertical-rl;
     text-orientation: mixed;
     transition: all 0.5s ease-in-out;
+  }
+
+  .achievment-row {
+    position: relative;
+    height: 149.75px;
+    border: 1px solid #ccc;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transition: all 0.5s ease-in-out;
+  }
+  .achievment-checkbox-column {
+    position: absolute;
+    opacity: 0;
+    height: 18px;
+    width: 18px;
+    top: 0;
+    right: 10px;
+    transition: all 0.5s ease-in-out;
+  }
+  .achievment-checkbox-row {
+    position: absolute;
+    opacity: 0;
+    height: 18px;
+    width: 18px;
+    bottom: 10px;
+    right: 0;
+    transition: all 0.5s ease-in-out;
+  }
+  .achievment-checkbox-column:checked {
+    opacity: 1;
+    accent-color: steelblue;
+  }
+  .achievment-checkbox-row:checked {
+    opacity: 1;
+    accent-color: steelblue;
   }
 
   .condition-row:hover, .condition-column:hover, .condition-wounded:hover {
@@ -151,6 +185,13 @@
     box-shadow: inset 0px 0px 5px 5px crimson;
   }
   .condition-column:hover .condition-checkbox-column, .condition-row:hover .condition-checkbox-row, .condition-wounded:hover .condition-checkbox-column {
+    opacity: 1;
+  }
+  .achievment-row:hover, .achievment-column:hover, .achievment-destined:hover {
+    cursor: pointer;
+    box-shadow: inset 0px 0px 5px 5px steelblue;
+  }
+  .achievment-column:hover .achievment-checkbox-column, .achievment-row:hover .achievment-checkbox-row, .achievment-destined:hover .achievment-checkbox-column {
     opacity: 1;
   }
 
