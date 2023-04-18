@@ -253,7 +253,7 @@
   .ability-category-Psyche {
     background-color: #5f3dc41a;
   }
-  .ability-category-Physique {
+  .ability-category-Body {
     background-color: #c92a2a1a;
   }
   .ability-category-Motorics {
@@ -270,7 +270,7 @@
     background-color: #242424;
     cursor: pointer;
   }
-  .ability-category-Physique:hover {
+  .ability-category-Body:hover {
     box-shadow: inset 0px 0px 20px 20px #c92a2a3a;
     background-color: #242424;
     cursor: pointer;

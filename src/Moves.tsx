@@ -61,7 +61,7 @@ export const GutCheck = () => {
           </strong>
           , roll +{' '}
           <strong style={{ textShadow: '#c92a2a 1px 0 10px' }}>
-            <em>Physique</em>
+            <em>Instinct</em>
           </strong>
         </span>
       }
@@ -152,7 +152,7 @@ export const DirectlyEngageThreat = () => {
           </strong>
           , roll +{' '}
           <strong style={{ textShadow: '#c92a2a 1px 0 10px' }}>
-            <em>Physique</em>
+            <em>Body</em>
           </strong>
           . On a hit, you trade blows.
         </span>
@@ -214,13 +214,13 @@ export const TakePowerfulBlow = () => {
           <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
             <em>take a powerful blow</em>
           </strong>
-          , roll +{' '}
+          , roll -{' '}
           <strong style={{ textShadow: 'crimson 1px 0 10px' }}>
-            <em>Blood</em>
+            <em>Conditions</em>
           </strong>
         </span>
       }
-      hit="Stand strong. Mark potential and say how you weather the blow."
+      miss="Stand strong. Mark potential and say how you weather the blow."
       partial={
         <>
           <span>Choose 1</span>
@@ -234,7 +234,7 @@ export const TakePowerfulBlow = () => {
           />
         </>
       }
-      miss={
+      hit={
         <>
           <span>Choose 1</span>
           <ResultList
@@ -369,6 +369,39 @@ const DiscernIntentions = () => {
           'What are you really planning?',
           'What do you want me to do?',
           'What do you intend to do?',
+        ]}
+      />
+    </Move>
+  );
+};
+const Decieve = () => {
+  return (
+    <Move
+      title="Decieve"
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>
+              use your words to create misunderstandings or obscure the truth
+            </em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#1864ab 1px 0 10px' }}>
+            <em>Rhetoric</em>
+          </strong>
+        </span>
+      }
+      hit="choose two"
+      partial="choose one"
+      miss="You're caught in a lie, the GM will tell you how"
+    >
+      <ResultList
+        results={[
+          'Drive a wedge between two people',
+          'Create a false impression',
+          'Make someone doubt their own senses',
+          'No one is the wiser',
         ]}
       />
     </Move>
@@ -615,6 +648,37 @@ const PutThePiecesTogether = () => {
     </Move>
   );
 };
+const Investigate = () => {
+  return (
+    <Move
+      title="Investigate"
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>spend time investigating something</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#1864ab 1px 0 10px' }}>
+            <em>Logic</em>
+          </strong>
+        </span>
+      }
+      hit="choose two"
+      partial="choose one"
+      miss="you're careless and caught unawares"
+    >
+      <ResultList
+        results={[
+          'you find a critical location',
+          'you find a critical clue',
+          'you find a critical person',
+          "you aren't noticed",
+        ]}
+      />
+    </Move>
+  );
+};
 
 const Rouse = () => {
   return (
@@ -635,6 +699,29 @@ const Rouse = () => {
       }
       hit="You can also add a Team to the pool or the roused ally gets +1 ongoing for the encounter"
       miss="Your words fall flat: both you and they take -1 forward"
+    />
+  );
+};
+const MakeWaves = () => {
+  return (
+    <Move
+      title="Make Waves"
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>use your words to spread information</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#1864ab 1px 0 10px' }}>
+            <em>Drama</em>
+          </strong>
+          . On a hit, your words spread and people listen: you get +1 forward to
+          act on the results.
+        </span>
+      }
+      hit="You may choose between: attracting the attention you desire / not being known as the origin of the information."
+      miss="Your words don't spread far. You may choose between: attracting the wrong kind of attention / your words being twisted to suit someone else's agenda."
     />
   );
 };
@@ -660,6 +747,41 @@ const WorkOfArt = () => {
       hit="If you made the art for yourself, clear a condition. If you made it for someone else, you gain influence over them."
       miss="Your best efforts resulted in a mess. Mark a condition."
     />
+  );
+};
+
+const DecypherAesthetic = () => {
+  return (
+    <Move
+      title="Decypher Aesthetic"
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>
+              attentively observe someone's art or form of personal expression
+            </em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#1864ab 1px 0 10px' }}>
+            <em>Conceptualization</em>
+          </strong>
+          .
+        </span>
+      }
+      hit="ask two"
+      partial="ask one"
+      miss="This person is a mystery to you. You take -1 forward to interact with them."
+    >
+      <ResultList
+        results={[
+          'How do they want to be regarded by others?',
+          'What sort of background do they have?',
+          'What emotions do they want to evoke in others?',
+          'What piece of themselves do they want to hide from others?',
+        ]}
+      />
+    </Move>
   );
 };
 
@@ -998,6 +1120,7 @@ const Moves = new Map([
   ['Comfort or Support', ComfortOrSupport],
   ['Provoke Someone', ProvokeSomeone],
   ['Discern Intentions', DiscernIntentions],
+  ['Decieve', Decieve],
   ['Check it Out', CheckItOut],
   ['Order', Order],
   ['Recall Information', RecallInformation],
@@ -1006,8 +1129,11 @@ const Moves = new Map([
   ['Deftly Engage a Threat', DeftlyEngageAThreat],
   ['Ferociously Engage a Threat', FerociouslyEngageAThreat],
   ['Put the Pieces Together', PutThePiecesTogether],
+  ['Investigate', Investigate],
   ['Rouse', Rouse],
+  ['Make Waves', MakeWaves],
   ['Work of Art', WorkOfArt],
+  ['Decypher Aesthetic', DecypherAesthetic],
   ['Shrewdly Engage a Threat', ShrewdlyEngageAThreat],
   ['Weild your Donum', WeildDonum],
   ['Read the Room', ReadTheRoom],

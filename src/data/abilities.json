@@ -10,7 +10,7 @@
         "name": "Logic",
         "ranks": 0,
         "description": "Logic is your ability to connect multiple pieces of information into a coherent whole.",
-        "moves": ["Put the Pieces Together"],
+        "moves": ["Put the Pieces Together", "Investigate"],
         "conditions": ["Wounded", "Hopeless", "Angry"],
         "achievments": ["Destined", "Determined", "Interested"]
       },
@@ -26,7 +26,7 @@
         "name": "Rhetoric",
         "ranks": 0,
         "description": "Rhetoric is your ability to state your opinion and listen to others' opinions.",
-        "moves": ["Discern Intentions"],
+        "moves": ["Discern Intentions", "Decieve"],
         "conditions": ["Wounded", "Guilty", "Angry"],
         "achievments": ["Destined", "Passionate", "Interested"]
       },
@@ -34,7 +34,7 @@
         "name": "Drama",
         "ranks": 0,
         "description": "Drama is your ability to use nonfactual words and actions to affect others.",
-        "moves": ["Rouse"],
+        "moves": ["Rouse", "Make Waves"],
         "conditions": ["Wounded", "Guilty", "Angry"],
         "achievments": ["Destined", "Content", "Interested"]
       },
@@ -42,7 +42,7 @@
         "name": "Conceptualization",
         "ranks": 0,
         "description": "Conceptualization is your ability to understand and create art.",
-        "moves": ["Work of Art"],
+        "moves": ["Work of Art", "Decypher Aesthetic"],
         "conditions": ["Wounded", "Insecure", "Angry"],
         "achievments": ["Destined", "Serene", "Interested"]
       },
@@ -116,11 +116,11 @@
     "moves": ["New Donum Application"]
   },
   {
-    "category": "Physique",
+    "category": "Body",
     "score": -3,
     "color": "c92a2a",
     "progress": 0,
-    "description": "Physique is your raw ability to physically affect the world.",
+    "description": "Body is your raw ability to physically affect the world.",
     "abilities": [
       {
         "name": "Endurance",
@@ -155,9 +155,9 @@
         "achievments": ["Destined", "Content", "Excited"]
       },
       {
-        "name": "Animal Instinct",
+        "name": "Instinct",
         "ranks": 0,
-        "description": "Animal Instinct is your ability to get a gut feeling about a situation.",
+        "description": "Instinct is your ability to get a gut feeling about a situation.",
         "moves": ["Gut Check"],
         "conditions": ["Wounded", "Insecure", "Afraid"],
         "achievments": ["Destined", "Serene", "Excited"]
