@@ -41,6 +41,16 @@
     color: #888;
   }
 
+  .name-input {
+    font-family: inherit; 
+    font-size: 24px;
+    color: inherit;
+    text-shadow: inherit;
+    width: 20ch;
+    border: none;
+    background-color: inherit;
+  }
+
   .resources {
     width: 100%;
     display: flex;

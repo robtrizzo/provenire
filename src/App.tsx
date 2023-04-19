@@ -23,6 +23,7 @@ function App() {
       fileReader.readAsText(files[0], 'UTF-8');
       fileReader.onload = (e) => {
         const content = JSON.parse(e.target?.result?.toString() || '');
+        setName(content.name);
         setAbilities(content.abilities);
         setCurrentConditions(content.conditions);
         setCurrentAchievments(content.achievments);
@@ -43,13 +44,14 @@ function App() {
       [
         JSON.stringify(
           {
-            abilities: abilities,
+            name,
+            abilities,
             conditions: currentConditions,
             achievments: currentAchievments,
-            blood: blood,
-            maxBlood: maxBlood,
-            donum: donum,
-            maxDonum: maxDonum,
+            blood,
+            maxBlood,
+            donum,
+            maxDonum,
             genius,
             power,
             fate,
@@ -186,6 +188,7 @@ function App() {
     setAbilities(newAbilities);
   };
 
+  const [name, setName] = useState('');
   const [blood, setBlood] = useState(3);
   const [maxBlood, setMaxBlood] = useState(3);
   const [donum, setDonum] = useState(3);
@@ -205,6 +208,9 @@ function App() {
     description?: React.ReactNode;
     moves?: string[];
   }>({});
+  const handleChangeName = (newName: string) => {
+    setName(newName);
+  };
   const [currentConditions, setCurrentConditions] = useState<string[]>([]);
   const handleClickCondition = (condition: string) => {
     if (currentConditions.includes(condition)) {
@@ -311,6 +317,13 @@ function App() {
             Load
           </label>
         </section>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => handleChangeName(e.target.value)}
+          className="name-input"
+          placeholder="Name"
+        />
         <article className="resources">
           <section
             className="resource blood"

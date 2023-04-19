@@ -18,7 +18,7 @@
         "name": "Encyclopedia",
         "ranks": 0,
         "description": "Encyclopedia is your knowledge of the world, its people, places, and things.",
-        "moves": ["Recall Information"],
+        "moves": ["Recall Information", "Seek Knowledge"],
         "conditions": ["Wounded", "Hopeless", "Angry"],
         "achievments": ["Destined", "Hopeful", "Interested"]
       },
@@ -69,7 +69,7 @@
         "ranks": 0,
         "description": "Volition is your ability to control your own thoughts and actions.",
         "conditions": ["Wounded", "Hopeless", "Angry"],
-        "moves": ["Weild your Donum"],
+        "moves": ["Weild your Donum", "Resist Temptation"],
         "achievments": ["Destined", "Determined", "Inspired"]
       },
       {
@@ -77,14 +77,14 @@
         "ranks": 0,
         "description": "Contemporary is your ability to understand how the world works in the here and now.",
         "conditions": ["Wounded", "Hopeless", "Angry"],
-        "moves": ["Read the Room"],
+        "moves": ["Read the Room", "Seek Assets"],
         "achievments": ["Destined", "Hopeful", "Inspired"]
       },
       {
         "name": "Empathy",
         "ranks": 0,
         "description": "Empathy is your ability to understand and share the feelings of others.",
-        "moves": ["Comfort or Support"],
+        "moves": ["Comfort or Support", "Emotional Analysis"],
         "conditions": ["Wounded", "Guilty", "Angry"],
         "achievments": ["Destined", "Passionate", "Inspired"]
       },
@@ -92,7 +92,7 @@
         "name": "Authority",
         "ranks": 0,
         "description": "Authority is your ability to project your will onto others.",
-        "moves": ["Order"],
+        "moves": ["Order", "Lead"],
         "conditions": ["Wounded", "Guilty", "Angry"],
         "achievments": ["Destined", "Content", "Inspired"]
       },
@@ -101,14 +101,14 @@
         "ranks": 0,
         "description": "Introspection is your ability to understand your own feelings and thoughts.",
         "conditions": ["Wounded", "Insecure", "Angry"],
-        "moves": ["Look Inward"],
+        "moves": ["Look Inward", "Embrace the Angst"],
         "achievments": ["Destined", "Serene", "Inspired"]
       },
       {
         "name": "Suggestion",
         "ranks": 0,
         "description": "Suggestion is your ability to influence others through only your words.",
-        "moves": ["Provoke Someone"],
+        "moves": ["Provoke Someone", "Make Contact"],
         "conditions": ["Wounded", "Insecure", "Angry"],
         "achievments": ["Destined", "Confident", "Inspired"]
       }

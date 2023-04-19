@@ -214,13 +214,13 @@ export const TakePowerfulBlow = () => {
           <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
             <em>take a powerful blow</em>
           </strong>
-          , roll -{' '}
+          , roll +{' '}
           <strong style={{ textShadow: 'crimson 1px 0 10px' }}>
             <em>Conditions</em>
           </strong>
         </span>
       }
-      miss="Stand strong. Mark potential and say how you weather the blow."
+      miss="Stand strong. Mark Fate and say how you weather the blow."
       partial={
         <>
           <span>Choose 1</span>
@@ -304,6 +304,39 @@ const ComfortOrSupport = () => {
   );
 };
 
+const EmotionalAnalysis = () => {
+  return (
+    <Move
+      title="Emotional Analysis"
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>coldly analyze a person's emotions or psyche</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#5f3dc4 1px 0 10px' }}>
+            <em>Empathy</em>
+          </strong>
+          . On a hit, you gain insight on a piece of their mind. Ask one
+          question listed below.
+        </span>
+      }
+      hit="Gain influence over them."
+      miss="You probe carelessly into their personal experiences. You lose influence over them or they distance themself from you."
+    >
+      <ResultList
+        results={[
+          'How do they feel about ___?',
+          'What are they really feeling right now?',
+          'How could I get them to ___?',
+          'What would be incredibly traumatic for them?',
+        ]}
+      />
+    </Move>
+  );
+};
+
 const ProvokeSomeone = () => {
   return (
     <Move
@@ -342,6 +375,29 @@ const ProvokeSomeone = () => {
         />
       </p>
     </Move>
+  );
+};
+
+const MakeContact = () => {
+  return (
+    <Move
+      title="Make Contacts"
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>socialize to make useful friends</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#5f3dc4 1px 0 10px' }}>
+            <em>Suggestion</em>
+          </strong>
+          . On a hit, you befriend someone who can help you.
+        </span>
+      }
+      partial="They'll help you, but only if you do something for them first."
+      miss="You make a bad impression. Mark a condition or they gain influence over you"
+    />
   );
 };
 
@@ -472,6 +528,29 @@ const Order = () => {
   );
 };
 
+const Lead = () => {
+  return (
+    <Move
+      title="Lead"
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>lead a group of people to accomplish a task</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#5f3dc4 1px 0 10px' }}>
+            <em>Authority</em>
+          </strong>
+        </span>
+      }
+      hit="the group acts as a cohesive team, they take +1 forward to accomplish the task"
+      partial="the group works together, but it takes longer than expected or it's shoddy work"
+      miss="the group is ineffective and disorganized. mark a condition"
+    />
+  );
+};
+
 const RecallInformation = () => {
   return (
     <Move
@@ -493,6 +572,29 @@ const RecallInformation = () => {
       }
       hit="ask the GM a follow-up question; they will answer it honestly"
       miss="the situation is well outside your base of knowledge; the GM will tell you why"
+    />
+  );
+};
+const SeekKnowledge = () => {
+  return (
+    <Move
+      title="Seek Knowledge"
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>recall who or where you might learn something from</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#1864ab 1px 0 10px' }}>
+            <em>Encyclopedia</em>
+          </strong>
+          .
+        </span>
+      }
+      hit="you know who to seek out or where to go to learn more about this"
+      partial="you only know a cryptic clue to the answer"
+      miss="you don't know where to start"
     />
   );
 };
@@ -832,7 +934,7 @@ const WeildDonum = () => {
           <strong style={{ textShadow: '#5f3dc4 1px 0 10px' }}>
             <em>Volition</em>
           </strong>
-          . Spend a donum as part of using this move.
+          . Spend a donum as part of using this move. On a hit, you do it.
         </span>
       }
       hit={
@@ -840,6 +942,7 @@ const WeildDonum = () => {
           <p>Choose one:</p>
           <ResultList
             results={[
+              "it doesn't cost significant energy, regain a donum",
               'take hold of something vulnerable to you',
               'create something useful from your environment',
               'neutralize an opponent or threat... for now',
@@ -849,6 +952,29 @@ const WeildDonum = () => {
       }
       miss="You lose control of your donum. The GM will tell you how."
     ></Move>
+  );
+};
+
+const ResistTemptation = () => {
+  return (
+    <Move
+      title="Resist Temptation"
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>resist an addiction, fascination, or temptation</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#5f3dc4 1px 0 10px' }}>
+            <em>Volition</em>
+          </strong>
+          . On a hit, you resist.
+        </span>
+      }
+      hit="take +1 forward to resist the temptation again"
+      miss="you succumb to the temptation or mark a condition"
+    />
   );
 };
 
@@ -884,6 +1010,40 @@ const ReadTheRoom = () => {
   );
 };
 
+const SeekAssets = () => {
+  return (
+    <Move
+      title="Seek Assets"
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>look for something specific and hard to find</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#5f3dc4 1px 0 10px' }}>
+            <em>Contemporary</em>
+          </strong>
+          . On a hit, you find something useful and specific to your current
+          situation.
+        </span>
+      }
+      hit="Choose two"
+      partial="Choose one"
+      miss="You find something, but it's not what you were looking for. The GM will tell you what you found."
+    >
+      <ResultList
+        results={[
+          "it's in good condition",
+          "it's exactly what you were looking for",
+          "it doesn't attract attention",
+          "it doesn't cost you dearly",
+        ]}
+      />
+    </Move>
+  );
+};
+
 const LookInward = () => {
   return (
     <Move
@@ -909,6 +1069,40 @@ const LookInward = () => {
   );
 };
 
+const EmbraceTheAngst = () => {
+  return (
+    <Move
+      title="Embrace the Angst"
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>use your negative emotions to empower your donum</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#5f3dc4 1px 0 10px' }}>
+            <em>Introspection</em>
+          </strong>
+        </span>
+      }
+      hit="Spend a donum to add your conditions to your next Unleash Your Donum roll."
+      partial={
+        <span>
+          Take +1 forward to your next Unleash Your Donum roll. Choose 1:
+          <ResultList
+            results={[
+              'You take a condition',
+              'You escalate the situation',
+              'You have an emotional breakdown, lose influence over someone who sees you',
+            ]}
+          />
+        </span>
+      }
+      miss="You lose control of your donum in a terrible way. The GM will tell you how."
+    />
+  );
+};
+
 const WithstandAPowerfulBlow = () => {
   return (
     <Move
@@ -925,7 +1119,7 @@ const WithstandAPowerfulBlow = () => {
           </strong>
         </span>
       }
-      hit="Stand strong. Mark potential and say how you weather the blow."
+      hit="Stand strong. Say how you weather the blow."
       partial={
         <>
           <span>Choose 1</span>
@@ -934,7 +1128,6 @@ const WithstandAPowerfulBlow = () => {
               "You don't flinch, and shock the opposition: take +1 forward against them. Spend two blood or mark two conditions.",
               'You keep moving despite the blow, repositioning yourself to your advantage. Spend two blood or mark two conditions.',
               'You stand strong despite the pain: add 1 to the team pool. Spend two blood or mark two conditions.',
-              'You grit your teeth and bear it: spend a blood or mark a condition.',
             ]}
           />
         </>
@@ -1118,12 +1311,16 @@ const Moves = new Map([
   ['Take a Powerful Blow', TakePowerfulBlow],
   ['Assess the Situation', AssessSituation],
   ['Comfort or Support', ComfortOrSupport],
+  ['Emotional Analysis', EmotionalAnalysis],
   ['Provoke Someone', ProvokeSomeone],
+  ['Make Contact', MakeContact],
   ['Discern Intentions', DiscernIntentions],
   ['Decieve', Decieve],
   ['Check it Out', CheckItOut],
   ['Order', Order],
+  ['Lead', Lead],
   ['Recall Information', RecallInformation],
+  ['Seek Knowledge', SeekKnowledge],
   ['Intimidate', Intimidate],
   ['Quick Hands', QuickHands],
   ['Deftly Engage a Threat', DeftlyEngageAThreat],
@@ -1136,8 +1333,11 @@ const Moves = new Map([
   ['Decypher Aesthetic', DecypherAesthetic],
   ['Shrewdly Engage a Threat', ShrewdlyEngageAThreat],
   ['Weild your Donum', WeildDonum],
+  ['Resist Temptation', ResistTemptation],
   ['Read the Room', ReadTheRoom],
+  ['Seek Assets', SeekAssets],
   ['Look Inward', LookInward],
+  ['Embrace the Angst', EmbraceTheAngst],
   ['Withstand a Powerful Blow', WithstandAPowerfulBlow],
   ['Push your Body', PushYourBody],
   ['Shrug it Off', ShrugItOff],
