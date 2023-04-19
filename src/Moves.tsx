@@ -920,6 +920,39 @@ const ShrewdlyEngageAThreat = () => {
   );
 };
 
+const PhysicalAnalysis = () => {
+  return (
+    <Move
+      title="Physical Analysis"
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>carefully observe a structure or physical phenomenon</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#1864ab 1px 0 10px' }}>
+            <em>Visual Calculus</em>
+          </strong>
+          .
+        </span>
+      }
+      hit="ask two"
+      partial="ask one"
+      miss="You're baffled by what you see, and take -1 forward to interact with it."
+    >
+      <ResultList
+        results={[
+          'What is it made of?',
+          'How could it be weakened/strengthened?',
+          'How could it be used to my advantage?',
+          'What is its purpose?',
+        ]}
+      />
+    </Move>
+  );
+};
+
 const WeildDonum = () => {
   return (
     <Move
@@ -1332,6 +1365,7 @@ const Moves = new Map([
   ['Work of Art', WorkOfArt],
   ['Decypher Aesthetic', DecypherAesthetic],
   ['Shrewdly Engage a Threat', ShrewdlyEngageAThreat],
+  ['Physical Analysis', PhysicalAnalysis],
   ['Weild your Donum', WeildDonum],
   ['Resist Temptation', ResistTemptation],
   ['Read the Room', ReadTheRoom],

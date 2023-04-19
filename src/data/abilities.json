@@ -51,7 +51,7 @@
         "ranks": 0,
         "description": "Visual Calculus is your ability to understand physical objects and their relation to each other.",
         "conditions": ["Wounded", "Insecure", "Angry"],
-        "moves": ["Shrewdly Engage a Threat"],
+        "moves": ["Shrewdly Engage a Threat", "Physical Analysis"],
         "achievments": ["Destined", "Confident", "Interested"]
       }
     ],
