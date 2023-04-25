@@ -377,7 +377,8 @@ function App() {
               e.preventDefault();
               setSelected({
                 title: 'Donum',
-                description: 'Powaaah',
+                description:
+                  'Arborian for "gift". Each power in the world has a proper noun beginning with Donum, but "Donum" is also a word for how much power one has. You may spend 1 donum and explain how your power could help you in a situation to take +1 forward on your next roll.',
                 color: '6a5acd',
                 moves: ['Unleash Donum'],
               });
@@ -879,10 +880,10 @@ function App() {
                   {selected.description}
                 </p>
                 <section className="info-moves-section">
-                  {selected.moves?.map((move) => {
+                  {selected.moves?.map((move, idx) => {
                     const selectedMove = Moves.get(move);
                     if (selectedMove) {
-                      return selectedMove();
+                      return selectedMove({ ranks: (idx + 1) * 2 });
                     }
                     return null;
                   })}

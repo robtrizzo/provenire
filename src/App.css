@@ -421,6 +421,17 @@
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 10px;
+    position: relative;
+  }
+
+  .move-ranks {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
   }
 
   .result-row {

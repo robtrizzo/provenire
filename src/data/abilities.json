@@ -127,7 +127,7 @@
         "ranks": 0,
         "description": "Endurance is your ability to keep going when your body wants to stop.",
         "conditions": ["Wounded", "Hopeless", "Afraid"],
-        "moves": ["Push your Body"],
+        "moves": ["Push your Body", "Never Stop"],
         "achievments": ["Destined", "Determined", "Excited"]
       },
       {
@@ -135,14 +135,14 @@
         "ranks": 0,
         "description": "Stoicism is your ability to endure pain and discomfort.",
         "conditions": ["Wounded", "Hopeless", "Afraid"],
-        "moves": ["Withstand a Powerful Blow"],
+        "moves": ["Withstand a Powerful Blow", "Embrace the Pain"],
         "achievments": ["Destined", "Hopeful", "Excited"]
       },
       {
         "name": "Execution",
         "ranks": 0,
         "description": "Execution is your skill and natural ability at physically affecting the world with your body.",
-        "moves": ["Ferociously Engage a Threat"],
+        "moves": ["Ferociously Engage a Threat", "Demolition"],
         "conditions": ["Wounded", "Guilty", "Afraid"],
         "achievments": ["Destined", "Passionate", "Excited"]
       },
@@ -151,7 +151,7 @@
         "ranks": 0,
         "description": "Impunity is your ability to withstand the affects of internal ailments.",
         "conditions": ["Wounded", "Guilty", "Afraid"],
-        "moves": ["Shrug it Off"],
+        "moves": ["Shrug it Off", "Blood Surge"],
         "achievments": ["Destined", "Content", "Excited"]
       },
       {
@@ -166,7 +166,7 @@
         "name": "Menace",
         "ranks": 0,
         "description": "Menace is your ability to intimidate others with your physical presence.",
-        "moves": ["Intimidate"],
+        "moves": ["Intimidate", "Your Reputation Preceeds You"],
         "conditions": ["Wounded", "Insecure", "Afraid"],
         "achievments": ["Destined", "Confident", "Excited"]
       }

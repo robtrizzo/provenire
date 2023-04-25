@@ -1,15 +1,25 @@
 interface MoveProps {
   title: string;
+  ranks?: number;
   preface?: React.ReactNode;
   hit?: React.ReactNode;
   partial?: React.ReactNode;
   miss?: React.ReactNode;
   children?: React.ReactNode;
 }
-const Move = ({ title, preface, hit, partial, miss, children }: MoveProps) => {
+const Move = ({
+  title,
+  ranks = 1,
+  preface,
+  hit,
+  partial,
+  miss,
+  children,
+}: MoveProps) => {
   return (
     <article className="move">
       <h3>{title}</h3>
+      {ranks !== -1 && <span className="move-ranks">{ranks}</span>}
       {preface && <p>{preface}</p>}
       {hit && [
         <div className="result-row">
@@ -49,10 +59,11 @@ const ResultList = ({ results }: { results: string[] }) => {
   );
 };
 
-export const GutCheck = () => {
+export const GutCheck = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Gut Check"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -83,10 +94,11 @@ export const GutCheck = () => {
   );
 };
 
-export const UnleashDonum = () => {
+export const UnleashDonum = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Unleash your Donum"
+      ranks={-1}
       preface={
         <span>
           When you{' '}
@@ -117,10 +129,11 @@ export const UnleashDonum = () => {
   );
 };
 
-export const NewDonumApplication = () => {
+export const NewDonumApplication = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="New Application of your Donum"
+      ranks={-1}
       preface={
         <span>
           When you{' '}
@@ -140,10 +153,11 @@ export const NewDonumApplication = () => {
   );
 };
 
-export const DirectlyEngageThreat = () => {
+export const DirectlyEngageThreat = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Directly Engage a Threat"
+      ranks={-1}
       preface={
         <span>
           When you{' '}
@@ -170,10 +184,11 @@ export const DirectlyEngageThreat = () => {
   );
 };
 
-export const Defend = () => {
+export const Defend = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Defend"
+      ranks={-1}
       preface={
         <span>
           When you{' '}
@@ -204,10 +219,11 @@ export const Defend = () => {
   );
 };
 
-export const TakePowerfulBlow = () => {
+export const TakePowerfulBlow = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Take a Powerful Blow"
+      ranks={-1}
       preface={
         <span>
           When you{' '}
@@ -251,10 +267,11 @@ export const TakePowerfulBlow = () => {
   );
 };
 
-const AssessSituation = () => {
+const AssessSituation = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Assess the Situation"
+      ranks={-1}
       preface={
         <span>
           When you{' '}
@@ -282,10 +299,11 @@ const AssessSituation = () => {
   );
 };
 
-const ComfortOrSupport = () => {
+const ComfortOrSupport = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Comfort or Support"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -304,10 +322,11 @@ const ComfortOrSupport = () => {
   );
 };
 
-const EmotionalAnalysis = () => {
+const EmotionalAnalysis = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Emotional Analysis"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -337,10 +356,11 @@ const EmotionalAnalysis = () => {
   );
 };
 
-const ProvokeSomeone = () => {
+const ProvokeSomeone = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Provoke Someone"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -378,10 +398,11 @@ const ProvokeSomeone = () => {
   );
 };
 
-const MakeContact = () => {
+const MakeContact = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Make Contacts"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -401,10 +422,11 @@ const MakeContact = () => {
   );
 };
 
-const DiscernIntentions = () => {
+const DiscernIntentions = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Discern Intentions"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -430,10 +452,11 @@ const DiscernIntentions = () => {
     </Move>
   );
 };
-const Decieve = () => {
+const Decieve = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Decieve"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -464,10 +487,11 @@ const Decieve = () => {
   );
 };
 
-const CheckItOut = () => {
+const CheckItOut = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Check it Out"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -496,10 +520,11 @@ const CheckItOut = () => {
   );
 };
 
-const Order = () => {
+const Order = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Order"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -528,10 +553,11 @@ const Order = () => {
   );
 };
 
-const Lead = () => {
+const Lead = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Lead"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -551,10 +577,11 @@ const Lead = () => {
   );
 };
 
-const RecallInformation = () => {
+const RecallInformation = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Recall Information"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -575,10 +602,11 @@ const RecallInformation = () => {
     />
   );
 };
-const SeekKnowledge = () => {
+const SeekKnowledge = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Seek Knowledge"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -599,10 +627,11 @@ const SeekKnowledge = () => {
   );
 };
 
-const Intimidate = () => {
+const Intimidate = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Intimidate"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -632,10 +661,35 @@ const Intimidate = () => {
   );
 };
 
-const QuickHands = () => {
+const YourReputationPrecedesYou = ({ ranks }: { ranks: number }) => {
+  return (
+    <Move
+      title="Your Reputation Precedes You"
+      ranks={ranks}
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>return to civilization after a battle</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#c92a2a 1px 0 10px' }}>
+            <em>Menace</em>
+          </strong>
+        </span>
+      }
+      hit="someone important has heard of you and fears or admires you, your choice"
+      partial="someone important has heard of you and has an agenda involving you"
+      miss="someone important has heard of you and wants to see you gone"
+    />
+  );
+};
+
+const QuickHands = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Quick Hands"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -654,10 +708,11 @@ const QuickHands = () => {
   );
 };
 
-const DeftlyEngageAThreat = () => {
+const DeftlyEngageAThreat = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Deftly Engage a Threat"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -687,10 +742,11 @@ const DeftlyEngageAThreat = () => {
   );
 };
 
-const FerociouslyEngageAThreat = () => {
+const FerociouslyEngageAThreat = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Ferociously Engage a Threat"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -720,10 +776,44 @@ const FerociouslyEngageAThreat = () => {
   );
 };
 
-const PutThePiecesTogether = () => {
+const Demolition = ({ ranks }: { ranks: number }) => {
+  return (
+    <Move
+      title="Demolition"
+      ranks={ranks}
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>destroy an object or your environment</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#c92a2a 1px 0 10px' }}>
+            <em>Execution</em>
+          </strong>
+        </span>
+      }
+      hit="choose two"
+      partial="choose one"
+      miss="you destroy something you shouldn't have, or expose yourself to danger"
+    >
+      <ResultList
+        results={[
+          'you make something inaccessible or unusable',
+          'you isolate something or someone',
+          'you expose a weakness or vulnerability',
+          'you exploit an exposed weakness or vulnerability',
+        ]}
+      />
+    </Move>
+  );
+};
+
+const PutThePiecesTogether = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Put the Pieces Together"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -750,10 +840,11 @@ const PutThePiecesTogether = () => {
     </Move>
   );
 };
-const Investigate = () => {
+const Investigate = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Investigate"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -782,10 +873,11 @@ const Investigate = () => {
   );
 };
 
-const Rouse = () => {
+const Rouse = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Rouse"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -804,10 +896,11 @@ const Rouse = () => {
     />
   );
 };
-const MakeWaves = () => {
+const MakeWaves = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Make Waves"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -828,10 +921,11 @@ const MakeWaves = () => {
   );
 };
 
-const WorkOfArt = () => {
+const WorkOfArt = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Work of Art"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -852,10 +946,11 @@ const WorkOfArt = () => {
   );
 };
 
-const DecypherAesthetic = () => {
+const DecypherAesthetic = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Decypher Aesthetic"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -887,10 +982,11 @@ const DecypherAesthetic = () => {
   );
 };
 
-const ShrewdlyEngageAThreat = () => {
+const ShrewdlyEngageAThreat = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Shrewdly Engage a Threat"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -920,10 +1016,11 @@ const ShrewdlyEngageAThreat = () => {
   );
 };
 
-const PhysicalAnalysis = () => {
+const PhysicalAnalysis = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Physical Analysis"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -953,10 +1050,11 @@ const PhysicalAnalysis = () => {
   );
 };
 
-const WeildDonum = () => {
+const WeildDonum = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Weild your Donum"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -988,10 +1086,11 @@ const WeildDonum = () => {
   );
 };
 
-const ResistTemptation = () => {
+const ResistTemptation = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Resist Temptation"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -1011,10 +1110,11 @@ const ResistTemptation = () => {
   );
 };
 
-const ReadTheRoom = () => {
+const ReadTheRoom = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Read the Room"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -1043,10 +1143,11 @@ const ReadTheRoom = () => {
   );
 };
 
-const SeekAssets = () => {
+const SeekAssets = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Seek Assets"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -1077,10 +1178,11 @@ const SeekAssets = () => {
   );
 };
 
-const LookInward = () => {
+const LookInward = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Look Inward"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -1102,10 +1204,11 @@ const LookInward = () => {
   );
 };
 
-const EmbraceTheAngst = () => {
+const EmbraceTheAngst = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Embrace the Angst"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -1136,10 +1239,11 @@ const EmbraceTheAngst = () => {
   );
 };
 
-const WithstandAPowerfulBlow = () => {
+const WithstandAPowerfulBlow = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Withstand a Powerful Blow"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -1182,10 +1286,36 @@ const WithstandAPowerfulBlow = () => {
   );
 };
 
-const PushYourBody = () => {
+const EmbraceThePain = ({ ranks }: { ranks: number }) => {
+  return (
+    <Move
+      title="Embrace the Pain"
+      ranks={ranks}
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>steel yourself against severe pain</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#c92a2a 1px 0 10px' }}>
+            <em>Stoicism</em>
+          </strong>
+          . On a hit, you can ignore the pain for a while. Pick a condition; you
+          aren't affected by it for the rest of the scene.
+        </span>
+      }
+      partial="After the scene, the pain comes rushing back in. Immediately do the action required to clear the condition. If you do, clear it. If you don't, mark another condition as well."
+      miss="The pain overwhelms you. Immediately do the action required to clear the condition. If you do, clear it. If you don't, mark another condition as well."
+    />
+  );
+};
+
+const PushYourBody = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Push your Body"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -1204,10 +1334,35 @@ const PushYourBody = () => {
   );
 };
 
-const ShrugItOff = () => {
+const NeverStop = ({ ranks }: { ranks: number }) => {
+  return (
+    <Move
+      title="Never Stop"
+      ranks={ranks}
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>would take a powerful blow while your death flag is raised</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#c92a2a 1px 0 10px' }}>
+            <em>Endurance</em>
+          </strong>
+        </span>
+      }
+      hit="Choose a condition and ignore it for the rest of the scene"
+      partial="Spend 2 blood or take a horrible and permanent injury. This doesn't cause you to mark a condition."
+      miss="You're dead, but not before you get to do one last thing. What is it?"
+    />
+  );
+};
+
+const ShrugItOff = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Shrug it Off"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -1227,10 +1382,46 @@ const ShrugItOff = () => {
   );
 };
 
-const TakeTheInitiative = () => {
+const BloodSurge = ({ ranks }: { ranks: number }) => {
+  return (
+    <Move
+      title="Blood Surge"
+      ranks={ranks}
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>use blood to enhance your body far beyond human norms</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#c92a2a 1px 0 10px' }}>
+            <em>Impunity</em>
+          </strong>
+          . Spend two blood as part of using this move.
+        </span>
+      }
+      hit="Choose two"
+      partial="Choose one"
+      miss="The intense strain of the blood surge takes its toll. Take a powerful blow."
+    >
+      <ResultList
+        results={[
+          "You don't take harm from the strain",
+          'You gain superhuman strength, speed, or endurance',
+          'You gain superhuman senses or reflexes',
+          'You gain superhuman toughness or resilience',
+          'You gain superhumanly quick thinking',
+        ]}
+      />
+    </Move>
+  );
+};
+
+const TakeTheInitiative = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Take the Initiative"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -1259,10 +1450,11 @@ const TakeTheInitiative = () => {
   );
 };
 
-const TraverseTreacherousGround = () => {
+const TraverseTreacherousGround = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Traverse Treacherous Ground"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -1281,10 +1473,11 @@ const TraverseTreacherousGround = () => {
   );
 };
 
-const KeepYourCool = () => {
+const KeepYourCool = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Keep your Cool"
+      ranks={ranks}
       preface={
         <span>
           When you{' '}
@@ -1315,10 +1508,11 @@ const KeepYourCool = () => {
   );
 };
 
-const RaiseTheDeathFlag = () => {
+const RaiseTheDeathFlag = ({ ranks }: { ranks: number }) => {
   return (
     <Move
       title="Raise the Death Flag"
+      ranks={-1}
       preface={
         <span>
           When you{' '}
@@ -1355,9 +1549,11 @@ const Moves = new Map([
   ['Recall Information', RecallInformation],
   ['Seek Knowledge', SeekKnowledge],
   ['Intimidate', Intimidate],
+  ['Your Reputation Preceeds You', YourReputationPrecedesYou],
   ['Quick Hands', QuickHands],
   ['Deftly Engage a Threat', DeftlyEngageAThreat],
   ['Ferociously Engage a Threat', FerociouslyEngageAThreat],
+  ['Demolition', Demolition],
   ['Put the Pieces Together', PutThePiecesTogether],
   ['Investigate', Investigate],
   ['Rouse', Rouse],
@@ -1373,8 +1569,11 @@ const Moves = new Map([
   ['Look Inward', LookInward],
   ['Embrace the Angst', EmbraceTheAngst],
   ['Withstand a Powerful Blow', WithstandAPowerfulBlow],
+  ['Embrace the Pain', EmbraceThePain],
   ['Push your Body', PushYourBody],
+  ['Never Stop', NeverStop],
   ['Shrug it Off', ShrugItOff],
+  ['Blood Surge', BloodSurge],
   ['Take the Initiative', TakeTheInitiative],
   ['Traverse Treacherous Ground', TraverseTreacherousGround],
   ['Keep your Cool', KeepYourCool],
