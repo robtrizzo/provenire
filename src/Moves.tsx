@@ -768,6 +768,34 @@ const QuickHands = ({ ranks }: { ranks: number }) => {
   );
 };
 
+const Fabricate = ({ ranks }: { ranks: number }) => {
+  return (
+    <Move
+      title="Fabricate"
+      ranks={ranks}
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>create a device</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#2b8a3e 1px 0 10px' }}>
+            <em>Interfacing</em>
+          </strong>
+          . The GM will set a progress clock for the project, and you will fill
+          in the segments as you work on it. When the clock is half-full, it's
+          unreliable, unstable, or has a quirky feature. When the clock is full,
+          the device is complete and works without incident.
+        </span>
+      }
+      hit="mark two segments on the progress clock"
+      partial="mark one segment on the progress clock"
+      miss="mark one segment on the progress clock but choose one of: it takes a long time, it's costly, or you give away your plans"
+    />
+  );
+};
+
 const DeftlyEngageAThreat = ({ ranks }: { ranks: number }) => {
   return (
     <Move
@@ -1532,6 +1560,40 @@ const TakeTheInitiative = ({ ranks }: { ranks: number }) => {
   );
 };
 
+const ConserveAndProtect = ({ ranks }: { ranks: number }) => {
+  return (
+    <Move
+      title="Conserve and Protect"
+      ranks={ranks}
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>remain guarded rather than get aggressive</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#2b8a3e 1px 0 10px' }}>
+            <em>Reaction</em>
+          </strong>
+        </span>
+      }
+      hit="hold two"
+      partial="hold one"
+      miss="you're caught off-guard. take a powerful blow."
+    >
+      You can spend 1 hold to do one of the following as if you had rolled a 16;
+      spend 2 hold to act as if you had rolled a 20:
+      <ResultList
+        results={[
+          'defend someone else',
+          'avoid danger',
+          'act on an opportunity or opening',
+        ]}
+      />
+    </Move>
+  );
+};
+
 const TraverseTreacherousGround = ({ ranks }: { ranks: number }) => {
   return (
     <Move
@@ -1614,6 +1676,38 @@ const KeepYourCool = ({ ranks }: { ranks: number }) => {
   );
 };
 
+const Inscrutable = ({ ranks }: { ranks: number }) => {
+  return (
+    <Move
+      title="Inscrutable"
+      ranks={ranks}
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>keep your true intentions hidden</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#2b8a3e 1px 0 10px' }}>
+            <em>Composure</em>
+          </strong>
+          . On a hit, you're able to keep your intentions hidden.
+        </span>
+      }
+      hit="choose one"
+      miss="you're caught off-guard, make your true intentions known or mark a condition"
+    >
+      <ResultList
+        results={[
+          'you gain insight into someone trying to read you',
+          'your opposition is unsettled or frightened',
+          'you provoke someone into taking foolhardy action',
+        ]}
+      />
+    </Move>
+  );
+};
+
 const RaiseTheDeathFlag = ({ ranks }: { ranks: number }) => {
   return (
     <Move
@@ -1659,6 +1753,7 @@ const Moves = new Map([
   ['Intimidate', Intimidate],
   ['Your Reputation Preceeds You', YourReputationPrecedesYou],
   ['Quick Hands', QuickHands],
+  ['Fabricate', Fabricate],
   ['Deftly Engage a Threat', DeftlyEngageAThreat],
   ['Precision', Precision],
   ['Ferociously Engage a Threat', FerociouslyEngageAThreat],
@@ -1684,9 +1779,11 @@ const Moves = new Map([
   ['Shrug it Off', ShrugItOff],
   ['Blood Surge', BloodSurge],
   ['Take the Initiative', TakeTheInitiative],
+  ['Conserve and Protect', ConserveAndProtect],
   ['Traverse Treacherous Ground', TraverseTreacherousGround],
   ['Leave No Trace', LeaveNoTrace],
   ['Keep your Cool', KeepYourCool],
+  ['Inscrutable', Inscrutable],
   ['Raise the Death Flag', RaiseTheDeathFlag],
 ]);
 export default Moves;

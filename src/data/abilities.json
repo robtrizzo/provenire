@@ -201,7 +201,7 @@
         "ranks": 0,
         "description": "Reaction is your ability to quickly respond to a change in the environment.",
         "conditions": ["Wounded", "Guilty", "Afraid"],
-        "moves": ["Take the Initiative"],
+        "moves": ["Take the Initiative", "Conserve and Protect"],
         "achievments": ["Destined", "Passionate", "Courageous"]
       },
       {
@@ -216,7 +216,7 @@
         "name": "Interfacing",
         "ranks": 0,
         "description": "Interfacing is your ability to use tools and technology.",
-        "moves": ["Quick Hands"],
+        "moves": ["Quick Hands", "Fabricate"],
         "conditions": ["Wounded", "Insecure", "Afraid"],
         "achievments": ["Destined", "Serene", "Courageous"]
       },
@@ -225,7 +225,7 @@
         "ranks": 0,
         "description": "Composure is your ability to keep your cool and not give away your thoughts.",
         "conditions": ["Wounded", "Insecure", "Afraid"],
-        "moves": ["Keep your Cool"],
+        "moves": ["Keep your Cool", "Inscrutable"],
         "achievments": ["Destined", "Confident", "Courageous"]
       }
     ],
