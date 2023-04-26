@@ -94,6 +94,32 @@ export const GutCheck = ({ ranks }: { ranks: number }) => {
   );
 };
 
+export const Impulse = ({ ranks }: { ranks: number }) => {
+  return (
+    <Move
+      title="Impulse"
+      ranks={ranks}
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>act on your basic impulses without thinking it through</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#c92a2a 1px 0 10px' }}>
+            <em>Instinct</em>
+          </strong>
+          . On a hit, the GM will tell you which attitude would be most
+          effective in this situation. The attitudes are: anger, fear, grief,
+          care, pleasure, play.
+        </span>
+      }
+      hit="+1 forward when acting on the impulse"
+      miss="Your emotions are at the forefront of your mind. Act to clear a condition or take antother condition."
+    />
+  );
+};
+
 export const UnleashDonum = ({ ranks }: { ranks: number }) => {
   return (
     <Move
@@ -520,6 +546,40 @@ const CheckItOut = ({ ranks }: { ranks: number }) => {
   );
 };
 
+const Awareness = ({ ranks }: { ranks: number }) => {
+  return (
+    <Move
+      title="Awareness"
+      ranks={ranks}
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>perceive something hidden from you</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#2b8a3e 1px 0 10px' }}>
+            <em>Perception</em>
+          </strong>
+          . Spend one blood as part of using this move.
+        </span>
+      }
+      hit="choose two"
+      partial="choose one"
+      miss="You get disoriented and lose track of what's happening around you"
+    >
+      <ResultList
+        results={[
+          'You see through an illusion or disguise',
+          'You act normally despite missing up to two of your senses',
+          'You use blood skillfully, refund the blood you spent',
+          "You learn of the presence of something you can't detect",
+        ]}
+      />
+    </Move>
+  );
+};
+
 const Order = ({ ranks }: { ranks: number }) => {
   return (
     <Move
@@ -737,6 +797,28 @@ const DeftlyEngageAThreat = ({ ranks }: { ranks: number }) => {
           'you avoid their blows',
           'you impress or surprise the opposition',
         ]}
+      />
+    </Move>
+  );
+};
+
+const Precision = ({ ranks }: { ranks: number }) => {
+  return (
+    <Move
+      title="Precision"
+      ranks={ranks}
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>engage a threat</em>
+          </strong>
+          , you may add the following to the list of options on a full hit:
+        </span>
+      }
+    >
+      <ResultList
+        results={['you exploit an exposed weakness', 'you remain undetected']}
       />
     </Move>
   );
@@ -1286,10 +1368,10 @@ const WithstandAPowerfulBlow = ({ ranks }: { ranks: number }) => {
   );
 };
 
-const EmbraceThePain = ({ ranks }: { ranks: number }) => {
+const EndureThePain = ({ ranks }: { ranks: number }) => {
   return (
     <Move
-      title="Embrace the Pain"
+      title="Endure the Pain"
       ranks={ranks}
       preface={
         <span>
@@ -1473,6 +1555,30 @@ const TraverseTreacherousGround = ({ ranks }: { ranks: number }) => {
   );
 };
 
+const LeaveNoTrace = ({ ranks }: { ranks: number }) => {
+  return (
+    <Move
+      title="Leave No Trace"
+      ranks={ranks}
+      preface={
+        <span>
+          When you{' '}
+          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+            <em>leave no trace of your passing</em>
+          </strong>
+          , roll +{' '}
+          <strong style={{ textShadow: '#2b8a3e 1px 0 10px' }}>
+            <em>Grace</em>
+          </strong>
+        </span>
+      }
+      hit="you do it, no problem"
+      partial="you do it, but you leave something behind or you're forced to take a different route: your choice"
+      miss="you're caught in the act, or you leave something behind that could be used to track you"
+    />
+  );
+};
+
 const KeepYourCool = ({ ranks }: { ranks: number }) => {
   return (
     <Move
@@ -1531,6 +1637,7 @@ const RaiseTheDeathFlag = ({ ranks }: { ranks: number }) => {
 
 const Moves = new Map([
   ['Gut Check', GutCheck],
+  ['Impulse', Impulse],
   ['Unleash Donum', UnleashDonum],
   ['New Donum Application', NewDonumApplication],
   ['Directly Engage a Threat', DirectlyEngageThreat],
@@ -1544,6 +1651,7 @@ const Moves = new Map([
   ['Discern Intentions', DiscernIntentions],
   ['Decieve', Decieve],
   ['Check it Out', CheckItOut],
+  ['Awareness', Awareness],
   ['Order', Order],
   ['Lead', Lead],
   ['Recall Information', RecallInformation],
@@ -1552,6 +1660,7 @@ const Moves = new Map([
   ['Your Reputation Preceeds You', YourReputationPrecedesYou],
   ['Quick Hands', QuickHands],
   ['Deftly Engage a Threat', DeftlyEngageAThreat],
+  ['Precision', Precision],
   ['Ferociously Engage a Threat', FerociouslyEngageAThreat],
   ['Demolition', Demolition],
   ['Put the Pieces Together', PutThePiecesTogether],
@@ -1569,13 +1678,14 @@ const Moves = new Map([
   ['Look Inward', LookInward],
   ['Embrace the Angst', EmbraceTheAngst],
   ['Withstand a Powerful Blow', WithstandAPowerfulBlow],
-  ['Embrace the Pain', EmbraceThePain],
+  ['Endure the Pain', EndureThePain],
   ['Push your Body', PushYourBody],
   ['Never Stop', NeverStop],
   ['Shrug it Off', ShrugItOff],
   ['Blood Surge', BloodSurge],
   ['Take the Initiative', TakeTheInitiative],
   ['Traverse Treacherous Ground', TraverseTreacherousGround],
+  ['Leave No Trace', LeaveNoTrace],
   ['Keep your Cool', KeepYourCool],
   ['Raise the Death Flag', RaiseTheDeathFlag],
 ]);

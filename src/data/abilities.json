@@ -135,7 +135,7 @@
         "ranks": 0,
         "description": "Stoicism is your ability to endure pain and discomfort.",
         "conditions": ["Wounded", "Hopeless", "Afraid"],
-        "moves": ["Withstand a Powerful Blow", "Embrace the Pain"],
+        "moves": ["Withstand a Powerful Blow", "Endure the Pain"],
         "achievments": ["Destined", "Hopeful", "Excited"]
       },
       {
@@ -158,7 +158,7 @@
         "name": "Instinct",
         "ranks": 0,
         "description": "Instinct is your ability to get a gut feeling about a situation.",
-        "moves": ["Gut Check"],
+        "moves": ["Gut Check", "Impulse"],
         "conditions": ["Wounded", "Insecure", "Afraid"],
         "achievments": ["Destined", "Serene", "Excited"]
       },
@@ -184,7 +184,7 @@
         "name": "Coordination",
         "ranks": 0,
         "description": "Coordination is your ability be accurate with tools and weapons",
-        "moves": ["Deftly Engage a Threat"],
+        "moves": ["Deftly Engage a Threat", "Precision"],
         "conditions": ["Wounded", "Hopeless", "Afraid"],
         "achievments": ["Destined", "Determined", "Courageous"]
       },
@@ -192,7 +192,7 @@
         "name": "Perception",
         "ranks": 0,
         "description": "Perception is your ability to sense something unusual in your environment.",
-        "moves": ["Check it Out"],
+        "moves": ["Check it Out", "Awareness"],
         "conditions": ["Wounded", "Hopeless", "Afraid"],
         "achievments": ["Destined", "Hopeful", "Courageous"]
       },
@@ -209,7 +209,7 @@
         "ranks": 0,
         "description": "Grace is your ability to move your body in a precise or pleasing way.",
         "conditions": ["Wounded", "Guilty", "Afraid"],
-        "moves": ["Traverse Treacherous Ground"],
+        "moves": ["Traverse Treacherous Ground", "Leave No Trace"],
         "achievments": ["Destined", "Content", "Courageous"]
       },
       {
