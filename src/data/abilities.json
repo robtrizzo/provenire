@@ -1,11 +1,9 @@
 [
   {
     "category": "Intellect",
-    "score": -3,
     "color": "1864ab",
-    "progress": 0,
     "description": "Intellect is your raw knowledge and sense-making ability.",
-    "abilities": [
+    "skills": [
       {
         "name": "Logic",
         "ranks": 0,
@@ -59,11 +57,9 @@
   },
   {
     "category": "Psyche",
-    "score": -3,
     "color": "5f3dc4",
-    "progress": 0,
     "description": "Psyche is your raw power over yourself and your ability to exert influence over others.",
-    "abilities": [
+    "skills": [
       {
         "name": "Volition",
         "ranks": 0,
@@ -117,11 +113,9 @@
   },
   {
     "category": "Body",
-    "score": -3,
     "color": "c92a2a",
-    "progress": 0,
     "description": "Body is your raw ability to physically affect the world.",
-    "abilities": [
+    "skills": [
       {
         "name": "Endurance",
         "ranks": 0,
@@ -175,11 +169,9 @@
   },
   {
     "category": "Motorics",
-    "score": -3,
     "color": "2b8a3e",
-    "progress": 0,
     "description": "Motorics is your raw ability to use your mind and body together.",
-    "abilities": [
+    "skills": [
       {
         "name": "Coordination",
         "ranks": 0,

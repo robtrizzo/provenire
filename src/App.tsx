@@ -70,117 +70,25 @@ function App() {
     element.click();
   };
 
-  const handleAbilityScoreChange = (
+  const handleRankChange = (
     category: string,
-    ability: string,
+    skill: string,
     newRanks: number
   ) => {
-    let oldRanks;
     const newAbilities = abilities.map((cat) => {
-      if (cat.category === category) {
-        return {
-          ...cat,
-          abilities: cat.abilities.map((ab) => {
-            if (ab.name === ability) {
-              oldRanks = ab.ranks;
-              console.log(`setting ${ability} from ${oldRanks} to ${newRanks}`);
-              return {
-                ...ab,
-                ranks: newRanks,
-              };
-            }
-            return ab;
-          }),
-        };
-      }
-      return cat;
-    });
-    setAbilities(newAbilities);
-    handleCategoryChange(newAbilities, category, newRanks, oldRanks || 0);
-  };
-
-  const handleCategoryChange = (
-    abilities: any,
-    category: string,
-    newRanks: number,
-    oldRanks: number
-  ) => {
-    console.log('category change', category, oldRanks, newRanks);
-    if (newRanks > oldRanks) {
-      let catIncrease = false;
-      console.log('new score > old score');
-      const newAbilities = abilities.map((cat: any) => {
-        if (cat.category === category) {
-          let newCategoryProgress = cat.progress + 1;
-          console.log('newCategoryProgress', newCategoryProgress);
-          if (newCategoryProgress >= 5 + cat.score) {
-            catIncrease = true;
+      if (category === cat.category) {
+        const newSkills = cat.skills.map((sk) => {
+          if (sk.name === skill) {
             return {
-              ...cat,
-              progress: 0,
+              ...sk,
+              ranks: Math.min(Math.max(newRanks, 0), 11),
             };
           }
-          return {
-            ...cat,
-            progress: cat.progress + 1,
-          };
-        }
-        return cat;
-      });
-      setAbilities(newAbilities);
-      if (catIncrease) {
-        handleCategoryIncrease(newAbilities, category);
-      }
-    } else if (newRanks < oldRanks) {
-      let catDecrease = false;
-      const newAbilities = abilities.map((cat: any) => {
-        if (cat.category === category) {
-          let newCategoryProgress = cat.progress - 1;
-          console.log('newCategoryProgress', newCategoryProgress);
-          if (newCategoryProgress < 0) {
-            console.log('decrease category');
-            catDecrease = true;
-            return {
-              ...cat,
-              progress: 5 + cat.score - 2,
-            };
-          }
-          return {
-            ...cat,
-            progress: cat.progress - 1,
-          };
-        }
-        return cat;
-      });
-      console.log('new abilities', newAbilities);
-      setAbilities(newAbilities);
-      if (catDecrease) {
-        handleCategoryDecrease(newAbilities, category);
-      }
-    }
-  };
-
-  const handleCategoryIncrease = (abilities: any, category: string) => {
-    console.log('category increase', category);
-    const newAbilities = abilities.map((cat: any) => {
-      if (cat.category === category) {
+          return sk;
+        });
         return {
           ...cat,
-          score: cat.score + 1,
-        };
-      }
-      return cat;
-    });
-    console.log(newAbilities);
-    setAbilities(newAbilities);
-  };
-
-  const handleCategoryDecrease = (abilities: any, category: string) => {
-    const newAbilities = abilities.map((cat: any) => {
-      if (cat.category === category) {
-        return {
-          ...cat,
-          score: cat.score - 1,
+          skills: newSkills,
         };
       }
       return cat;
@@ -259,8 +167,8 @@ function App() {
       abilities.reduce((total, cat) => {
         return (
           total +
-          cat.abilities.reduce((total, ab) => {
-            return total + ab.ranks;
+          cat.skills.reduce((total, skill) => {
+            return total + skill.ranks;
           }, 0)
         );
       }, 0) +
@@ -694,22 +602,27 @@ function App() {
           <div className="abilities-wrapper">
             <article className="abilities-article">
               {abilities.map(
-                ({
-                  category,
-                  abilities,
-                  score,
-                  progress,
-                  color,
-                  description,
-                  moves,
-                }) => (
+                ({ category, skills, color, description, moves }) => (
                   <section
                     key={`category-${category}`}
                     className="abilities-row"
                   >
                     <div
                       className={`ability-category ability-category-${category}`}
-                      style={{ backgroundColor: `#${color}${score + 4}a` }}
+                      style={{
+                        backgroundColor: `#${color}${Math.min(
+                          Math.max(
+                            Math.floor(
+                              skills.reduce(
+                                (acc, skill) => acc + skill.ranks - 3,
+                                0
+                              ) / 6
+                            ),
+                            1
+                          ),
+                          10
+                        )}a`,
+                      }}
                       onClick={() => {
                         setSelected({
                           title: category,
@@ -721,21 +634,15 @@ function App() {
                     >
                       <h3>{category}</h3>
                       <h4 className="category-score">
-                        {score -
-                          (currentConditions.includes('Wounded') ? 1 : 0)}
+                        {Math.floor(
+                          skills.reduce(
+                            (acc, skill) => acc + skill.ranks - 3,
+                            0
+                          ) / 6
+                        ) - (currentConditions.includes('Wounded') ? 1 : 0)}
                       </h4>
-                      <div className="category-progress-section">
-                        {Array.from(Array(progress).keys()).map(() => (
-                          <div className="category-progress active"></div>
-                        ))}
-                        {Array.from(Array(5 + score - progress).keys()).map(
-                          () => (
-                            <div className="category-progress"></div>
-                          )
-                        )}
-                      </div>
                     </div>
-                    {abilities.map(
+                    {skills.map(
                       ({
                         name,
                         ranks,
@@ -749,7 +656,7 @@ function App() {
                           className={`ability ability-category-${category}`}
                           style={{
                             backgroundColor: `#${color}${Math.min(
-                              Math.max(ranks + score + 3, 1),
+                              Math.max(ranks, 1),
                               10
                             )}a`,
                           }}
@@ -767,18 +674,21 @@ function App() {
                             <h5
                               className="ability-score ability-score-button noselect"
                               onClick={() => {
-                                handleAbilityScoreChange(
-                                  category,
-                                  name,
-                                  Math.max(ranks - 1, 0)
-                                );
+                                handleRankChange(category, name, ranks - 1);
                               }}
                             >
                               -
                             </h5>
                             <h5 className="ability-score noselect">
-                              {score +
-                                ranks -
+                              {Math.max(
+                                Math.floor(
+                                  skills.reduce(
+                                    (acc, skill) => acc + skill.ranks - 3,
+                                    0
+                                  ) / 6
+                                ),
+                                ranks - 3
+                              ) -
                                 currentConditions.filter(
                                   (n) => conditions.indexOf(n) > -1
                                 ).length +
@@ -789,11 +699,7 @@ function App() {
                             <h5
                               className="ability-score ability-score-button noselect"
                               onClick={() => {
-                                handleAbilityScoreChange(
-                                  category,
-                                  name,
-                                  Math.min(ranks + 1, 5)
-                                );
+                                handleRankChange(category, name, ranks + 1);
                               }}
                             >
                               +
@@ -803,7 +709,7 @@ function App() {
                             {Array.from(Array(ranks).keys()).map(() => (
                               <div className="category-progress active"></div>
                             ))}
-                            {Array.from(Array(5 - ranks).keys()).map(() => (
+                            {Array.from(Array(11 - ranks).keys()).map(() => (
                               <div className="category-progress"></div>
                             ))}
                           </div>
@@ -883,7 +789,9 @@ function App() {
                   {selected.moves?.map((move, idx) => {
                     const selectedMove = Moves.get(move);
                     if (selectedMove) {
-                      return selectedMove({ ranks: (idx + 1) * 2 });
+                      return selectedMove({
+                        ranks: idx === 0 ? 3 : idx === 1 ? 6 : 10,
+                      });
                     }
                     return null;
                   })}
