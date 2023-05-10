@@ -1,0 +1,484 @@
+.App {
+  max-width: 1126px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.name-input {
+  font-family: inherit; 
+  font-size: 24px;
+  color: inherit;
+  text-shadow: inherit;
+  width: 20ch;
+  border: none;
+  background-color: inherit;
+}
+
+.resources {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.resource {
+  width: 100%;
+  border: 1px solid #ccc;
+  transition: all 0.5s ease-in-out;
+}
+
+.donum:hover {
+  cursor: pointer;
+  box-shadow: inset 0px 0px 20px 10px slateblue;
+}
+
+.blood:hover {
+  cursor: pointer;
+  box-shadow: inset 0px 0px 20px 10px crimson;
+}
+
+.resource-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1ch;
+}
+
+.resource-input {
+  font-family: inherit; 
+  font-size: inherit;
+  color: inherit;
+  text-shadow: inherit;
+  width: 2ch;
+  border: none;
+  background-color: inherit;
+}
+
+.condition-columns, .achievment-columns {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+.condition-column, .achievment-column {
+  width: 100%;
+  position: relative;
+  border: 1px solid #ccc;
+  transition: all 0.5s ease-in-out;
+}
+.condition-checkbox-column {
+  position: absolute;
+  opacity: 0;
+  height: 18px;
+  width: 18px;
+  top: 0;
+  right: 10px;
+  transition: all 0.5s ease-in-out;
+}
+.condition-checkbox-row {
+  position: absolute;
+  opacity: 0;
+  height: 18px;
+  width: 18px;
+  bottom: 10px;
+  right: 0;
+  transition: all 0.5s ease-in-out;
+}
+.condition-checkbox-column:checked {
+  opacity: 1;
+  accent-color: crimson;
+}
+.condition-checkbox-row:checked {
+  opacity: 1;
+  accent-color: crimson;
+}
+.condition-wounded, .achievment-destined {
+  position: relative;
+  width: 200px;
+   flex-shrink: 0;
+   border: 1px solid #ccc;
+   transition: all 0.5s ease-in-out;
+}
+.condition-rows, .achievment-rows {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 2px;
+}
+.condition-row {
+  position: relative;
+  height: 303.5px;
+  border: 1px solid #ccc;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transition: all 0.5s ease-in-out;
+}
+
+.achievment-row {
+  position: relative;
+  height: 149.75px;
+  border: 1px solid #ccc;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transition: all 0.5s ease-in-out;
+}
+.achievment-checkbox-column {
+  position: absolute;
+  opacity: 0;
+  height: 18px;
+  width: 18px;
+  top: 0;
+  right: 10px;
+  transition: all 0.5s ease-in-out;
+}
+.achievment-checkbox-row {
+  position: absolute;
+  opacity: 0;
+  height: 18px;
+  width: 18px;
+  bottom: 10px;
+  right: 0;
+  transition: all 0.5s ease-in-out;
+}
+.achievment-checkbox-column:checked {
+  opacity: 1;
+  accent-color: steelblue;
+}
+.achievment-checkbox-row:checked {
+  opacity: 1;
+  accent-color: steelblue;
+}
+
+.condition-row:hover, .condition-column:hover, .condition-wounded:hover {
+  cursor: pointer;
+  box-shadow: inset 0px 0px 5px 5px crimson;
+}
+.condition-column:hover .condition-checkbox-column, .condition-row:hover .condition-checkbox-row, .condition-wounded:hover .condition-checkbox-column {
+  opacity: 1;
+}
+.achievment-row:hover, .achievment-column:hover, .achievment-destined:hover {
+  cursor: pointer;
+  box-shadow: inset 0px 0px 5px 5px steelblue;
+}
+.achievment-column:hover .achievment-checkbox-column, .achievment-row:hover .achievment-checkbox-row, .achievment-destined:hover .achievment-checkbox-column {
+  opacity: 1;
+}
+
+.abilities-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.abilities-progression-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.abilities-progression-section {
+  display: flex;
+  width: 100%;
+  border: 1px solid #ccc;
+}
+
+.abilities-article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.abilities-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  height: 150px;
+}
+
+.ability-category {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 150px;
+  border: 1px solid #ccc;
+  transition: all 0.5s ease-in-out;
+}
+
+.ability-category-Intellect {
+  background-color: #1864ab1a;
+}
+.ability-category-Psyche {
+  background-color: #5f3dc41a;
+}
+.ability-category-Body {
+  background-color: #c92a2a1a;
+}
+.ability-category-Motorics {
+  background-color: #2b8a3e1a;
+}
+
+.ability-category-Intellect:hover {
+  box-shadow: inset 0px 0px 20px 20px #1864ab3a;
+  background-color: #242424;
+  cursor: pointer;
+}
+.ability-category-Psyche:hover {
+  box-shadow: inset 0px 0px 20px 20px #5f3dc43a;
+  background-color: #242424;
+  cursor: pointer;
+}
+.ability-category-Body:hover {
+  box-shadow: inset 0px 0px 20px 20px #c92a2a3a;
+  background-color: #242424;
+  cursor: pointer;
+}
+.ability-category-Motorics:hover {
+  box-shadow: inset 0px 0px 20px 20px #2b8a3e3a;
+  background-color: #242424;
+  cursor: pointer;
+}
+
+.ability {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  transition: all 0.5s ease-in-out;
+}
+
+.ability-score, .category-score {
+  font-size: large;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.ability-score-button {
+  width: 27px;
+  border-radius: 50%;
+  transition: background-color 0.5s ease-in-out;
+}
+.ability-score-button:hover {
+  cursor: pointer;
+  background-color: #2d2d2d;
+}
+
+.ability-score-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.category-progress-section {
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.category-progress {
+  width: 100%;
+  height: 10px;
+  border-top: 1px solid #ccc;
+  background-color: #242424;
+}
+
+.category-progress + .category-progress {
+  border-left: 1px solid #ccc;
+}
+
+.category-progress.active {
+  background-color: #1864ab;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.abilities-progression-column {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.abilities-progression-name, .abilities-progression-bar {
+  margin: 10px
+}
+.abilities-progression-bar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.abilities-progression-bar-section {
+  height: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+  transition: all 0.2s ease-in-out;
+}
+
+.abilities-progression-bar-section:hover {
+  cursor: pointer;
+  background-color: #888;
+}
+
+.abilities-progression-bar-section:active {
+  background-color: #1864ab;
+}
+
+.info-section {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid #ccc;
+  transition: background-color 0.5s ease-in-out;
+}
+
+.info-moves-section {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.move {
+  width: 350px;
+  padding: 20px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  position: relative;
+}
+
+.move-ranks {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+}
+
+.result-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.result-row-value {
+  flex-shrink: 0;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.result-row-description {
+  text-align: left;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.result-row-list {
+  padding-left: 25px;
+}
+
+.result-row-list-item {
+  text-align: left;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+.file-section {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.file-section input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  line-height: normal;
+}
