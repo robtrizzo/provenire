@@ -17,30 +17,42 @@ const Move = ({
   children,
 }: MoveProps) => {
   return (
-    <article className="move">
-      <h3>{title}</h3>
-      {ranks !== -1 && <span className="move-ranks">{ranks}</span>}
-      {preface && <p>{preface}</p>}
+    <article
+      className="move box-border border border-slate-300 rounded-md relative text-center"
+      style={{ width: '350px', padding: '20px' }}
+    >
+      <h3 className="text-lg font-bold font-weight-bold text-center leading-10">
+        {title}
+      </h3>
+      {ranks !== -1 && (
+        <span
+          className="move-ranks absolute border border-slate-300 rounded-full text-center"
+          style={{ top: '10px', right: '10px', width: '20px', height: '20px' }}
+        >
+          {ranks}
+        </span>
+      )}
+      {preface && <p className="my-2">{preface}</p>}
       {hit && [
-        <div className="result-row">
-          <h4 className="result-row-value">19+</h4>
+        <div className="result-row flex items-center justify-center gap-3">
+          <h4 className="result-row-value font-bold">19+</h4>
           <p className="result-row-description">{hit}</p>
         </div>,
-        <hr />,
+        <hr className="my-2" />,
       ]}
       {partial && [
-        <div className="result-row">
+        <div className="result-row flex items-center justify-center gap-3">
           <h4 className="result-row-value">13-18</h4>
           <p className="result-row-description">{partial}</p>
         </div>,
-        <hr />,
+        <hr className="my-2" />,
       ]}
       {miss && [
-        <div className="result-row">
+        <div className="result-row flex items-center justify-center gap-3">
           <h4 className="result-row-value">12-</h4>
           <p className="result-row-description">{miss}</p>
         </div>,
-        <hr />,
+        <hr className="my-2" />,
       ]}
       {children}
     </article>
@@ -49,9 +61,9 @@ const Move = ({
 
 const ResultList = ({ results }: { results: string[] }) => {
   return (
-    <ul className="result-row-list">
+    <ul className="result-row-list pl-5 text-start list-disc">
       {results.map((result, idx) => [
-        <li key={idx} className="result-row-list-item">
+        <li key={idx} className="result-row-list-item my-1">
           {result}
         </li>,
       ])}

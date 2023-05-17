@@ -4,7 +4,7 @@ import { ThemeContext } from './theme-provider';
 export default function Home() {
   const { theme } = useContext(ThemeContext);
   return (
-    <div className={`App flex w-full h-full flex-col relative`}>
+    <div className="App flex w-full h-full flex-col relative">
       <div
         className={`absolute top-0 left-0 flex h-full w-full grow items-center justify-center bg-gradient-to-bl from-gray-900 from-40% transition-all duration-1000 ${
           theme === 'light' ? 'opacity-0' : 'opacity-100'

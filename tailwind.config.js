@@ -12,7 +12,11 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      boxShadow: {
+        'inner-blood': 'inset 0px 0px 20px 10px crimson',
+        'inner-donum': 'inset 0px 0px 20px 10px slateblue',
+      },
     },
   },
   plugins: [],
-}
+};

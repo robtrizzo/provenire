@@ -3,7 +3,7 @@ import Moves from './Moves';
 import { useMemo, useState } from 'react';
 import baseAbilities from '@/data/abilities.json';
 import statusesData from '@/data/statuses.json';
-import './App.css';
+// import './App.css';
 interface Statuses {
   [key: string]: string[] | never[];
 }
@@ -206,8 +206,11 @@ export default function CharacterSheet() {
   };
 
   return (
-    <main>
-      <section className="file-section">
+    <main className="h-full p-4 box-border">
+      <section
+        className=" box-border p-2.5 flex items-center justify-center gap-5"
+        style={{ width: '1100px' }}
+      >
         <button
           onClick={() => {
             handleDownloadFile();
@@ -215,8 +218,13 @@ export default function CharacterSheet() {
         >
           Save
         </button>
-        <label htmlFor="file-upload" className="custom-file-upload">
-          <input id="file-upload" type="file" onChange={fileUploadHandler} />
+        <label htmlFor="file-upload" className="leading-normal">
+          <input
+            id="file-upload"
+            type="file"
+            onChange={fileUploadHandler}
+            className="hidden"
+          />
           Load
         </label>
       </section>
@@ -224,12 +232,15 @@ export default function CharacterSheet() {
         type="text"
         value={name}
         onChange={(e) => handleChangeName(e.target.value)}
-        className="name-input"
+        className="text-base bg-inherit w-60 border-0"
         placeholder="Name"
       />
-      <article className="resources">
+      <article
+        className=" flex items-center justify-center"
+        style={{ width: '1100px' }}
+      >
         <section
-          className="resource blood"
+          className="w-full flex items-center justify-center h-14 border border-slate-300 transition ease-in0out duration-500 hover:shadow-inner-blood hover:cursor-pointer"
           onClick={(e) => {
             e.preventDefault();
             setSelected({
@@ -242,7 +253,7 @@ export default function CharacterSheet() {
           }}
         >
           <h3
-            className="resource-content"
+            className="flex items-center justify-center gap-4 text-xl"
             style={{
               color: 'crimson',
               textShadow:
@@ -259,7 +270,8 @@ export default function CharacterSheet() {
                   e.stopPropagation();
                   handleSetNumberField(setBlood, e.target.value);
                 }}
-                className="resource-input"
+                style={{ width: '2ch', textShadow: 'inherit' }}
+                className="bg-inherit border-0"
               />
               /{' '}
               <input
@@ -269,13 +281,14 @@ export default function CharacterSheet() {
                   e.stopPropagation();
                   handleSetNumberField(setMaxBlood, e.target.value);
                 }}
-                className="resource-input"
+                style={{ width: '2ch', textShadow: 'inherit' }}
+                className="bg-inherit border-0"
               />
             </span>
           </h3>
         </section>
         <section
-          className="resource donum"
+          className="w-full flex items-center justify-center h-14 border border-slate-300 transition ease-in0out duration-500 hover:shadow-inner-donum hover:cursor-pointer"
           onClick={(e) => {
             e.preventDefault();
             setSelected({
@@ -288,7 +301,7 @@ export default function CharacterSheet() {
           }}
         >
           <h3
-            className="resource-content"
+            className="flex items-center justify-center gap-4 text-xl"
             style={{
               color: 'slateblue',
               textShadow:
@@ -304,7 +317,8 @@ export default function CharacterSheet() {
                   e.stopPropagation();
                   handleSetNumberField(setDonum, e.target.value);
                 }}
-                className="resource-input"
+                style={{ width: '2ch', textShadow: 'inherit' }}
+                className="bg-inherit border-0"
               />
               /{' '}
               <input
@@ -314,16 +328,20 @@ export default function CharacterSheet() {
                   e.stopPropagation();
                   handleSetNumberField(setMaxDonum, e.target.value);
                 }}
-                className="resource-input"
+                style={{ width: '2ch', textShadow: 'inherit' }}
+                className="bg-inherit border-0"
               />
             </span>
           </h3>
         </section>
       </article>
-      <article className="achievment-columns">
+      <article
+        className="achievment-columns flex items-center justify-start"
+        style={{ width: '1100px' }}
+      >
         <section
-          className="achievment-destined"
-          style={achievmentStyle('Destined')}
+          className="achievment-destined shrink-0 border px-2 border-slate-300 transition ease-in0out duration-500 relative group"
+          style={{ ...achievmentStyle('Destined'), width: '200px' }}
           onClick={() => {
             setSelected({
               title: 'Destined',
@@ -345,7 +363,7 @@ export default function CharacterSheet() {
           Destined
           <input
             type="checkbox"
-            className="achievment-checkbox-column"
+            className="achievment-checkbox-column absolute top-1 right-2.5 h-4 w-4 transition ease-in0out duration-500 opacity-0 group-hover:opacity-100"
             checked={currentAchievments.includes('Destined')}
             onChange={() => handleClickAchievment('Destined')}
           />
@@ -488,10 +506,13 @@ export default function CharacterSheet() {
           orientation="column"
         />
       </article>
-      <article className="condition-columns">
+      <article
+        className="condition-columns flex items-center justify-start"
+        style={{ width: '1100px' }}
+      >
         <section
-          className="condition-wounded"
-          style={conditionStyle('Wounded')}
+          className="achievment-destined shrink-0 border px-2 border-slate-300 transition ease-in0out duration-500 relative group"
+          style={{ ...conditionStyle('Wounded'), width: '200px' }}
           onClick={() => {
             setSelected({
               title: 'Wounded',
@@ -512,7 +533,7 @@ export default function CharacterSheet() {
           Wounded
           <input
             type="checkbox"
-            className="condition-checkbox-column"
+            className="condition-checkbox-column absolute opacity-0 h-4 w-4 top-1 right-2.5 transition ease-in-out duration-500 group-hover:opacity-100"
             checked={currentConditions.includes('Wounded')}
             onChange={() => handleClickCondition('Wounded')}
           />
@@ -591,14 +612,21 @@ export default function CharacterSheet() {
           currentConditions={currentConditions}
         />
       </article>
-      <div style={{ display: 'flex', gap: '2px' }}>
-        <div className="abilities-wrapper">
-          <article className="abilities-article">
+      <div className="flex">
+        <div className="abilities-wrapper w-full flex flex-col items-center justify-start">
+          <article
+            className="abilities-article flex flex-col items-center justify-center"
+            style={{ backgroundColor: '#242424' }}
+          >
             {abilities.map(
               ({ category, skills, color, description, moves }) => (
-                <section key={`category-${category}`} className="abilities-row">
+                <section
+                  key={`category-${category}`}
+                  className="abilities-row flex items-center justify-center"
+                  style={{ height: '150px' }}
+                >
                   <div
-                    className={`ability-category ability-category-${category}`}
+                    className={`ability-category ability-category-${category} flex flex-col items-center justify-center border box-border border-slate-300 transition ease-in-out duration-500`}
                     style={{
                       backgroundColor: `#${color}${Math.min(
                         Math.max(
@@ -612,6 +640,8 @@ export default function CharacterSheet() {
                         ),
                         10
                       )}a`,
+                      width: '200px',
+                      height: '150px',
                     }}
                     onClick={() => {
                       setSelected({
@@ -623,7 +653,7 @@ export default function CharacterSheet() {
                     }}
                   >
                     <h3>{category}</h3>
-                    <h4 className="category-score">
+                    <h4 className="category-score text-xl my-2">
                       {Math.floor(
                         skills.reduce(
                           (acc, skill) => acc + skill.ranks - 3,
@@ -643,12 +673,14 @@ export default function CharacterSheet() {
                     }) => (
                       <div
                         key={`ability-${name}`}
-                        className={`ability ability-category-${category}`}
+                        className={`ability ability-category-${category} flex flex-col items-center justify-center border border-slate-300 transition ease-in-out duration-500`}
                         style={{
                           backgroundColor: `#${color}${Math.min(
                             Math.max(ranks, 1),
                             10
                           )}a`,
+                          width: '150px',
+                          height: '150px',
                         }}
                         onClick={() => {
                           setSelected({
@@ -659,17 +691,18 @@ export default function CharacterSheet() {
                           });
                         }}
                       >
-                        <h4 className="ability-name">{name}</h4>
-                        <div className="ability-score-section">
+                        <h4 className="ability-name mt-auto">{name}</h4>
+                        <div className="ability-score-section flex items-center justify-center gap-6">
                           <h5
-                            className="ability-score ability-score-button noselect"
+                            className="ability-score ability-score-button noselect text-lg my-1 rounded-full transition-bg ease-in-out duration-500 hover:bg-gray-800 hover:cursor-pointer select-none text-center"
                             onClick={() => {
                               handleRankChange(category, name, ranks - 1);
                             }}
+                            style={{ width: '27px' }}
                           >
                             -
                           </h5>
-                          <h5 className="ability-score noselect">
+                          <h5 className="ability-score noselect select-none text-lg my-1">
                             {Math.max(
                               Math.floor(
                                 skills.reduce(
@@ -687,26 +720,27 @@ export default function CharacterSheet() {
                               ).length}
                           </h5>
                           <h5
-                            className="ability-score ability-score-button noselect"
+                            className="ability-score ability-score-button noselect text-lg my-1 rounded-full transition-bg ease-in-out duration-500 hover:bg-gray-800 hover:cursor-pointer select-none text-center"
                             onClick={() => {
                               handleRankChange(category, name, ranks + 1);
                             }}
+                            style={{ width: '27px' }}
                           >
                             +
                           </h5>
                         </div>
-                        <div className="category-progress-section">
+                        <div className="category-progress-section mt-auto w-full flex items-center justify-center">
                           {Array.from(Array(ranks).keys()).map((r, idx) => (
                             <div
                               key={`rank-${idx}`}
-                              className="category-progress active"
+                              className="category-progress active w-full h-3 border border-t-slate-300 border-b-0 border-b-transparent bg-cyan-700"
                             ></div>
                           ))}
                           {Array.from(Array(11 - ranks).keys()).map(
                             (p, idx) => (
                               <div
                                 key={`progress-${idx}`}
-                                className="category-progress"
+                                className="category-progress w-full h-3 box-border border border-t-slate-300 border-b-0 border-b-transparent bg-gray-800"
                               ></div>
                             )
                           )}
@@ -718,11 +752,11 @@ export default function CharacterSheet() {
               )
             )}
           </article>
-          <article className="abilities-progression-wrapper">
-            <section className="abilities-progression-section">
-              <div className="abilities-progression-column">
+          <article className="abilities-progression-wrapper w-full flex items-center justify-center">
+            <section className="abilities-progression-section flex w-full border border-slate-300 py-1 px-2">
+              <div className="abilities-progression-column w-full flex items-center justify-center gap-2">
                 <h5 className="abilities-progression-name">Genius</h5>
-                <div className="abilities-progression-bar">
+                <div className="abilities-progression-bar w-full flex items-center justify-center">
                   {genius.map((g, i) => (
                     <ProgressionBarSection
                       key={`genius-${i}`}
@@ -735,10 +769,10 @@ export default function CharacterSheet() {
                 </div>
               </div>
             </section>
-            <section className="abilities-progression-section">
-              <div className="abilities-progression-column">
+            <section className="abilities-progression-section flex w-full border border-slate-300 py-1 px-2">
+              <div className="abilities-progression-column w-full flex items-center justify-center gap-2">
                 <h5 className="abilities-progression-name">Power</h5>
-                <div className="abilities-progression-bar">
+                <div className="abilities-progression-bar w-full flex items-center justify-center">
                   {power.map((p, i) => (
                     <ProgressionBarSection
                       key={`power-${i}`}
@@ -751,10 +785,10 @@ export default function CharacterSheet() {
                 </div>
               </div>
             </section>
-            <section className="abilities-progression-section">
-              <div className="abilities-progression-column">
+            <section className="abilities-progression-section flex w-full border border-slate-300 py-1 px-2">
+              <div className="abilities-progression-column w-full flex items-center justify-center gap-2">
                 <h5 className="abilities-progression-name">Fate</h5>
-                <div className="abilities-progression-bar">
+                <div className="abilities-progression-bar w-full flex items-center justify-center">
                   {fate.map((f, i) => (
                     <ProgressionBarSection
                       key={`fate-${i}`}
@@ -767,7 +801,7 @@ export default function CharacterSheet() {
                 </div>
               </div>
             </section>
-            <section className="abilities-progression-section">
+            <section className="abilities-progression-section flex w-full border border-slate-300 py-1 px-2">
               <h5 className="abilities-progression-name">
                 Ranks: {totalRanks}
               </h5>
@@ -775,16 +809,20 @@ export default function CharacterSheet() {
           </article>
           {selected.title ? (
             <article
-              className="info-section"
+              className="info-section w-full box-border p-3 border border-slate-300 transition ease-in-out duration-500"
               style={
                 selected.color
                   ? { backgroundColor: `#${selected.color}1a` }
                   : {}
               }
             >
-              <h3>{selected.title}</h3>
-              <p className="info-section-description">{selected.description}</p>
-              <section className="info-moves-section">
+              <h3 className="text-lg font-bold font-weight-bold text-center leading-10">
+                {selected.title}
+              </h3>
+              <p className="info-section-description my-3 text-center">
+                {selected.description}
+              </p>
+              <section className="info-moves-section flex items-start justify-center gap-3 flex-wrap">
                 {selected.moves?.map((move, idx) => {
                   const selectedMove = Moves.get(move);
                   if (selectedMove) {
@@ -975,14 +1013,25 @@ const Condition: React.FC<ConditionProps> = ({
 }) => {
   return (
     <section
-      className={`condition-${orientation}`}
-      style={conditionStyle(condition)}
+      className={`${
+        orientation === 'column' ? 'w-full' : ''
+      } relative px-2 box-border border border-slate-300 transition ease-in0out duration-500 group hover:cursor-pointer`}
+      style={{
+        ...conditionStyle(condition),
+        ...(orientation === 'row'
+          ? {
+              height: '300px',
+              writingMode: 'vertical-rl',
+              textOrientation: 'mixed',
+            }
+          : {}),
+      }}
       onClick={handleOnClick}
     >
       {condition}
       <input
         type="checkbox"
-        className={`condition-checkbox-${orientation}`}
+        className={`absolute opacity-0 h-4 w-4 top-1 right-3 transition ease-in0out duration-500 checked:opacity-100 checked:accent-red-900 group-hover:opacity-100`}
         checked={currentConditions.includes(condition)}
         onChange={() => handleClickCondition(condition)}
       />
@@ -1009,14 +1058,25 @@ const Achievment: React.FC<AchievmentProps> = ({
 }) => {
   return (
     <section
-      className={`achievment-${orientation}`}
-      style={achievmentStyle(achievment)}
+      className={`${
+        orientation === 'column' ? 'w-full' : ''
+      } relative px-2 box-border border border-slate-300 transition ease-in0out duration-500 group hover:cursor-pointer`}
+      style={{
+        ...achievmentStyle(achievment),
+        ...(orientation === 'row'
+          ? {
+              height: '150px',
+              writingMode: 'vertical-rl',
+              textOrientation: 'mixed',
+            }
+          : {}),
+      }}
       onClick={handleOnClick}
     >
       {achievment}
       <input
         type="checkbox"
-        className={`achievment-checkbox-${orientation}`}
+        className={`absolute opacity-0 h-4 w-4 top-1 right-3 transition ease-in0out duration-500 checked:opacity-100 checked:accent-cyan-700 group-hover:opacity-100`}
         checked={currentAchievments.includes(achievment)}
         onChange={() => handleClickAchievment(achievment)}
       />
@@ -1037,7 +1097,7 @@ const ProgressionBarSection = ({
 }) => {
   return (
     <div
-      className={`abilities-progression-bar-section`}
+      className={`abilities-progression-bar-section w-full h-4 border border-slate-300 transition ease-in0out duration-500 hover:cursor-pointer`}
       style={selected ? { backgroundColor: color } : {}}
       onClick={() => setProgress(index)}
     ></div>
