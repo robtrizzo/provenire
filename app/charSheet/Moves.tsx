@@ -42,7 +42,7 @@ const Move = ({
       ]}
       {partial && [
         <div className="result-row flex items-center justify-center gap-3">
-          <h4 className="result-row-value">13-18</h4>
+          <h4 className="result-row-value shrink-0">13-18</h4>
           <p className="result-row-description">{partial}</p>
         </div>,
         <hr className="my-2" />,

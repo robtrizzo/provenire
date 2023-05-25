@@ -3,7 +3,6 @@ import Moves from './Moves';
 import { useMemo, useState } from 'react';
 import baseAbilities from '@/data/abilities.json';
 import statusesData from '@/data/statuses.json';
-// import './App.css';
 interface Statuses {
   [key: string]: string[] | never[];
 }
@@ -212,13 +211,17 @@ export default function CharacterSheet() {
         style={{ width: '1100px' }}
       >
         <button
+          className="bg-inherit border-2 border-transparent rounded-md box-border py-1 px-3 hover:border-2 hover:border-indigo-500 hover:cursor-pointer"
           onClick={() => {
             handleDownloadFile();
           }}
         >
           Save
         </button>
-        <label htmlFor="file-upload" className="leading-normal">
+        <label
+          htmlFor="file-upload"
+          className="leading-normal bg-inherit border-2 border-transparent rounded-md box-border py-1 px-3 hover:border-2 hover:border-indigo-500 hover:cursor-pointer"
+        >
           <input
             id="file-upload"
             type="file"
@@ -613,7 +616,7 @@ export default function CharacterSheet() {
         />
       </article>
       <div className="flex">
-        <div className="abilities-wrapper w-full flex flex-col items-center justify-start">
+        <div className="abilities-wrapper w-full flex flex-col items-start justify-start">
           <article
             className="abilities-article flex flex-col items-center justify-center"
             style={{ backgroundColor: '#242424' }}
@@ -809,11 +812,11 @@ export default function CharacterSheet() {
           </article>
           {selected.title ? (
             <article
-              className="info-section w-full box-border p-3 border border-slate-300 transition ease-in-out duration-500"
+              className="info-section box-border p-3 border border-slate-300 transition ease-in-out duration-500"
               style={
                 selected.color
-                  ? { backgroundColor: `#${selected.color}1a` }
-                  : {}
+                  ? { backgroundColor: `#${selected.color}1a`, width: '1100px' }
+                  : { width: '1100px' }
               }
             >
               <h3 className="text-lg font-bold font-weight-bold text-center leading-10">
@@ -1013,9 +1016,9 @@ const Condition: React.FC<ConditionProps> = ({
 }) => {
   return (
     <section
-      className={`${
-        orientation === 'column' ? 'w-full' : ''
-      } relative px-2 box-border border border-slate-300 transition ease-in0out duration-500 group hover:cursor-pointer`}
+      className={`${orientation === 'column' ? 'w-full' : ''} relative ${
+        orientation === 'column' ? 'px-2' : 'py-2'
+      } box-border border border-slate-300 transition ease-in-out duration-500 group hover:cursor-pointer`}
       style={{
         ...conditionStyle(condition),
         ...(orientation === 'row'
@@ -1031,7 +1034,9 @@ const Condition: React.FC<ConditionProps> = ({
       {condition}
       <input
         type="checkbox"
-        className={`absolute opacity-0 h-4 w-4 top-1 right-3 transition ease-in0out duration-500 checked:opacity-100 checked:accent-red-900 group-hover:opacity-100`}
+        className={`absolute opacity-0 h-4 w-4 ${
+          orientation === 'column' ? 'top-1 right-3' : 'bottom-3 right-1'
+        } transition ease-in0out duration-500 checked:opacity-100 checked:accent-red-900 group-hover:opacity-100`}
         checked={currentConditions.includes(condition)}
         onChange={() => handleClickCondition(condition)}
       />
@@ -1058,9 +1063,9 @@ const Achievment: React.FC<AchievmentProps> = ({
 }) => {
   return (
     <section
-      className={`${
-        orientation === 'column' ? 'w-full' : ''
-      } relative px-2 box-border border border-slate-300 transition ease-in0out duration-500 group hover:cursor-pointer`}
+      className={`${orientation === 'column' ? 'w-full' : ''} relative ${
+        orientation === 'column' ? 'px-2' : 'py-2'
+      } box-border border border-slate-300 transition ease-in0out duration-500 group hover:cursor-pointer`}
       style={{
         ...achievmentStyle(achievment),
         ...(orientation === 'row'
@@ -1076,7 +1081,9 @@ const Achievment: React.FC<AchievmentProps> = ({
       {achievment}
       <input
         type="checkbox"
-        className={`absolute opacity-0 h-4 w-4 top-1 right-3 transition ease-in0out duration-500 checked:opacity-100 checked:accent-cyan-700 group-hover:opacity-100`}
+        className={`absolute opacity-0 h-4 w-4 ${
+          orientation === 'column' ? 'top-1 right-3' : 'bottom-3 right-1'
+        } transition ease-in0out duration-500 checked:opacity-100 checked:accent-cyan-700 group-hover:opacity-100`}
         checked={currentAchievments.includes(achievment)}
         onChange={() => handleClickAchievment(achievment)}
       />

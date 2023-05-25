@@ -15,7 +15,7 @@ const navigation = [
   { name: 'Home', href: '/' },
   { name: 'World', href: '#' },
   {
-    name: 'Characters',
+    name: 'Character Sheet',
     href: '/charSheet',
   },
   { name: 'Games', href: '#' },
