@@ -1,5 +1,7 @@
 'use client';
 import { Fragment, useContext } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import {
   Bars3Icon,
@@ -25,6 +27,7 @@ function classNames(...classes: any[]) {
 
 export default function Example() {
   const { theme, toggleTheme } = useContext(ThemeContext);
+  const pathname = usePathname();
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -46,19 +49,21 @@ export default function Example() {
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          window.location.pathname === item.href
+                          pathname === item.href
                             ? 'bg-gray-900 text-white'
                             : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                           'rounded-md px-3 py-2 text-sm font-medium'
                         )}
-                        aria-current={item.current ? 'page' : undefined}
+                        aria-current={
+                          pathname === item.href ? 'page' : undefined
+                        }
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -171,12 +176,12 @@ export default function Example() {
                   as="a"
                   href={item.href}
                   className={classNames(
-                    item.current
+                    pathname === item.href
                       ? 'bg-gray-900 text-white'
                       : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                     'block rounded-md px-3 py-2 text-base font-medium'
                   )}
-                  aria-current={item.current ? 'page' : undefined}
+                  aria-current={pathname === item.href ? 'page' : undefined}
                 >
                   {item.name}
                 </Disclosure.Button>
