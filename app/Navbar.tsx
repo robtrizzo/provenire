@@ -10,6 +10,7 @@ import {
   MoonIcon,
 } from '@heroicons/react/24/outline';
 import { ThemeContext } from './theme-provider';
+import { useSession, signOut } from 'next-auth/react';
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -28,6 +29,7 @@ function classNames(...classes: any[]) {
 export default function Example() {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const pathname = usePathname();
+  const session = useSession();
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -91,7 +93,7 @@ export default function Example() {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src="https://provenire.s3.amazonaws.com/logo_1.png"
+                        src={session?.data?.user?.image || '#'}
                         alt=""
                       />
                     </Menu.Button>
@@ -146,19 +148,21 @@ export default function Example() {
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="#"
+                          <div
+                            onClick={() => {
+                              signOut();
+                            }}
                             className={classNames(
                               active
                                 ? `bg-gray-${theme === 'light' ? 100 : 900}`
                                 : '',
                               `block px-4 py-2 text-sm text-gray-${
                                 theme === 'light' ? 700 : 300
-                              }`
+                              } hover:cursor-pointer`
                             )}
                           >
                             Sign out
-                          </a>
+                          </div>
                         )}
                       </Menu.Item>
                     </Menu.Items>
