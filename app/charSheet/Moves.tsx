@@ -152,14 +152,13 @@ export const UnleashDonum = ({ ranks }: { ranks: number }) => {
       }
       hit="Choose one"
       partial="Choose two"
-      miss="Something bad happens"
+      miss="You lose control of your powers in a terrible way"
     >
       <ResultList
         results={[
           "There's unwanted collateral damage",
           'You expose yourself to danger',
           'The effect is unstable or temporary',
-          'You lose control of your powers in a terrible way',
           'You take a condition',
         ]}
       />
