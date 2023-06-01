@@ -1,12 +1,16 @@
-'use client';
-import Moves from './Moves';
-import { useMemo, useState } from 'react';
-import baseAbilities from '@/data/abilities.json';
-import statusesData from '@/data/statuses.json';
+"use client";
+import Moves from "./Moves";
+import { useMemo, useState } from "react";
+import { useContext } from "react";
+import { ThemeContext } from "../theme-provider";
+import baseAbilities from "@/data/abilities.json";
+import statusesData from "@/data/statuses.json";
 interface Statuses {
   [key: string]: string[] | never[];
 }
 export default function CharacterSheet() {
+  const { theme } = useContext(ThemeContext);
+
   const [abilities, setAbilities] = useState(baseAbilities);
   const statuses: Statuses = statusesData;
 
@@ -18,9 +22,9 @@ export default function CharacterSheet() {
     const { files } = event.target;
 
     if (files && files.length > 0) {
-      fileReader.readAsText(files[0], 'UTF-8');
+      fileReader.readAsText(files[0], "UTF-8");
       fileReader.onload = (e) => {
-        const content = JSON.parse(e.target?.result?.toString() || '');
+        const content = JSON.parse(e.target?.result?.toString() || "");
         setName(content.name);
         setAbilities(content.abilities);
         setCurrentConditions(content.conditions);
@@ -37,7 +41,7 @@ export default function CharacterSheet() {
   };
 
   const handleDownloadFile = () => {
-    const element = document.createElement('a');
+    const element = document.createElement("a");
     const file = new Blob(
       [
         JSON.stringify(
@@ -59,11 +63,11 @@ export default function CharacterSheet() {
         ),
       ],
       {
-        type: 'application/json',
+        type: "application/json",
       }
     );
     element.href = URL.createObjectURL(file);
-    element.download = 'character.json';
+    element.download = "character.json";
     document.body.appendChild(element); // Required for this to work in FireFox
     element.click();
   };
@@ -94,7 +98,7 @@ export default function CharacterSheet() {
     setAbilities(newAbilities);
   };
 
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
   const [blood, setBlood] = useState(3);
   const [maxBlood, setMaxBlood] = useState(3);
   const [donum, setDonum] = useState(3);
@@ -136,7 +140,7 @@ export default function CharacterSheet() {
   };
   const conditionStyle = (condition: string) => {
     return currentConditions.includes(condition)
-      ? { boxShadow: 'inset 0px 0px 5px 5px crimson' }
+      ? { boxShadow: "inset 0px 0px 5px 5px crimson" }
       : {};
   };
   const [currentAchievments, setCurrentAchievments] = useState<string[]>([]);
@@ -157,7 +161,7 @@ export default function CharacterSheet() {
   };
   const achievmentStyle = (achievment: string) => {
     return currentAchievments.includes(achievment)
-      ? { boxShadow: 'inset 0px 0px 5px 5px steelblue' }
+      ? { boxShadow: "inset 0px 0px 5px 5px steelblue" }
       : {};
   };
   const totalRanks = useMemo(() => {
@@ -205,10 +209,14 @@ export default function CharacterSheet() {
   };
 
   return (
-    <main className="h-full p-4 box-border">
+    <main
+      className={`p-4 flex-grow box-border ${
+        theme === "light" ? "text-black" : "text-white"
+      }`}
+    >
       <section
         className=" box-border p-2.5 flex items-center justify-center gap-5"
-        style={{ width: '1100px' }}
+        style={{ width: "1100px" }}
       >
         <button
           className="bg-inherit border-2 border-transparent rounded-md box-border py-1 px-3 hover:border-2 hover:border-indigo-500 hover:cursor-pointer"
@@ -240,30 +248,30 @@ export default function CharacterSheet() {
       />
       <article
         className=" flex items-center justify-center"
-        style={{ width: '1100px' }}
+        style={{ width: "1100px" }}
       >
         <section
           className="w-full flex items-center justify-center h-14 border border-slate-300 transition ease-in0out duration-500 hover:shadow-inner-blood hover:cursor-pointer"
           onClick={(e) => {
             e.preventDefault();
             setSelected({
-              title: 'Blood',
+              title: "Blood",
               description:
-                'Blood goes beyond being essential for life. It can be used to empower your body and enhance your mind for short periods of time. You may spend 1 blood to take +1 forward on your next roll.',
-              color: 'DC143C',
-              moves: ['Take a Powerful Blow', 'Raise the Death Flag'],
+                "Blood goes beyond being essential for life. It can be used to empower your body and enhance your mind for short periods of time. You may spend 1 blood to take +1 forward on your next roll.",
+              color: "DC143C",
+              moves: ["Take a Powerful Blow", "Raise the Death Flag"],
             });
           }}
         >
           <h3
             className="flex items-center justify-center gap-4 text-xl"
             style={{
-              color: 'crimson',
+              color: "crimson",
               textShadow:
-                '0px 0px 0px crimson, 0 0 0.5em crimson, 0 0 0.1em crimson',
+                "0px 0px 0px crimson, 0 0 0.5em crimson, 0 0 0.1em crimson",
             }}
           >
-            Blood{' '}
+            Blood{" "}
             <span>
               <input
                 type="text"
@@ -273,10 +281,10 @@ export default function CharacterSheet() {
                   e.stopPropagation();
                   handleSetNumberField(setBlood, e.target.value);
                 }}
-                style={{ width: '2ch', textShadow: 'inherit' }}
+                style={{ width: "2ch", textShadow: "inherit" }}
                 className="bg-inherit border-0"
               />
-              /{' '}
+              /{" "}
               <input
                 type="text"
                 value={maxBlood}
@@ -284,7 +292,7 @@ export default function CharacterSheet() {
                   e.stopPropagation();
                   handleSetNumberField(setMaxBlood, e.target.value);
                 }}
-                style={{ width: '2ch', textShadow: 'inherit' }}
+                style={{ width: "2ch", textShadow: "inherit" }}
                 className="bg-inherit border-0"
               />
             </span>
@@ -295,23 +303,23 @@ export default function CharacterSheet() {
           onClick={(e) => {
             e.preventDefault();
             setSelected({
-              title: 'Donum',
+              title: "Donum",
               description:
                 'Arborian for "gift". Each power in the world has a proper noun beginning with Donum, but "Donum" is also a word for how much power one has. You may spend 1 donum and explain how your power could help you in a situation to take +1 forward on your next roll.',
-              color: '6a5acd',
-              moves: ['Unleash Donum'],
+              color: "6a5acd",
+              moves: ["Unleash Donum"],
             });
           }}
         >
           <h3
             className="flex items-center justify-center gap-4 text-xl"
             style={{
-              color: 'slateblue',
+              color: "slateblue",
               textShadow:
-                '0px 0px 0px slateblue, 0 0 0.5em slateblue, 0 0 0.1em slateblue',
+                "0px 0px 0px slateblue, 0 0 0.5em slateblue, 0 0 0.1em slateblue",
             }}
           >
-            Donum{' '}
+            Donum{" "}
             <span>
               <input
                 type="text"
@@ -320,10 +328,10 @@ export default function CharacterSheet() {
                   e.stopPropagation();
                   handleSetNumberField(setDonum, e.target.value);
                 }}
-                style={{ width: '2ch', textShadow: 'inherit' }}
+                style={{ width: "2ch", textShadow: "inherit" }}
                 className="bg-inherit border-0"
               />
-              /{' '}
+              /{" "}
               <input
                 type="text"
                 value={maxDonum}
@@ -331,7 +339,7 @@ export default function CharacterSheet() {
                   e.stopPropagation();
                   handleSetNumberField(setMaxDonum, e.target.value);
                 }}
-                style={{ width: '2ch', textShadow: 'inherit' }}
+                style={{ width: "2ch", textShadow: "inherit" }}
                 className="bg-inherit border-0"
               />
             </span>
@@ -340,19 +348,19 @@ export default function CharacterSheet() {
       </article>
       <article
         className="achievment-columns flex items-center justify-start"
-        style={{ width: '1100px' }}
+        style={{ width: "1100px" }}
       >
         <section
           className="achievment-destined shrink-0 border px-2 border-slate-300 transition ease-in0out duration-500 relative group"
-          style={{ ...achievmentStyle('Destined'), width: '200px' }}
+          style={{ ...achievmentStyle("Destined"), width: "200px" }}
           onClick={() => {
             setSelected({
-              title: 'Destined',
+              title: "Destined",
               description: (
                 <span>
                   This is your destiny. Your time, your place, your purpose.
-                  When{' '}
-                  <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                  When{" "}
+                  <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
                     <em>
                       you put everything on the line to fulfill your destiny
                     </em>
@@ -367,8 +375,8 @@ export default function CharacterSheet() {
           <input
             type="checkbox"
             className="achievment-checkbox-column absolute top-1 right-2.5 h-4 w-4 transition ease-in0out duration-500 opacity-0 group-hover:opacity-100"
-            checked={currentAchievments.includes('Destined')}
-            onChange={() => handleClickAchievment('Destined')}
+            checked={currentAchievments.includes("Destined")}
+            onChange={() => handleClickAchievment("Destined")}
           />
         </section>
         <Achievment
@@ -378,12 +386,12 @@ export default function CharacterSheet() {
           handleClickAchievment={handleClickAchievment}
           handleOnClick={() =>
             setSelected({
-              title: 'Determined',
+              title: "Determined",
               description: (
                 <span>
                   You've made your decision: and you're resolved not to change
-                  it. When{' '}
-                  <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                  it. When{" "}
+                  <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
                     <em>
                       you commit to a difficult task you've failed many times
                       before
@@ -403,11 +411,11 @@ export default function CharacterSheet() {
           handleClickAchievment={handleClickAchievment}
           handleOnClick={() =>
             setSelected({
-              title: 'Hopeful',
+              title: "Hopeful",
               description: (
                 <span>
-                  The future is bright and full of possibilities. When{' '}
-                  <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                  The future is bright and full of possibilities. When{" "}
+                  <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
                     <em>you overcome insurmountable odds</em>
                   </strong>
                   , you mark Hopeful and recover from the Hopeless condition
@@ -424,12 +432,12 @@ export default function CharacterSheet() {
           handleClickAchievment={handleClickAchievment}
           handleOnClick={() =>
             setSelected({
-              title: 'Passionate',
+              title: "Passionate",
               description: (
                 <span>
                   Devotion and love warm your heart and embolden you to action.
-                  When{' '}
-                  <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                  When{" "}
+                  <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
                     <em>you find love or a cause you truly believe in</em>
                   </strong>
                   , you mark Passionate and recover from the Guilty condition
@@ -446,12 +454,12 @@ export default function CharacterSheet() {
           handleClickAchievment={handleClickAchievment}
           handleOnClick={() =>
             setSelected({
-              title: 'Content',
+              title: "Content",
               description: (
                 <span>
                   You have everything you want. Your mind is free to wander and
-                  focus without the distractions of want. When{' '}
-                  <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                  focus without the distractions of want. When{" "}
+                  <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
                     <em>you accomplish a significant personal goal</em>
                   </strong>
                   , you mark Content and recover from the Guilty condition
@@ -468,12 +476,12 @@ export default function CharacterSheet() {
           handleClickAchievment={handleClickAchievment}
           handleOnClick={() =>
             setSelected({
-              title: 'Serene',
+              title: "Serene",
               description: (
                 <span>
                   Despite the turmoil and chaos within and without, you have
-                  found inner tranquility. When{' '}
-                  <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                  found inner tranquility. When{" "}
+                  <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
                     <em>you let go of something you desperately want</em>
                   </strong>
                   , you mark Serene and recover from the Insecure condition
@@ -490,12 +498,12 @@ export default function CharacterSheet() {
           handleClickAchievment={handleClickAchievment}
           handleOnClick={() =>
             setSelected({
-              title: 'Confident',
+              title: "Confident",
               description: (
                 <span>
                   You understand and accept who you are and what you are capable
-                  of. When{' '}
-                  <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                  of. When{" "}
+                  <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
                     <em>
                       you accept a fact about yourself which you previously
                       rejected
@@ -511,20 +519,20 @@ export default function CharacterSheet() {
       </article>
       <article
         className="condition-columns flex items-center justify-start"
-        style={{ width: '1100px' }}
+        style={{ width: "1100px" }}
       >
         <section
           className="achievment-destined shrink-0 border px-2 border-slate-300 transition ease-in0out duration-500 relative group"
-          style={{ ...conditionStyle('Wounded'), width: '200px' }}
+          style={{ ...conditionStyle("Wounded"), width: "200px" }}
           onClick={() => {
             setSelected({
-              title: 'Wounded',
+              title: "Wounded",
               description: (
                 <span>
                   You've been seriously injured. Your vision is swimming, your
                   body aching. You don't know for how much longer you can keep
-                  going. By{' '}
-                  <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                  going. By{" "}
+                  <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
                     <em>receiving significant medical attention</em>
                   </strong>
                   , you can recover from this condition and mark Fate.
@@ -537,8 +545,8 @@ export default function CharacterSheet() {
           <input
             type="checkbox"
             className="condition-checkbox-column absolute opacity-0 h-4 w-4 top-1 right-2.5 transition ease-in-out duration-500 group-hover:opacity-100"
-            checked={currentConditions.includes('Wounded')}
-            onChange={() => handleClickCondition('Wounded')}
+            checked={currentConditions.includes("Wounded")}
+            onChange={() => handleClickCondition("Wounded")}
           />
         </section>
         <Condition
@@ -548,13 +556,13 @@ export default function CharacterSheet() {
           condition="Hopeless"
           handleOnClick={() => {
             setSelected({
-              title: 'Hopeless',
+              title: "Hopeless",
               description: (
                 <span>
                   The state of the world, or your own personal situation is so
                   bad that you feel like there is no hope for you or anyone
-                  else. By{' '}
-                  <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                  else. By{" "}
+                  <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
                     <em>flinging yourself into easy relief</em>
                   </strong>
                   , you can escape the pain of your situation for a time. Doing
@@ -573,15 +581,15 @@ export default function CharacterSheet() {
           condition="Guilty"
           handleOnClick={() => {
             setSelected({
-              title: 'Guilty',
+              title: "Guilty",
               description: (
                 <span>
                   You've done something wrong, or failed to do something right:
                   it's eating at you. You can't shake the feeling that you're a
-                  bad person, and that you have to make up for it somehow. By{' '}
-                  <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                  bad person, and that you have to make up for it somehow. By{" "}
+                  <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
                     <em>making a personal sacrifice to absolve your guilt</em>
-                  </strong>{' '}
+                  </strong>{" "}
                   , you can clear the Guilty condition and give yourself +1
                   forward to your next roll.
                 </span>
@@ -597,15 +605,15 @@ export default function CharacterSheet() {
           condition="Insecure"
           handleOnClick={() => {
             setSelected({
-              title: 'Insecure',
+              title: "Insecure",
               description: (
                 <span>
                   You're not sure you're good enough, smart enough, strong
                   enough, brave enough, worthy of respect, or worthy of love.
-                  Proving yourself to yoursel by{' '}
-                  <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                  Proving yourself to yoursel by{" "}
+                  <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
                     <em>taking foolhardy action without consulting anyone</em>
-                  </strong>{' '}
+                  </strong>{" "}
                   clears the Insecure condition and gives you +1 forward to your
                   next roll.
                 </span>
@@ -618,15 +626,15 @@ export default function CharacterSheet() {
       <div className="flex">
         <div className="abilities-wrapper w-full flex flex-col items-start justify-start">
           <article
-            className="abilities-article flex flex-col items-center justify-center"
-            style={{ backgroundColor: '#242424' }}
+            className="abilities-article flex flex-col items-center justify-center text-white"
+            style={{ backgroundColor: "#242424" }}
           >
             {abilities.map(
               ({ category, skills, color, description, moves }) => (
                 <section
                   key={`category-${category}`}
                   className="abilities-row flex items-center justify-center"
-                  style={{ height: '150px' }}
+                  style={{ height: "150px" }}
                 >
                   <div
                     className={`ability-category ability-category-${category} flex flex-col items-center justify-center border box-border border-slate-300 transition ease-in-out duration-500`}
@@ -643,8 +651,8 @@ export default function CharacterSheet() {
                         ),
                         10
                       )}a`,
-                      width: '200px',
-                      height: '150px',
+                      width: "200px",
+                      height: "150px",
                     }}
                     onClick={() => {
                       setSelected({
@@ -662,7 +670,7 @@ export default function CharacterSheet() {
                           (acc, skill) => acc + skill.ranks - 3,
                           0
                         ) / 6
-                      ) - (currentConditions.includes('Wounded') ? 1 : 0)}
+                      ) - (currentConditions.includes("Wounded") ? 1 : 0)}
                     </h4>
                   </div>
                   {skills.map(
@@ -682,8 +690,8 @@ export default function CharacterSheet() {
                             Math.max(ranks, 1),
                             10
                           )}a`,
-                          width: '150px',
-                          height: '150px',
+                          width: "150px",
+                          height: "150px",
                         }}
                         onClick={() => {
                           setSelected({
@@ -701,7 +709,7 @@ export default function CharacterSheet() {
                             onClick={() => {
                               handleRankChange(category, name, ranks - 1);
                             }}
-                            style={{ width: '27px' }}
+                            style={{ width: "27px" }}
                           >
                             -
                           </h5>
@@ -727,7 +735,7 @@ export default function CharacterSheet() {
                             onClick={() => {
                               handleRankChange(category, name, ranks + 1);
                             }}
-                            style={{ width: '27px' }}
+                            style={{ width: "27px" }}
                           >
                             +
                           </h5>
@@ -815,8 +823,8 @@ export default function CharacterSheet() {
               className="info-section box-border p-3 border border-slate-300 transition ease-in-out duration-500"
               style={
                 selected.color
-                  ? { backgroundColor: `#${selected.color}1a`, width: '1100px' }
-                  : { width: '1100px' }
+                  ? { backgroundColor: `#${selected.color}1a`, width: "1100px" }
+                  : { width: "1100px" }
               }
             >
               <h3 className="text-lg font-bold font-weight-bold text-center leading-10">
@@ -847,17 +855,17 @@ export default function CharacterSheet() {
             condition="Angry"
             handleOnClick={() => {
               setSelected({
-                title: 'Angry',
+                title: "Angry",
                 description: (
                   <span>
                     The pressure in your head and chest is building. You're
                     ready to explode. You can't think straight. But you can act.
-                    By{' '}
-                    <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                    By{" "}
+                    <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
                       <em>
                         hurting someone or by breaking something important
                       </em>
-                    </strong>{' '}
+                    </strong>{" "}
                     , you can release some of that pressure. Doing so clears the
                     Angry condition and gives you +1 forward to your next roll.
                   </span>
@@ -873,15 +881,15 @@ export default function CharacterSheet() {
             condition="Afraid"
             handleOnClick={() => {
               setSelected({
-                title: 'Afraid',
+                title: "Afraid",
                 description: (
                   <span>
                     Something precious is at stake. Your loved ones, your
                     friends, your future, your life? You can't take the thought
-                    of losing that thing. By{' '}
-                    <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                    of losing that thing. By{" "}
+                    <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
                       <em>running away from something hard</em>
-                    </strong>{' '}
+                    </strong>{" "}
                     , you can escape the fear. Doing so clears the Afraid
                     condition and gives you +1 forward to your next roll.
                   </span>
@@ -890,7 +898,7 @@ export default function CharacterSheet() {
             }}
             currentConditions={currentConditions}
           />
-          <div style={{ height: '42px', flexShrink: 0 }}></div>
+          <div style={{ height: "42px", flexShrink: 0 }}></div>
         </article>
         <article className="achievment-rows">
           <Achievment
@@ -900,12 +908,12 @@ export default function CharacterSheet() {
             handleClickAchievment={handleClickAchievment}
             handleOnClick={() =>
               setSelected({
-                title: 'Interested',
+                title: "Interested",
                 description: (
                   <span>
                     The cogs and wheels of your mind are spinning: concieving of
-                    possibilities you'd never considered before. When{' '}
-                    <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                    possibilities you'd never considered before. When{" "}
+                    <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
                       <em>
                         you find a new subject or idea that fascinates you
                       </em>
@@ -924,12 +932,12 @@ export default function CharacterSheet() {
             handleClickAchievment={handleClickAchievment}
             handleOnClick={() =>
               setSelected({
-                title: 'Inspired',
+                title: "Inspired",
                 description: (
                   <span>
                     An internal urge to action, a motivation to do great things
-                    and make your own mark. When{' '}
-                    <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                    and make your own mark. When{" "}
+                    <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
                       <em>
                         you see someone accomplish something incredible, or if
                         you witness a piece of art that truly moves you
@@ -949,13 +957,13 @@ export default function CharacterSheet() {
             handleClickAchievment={handleClickAchievment}
             handleOnClick={() =>
               setSelected({
-                title: 'Excited',
+                title: "Excited",
                 description: (
                   <span>
                     You'd rather be nowhere else; you'd rather be doing nothing
                     else, than where you are and what you're about to do right
-                    now. When{' '}
-                    <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                    now. When{" "}
+                    <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
                       <em>
                         you get a chance to do something you've always wanted to
                         do
@@ -975,12 +983,12 @@ export default function CharacterSheet() {
             handleClickAchievment={handleClickAchievment}
             handleOnClick={() =>
               setSelected({
-                title: 'Courageous',
+                title: "Courageous",
                 description: (
                   <span>
                     Fear and doubt: present but overcome with perseverence and
-                    dicipline. When{' '}
-                    <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+                    dicipline. When{" "}
+                    <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
                       <em>you face down and overcome a great fear of yours</em>
                     </strong>
                     , mark Courageous and recover from the Afraid condition
@@ -998,7 +1006,7 @@ export default function CharacterSheet() {
 }
 
 interface ConditionProps {
-  orientation: 'row' | 'column';
+  orientation: "row" | "column";
   conditionStyle: (condition: string) => React.CSSProperties;
   handleClickCondition: (condition: string) => void;
   condition: string;
@@ -1016,16 +1024,16 @@ const Condition: React.FC<ConditionProps> = ({
 }) => {
   return (
     <section
-      className={`${orientation === 'column' ? 'w-full' : ''} relative ${
-        orientation === 'column' ? 'px-2' : 'py-2'
+      className={`${orientation === "column" ? "w-full" : ""} relative ${
+        orientation === "column" ? "px-2" : "py-2"
       } box-border border border-slate-300 transition ease-in-out duration-500 group hover:cursor-pointer`}
       style={{
         ...conditionStyle(condition),
-        ...(orientation === 'row'
+        ...(orientation === "row"
           ? {
-              height: '300px',
-              writingMode: 'vertical-rl',
-              textOrientation: 'mixed',
+              height: "300px",
+              writingMode: "vertical-rl",
+              textOrientation: "mixed",
             }
           : {}),
       }}
@@ -1035,7 +1043,7 @@ const Condition: React.FC<ConditionProps> = ({
       <input
         type="checkbox"
         className={`absolute opacity-0 h-4 w-4 ${
-          orientation === 'column' ? 'top-1 right-3' : 'bottom-3 right-1'
+          orientation === "column" ? "top-1 right-3" : "bottom-3 right-1"
         } transition ease-in0out duration-500 checked:opacity-100 checked:accent-red-900 group-hover:opacity-100`}
         checked={currentConditions.includes(condition)}
         onChange={() => handleClickCondition(condition)}
@@ -1045,7 +1053,7 @@ const Condition: React.FC<ConditionProps> = ({
 };
 
 interface AchievmentProps {
-  orientation: 'row' | 'column';
+  orientation: "row" | "column";
   achievmentStyle: (achievment: string) => React.CSSProperties;
   handleClickAchievment: (achievment: string) => void;
   achievment: string;
@@ -1063,16 +1071,16 @@ const Achievment: React.FC<AchievmentProps> = ({
 }) => {
   return (
     <section
-      className={`${orientation === 'column' ? 'w-full' : ''} relative ${
-        orientation === 'column' ? 'px-2' : 'py-2'
+      className={`${orientation === "column" ? "w-full" : ""} relative ${
+        orientation === "column" ? "px-2" : "py-2"
       } box-border border border-slate-300 transition ease-in0out duration-500 group hover:cursor-pointer`}
       style={{
         ...achievmentStyle(achievment),
-        ...(orientation === 'row'
+        ...(orientation === "row"
           ? {
-              height: '150px',
-              writingMode: 'vertical-rl',
-              textOrientation: 'mixed',
+              height: "150px",
+              writingMode: "vertical-rl",
+              textOrientation: "mixed",
             }
           : {}),
       }}
@@ -1082,7 +1090,7 @@ const Achievment: React.FC<AchievmentProps> = ({
       <input
         type="checkbox"
         className={`absolute opacity-0 h-4 w-4 ${
-          orientation === 'column' ? 'top-1 right-3' : 'bottom-3 right-1'
+          orientation === "column" ? "top-1 right-3" : "bottom-3 right-1"
         } transition ease-in0out duration-500 checked:opacity-100 checked:accent-cyan-700 group-hover:opacity-100`}
         checked={currentAchievments.includes(achievment)}
         onChange={() => handleClickAchievment(achievment)}
