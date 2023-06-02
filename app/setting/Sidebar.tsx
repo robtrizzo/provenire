@@ -10,29 +10,29 @@ interface SidebarProps {
 
 const navigation = [{ name: "World", href: "/setting" }];
 
-const era_one_navigation = [
-  { name: "World", href: "/setting/era_one" },
-  { name: "Arboria", href: "/setting/era_one/Linkrboria" },
+const first_age_navigation = [
+  { name: "History", href: "/setting/first_age" },
+  { name: "Arboria", href: "/setting/first_age/Linkrboria" },
   {
     name: "Cumeria",
-    href: "/setting/era_one/cumeria",
+    href: "/setting/first_age/cumeria",
   },
-  { name: "Gredora", href: "/setting/era_one/gredora" },
+  { name: "Gredora", href: "/setting/first_age/gredora" },
   {
     name: "Kilder",
-    href: "/setting/era_one/kilder",
+    href: "/setting/first_age/kilder",
   },
   {
     name: "Narscillia",
-    href: "/setting/era_one/narscillia",
+    href: "/setting/first_age/narscillia",
   },
   {
     name: "Rath",
-    href: "/setting/era_one/rath",
+    href: "/setting/first_age/rath",
   },
   {
     name: "Shian Tor",
-    href: "/setting/era_one/shianTor",
+    href: "/setting/first_age/shianTor",
   },
 ];
 
@@ -59,10 +59,10 @@ export default function Sidebar({ children }: SidebarProps) {
   const [eraTwoExpanded, setEraTwoExpanded] = useState(false);
 
   return (
-    <>
+    <div className="flex min-h-full flex-grow">
       <aside
         id="default-sidebar"
-        className="fixed top-16 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+        className=" z-40 w-64 min-h-full transition-transform -translate-x-full sm:translate-x-0"
         aria-label="Sidebar"
       >
         <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
@@ -91,7 +91,7 @@ export default function Sidebar({ children }: SidebarProps) {
                   className="flex-1 ml-3 text-left whitespace-nowrap"
                   sidebar-toggle-item
                 >
-                  Era One
+                  First Age
                 </span>
                 {eraOneExpanded ? (
                   <svg
@@ -125,7 +125,7 @@ export default function Sidebar({ children }: SidebarProps) {
                 id="dropdown-example"
                 className={`${eraOneExpanded ? "" : "hidden"} py-2 space-y-2`}
               >
-                {era_one_navigation.map((item) => (
+                {first_age_navigation.map((item) => (
                   <li className="pl-2">
                     <Link
                       href={item.href}
@@ -204,22 +204,22 @@ export default function Sidebar({ children }: SidebarProps) {
       </aside>
 
       <div
-        className={`p-4 sm:ml-64 flex-grow h-full ${
+        className={`p-4 flex-grow min-h-full ${
           theme === "light"
             ? "bg-gradient-to-tr from-orange-50 from-60% text-black"
             : "bg-gradient-to-bl from-stone-950 from-40% text-white"
         }`}
       >
-        <article
+        <div
           className={`p-2 prose lg:prose-xl prose-p:ml-4 prose-p:my-3 ${
             theme === "light"
-              ? "prose-stone prose-h1:text-red-950 prose-h2:text-red-950"
-              : "prose-h1:text-red-900 prose-h2:text-red-900 prose-invert"
+              ? "prose-stone prose-h1:text-red-950 prose-h2:text-red-950 prose-h3:text-red-950"
+              : "prose-h1:text-red-900 prose-h2:text-red-900 prose-invert prose-h3:text-red-900"
           }`}
         >
           {children}
-        </article>
+        </div>
       </div>
-    </>
+    </div>
   );
 }
