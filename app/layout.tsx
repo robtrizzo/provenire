@@ -1,16 +1,16 @@
-import './globals.css';
-import { Josefin_Sans } from 'next/font/google';
-import { Providers } from './Providers';
-import Navbar from './Navbar';
-import { Session } from 'next-auth';
-import { headers } from 'next/headers';
-import AuthContext from './AuthContext';
+import "./globals.css";
+import { Josefin_Sans } from "next/font/google";
+import { Providers } from "./Providers";
+import Navbar from "./Navbar";
+import { Session } from "next-auth";
+import { headers } from "next/headers";
+import AuthContext from "./AuthContext";
 
-const josefin_sans = Josefin_Sans({ subsets: ['latin'] });
+const josefin_sans = Josefin_Sans({ subsets: ["latin"] });
 
 export const metadata = {
-  title: 'PBTA + Disco',
-  description: 'An unlikely mashup',
+  title: "PBTA + Disco",
+  description: "An unlikely mashup",
 };
 
 async function getSession(cookie: string): Promise<Session> {
@@ -33,7 +33,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getSession(headers().get('cookie') ?? '');
+  const session = await getSession(headers().get("cookie") ?? "");
   return (
     <html lang="en">
       <body className={`${josefin_sans.className} flex-col`}>

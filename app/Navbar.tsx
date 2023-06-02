@@ -1,30 +1,30 @@
-'use client';
+"use client";
 
-import { Fragment, useContext } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { Disclosure, Menu, Transition } from '@headlessui/react';
+import { Fragment, useContext } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Disclosure, Menu, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
   XMarkIcon,
   SunIcon,
   MoonIcon,
-} from '@heroicons/react/24/outline';
-import { ThemeContext } from './theme-provider';
-import { useSession, signOut } from 'next-auth/react';
+} from "@heroicons/react/24/outline";
+import { ThemeContext } from "./theme-provider";
+import { useSession, signOut } from "next-auth/react";
 
 const navigation = [
-  { name: 'Home', href: '/' },
-  { name: 'World', href: '#' },
+  { name: "Home", href: "/" },
+  { name: "Setting", href: "/setting" },
   {
-    name: 'Character Sheet',
-    href: '/charSheet',
+    name: "Character Sheet",
+    href: "/charSheet",
   },
-  { name: 'Games', href: '#' },
+  { name: "Games", href: "#" },
 ];
 
 function classNames(...classes: any[]) {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 export default function Example() {
@@ -57,12 +57,12 @@ export default function Example() {
                         href={item.href}
                         className={classNames(
                           pathname === item.href
-                            ? 'bg-gray-900 text-white'
-                            : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                          'rounded-md px-3 py-2 text-sm font-medium'
+                            ? "bg-gray-900 text-white"
+                            : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                          "rounded-md px-3 py-2 text-sm font-medium"
                         )}
                         aria-current={
-                          pathname === item.href ? 'page' : undefined
+                          pathname === item.href ? "page" : undefined
                         }
                       >
                         {item.name}
@@ -80,7 +80,7 @@ export default function Example() {
                   }}
                 >
                   <span className="sr-only">View notifications</span>
-                  {theme === 'dark' ? (
+                  {theme === "dark" ? (
                     <MoonIcon className="h-6 w-6" aria-hidden="true" />
                   ) : (
                     <SunIcon className="h-6 w-6" aria-hidden="true" />
@@ -94,7 +94,7 @@ export default function Example() {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src={session?.data?.user?.image || '#'}
+                        src={session?.data?.user?.image || "#"}
                         alt=""
                       />
                     </Menu.Button>
@@ -110,7 +110,7 @@ export default function Example() {
                   >
                     <Menu.Items
                       className={`absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md ${
-                        theme === 'light' ? 'bg-white' : 'bg-black'
+                        theme === "light" ? "bg-white" : "bg-black"
                       } py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
                     >
                       <Menu.Item>
@@ -119,10 +119,10 @@ export default function Example() {
                             href="#"
                             className={classNames(
                               active
-                                ? `bg-gray-${theme === 'light' ? 100 : 900}`
-                                : '',
+                                ? `bg-gray-${theme === "light" ? 100 : 900}`
+                                : "",
                               `block px-4 py-2 text-sm text-gray-${
-                                theme === 'light' ? 700 : 300
+                                theme === "light" ? 700 : 300
                               }`
                             )}
                           >
@@ -136,10 +136,10 @@ export default function Example() {
                             href="#"
                             className={classNames(
                               active
-                                ? `bg-gray-${theme === 'light' ? 100 : 900}`
-                                : '',
+                                ? `bg-gray-${theme === "light" ? 100 : 900}`
+                                : "",
                               `block px-4 py-2 text-sm text-gray-${
-                                theme === 'light' ? 700 : 300
+                                theme === "light" ? 700 : 300
                               }`
                             )}
                           >
@@ -155,10 +155,10 @@ export default function Example() {
                             }}
                             className={classNames(
                               active
-                                ? `bg-gray-${theme === 'light' ? 100 : 900}`
-                                : '',
+                                ? `bg-gray-${theme === "light" ? 100 : 900}`
+                                : "",
                               `block px-4 py-2 text-sm text-gray-${
-                                theme === 'light' ? 700 : 300
+                                theme === "light" ? 700 : 300
                               } hover:cursor-pointer`
                             )}
                           >
@@ -182,11 +182,11 @@ export default function Example() {
                   href={item.href}
                   className={classNames(
                     pathname === item.href
-                      ? 'bg-gray-900 text-white'
-                      : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                    'block rounded-md px-3 py-2 text-base font-medium'
+                      ? "bg-gray-900 text-white"
+                      : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                    "block rounded-md px-3 py-2 text-base font-medium"
                   )}
-                  aria-current={pathname === item.href ? 'page' : undefined}
+                  aria-current={pathname === item.href ? "page" : undefined}
                 >
                   {item.name}
                 </Disclosure.Button>
