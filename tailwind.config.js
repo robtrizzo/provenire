@@ -11,7 +11,8 @@ module.exports = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'parchment': 'url(https://provenire.s3.amazonaws.com/vintage-grunge-paper-background_1048-10911.avif)'
+        parchment:
+          'url(https://provenire.s3.amazonaws.com/vintage-grunge-paper-background_1048-10911.avif)',
       },
       boxShadow: {
         'inner-blood': 'inset 0px 0px 20px 10px crimson',
@@ -19,7 +20,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-  ],
+  plugins: [require('@tailwindcss/typography')],
 };
