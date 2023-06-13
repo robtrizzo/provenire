@@ -62,7 +62,7 @@ export default function Sidebar({ children }: SidebarProps) {
     <div className="flex min-h-full flex-grow">
       <aside
         id="default-sidebar"
-        className=" z-40 w-64 min-h-full transition-transform -translate-x-full sm:translate-x-0"
+        className=" z-40 w-64 min-h-full transition-transform -translate-x-full sm:translate-x-0 shrink-0"
         aria-label="Sidebar"
       >
         <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
@@ -211,7 +211,7 @@ export default function Sidebar({ children }: SidebarProps) {
         }`}
       >
         <div
-          className={`p-2 prose lg:prose-xl prose-p:ml-4 prose-p:my-3 ${
+          className={`p-2 prose max-w-none lg:prose-xl prose-p:ml-4 prose-p:my-3 ${
             theme === 'light'
               ? 'prose-stone prose-h1:text-red-950 prose-h2:text-red-950 prose-h3:text-red-950'
               : 'prose-h1:text-red-900 prose-h2:text-red-900 prose-invert prose-h3:text-red-900'

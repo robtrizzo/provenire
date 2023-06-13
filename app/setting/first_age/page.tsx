@@ -1,3 +1,4 @@
+import Donum from '@/app/Donum';
 export default function World() {
   return (
     <>
@@ -7,18 +8,18 @@ export default function World() {
         rolling hills, though she was forever weakened by her miracle.
       </p>
       <p>
-        They named themselves the <strong>Arborians</strong>, and adopted{" "}
+        They named themselves the <strong>Arborians</strong>, and adopted{' '}
         <strong>Anya's</strong> language.
       </p>
       <p>
-        The <strong>Arborians</strong> settled the <strong>Three Gates</strong>{" "}
+        The <strong>Arborians</strong> settled the <strong>Three Gates</strong>{' '}
         and founded the city of <strong>Helix</strong>, named for the swirling
         canals constructed to capture and contain the water flowing from the
         monoliths.
       </p>
       <h2>Outside Arboria</h2>
       <p>
-        The other awoken across the world wer not so lucky as the{" "}
+        The other awoken across the world wer not so lucky as the{' '}
         <strong>Arborians</strong>
       </p>
       <p>
@@ -48,18 +49,19 @@ export default function World() {
         sheer mountains.
       </p>
       <p>
-        <strong>The Kilder</strong> woke to immediate strugge - not to be
+        <strong>The Kilder</strong> woke to immediate struggle - not to be
         consumed by the hungry marsh.
       </p>
       <p>
-        Word spread of a bountiful place in the south where{" "}
+        Word spread of a bountiful place in the south where{' '}
         <strong>water</strong> flowed freely and predators were sparse. A great
         migration to <strong>Arboria</strong> took place over the next years.
-        But when the travellers arived, they found walls instead of haven.
+        But when the travellers arived, they found walls blocking them from
+        heaven.
       </p>
       <h2>Migrant War // Slaughter of the Foothills</h2>
       <p>
-        <strong>The Arborians</strong> decided to keep <strong>Helix</strong>{" "}
+        <strong>The Arborians</strong> decided to keep <strong>Helix</strong>{' '}
         and all of its <strong>water</strong> to themselves, viewing themselves
         as the rightful heirs to the city as <strong>Jolana's</strong> kinsmen.
         The migrants were forced to decide wether to fight, or to go back to
@@ -67,10 +69,10 @@ export default function World() {
       </p>
       <p>
         Despite the advantage of numbers and desperation, the throngs of awoken
-        were no match for the weilders of <em>Donum Aquae</em>,{" "}
-        <em>Donum Silex</em>, and <em>Donum Silva</em>. The Arborians had been
-        drinking from the monoliths for years, and had been granted the strength
-        of that <strong>water</strong>.
+        were no match for the weilders of <Donum>Donum Aquae</Donum>,{' '}
+        <Donum>Donum Silex</Donum>, and <Donum>Donum Silva</Donum>. The
+        Arborians had been drinking from the monoliths for years, and had been
+        granted the strength of that <strong>water</strong>.
       </p>
       <p>
         After a single crushing battle, the <strong>Arborians</strong> drove
@@ -79,58 +81,59 @@ export default function World() {
       <h2>Anya's Labors // The Accord War</h2>
       <p>
         <strong>Anya Arbor</strong> could not sit idly by and watch the genocide
-        of six peoples. Despite her influence over the people of{" "}
+        of six peoples. Despite her influence over the people of{' '}
         <strong>Arboria</strong>, she was unable to reach them through their
         twisted lust for dominance. <strong>Anya</strong> and her allies stole
         away from <strong>Helix</strong> in the night.
       </p>
       <p>
         <strong>Anya</strong> traveled to the lands of each people, teaching
-        them how to open the monoliths, which she coined{" "}
-        <strong>Life Ducts</strong>. She was no longer strong enough to open any{" "}
+        them how to open the monoliths, which she coined{' '}
+        <strong>Life Ducts</strong>. She was no longer strong enough to open any{' '}
         <strong>Life Ducts</strong> permanently. She could barely manage to keep
-        each open for more than a few moments, and her heath became worse with
+        each open for more than a few moments, and her health became worse with
         each.
       </p>
       <p>
-        As the peoples of each nation drank, they began to develop{" "}
-        <em>Donums</em> as well. Each was radically different from the last,{" "}
+        As the peoples of each nation drank, they began to develop{' '}
+        <em>Donums</em> as well. Each was radically different from the last,{' '}
         <strong>Anya</strong> naming them all.
       </p>
       <p>
-        The only exception was <strong>Kilder</strong>. The farthest away from{" "}
-        <strong>Arboria</strong> and the most difficult to travel,{" "}
-        <strong>Anya</strong> and her companions were unable to navigate to the{" "}
+        The only exception was <strong>Kilder</strong>. The farthest away from{' '}
+        <strong>Arboria</strong> and the most difficult to travel,{' '}
+        <strong>Anya</strong> and her companions were unable to navigate to the{' '}
         <strong>Life Ducts</strong> there.
       </p>
       <p>
         <strong>Anya</strong> retuned to <strong>Helix</strong> with an army of
-        six nations behind her, all but the <strong>Kilder</strong> with{" "}
+        six nations behind her, all but the <strong>Kilder</strong> with{' '}
         <em>Donums</em>.
       </p>
       <p>
-        The <strong>Helix Accords</strong> were signed the following day, making{" "}
+        The <strong>Helix Accords</strong> were signed the following day, making{' '}
         <strong>Helix</strong> a city of six nations and a democratically
         elected council.
       </p>
       <h2>Anya's Death // Death of the Accords</h2>
       <p>
-        <strong>Anya</strong> didn't live long after the{" "}
+        <strong>Anya</strong> didn't live long after the{' '}
         <strong>Helix Accords</strong> were signed. With the six foreign armies
         disbanded, the leaders in <strong>Helix</strong> raised an army and
-        overwhelmed everyone who had stayed behind, driving them from{" "}
-        <strong>Helix</strong> once again. The weilders of <em>Donum Silex</em>{" "}
-        spent the coming years constructing walls so enormous that no army,{" "}
-        <em>Donums</em> or not, could breach them.
+        overwhelmed everyone who had stayed behind, driving them from{' '}
+        <strong>Helix</strong> once again. The weilders of{' '}
+        <Donum>Donum Silex</Donum> spent the coming years constructing walls so
+        enormous that no army, <em>Donums</em> or not, could breach them.
       </p>
       <p>
         Where the <strong>Helix Accords</strong> technically still stood,
-        foreigners were not welcome and the democracy in the city became a sham.
+        foreigners were not welcome and the democracy in the city became
+        corrupt.
       </p>
       <h2>Era of War</h2>
       <p>
         <strong>Helix</strong> was left to its own devices for an unknown number
-        of years. With the advent of <em>Donums</em> outside of{" "}
+        of years. With the advent of <em>Donums</em> outside of{' '}
         <strong>Arboria</strong>, survival wasn't as bleak as it had been
         before, with the exception of <strong>Kilder</strong>.
       </p>
@@ -152,81 +155,81 @@ export default function World() {
         which surrender or peace is a bitterly slow result.
       </p>
       <p>
-        Chief amongst tribes in terms of military might was{" "}
+        Chief amongst tribes in terms of military might was{' '}
         <strong>Kilder</strong>. Despite not having <em>Donums</em>, their
         warriors are trained from an exceptionally young age and their
         warleaders would historically outwit their opponents.
       </p>
       <h2>Ghodbane's Campaign</h2>
       <p>
-        The birth of <strong>Hamdi Ghodbane</strong> heralded the end of the{" "}
-        <strong>Era of War</strong>. As a <strong>Kilder</strong> child,{" "}
-        <strong>Ghodbane</strong> was the first recipeint of{" "}
-        <em>Donum Duellum</em> - <em>The Gift of War</em>.{" "}
+        The birth of <strong>Hamdi Ghodbane</strong> heralded the end of the{' '}
+        <strong>Era of War</strong>. As a <strong>Kilder</strong> child,{' '}
+        <strong>Ghodbane</strong> was the first recipeint of{' '}
+        <Donum>Donum Duellum</Donum> - <em>The Gift of War</em>.{' '}
         <strong>Ghodbane</strong> became leader of his caravan at age eight, the
-        commander of his warband at age ten, and by age twelve had been named{" "}
+        commander of his warband at age ten, and by age twelve had been named{' '}
         <strong>King Ghodbane</strong>.
       </p>
       <p>
         <strong>Ghodbane</strong> lead a brutal and efficient campaign; the line
-        between <em>Donum Duellum</em> and his tactical genius was
-        indistinguishable. Within a matter of months, the{" "}
-        <strong>Kilder</strong> had conquered most of <strong>Rath</strong> and{" "}
+        between <Donum>Donum Duellum</Donum> and his tactical genius was
+        indistinguishable. Within a matter of months, the{' '}
+        <strong>Kilder</strong> had conquered most of <strong>Rath</strong> and{' '}
         <strong>Gredora</strong> with minimal casualties on all sides.
       </p>
       <p>
         With three armies under his banner, <strong>Ghodbane</strong> declared
-        that it was time for <strong>Helix</strong> to begin honoring the{" "}
+        that it was time for <strong>Helix</strong> to begin honoring the{' '}
         <strong>Accords</strong> it had sworn to ages ago.
       </p>
       <p>
-        At the foot of <strong>Helix's</strong> insurmountable walls,{" "}
-        <strong>Ghodbane</strong> initiated negotiations. The{" "}
-        <strong>Imperator</strong> of <strong>Helix</strong>,{" "}
-        <strong>Fleur Mercator</strong> met with him.{" "}
+        At the foot of <strong>Helix's</strong> insurmountable walls,{' '}
+        <strong>Ghodbane</strong> initiated negotiations. The{' '}
+        <strong>Imperator</strong> of <strong>Helix</strong>,{' '}
+        <strong>Fleur Mercator</strong> met with him.{' '}
       </p>
       <p>
         <strong>Ghodbane's</strong> demands were not surrender or material. The
-        first demand was to found a peacekeeping force based in{" "}
+        first demand was to found a peacekeeping force based in{' '}
         <strong>Helix</strong> in which any nation's warriors could join, should
         they prove themselves strong enough. The second demand was to reinstate
         the <strong>Helix Accords</strong> with an amendment to the election
         process. No longer would leaders be chosen with the corrupted democracy
-        that had festered in <strong>Helix</strong>. Instead,{" "}
+        that had festered in <strong>Helix</strong>. Instead,{' '}
         <strong>Helix's</strong> council would be elected in trial by combat,
         hosted once every fifty years.
       </p>
       <p>
-        <strong>Fleur Mercator</strong> discussed this with the other members of{" "}
+        <strong>Fleur Mercator</strong> discussed this with the other members of{' '}
         <strong>Helix's</strong> council. They found these demands barbaric,
         disastrous, and unacceptable.
       </p>
       <p>
-        Much to the council's dismay, and then rage, <strong>Fleur</strong>{" "}
+        Much to the council's dismay, and then rage, <strong>Fleur</strong>{' '}
         ignored their council and agreed to <strong>Ghodbane's</strong> demands.
       </p>
       <p>
-        <strong>Ghodbane</strong> released the <strong>Rathi</strong> and{" "}
+        <strong>Ghodbane</strong> released the <strong>Rathi</strong> and{' '}
         <strong>Gredorans</strong> from his service, keeping a small contingent
         of his strongest warriors to help <strong>Fleur</strong> maintain peace
         until the first election by combat could be held.
       </p>
       <p>
-        With the army gone, civil war erupted in <strong>Helix</strong>. The{" "}
-        <strong>Mercator</strong> family, weilders of <em>Donum Silva</em>{" "}
-        remained loyal to <strong>Fleur</strong>. <strong>The Arbors</strong> of{" "}
-        <em>Donum Aquae</em> and <strong>The Santoris</strong> of{" "}
-        <em>Donum Silex</em> fought for their traditions in turn.
+        With the army gone, civil war erupted in <strong>Helix</strong>. The{' '}
+        <strong>Mercator</strong> family, weilders of <Donum>Donum Silva</Donum>{' '}
+        remained loyal to <strong>Fleur</strong>. <strong>The Arbors</strong> of{' '}
+        <Donum>Donum Aquae</Donum> and <strong>The Santoris</strong> of{' '}
+        <Donum>Donum Silex</Donum> fought for their traditions in turn.
       </p>
       <p>
-        With the assistance of <strong>Ghodbane</strong>, <strong>Fleur</strong>{" "}
+        With the assistance of <strong>Ghodbane</strong>, <strong>Fleur</strong>{' '}
         and the <strong>Mercators</strong> won the war, but victory was pyrrhic.
-        As a result of the devastating conflict, <em>Donum Silva</em> has
+        As a result of the devastating conflict, <Donum>Donum Silva</Donum> has
         dwindled into history.
       </p>
       <h2>Present Day</h2>
       <p>
-        <strong>Helix</strong> still stands, as do the{" "}
+        <strong>Helix</strong> still stands, as do the{' '}
         <strong>Helix Accords</strong>. Where <strong>Helix</strong> is still
         within <strong>Arborian</strong> territory, it's ruled by a council of
         representatives from all the nations. The council is responsible for
@@ -244,7 +247,7 @@ export default function World() {
       <p>
         Absent <strong>Anya's</strong> mythical power, each people has been left
         to learn the secrets of each <strong>Life Duct</strong>. The communites
-        that survive are the ones which have learned to activate the{" "}
+        that survive are the ones which have learned to activate the{' '}
         <strong>Life Ducts</strong>, albeit for short periods of time. The
         techniques seem to vary for each <strong>Life Duct</strong>.
       </p>
