@@ -104,11 +104,12 @@ export default function Cumeria() {
         <div className="w-1/2 h-fit p-4 bg-slate-900 div-2 box-border border-t-2 border-b-2 text-white">
           <h6>Wisdoms at War</h6>
           <p>
-            <strong>Cumerian</strong> <em>Wielders</em>, or{' '}
-            <strong>Wisdoms</strong> once they lead a tribe, inherit the{' '}
-            <em>Donums</em> that make the <strong>Cumerian</strong> berzerkers
-            what they are. <strong>Wisdoms</strong> inherit one of two{' '}
-            <em>Donums</em>, with the rare prodigy gaining both:
+            <strong className="text-white">Cumerian</strong> <em>Wielders</em>,
+            or <strong className="text-white">Wisdoms</strong> once they lead a
+            tribe, inherit the <em>Donums</em> that make the{' '}
+            <strong className="text-white">Cumerian</strong> berzerkers what
+            they are. <strong className="text-white">Wisdoms</strong> inherit
+            one of two <em>Donums</em>, with the rare prodigy gaining both:
           </p>
           <ul className="list-none">
             <li>
