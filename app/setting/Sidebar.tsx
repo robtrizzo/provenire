@@ -36,19 +36,19 @@ const first_age_navigation = [
   },
 ];
 
-const era_two_navigation = [
-  { name: 'World', href: '/setting/era_two' },
-  { name: 'Anidinie', href: '/setting/era_two/anidinie' },
-  { name: 'Argos', href: '/setting/era_two/argos' },
-  { name: 'Bwarhei', href: '/setting/era_two/bwarhei' },
-  { name: 'Cumeria', href: '/setting/era_two/cumeria' },
-  { name: 'Fenrir', href: '/setting/era_two/fenrir' },
-  { name: 'Gredora', href: '/setting/era_two/gredora' },
-  { name: 'Heia', href: '/setting/era_two/heia' },
-  { name: 'Kilder', href: '/setting/era_two/kilder' },
-  { name: 'Kipos', href: '/setting/era_two/kipos' },
-  { name: 'Narscillia', href: '/setting/era_two/narscillia' },
-  { name: 'Yama', href: '/setting/era_two/yama' },
+const second_age_navigation = [
+  { name: 'World', href: '/setting/second_age' },
+  { name: 'Anidinie', href: '/setting/second_age/anidine' },
+  { name: 'Argos', href: '/setting/second_age/argos' },
+  { name: 'Bwarhei', href: '/setting/second_age/bwarhei' },
+  { name: 'Cumeria', href: '/setting/second_age/cumeria' },
+  { name: 'Fenrir', href: '/setting/second_age/fenrir' },
+  { name: 'Gredora', href: '/setting/second_age/gredora' },
+  { name: 'Heia', href: '/setting/second_age/heia' },
+  { name: 'Kilder', href: '/setting/second_age/kilder' },
+  { name: 'Kipos', href: '/setting/second_age/kipos' },
+  { name: 'Narscillia', href: '/setting/second_age/narscillia' },
+  { name: 'Yama', href: '/setting/second_age/yama' },
 ];
 
 export default function Sidebar({ children }: SidebarProps) {
@@ -151,7 +151,7 @@ export default function Sidebar({ children }: SidebarProps) {
                   className="flex-1 ml-3 text-left whitespace-nowrap"
                   sidebar-toggle-item
                 >
-                  Era Two
+                  Second Age
                 </span>
                 {eraTwoExpanded ? (
                   <svg
@@ -185,7 +185,7 @@ export default function Sidebar({ children }: SidebarProps) {
                 id="dropdown-example"
                 className={`${eraTwoExpanded ? '' : 'hidden'} py-2 space-y-2`}
               >
-                {era_two_navigation.map((item) => (
+                {second_age_navigation.map((item) => (
                   <li className="pl-2">
                     <Link
                       href={item.href}
