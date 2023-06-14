@@ -1,4 +1,6 @@
-import Donum from '@/app/Donum';
+import Donum from '@/components/Donum';
+import Next from '@/components/Next';
+import Previous from '@/components/Previous';
 export default function Cumeria() {
   return (
     <>
@@ -17,16 +19,16 @@ export default function Cumeria() {
       <h2>Roaming Tribes</h2>
       <p>
         Huntable prey is scarce in the <strong>Titan Pines</strong>, so the{' '}
-        <strong>Cumerians</strong> live in small trves of around one hundred.
-        Each lcan defends their territory ferociously; because if even one hunt
+        <strong>Cumerians</strong> live in small tribes of around one hundred.
+        Each clan defends their territory ferociously; because if even one hunt
         is stolen from their lands, many can go hungry.
       </p>
       <p>
         Most creatures in the <strong>Pines</strong> however, are too large or
         too dangerous to hunt. Those predators most be avoided at all costs to
         ensure the survival of the tribe. To evade these creatures, the{' '}
-        <strong>Cumerians</strong> make their homes high in the trees. The
-        treesin the <strong>Titan Pines</strong> are large enough tohouse entire
+        <strong>Cumerians</strong> make their homes high in the trees. The trees
+        in the <strong>Titan Pines</strong> are large enough to house entire
         tribes inside carved out burrows, which they sculpt artfully. Tribes
         often have between five to ten of these abodes so that they can stay on
         the move on their hunts.{' '}
@@ -256,6 +258,10 @@ export default function Cumeria() {
         bringing multiple tribes together for the few days the{' '}
         <strong>Duct</strong> will remain open.
       </p>
+      <div className="flex flex-row mt-2">
+        <Previous href="/setting/first_age/arboria" text="Arboria" />
+        <Next href="/setting/first_age/gredora" text="Gredora" />
+      </div>
     </>
   );
 }

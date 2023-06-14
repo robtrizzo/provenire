@@ -1,4 +1,6 @@
-import Donum from '@/app/Donum';
+import Donum from '@/components/Donum';
+import Next from '@/components/Next';
+import Previous from '@/components/Previous';
 export default function Rath() {
   return (
     <>
@@ -100,8 +102,9 @@ export default function Rath() {
         <div className="w-1/2 h-fit p-4 bg-slate-900 div-2 box-border border-t-2 border-b-2 text-white">
           <h6>Gifts of Transformation</h6>
           <p>
-            There once were dozens, maybe hundreds of <strong>Rathi</strong>{' '}
-            <em>Donums</em> named by <strong>Anya Arbor</strong>, but now there
+            There once were dozens, maybe hundreds of{' '}
+            <strong className="text-white">Rathi</strong> <em>Donums</em> named
+            by <strong className="text-white">Anya Arbor</strong>, but now there
             are only two. One is celebrated while the other is shunned and
             culled:
           </p>
@@ -152,6 +155,10 @@ export default function Rath() {
         opportunity to trade, diplomacy, and to show off the strength of{' '}
         <strong>Kingwulf's</strong> bloodline.
       </p>
+      <div className="flex flex-row mt-2">
+        <Previous href="/setting/first_age/narscillia" text="Narscillia" />
+        <Next href="/setting/first_age/shian_tor" text="Shian Tor" />
+      </div>
     </>
   );
 }

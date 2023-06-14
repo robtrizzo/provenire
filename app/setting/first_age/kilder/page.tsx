@@ -1,3 +1,5 @@
+import Next from '@/components/Next';
+import Previous from '@/components/Previous';
 export default function Kilder() {
   return (
     <>
@@ -58,26 +60,27 @@ export default function Kilder() {
         <div className="w-1/2 h-fit p-4 bg-slate-900 div-2 box-border border-t-2 border-b-2 text-white">
           <h6>The name of Siad</h6>
           <p>
-            It is exceptionally rare to find a <strong>Kilder</strong> who has
-            received the <strong>Siad</strong>, or Hunter, honorary. This would
-            mean that they have become the embodiment of all techniques and
-            practices that a hunter can posses. The perfect predator. Much more
-            often a master of a particular aspect of hunting is honored with
-            that name.
+            It is exceptionally rare to find a{' '}
+            <strong className="text-white">Kilder</strong> who has received the{' '}
+            <strong className="text-white">Siad</strong>, or Hunter, honorary.
+            This would mean that they have become the embodiment of all
+            techniques and practices that a hunter can posses. The perfect
+            predator. Much more often a master of a particular aspect of hunting
+            is honored with that name.
           </p>
           <h5>Hunter Names</h5>
           <ul className="list-none">
             <li>
-              <strong>Ram</strong>: Archer
+              <strong className="text-white">Ram</strong>: Archer
             </li>
             <li>
-              <strong>Ramah</strong>: Lancer
+              <strong className="text-white">Ramah</strong>: Lancer
             </li>
             <li>
-              <strong>Matarid</strong>: Stalker
+              <strong className="text-white">Matarid</strong>: Stalker
             </li>
             <li>
-              <strong>Alfura</strong>: Tracker
+              <strong className="text-white">Alfura</strong>: Tracker
             </li>
           </ul>
         </div>
@@ -153,6 +156,10 @@ export default function Kilder() {
         finally aknowledged as a <strong>Kilder</strong> soldier at age twenty
         three.
       </p>
+      <div className="flex flex-row mt-2">
+        <Previous href="/setting/first_age/gredora" text="Gredora" />
+        <Next href="/setting/first_age/narscillia" text="Narscillia" />
+      </div>
     </>
   );
 }

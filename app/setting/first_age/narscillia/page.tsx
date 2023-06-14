@@ -1,4 +1,6 @@
-import Donum from '@/app/Donum';
+import Donum from '@/components/Donum';
+import Next from '@/components/Next';
+import Previous from '@/components/Previous';
 export default function Narscillia() {
   return (
     <>
@@ -122,10 +124,11 @@ export default function Narscillia() {
             Shepherds of the <em>compagnia</em>
           </h6>
           <p>
-            <strong>Narscillians</strong> have some of the most rigid{' '}
-            <em>Donum</em> heredities, with nearly all{' '}
-            <strong>Narscillian</strong> <em>Weilders</em> developing one of two{' '}
-            <em>Donums</em>, oftentimes both.
+            <strong className="text-white">Narscillians</strong> have some of
+            the most rigid <em>Donum</em> heredities, with nearly all{' '}
+            <strong className="text-white">Narscillian</strong>{' '}
+            <em>Weilders</em> developing one of two <em>Donums</em>, oftentimes
+            both.
           </p>
           <ul className="list-none">
             <li>
@@ -136,7 +139,8 @@ export default function Narscillia() {
             </li>
           </ul>
           <p>
-            Every few generations, the <strong>Narscillians</strong> believe the
+            Every few generations, the{' '}
+            <strong className="text-white">Narscillians</strong> believe the
             spirit of their ancestors bless a child with a particular{' '}
             <em>Donum</em> which only one <em>Wielder</em> has ever had at one
             time.
@@ -160,6 +164,10 @@ export default function Narscillia() {
         apprentices for three years before setting off into the inner desert on
         their own.
       </p>
+      <div className="flex flex-row mt-2">
+        <Previous href="/setting/first_age/kilder" text="Kilder" />
+        <Next href="/setting/first_age/rath" text="Rath" />
+      </div>
     </>
   );
 }

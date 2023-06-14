@@ -1,4 +1,6 @@
-import Donum from '@/app/Donum';
+import Donum from '@/components/Donum';
+import Next from '@/components/Next';
+import Previous from '@/components/Previous';
 export default function World() {
   return (
     <>
@@ -251,6 +253,10 @@ export default function World() {
         <strong>Life Ducts</strong>, albeit for short periods of time. The
         techniques seem to vary for each <strong>Life Duct</strong>.
       </p>
+      <div className="flex flex-row mt-2">
+        <Previous href="/setting" text="Before Anyone Can Remember" />
+        <Next href="/setting/first_age/arboria" text="Arboria" />
+      </div>
     </>
   );
 }

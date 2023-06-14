@@ -1,3 +1,4 @@
+import Next from '@/components/Next';
 export default function World() {
   return (
     <>
@@ -11,11 +12,11 @@ export default function World() {
         her kin.
       </p>
       <p>
-        She reached out to <strong>it</strong>, frightened, but awed by{" "}
+        She reached out to <strong>it</strong>, frightened, but awed by{' '}
         <strong>it's</strong> beauty and warmth.
       </p>
       <p>
-        <strong>It</strong> filled her outstretched hand with{" "}
+        <strong>It</strong> filled her outstretched hand with{' '}
         <strong>water</strong>.
       </p>
       <p>
@@ -40,7 +41,7 @@ export default function World() {
       <p>And eventually one woke up.</p>
       <p>
         Her first sight was of <strong>Jolana</strong>, who was embracing her
-        and laughing with joy. <strong>Jolana</strong> tearfully named her{" "}
+        and laughing with joy. <strong>Jolana</strong> tearfully named her{' '}
         <strong>Anya</strong>, and daughter.
       </p>
       <p>
@@ -49,7 +50,7 @@ export default function World() {
         time.
       </p>
       <p>
-        Before <strong>Anya</strong> could speak a word to her mother,{" "}
+        Before <strong>Anya</strong> could speak a word to her mother,{' '}
         <strong>Jolana</strong> was swallowed by the heavens, never to be seen
         again.
       </p>
@@ -68,7 +69,7 @@ export default function World() {
       </p>
       <h2>The First Donum</h2>
       <p>
-        No one knows what <strong>Jolana</strong> said to <strong>Anya</strong>{" "}
+        No one knows what <strong>Jolana</strong> said to <strong>Anya</strong>{' '}
         that morning, but in the aftermath of the <strong>Awakening</strong>,
         young <strong>Anya</strong> performed a miracle.
       </p>
@@ -86,9 +87,12 @@ export default function World() {
         the monoliths, and into the rolling hills below.
       </p>
       <p>
-        In <strong>Anya's</strong> language, she named her miracle{" "}
+        In <strong>Anya's</strong> language, she named her miracle{' '}
         <em>Donum Aquae</em> - the Gift of Water.
       </p>
+      <div className="flex flex-row mt-2">
+        <Next href="/setting/first_age" text="The First Age" />
+      </div>
     </>
   );
 }
