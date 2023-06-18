@@ -17,30 +17,42 @@ const Move = ({
   children,
 }: MoveProps) => {
   return (
-    <article className="move">
-      <h3>{title}</h3>
-      {ranks !== -1 && <span className="move-ranks">{ranks}</span>}
-      {preface && <p>{preface}</p>}
+    <article
+      className="move box-border border border-slate-300 rounded-md relative text-center"
+      style={{ width: "350px", padding: "20px" }}
+    >
+      <h3 className="text-lg font-bold font-weight-bold text-center leading-10">
+        {title}
+      </h3>
+      {ranks !== -1 && (
+        <span
+          className="move-ranks absolute border border-slate-300 rounded-full text-center"
+          style={{ top: "10px", right: "10px", width: "20px", height: "20px" }}
+        >
+          {ranks}
+        </span>
+      )}
+      {preface && <p className="my-2">{preface}</p>}
       {hit && [
-        <div className="result-row">
-          <h4 className="result-row-value">19+</h4>
+        <div className="result-row flex items-center justify-center gap-3">
+          <h4 className="result-row-value font-bold">19+</h4>
           <p className="result-row-description">{hit}</p>
         </div>,
-        <hr />,
+        <hr className="my-2" />,
       ]}
       {partial && [
-        <div className="result-row">
-          <h4 className="result-row-value">13-18</h4>
+        <div className="result-row flex items-center justify-center gap-3">
+          <h4 className="result-row-value shrink-0 font-bold">13-18</h4>
           <p className="result-row-description">{partial}</p>
         </div>,
-        <hr />,
+        <hr className="my-2" />,
       ]}
       {miss && [
-        <div className="result-row">
-          <h4 className="result-row-value">12-</h4>
+        <div className="result-row flex items-center justify-center gap-3">
+          <h4 className="result-row-value font-bold">12-</h4>
           <p className="result-row-description">{miss}</p>
         </div>,
-        <hr />,
+        <hr className="my-2" />,
       ]}
       {children}
     </article>
@@ -49,9 +61,9 @@ const Move = ({
 
 const ResultList = ({ results }: { results: string[] }) => {
   return (
-    <ul className="result-row-list">
+    <ul className="result-row-list pl-5 text-start list-disc">
       {results.map((result, idx) => [
-        <li key={idx} className="result-row-list-item">
+        <li key={idx} className="result-row-list-item my-1">
           {result}
         </li>,
       ])}
@@ -66,12 +78,12 @@ export const GutCheck = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>let your instincts tell you what you need to know</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#c92a2a 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#c92a2a 1px 0 10px" }}>
             <em>Instinct</em>
           </strong>
         </span>
@@ -82,12 +94,12 @@ export const GutCheck = ({ ranks }: { ranks: number }) => {
       <p>Take +1 forward while acting on the answers</p>
       <ResultList
         results={[
-          'Am I in imminent danger?',
-          'Is there someone watching me?',
-          'Does something smell off?',
+          "Am I in imminent danger?",
+          "Is there someone watching me?",
+          "Does something smell off?",
           "What's the quickest way to escape?",
-          'Who is everyone else afraid of?',
-          'Who is afraid of me?',
+          "Who is everyone else afraid of?",
+          "Who is afraid of me?",
         ]}
       />
     </Move>
@@ -101,12 +113,12 @@ export const Impulse = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>act on your basic impulses without thinking it through</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#c92a2a 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#c92a2a 1px 0 10px" }}>
             <em>Instinct</em>
           </strong>
           . On a hit, the GM will tell you which attitude would be most
@@ -127,12 +139,12 @@ export const UnleashDonum = ({ ranks }: { ranks: number }) => {
       ranks={-1}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>push your powers beyond normal</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#6a5acd 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#6a5acd 1px 0 10px" }}>
             <em>Donum</em>
           </strong>
           . Spend a donum as part of using this move. On a hit, it works
@@ -140,15 +152,14 @@ export const UnleashDonum = ({ ranks }: { ranks: number }) => {
       }
       hit="Choose one"
       partial="Choose two"
-      miss="Something bad happens"
+      miss="You lose control of your powers in a terrible way"
     >
       <ResultList
         results={[
           "There's unwanted collateral damage",
-          'You expose yourself to danger',
-          'The effect is unstable or temporary',
-          'You lose control of your powers in a terrible way',
-          'You take a condition',
+          "You expose yourself to danger",
+          "The effect is unstable or temporary",
+          "You take a condition",
         ]}
       />
     </Move>
@@ -162,12 +173,12 @@ export const NewDonumApplication = ({ ranks }: { ranks: number }) => {
       ranks={-1}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>develop new powers or evolve an existing one</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#5f3dc4 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#5f3dc4 1px 0 10px" }}>
             <em>Psyche</em>
           </strong>
         </span>
@@ -186,12 +197,12 @@ export const DirectlyEngageThreat = ({ ranks }: { ranks: number }) => {
       ranks={-1}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>engage your opposition with straightforward determination</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#c92a2a 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#c92a2a 1px 0 10px" }}>
             <em>Body</em>
           </strong>
           . On a hit, you trade blows.
@@ -202,8 +213,8 @@ export const DirectlyEngageThreat = ({ ranks }: { ranks: number }) => {
     >
       <ResultList
         results={[
-          'Resist or avoid their blows',
-          'Create an opportunity for your allies',
+          "Resist or avoid their blows",
+          "Create an opportunity for your allies",
         ]}
       />
     </Move>
@@ -217,12 +228,12 @@ export const Defend = ({ ranks }: { ranks: number }) => {
       ranks={-1}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>defend someone or something from an immediate threat</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#2b8a3e 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#2b8a3e 1px 0 10px" }}>
             <em>Motorics</em>
           </strong>
           . On a hit, you keep them safe and choose 1 from the list below.
@@ -232,9 +243,9 @@ export const Defend = ({ ranks }: { ranks: number }) => {
     >
       <ResultList
         results={[
-          'Add 1 Team to the pool',
-          'Take influence over someone you protect',
-          'Clear a condition',
+          "Add 1 Team to the pool",
+          "Take influence over someone you protect",
+          "Clear a condition",
         ]}
       />
       <p>
@@ -252,12 +263,12 @@ export const TakePowerfulBlow = ({ ranks }: { ranks: number }) => {
       ranks={-1}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>take a powerful blow</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: 'crimson 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "crimson 1px 0 10px" }}>
             <em>Conditions</em>
           </strong>
         </span>
@@ -268,10 +279,10 @@ export const TakePowerfulBlow = ({ ranks }: { ranks: number }) => {
           <span>Choose 1</span>
           <ResultList
             results={[
-              'You lash out verbally: provoke a teammate to foolhardy action or take advantage of your influence to inflict a condition on them.',
-              'You give ground: your opposition gets an opportunity to push their advantage',
-              'You struggle past the pain: mark a condition.',
-              'You boil your blood, healing your body as you take the blow. Spend 1 blood.',
+              "You lash out verbally: provoke a teammate to foolhardy action or take advantage of your influence to inflict a condition on them.",
+              "You give ground: your opposition gets an opportunity to push their advantage",
+              "You struggle past the pain: mark a condition.",
+              "You boil your blood, healing your body as you take the blow. Spend 1 blood.",
             ]}
           />
         </>
@@ -281,10 +292,10 @@ export const TakePowerfulBlow = ({ ranks }: { ranks: number }) => {
           <span>Choose 1</span>
           <ResultList
             results={[
-              'You must remove yourself from the situation, flee, pass out, etc.',
-              'You lose control of yourself or your powers in a terrible way',
-              'You boil your blood, healing your body as you take the blow. Spend 2 blood.',
-              'Two options from the 13-18 list',
+              "You must remove yourself from the situation, flee, pass out, etc.",
+              "You lose control of yourself or your powers in a terrible way",
+              "You boil your blood, healing your body as you take the blow. Spend 2 blood.",
+              "Two options from the 13-18 list",
             ]}
           />
         </>
@@ -300,12 +311,12 @@ const AssessSituation = ({ ranks }: { ranks: number }) => {
       ranks={-1}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>quickly gather your thoughts about what's happening</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#1864ab 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#1864ab 1px 0 10px" }}>
             <em>Intellect</em>
           </strong>
         </span>
@@ -316,9 +327,9 @@ const AssessSituation = ({ ranks }: { ranks: number }) => {
       <p>Take +1 forward while acting on the answers</p>
       <ResultList
         results={[
-          'What here can I use to ___?',
-          'What here is in the greatest danger?',
-          'How could we best end this quickly?',
+          "What here can I use to ___?",
+          "What here is in the greatest danger?",
+          "How could we best end this quickly?",
         ]}
       />
     </Move>
@@ -332,12 +343,12 @@ const ComfortOrSupport = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>comfort or support someone</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#5f3dc4 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#5f3dc4 1px 0 10px" }}>
             <em>Empathy</em>
           </strong>
           . On a hit, they hear you: they mark fate or clear a condition.
@@ -355,12 +366,12 @@ const EmotionalAnalysis = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>coldly analyze a person's emotions or psyche</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#5f3dc4 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#5f3dc4 1px 0 10px" }}>
             <em>Empathy</em>
           </strong>
           . On a hit, you gain insight on a piece of their mind. Ask one
@@ -372,10 +383,10 @@ const EmotionalAnalysis = ({ ranks }: { ranks: number }) => {
     >
       <ResultList
         results={[
-          'How do they feel about ___?',
-          'What are they really feeling right now?',
-          'How could I get them to ___?',
-          'What would be incredibly traumatic for them?',
+          "How do they feel about ___?",
+          "What are they really feeling right now?",
+          "How could I get them to ___?",
+          "What would be incredibly traumatic for them?",
         ]}
       />
     </Move>
@@ -389,12 +400,12 @@ const ProvokeSomeone = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>provoke someone into foolhardy action</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#5f3dc4 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#5f3dc4 1px 0 10px" }}>
             <em>Suggestion</em>
           </strong>
         </span>
@@ -405,18 +416,18 @@ const ProvokeSomeone = ({ ranks }: { ranks: number }) => {
         13-18, choose one.
         <ResultList
           results={[
-            'they stumble: you take +1 forward when taking advantage of it',
-            'they err: you gain a critical opportunity over them',
-            'they overreact: you gain Influence over them',
+            "they stumble: you take +1 forward when taking advantage of it",
+            "they err: you gain a critical opportunity over them",
+            "they overreact: you gain Influence over them",
           ]}
         />
       </p>
       <p>
-        For PCs: on a 10+, choose both. On a 13-18, choose one.{' '}
+        For PCs: on a 10+, choose both. On a 13-18, choose one.{" "}
         <ResultList
           results={[
-            'if they do it, add a Team to the pool',
-            'if they don’t do it, they mark a condition',
+            "if they do it, add a Team to the pool",
+            "if they don’t do it, they mark a condition",
           ]}
         />
       </p>
@@ -431,12 +442,12 @@ const MakeContact = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>socialize to make useful friends</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#5f3dc4 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#5f3dc4 1px 0 10px" }}>
             <em>Suggestion</em>
           </strong>
           . On a hit, you befriend someone who can help you.
@@ -455,12 +466,12 @@ const DiscernIntentions = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>understand the true intention of someone's words</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#1864ab 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#1864ab 1px 0 10px" }}>
             <em>Rhetoric</em>
           </strong>
         </span>
@@ -470,9 +481,9 @@ const DiscernIntentions = ({ ranks }: { ranks: number }) => {
     >
       <ResultList
         results={[
-          'What are you really planning?',
-          'What do you want me to do?',
-          'What do you intend to do?',
+          "What are you really planning?",
+          "What do you want me to do?",
+          "What do you intend to do?",
         ]}
       />
     </Move>
@@ -485,14 +496,14 @@ const Decieve = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>
               use your words to create misunderstandings or obscure the truth
             </em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#1864ab 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#1864ab 1px 0 10px" }}>
             <em>Rhetoric</em>
           </strong>
         </span>
@@ -503,10 +514,10 @@ const Decieve = ({ ranks }: { ranks: number }) => {
     >
       <ResultList
         results={[
-          'Drive a wedge between two people',
-          'Create a false impression',
-          'Make someone doubt their own senses',
-          'No one is the wiser',
+          "Drive a wedge between two people",
+          "Create a false impression",
+          "Make someone doubt their own senses",
+          "No one is the wiser",
         ]}
       />
     </Move>
@@ -520,12 +531,12 @@ const CheckItOut = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>learn more about a location by using your senses</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#2b8a3e 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#2b8a3e 1px 0 10px" }}>
             <em>Perception</em>
           </strong>
         </span>
@@ -538,8 +549,8 @@ const CheckItOut = ({ ranks }: { ranks: number }) => {
         results={[
           "What's my best way in/out/through?",
           "What's happened here recently?",
-          'What here is worth grabbing?',
-          'Who or what is not what they seem?',
+          "What here is worth grabbing?",
+          "Who or what is not what they seem?",
         ]}
       />
     </Move>
@@ -553,12 +564,12 @@ const Awareness = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>perceive something hidden from you</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#2b8a3e 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#2b8a3e 1px 0 10px" }}>
             <em>Perception</em>
           </strong>
           . Spend one blood as part of using this move.
@@ -570,9 +581,9 @@ const Awareness = ({ ranks }: { ranks: number }) => {
     >
       <ResultList
         results={[
-          'You see through an illusion or disguise',
-          'You act normally despite missing up to two of your senses',
-          'You use blood skillfully, refund the blood you spent',
+          "You see through an illusion or disguise",
+          "You act normally despite missing up to two of your senses",
+          "You use blood skillfully, refund the blood you spent",
           "You learn of the presence of something you can't detect",
         ]}
       />
@@ -587,12 +598,12 @@ const Order = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>bend someone to your will</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#5f3dc4 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#5f3dc4 1px 0 10px" }}>
             <em>Authority</em>
           </strong>
         </span>
@@ -603,10 +614,10 @@ const Order = ({ ranks }: { ranks: number }) => {
     >
       <ResultList
         results={[
-          'They do what you say',
-          'They get out of your way',
-          'They attack you at a disadvantage',
-          'They freeze',
+          "They do what you say",
+          "They get out of your way",
+          "They attack you at a disadvantage",
+          "They freeze",
         ]}
       />
     </Move>
@@ -620,12 +631,12 @@ const Lead = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>lead a group of people to accomplish a task</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#5f3dc4 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#5f3dc4 1px 0 10px" }}>
             <em>Authority</em>
           </strong>
         </span>
@@ -644,12 +655,12 @@ const RecallInformation = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>recall information you've learned in the past</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#1864ab 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#1864ab 1px 0 10px" }}>
             <em>Encyclopedia</em>
           </strong>
           . Tell the team one important detail you've learned from your studies.
@@ -669,12 +680,12 @@ const SeekKnowledge = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>recall who or where you might learn something from</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#1864ab 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#1864ab 1px 0 10px" }}>
             <em>Encyclopedia</em>
           </strong>
           .
@@ -694,12 +705,12 @@ const Intimidate = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>frighten someone</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#c92a2a 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#c92a2a 1px 0 10px" }}>
             <em>Menace</em>
           </strong>
           . On a hit, they are thrown off and make themselves vulnerable to you,
@@ -712,7 +723,7 @@ const Intimidate = ({ ranks }: { ranks: number }) => {
     >
       <ResultList
         results={[
-          'you frighten others you had not intended to',
+          "you frighten others you had not intended to",
           "you hurt someone or break something you shouldn't have",
           "you feel remorse for your actions, mark a condition (GM's choice)",
         ]}
@@ -728,12 +739,12 @@ const YourReputationPrecedesYou = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>return to civilization after a battle</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#c92a2a 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#c92a2a 1px 0 10px" }}>
             <em>Menace</em>
           </strong>
         </span>
@@ -752,12 +763,12 @@ const QuickHands = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>use tools that require fine motor skills</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#2b8a3e 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#2b8a3e 1px 0 10px" }}>
             <em>Interfacing</em>
           </strong>
         </span>
@@ -775,12 +786,12 @@ const Fabricate = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>create a device</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#2b8a3e 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#2b8a3e 1px 0 10px" }}>
             <em>Interfacing</em>
           </strong>
           . The GM will set a progress clock for the project, and you will fill
@@ -803,12 +814,12 @@ const DeftlyEngageAThreat = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>engage your opposition with precision and quick wits</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#2b8a3e 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#2b8a3e 1px 0 10px" }}>
             <em>Coordination</em>
           </strong>
           . On a hit, you trade blows
@@ -820,10 +831,10 @@ const DeftlyEngageAThreat = ({ ranks }: { ranks: number }) => {
     >
       <ResultList
         results={[
-          'you take something from them',
-          'you create an opportunity for your allies',
-          'you avoid their blows',
-          'you impress or surprise the opposition',
+          "you take something from them",
+          "you create an opportunity for your allies",
+          "you avoid their blows",
+          "you impress or surprise the opposition",
         ]}
       />
     </Move>
@@ -837,8 +848,8 @@ const Precision = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>engage a threat</em>
           </strong>
           , you may add the following to the list of options on a full hit:
@@ -846,7 +857,7 @@ const Precision = ({ ranks }: { ranks: number }) => {
       }
     >
       <ResultList
-        results={['you exploit an exposed weakness', 'you remain undetected']}
+        results={["you exploit an exposed weakness", "you remain undetected"]}
       />
     </Move>
   );
@@ -859,12 +870,12 @@ const FerociouslyEngageAThreat = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>engage your opposition with overwhelming force and skill</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#c92a2a 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#c92a2a 1px 0 10px" }}>
             <em>Execution</em>
           </strong>
           . On a hit, you trade blows.
@@ -876,10 +887,10 @@ const FerociouslyEngageAThreat = ({ ranks }: { ranks: number }) => {
     >
       <ResultList
         results={[
-          'you avoid their blows',
-          'you deliver a devastating blow',
-          'you impress or frighten the oppositon',
-          'you force them where you want them',
+          "you avoid their blows",
+          "you deliver a devastating blow",
+          "you impress or frighten the oppositon",
+          "you force them where you want them",
         ]}
       />
     </Move>
@@ -893,12 +904,12 @@ const Demolition = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>destroy an object or your environment</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#c92a2a 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#c92a2a 1px 0 10px" }}>
             <em>Execution</em>
           </strong>
         </span>
@@ -909,10 +920,10 @@ const Demolition = ({ ranks }: { ranks: number }) => {
     >
       <ResultList
         results={[
-          'you make something inaccessible or unusable',
-          'you isolate something or someone',
-          'you expose a weakness or vulnerability',
-          'you exploit an exposed weakness or vulnerability',
+          "you make something inaccessible or unusable",
+          "you isolate something or someone",
+          "you expose a weakness or vulnerability",
+          "you exploit an exposed weakness or vulnerability",
         ]}
       />
     </Move>
@@ -926,12 +937,12 @@ const PutThePiecesTogether = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>forsee the situation's chain of cause/effect</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#1864ab 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#1864ab 1px 0 10px" }}>
             <em>Logic</em>
           </strong>
         </span>
@@ -943,7 +954,7 @@ const PutThePiecesTogether = ({ ranks }: { ranks: number }) => {
       <ResultList
         results={[
           "if I do nothing, what's most likely to happen?",
-          'how would ___ react to ___?',
+          "how would ___ react to ___?",
           "what's the key to the enemy's plan?",
         ]}
       />
@@ -957,12 +968,12 @@ const Investigate = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>spend time investigating something</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#1864ab 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#1864ab 1px 0 10px" }}>
             <em>Logic</em>
           </strong>
         </span>
@@ -973,9 +984,9 @@ const Investigate = ({ ranks }: { ranks: number }) => {
     >
       <ResultList
         results={[
-          'you find a critical location',
-          'you find a critical clue',
-          'you find a critical person',
+          "you find a critical location",
+          "you find a critical clue",
+          "you find a critical person",
           "you aren't noticed",
         ]}
       />
@@ -990,12 +1001,12 @@ const Rouse = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>use your words to inspire someone</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#1864ab 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#1864ab 1px 0 10px" }}>
             <em>Drama</em>
           </strong>
           . On a hit, your words stir them: they get +1 forward
@@ -1013,12 +1024,12 @@ const MakeWaves = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>use your words to spread information</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#1864ab 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#1864ab 1px 0 10px" }}>
             <em>Drama</em>
           </strong>
           . On a hit, your words spread and people listen: you get +1 forward to
@@ -1038,12 +1049,12 @@ const WorkOfArt = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>create a piece of art</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#1864ab 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#1864ab 1px 0 10px" }}>
             <em>Conceptualization</em>
           </strong>
           . On a hit, you create a piece of art significant to you or someone
@@ -1063,14 +1074,14 @@ const DecypherAesthetic = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>
               attentively observe someone's art or form of personal expression
             </em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#1864ab 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#1864ab 1px 0 10px" }}>
             <em>Conceptualization</em>
           </strong>
           .
@@ -1082,10 +1093,10 @@ const DecypherAesthetic = ({ ranks }: { ranks: number }) => {
     >
       <ResultList
         results={[
-          'How do they want to be regarded by others?',
-          'What sort of background do they have?',
-          'What emotions do they want to evoke in others?',
-          'What piece of themselves do they want to hide from others?',
+          "How do they want to be regarded by others?",
+          "What sort of background do they have?",
+          "What emotions do they want to evoke in others?",
+          "What piece of themselves do they want to hide from others?",
         ]}
       />
     </Move>
@@ -1099,12 +1110,12 @@ const ShrewdlyEngageAThreat = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>engage your opposition with tactics and careful planning</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#1864ab 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#1864ab 1px 0 10px" }}>
             <em>Visual Calculus</em>
           </strong>
           . On a hit, you trade blows.
@@ -1116,10 +1127,10 @@ const ShrewdlyEngageAThreat = ({ ranks }: { ranks: number }) => {
     >
       <ResultList
         results={[
-          'you avoid their blows',
-          'you impress or confuse the opposition',
-          'you disrupt the enemy’s plans',
-          'you set up your next move, take +1 forward to it',
+          "you avoid their blows",
+          "you impress or confuse the opposition",
+          "you disrupt the enemy’s plans",
+          "you set up your next move, take +1 forward to it",
         ]}
       />
     </Move>
@@ -1133,12 +1144,12 @@ const PhysicalAnalysis = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>carefully observe a structure or physical phenomenon</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#1864ab 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#1864ab 1px 0 10px" }}>
             <em>Visual Calculus</em>
           </strong>
           .
@@ -1150,10 +1161,10 @@ const PhysicalAnalysis = ({ ranks }: { ranks: number }) => {
     >
       <ResultList
         results={[
-          'What is it made of?',
-          'How could it be weakened/strengthened?',
-          'How could it be used to my advantage?',
-          'What is its purpose?',
+          "What is it made of?",
+          "How could it be weakened/strengthened?",
+          "How could it be used to my advantage?",
+          "What is its purpose?",
         ]}
       />
     </Move>
@@ -1167,12 +1178,12 @@ const WeildDonum = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>skillfully weild your powers</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#5f3dc4 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#5f3dc4 1px 0 10px" }}>
             <em>Volition</em>
           </strong>
           . Spend a donum as part of using this move. On a hit, you do it.
@@ -1184,9 +1195,9 @@ const WeildDonum = ({ ranks }: { ranks: number }) => {
           <ResultList
             results={[
               "it doesn't cost significant energy, regain a donum",
-              'take hold of something vulnerable to you',
-              'create something useful from your environment',
-              'neutralize an opponent or threat... for now',
+              "take hold of something vulnerable to you",
+              "create something useful from your environment",
+              "neutralize an opponent or threat... for now",
             ]}
           />
         </>
@@ -1203,12 +1214,12 @@ const ResistTemptation = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>resist an addiction, fascination, or temptation</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#5f3dc4 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#5f3dc4 1px 0 10px" }}>
             <em>Volition</em>
           </strong>
           . On a hit, you resist.
@@ -1227,12 +1238,12 @@ const ReadTheRoom = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>assess the social forces at play</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#5f3dc4 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#5f3dc4 1px 0 10px" }}>
             <em>Contemporary</em>
           </strong>
           . On a hit, ask one. The GM will answer honestly.
@@ -1244,9 +1255,9 @@ const ReadTheRoom = ({ ranks }: { ranks: number }) => {
       <ResultList
         results={[
           "what's the biggest threat?",
-          'how could I gain influence over ___?',
-          'who is really in charge here?',
-          'how can I avoid trouble or hide here?',
+          "how could I gain influence over ___?",
+          "who is really in charge here?",
+          "how can I avoid trouble or hide here?",
         ]}
       />
     </Move>
@@ -1260,12 +1271,12 @@ const SeekAssets = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>look for something specific and hard to find</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#5f3dc4 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#5f3dc4 1px 0 10px" }}>
             <em>Contemporary</em>
           </strong>
           . On a hit, you find something useful and specific to your current
@@ -1295,12 +1306,12 @@ const LookInward = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>seek to understand the root of your emotions</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#5f3dc4 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#5f3dc4 1px 0 10px" }}>
             <em>Introspection</em>
           </strong>
           . On a hit, pick a condition; the GM will tell you a constructive way
@@ -1321,12 +1332,12 @@ const EmbraceTheAngst = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>use your negative emotions to empower your donum</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#5f3dc4 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#5f3dc4 1px 0 10px" }}>
             <em>Introspection</em>
           </strong>
         </span>
@@ -1337,9 +1348,9 @@ const EmbraceTheAngst = ({ ranks }: { ranks: number }) => {
           Take +1 forward to your next Unleash Your Donum roll. Choose 1:
           <ResultList
             results={[
-              'You take a condition',
-              'You escalate the situation',
-              'You have an emotional breakdown, lose influence over someone who sees you',
+              "You take a condition",
+              "You escalate the situation",
+              "You have an emotional breakdown, lose influence over someone who sees you",
             ]}
           />
         </span>
@@ -1356,12 +1367,12 @@ const WithstandAPowerfulBlow = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>take a powerful blow straight on</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#c92a2a 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#c92a2a 1px 0 10px" }}>
             <em>Stoicism</em>
           </strong>
         </span>
@@ -1373,8 +1384,8 @@ const WithstandAPowerfulBlow = ({ ranks }: { ranks: number }) => {
           <ResultList
             results={[
               "You don't flinch, and shock the opposition: take +1 forward against them. Spend two blood or mark two conditions.",
-              'You keep moving despite the blow, repositioning yourself to your advantage. Spend two blood or mark two conditions.',
-              'You stand strong despite the pain: add 1 to the team pool. Spend two blood or mark two conditions.',
+              "You keep moving despite the blow, repositioning yourself to your advantage. Spend two blood or mark two conditions.",
+              "You stand strong despite the pain: add 1 to the team pool. Spend two blood or mark two conditions.",
             ]}
           />
         </>
@@ -1384,10 +1395,10 @@ const WithstandAPowerfulBlow = ({ ranks }: { ranks: number }) => {
           <span>Choose 1</span>
           <ResultList
             results={[
-              'You buckle under the blow: spend two blood or mark two conditions.',
+              "You buckle under the blow: spend two blood or mark two conditions.",
               "You're knocked back and off balance: take -1 forward and mark a condition.",
               "You're seriously injured: maimed, broken, or otherwise disabled, your choice.",
-              'Two options from the 13-18 list',
+              "Two options from the 13-18 list",
             ]}
           />
         </>
@@ -1403,12 +1414,12 @@ const EndureThePain = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>steel yourself against severe pain</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#c92a2a 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#c92a2a 1px 0 10px" }}>
             <em>Stoicism</em>
           </strong>
           . On a hit, you can ignore the pain for a while. Pick a condition; you
@@ -1428,12 +1439,12 @@ const PushYourBody = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>perform a feat of strength or overcome a physical obstacle</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#c92a2a 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#c92a2a 1px 0 10px" }}>
             <em>Endurance</em>
           </strong>
           . On a hit, you do it.
@@ -1451,12 +1462,12 @@ const NeverStop = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>would take a powerful blow while your death flag is raised</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#c92a2a 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#c92a2a 1px 0 10px" }}>
             <em>Endurance</em>
           </strong>
         </span>
@@ -1475,12 +1486,12 @@ const ShrugItOff = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>withstand an enironmental or internal ailment</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#c92a2a 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#c92a2a 1px 0 10px" }}>
             <em>Impunity</em>
           </strong>
           . On a hit, your body handles it, no sweat.
@@ -1499,12 +1510,12 @@ const BloodSurge = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>use blood to enhance your body far beyond human norms</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#c92a2a 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#c92a2a 1px 0 10px" }}>
             <em>Impunity</em>
           </strong>
           . Spend two blood as part of using this move.
@@ -1517,10 +1528,10 @@ const BloodSurge = ({ ranks }: { ranks: number }) => {
       <ResultList
         results={[
           "You don't take harm from the strain",
-          'You gain superhuman strength, speed, or endurance',
-          'You gain superhuman senses or reflexes',
-          'You gain superhuman toughness or resilience',
-          'You gain superhumanly quick thinking',
+          "You gain superhuman strength, speed, or endurance",
+          "You gain superhuman senses or reflexes",
+          "You gain superhuman toughness or resilience",
+          "You gain superhumanly quick thinking",
         ]}
       />
     </Move>
@@ -1534,12 +1545,12 @@ const TakeTheInitiative = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>react to a dramatic change in situation or environment</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#2b8a3e 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#2b8a3e 1px 0 10px" }}>
             <em>Reaction</em>
           </strong>
         </span>
@@ -1550,10 +1561,10 @@ const TakeTheInitiative = ({ ranks }: { ranks: number }) => {
     >
       <ResultList
         results={[
-          'you act before anyone else has a chance to react',
-          'you add a Team to the pool',
-          'you gain an opportunity or opening',
-          'you avoid danger',
+          "you act before anyone else has a chance to react",
+          "you add a Team to the pool",
+          "you gain an opportunity or opening",
+          "you avoid danger",
         ]}
       />
     </Move>
@@ -1567,12 +1578,12 @@ const ConserveAndProtect = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>remain guarded rather than get aggressive</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#2b8a3e 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#2b8a3e 1px 0 10px" }}>
             <em>Reaction</em>
           </strong>
         </span>
@@ -1585,9 +1596,9 @@ const ConserveAndProtect = ({ ranks }: { ranks: number }) => {
       spend 2 hold to act as if you had rolled a 20:
       <ResultList
         results={[
-          'defend someone else',
-          'avoid danger',
-          'act on an opportunity or opening',
+          "defend someone else",
+          "avoid danger",
+          "act on an opportunity or opening",
         ]}
       />
     </Move>
@@ -1601,12 +1612,12 @@ const TraverseTreacherousGround = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>traverse treacherous ground</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#2b8a3e 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#2b8a3e 1px 0 10px" }}>
             <em>Grace</em>
           </strong>
         </span>
@@ -1624,12 +1635,12 @@ const LeaveNoTrace = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>leave no trace of your passing</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#2b8a3e 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#2b8a3e 1px 0 10px" }}>
             <em>Grace</em>
           </strong>
         </span>
@@ -1648,14 +1659,14 @@ const KeepYourCool = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>
               stay focused despite a dramatic change in situation or environment
             </em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#2b8a3e 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#2b8a3e 1px 0 10px" }}>
             <em>Composure</em>
           </strong>
         </span>
@@ -1666,10 +1677,10 @@ const KeepYourCool = ({ ranks }: { ranks: number }) => {
     >
       <ResultList
         results={[
-          'you reassure someone, they clear a condition',
-          'you impress, surprise, or frighten someone',
-          'you deny the opposition an opportunity or opening',
-          'mark power',
+          "you reassure someone, they clear a condition",
+          "you impress, surprise, or frighten someone",
+          "you deny the opposition an opportunity or opening",
+          "mark power",
         ]}
       />
     </Move>
@@ -1683,12 +1694,12 @@ const Inscrutable = ({ ranks }: { ranks: number }) => {
       ranks={ranks}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>keep your true intentions hidden</em>
           </strong>
-          , roll +{' '}
-          <strong style={{ textShadow: '#2b8a3e 1px 0 10px' }}>
+          , roll +{" "}
+          <strong style={{ textShadow: "#2b8a3e 1px 0 10px" }}>
             <em>Composure</em>
           </strong>
           . On a hit, you're able to keep your intentions hidden.
@@ -1699,9 +1710,9 @@ const Inscrutable = ({ ranks }: { ranks: number }) => {
     >
       <ResultList
         results={[
-          'you gain insight into someone trying to read you',
-          'your opposition is unsettled or frightened',
-          'you provoke someone into taking foolhardy action',
+          "you gain insight into someone trying to read you",
+          "your opposition is unsettled or frightened",
+          "you provoke someone into taking foolhardy action",
         ]}
       />
     </Move>
@@ -1715,8 +1726,8 @@ const RaiseTheDeathFlag = ({ ranks }: { ranks: number }) => {
       ranks={-1}
       preface={
         <span>
-          When you{' '}
-          <strong style={{ textShadow: '#FC0 1px 0 10px' }}>
+          When you{" "}
+          <strong style={{ textShadow: "#FC0 1px 0 10px" }}>
             <em>put your life on the line in a bad situation</em>
           </strong>
           , add 2 Team to the pool and raise your death flag. While raised, you
@@ -1730,60 +1741,60 @@ const RaiseTheDeathFlag = ({ ranks }: { ranks: number }) => {
 };
 
 const Moves = new Map([
-  ['Gut Check', GutCheck],
-  ['Impulse', Impulse],
-  ['Unleash Donum', UnleashDonum],
-  ['New Donum Application', NewDonumApplication],
-  ['Directly Engage a Threat', DirectlyEngageThreat],
-  ['Defend', Defend],
-  ['Take a Powerful Blow', TakePowerfulBlow],
-  ['Assess the Situation', AssessSituation],
-  ['Comfort or Support', ComfortOrSupport],
-  ['Emotional Analysis', EmotionalAnalysis],
-  ['Provoke Someone', ProvokeSomeone],
-  ['Make Contact', MakeContact],
-  ['Discern Intentions', DiscernIntentions],
-  ['Decieve', Decieve],
-  ['Check it Out', CheckItOut],
-  ['Awareness', Awareness],
-  ['Order', Order],
-  ['Lead', Lead],
-  ['Recall Information', RecallInformation],
-  ['Seek Knowledge', SeekKnowledge],
-  ['Intimidate', Intimidate],
-  ['Your Reputation Preceeds You', YourReputationPrecedesYou],
-  ['Quick Hands', QuickHands],
-  ['Fabricate', Fabricate],
-  ['Deftly Engage a Threat', DeftlyEngageAThreat],
-  ['Precision', Precision],
-  ['Ferociously Engage a Threat', FerociouslyEngageAThreat],
-  ['Demolition', Demolition],
-  ['Put the Pieces Together', PutThePiecesTogether],
-  ['Investigate', Investigate],
-  ['Rouse', Rouse],
-  ['Make Waves', MakeWaves],
-  ['Work of Art', WorkOfArt],
-  ['Decypher Aesthetic', DecypherAesthetic],
-  ['Shrewdly Engage a Threat', ShrewdlyEngageAThreat],
-  ['Physical Analysis', PhysicalAnalysis],
-  ['Weild your Donum', WeildDonum],
-  ['Resist Temptation', ResistTemptation],
-  ['Read the Room', ReadTheRoom],
-  ['Seek Assets', SeekAssets],
-  ['Look Inward', LookInward],
-  ['Embrace the Angst', EmbraceTheAngst],
-  ['Withstand a Powerful Blow', WithstandAPowerfulBlow],
-  ['Endure the Pain', EndureThePain],
-  ['Push your Body', PushYourBody],
-  ['Never Stop', NeverStop],
-  ['Shrug it Off', ShrugItOff],
-  ['Blood Surge', BloodSurge],
-  ['Take the Initiative', TakeTheInitiative],
-  ['Conserve and Protect', ConserveAndProtect],
-  ['Traverse Treacherous Ground', TraverseTreacherousGround],
-  ['Leave No Trace', LeaveNoTrace],
-  ['Keep your Cool', KeepYourCool],
-  ['Inscrutable', Inscrutable],
-  ['Raise the Death Flag', RaiseTheDeathFlag],
+  ["Gut Check", GutCheck],
+  ["Impulse", Impulse],
+  ["Unleash Donum", UnleashDonum],
+  ["New Donum Application", NewDonumApplication],
+  ["Directly Engage a Threat", DirectlyEngageThreat],
+  ["Defend", Defend],
+  ["Take a Powerful Blow", TakePowerfulBlow],
+  ["Assess the Situation", AssessSituation],
+  ["Comfort or Support", ComfortOrSupport],
+  ["Emotional Analysis", EmotionalAnalysis],
+  ["Provoke Someone", ProvokeSomeone],
+  ["Make Contact", MakeContact],
+  ["Discern Intentions", DiscernIntentions],
+  ["Decieve", Decieve],
+  ["Check it Out", CheckItOut],
+  ["Awareness", Awareness],
+  ["Order", Order],
+  ["Lead", Lead],
+  ["Recall Information", RecallInformation],
+  ["Seek Knowledge", SeekKnowledge],
+  ["Intimidate", Intimidate],
+  ["Your Reputation Preceeds You", YourReputationPrecedesYou],
+  ["Quick Hands", QuickHands],
+  ["Fabricate", Fabricate],
+  ["Deftly Engage a Threat", DeftlyEngageAThreat],
+  ["Precision", Precision],
+  ["Ferociously Engage a Threat", FerociouslyEngageAThreat],
+  ["Demolition", Demolition],
+  ["Put the Pieces Together", PutThePiecesTogether],
+  ["Investigate", Investigate],
+  ["Rouse", Rouse],
+  ["Make Waves", MakeWaves],
+  ["Work of Art", WorkOfArt],
+  ["Decypher Aesthetic", DecypherAesthetic],
+  ["Shrewdly Engage a Threat", ShrewdlyEngageAThreat],
+  ["Physical Analysis", PhysicalAnalysis],
+  ["Weild your Donum", WeildDonum],
+  ["Resist Temptation", ResistTemptation],
+  ["Read the Room", ReadTheRoom],
+  ["Seek Assets", SeekAssets],
+  ["Look Inward", LookInward],
+  ["Embrace the Angst", EmbraceTheAngst],
+  ["Withstand a Powerful Blow", WithstandAPowerfulBlow],
+  ["Endure the Pain", EndureThePain],
+  ["Push your Body", PushYourBody],
+  ["Never Stop", NeverStop],
+  ["Shrug it Off", ShrugItOff],
+  ["Blood Surge", BloodSurge],
+  ["Take the Initiative", TakeTheInitiative],
+  ["Conserve and Protect", ConserveAndProtect],
+  ["Traverse Treacherous Ground", TraverseTreacherousGround],
+  ["Leave No Trace", LeaveNoTrace],
+  ["Keep your Cool", KeepYourCool],
+  ["Inscrutable", Inscrutable],
+  ["Raise the Death Flag", RaiseTheDeathFlag],
 ]);
 export default Moves;
