@@ -213,8 +213,8 @@ export default function Sidebar({ children }: SidebarProps) {
         <div
           className={`p-2 prose max-w-none lg:prose-xl prose-p:ml-4 prose-p:my-3 ${
             theme === 'light'
-              ? 'prose-stone prose-h1:text-red-950 prose-h2:text-red-950 prose-h3:text-red-950'
-              : 'prose-h1:text-red-900 prose-h2:text-red-900 prose-invert prose-h3:text-red-900'
+              ? 'prose-stone prose-h1:text-red-950 prose-h2:text-red-950 prose-h3:text-red-950 prose-h4:text-red-950'
+              : 'prose-h1:text-red-900 prose-h2:text-red-900 prose-invert prose-h3:text-red-900 prose-h4:text-red-900'
           }`}
         >
           {children}
