@@ -6,7 +6,6 @@ export default function Gredora() {
     <>
       <h1>Gredora</h1>
       <h2>Nomad Armies</h2>
-
       <div className="flex flex-row gap-2">
         <div className="w-1/2">
           <p>
@@ -23,14 +22,17 @@ export default function Gredora() {
         <div className="w-1/2 h-fit p-4 bg-rose-950 div-2 box-border border-t-2 border-b-2 text-white">
           <h6>The Failed Empire</h6>
           <p>
-            <strong>Gredora</strong> is a shadow of its former power. The elders
-            recount what their forefathers told them about the glory of{' '}
-            <strong>Gredora</strong> in years past, about how{' '}
-            <strong>Gredora</strong> was everything from the volcanic mounts all
-            the way to the edge of the <strong>Titan Pines</strong>.{' '}
-            <strong>Gredorans</strong> yearn for those days, and they quietly
-            resolve it within themselves to bring back the might of their
-            people, to be known as the most powerful people once again.
+            <strong className="text-white">Gredora</strong> is a shadow of its
+            former power. The elders recount what their forefathers told them
+            about the glory of <strong className="text-white">Gredora</strong>{' '}
+            in years past, about how{' '}
+            <strong className="text-white">Gredora</strong> was everything from
+            the volcanic mounts all the way to the edge of the{' '}
+            <strong className="text-white">Titan Pines</strong>.{' '}
+            <strong className="text-white">Gredorans</strong> yearn for those
+            days, and they quietly resolve it within themselves to bring back
+            the might of their people, to be known as the most powerful people
+            once again.
           </p>
         </div>
       </div>
@@ -44,16 +46,16 @@ export default function Gredora() {
       <div className="flex flex-row gap-2 p-4 bg-slate-900 div-2 box-border border-t-2 border-b-2 text-white">
         <div className="w-1/2">
           <p>
-            Paradoxically, while <strong>Gredora</strong> as a people have been
-            crippled in the wake of the <strong>Departure</strong>, their
-            descendants have become flushed with power of new variety and
-            strengths.
+            Paradoxically, while <strong className="text-white">Gredora</strong>{' '}
+            as a people have been crippled in the wake of the{' '}
+            <strong className="text-white">Departure</strong>, their descendants
+            have become flushed with power of new variety and strengths.
           </p>
           <p>
-            <strong>Gredora</strong> is still a culture of metal and fire, but
-            the addition of <Donum>Donum Sangius</Donum> and especially{' '}
-            <Donum>Donum Ira</Donum> is troubling to many - what is to become of
-            a culture obsessed with rage and blood?
+            <strong className="text-white">Gredora</strong> is still a culture
+            of metal and fire, but the addition of <Donum>Donum Sangius</Donum>{' '}
+            and especially <Donum>Donum Ira</Donum> is troubling to many - what
+            is to become of a culture obsessed with rage and blood?
           </p>
         </div>
         <div className="w-1/2">

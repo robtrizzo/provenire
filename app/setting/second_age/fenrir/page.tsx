@@ -41,9 +41,9 @@ export default function Fenrir() {
             The <em>Donums</em> of old have faded, and the beasts of the night
             are closing in, sensing weakness in their prey across the world. Men
             now huddle in their settlements, fortifying themselves with numbers
-            and walls. But not in <strong>Fenrir</strong>. Rather than cower,
-            they became the beasts themselves, but more savage, more ruthless,
-            more monstrous than ever before.
+            and walls. But not in <strong className="text-white">Fenrir</strong>
+            . Rather than cower, they became the beasts themselves, but more
+            savage, more ruthless, more monstrous than ever before.
           </p>
         </div>
       </div>
@@ -170,13 +170,15 @@ export default function Fenrir() {
         <div className="w-1/2 h-fit p-4 bg-slate-900 div-2 box-border border-t-2 border-b-2 text-white">
           <h6>The King's Leniency</h6>
           <p>
-            Generations after siezing territory from <strong>Cumeria</strong>,
-            new transformations began to be more frequent, but not just
-            abberations like those of <Donum>Exsecratus Portentum</Donum>.{' '}
-            <strong>Kingwulf</strong> declared the two most common of the new
-            transformations to be part of his empire. To be under{' '}
-            <strong>Kingwulf's</strong> rule and protection, but never to be on
-            equal standing with the <Donum>Donum Lupus</Donum>.
+            Generations after siezing territory from{' '}
+            <strong className="text-white">Cumeria</strong>, new transformations
+            began to be more frequent, but not just abberations like those of{' '}
+            <Donum>Exsecratus Portentum</Donum>.{' '}
+            <strong className="text-white">Kingwulf</strong> declared the two
+            most common of the new transformations to be part of his empire. To
+            be under <strong className="text-white">Kingwulf's</strong> rule and
+            protection, but never to be on equal standing with the{' '}
+            <Donum>Donum Lupus</Donum>.
           </p>
           <ul className="list-none">
             <li>

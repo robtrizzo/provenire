@@ -27,8 +27,9 @@ export default function Anidine() {
           <p>
             Anidine was once the world's greatest empire, forged from two
             peoples who could not despise each other more. After the{' '}
-            <strong>New Gods'</strong> departure, these two peoples wished for a
-            return to the old ways. <strong>Anidine's</strong> King at the time
+            <strong className="text-white">New Gods'</strong> departure, these
+            two peoples wished for a return to the old ways.{' '}
+            <strong className="text-white">Anidine's</strong> King at the time
             was only strong enough to hold onto a small portion of its previous
             borders.
           </p>
@@ -68,12 +69,13 @@ export default function Anidine() {
         <div className="w-1/2 h-fit p-4 bg-slate-900 div-2 box-border border-t-2 border-b-2 text-white">
           <h6>Gifts of Unity</h6>
           <p>
-            The intermingling of <strong>Cumerian</strong> and{' '}
-            <strong>Gredoran</strong> families allowed many of the worlds
-            strongest <em>Donums</em> to intertwine in delightful and terrifying
-            ways. Where it's not common, it's not unheard of for{' '}
-            <strong>Anidinian</strong> children to be blessed with some of both
-            culture's historic powers.
+            The intermingling of{' '}
+            <strong className="text-white">Cumerian</strong> and{' '}
+            <strong className="text-white">Gredoran</strong> families allowed
+            many of the worlds strongest <em>Donums</em> to intertwine in
+            delightful and terrifying ways. Where it's not common, it's not
+            unheard of for <strong className="text-white">Anidinian</strong>{' '}
+            children to be blessed with some of both culture's historic powers.
           </p>
           <ul className="list-none">
             <li>

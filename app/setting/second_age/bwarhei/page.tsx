@@ -27,11 +27,12 @@ export default function Bwarhei() {
           <h6>Vengeance</h6>
           <p>
             Long have the inheritors of <Donum>Donum Portentum</Donum> suffered
-            under the genocide of the <strong>Rathi</strong>, and now{' '}
-            <strong>Fenrir</strong>. From the ferocity of their forefathers, now
-            the monsters have home, a sanctuary from the jaws of the wolf. And
-            soon will be the day to show them the suffering of a hundred
-            generations.
+            under the genocide of the{' '}
+            <strong className="text-white">Rathi</strong>, and now{' '}
+            <strong className="text-white">Fenrir</strong>. From the ferocity of
+            their forefathers, now the monsters have home, a sanctuary from the
+            jaws of the wolf. And soon will be the day to show them the
+            suffering of a hundred generations.
           </p>
         </div>
       </div>

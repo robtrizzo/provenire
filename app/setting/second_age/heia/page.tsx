@@ -55,20 +55,24 @@ export default function Heia() {
             </p>
             <ul className="list-none">
               <li>
-                <strong>Vagabondi</strong>: <strong>Narscillian</strong> and{' '}
-                <strong>Gredoran</strong>
+                <strong className="text-white">Vagabondi</strong>:{' '}
+                <strong className="text-white">Narscillian</strong> and{' '}
+                <strong className="text-white">Gredoran</strong>
               </li>
               <li>
-                <strong>Tochi</strong>: <strong>Toran</strong> and{' '}
-                <strong>Kilder</strong>
+                <strong className="text-white">Tochi</strong>:{' '}
+                <strong className="text-white">Toran</strong> and{' '}
+                <strong className="text-white">Kilder</strong>
               </li>
               <li>
-                <strong>San</strong>: <strong>Toran</strong> and{' '}
-                <strong>Gredoran</strong>
+                <strong className="text-white">San</strong>:{' '}
+                <strong className="text-white">Toran</strong> and{' '}
+                <strong className="text-white">Gredoran</strong>
               </li>
               <li>
-                <strong>Rasquia</strong>: <strong>Narscillian</strong> and{' '}
-                <strong>Kilder</strong>
+                <strong className="text-white">Rasquia</strong>:{' '}
+                <strong className="text-white">Narscillian</strong> and{' '}
+                <strong className="text-white">Kilder</strong>
               </li>
             </ul>
           </div>

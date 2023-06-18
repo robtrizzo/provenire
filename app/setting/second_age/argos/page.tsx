@@ -72,25 +72,30 @@ export default function Argos() {
         <div className="w-1/2 h-fit p-4 bg-rose-950 div-2 box-border border-t-2 border-b-2 text-white">
           <h6>The Isolation War</h6>
           <p>
-            After the departure of the <strong>New Gods</strong>, the nobility
-            of <strong>Helix</strong> made their move. For years they had been
-            planning in secret a way to drive foreigners out of their shining
-            city.
+            After the departure of the{' '}
+            <strong className="text-white">New Gods</strong>, the nobility of{' '}
+            <strong className="text-white">Helix</strong> made their move. For
+            years they had been planning in secret a way to drive foreigners out
+            of their shining city.
           </p>
           <p>
-            And on one <strong>Drinking Day</strong>, they poisoned the entire
-            well which the foreign peoples and their local leaders drank from.
-            Yes, many <strong>Arborian</strong> <strong>Helix</strong> citizens
-            died as well, but it was worth the result.
+            And on one <strong className="text-white">Drinking Day</strong>,
+            they poisoned the entire well which the foreign peoples and their
+            local leaders drank from. Yes, many{' '}
+            <strong className="text-white">Arborian</strong>{' '}
+            <strong className="text-white">Helix</strong> citizens died as well,
+            but it was worth the result.
           </p>
           <p>
-            With foreign powers in <strong>Helix</strong> decimated, the{' '}
-            <strong>Arborian</strong> leadership easily forced all foreign
-            peoples out of the city - including those of rural{' '}
-            <strong>Arboria</strong>. In a century long conflict,{' '}
-            <strong>Argos</strong> eventually won, establishing its border
-            entirely enveloped by their own people they scorned - which became
-            the nation of <strong>Kipos</strong>.
+            With foreign powers in <strong className="text-white">Helix</strong>{' '}
+            decimated, the <strong className="text-white">Arborian</strong>{' '}
+            leadership easily forced all foreign peoples out of the city -
+            including those of rural{' '}
+            <strong className="text-white">Arboria</strong>. In a century long
+            conflict, <strong className="text-white">Argos</strong> eventually
+            won, establishing its border entirely enveloped by their own people
+            they scorned - which became the nation of{' '}
+            <strong className="text-white">Kipos</strong>.
           </p>
         </div>
       </div>
@@ -178,10 +183,12 @@ export default function Argos() {
           <h6>Gifts of Antiquity</h6>
           <p>
             The world is so different since the last age. Nations, landscapes,
-            cultures, the very nature of <em>Donums</em>. <strong>Argos</strong>{' '}
-            rejected this change, clinging to the old ways. The{' '}
-            <strong>Argosi</strong> houses have succeeded in some ways. The{' '}
-            <em>Donums</em> of yore still run in their families' veins.
+            cultures, the very nature of <em>Donums</em>.{' '}
+            <strong className="text-white">Argos</strong> rejected this change,
+            clinging to the old ways. The{' '}
+            <strong className="text-white">Argosi</strong> houses have succeeded
+            in some ways. The <em>Donums</em> of yore still run in their
+            families' veins.
           </p>
           <ul className="list-none">
             <li>

@@ -35,20 +35,24 @@ export default function Cumeria() {
         <div className="w-1/2 h-fit p-4 bg-rose-950 div-2 box-border border-t-2 border-b-2 text-white">
           <h6>Conserve and Defend</h6>
           <p>
-            Despite the named wars being over, the <strong>Cumerian</strong>{' '}
-            tribes still fight vigorously to keep what land they have left.{' '}
-            <strong>Fenrir's</strong> beasts to the South,{' '}
-            <strong>Anidine's</strong> war-hungry nobility to the North,{' '}
-            <strong>Bwarhein</strong> monsters to the East.{' '}
-            <strong>Cumeria</strong> has been in a difficult position for a long
-            time. But even with this, the tribal leaders have forever failed to
-            form a meaningful alliance to fight hteir enemies on a united front.
-            Conflicts between tribes, long blood feuds, and a general dispassion
-            for the troubles of other tibes: the very things{' '}
-            <strong>Asherah the Healer</strong> had taught them to overcome were
-            the things bringing them to ruin. The people of the northern and
-            southern tribes pray for the day a united <strong>Cumeria</strong>{' '}
-            comes, so that they may know a life without war.
+            Despite the named wars being over, the{' '}
+            <strong className="text-white">Cumerian</strong> tribes still fight
+            vigorously to keep what land they have left.{' '}
+            <strong className="text-white">Fenrir's</strong> beasts to the
+            South, <strong className="text-white">Anidine's</strong> war-hungry
+            nobility to the North,{' '}
+            <strong className="text-white">Bwarhein</strong> monsters to the
+            East. <strong className="text-white">Cumeria</strong> has been in a
+            difficult position for a long time. But even with this, the tribal
+            leaders have forever failed to form a meaningful alliance to fight
+            hteir enemies on a united front. Conflicts between tribes, long
+            blood feuds, and a general dispassion for the troubles of other
+            tibes: the very things{' '}
+            <strong className="text-white">Asherah the Healer</strong> had
+            taught them to overcome were the things bringing them to ruin. The
+            people of the northern and southern tribes pray for the day a united{' '}
+            <strong className="text-white">Cumeria</strong> comes, so that they
+            may know a life without war.
           </p>
         </div>
       </div>
@@ -79,7 +83,8 @@ export default function Cumeria() {
         <div className="w-1/2 h-fit p-4 bg-slate-900 div-2 box-border border-t-2 border-b-2 text-white">
           <h6>Season of Power</h6>
           <p>
-            One of the many ways the <strong>New Gods</strong> changed the world
+            One of the many ways the{' '}
+            <strong className="text-white">New Gods</strong> changed the world
             was the advent of seasons. Winter was the most amazing to the world
             - falling water seemed impossible. Perhaps no one should have been
             surprised when <Donum>Donum Heims</Donum> emerged.
