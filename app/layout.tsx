@@ -1,39 +1,27 @@
-import "./globals.css";
-import { Josefin_Sans } from "next/font/google";
-import { Providers } from "./Providers";
-import Navbar from "./Navbar";
-import { Session } from "next-auth";
-import { headers } from "next/headers";
-import AuthContext from "./AuthContext";
+import './globals.css';
+import { Josefin_Sans } from 'next/font/google';
+import { Providers } from './Providers';
+import Navbar from './Navbar';
+import { Session } from 'next-auth';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/pages/api/auth/[...nextauth]';
+import AuthContext from './AuthContext';
+import React from 'react';
 
-const josefin_sans = Josefin_Sans({ subsets: ["latin"] });
+const josefin_sans = Josefin_Sans({ subsets: ['latin'] });
 
 export const metadata = {
-  title: "PBTA + Disco",
-  description: "An unlikely mashup",
+  title: 'Provenire',
+  description:
+    'An original fantasy setting and a roleplaying game based on Powered by the Apocalypse and Disco Elysium.',
 };
-
-async function getSession(cookie: string): Promise<Session> {
-  const response = await fetch(
-    `${process.env.LOCAL_AUTH_URL}/api/auth/session`,
-    {
-      headers: {
-        cookie,
-      },
-    }
-  );
-
-  const session = await response.json();
-
-  return Object.keys(session).length > 0 ? session : null;
-}
 
 export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getSession(headers().get("cookie") ?? "");
+  const session = (await getServerSession(authOptions)) as Session;
   return (
     <html lang="en">
       <body className={`${josefin_sans.className} flex-col`}>
