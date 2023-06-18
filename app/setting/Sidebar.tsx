@@ -68,7 +68,7 @@ export default function Sidebar({ children }: SidebarProps) {
         <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
           <ul className="space-y-2 font-medium">
             {navigation.map((item) => (
-              <li>
+              <li key="Before Memory">
                 <Link
                   href={item.href}
                   className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 ${
@@ -126,7 +126,7 @@ export default function Sidebar({ children }: SidebarProps) {
                 className={`${eraOneExpanded ? '' : 'hidden'} py-2 space-y-2`}
               >
                 {first_age_navigation.map((item) => (
-                  <li className="pl-2">
+                  <li className="pl-2" key={item.name}>
                     <Link
                       href={item.href}
                       className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 ${
@@ -186,7 +186,7 @@ export default function Sidebar({ children }: SidebarProps) {
                 className={`${eraTwoExpanded ? '' : 'hidden'} py-2 space-y-2`}
               >
                 {second_age_navigation.map((item) => (
-                  <li className="pl-2">
+                  <li className="pl-2" key={item.name}>
                     <Link
                       href={item.href}
                       className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 ${
