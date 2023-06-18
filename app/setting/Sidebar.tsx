@@ -8,7 +8,7 @@ interface SidebarProps {
   children: ReactNode;
 }
 
-const navigation = [{ name: 'World', href: '/setting' }];
+const navigation = [{ name: 'Before Memory', href: '/setting' }];
 
 const first_age_navigation = [
   { name: 'History', href: '/setting/first_age' },
@@ -37,7 +37,7 @@ const first_age_navigation = [
 ];
 
 const second_age_navigation = [
-  { name: 'World', href: '/setting/second_age' },
+  { name: 'New Beginning', href: '/setting/second_age' },
   { name: 'Anidinie', href: '/setting/second_age/anidine' },
   { name: 'Argos', href: '/setting/second_age/argos' },
   { name: 'Bwarhei', href: '/setting/second_age/bwarhei' },
