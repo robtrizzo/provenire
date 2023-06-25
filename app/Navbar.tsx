@@ -20,7 +20,7 @@ const navigation = [
     name: "Character Sheet",
     href: "/charSheet",
   },
-  { name: "Games", href: "#" },
+  { name: "Game", href: "/game" },
 ];
 
 function classNames(...classes: any[]) {

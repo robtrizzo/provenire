@@ -19,6 +19,10 @@ module.exports = {
         'inner-donum': 'inset 0px 0px 20px 10px slateblue',
       },
     },
+    fontFamily: {
+      sans: ['var(--font-josefin-sans)', 'sans-serif'],
+      serif: ['var(--font-cardo)', 'serif'],
+    }
   },
   plugins: [require('@tailwindcss/typography')],
 };

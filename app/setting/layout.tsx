@@ -1,5 +1,5 @@
 import React from "react";
-import Sidebar from "./Sidebar";
+import Sidebar from "./SettingSidebar";
 
 type LayoutProps = {
   children: React.ReactNode;

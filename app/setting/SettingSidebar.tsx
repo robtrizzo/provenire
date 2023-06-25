@@ -89,7 +89,7 @@ export default function Sidebar({ children }: SidebarProps) {
               >
                 <span
                   className="flex-1 ml-3 text-left whitespace-nowrap"
-                  sidebar-toggle-item
+                  sidebar-toggle-item="true"
                 >
                   First Age
                 </span>
@@ -149,7 +149,7 @@ export default function Sidebar({ children }: SidebarProps) {
               >
                 <span
                   className="flex-1 ml-3 text-left whitespace-nowrap"
-                  sidebar-toggle-item
+                  sidebar-toggle-item="true"
                 >
                   Second Age
                 </span>
@@ -207,14 +207,14 @@ export default function Sidebar({ children }: SidebarProps) {
         className={`p-4 flex-grow min-h-full ${
           theme === 'light'
             ? 'bg-gradient-to-tr from-orange-50 from-60% to-orange-800 text-black'
-            : 'bg-gradient-to-bl from-stone-950 from-30% text-white'
+            : 'bg-gradient-to-bl from-slate-950 from-30% text-white'
         }`}
       >
         <div
-          className={`p-2 prose max-w-none lg:prose-xl prose-p:ml-4 prose-p:my-3 ${
+          className={`p-2 prose max-w-none lg:prose-xl prose-p:ml-4 prose-p:my-1 prose-p:font-serif ${
             theme === 'light'
-              ? 'prose-stone prose-h1:text-red-950 prose-h2:text-red-950 prose-h3:text-red-950 prose-h4:text-red-950'
-              : 'prose-h1:text-red-900 prose-h2:text-red-900 prose-invert prose-h3:text-red-900 prose-h4:text-red-900'
+              ? 'prose-stone prose-h1:text-slate-950 prose-h2:text-slate-950 prose-h3:text-slate-950 prose-h4:text-slate-950'
+              : 'prose-h1:text-indigo-400 prose-h2:text-indigo-400 prose-invert prose-h3:text-indigo-400 prose-h4:text-indigo-400'
           }`}
         >
           {children}
