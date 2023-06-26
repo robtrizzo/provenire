@@ -22,7 +22,7 @@ module.exports = {
     fontFamily: {
       sans: ['var(--font-josefin-sans)', 'sans-serif'],
       serif: ['var(--font-cardo)', 'serif'],
-    }
+    },
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms')],
 };

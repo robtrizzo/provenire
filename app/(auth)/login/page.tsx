@@ -3,12 +3,24 @@
 import Button from '@/components/Button';
 import { FC, useState } from 'react';
 import Image from 'next/image';
+import { signIn } from 'next-auth/react';
+import { toast } from 'react-hot-toast';
 
 interface pageProps {}
 
 const page: FC<pageProps> = ({}) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  async function loginWithDiscord() {}
+  async function loginWithDiscord() {
+    setIsLoading(true);
+    try {
+      await signIn('discord');
+    } catch (e) {
+      // display err to user
+      toast.error('Something went wrong with your login');
+    } finally {
+      setIsLoading(false);
+    }
+  }
   return (
     <>
       <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -25,12 +37,14 @@ const page: FC<pageProps> = ({}) => {
             className="max-w-sm mx-auto w-full gap-2"
             onClick={loginWithDiscord}
           >
-            <Image
-              src="https://s3.amazonaws.com/provenire/discord-mark-blue.png"
-              width={24}
-              height={20}
-              alt="Discord logo"
-            ></Image>
+            {isLoading ? null : (
+              <Image
+                src="https://s3.amazonaws.com/provenire/discord-mark-blue.png"
+                width={24}
+                height={20}
+                alt="Discord logo"
+              />
+            )}
             Discord
           </Button>
         </div>

@@ -1,6 +1,6 @@
 import './globals.css';
 import { Josefin_Sans, Cardo } from 'next/font/google';
-import { Providers } from './Providers';
+import Providers from '../components/Providers';
 import Navbar from './Navbar';
 import { Session } from 'next-auth';
 import { getServerSession } from 'next-auth';
