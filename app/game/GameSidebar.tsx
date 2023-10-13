@@ -8,20 +8,23 @@ interface SidebarProps {
   children: ReactNode;
 }
 
-const navigation = [{ name: 'Introduction', href: '/game' },{name: 'Basic Rules', href: '/game/basic-rules'}];
+const navigation = [
+  { name: 'Introduction', href: '/game' },
+  { name: 'Basic Rules', href: '/game/basic_rules' },
+  { name: 'Basic Moves', href: '/game/basic_moves' },
+  { name: 'Downtime', href: '/game/downtime' },
+  { name: 'Playbooks', href: '/game/playbooks' },
+];
 
 export default function Sidebar({ children }: SidebarProps) {
   const pathname = usePathname();
   const { theme } = useContext(ThemeContext);
 
-  const [eraOneExpanded, setEraOneExpanded] = useState(true);
-  const [eraTwoExpanded, setEraTwoExpanded] = useState(false);
-
   return (
     <div className="flex min-h-full flex-grow">
       <aside
         id="default-sidebar"
-        className=" z-40 w-64 min-h-full transition-transform -translate-x-full sm:translate-x-0 shrink-0"
+        className="z-40 w-64 min-h-full transition-transform translate-x-full sm:translate-x-0 shrink-0"
         aria-label="Sidebar"
       >
         <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">

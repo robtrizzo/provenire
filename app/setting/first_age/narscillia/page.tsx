@@ -13,7 +13,7 @@ export default function Narscillia() {
       <p>
         Anyone nearby can hear the sounds of boisterous music and mischivious
         laughter far before a <strong>Narscillian</strong> <em>compagnia's</em>{' '}
-        shadowy globe comes into view. Flutes, drums, and light hearted voiced
+        shadowy globe comes into view. Flutes, drums, and light hearted voices
         boom wherever a <em>compagnia</em> goes. These sounds are greeted with
         smiles and welcome by any <strong>Toran</strong>,{' '}
         <strong>Arborian</strong>, or <strong>Cumerian</strong> close enough to
@@ -44,7 +44,7 @@ export default function Narscillia() {
         <em>compagnia</em> simply by listening. Many of the creatures of the
         desert are fearsome to those untrained in their ways. But the{' '}
         <strong>Narscillians</strong> know that these predators have poor
-        eyesight and hunt by msound alone.
+        eyesight and hunt by sound alone.
       </p>
       <p>
         So when <strong>Narscillian</strong> hunters trail off the{' '}
@@ -54,7 +54,7 @@ export default function Narscillia() {
         quarry and bring back a feast for their compatriots.
       </p>
       <p>
-        These creatures have excellent camoflage howeverm especially from those
+        These creatures have excellent camoflage however, especially from those
         travelling on foot. So the <strong>Narscillians</strong> have
         camel-pulled wagons with crow's nests attached. Lookouts scour the sand
         dunes from these vantage points for potential threats, signlalling
@@ -92,7 +92,7 @@ export default function Narscillia() {
       <p>
         Not only is it too dangerous for the <em>compagnias</em> to venture into
         the inner desert, the time it would take them to find a crystal, find
-        their way out, and travel toa <strong>Life Duct</strong> in the outer
+        their way out, and travel to a <strong>Life Duct</strong> in the outer
         desert would be far too great. So a radical course was taken: a select
         few would roam the inner desert, collecting flowers and bringing them to
         the <strong>Life Ducts</strong> so that fresh water would be available

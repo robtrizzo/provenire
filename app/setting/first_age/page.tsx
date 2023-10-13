@@ -21,14 +21,14 @@ export default function World() {
       </p>
       <h2>Outside Arboria</h2>
       <p>
-        The other awoken across the world wer not so lucky as the{' '}
+        The other awoken across the world were not so lucky as the{' '}
         <strong>Arborians</strong>
       </p>
       <p>
         No deity to unite them or to unlock water from the monoliths, the
         scattered awoken toiled in their harsh wildernesses for an untold time
         before they came together in large enough numbers to share a common
-        language or curlture.
+        language or culture.
       </p>
       <p>
         <strong>The Cumerians</strong> found themselves in a dark and hostile

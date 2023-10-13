@@ -49,7 +49,7 @@ export default function Rath() {
         <strong>Rathi</strong> are different from any other nation in that only
         one in twenty <strong>Rathi</strong> children are borth <em>without</em>{' '}
         a <em>Donum</em>. The <strong>Rathi</strong> attribute this superiority
-        to their bloodline along with the careful nurturing of{' '}
+        to their flesh along with the careful nurturing of{' '}
         <strong>Kingwulf's</strong> bloodline.
       </p>
       <p>
@@ -145,7 +145,7 @@ export default function Rath() {
         as an unfinished substance. That all water is destined to become blood,
         and that blood is the only liquid that can truly sate thirst. While they
         spend time in other lands, <strong>Rathi</strong> begrudgingly drink
-        "raw" water so as not to thirst, , but hey make no attempt to hide their
+        "raw" water so as not to thirst, but hey make no attempt to hide their
         disdain for those who choose water over blood.
       </p>
       <p>

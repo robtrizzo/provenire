@@ -176,7 +176,7 @@ export default function Cumeria() {
         <strong>Pines</strong> with their three children in search of refuge
         from the conflict. One night their youngest son, <strong>Arvin</strong>,
         wandered off into the woods. <strong>Turan</strong> awoke to see his
-        child missing and quickly found him crying at the base of the tree. Buyt
+        child missing and quickly found him crying at the base of the tree. But
         before <strong>Turan</strong> could bring Arvin the short walk home,
         they were set upon by the most dangerous predator in the{' '}
         <strong>Pines</strong>: a <strong>Naga</strong>.
@@ -217,8 +217,7 @@ export default function Cumeria() {
       <p>
         No one understands why, but <strong>Sara Kazemi's</strong> horn opened
         the <strong>Life Duct</strong> that day - and then crumbled to dust. The
-        fighting ceased that day, and <strong>Sara</strong> was able to tell her
-        story.
+        fighting ceased and <strong>Sara</strong> was able to tell her story.
       </p>
       <p>
         The <strong>Cumerians</strong> learned how to battle{' '}
@@ -245,7 +244,7 @@ export default function Cumeria() {
       <p>
         When water flows from a <strong>Life Duct</strong> in the{' '}
         <strong>Titan Pines</strong>, it's a holiday the{' '}
-        <strong>Cumerians</strong>celebrate to the fullest with dancing,
+        <strong>Cumerians</strong> celebrate to the fullest with dancing,
         drinking, feasting, and contests of skill. Any children who have not
         drank water undergo the <em>Ceremony of the Gift</em> where it is
         determined if the water will grant them a <em>Donum</em>. Any couples

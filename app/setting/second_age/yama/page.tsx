@@ -46,8 +46,8 @@ export default function Yama() {
             called <strong className="text-white">Shian Tor</strong>. The
             legends say that the <strong className="text-white">Toran</strong>{' '}
             tribes who were too weak to contest for water were banished into the
-            northern mountains to die. But as the legends go, they did not die.
-            They toiled on, making this new existence their own. By the time the{' '}
+            northern mountains to die. But the legends were wrong. They toiled
+            on, making this new existence their own. By the time the{' '}
             <strong className="text-white">New Gods</strong> surveyed the
             mountains, there were tens of thousands of banished{' '}
             <strong className="text-white">Torans</strong> living on the icy
@@ -56,7 +56,7 @@ export default function Yama() {
         </div>
       </div>
       <p>
-        There was peace for atime as the city had more than enough water for
+        There was peace for a time as the city had more than enough water for
         all. But once the <strong>Gredorans</strong> were comfortable, they
         began to question the <strong>Yaman</strong> way. They objected to
         living under the "archaic and punishing" <strong>Dictate</strong>. The{' '}

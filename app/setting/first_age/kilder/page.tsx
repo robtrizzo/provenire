@@ -53,7 +53,7 @@ export default function Kilder() {
             Each role a child is assigned completely shapes the way they live.
             But regardless of role, every <strong>Kilder</strong> is expected to
             pass a series of intensive and unforgiving physical tests before
-            they are arecognized by their officers as true{' '}
+            they are are recognized by their officers as true{' '}
             <strong>Kilder</strong>.
           </p>
         </div>
@@ -147,7 +147,7 @@ export default function Kilder() {
         adult hunter five times out of five in one of the nightly rallies.
       </p>
       <p>
-        Finally, by age sixteen, tey must travel to <strong>Helix</strong>, a
+        Finally, by age sixteen, they must travel to <strong>Helix</strong>, a
         two year journey. Once there they must pass the exams to join the peace
         keeping force - an exam designed to be difficult even for those with a{' '}
         <em>Donum</em>. They are expected to serve in the peace keeping force

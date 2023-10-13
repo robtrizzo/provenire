@@ -53,7 +53,7 @@ export default function Kipos() {
         and its graciousness to visitors and guests.{' '}
         <strong>Narscillian</strong> caravarns visit the city several times a
         year, sparking festivals for weeks. Some <strong>Narscillians</strong>{' '}
-        have liked the city so much tha tover the generations, some caravans
+        have liked the city so much that over the generations, some caravans
         have decided to stay. This lead to the creation of the lower part of the
         city at the foot of the mountain, what the locals call the Circuis - a
         sprawling ring of buildings crafted out of the disassembled caravans.
@@ -69,7 +69,7 @@ export default function Kipos() {
         their hauls.
       </p>
       <p>
-        Fishing is not a peaceful lif though. In addition to smaller schools of
+        Fishing is not a peaceful life though. In addition to smaller schools of
         fish, there are larger predators in the deep waters of{' '}
         <strong>Ozeros</strong>, predators dangerous enough to pose a threat to
         an unprepared fishing skiff. And sice fish can only be found in{' '}
@@ -92,7 +92,7 @@ export default function Kipos() {
             <strong>Duke of Ravens</strong>, <strong>Ansisamslo</strong>.
           </p>
           <p>
-            Everyday life and ware are one and the same for the people of{' '}
+            Everyday life and war are one and the same for the people of{' '}
             <strong>Bastion</strong>, and their escape are particularly brutal
             varieties of <strong>Kiposi</strong> combat sports and gladitorial
             combat with captured <strong>Fenrir</strong> soldiers; the line
