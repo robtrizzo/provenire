@@ -6,6 +6,9 @@ import Ingenuity from '@/components/Ingenuity';
 import Heart from '@/components/Heart';
 import Machina from '@/components/Machina';
 import Savagery from '@/components/Savagery';
+import Blood from '@/components/Blood';
+import Hunger from '@/components/Hunger';
+import Link from 'next/link';
 
 export default function BasicRules() {
   return (
@@ -70,6 +73,28 @@ export default function BasicRules() {
       <p>
         <Savagery /> represents your ability to fight and your willingness to
         hurt others.
+      </p>
+      <h2>Resources</h2>
+      <p>
+        Each character has two resources that represent important factors in
+        their body and state of mind: <Blood /> and <Hunger />. Each resource
+        can range from a score of 0 to 3. Resources will change throughout the
+        normal course of play. Each character begins with 1 <Blood /> and 1{' '}
+        <Hunger />.
+      </p>
+      <p>
+        <Blood /> represents your character's reserve of animal (or human) blood
+        that they have consumed. <Blood /> can be exhausted by unskilled users
+        to heal superficial wounds, have bursts of strength, or think rapidly
+        for a few moments. Moves that allow <Blood /> to be used will specify
+        this.
+      </p>
+      <p>
+        <Hunger /> represents how long it has been since your character has had
+        a proper meal. <Hunger /> can't be spent like blood can, as it becomes
+        higher, your character come closer to starvation. More details on{' '}
+        <Hunger /> can be found in the{' '}
+        <Link href="/game/downtime">Downtime</Link> rules.
       </p>
       <h2>Terms</h2>
       <p>

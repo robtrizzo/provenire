@@ -20,8 +20,6 @@ const cardo = Cardo({
 
 export const metadata = {
   title: 'Provenire',
-  description:
-    'An original fantasy setting and a roleplaying game based on Powered by the Apocalypse and Disco Elysium.',
 };
 
 export default async function RootLayout({

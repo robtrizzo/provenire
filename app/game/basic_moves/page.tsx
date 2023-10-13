@@ -22,26 +22,28 @@ export default function BasicMoves() {
             When a Royal authority figure uses the King's Spell on you, roll +{' '}
             <Defiance />
           </p>
-          <p className="text-center">They gain Influence over you.</p>
+          <p className="text-center">
+            They gain <strong>influence</strong> over you.
+          </p>
           <div className="flex flex-row items-center justify-start">
             <span className="shrink-0">10+</span>
             <p className="text-start">
               You will not bow, you will not break. Stand strong and remove
-              their Influence over you.
+              their <strong>influence</strong> over you.
             </p>
           </div>
           <div className="flex flex-row items-center justify-start">
             <span className="shrink-0">7-9</span>
             <p className="text-start">
-              Your head nods and your knees wobble. Stand strong and mark a
-              condition or fall into a bow.
+              Your head nods and your knees wobble. Stand strong and{' '}
+              <strong>mark a condition</strong> or fall into a bow.
             </p>
           </div>
           <div className="flex flex-row items-center justify-start">
             <span className="shrink-0">6-</span>
             <p className="text-start">
-              Your damned body betrays your will. Do what they say or fall into
-              a grovel and mark a condition.
+              Your body betrays your will. Do what they say or fall into a
+              grovel and <strong>mark a condition</strong>.
             </p>
           </div>
         </article>

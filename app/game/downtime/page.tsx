@@ -6,6 +6,7 @@ import Heart from '@/components/Heart';
 import Machina from '@/components/Machina';
 import Savagery from '@/components/Savagery';
 import Blood from '@/components/Blood';
+import Hunger from '@/components/Hunger';
 export default function Downtime() {
   return (
     <>
@@ -24,12 +25,13 @@ export default function Downtime() {
         wildlands. They dole it out stingily.
       </p>
       <p>
-        You have to feed yourself and your family and/or friends. Your hunger
-        can go from 0 to 3. Your family's hunger can go from 0 to 2. If a family
-        member begins play iwth max hunger and isn't fed, they die.
+        You have to feed yourself and your family and/or friends. Your{' '}
+        <Hunger />
+        can go from 0 to 3. Your family's <Hunger /> can go from 0 to 2. If a
+        family member begins play iwth max <Hunger /> and isn't fed, they die.
       </p>
       <p>
-        Reaching 3 hunger means you are starving and you must acquire food
+        Reaching 3 <Hunger /> means you are starving and you must acquire food
         during the mission. If you fail, you are{' '}
         <strong>taken out of the action</strong> until you eat.
       </p>
