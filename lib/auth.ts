@@ -1,6 +1,4 @@
 import { NextAuthOptions } from "next-auth";
-import { UpstashRedisAdapter } from "@next-auth/upstash-redis-adapter";
-import { db } from "./db";
 import DiscordProvider from 'next-auth/providers/discord';
 
 function getDiscordCredentials() {
@@ -16,13 +14,6 @@ function getDiscordCredentials() {
 }
 
 export const authOptions: NextAuthOptions = {
-    adapter: UpstashRedisAdapter(db),
-    session: {
-        strategy: "jwt",
-    },
-    pages: {
-        signIn: '/login'
-    },
     providers: [
         DiscordProvider({
             clientId: getDiscordCredentials().clientId,
@@ -30,19 +21,6 @@ export const authOptions: NextAuthOptions = {
         }),
     ],
     callbacks: {
-        async jwt({ token, user }) {
-            const dbUser = (await db.get(`user:${token.id}`)) as User | null;
-            if (!dbUser) {
-                token.id = user!.id
-                return token;
-            }
-            return {
-                id: dbUser.id,
-                name: dbUser.name,
-                email: dbUser.email,
-                image: dbUser.image,
-            }
-        },
         async session({ session, token }) {
             if (token) {
                 session.user.id = token.id
@@ -51,9 +29,6 @@ export const authOptions: NextAuthOptions = {
                 session.user.image = token.image
             }
             return session;
-        },
-        redirect() {
-            return "/dashboard"
         }
     },
 }
