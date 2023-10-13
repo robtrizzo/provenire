@@ -51,12 +51,18 @@ const second_age_navigation = [
   { name: 'Yama', href: '/setting/second_age/yama' },
 ];
 
+const third_age_navigation = [
+  { name: 'Introduction', href: '/setting/third_age/introduction' },
+  { name: 'Era of Lost Gods', href: '/setting/third_age' },
+];
+
 export default function Sidebar({ children }: SidebarProps) {
   const pathname = usePathname();
   const { theme } = useContext(ThemeContext);
 
   const [eraOneExpanded, setEraOneExpanded] = useState(true);
   const [eraTwoExpanded, setEraTwoExpanded] = useState(false);
+  const [eraThreeExpanded, setEraThreeExpanded] = useState(false);
 
   return (
     <div className="flex min-h-full flex-grow">
@@ -186,6 +192,66 @@ export default function Sidebar({ children }: SidebarProps) {
                 className={`${eraTwoExpanded ? '' : 'hidden'} py-2 space-y-2`}
               >
                 {second_age_navigation.map((item) => (
+                  <li className="pl-2" key={item.name}>
+                    <Link
+                      href={item.href}
+                      className={`flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 ${
+                        pathname === item.href ? 'bg-gray-900' : ''
+                      }`}
+                    >
+                      <span className="ml-3">{item.name}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </li>
+            <li>
+              <button
+                type="button"
+                className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                aria-controls="dropdown-example"
+                data-collapse-toggle="dropdown-example"
+                onClick={() => setEraThreeExpanded(!eraThreeExpanded)}
+              >
+                <span
+                  className="flex-1 ml-3 text-left whitespace-nowrap"
+                  sidebar-toggle-item="true"
+                >
+                  Third Age
+                </span>
+                {eraThreeExpanded ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    className="w-5 h-5"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M14.77 12.79a.75.75 0 01-1.06-.02L10 8.832 6.29 12.77a.75.75 0 11-1.08-1.04l4.25-4.5a.75.75 0 011.08 0l4.25 4.5a.75.75 0 01-.02 1.06z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    className="w-5 h-5"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                )}
+              </button>
+              <ul
+                id="dropdown-example"
+                className={`${eraThreeExpanded ? '' : 'hidden'} py-2 space-y-2`}
+              >
+                {third_age_navigation.map((item) => (
                   <li className="pl-2" key={item.name}>
                     <Link
                       href={item.href}
