@@ -13,7 +13,7 @@ export default function Gredora() {
       <p>
         Oftentimes you will see <strong>Gredorans</strong> far before you hear
         them. The six <strong>Gredoroan</strong> caravans slither through the
-        sweltering steppes like silver serpents, gleaming in the sun.{' '}
+        sweltering steppes like silver serpents gleaming in the sun.{' '}
         <strong>Gredorans</strong> usually stand a head taller than the other
         peoples of the world, their backs straight and their heads held high.
       </p>
@@ -183,8 +183,8 @@ export default function Gredora() {
       <p>
         Such is now tradition in <strong>Gredoran</strong> society. Rather than
         mourn the sick, crippled, and elderly, <strong>Gredorans</strong>{' '}
-        ecelebrate their life and rejoice as those with little time left make
-        the ultimate sacrifice to give life and power to the future generations.
+        celebrate their life and rejoice as those with little time left make the
+        ultimate sacrifice to give life and power to the future generations.
       </p>
       <div className="flex flex-row mt-2">
         <Previous href="/setting/first_age/cumeria" text="Cumeria" />

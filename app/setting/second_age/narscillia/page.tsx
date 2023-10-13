@@ -95,7 +95,7 @@ export default function Narscillia() {
       </p>
       <blockquote>Duty before death.</blockquote>
       <p>
-        <strong>Relict</strong> trainees are sent off to academis across the
+        <strong>Relict</strong> trainees are sent off to academies across the
         world before they come back to he desert to serve. Once they return,
         half are sent to the <strong>Inner Desert</strong> to find the flowers
         necessary to open <strong>Life Ducts</strong> of the{' '}

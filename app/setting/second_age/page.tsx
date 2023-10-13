@@ -22,7 +22,7 @@ export default function SecondAge() {
         The first recollection of the <strong>Second Age</strong> was the{' '}
         <strong>Great Dream</strong>. A dream that all of humanity shared. The
         seven <strong>New Gods</strong> appeared before us, declaring that they
-        were renouncing their power, taking their leave. But they siad not to
+        were renouncing their power, taking their leave. But they said not to
         despair, for the power will not truly be gone - it will be here for
         those worthy enough to take it.
       </p>

@@ -27,7 +27,7 @@ export default function Argos() {
         <em>Wielders</em> have only become stronger, even stronger in the
         so-called <strong>Golden Age</strong>. The <strong>Argosi</strong> are
         certain that if anyone is going to succeed at <em>Ascension</em>, it
-        will ben an <strong>Arbor</strong>.
+        will be an <strong>Arbor</strong>.
       </p>
       <p>
         In <strong>Argos</strong>, <strong>House Arbor</strong> controls all
@@ -62,7 +62,7 @@ export default function Argos() {
             As for warfare, the century spent fighting the{' '}
             <strong>Kiposi</strong> lead <strong>Santoris</strong> to develop a
             slew of military technology and <em>Wielding</em> tactics. One of
-            theif rist things <strong>Santoris</strong> did in the{' '}
+            the first things <strong>Santoris</strong> did in the{' '}
             <strong>Isolation War</strong> was enlarge <strong>Helix's</strong>{' '}
             walls by five times. And on top of the new walls is a constant
             garrison of <strong>Santoris</strong> war machines and the engineers

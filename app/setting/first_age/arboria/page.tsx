@@ -38,7 +38,7 @@ export default function Arboria() {
       <p>
         The greatest virtue in <strong>Arborian</strong> society is charity.
         Almost nowhere in <strong>Arboria</strong> will you see paupers,
-        orphans, or the infermed. To <strong>Arborians</strong>, the life of
+        orphans, or the infirmed. To <strong>Arborians</strong>, the life of
         heroism is one of providing for one's fellow citizens.
       </p>
       <p>
@@ -64,7 +64,7 @@ export default function Arboria() {
         made for you. <strong>Water</strong> is available for all, and as much
         as anyone wants to take. Seeds for a garden are given to every new
         citizen of <strong>Helix</strong> once they have a home. It is a
-        paradise the <strong>Arborians</strong> hae worked hard to create.
+        paradise the <strong>Arborians</strong> have worked hard to create.
       </p>
       <p>
         Not only <strong>Arborians</strong> live in <strong>Helix</strong>, but
@@ -168,7 +168,7 @@ export default function Arboria() {
         living in <strong>Helix</strong>. They use this to defend those under
         threat from creatures that wander into the gentle farmland from the
         primal wilderness outside the carrefully landscaped hills around{' '}
-        <strong>Helix</strong>. They endure this task alone, rediculed and
+        <strong>Helix</strong>. They endure this task alone, ridiculed and
         disdained by the other <em>Wielders</em> living the high life in{' '}
         <strong>Arboria</strong>, those with powerful enough <em>Donum</em> that
         they have never had to train a day in combat to stave off the monsters.{' '}
@@ -198,7 +198,7 @@ export default function Arboria() {
         As a consequence of so many <strong>Arborians</strong> living near{' '}
         <strong>Helix</strong>, there remains more than ninety percent of{' '}
         <strong>Arborian</strong> territory which is untamed, dangerous forests,
-        the <strong>Mamoth Willows</strong>. Very few choose to livein the{' '}
+        the <strong>Mamoth Willows</strong>. Very few choose to live in the{' '}
         <strong>Willows</strong>, and those who do are folk hardened by years of
         coexisting with ferocious predators that roam the woods.{' '}
         <strong>House Prisca</strong> does its best to aid those living in the{' '}

@@ -111,7 +111,7 @@ export default function ShianTor() {
       </p>
       <h2>Mountains of Exile</h2>
       <blockquote>
-        Finer warriors than <strong>Arobira</strong> has ever known have been
+        Finer warriors than <strong>Arboria</strong> has ever known have been
         belittled and exiled to the barren cliffs of <strong>Shian Tor</strong>.
       </blockquote>
       <p>
@@ -127,7 +127,7 @@ export default function ShianTor() {
         slopes are no easy prey. Many a tribe has ventured into the mountains to
         never be seen again. Some wonder if there is a source of food deep in
         the mountains which allow tribes to stay, but many muse that a harsh
-        dath is far more likely.
+        death is far more likely.
       </p>
       <p>
         The mountains serve one other purpose for the <strong>Torans</strong>.
