@@ -73,6 +73,19 @@ export default function SecondAge() {
         your fear and comfort those around you, or you will die. Most people
         don't make it.
       </p>
+      <h3>Recurring Stories</h3>
+      <p>
+        Most folks don't remember their dreams when they wake up. And the people
+        who do, they remember normal nonsensical dreamstuff. Sometimes though,
+        people remember particularly vivid dreams that lack the usual whimsy
+        character of fleeting thoughts, but are no less fantastical.
+      </p>
+      <p>
+        Folks talk about dreams, they compare them - especially the notable
+        ones. These vivid dreams, many people have found that they've whitnessed
+        disjointed snippets of the same narrative. There seem to be some stories
+        that are a part of everyone.
+      </p>
       <h2>Donums</h2>
       <p>
         <Donum>Donum</Donum> is the <strong>Arborian</strong> word for 'gift.'

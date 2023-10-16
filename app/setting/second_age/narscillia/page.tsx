@@ -82,7 +82,7 @@ export default function Narscillia() {
         glass. Not only that, but the beasts that roam the{' '}
         <strong>Inner Desert</strong> are unlike anything seen in the rest of
         the world. True monstrous behemoths that stop at nothing to devour
-        everything in their path. They crystals keep the beasts in like a cage,
+        everything in their path. The crystals keep the beasts in like a cage,
         but it's not unheard of for one to break free.
       </p>
       <h3>Relicts</h3>

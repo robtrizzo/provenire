@@ -438,14 +438,14 @@ export default function Playbooks() {
             </p>
             <p>
               The Commander becomes <strong>influenced</strong> by everyone who
-              votes no. They lose <strong>influence</strong>
-              over everyone who votes yes.
+              votes no. They lose <strong>influence</strong> over everyone who
+              votes yes.
             </p>
             <p>
               If the rest of the team unanimously votes yes, the{' '}
               <strong>Commander</strong> lays out their plan. The team takes +1{' '}
-              <strong>forward</strong>
-              to acting on the plan, and if the plan succeeds, everyone gains +1
+              <strong>forward</strong> to acting on the plan, and if the plan
+              succeeds, everyone gains +1
               <strong>xp</strong>.
             </p>
           </article>
@@ -607,8 +607,8 @@ export default function Playbooks() {
             <div className="flex flex-row items-center justify-start">
               <span className="shrink-0">10+</span>
               <p>
-                Ask a question. TheGM will answer honestly, then ask a follow-up
-                question.
+                Ask a question. The GM will answer honestly, then ask a
+                follow-up question.
               </p>
             </div>
             <div className="flex flex-row items-center justify-start">
@@ -977,9 +977,8 @@ export default function Playbooks() {
               </span>
             </div>
             <p className="text-center">
-              When you persuade someone you
-              <strong>influence</strong> to do the right thing, lose{' '}
-              <strong>influence</strong> and Roll +<Heart />
+              When you persuade someone you <strong>influence</strong> to do the
+              right thing, lose <strong>influence</strong> and Roll +<Heart />
             </p>
             <div className="flex flex-row items-center gap-4">
               <hr
@@ -1179,8 +1178,8 @@ export default function Playbooks() {
               <span className="text-white text-xl">People Pleaser</span>
             </div>
             <p>
-              Each downtime, you may <strong>Comfort</strong>
-              someone for free if they approach you and ask.
+              Each downtime, you may <strong>Comfort</strong> someone for free
+              if they approach you and ask.
             </p>
             <p>
               Anyone you <strong>Read</strong>, <strong>Comfort</strong>, or{' '}
@@ -1409,9 +1408,8 @@ export default function Playbooks() {
               doesn't cost any <strong>team</strong> for you to assist them.
               They gain +1 <strong>ongoing</strong> to{' '}
               <strong>Savagely Engage a Threat</strong>, <strong>Defend</strong>
-              , and
-              <strong>Traverse the Mechanical Matrix</strong>. They gain -1{' '}
-              <strong>ongoing</strong> to <strong>Manipulate Someone</strong>{' '}
+              , and <strong>Traverse the Mechanical Matrix</strong>. They gain
+              -1 <strong>ongoing</strong> to <strong>Manipulate Someone</strong>{' '}
               and <strong>Defy the King's Spell</strong>.
             </p>
             <p>
@@ -1535,9 +1533,8 @@ export default function Playbooks() {
               on an ally to Condemn them. Roll +<Machina />. On a 10+, they mark
               a condition and lose <strong>influence</strong> over someone of
               your choice. On a 7-9, they <strong>mark a condition</strong> or
-              lose
-              <strong>influence</strong> over someone of your choice. On a miss,
-              you <strong>mark a condition</strong> and lose{' '}
+              lose <strong>influence</strong> over someone of your choice. On a
+              miss, you <strong>mark a condition</strong> and lose{' '}
               <strong>influence</strong> over them.
             </p>
           </article>

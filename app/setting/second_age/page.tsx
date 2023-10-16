@@ -19,7 +19,19 @@ export default function SecondAge() {
         time between the <strong>Old Gods</strong> and the <strong>New</strong>.
       </p>
       <p>
-        The first recollection of the <strong>Second Age</strong> was the{' '}
+        All that's left of that time is legend, myth, and heresay. Centuries
+        have come and gone since those fateful years, but much has changed from
+        how it once was.
+      </p>
+      <p>
+        There was a period between ages when the <strong>New Gods</strong>{' '}
+        worked their labors and miracles. They introduced the written word,
+        unveiled the celestial bodies in the sky, created the four seasons, and
+        taught us how to harness the power within the{' '}
+        <strong>Life Ducts</strong>.
+      </p>
+      <p>
+        The beginning of the <strong>Second Age</strong> is the{' '}
         <strong>Great Dream</strong>. A dream that all of humanity shared. The
         seven <strong>New Gods</strong> appeared before us, declaring that they
         were renouncing their power, taking their leave. But they said not to
@@ -29,16 +41,11 @@ export default function SecondAge() {
       <blockquote>
         <h3>Final Words of the Great Dream</h3>
         <p>
-          The greatest trials of humanity are yet to come. And when they do, we
+          The greatest trials for humanity are yet to come. And when they do, we
           eagerly await the new heroes who will overcome them.
         </p>
       </blockquote>
-      <h2>The Aftermath</h2>
-      <p>
-        All that's left of that time is legend, myth, and heresay. Centuries
-        have come and gone since those fateful years, but much has changed from
-        how it once was.
-      </p>
+      <h2>Aftermath of their Departure</h2>
       <p>
         The <strong>New Gods</strong> taught the people of the world how to open
         the <strong>Life Ducts</strong>. And from that water, many new{' '}
