@@ -8,7 +8,7 @@ export default function TwistedScion() {
   return (
     <>
       <h1 className="text-center">Twisted Scion</h1>
-      <main className="columns-2">
+      <main className="md:columns-2">
         <article>
           <BorderHeading>Expectations</BorderHeading>
           <p>
@@ -96,6 +96,12 @@ export default function TwistedScion() {
             fully succeed, the conflicting <strong>Action</strong>{' '}
             <strong className="text-rose-700">automatically fails</strong>.
           </p>
+          <p>
+            The first time an <strong>Actor's Action</strong> fails, they gain a{' '}
+            <strong className="text-rose-700">momentum shift</strong>. This can
+            be used later to roll an additional d6 for an{' '}
+            <strong>Action</strong>.
+          </p>
         </article>
         <article>
           <BorderHeading>Actors</BorderHeading>
@@ -130,6 +136,11 @@ export default function TwistedScion() {
             <strong className="text-rose-700">#shitposting channel</strong> for
             sidetalk.
           </p>
+          <p>
+            <strong>Actors</strong>{' '}
+            <strong className="text-rose-700">may not post screenshots</strong>{' '}
+            of private conversations or briefings.
+          </p>
         </article>
         <article>
           <BorderHeading>Time</BorderHeading>
@@ -139,10 +150,13 @@ export default function TwistedScion() {
             in-fiction time will pass.
           </p>
           <p>
-            When the <strong>Narrator</strong> posts an update,{' '}
-            <strong>Actors</strong> have{' '}
-            <strong className="text-rose-700">72 hours</strong> to submit{' '}
-            <strong>Actions</strong> for the next <strong>Turn</strong>.
+            The <strong>Narrator</strong> will post updates each{' '}
+            <strong className="text-rose-700">Wednesday at 11pm EST</strong>.
+          </p>
+          <p>
+            <strong>Actors</strong> have until the following{' '}
+            <strong className="text-rose-700">Monday at 11pm EST</strong> to
+            submit <strong>Actions</strong> for the next <strong>Turn</strong>.
           </p>
           <p>
             If no <strong>Actions</strong> are submitted, the{' '}
@@ -159,19 +173,28 @@ export default function TwistedScion() {
         </article>
       </main>
       <hr />
-      <main className="columns-2">
+      <main className="md:columns-2">
         <article>
           <BorderHeading>Inciting Incident</BorderHeading>
           <p>
             A branch of <strong>Ara, Tree of the Infinite</strong> is exposed,
             draping from the heavens to the heat-blasted plateaus of{' '}
-            <strong>Gredora</strong>. Beneath the tip of the exposed branch,{' '}
-            <strong className="text-rose-700">Agents of the Locum</strong> lead
-            an army against the allied armies of{' '}
-            <strong className="text-rose-700">Azama</strong> and{' '}
-            <strong>Anidine's King Amati</strong>, who has been missing since
-            the battle.
+            <strong>Gredora</strong>. An army commanded by{' '}
+            <strong className="text-rose-700">Agents of the Locum</strong>{' '}
+            marched from the branch into this world where they were met by
+            armies commanded by <strong>Vero Amati: King of Anidine</strong> and{' '}
+            <strong className="text-rose-700">Azama</strong> respectively.
           </p>
+          <p>
+            The battle was confusing - it remains unclear who was on which side
+            of the conflict. As the dust settled, the{' '}
+            <strong className="text-rose-700">Locum's</strong> army retreated up
+            the branch, <strong>King Amati's</strong> army retreated back into{' '}
+            <strong>Anidine</strong> - their king missing, and{' '}
+            <strong className="text-rose-700">Azama</strong> still holds the
+            base of the branch.
+          </p>
+          <hr style={{ marginTop: '20px', marginBottom: '20px' }} />
           <p>
             Missing leader of the world's military superpower, an exposed branch
             to <strong>Ara</strong>, invaders from another world. History is
@@ -180,7 +203,7 @@ export default function TwistedScion() {
           </p>
         </article>
         <article>
-          <BorderHeading>The Actors</BorderHeading>
+          <BorderHeading>Open Actors</BorderHeading>
           <p>
             <strong className="text-rose-700">Azama</strong>: Merchant-general
             of the <strong>Dameter Caravan-army</strong>. Brilliant, arrogant,
@@ -239,6 +262,9 @@ export default function TwistedScion() {
             peaceful, sleepy life he's made for himself far away from the
             world's troubles.
           </p>
+        </article>
+        <article>
+          <BorderHeading>Reserved Actors</BorderHeading>
           <p>
             <strong className="text-rose-700">Vigo Draconis</strong>: The
             talented heir to of <strong>House Draconis</strong>, a small{' '}
@@ -251,7 +277,7 @@ export default function TwistedScion() {
             <em>wielder</em> of <Donum>Donum Gelu</Donum>, heir to the{' '}
             <strong>Heian</strong> noble house <strong>Taisho</strong>. She fled
             home as a young girl, returning with an army to obliterate her
-            family.
+            family and their castle, <strong>Shimaki</strong>.
           </p>
           <p>
             <strong className="text-rose-700">Cassio</strong>:{' '}
@@ -261,9 +287,10 @@ export default function TwistedScion() {
           </p>
           <p>
             <strong className="text-rose-700">Prince Sebastian Amati</strong>:
-            Second born son of <strong>King Amati</strong> and powerful{' '}
-            <em>wielder</em> of <Donum>Donum Denieth</Donum>. Somehow managed to
-            travel between worlds without traversing <strong>Ara</strong>.
+            Second born son of <strong>King Amati</strong>, skilled diplomat,
+            and powerful <em>wielder</em> of <Donum>Donum Denieth</Donum>.
+            Somehow managed to travel between worlds without traversing{' '}
+            <strong>Ara</strong>.
           </p>
           <p>
             <strong className="text-rose-700">
@@ -273,6 +300,117 @@ export default function TwistedScion() {
             <strong className="text-rose-700">Prince Sebastian Amati</strong>.
             Once in a generation <em>wielder</em> of <Donum>Donum Fornax</Donum>
             , used to enhance his already formidable sword skills.
+          </p>
+        </article>
+      </main>
+      <hr />
+      <main className="md:columns-2">
+        <article>
+          <BorderHeading>Cosmology</BorderHeading>
+          <strong className="text-rose-700">
+            The people of the world do not understand the forces at play.
+          </strong>
+          <p>
+            <strong className="text-rose-700">Ara, Tree of the Infinite</strong>
+            . Until recently its existence was a secret only a handful knew. Its
+            golden-brown branches stretch into infinity. The wrinkles of{' '}
+            <strong>Ara's</strong> bark are mesmerizing: granting visions of
+            other versions of history. Whenever someone enters the bark, a new
+            branch begins to bud from the entrypoint. A new divergence of
+            history - the one where that person entered, and the one which they
+            didn't.
+          </p>
+          <p>
+            <strong className="text-rose-700">Twisted Scion</strong>: One branch
+            of <strong>Ara</strong> is twisted and dead. No one can enter the
+            rotting bark except for the very tip of that branch. In that world,
+            water seems to have been replaced with human blood.{' '}
+            <Donum>Donums</Donum> don't work the same. They are corrupted and
+            addictive. That is where the{' '}
+            <strong className="text-rose-700">Agents of Locum</strong> and{' '}
+            <strong className="text-rose-700">Avina Kriemhild</strong> are from.
+          </p>
+          <p>
+            <strong className="text-rose-700">Dreamscape</strong>. There may be
+            inifnite worlds connected to <strong>Ara</strong>, but the people of
+            every world come to this one place in their dreams. Recent events
+            suggest that some have managed to physically travel there - what
+            does this mean?
+          </p>
+        </article>
+        <article>
+          <BorderHeading>This World</BorderHeading>
+          <strong className="text-rose-700">
+            The name for this world hasn't been discovered yet - or more
+            accurately - the concept of a world's name doesn't exist.
+          </strong>
+          <p>
+            <strong className="text-rose-700">Life Ducts</strong>: There is no
+            naturally occurring water. Instead strange and arbitrary rituals are
+            required at the foot of monoliths called <strong>Life Ducts</strong>
+            . After the ritual is complete, water flows from it for some time.
+            There are a few permanently open <strong>ducts</strong> around the
+            world, but those are the exception.
+          </p>
+          <p>
+            <strong className="text-rose-700">Donums</strong>:{' '}
+            <Donum>Donum</Donum> is the <strong>Arborian</strong> word for
+            'gift.' They are supernatural powers fueled by drinking water. These
+            days, most who drink from a <strong>Life Duct</strong> by the time
+            they're done growing gain a <Donum>Donum</Donum>. The variety and
+            strength of the powers seem to follow some geographic, cultural, and
+            genetic patterns, but there are frequent exceptions.
+          </p>
+          <p>
+            <strong className="text-rose-700">Adamantine</strong>: A precious
+            metal which can supercharge the powers of <Donum>Donum Ferro</Donum>
+            , <Donum>Donum Ignis</Donum>, and <Donum>Donum Fornax</Donum>. Also
+            crucial to <strong>Gredoran</strong> and <strong>Anidinian</strong>{' '}
+            war machines. Only sources are dragon bones and naga bones - both
+            exceptionally scarce.
+          </p>
+        </article>
+        <article>
+          <BorderHeading>Nations at Play</BorderHeading>
+          <strong className="text-rose-700">
+            Some are content to sit this crisis out; these are the ones getting
+            involved.
+          </strong>
+          <p>
+            <strong className="text-rose-700">Anidine</strong>: Gods forced the
+            union of <strong>Cumeria</strong> and <strong>Gredora</strong>, two
+            historically bitter enmies. The resulting nation is a powder keg
+            which blew the moment those gods departed. Now only the core of its
+            territory remains, but it's still the world's military superpower -
+            and it's itching for a war.
+          </p>
+          <p>
+            <strong className="text-rose-700">Argos</strong>: Isolationist
+            city-state far away from the stage of this conflict. Ruled by four
+            houses. Three perfer to keep to themselves. The fourth house:{' '}
+            <strong>House Prisca</strong>, is an international terror.
+          </p>
+          <p>
+            <strong className="text-rose-700">Fenrir Empire</strong>: Dystopian
+            empire ruled by an immortal god-king, <strong>Kingwulf</strong>. Far
+            away from the stage of this conflict, but always looking for an
+            opportunity to expand.
+          </p>
+          <p>
+            <strong className="text-rose-700">Gredora</strong>: Nomadic
+            caravan-armies without a centralized government. Recently defeated{' '}
+            <strong>Anidine</strong> in a war for secession, but still missing
+            the most resource-rich parts of its territory.{' '}
+          </p>
+          <p>
+            <strong className="text-rose-700">Heia</strong>: Feudal nation
+            determined to stay out of <strong>Anidine's</strong> way, lest they
+            get caught up in another doomed conflict with them.
+          </p>
+          <p>
+            <strong className="text-rose-700">Narscillia</strong>: A desert
+            nation reeling from a recent war between <strong>Heia</strong> and{' '}
+            <strong>Anidine</strong> which got fought within its borders.
           </p>
         </article>
       </main>
