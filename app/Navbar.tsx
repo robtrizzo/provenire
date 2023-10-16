@@ -17,6 +17,7 @@ const navigation = [
   { name: 'Home', href: '/' },
   { name: 'Setting', href: '/setting' },
   { name: 'Game', href: '/game' },
+  { name: 'OSG: Twisted Scion', href: '/osg/twisted_scion' },
 ];
 
 function classNames(...classes: any[]) {

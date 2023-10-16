@@ -25,10 +25,10 @@ export default function Downtime() {
         wildlands. They dole it out stingily.
       </p>
       <p>
-        You have to feed yourself and your family and/or friends. Your{' '}
-        <Hunger />
-        can go from 0 to 3. Your family's <Hunger /> can go from 0 to 2. If a
-        family member begins play iwth max <Hunger /> and isn't fed, they die.
+        You have to feed yourself and your family and/or friends. Your
+        <Hunger /> can go from 0 to 3. Your family's <Hunger /> can go from 0 to
+        2. If a family member begins play with max <Hunger /> and isn't fed,
+        they die.
       </p>
       <p>
         Reaching 3 <Hunger /> means you are starving and you must acquire food

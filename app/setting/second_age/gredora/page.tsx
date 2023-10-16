@@ -13,7 +13,7 @@ export default function Gredora() {
             following the herds of animals across the plateaus. The difference
             is that back in the <strong>Golden Age</strong>, most caravans were
             civilians focused on crafting and mercantilism. There were very few
-            wandering amries back then. But now, nearly every caravan is lead by
+            wandering armies back then. But now, nearly every caravan is lead by
             a Merchant-General commanding thousands of troops. For every
             soldier, there are many more civilians, but the armies are still
             massive.
