@@ -99,7 +99,7 @@ export default function TwistedScion() {
           <p>
             The first time an <strong>Actor's Action</strong> fails, they gain a{' '}
             <strong className="text-rose-700">momentum shift</strong>. This can
-            be used later to roll an additional d6 for an{' '}
+            be used to roll an additional d6 for a future{' '}
             <strong>Action</strong>.
           </p>
         </article>
@@ -224,6 +224,12 @@ export default function TwistedScion() {
             <strong className="text-rose-700">The Locum</strong>.
           </p>
           <p>
+            <strong className="text-rose-700">Chiara Amati</strong>:{' '}
+            <strong>King Amati's</strong> firstborn and the presumed successor
+            to the throne. Powerful <em>weilder</em>, cunning and ruthless
+            stateswoman. Suspected ties to <strong>House Prisca</strong>.
+          </p>
+          <p>
             <strong className="text-rose-700">General Amir Guran</strong>: A
             politically well-connected <strong>Anidinian</strong> nobleman and
             commander of the <strong>Steel Column</strong>. It's an open secret
@@ -266,7 +272,7 @@ export default function TwistedScion() {
         <article>
           <BorderHeading>Reserved Actors</BorderHeading>
           <p>
-            <strong className="text-rose-700">Vigo Draconis</strong>: The
+            <strong className="text-rose-700">Viggo Draconis</strong>: The
             talented heir to of <strong>House Draconis</strong>, a small{' '}
             <strong>Heian</strong> noble house known for its drake riders and
             strong morals. Rides the drake he named <strong>Midir</strong>,
@@ -276,8 +282,8 @@ export default function TwistedScion() {
             <strong className="text-rose-700">Taiga Taisho</strong>: Deadly{' '}
             <em>wielder</em> of <Donum>Donum Gelu</Donum>, heir to the{' '}
             <strong>Heian</strong> noble house <strong>Taisho</strong>. She fled
-            home as a young girl, returning with an army to obliterate her
-            family and their castle, <strong>Shimaki</strong>.
+            home as a young girl, returning years later with an army to
+            obliterate her long-corrupted family.
           </p>
           <p>
             <strong className="text-rose-700">Cassio</strong>:{' '}
