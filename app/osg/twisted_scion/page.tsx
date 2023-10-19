@@ -219,7 +219,7 @@ export default function TwistedScion() {
           <p>
             <strong className="text-rose-700">Chiara Amati</strong>:{' '}
             <strong>King Amati's</strong> firstborn and the presumed successor
-            to the throne. Powerful <em>weilder</em>, cunning and ruthless
+            to the throne. Powerful <em>wielder</em>, cunning and ruthless
             stateswoman. Suspected ties to <strong>House Prisca</strong>.
           </p>
           <p>
@@ -286,7 +286,7 @@ export default function TwistedScion() {
           </p>
           <p>
             <strong className="text-yellow-700">Viggo Draconis</strong>: The
-            talented heir to of <strong>House Draconis</strong>, a small{' '}
+            talented heir to <strong>House Draconis</strong>, a small{' '}
             <strong>Heian</strong> noble house known for its drake riders and
             strong morals. Rides the drake he named <strong>Midir</strong>,
             after the god of violence.
@@ -316,7 +316,7 @@ export default function TwistedScion() {
           </p>
           <p>
             <strong className="text-rose-700">Avina Kriemhild</strong>: Governor
-            of <strong>Ulgate</strong>, city in the{' '}
+            of <strong>Ulgate</strong>, a city in the{' '}
             <strong>Twisted Scion</strong> using its incredibly powerful weapons
             to resist <strong className="text-rose-700">The Locum</strong> and
             safeguard the largest <strong>Adamatine</strong> deposit anyone has
@@ -326,7 +326,7 @@ export default function TwistedScion() {
             <strong className="text-rose-700">Solitary and Wander</strong>:
             Mysterious vestiges of the <em>supposedly departed</em> deity,{' '}
             <strong>Jira</strong>. Clones of his body, seemingly imbued with
-            miniscule fractions of his memories and power.
+            minuscule fractions of his memories and power.
           </p>
         </article>
       </main>
@@ -374,7 +374,7 @@ export default function TwistedScion() {
           </p>
           <p>
             <strong className="text-rose-700">Dreamscape</strong>: There may be
-            inifnite worlds connected to <strong>Ara</strong>, but the people of
+            infnite worlds connected to <strong>Ara</strong>, but the people of
             every world come to this one place in their dreams. Recent events
             suggest that some have managed to physically travel there - what
             does this mean?
@@ -430,8 +430,8 @@ export default function TwistedScion() {
               <strong>Anidine</strong>
             </Link>
             : Gods forced the union of <strong>Cumeria</strong> and{' '}
-            <strong>Gredora</strong>, two historically bitter enmies. The
-            resulting nation is a powder keg which blew the moment those gods
+            <strong>Gredora</strong>, two historically bitter enemies. The
+            resulting nation is a powder keg that blew the moment those gods
             departed. Now only the core of its territory remains, but it's still
             the world's military superpower - and it's itching for a war.
           </p>
