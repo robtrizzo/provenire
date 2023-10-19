@@ -273,7 +273,13 @@ export default function TwistedScion() {
             <strong className="text-yellow-700">Cassio</strong>:{' '}
             <strong className="text-rose-700">Azama's</strong> ingenious
             firstborn son. <em>Wielder</em> of a wide collection of yet unknown{' '}
-            <Donum>Donums</Donum> - and with a past of suspiciously few details.
+            <Link
+              href="/setting/donums"
+              className="underline-offset-2 decoration-1 hover:decoration-2 hover:text-amber-100"
+            >
+              <Donum>Donums</Donum>
+            </Link>{' '}
+            - and with a past of suspiciously few details.
           </p>
           <h4>Heia</h4>
           <p>
@@ -311,8 +317,14 @@ export default function TwistedScion() {
           <p>
             <strong className="text-rose-700">Agents of the Locum</strong>: A
             cabal of <em>Wielders</em> from the <strong>Twisted Scion</strong>.
-            They each have immense and strange <Donum>Donums</Donum> - the kind
-            this world hasn't seen since the previous age.
+            They each have immense and strange{' '}
+            <Link
+              href="/setting/donums"
+              className="underline-offset-2 decoration-1 hover:decoration-2 hover:text-amber-100"
+            >
+              <Donum>Donums</Donum>
+            </Link>{' '}
+            - the kind this world hasn't seen since the previous age.
           </p>
           <p>
             <strong className="text-rose-700">Avina Kriemhild</strong>: Governor
@@ -369,8 +381,13 @@ export default function TwistedScion() {
             of <strong>Ara</strong> is twisted and dead. No one can enter the
             rotting bark except for the very tip of that branch. In that world,
             water seems to have been replaced with human blood.{' '}
-            <Donum>Donums</Donum> don't work the same. They are corrupted and
-            addictive.
+            <Link
+              href="/setting/donums"
+              className="underline-offset-2 decoration-1 hover:decoration-2 hover:text-amber-100"
+            >
+              <Donum>Donums</Donum>
+            </Link>{' '}
+            don't work the same. They are corrupted and addictive.
           </p>
           <p>
             <strong className="text-rose-700">Dreamscape</strong>: There may be
@@ -397,13 +414,29 @@ export default function TwistedScion() {
             subsist on (mostly animal) <Blood />.
           </p>
           <p>
-            <strong className="text-rose-700">Donums</strong>:{' '}
-            <Donum>Donum</Donum> is the <strong>Arborian</strong> word for
-            'gift.' They are supernatural powers fueled by drinking water. These
-            days, most who drink from a <strong>Life Duct</strong> by the time
-            they're an adult gain a <Donum>Donum</Donum>. The variety and
-            strength of the powers seem to follow geographic, cultural, and
-            genetic patterns, but there are frequent exceptions.
+            <Link
+              href="/setting/donums"
+              className="underline-offset-2 text-rose-700 decoration-1 hover:decoration-2 hover:text-rose-800"
+            >
+              <strong>Donums</strong>
+            </Link>
+            : Supernatural powers awoken by and fueled by drinking water. The
+            variety and strength of the powers seem to follow geographic,
+            cultural, and familial patterns, but there are frequent exceptions.
+          </p>
+          <p>
+            <strong className="text-rose-700">Blood</strong>: Most people sate
+            their thirst with animal <Blood /> since water is so scarce. Humans
+            can burn their blood to briefly empower their body, mind, or heal
+            minor wounds. Some become masters of this, gaining powers
+            approaching{' '}
+            <Link
+              href="/setting/donums"
+              className="underline-offset-2 decoration-1 hover:decoration-2 hover:text-amber-100"
+            >
+              <Donum>Donums</Donum>
+            </Link>{' '}
+            in strength.
           </p>
           <p>
             <strong className="text-rose-700">Adamantine</strong>: A precious

@@ -142,7 +142,7 @@ export default function Fenrir() {
         The outer city is home to those who don't have the King's attention.
         Hunters returning to the city must be good in a scrap, as it's common
         for bandits to set upon those carrying food openly in the streets.
-        Hungry packs of <Donum>Donum Lupus</Donum> roam the streets in search of
+        Hungry packs of <Donum>Donum Rex</Donum> roam the streets in search of
         an easy mark. It is a good day when those without <em>Donums</em> aren't
         caught in the middle of a pack fight, wheter it be for territory, food,
         or women.
@@ -187,11 +187,11 @@ export default function Fenrir() {
             most common of the new transformations to be part of his empire. To
             be under <strong className="text-white">Kingwulf's</strong> rule and
             protection, but never to be on equal standing with the{' '}
-            <Donum>Donum Lupus</Donum>.
+            <Donum>Donum Rex</Donum>.
           </p>
           <ul className="list-none">
             <li>
-              <Donum>Donum Lupus</Donum>: Gift of the Wolf
+              <Donum>Donum Rex</Donum>: Gift of the King
             </li>
             <li>
               <Donum>Donum Ursa</Donum>: Gift of the Bear
@@ -201,9 +201,6 @@ export default function Fenrir() {
             </li>
             <li>
               <Donum>Donum Somnium</Donum>: Gift of Dreams
-            </li>
-            <li>
-              <Donum>Donum Sangius</Donum>: Gift of Blood
             </li>
           </ul>
         </div>
