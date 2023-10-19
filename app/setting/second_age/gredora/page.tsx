@@ -1,10 +1,19 @@
 import Donum from '@/components/Donum';
 import Next from '@/components/Next';
 import Previous from '@/components/Previous';
+import Link from 'next/link';
 export default function Gredora() {
   return (
     <>
       <h1>Gredora</h1>
+      <div className="flex items-center justify-center gap-4">
+        <Link
+          href="/setting/first_age/gredora"
+          className="no-underline py-4 px-8 border-2 border-black rounded-md bg-slate-900 hover:bg-slate-800 transition-colors flex items-center gap-2 text-white"
+        >
+          Gredora in the First Age
+        </Link>
+      </div>
       <h2>Nomad Armies</h2>
       <div className="flex flex-row gap-2">
         <div className="w-1/2">
@@ -31,8 +40,8 @@ export default function Gredora() {
             <strong className="text-white">Titan Pines</strong>.{' '}
             <strong className="text-white">Gredorans</strong> yearn for those
             days, and they quietly resolve it within themselves to bring back
-            the might of their people, to be known as the most powerful people
-            once again.
+            the might of their people, to be known as the most powerful once
+            again.
           </p>
         </div>
       </div>

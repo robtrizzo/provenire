@@ -1,15 +1,24 @@
 import Donum from '@/components/Donum';
 import Next from '@/components/Next';
 import Previous from '@/components/Previous';
+import Link from 'next/link';
 export default function Heia() {
   return (
     <>
       <h1>Heia</h1>
+      <div className="flex items-center justify-center gap-4">
+        <Link
+          href="/setting/first_age/shian_tor"
+          className="no-underline py-4 px-8 border-2 border-black rounded-md bg-slate-900 hover:bg-slate-800 transition-colors flex items-center gap-2 text-white"
+        >
+          Shian Tor in the First Age
+        </Link>
+      </div>
       <h2>Many Peoples, One Nation</h2>
       <p>
         Before <strong>Akil the Ruler</strong> and{' '}
         <strong>Asherah the Healer</strong> drove the dragons away from the
-        lkes, what is now <strong>Heia</strong> was called{' '}
+        lakes, what is now <strong>Heia</strong> was called{' '}
         <strong>Shian Tor</strong>. According to the histories, the{' '}
         <strong>Torans</strong> were much like the <strong>Yamans</strong> are
         now, which could not be farther from how <strong>Heians</strong> are

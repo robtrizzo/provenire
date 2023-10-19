@@ -1,10 +1,19 @@
 import Donum from '@/components/Donum';
 import Next from '@/components/Next';
 import Previous from '@/components/Previous';
+import Link from 'next/link';
 export default function Narscillia() {
   return (
     <>
       <h1>Narscillia</h1>
+      <div className="flex items-center justify-center gap-4">
+        <Link
+          href="/setting/first_age/narscillia"
+          className="no-underline py-4 px-8 border-2 border-black rounded-md bg-slate-900 hover:bg-slate-800 transition-colors flex items-center gap-2 text-white"
+        >
+          Narscillia in the First Age
+        </Link>
+      </div>
       <h2>The Green Road</h2>
       <p>
         The <strong>International Trade Road</strong> winds its way all the way

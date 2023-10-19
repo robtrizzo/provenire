@@ -1,10 +1,24 @@
 import Donum from '@/components/Donum';
-import Next from '@/components/Next';
 import Previous from '@/components/Previous';
+import Link from 'next/link';
 export default function Yama() {
   return (
     <>
       <h1>Yama</h1>
+      <div className="flex items-center justify-center gap-4">
+        <Link
+          href="/setting/first_age/gredora"
+          className="no-underline py-4 px-8 border-2 border-black rounded-md bg-slate-900 hover:bg-slate-800 transition-colors flex items-center gap-2 text-white"
+        >
+          Gredora in the First Age
+        </Link>
+        <Link
+          href="/setting/first_age/shian_tor"
+          className="no-underline py-4 px-8 border-2 border-black rounded-md bg-slate-900 hover:bg-slate-800 transition-colors flex items-center gap-2 text-white"
+        >
+          Shian Tor in the First Age
+        </Link>
+      </div>
       <h2>Eternal Obligation</h2>
       <p>
         The <strong>Yamans</strong> still adhere to their ancient dogma of

@@ -1,5 +1,8 @@
 import { ReactNode } from 'react';
 import Donum from '@/components/Donum';
+import Blood from '@/components/Blood';
+import Image from 'next/image';
+import Link from 'next/link';
 const BorderHeading = ({ children }: { children: ReactNode }) => (
   <h3 className="border-solid border-b-2 border-indigo-700">{children}</h3>
 );
@@ -176,6 +179,7 @@ export default function TwistedScion() {
       <main className="md:columns-2">
         <article>
           <BorderHeading>Inciting Incident</BorderHeading>
+          <h4>Battle at the Base of Infinity</h4>
           <p>
             A branch of <strong>Ara, Tree of the Infinite</strong> is exposed,
             draping from the heavens to the heat-blasted plateaus of{' '}
@@ -195,6 +199,7 @@ export default function TwistedScion() {
             base of the branch.
           </p>
           <hr style={{ marginTop: '20px', marginBottom: '20px' }} />
+          <h4>What now?</h4>
           <p>
             Missing leader of the world's military superpower, an exposed branch
             to <strong>Ara</strong>, invaders from another world. History is
@@ -203,26 +208,14 @@ export default function TwistedScion() {
           </p>
         </article>
         <article>
-          <BorderHeading>Open Actors</BorderHeading>
+          <BorderHeading>Actors</BorderHeading>
           <p>
-            <strong className="text-rose-700">Azama</strong>: Merchant-general
-            of the <strong>Dameter Caravan-army</strong>. Brilliant, arrogant,
-            swiftly rising to prominence and power within{' '}
-            <strong>Gredora</strong>.
+            <strong className="text-rose-700">
+              Each section groups Actors by region they're from. Actors marked
+              in <span className="text-yellow-700">yellow</span> are reserved.
+            </strong>
           </p>
-          <p>
-            <strong className="text-rose-700">Agents of the Locum</strong>: A
-            cabal of <em>Wielders</em> from the <strong>Twisted Scion</strong>.
-            They each have immense and strange <Donum>Donums</Donum> - the kind
-            this world hasn't seen since the previous age.
-          </p>
-          <p>
-            <strong className="text-rose-700">Avina Kriemhild</strong>: High
-            Priestess of the <strong>Trinity Sisterhood</strong>. Governor of{' '}
-            <strong>Ulgate</strong>, the solitary city in the world of the{' '}
-            <strong>Twisted Scion</strong> with the ability to resist{' '}
-            <strong className="text-rose-700">The Locum</strong>.
-          </p>
+          <h4>Anidine</h4>
           <p>
             <strong className="text-rose-700">Chiara Amati</strong>:{' '}
             <strong>King Amati's</strong> firstborn and the presumed successor
@@ -236,24 +229,32 @@ export default function TwistedScion() {
             that he plots against <strong>King Amati</strong>.
           </p>
           <p>
-            <strong className="text-rose-700">Fia Lettiere</strong>:{' '}
-            <em>Wielder</em> of <Donum>Donum Tueor</Donum> and High Visionary of
-            the <strong>Gallery of Faces</strong>: the intelligence aparatus of{' '}
-            <strong>Narscillia</strong>.
+            <strong className="text-yellow-700">Prince Sebastian Amati</strong>:
+            Second born son of <strong>King Amati</strong>, skilled diplomat,
+            and powerful <em>wielder</em> of{' '}
+            <Donum tooltip="the gift of denial">Donum Denieth</Donum>. Somehow
+            managed to travel between worlds without traversing{' '}
+            <strong>Ara</strong>.
           </p>
           <p>
-            <strong className="text-rose-700">Solitary and Wander</strong>:
-            Mysterious vestiges of the <em>supposedly departed</em> deity,{' '}
-            <strong>Jira</strong>. Clones of his body, seemingly imbued with
-            miniscule fractions of his memories and power.
+            <strong className="text-yellow-700">
+              Praetorian Benedict Attano
+            </strong>
+            : Personal bodyguard of{' '}
+            <strong className="text-yellow-700">Prince Sebastian Amati</strong>.
+            Once in a generation <em>wielder</em> of{' '}
+            <Donum tooltip="gift of the forge">Donum Fornax</Donum>, used to
+            enhance his already formidable sword skills.
           </p>
+          <h4>Argos</h4>
           <p>
             <strong className="text-rose-700">Canus Prisca</strong>: Head of{' '}
             <strong>House Prisca</strong>: an <strong>Argosi</strong>{' '}
             organization internationally despised for their use of{' '}
-            <Donum>Donum Dolus</Donum> to shape world events through
-            manipulation and assassination.
+            <Donum tooltip="the gift of deception">Donum Dolus</Donum> to shape
+            world events through manipulation and assassination.
           </p>
+          <h4>Fenrir Empire</h4>
           <p>
             <strong className="text-rose-700">Respa Sorbrand</strong>: Captain
             of <strong>Sordid Beak</strong>, an elite strike force founded by{' '}
@@ -261,54 +262,85 @@ export default function TwistedScion() {
             <strong>Fenrir</strong> needs to reach outside the borders of the
             Empire.
           </p>
+          <h4>Gredora</h4>
+          <p>
+            <strong className="text-rose-700">Azama</strong>: Merchant-general
+            of the <strong>Dameter Caravan-army</strong>. Brilliant, arrogant,
+            swiftly rising to prominence and power within{' '}
+            <strong>Gredora</strong>.
+          </p>
+          <p>
+            <strong className="text-yellow-700">Cassio</strong>:{' '}
+            <strong className="text-rose-700">Azama's</strong> ingenious
+            firstborn son. <em>Wielder</em> of a wide collection of yet unknown{' '}
+            <Donum>Donums</Donum> - and with a past of suspiciously few details.
+          </p>
+          <h4>Heia</h4>
           <p>
             <strong className="text-rose-700">Zeke</strong>: The strongest{' '}
-            <em>wielder</em> of <Donum>Donum Iter</Donum> since{' '}
+            <em>wielder</em> of{' '}
+            <Donum tooltip="the gift of journey">Donum Iter</Donum> since{' '}
             <strong>Midir, Saint of Violence</strong>. Desperate to protect the
             peaceful, sleepy life he's made for himself far away from the
             world's troubles.
           </p>
-        </article>
-        <article>
-          <BorderHeading>Reserved Actors</BorderHeading>
           <p>
-            <strong className="text-rose-700">Viggo Draconis</strong>: The
+            <strong className="text-yellow-700">Viggo Draconis</strong>: The
             talented heir to of <strong>House Draconis</strong>, a small{' '}
             <strong>Heian</strong> noble house known for its drake riders and
             strong morals. Rides the drake he named <strong>Midir</strong>,
             after the god of violence.
           </p>
           <p>
-            <strong className="text-rose-700">Taiga Taisho</strong>: Deadly{' '}
-            <em>wielder</em> of <Donum>Donum Gelu</Donum>, heir to the{' '}
+            <strong className="text-yellow-700">Taiga Taisho</strong>: Deadly{' '}
+            <em>wielder</em> of{' '}
+            <Donum tooltip="the gift of frost">Donum Gelu</Donum>, heir to the{' '}
             <strong>Heian</strong> noble house <strong>Taisho</strong>. She fled
             home as a young girl, returning years later with an army to
             obliterate her long-corrupted family.
           </p>
+          <h4>Narscillia</h4>
           <p>
-            <strong className="text-rose-700">Cassio</strong>:{' '}
-            <strong className="text-rose-700">Azama's</strong> ingenious
-            firstborn son. <em>Wielder</em> of a wide collection of yet unknown{' '}
-            <Donum>Donums</Donum> - and with a past of suspiciously few details.
+            <strong className="text-rose-700">Fia Lettiere</strong>:{' '}
+            <em>Wielder</em> of{' '}
+            <Donum tooltip="gift of beholding">Donum Tueor</Donum> and High
+            Visionary of the <strong>Gallery of Faces</strong>: the intelligence
+            aparatus of <strong>Narscillia</strong>.
+          </p>
+          <h4>Twisted Scion</h4>
+          <p>
+            <strong className="text-rose-700">Agents of the Locum</strong>: A
+            cabal of <em>Wielders</em> from the <strong>Twisted Scion</strong>.
+            They each have immense and strange <Donum>Donums</Donum> - the kind
+            this world hasn't seen since the previous age.
           </p>
           <p>
-            <strong className="text-rose-700">Prince Sebastian Amati</strong>:
-            Second born son of <strong>King Amati</strong>, skilled diplomat,
-            and powerful <em>wielder</em> of <Donum>Donum Denieth</Donum>.
-            Somehow managed to travel between worlds without traversing{' '}
-            <strong>Ara</strong>.
+            <strong className="text-rose-700">Avina Kriemhild</strong>: Governor
+            of <strong>Ulgate</strong>, city in the{' '}
+            <strong>Twisted Scion</strong> which uses its incredibly powerful
+            weapons to resist{' '}
+            <strong className="text-rose-700">The Locum</strong> and safeguard
+            the largest <strong>Adamatine</strong> deposit anyone has seen.
           </p>
           <p>
-            <strong className="text-rose-700">
-              Praetorian Benedict Attano
-            </strong>
-            : Personal bodyguard of{' '}
-            <strong className="text-rose-700">Prince Sebastian Amati</strong>.
-            Once in a generation <em>wielder</em> of <Donum>Donum Fornax</Donum>
-            , used to enhance his already formidable sword skills.
+            <strong className="text-rose-700">Solitary and Wander</strong>:
+            Mysterious vestiges of the <em>supposedly departed</em> deity,{' '}
+            <strong>Jira</strong>. Clones of his body, seemingly imbued with
+            miniscule fractions of his memories and power.
           </p>
         </article>
       </main>
+      <hr />
+      <div className="flex flex-col items-center">
+        <BorderHeading>Theater of Play</BorderHeading>
+        <Image
+          src={'https://provenire.s3.amazonaws.com/osg_map.png'}
+          width={1000}
+          height={800}
+          alt="Map of the world"
+          className="rounded-lg w-auto h-auto"
+        />
+      </div>
       <hr />
       <main className="md:columns-2">
         <article>
@@ -317,8 +349,14 @@ export default function TwistedScion() {
             The people of the world do not understand the forces at play.
           </strong>
           <p>
+            <strong className="text-rose-700">Deities</strong>: The{' '}
+            <strong>Old Gods</strong> are locked away, and the{' '}
+            <strong>New Gods</strong> have departed of their own volition. The
+            people of the world are left to their own devices.
+          </p>
+          <p>
             <strong className="text-rose-700">Ara, Tree of the Infinite</strong>
-            . Until recently its existence was a secret only a handful knew. Its
+            : Until recently its existence was a secret only a handful knew. Its
             golden-brown branches stretch into infinity. The wrinkles of{' '}
             <strong>Ara's</strong> bark are mesmerizing: granting visions of
             other versions of history. Whenever someone enters the bark, a new
@@ -332,12 +370,10 @@ export default function TwistedScion() {
             rotting bark except for the very tip of that branch. In that world,
             water seems to have been replaced with human blood.{' '}
             <Donum>Donums</Donum> don't work the same. They are corrupted and
-            addictive. That is where the{' '}
-            <strong className="text-rose-700">Agents of Locum</strong> and{' '}
-            <strong className="text-rose-700">Avina Kriemhild</strong> are from.
+            addictive.
           </p>
           <p>
-            <strong className="text-rose-700">Dreamscape</strong>. There may be
+            <strong className="text-rose-700">Dreamscape</strong>: There may be
             inifnite worlds connected to <strong>Ara</strong>, but the people of
             every world come to this one place in their dreams. Recent events
             suggest that some have managed to physically travel there - what
@@ -352,25 +388,29 @@ export default function TwistedScion() {
           </strong>
           <p>
             <strong className="text-rose-700">Life Ducts</strong>: There is no
-            naturally occurring water. Instead strange and arbitrary rituals are
-            required at the foot of monoliths called <strong>Life Ducts</strong>
-            . After the ritual is complete, water flows from it for some time.
-            There are a few permanently open <strong>ducts</strong> around the
-            world, but those are the exception.
+            naturally occurring water. Instead, strange and arbitrary rituals
+            are required at the foot of monoliths called{' '}
+            <strong>Life Ducts</strong>. After the ritual is complete, water
+            flows from it for some time. There are a few permanently open{' '}
+            <strong>ducts</strong> around the world, but those are the
+            exception. For most people, water is rarely available. Instead, they
+            subsist on (mostly animal) <Blood />.
           </p>
           <p>
             <strong className="text-rose-700">Donums</strong>:{' '}
             <Donum>Donum</Donum> is the <strong>Arborian</strong> word for
             'gift.' They are supernatural powers fueled by drinking water. These
             days, most who drink from a <strong>Life Duct</strong> by the time
-            they're done growing gain a <Donum>Donum</Donum>. The variety and
-            strength of the powers seem to follow some geographic, cultural, and
+            they're an adult gain a <Donum>Donum</Donum>. The variety and
+            strength of the powers seem to follow geographic, cultural, and
             genetic patterns, but there are frequent exceptions.
           </p>
           <p>
             <strong className="text-rose-700">Adamantine</strong>: A precious
-            metal which can supercharge the powers of <Donum>Donum Ferro</Donum>
-            , <Donum>Donum Ignis</Donum>, and <Donum>Donum Fornax</Donum>. Also
+            metal which can supercharge the powers of{' '}
+            <Donum tooltip="gift of iron">Donum Ferro</Donum>,{' '}
+            <Donum tooltip="gift of fire">Donum Ignis</Donum>, and{' '}
+            <Donum tooltip="gift of the forge">Donum Fornax</Donum>. Also
             crucial to <strong>Gredoran</strong> and <strong>Anidinian</strong>{' '}
             war machines. Only sources are dragon bones and naga bones - both
             exceptionally scarce.
@@ -383,40 +423,71 @@ export default function TwistedScion() {
             involved.
           </strong>
           <p>
-            <strong className="text-rose-700">Anidine</strong>: Gods forced the
-            union of <strong>Cumeria</strong> and <strong>Gredora</strong>, two
-            historically bitter enmies. The resulting nation is a powder keg
-            which blew the moment those gods departed. Now only the core of its
-            territory remains, but it's still the world's military superpower -
-            and it's itching for a war.
+            <Link
+              href="/setting/second_age/anidine"
+              className="underline-offset-2 text-rose-700 decoration-1 hover:decoration-2 hover:text-rose-800"
+            >
+              <strong>Anidine</strong>
+            </Link>
+            : Gods forced the union of <strong>Cumeria</strong> and{' '}
+            <strong>Gredora</strong>, two historically bitter enmies. The
+            resulting nation is a powder keg which blew the moment those gods
+            departed. Now only the core of its territory remains, but it's still
+            the world's military superpower - and it's itching for a war.
           </p>
           <p>
-            <strong className="text-rose-700">Argos</strong>: Isolationist
-            city-state far away from the stage of this conflict. Ruled by four
-            houses. Three perfer to keep to themselves. The fourth house:{' '}
-            <strong>House Prisca</strong>, is an international terror.
+            <Link
+              href="/setting/second_age/argos"
+              className="underline-offset-2 text-rose-700 decoration-1 hover:decoration-2 hover:text-rose-800"
+            >
+              <strong>Argos</strong>
+            </Link>
+            : Isolationist city-state far away from the stage of this conflict.
+            Ruled by four houses. Three perfer to keep to themselves. The fourth
+            house: <strong>House Prisca</strong>, is an international terror.
           </p>
           <p>
-            <strong className="text-rose-700">Fenrir Empire</strong>: Dystopian
-            empire ruled by an immortal god-king, <strong>Kingwulf</strong>. Far
-            away from the stage of this conflict, but always looking for an
-            opportunity to expand.
+            <Link
+              href="/setting/second_age/fenrir"
+              className="underline-offset-2 text-rose-700 decoration-1 hover:decoration-2 hover:text-rose-800"
+            >
+              <strong>Fenrir Empire</strong>
+            </Link>
+            : Dystopian empire ruled by an immortal god-king,{' '}
+            <strong>Kingwulf</strong>. Far away from the stage of this conflict,
+            but always looking for an opportunity to expand.
           </p>
           <p>
-            <strong className="text-rose-700">Gredora</strong>: Nomadic
-            caravan-armies without a centralized government. Recently defeated{' '}
-            <strong>Anidine</strong> in a war for secession, but still missing
-            the most resource-rich parts of its territory.{' '}
+            <Link
+              href="/setting/second_age/gredora"
+              className="underline-offset-2 text-rose-700 decoration-1 hover:decoration-2 hover:text-rose-800"
+            >
+              <strong>Gredora</strong>
+            </Link>
+            : Nomadic caravan-armies without a centralized government. Recently
+            defeated <strong>Anidine</strong> in a war for secession, but still
+            missing the most resource-rich parts of its territory.{' '}
           </p>
           <p>
-            <strong className="text-rose-700">Heia</strong>: Feudal nation
-            determined to stay out of <strong>Anidine's</strong> way, lest they
-            get caught up in another doomed conflict with them.
+            <Link
+              href="/setting/second_age/heia"
+              className="underline-offset-2 text-rose-700 decoration-1 hover:decoration-2 hover:text-rose-800"
+            >
+              <strong>Heia</strong>
+            </Link>
+            : Feudal nation determined to stay out of <strong>Anidine's</strong>{' '}
+            way, lest they get caught up in another doomed conflict with them.
           </p>
           <p>
-            <strong className="text-rose-700">Narscillia</strong>: A desert
-            nation reeling from a recent war between <strong>Heia</strong> and{' '}
-            <strong>Anidine</strong> which got fought within its borders.
+            <Link
+              href="/setting/second_age/narscillia"
+              className="underline-offset-2 text-rose-700 decoration-1 hover:decoration-2 hover:text-rose-800"
+            >
+              <strong>Narscillia</strong>
+            </Link>
+            : A desert nation reeling from a recent war between{' '}
+            <strong>Heia</strong> and <strong>Anidine</strong> which got fought
+            within its borders.
           </p>
         </article>
       </main>

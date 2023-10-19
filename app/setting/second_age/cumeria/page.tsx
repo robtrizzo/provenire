@@ -1,10 +1,19 @@
 import Donum from '@/components/Donum';
 import Next from '@/components/Next';
 import Previous from '@/components/Previous';
+import Link from 'next/link';
 export default function Cumeria() {
   return (
     <>
       <h1>Cumeria</h1>
+      <div className="flex items-center justify-center gap-4">
+        <Link
+          href="/setting/first_age/cumeria"
+          className="no-underline py-4 px-8 border-2 border-black rounded-md bg-slate-900 hover:bg-slate-800 transition-colors flex items-center gap-2 text-white"
+        >
+          Cumeria in the First Age
+        </Link>
+      </div>
       <h2>Divided We Fell</h2>
       <div className="flex flex-row gap-2">
         <div className="w-1/2">

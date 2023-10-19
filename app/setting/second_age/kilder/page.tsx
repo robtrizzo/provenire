@@ -1,10 +1,19 @@
 import Donum from '@/components/Donum';
 import Next from '@/components/Next';
 import Previous from '@/components/Previous';
+import Link from 'next/link';
 export default function Kilder() {
   return (
     <>
       <h1>Kilder</h1>
+      <div className="flex items-center justify-center gap-4">
+        <Link
+          href="/setting/first_age/kilder"
+          className="no-underline py-4 px-8 border-2 border-black rounded-md bg-slate-900 hover:bg-slate-800 transition-colors flex items-center gap-2 text-white"
+        >
+          Kilder in the First Age
+        </Link>
+      </div>
       <p>
         <strong>Kilder's</strong> borders have not changed, and much of life in
         the dread swamp is as it was four hundred years ago. Three warbards live

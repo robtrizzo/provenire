@@ -1,10 +1,19 @@
 import Donum from '@/components/Donum';
 import Next from '@/components/Next';
 import Previous from '@/components/Previous';
+import Link from 'next/link';
 export default function Kipos() {
   return (
     <>
       <h1>Kipos</h1>
+      <div className="flex items-center justify-center gap-4">
+        <Link
+          href="/setting/first_age/arboria"
+          className="no-underline py-4 px-8 border-2 border-black rounded-md bg-slate-900 hover:bg-slate-800 transition-colors flex items-center gap-2 text-white"
+        >
+          Arboria in the First Age
+        </Link>
+      </div>
       <h2>The Mountain</h2>
       <p>
         The most important figure in <strong>Kipos</strong> is the{' '}

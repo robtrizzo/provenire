@@ -1,10 +1,25 @@
 import Donum from '@/components/Donum';
 import Next from '@/components/Next';
 import Previous from '@/components/Previous';
+import Link from 'next/link';
 export default function Anidine() {
   return (
     <>
       <h1>Anidine</h1>
+      <div className="flex items-center justify-center gap-4">
+        <Link
+          href="/setting/first_age/cumeria"
+          className="no-underline  py-4 px-8 border-2 border-black rounded-md bg-slate-900 hover:bg-slate-800 transition-colors flex items-center gap-2 text-white"
+        >
+          Cumeria in the First Age
+        </Link>
+        <Link
+          href="/setting/first_age/gredora"
+          className="no-underline py-4 px-8 border-2 border-black rounded-md bg-slate-900 hover:bg-slate-800 transition-colors flex items-center gap-2 text-white"
+        >
+          Gredora in the First Age
+        </Link>
+      </div>
       <h2>Long Live the King</h2>
       <div className="flex flex-row gap-2">
         <div className="w-1/2">

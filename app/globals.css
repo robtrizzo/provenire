@@ -20,6 +20,16 @@
 }
 
 @tailwind components;
+
+.tooltip {
+  @apply opacity-0 absolute;
+  @apply transition-all duration-300;
+}
+
+.has-tooltip:hover .tooltip {
+  @apply opacity-100 z-50;
+}
+
 @tailwind utilities;
 
 :root {

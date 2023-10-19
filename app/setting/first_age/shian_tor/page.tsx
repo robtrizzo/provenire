@@ -10,7 +10,7 @@ export default function ShianTor() {
         grass without one <strong>Toran</strong> in sight. And not for lack of
         their presence.
       </blockquote>
-      <h2>Ghosts of the Reeds</h2>
+      <h2>Ghosts in the Reeds</h2>
       <p>
         <strong>Shian Tor</strong> is a land rich with life. Great herds of
         buffalo, antelope, and elephants roam the open landscape, and predators
@@ -27,8 +27,8 @@ export default function ShianTor() {
         <strong>Toran</strong> tribe:
       </p>
       <blockquote>
-        The dragons are the ghosts of the reeds, and they will never let our
-        people settle.
+        The dragons have made us spirits of the grasses, always there - never
+        seen.
       </blockquote>
       <div className="flex flex-row gap-2">
         <div className="w-1/2">

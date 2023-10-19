@@ -4,9 +4,9 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 's3.amazonaws.com',
+        hostname: 'provenire.s3.amazonaws.com',
         port: '',
-        pathname: '/provenire/**',
+        pathname: '/**',
       },
     ],
   },

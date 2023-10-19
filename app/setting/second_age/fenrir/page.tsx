@@ -1,10 +1,19 @@
 import Donum from '@/components/Donum';
 import Next from '@/components/Next';
 import Previous from '@/components/Previous';
+import Link from 'next/link';
 export default function Fenrir() {
   return (
     <>
       <h1>Fenrir</h1>
+      <div className="flex items-center justify-center gap-4">
+        <Link
+          href="/setting/first_age/rath"
+          className="no-underline py-4 px-8 border-2 border-black rounded-md bg-slate-900 hover:bg-slate-800 transition-colors flex items-center gap-2 text-white"
+        >
+          Rath in the First Age
+        </Link>
+      </div>
       <h2>Three Ravenous Packs</h2>
       <p>
         During the <strong>First Age</strong>, what is now{' '}
