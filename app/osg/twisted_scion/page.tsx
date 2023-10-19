@@ -301,8 +301,8 @@ export default function TwistedScion() {
           </p>
           <h4>Narscillia</h4>
           <p>
-            <strong className="text-rose-700">Fia Lettiere</strong>:{' '}
-            <em>Wielder</em> of{' '}
+            <strong className="text-rose-700">Fia Lettiere</strong>: Enigmatic
+            and all-knowing <em>wielder</em> of{' '}
             <Donum tooltip="gift of beholding">Donum Tueor</Donum> and High
             Visionary of the <strong>Gallery of Faces</strong>: the intelligence
             aparatus of <strong>Narscillia</strong>.
@@ -317,10 +317,10 @@ export default function TwistedScion() {
           <p>
             <strong className="text-rose-700">Avina Kriemhild</strong>: Governor
             of <strong>Ulgate</strong>, city in the{' '}
-            <strong>Twisted Scion</strong> which uses its incredibly powerful
-            weapons to resist{' '}
-            <strong className="text-rose-700">The Locum</strong> and safeguard
-            the largest <strong>Adamatine</strong> deposit anyone has seen.
+            <strong>Twisted Scion</strong> using its incredibly powerful weapons
+            to resist <strong className="text-rose-700">The Locum</strong> and
+            safeguard the largest <strong>Adamatine</strong> deposit anyone has
+            seen.
           </p>
           <p>
             <strong className="text-rose-700">Solitary and Wander</strong>:
