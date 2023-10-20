@@ -186,17 +186,31 @@ export default function TwistedScion() {
             <strong>Gredora</strong>. An army commanded by{' '}
             <strong className="text-rose-700">Agents of the Locum</strong>{' '}
             marched from the branch into this world where they were met by
-            armies commanded by <strong>Vero Amati: King of Anidine</strong> and{' '}
-            <strong className="text-rose-700">Azama</strong> respectively.
+            armies commanded by{' '}
+            <span className="has-tooltip">
+              <span className="tooltip rounded shadow-lg py-0 px-3 bg-slate-900 text-red-500 mt-14 max-w-sm left-0 ">
+                Controversial King of Anidine. Known for pursuing peace and
+                holding <b>Anidine's</b> warmongering factions at bay.
+              </span>
+              <strong>Vero Amati: King of Anidine</strong>
+            </span>{' '}
+            and <strong className="text-rose-700">Azama</strong> respectively.
           </p>
           <p>
             The battle was confusing - it remains unclear who was on which side
             of the conflict. As the dust settled, the{' '}
             <strong className="text-rose-700">Locum's</strong> army retreated up
-            the branch, <strong>King Amati's</strong> army retreated back into{' '}
-            <strong>Anidine</strong> - their king missing, and{' '}
-            <strong className="text-rose-700">Azama</strong> still holds the
-            base of the branch.
+            the branch,{' '}
+            <span className="has-tooltip">
+              <span className="tooltip rounded shadow-lg py-0 px-3 bg-slate-900 text-red-500 mt-8 max-w-sm">
+                Controversial King of Anidine. Known for pursuing peace and
+                holding <b>Anidine's</b> warmongering factions at bay.
+              </span>
+              <strong>King Amati's</strong>
+            </span>{' '}
+            army retreated back into <strong>Anidine</strong> - their king
+            missing, and <strong className="text-rose-700">Azama</strong> still
+            holds the base of the branch.
           </p>
           <hr style={{ marginTop: '20px', marginBottom: '20px' }} />
           <h4>What now?</h4>
@@ -218,20 +232,59 @@ export default function TwistedScion() {
           <h4>Anidine</h4>
           <p>
             <strong className="text-rose-700">Chiara Amati</strong>:{' '}
-            <strong>King Amati's</strong> firstborn and the presumed successor
-            to the throne. Powerful <em>wielder</em>, cunning and ruthless
-            stateswoman. Suspected ties to <strong>House Prisca</strong>.
+            <span className="has-tooltip">
+              <span className="tooltip rounded shadow-lg py-0 px-3 bg-slate-900 text-red-500 mt-8 max-w-sm">
+                Controversial King of Anidine. Known for pursuing peace and
+                holding <b>Anidine's</b> warmongering factions at bay.
+              </span>
+              <strong>King Amati's</strong>
+            </span>{' '}
+            firstborn and the presumed successor to the throne. Powerful{' '}
+            <em>wielder</em>, cunning and ruthless stateswoman. Suspected ties
+            to{' '}
+            <span className="has-tooltip">
+              <span className="tooltip rounded shadow-lg py-0 px-3 bg-slate-900 text-red-500 mt-8 max-w-sm">
+                One of Argos's four noble houses. An international terror known
+                for their use of <Donum>Donum Dolus</Donum> to shape world
+                events through manipulation and assassination.
+              </span>
+              <strong>House Prisca</strong>
+            </span>
+            .
           </p>
           <p>
             <strong className="text-rose-700">General Amir Guran</strong>: A
             politically well-connected <strong>Anidinian</strong> nobleman and
-            commander of the <strong>Steel Column</strong>. It's an open secret
-            that he plots against <strong>King Amati</strong>.
+            commander of the{' '}
+            <span className="has-tooltip">
+              <span className="tooltip rounded shadow-lg py-0 px-3 bg-slate-900 text-red-500 mt-8 max-w-sm">
+                An elite force of <b>Anidine's</b> best soldiers. To a man, they
+                are all experts of <Donum>Donum Ferro</Donum> and are equipped
+                with several <b>Adamantine</b> war machines.
+              </span>
+              <strong>Steel Column</strong>
+            </span>
+            . It's an open secret that he plots against{' '}
+            <span className="has-tooltip">
+              <span className="tooltip rounded shadow-lg py-0 px-3 bg-slate-900 text-red-500 mt-8 max-w-sm">
+                Controversial King of Anidine. Known for pursuing peace and
+                holding <b>Anidine's</b> warmongering factions at bay.
+              </span>
+              <strong>King Amati</strong>
+            </span>
+            .
           </p>
           <p>
             <strong className="text-yellow-700">Prince Sebastian Amati</strong>:
-            Second born son of <strong>King Amati</strong>, skilled diplomat,
-            and powerful <em>wielder</em> of{' '}
+            Second born son of{' '}
+            <span className="has-tooltip">
+              <span className="tooltip rounded shadow-lg py-0 px-3 bg-slate-900 text-red-500 mt-8 max-w-sm">
+                Controversial King of Anidine. Known for pursuing peace and
+                holding <b>Anidine's</b> warmongering factions at bay.
+              </span>
+              <strong>King Amati</strong>
+            </span>
+            , skilled diplomat, and powerful <em>wielder</em> of{' '}
             <Donum tooltip="the gift of denial">Donum Denieth</Donum>. Somehow
             managed to travel between worlds without traversing{' '}
             <strong>Ara</strong>.
@@ -249,24 +302,49 @@ export default function TwistedScion() {
           <h4>Argos</h4>
           <p>
             <strong className="text-rose-700">Canus Prisca</strong>: Head of{' '}
-            <strong>House Prisca</strong>: an <strong>Argosi</strong>{' '}
-            organization internationally despised for their use of{' '}
-            <Donum tooltip="the gift of deception">Donum Dolus</Donum> to shape
-            world events through manipulation and assassination.
+            <span className="has-tooltip">
+              <span className="tooltip rounded shadow-lg py-0 px-3 bg-slate-900 text-red-500 mt-8 max-w-sm">
+                One of Argos's four noble houses. An international terror known
+                for their use of <Donum>Donum Dolus</Donum> to shape world
+                events through manipulation and assassination.
+              </span>
+              <strong>House Prisca</strong>
+            </span>
+            . A master of <Donum tooltip="gift of deceit">Donum Dolus</Donum> as
+            well as conventional espionage. Countless influential people dance
+            on his strings.
           </p>
           <h4>Fenrir Empire</h4>
           <p>
             <strong className="text-rose-700">Respa Sorbrand</strong>: Captain
-            of <strong>Sordid Beak</strong>, an elite strike force founded by{' '}
-            <strong>Fenrir's Duke of Ravens</strong> for moments when{' '}
-            <strong>Fenrir</strong> needs to reach outside the borders of the
-            Empire.
+            of{' '}
+            <span className="has-tooltip">
+              <span className="tooltip rounded shadow-lg py-0 px-3 bg-slate-900 text-red-500 mt-8 max-w-sm right-0">
+                An elite strike force founded by <b>Fenrir's Duke of Ravens</b>{' '}
+                for moments when <b>Fenrir</b> needs to reach outside the
+                borders of the Empire.
+              </span>
+              <strong>Sordid Beak</strong>
+            </span>
+            . A master of <Donum tooltip="gift of the crow">Donum Corvus</Donum>{' '}
+            and world class warrior. Seeking redemption after a crushing
+            outmaneuvering by <strong className="text-rose-700">Azama</strong>{' '}
+            years ago.
           </p>
           <h4>Gredora</h4>
           <p>
             <strong className="text-rose-700">Azama</strong>: Merchant-general
-            of the <strong>Dameter Caravan-army</strong>. Brilliant, arrogant,
-            swiftly rising to prominence and power within{' '}
+            of the{' '}
+            <span className="has-tooltip">
+              <span className="tooltip rounded shadow-lg py-0 px-3 bg-slate-900 text-red-500 mt-8 max-w-sm right-0">
+                Impoverished and lowly caravan until{' '}
+                <strong className="text-rose-700">Azama</strong> became its
+                leader. Now it's enormous, well equipped, and always a step
+                ahead of the competition.
+              </span>
+              <strong>Dameter Caravan-army</strong>
+            </span>
+            . Brilliant, arrogant, swiftly rising to prominence and power within{' '}
             <strong>Gredora</strong>.
           </p>
           <p>
@@ -286,32 +364,62 @@ export default function TwistedScion() {
             <strong className="text-rose-700">Zeke</strong>: The strongest{' '}
             <em>wielder</em> of{' '}
             <Donum tooltip="the gift of journey">Donum Iter</Donum> since{' '}
-            <strong>Midir, Saint of Violence</strong>. Desperate to protect the
-            peaceful, sleepy life he's made for himself far away from the
-            world's troubles.
+            <span className="has-tooltip">
+              <span className="tooltip rounded shadow-lg py-0 px-3 bg-slate-900 text-red-500 mt-8 max-w-sm right-0">
+                The <b>New God</b> of violence, restraint, and duty. First
+                recorded person to gain <Donum>Donum Iter</Donum>. Wielder of
+                the <b>Sword of Violence</b> - an unstoppable weapon.
+              </span>
+              <strong>Midir, Saint of Violence</strong>
+            </span>
+            . Desperate to protect the peaceful, sleepy life he's made for
+            himself far away from the world's troubles.
           </p>
           <p>
             <strong className="text-yellow-700">Viggo Draconis</strong>: The
             talented heir to <strong>House Draconis</strong>, a small{' '}
             <strong>Heian</strong> noble house known for its drake riders and
-            strong morals. Rides the drake he named <strong>Midir</strong>,
-            after the god of violence.
+            strong morals. Rides the drake he named{' '}
+            <span className="has-tooltip">
+              <span className="tooltip rounded shadow-lg py-0 px-3 bg-slate-900 text-red-500 mt-8 max-w-sm">
+                The <b>New God</b> of violence, restraint, and duty. First
+                recorded person to gain <Donum>Donum Iter</Donum>. Wielder of
+                the <b>Sword of Violence</b> - an unstoppable weapon.
+              </span>
+              <strong>Midir</strong>
+            </span>
+            , after the god of violence.
           </p>
           <p>
             <strong className="text-yellow-700">Taiga Taisho</strong>: Deadly{' '}
             <em>wielder</em> of{' '}
             <Donum tooltip="the gift of frost">Donum Gelu</Donum>, heir to the{' '}
-            <strong>Heian</strong> noble house <strong>Taisho</strong>. She fled
-            home as a young girl, returning years later with an army to
-            obliterate her long-corrupted family.
+            <strong>Heian</strong> noble house{' '}
+            <span className="has-tooltip">
+              <span className="tooltip rounded shadow-lg py-0 px-3 bg-slate-900 text-red-500 mt-8 max-w-sm right-0">
+                For generations, a sleepy and unremarkable noble house. Once{' '}
+                <b>Okazaki Taisho</b> succeeded the head of the house, it became
+                a an abyssal pit of depravity and corruption.
+              </span>
+              <strong>Taisho</strong>
+            </span>
+            . She fled home as a young girl, returning years later with an army
+            to obliterate her long-corrupted family.
           </p>
           <h4>Narscillia</h4>
           <p>
             <strong className="text-rose-700">Fia Lettiere</strong>: Enigmatic
             and all-knowing <em>wielder</em> of{' '}
             <Donum tooltip="gift of beholding">Donum Tueor</Donum> and High
-            Visionary of the <strong>Gallery of Faces</strong>: the intelligence
-            aparatus of <strong>Narscillia</strong>.
+            Visionary of the{' '}
+            <span className="has-tooltip">
+              <span className="tooltip rounded shadow-lg py-0 px-3 bg-slate-900 text-red-500 mt-8 max-w-sm right-0">
+                A fortified library of portraits used by the <b>Visionaries</b>{' '}
+                to spy on the world.
+              </span>
+              <strong>Gallery of Faces</strong>
+            </span>
+            : the intelligence aparatus of <strong>Narscillia</strong>.
           </p>
           <h4>Twisted Scion</h4>
           <p>
@@ -337,8 +445,16 @@ export default function TwistedScion() {
           <p>
             <strong className="text-rose-700">Solitary and Wander</strong>:
             Mysterious vestiges of the <em>supposedly departed</em> deity,{' '}
-            <strong>Jira</strong>. Clones of his body, seemingly imbued with
-            minuscule fractions of his memories and power.
+            <span className="has-tooltip">
+              <span className="tooltip rounded shadow-lg py-0 px-3 bg-slate-900 text-red-500 mt-8 max-w-sm">
+                The <b>New God</b> of sacrifice, truth, and destiny. Unshackled
+                from his own destiny by <b>Asherah the Healer</b> and granted
+                unknown powers by a red eye with a strange pupil.
+              </span>
+              <strong>Jira</strong>
+            </span>
+            . Clones of his body, seemingly imbued with minuscule fractions of
+            his memories and power.
           </p>
         </article>
       </main>
@@ -362,9 +478,23 @@ export default function TwistedScion() {
           </strong>
           <p>
             <strong className="text-rose-700">Deities</strong>: The{' '}
-            <strong>Old Gods</strong> are locked away, and the{' '}
-            <strong>New Gods</strong> have departed of their own volition. The
-            people of the world are left to their own devices.
+            <span className="has-tooltip">
+              <span className="tooltip rounded shadow-lg py-0 px-3 bg-slate-900 text-red-500 mt-8 max-w-sm">
+                Enigmatic beings of immense power. No one remembers anything
+                about them other than their names.
+              </span>
+              <strong>Old Gods</strong>
+            </span>{' '}
+            are locked away, and the{' '}
+            <span className="has-tooltip">
+              <span className="tooltip rounded shadow-lg py-0 px-3 bg-slate-900 text-red-500 mt-8 max-w-sm">
+                Mortals who ascended into godhood, saved the world, then decided
+                to leave it.
+              </span>
+              <strong>New Gods</strong>
+            </span>{' '}
+            have departed of their own volition. The people of the world are
+            left to their own devices.
           </p>
           <p>
             <strong className="text-rose-700">Ara, Tree of the Infinite</strong>
@@ -462,7 +592,24 @@ export default function TwistedScion() {
             >
               <strong>Anidine</strong>
             </Link>
-            : Gods forced the union of <strong>Cumeria</strong> and{' '}
+            :{' '}
+            <span className="has-tooltip">
+              <span className="tooltip rounded shadow-lg py-0 px-3 bg-slate-900 text-red-500 mt-8 max-w-sm right-0">
+                The <b>New God</b> of love, union, and vengeance. Rode a griffon
+                steed <b>Astolfo</b>. Married to <b>Akil the Conqueror</b>.
+              </span>
+              <strong>Asherah the Healer</strong>
+            </span>{' '}
+            and{' '}
+            <span className="has-tooltip">
+              <span className="tooltip rounded shadow-lg py-0 px-3 bg-slate-900 text-red-500 mt-8 max-w-sm right-0">
+                The <b>New God</b> of war, conquest, and cities. Second{' '}
+                <em>wielder</em> of <Donum>Donum Duellum</Donum>. Married to{' '}
+                <b>Asherah the Healer</b>.
+              </span>
+              <strong>Akil the Conqueror</strong>
+            </span>{' '}
+            forced the union of <strong>Cumeria</strong> and{' '}
             <strong>Gredora</strong>, two historically bitter enemies. The
             resulting nation is a powder keg that blew the moment those gods
             departed. Now only the core of its territory remains, but it's still
@@ -477,7 +624,16 @@ export default function TwistedScion() {
             </Link>
             : Isolationist city-state far away from the stage of this conflict.
             Ruled by four houses. Three perfer to keep to themselves. The fourth
-            house: <strong>House Prisca</strong>, is an international terror.
+            house:{' '}
+            <span className="has-tooltip">
+              <span className="tooltip rounded shadow-lg py-0 px-3 bg-slate-900 text-red-500 mt-8 max-w-sm right-0">
+                One of Argos's four noble houses. An international terror known
+                for their use of <Donum>Donum Dolus</Donum> to shape world
+                events through manipulation and assassination.
+              </span>
+              <strong>House Prisca</strong>
+            </span>
+            , is involved in everyone's business.
           </p>
           <p>
             <Link
@@ -487,8 +643,16 @@ export default function TwistedScion() {
               <strong>Fenrir Empire</strong>
             </Link>
             : Dystopian empire ruled by an immortal god-king,{' '}
-            <strong>Kingwulf</strong>. Far away from the stage of this conflict,
-            but always looking for an opportunity to expand.
+            <span className="has-tooltip">
+              <span className="tooltip rounded shadow-lg py-0 px-3 bg-slate-900 text-red-500 mt-8 max-w-sm">
+                Progenitor of <Donum>Donum Rex</Donum> and ruler of the{' '}
+                <b>Fenrir Empire</b>, formerly <b>Rath</b>. Claims to have been
+                alive since far before the <b>New Gods</b> were born.
+              </span>
+              <strong>Kingwulf</strong>
+            </span>
+            . Far away from the stage of this conflict, but always looking for
+            an opportunity to expand.
           </p>
           <p>
             <Link
