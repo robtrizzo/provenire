@@ -644,7 +644,7 @@ export default function TwistedScion() {
             </Link>
             : Dystopian empire ruled by an immortal god-king,{' '}
             <span className="has-tooltip">
-              <span className="tooltip rounded shadow-lg py-0 px-3 bg-slate-900 text-red-500 mt-8 max-w-sm">
+              <span className="tooltip rounded shadow-lg py-0 px-3 bg-slate-900 text-red-500 mt-8 right-0 max-w-sm">
                 Progenitor of <Donum>Donum Rex</Donum> and ruler of the{' '}
                 <b>Fenrir Empire</b>, formerly <b>Rath</b>. Claims to have been
                 alive since far before the <b>New Gods</b> were born.
