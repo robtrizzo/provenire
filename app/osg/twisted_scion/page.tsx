@@ -352,7 +352,7 @@ export default function TwistedScion() {
             <strong className="text-rose-700">Azama's</strong> ingenious
             firstborn son. <em>Wielder</em> of a wide collection of yet unknown{' '}
             <Link
-              href="/setting/donums"
+              href="/setting/donums#second_age"
               className="underline-offset-2 decoration-1 hover:decoration-2 hover:text-amber-100"
             >
               <Donum>Donums</Donum>
@@ -427,7 +427,7 @@ export default function TwistedScion() {
             cabal of <em>Wielders</em> from the <strong>Twisted Scion</strong>.
             They each have immense and strange{' '}
             <Link
-              href="/setting/donums"
+              href="/setting/donums#second_age"
               className="underline-offset-2 decoration-1 hover:decoration-2 hover:text-amber-100"
             >
               <Donum>Donums</Donum>
@@ -512,7 +512,7 @@ export default function TwistedScion() {
             rotting bark except for the very tip of that branch. In that world,
             water seems to have been replaced with human blood.{' '}
             <Link
-              href="/setting/donums"
+              href="/setting/donums#second_age"
               className="underline-offset-2 decoration-1 hover:decoration-2 hover:text-amber-100"
             >
               <Donum>Donums</Donum>
@@ -545,7 +545,7 @@ export default function TwistedScion() {
           </p>
           <p>
             <Link
-              href="/setting/donums"
+              href="/setting/donums#second_age"
               className="underline-offset-2 text-rose-700 decoration-1 hover:decoration-2 hover:text-rose-800"
             >
               <strong>Donums</strong>
@@ -561,7 +561,7 @@ export default function TwistedScion() {
             minor wounds. Some become masters of this, gaining powers
             approaching{' '}
             <Link
-              href="/setting/donums"
+              href="/setting/donums#second_age"
               className="underline-offset-2 decoration-1 hover:decoration-2 hover:text-amber-100"
             >
               <Donum>Donums</Donum>

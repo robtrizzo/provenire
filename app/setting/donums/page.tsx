@@ -32,7 +32,7 @@ export default function Donums() {
         <strong>Rathi</strong> back in the day) spontaneously develop{' '}
         <Donum>Donums</Donum> as infants without ever drinking water.
       </p>
-      <h2>Donums in the First Age</h2>
+      <h2 id="first_age">Donums in the First Age</h2>
       <p>
         Outside of <strong>Rath</strong>, <Donum>Donums</Donum> are rare, maybe
         one in a thousand.
@@ -128,7 +128,7 @@ export default function Donums() {
         Manipulate time. Usually, <em>wielders</em> are limited to affecting
         themselves or things they can touch.
       </p>
-      <h2>Donums in the Second Age</h2>
+      <h2 id="second_age">Donums in the Second Age</h2>
       <p>
         In the <strong>Second Age</strong>, <Donum>Donums</Donum> are far more
         common than they've ever been: roughly six in ten. However, overall{' '}
