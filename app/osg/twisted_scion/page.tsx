@@ -130,14 +130,31 @@ export default function TwistedScion() {
           <p>
             Players may communicate privately with other players, or post public
             announcements in the{' '}
-            <strong className="text-rose-700">
-              #scathing-denouncements channel
-            </strong>
+            <Link
+              href="https://discord.gg/uf6uxhHM"
+              className="text-rose-700 hover:text-rose-900"
+            >
+              <strong className="text-rose-700">
+                #scathing-denouncements channel
+              </strong>
+            </Link>
             . Use the{' '}
-            <strong className="text-rose-700">#game-discussion channel</strong>{' '}
+            <Link
+              href="https://discord.gg/3aXndkAQ"
+              className="text-rose-700 hover:text-rose-900"
+            >
+              <strong className="text-rose-700">
+                #game-discussion channel
+              </strong>
+            </Link>{' '}
             for out-of-character questions and comments. Use the{' '}
-            <strong className="text-rose-700">#shitposting channel</strong> for
-            sidetalk.
+            <Link
+              href="https://discord.gg/gncR7M2G"
+              className="text-rose-700 hover:text-rose-900"
+            >
+              <strong className="text-rose-700">#shitposting channel</strong>
+            </Link>{' '}
+            for sidetalk.
           </p>
           <p>
             <strong>Actors</strong>{' '}
@@ -521,7 +538,7 @@ export default function TwistedScion() {
           </p>
           <p>
             <strong className="text-rose-700">Dreamscape</strong>: There may be
-            infnite worlds connected to <strong>Ara</strong>, but the people of
+            infinite worlds connected to <strong>Ara</strong>, but the people of
             every world come to this one place in their dreams. Recent events
             suggest that some have managed to physically travel there - what
             does this mean?
@@ -672,8 +689,9 @@ export default function TwistedScion() {
             >
               <strong>Heia</strong>
             </Link>
-            : Feudal nation determined to stay out of <strong>Anidine's</strong>{' '}
-            way, lest they get caught up in another doomed conflict with them.
+            : Nation of loose feudal alliances determined to stay out of{' '}
+            <strong>Anidine's</strong> way, lest they get caught up in another
+            doomed conflict with them.
           </p>
           <p>
             <Link
