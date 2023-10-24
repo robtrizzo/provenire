@@ -128,6 +128,16 @@ export default function TwistedScion() {
             <strong>Narrator</strong> to witness.
           </p>
           <p>
+            <Link
+              href="https://discord.gg/HxKzZkmg"
+              className="text-rose-700 hover:text-rose-900"
+            >
+              <strong className="text-rose-700">
+                Here is a link to the Discord server.
+              </strong>
+            </Link>
+          </p>
+          <p>
             Players may communicate privately with other players, or post public
             announcements in the{' '}
             <Link
