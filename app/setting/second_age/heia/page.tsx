@@ -43,16 +43,6 @@ export default function Heia() {
             middle of the country. Many small settlements exist along the road
             to service and trade with travellers and merchants.
           </p>
-          <p>
-            Despite <strong>Dragon Lakes</strong> being the center of attention
-            in <strong>Heia</strong>, there is a rich culture in the
-            countryside. Nomadic communities roam the grasslands in pursuit of
-            herds of animals. Many small fishing villages dot the perimeter of
-            the <strong>Dragon Lakes</strong>. The{' '}
-            <strong>International Trade Road</strong> flows straight through the
-            middle of the country. Many small settlements exist along the road
-            to service and trade with travellers and merchants.
-          </p>
         </div>
         <div className="w-1/2">
           <div className="h-fit p-4 bg-rose-950 div-2 box-border border-t-2 border-b-2 text-white">
