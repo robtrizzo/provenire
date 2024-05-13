@@ -1,7 +1,7 @@
 'use client';
 import { useSession } from 'next-auth/react';
 import { signIn, signOut } from '@/auth/helpers';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,

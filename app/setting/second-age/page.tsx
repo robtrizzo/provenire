@@ -6,7 +6,7 @@ import {
   TypographyP,
 } from '@/components/ui/typography';
 import { Separator } from '@/components/ui/separator';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 

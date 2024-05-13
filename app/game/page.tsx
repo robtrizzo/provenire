@@ -1,6 +1,6 @@
 import Donum from '@/components/stats/donum';
 import { Separator } from '@/components/ui/separator';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
 import { TypographyH1, TypographyP } from '@/components/ui/typography';
