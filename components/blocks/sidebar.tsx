@@ -172,6 +172,16 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                     Cumeria
                   </Link>
                   <Link
+                    href="/setting/second-age/fenrir"
+                    className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                      pathname === '/setting/second-age/fenrir'
+                        ? 'bg-muted'
+                        : 'text-muted-foreground'
+                    } transition-all hover:text-primary`}
+                  >
+                    Fenrir
+                  </Link>
+                  <Link
                     href="/setting/second-age/gredora"
                     className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
                       pathname === '/setting/second-age/gredora'
@@ -440,6 +450,16 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                       } transition-all hover:text-primary`}
                     >
                       Cumeria
+                    </Link>
+                    <Link
+                      href="/setting/second-age/fenrir"
+                      className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                        pathname === '/setting/second-age/fenrir'
+                          ? 'bg-muted'
+                          : 'text-muted-foreground'
+                      } transition-all hover:text-primary`}
+                    >
+                      Fenrir
                     </Link>
                     <Link
                       href="/setting/second-age/gredora"

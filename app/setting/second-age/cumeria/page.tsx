@@ -119,9 +119,9 @@ export default function Page() {
             <ChevronLeft /> Bwarhei
           </Button>
         </Link>
-        <Link href="/setting/second-age/gredora">
+        <Link href="/setting/second-age/fenrir">
           <Button variant="outline">
-            Gredora <ChevronRight />
+            Fenrir <ChevronRight />
           </Button>
         </Link>
       </div>

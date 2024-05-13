@@ -95,9 +95,9 @@ export default function Page() {
       </div>
       <Separator />
       <div className="w-full flex justify-between">
-        <Link href="/setting/second-age/cumeria">
+        <Link href="/setting/second-age/fenrir">
           <Button variant="outline">
-            <ChevronLeft /> Cumeria
+            <ChevronLeft /> Fenrir
           </Button>
         </Link>
         <Link href="/setting/second-age/heia">
