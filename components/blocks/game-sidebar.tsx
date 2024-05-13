@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { Menu } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import AuthButton from '@/components/ui/AuthButton.client';
 import { ModeToggle } from '@/components/ui/mode-toggle';

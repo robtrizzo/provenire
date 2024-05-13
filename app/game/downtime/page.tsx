@@ -7,7 +7,7 @@ import Savagery from '@/components/stats/savagery';
 import Blood from '@/components/stats/blood';
 import Hunger from '@/components/stats/hunger';
 import { Separator } from '@/components/ui/separator';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/Button';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import {
