@@ -237,9 +237,9 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                 <CollapsibleTrigger>Third Age</CollapsibleTrigger>
                 <CollapsibleContent className="flex flex-col">
                   <Link
-                    href="/setting/third_age/introduction"
+                    href="/setting/third-age/introduction"
                     className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
-                      pathname === '/setting/third_age/introduction'
+                      pathname === '/setting/third-age/introduction'
                         ? 'bg-muted'
                         : 'text-muted-foreground'
                     } transition-all hover:text-primary`}
@@ -507,9 +507,9 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                   <CollapsibleTrigger>Third Age</CollapsibleTrigger>
                   <CollapsibleContent className="flex flex-col">
                     <Link
-                      href="/setting/third_age/introduction"
+                      href="/setting/third-age/introduction"
                       className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
-                        pathname === '/setting/third_age/introduction'
+                        pathname === '/setting/third-age/introduction'
                           ? 'bg-muted'
                           : 'text-muted-foreground'
                       } transition-all hover:text-primary`}

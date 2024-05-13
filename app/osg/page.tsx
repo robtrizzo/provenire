@@ -475,7 +475,7 @@ export default function Page() {
               firstborn son. <em>Wielder</em> of a wide collection of yet
               unknown{' '}
               <Link
-                href="/setting/donums#second_age"
+                href="/setting/donums#second-age"
                 className="underline-offset-2 decoration-1 hover:decoration-2 hover:text-amber-100"
               >
                 <Donum>Donums</Donum>
@@ -575,7 +575,7 @@ export default function Page() {
               cabal of <em>Wielders</em> from the <strong>Twisted Scion</strong>
               . They each have immense and strange{' '}
               <Link
-                href="/setting/donums#second_age"
+                href="/setting/donums#second-age"
                 className="underline-offset-2 decoration-1 hover:decoration-2 hover:text-amber-100"
               >
                 <Donum>Donums</Donum>
@@ -681,7 +681,7 @@ export default function Page() {
               enter the rotting bark except for the very tip of that branch. In
               that world, water seems to have been replaced with human blood.{' '}
               <Link
-                href="/setting/donums#second_age"
+                href="/setting/donums#second-age"
                 className="underline-offset-2 decoration-1 hover:decoration-2 hover:text-amber-100"
               >
                 <Donum>Donums</Donum>
@@ -715,7 +715,7 @@ export default function Page() {
             </TypographyP>
             <TypographyP>
               <Link
-                href="/setting/donums#second_age"
+                href="/setting/donums#second-age"
                 className="underline-offset-2 text-rose-700 decoration-1 hover:decoration-2 hover:text-rose-800"
               >
                 <strong>Donums</strong>
@@ -732,7 +732,7 @@ export default function Page() {
               or heal minor wounds. Some become masters of this, gaining powers
               approaching{' '}
               <Link
-                href="/setting/donums#second_age"
+                href="/setting/donums#second-age"
                 className="underline-offset-2 decoration-1 hover:decoration-2 hover:text-amber-100"
               >
                 <Donum>Donums</Donum>
@@ -758,7 +758,7 @@ export default function Page() {
             </strong>
             <TypographyP>
               <Link
-                href="/setting/second_age/anidine"
+                href="/setting/second-age/anidine"
                 className="underline-offset-2 text-rose-700 decoration-1 hover:decoration-2 hover:text-rose-800"
               >
                 <strong>Anidine</strong>
@@ -802,7 +802,7 @@ export default function Page() {
             </TypographyP>
             <TypographyP>
               <Link
-                href="/setting/second_age/argos"
+                href="/setting/second-age/argos"
                 className="underline-offset-2 text-rose-700 decoration-1 hover:decoration-2 hover:text-rose-800"
               >
                 <strong>Argos</strong>
@@ -829,7 +829,7 @@ export default function Page() {
             </TypographyP>
             <TypographyP>
               <Link
-                href="/setting/second_age/fenrir"
+                href="/setting/second-age/fenrir"
                 className="underline-offset-2 text-rose-700 decoration-1 hover:decoration-2 hover:text-rose-800"
               >
                 <strong>Fenrir Empire</strong>
@@ -854,7 +854,7 @@ export default function Page() {
             </TypographyP>
             <TypographyP>
               <Link
-                href="/setting/second_age/gredora"
+                href="/setting/second-age/gredora"
                 className="underline-offset-2 text-rose-700 decoration-1 hover:decoration-2 hover:text-rose-800"
               >
                 <strong>Gredora</strong>
@@ -865,7 +865,7 @@ export default function Page() {
             </TypographyP>
             <TypographyP>
               <Link
-                href="/setting/second_age/heia"
+                href="/setting/second-age/heia"
                 className="underline-offset-2 text-rose-700 decoration-1 hover:decoration-2 hover:text-rose-800"
               >
                 <strong>Heia</strong>
@@ -876,7 +876,7 @@ export default function Page() {
             </TypographyP>
             <TypographyP>
               <Link
-                href="/setting/second_age/narscillia"
+                href="/setting/second-age/narscillia"
                 className="underline-offset-2 text-rose-700 decoration-1 hover:decoration-2 hover:text-rose-800"
               >
                 <strong>Narscillia</strong>
