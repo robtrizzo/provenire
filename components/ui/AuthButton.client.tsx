@@ -1,6 +1,6 @@
 'use client';
 import { useSession } from 'next-auth/react';
-import { signIn, signOut } from '@/auth/helpers';
+import { signOut } from '@/auth/helpers';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -9,6 +9,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import Link from 'next/link';
 
 export default function AuthButton() {
   const session = useSession();
@@ -32,7 +33,6 @@ export default function AuthButton() {
               if (session) {
                 location.reload();
               }
-              await signIn();
             }}
           >
             Logout
@@ -41,12 +41,8 @@ export default function AuthButton() {
       </DropdownMenuContent>
     </DropdownMenu>
   ) : (
-    <Button
-      onClick={() => {
-        signIn();
-      }}
-    >
-      Sign In
-    </Button>
+    <Link href="/signin" passHref>
+      <Button>Sign In</Button>
+    </Link>
   );
 }
