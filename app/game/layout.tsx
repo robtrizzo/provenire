@@ -1,5 +1,4 @@
-
-import GameSidebar from "./GameSidebar";
+import { Sidebar } from '@/components/blocks/game-sidebar';
 export default function Layout({ children }: { children: React.ReactNode }) {
-    return <GameSidebar>{children}</GameSidebar>
+  return <Sidebar>{children}</Sidebar>;
 }

@@ -1,22 +1,18 @@
-'use client';
+import { ThemeProvider } from '@/components/theme-provider';
+import { SessionProvider } from 'next-auth/react';
+import { BASE_PATH, auth } from '@/auth';
 
-import ThemeProvider from '../app/theme-provider';
-import { ReactNode } from 'react';
-
-import { FC } from 'react';
-import { Toaster } from 'react-hot-toast';
-
-interface ProvidersProps {
-  children: ReactNode;
-}
-
-const Providers: FC<ProvidersProps> = ({ children }) => {
+export default async function Providers({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  const session = await auth();
   return (
-    <>
-      <Toaster position="top-center" reverseOrder={false} />
-      <ThemeProvider>{children}</ThemeProvider>
-    </>
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <SessionProvider basePath={BASE_PATH} session={session}>
+        {children}
+      </SessionProvider>
+    </ThemeProvider>
   );
-};
-
-export default Providers;
+}

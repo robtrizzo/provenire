@@ -1,10 +1,4 @@
-import React from "react";
-import Sidebar from "./SettingSidebar";
-
-type LayoutProps = {
-  children: React.ReactNode;
-};
-
-export default function Layout({ children }: LayoutProps) {
+import { Sidebar } from '@/components/blocks/sidebar';
+export default function Layout({ children }: { children: React.ReactNode }) {
   return <Sidebar>{children}</Sidebar>;
 }
