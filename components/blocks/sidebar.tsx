@@ -247,6 +247,16 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                 <CollapsibleTrigger>Third Age</CollapsibleTrigger>
                 <CollapsibleContent className="flex flex-col">
                   <Link
+                    href="/setting/third-age"
+                    className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                      pathname === '/setting/third-age'
+                        ? 'bg-muted'
+                        : 'text-muted-foreground'
+                    } transition-all hover:text-primary`}
+                  >
+                    Era of Lost Gods
+                  </Link>
+                  <Link
                     href="/setting/third-age/introduction"
                     className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
                       pathname === '/setting/third-age/introduction'
@@ -255,16 +265,6 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                     } transition-all hover:text-primary`}
                   >
                     Introduction
-                  </Link>
-                  <Link
-                    href="/setting/third-age/era-of-lost-gods"
-                    className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
-                      pathname === '/setting/third-age/era-of-lost-gods'
-                        ? 'bg-muted'
-                        : 'text-muted-foreground'
-                    } transition-all hover:text-primary`}
-                  >
-                    Era of Lost Gods
                   </Link>
                 </CollapsibleContent>
               </Collapsible>
@@ -527,6 +527,16 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                   <CollapsibleTrigger>Third Age</CollapsibleTrigger>
                   <CollapsibleContent className="flex flex-col">
                     <Link
+                      href="/setting/third-age"
+                      className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                        pathname === '/setting/third-age'
+                          ? 'bg-muted'
+                          : 'text-muted-foreground'
+                      } transition-all hover:text-primary`}
+                    >
+                      Era of Lost Gods
+                    </Link>
+                    <Link
                       href="/setting/third-age/introduction"
                       className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
                         pathname === '/setting/third-age/introduction'
@@ -535,16 +545,6 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                       } transition-all hover:text-primary`}
                     >
                       Introduction
-                    </Link>
-                    <Link
-                      href="/setting/third-age/era-of-lost-gods"
-                      className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
-                        pathname === '/setting/third-age/era-of-lost-gods'
-                          ? 'bg-muted'
-                          : 'text-muted-foreground'
-                      } transition-all hover:text-primary`}
-                    >
-                      Era of Lost Gods
                     </Link>
                   </CollapsibleContent>
                 </Collapsible>
