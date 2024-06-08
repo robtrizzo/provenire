@@ -5,14 +5,17 @@ import InvitedToRooms from '@/components/ui/rooms/invitedToRooms';
 import { getUserRooms } from '@/actions/rooms';
 import { RoomUserWithPopulatedRoom } from '@/types/db';
 
-export default async function Page() {
-  let rooms: RoomUserWithPopulatedRoom[];
+async function getRooms() {
   try {
-    rooms = await getUserRooms();
+    return await getUserRooms();
   } catch (error) {
     console.error('Error getting user rooms', error);
-    return <div>We ran into an error while getting your chat rooms</div>;
+    return [];
   }
+}
+
+export default async function Page() {
+  let rooms: RoomUserWithPopulatedRoom[] = await getRooms();
 
   return (
     <div className="p-6">
