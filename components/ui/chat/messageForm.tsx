@@ -1,20 +1,16 @@
 'use client';
 import { Button } from '@/components/ui/button';
-import { createMessage } from '@/actions/messages';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useMutation } from '@tanstack/react-query';
-import { getQueryClient } from '@/components/queryClient';
 import { cn } from '@/lib/utils';
 
 const formSchema = z.object({
   message: z.string().min(1),
 });
-
-const queryClient = getQueryClient();
 
 export default function MessageForm({
   roomId,
@@ -23,8 +19,16 @@ export default function MessageForm({
   roomId: string;
   className?: string;
 }) {
-  const { mutateAsync: server_createMessage, data } = useMutation({
-    mutationFn: (message: string) => createMessage(message, roomId),
+  const { mutateAsync: createMessage, data } = useMutation({
+    mutationFn: async (message: string) => {
+      return await fetch('/api/messages/create-message', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ roomId, message }),
+      });
+    },
     onError: (error) => {
       console.error('Error creating message', error);
     },
@@ -43,7 +47,7 @@ export default function MessageForm({
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    await server_createMessage(values.message);
+    await createMessage(values.message);
     form.reset();
   }
 
