@@ -5,7 +5,6 @@ import Navbar from '@/components/navbar';
 
 export default function Home() {
   const { theme } = useTheme();
-  console.log(theme);
   return (
     <Navbar>
       <main className="grow flex w-full h-full flex-col relative">

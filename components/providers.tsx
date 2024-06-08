@@ -1,17 +1,21 @@
+'use client';
 import { ThemeProvider } from '@/components/theme-provider';
 import { SessionProvider } from 'next-auth/react';
-import { BASE_PATH, auth } from '@/auth';
+import { getQueryClient } from '@/components/queryClient';
+import { QueryClientProvider } from '@tanstack/react-query';
 
-export default async function Providers({
+export default function Providers({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await auth();
+  const queryClient = getQueryClient();
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <SessionProvider basePath={BASE_PATH} session={session}>
-        {children}
+      <SessionProvider>
+        <QueryClientProvider client={queryClient}>
+          {children}
+        </QueryClientProvider>
       </SessionProvider>
     </ThemeProvider>
   );

@@ -5,19 +5,20 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import AuthButton from '@/components/ui/AuthButton.client';
 import { ModeToggle } from '@/components/ui/mode-toggle';
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@/components/ui/collapsible';
-import NavbarButton from './ui/navbar-button';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
+import { Badge } from './ui/badge';
 
-export default function Navbar({ children }: { children: React.ReactNode }) {
+export default function Navbar({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
   const pathname = usePathname();
   return (
-    <div className={cn('grid min-h-screen w-full')}>
+    <div className={cn('grid min-h-screen w-full', className)}>
       <div className="flex flex-col">
         <header className="flex h-14 items-center gap-4 border-b px-4 lg:h-[60px] lg:px-6">
           <Sheet>
@@ -67,6 +68,14 @@ export default function Navbar({ children }: { children: React.ReactNode }) {
                 >
                   OSG: Twisted Scion
                 </Link>
+                <Link
+                  href="/chat"
+                  className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                    pathname === '/osg' ? 'bg-muted' : 'text-muted-foreground'
+                  } transition-all hover:text-primary`}
+                >
+                  Chat
+                </Link>
               </nav>
             </SheetContent>
           </Sheet>
@@ -82,6 +91,14 @@ export default function Navbar({ children }: { children: React.ReactNode }) {
             </Link>
             <Link href="/osg" className="hidden md:block">
               <Button variant="ghost">OSG: Twisted Scion</Button>
+            </Link>
+            <Link href="/chat" className="hidden md:block">
+              <Button variant="ghost">
+                Chat{' '}
+                <Badge className="ml-2" variant="destructive">
+                  Closed Alpha
+                </Badge>
+              </Button>
             </Link>
             <div className="ml-auto">
               <AuthButton />

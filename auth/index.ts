@@ -1,5 +1,5 @@
-import NextAuth, { User, NextAuthConfig } from 'next-auth';
-import Credentials from 'next-auth/providers/credentials';
+import { createUser, getUser } from '@/handlers/users';
+import NextAuth, { NextAuthConfig } from 'next-auth';
 import DiscordProvider from 'next-auth/providers/discord';
 
 export const BASE_PATH = '/api/auth';
@@ -18,44 +18,64 @@ function getDiscordCredentials() {
 
 const authOptions: NextAuthConfig = {
   providers: [
-    Credentials({
-      name: 'Credentials',
-      credentials: {
-        username: { label: 'Username', type: 'text', placeholder: 'jsmith' },
-        password: { label: 'Password', type: 'password' },
-      },
-      async authorize(credentials): Promise<User | null> {
-        const users = [
-          {
-            id: 'test-user-1',
-            userName: 'test1',
-            name: 'Test 1',
-            password: 'pass',
-            email: 'test1@donotreply.com',
-          },
-          {
-            id: 'test-user-2',
-            userName: 'test2',
-            name: 'Test 2',
-            password: 'pass',
-            email: 'test2@donotreply.com',
-          },
-        ];
-        const user = users.find(
-          (user) =>
-            user.userName === credentials.username &&
-            user.password === credentials.password
-        );
-        return user
-          ? { id: user.id, name: user.name, email: user.email }
-          : null;
-      },
-    }),
     DiscordProvider({
       clientId: getDiscordCredentials().clientId,
       clientSecret: getDiscordCredentials().clientSecret,
+      async profile(profile) {
+        let avatar;
+        if (profile.avatar) {
+          const format = profile.avatar.startsWith('a_') ? 'gif' : 'png';
+          avatar = `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.${format}`;
+        }
+        const user = await createUser(profile.email, avatar, profile.username);
+        if (!user) {
+        }
+        if ('error' in user) {
+          console.error('Error creating user', user.error);
+          return {
+            id: 'not found',
+            name: profile.username,
+            email: profile.email,
+            image: avatar,
+            role: 'user',
+          };
+        }
+
+        // this is available in the signIn callback as user
+        return {
+          id: user.id,
+          name: profile.username,
+          email: profile.email,
+          image: avatar,
+          role: user.role,
+        };
+      },
     }),
   ],
+  callbacks: {
+    jwt: async ({ token, user }) => {
+      if (user === undefined || !user.role) {
+        let dbUser = await getUser(token.email!);
+        if (!dbUser) {
+          return { ...token, role: 'user' };
+        }
+        if ('role' in dbUser) {
+          return { ...token, role: dbUser.role, id: dbUser.id };
+        }
+      }
+      return { ...token, role: user.role as string, id: user.id as string };
+    },
+    session: async ({ session, token }) => {
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          role: token.role as string,
+          id: token.id as string,
+        },
+      };
+    },
+  },
   pages: {
     signIn: '/signin',
   },
