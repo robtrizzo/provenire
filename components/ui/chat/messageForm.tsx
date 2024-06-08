@@ -7,6 +7,7 @@ import { Form, FormControl, FormField, FormItem } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useMutation } from '@tanstack/react-query';
 import { cn } from '@/lib/utils';
+import { createMessage } from '@/actions/messages';
 
 const formSchema = z.object({
   message: z.string().min(1),
@@ -19,16 +20,8 @@ export default function MessageForm({
   roomId: string;
   className?: string;
 }) {
-  const { mutateAsync: createMessage, data } = useMutation({
-    mutationFn: async (message: string) => {
-      return await fetch('/api/messages/create-message', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ roomId, message }),
-      });
-    },
+  const { mutateAsync: server_createMessage, data } = useMutation({
+    mutationFn: async (message: string) => createMessage(message, roomId),
     onError: (error) => {
       console.error('Error creating message', error);
     },
@@ -47,7 +40,7 @@ export default function MessageForm({
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    await createMessage(values.message);
+    await server_createMessage(values.message);
     form.reset();
   }
 
