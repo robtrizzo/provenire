@@ -70,7 +70,8 @@ function MessagesContent({
   messages: MessageWithPopulatedUser[];
   roomId: string;
 }) {
-  const [msgs, setMsgs] = useState<MessageWithPopulatedUser[]>([]);
+  const refRoomId = useRef<string>(roomId);
+  const [msgs, setMsgs] = useState<MessageWithPopulatedUser[]>(messages);
 
   /**
    * this is responsible for scrolling to the bottom of the messages
@@ -82,22 +83,14 @@ function MessagesContent({
   });
 
   /**
-   * this is responsible for updating msgs when the messages prop changes
-   * due to a query invalidation and refetch in the parent component
-   */
-  useEffect(() => {
-    setMsgs(messages);
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
-
-  /**
    * TODO figure out how to optimistically update the messages list
    * without needing to wait for the pusher event. This is a bit tricky
    * and requires hooking into the messageForm component
    */
   useEffect(() => {
-    pusherClient.subscribe(`room__${roomId}__messages`);
-    console.log(`subscribed to room__${roomId}__messages`);
+    const rId = refRoomId.current;
+    pusherClient.subscribe(`room__${rId}__messages`);
+    console.log(`subscribed to room__${rId}__messages`);
     const messageHandler = (message: MessageWithPopulatedUser) => {
       console.log('new message', message);
       setMsgs((prev) => [...(prev || []), message]);
@@ -106,12 +99,12 @@ function MessagesContent({
     pusherClient.bind('new-message', messageHandler);
     console.log('bound to new-message');
     return () => {
-      pusherClient.unsubscribe(`room__${roomId}__messages`);
-      console.log(`unsubscribed from room__${roomId}__messages`);
+      pusherClient.unsubscribe(`room__${rId}__messages`);
+      console.log(`unsubscribed from room__${rId}__messages`);
       pusherClient.unbind('new-message', messageHandler);
       console.log('unbound from new-message');
     };
-  });
+  }, []);
 
   if (!msgs || msgs.length === 0) {
     return null;
