@@ -4,10 +4,10 @@ import { useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { signIn } from 'next-auth/react';
 import { TypographyH1, TypographyP } from '../ui/typography';
+import { Suspense } from 'react';
+import { Skeleton } from '../ui/skeleton';
 
-export async function getServerSideProps() {}
-
-export function LoginForm() {
+function Login() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get('callbackUrl') || '/';
 
@@ -15,24 +15,32 @@ export function LoginForm() {
     signIn('discord', { callbackUrl });
   };
   return (
-    <div>
+    <Button
+      className="w-64 bg-[#7e61ab] text-white"
+      onClick={handleDiscordSignin}
+    >
+      <Image
+        src="/discord.svg"
+        alt="Discord Logo"
+        width={30}
+        height={30}
+        className="mr-2"
+      />
+      Sign in with Discord
+    </Button>
+  );
+}
+
+export function LoginForm() {
+  return (
+    <div className="flex flex-col items-center">
       <TypographyH1 className="mb-4">Welcome back</TypographyH1>
       <TypographyP className="mb-8 text-center">
         Sign in to your account to continue
       </TypographyP>
-      <Button
-        className="w-full bg-[#7e61ab] text-white"
-        onClick={handleDiscordSignin}
-      >
-        <Image
-          src="/discord.svg"
-          alt="Discord Logo"
-          width={30}
-          height={30}
-          className="mr-2"
-        />
-        Sign in with Discord
-      </Button>
+      <Suspense fallback={<Skeleton className="w-64 rounded-md" />}>
+        <Login />
+      </Suspense>
     </div>
   );
 }

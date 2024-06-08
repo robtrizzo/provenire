@@ -35,9 +35,7 @@ export default function RootLayout({
           fontSerif.variable
         )}
       >
-        <Providers>
-          <Navbar>{children}</Navbar>
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

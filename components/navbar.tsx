@@ -37,7 +37,12 @@ export default async function Navbar({
                 <NavbarLink href="/setting">Setting</NavbarLink>
                 <NavbarLink href="/game">Game</NavbarLink>
                 <NavbarLink href="/osg">OSG: Twisted Scion</NavbarLink>
-                <NavbarLink href="/chat">Chat</NavbarLink>
+                <NavbarLink href="/chat">
+                  Chat{' '}
+                  <Badge className="ml-2" variant="destructive">
+                    Closed Alpha
+                  </Badge>
+                </NavbarLink>
               </nav>
             </SheetContent>
           </Sheet>
