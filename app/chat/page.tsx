@@ -1,4 +1,5 @@
 'use server';
+export const dynamic = 'force-dynamic';
 import { TypographyH1 } from '@/components/ui/typography';
 import CreateRoomCard from '@/components/ui/rooms/createRoomCard';
 import UserRooms from '@/components/ui/rooms/userRooms';
