@@ -1,22 +1,21 @@
-'use client';
+'use server';
 import Link from 'next/link';
 import { Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import AuthButton from '@/components/ui/AuthButton.client';
 import { ModeToggle } from '@/components/ui/mode-toggle';
-import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { Badge } from './ui/badge';
+import NavbarLink from './ui/navbar-link';
 
-export default function Navbar({
+export default async function Navbar({
   children,
   className,
 }: {
   children: React.ReactNode;
   className?: string;
 }) {
-  const pathname = usePathname();
   return (
     <div className={cn('grid min-h-screen w-full', className)}>
       <div className="flex flex-col">
@@ -34,48 +33,11 @@ export default function Navbar({
             </SheetTrigger>
             <SheetContent side="left" className="flex flex-col">
               <nav className="grid gap-2 text-lg font-medium mt-6">
-                <Link
-                  href="/"
-                  className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
-                    pathname === '/' ? 'bg-muted' : 'text-muted-foreground'
-                  } transition-all hover:text-primary`}
-                >
-                  Home
-                </Link>
-                <Link
-                  href="/setting"
-                  className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
-                    pathname === '/setting'
-                      ? 'bg-muted'
-                      : 'text-muted-foreground'
-                  } transition-all hover:text-primary`}
-                >
-                  Setting
-                </Link>
-                <Link
-                  href="/game"
-                  className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
-                    pathname === '/game' ? 'bg-muted' : 'text-muted-foreground'
-                  } transition-all hover:text-primary`}
-                >
-                  Game
-                </Link>
-                <Link
-                  href="/osg"
-                  className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
-                    pathname === '/osg' ? 'bg-muted' : 'text-muted-foreground'
-                  } transition-all hover:text-primary`}
-                >
-                  OSG: Twisted Scion
-                </Link>
-                <Link
-                  href="/chat"
-                  className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
-                    pathname === '/osg' ? 'bg-muted' : 'text-muted-foreground'
-                  } transition-all hover:text-primary`}
-                >
-                  Chat
-                </Link>
+                <NavbarLink href="/">Home</NavbarLink>
+                <NavbarLink href="/setting">Setting</NavbarLink>
+                <NavbarLink href="/game">Game</NavbarLink>
+                <NavbarLink href="/osg">OSG: Twisted Scion</NavbarLink>
+                <NavbarLink href="/chat">Chat</NavbarLink>
               </nav>
             </SheetContent>
           </Sheet>

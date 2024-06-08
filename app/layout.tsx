@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
-// import { Inter as FontSans } from 'next/font/google';
 import { Josefin_Sans as FontSans, Cardo as FontSerif } from 'next/font/google';
 import Providers from '@/components/providers';
 import { cn } from '@/lib/utils';
 import './globals.css';
+import Navbar from '@/components/navbar';
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -35,7 +35,9 @@ export default function RootLayout({
           fontSerif.variable
         )}
       >
-        <Providers>{children}</Providers>
+        <Providers>
+          <Navbar>{children}</Navbar>
+        </Providers>
       </body>
     </html>
   );
