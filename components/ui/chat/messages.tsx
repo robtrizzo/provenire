@@ -97,14 +97,19 @@ function MessagesContent({
    */
   useEffect(() => {
     pusherClient.subscribe(`room__${roomId}__messages`);
+    console.log(`subscribed to room__${roomId}__messages`);
     const messageHandler = (message: MessageWithPopulatedUser) => {
+      console.log('new message', message);
       setMsgs((prev) => [...(prev || []), message]);
       messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
     pusherClient.bind('new-message', messageHandler);
+    console.log('bound to new-message');
     return () => {
       pusherClient.unsubscribe(`room__${roomId}__messages`);
+      console.log(`unsubscribed from room__${roomId}__messages`);
       pusherClient.unbind('new-message', messageHandler);
+      console.log('unbound from new-message');
     };
   });
 
