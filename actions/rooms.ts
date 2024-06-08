@@ -190,12 +190,12 @@ export async function inviteToRoom({
     }
 
     console.debug('Room user created', id);
-    pusherServer.trigger(
+    await pusherServer.trigger(
       `user__${userId}__room-invites`,
       'room-invites',
       roomUser
     );
-    pusherServer.trigger(`room__${roomId}__members`, 'invited-member', {
+    await pusherServer.trigger(`room__${roomId}__members`, 'invited-member', {
       id: roomUser.id,
       userId: roomUser.userId,
       roomId: roomUser.roomId,
@@ -274,7 +274,7 @@ export async function acceptRoomInvite({
       )
       .returning();
     console.debug('Room user updated', roomUser);
-    pusherServer.trigger(`room__${roomId}__members`, 'new-member', {
+    await pusherServer.trigger(`room__${roomId}__members`, 'new-member', {
       memberId: roomUser.userId,
     });
     console.log('Triggered accepted room invite event');
@@ -321,10 +321,10 @@ export async function rejectRoomInvite({
       )
       .returning();
     console.debug('Room user deleted', roomUser);
-    pusherServer.trigger(`room__${roomId}__members`, 'rejected-member', {
+    await pusherServer.trigger(`room__${roomId}__members`, 'rejected-member', {
       memberId: roomUser.userId,
     });
-    pusherServer.trigger(`user__${userId}__room-invites`, 'room-reject', {
+    await pusherServer.trigger(`user__${userId}__room-invites`, 'room-reject', {
       roomId: roomUser.roomId,
     });
     console.log('Triggered rejected room invite event');

@@ -35,7 +35,7 @@ export async function createMessage(message: string, roomId: string) {
       createdAt,
     });
     console.log('Message created', message);
-    pusherServer.trigger(`room__${roomId}__messages`, 'new-message', {
+    await pusherServer.trigger(`room__${roomId}__messages`, 'new-message', {
       ...message,
       user: {
         email: session.user?.email,
