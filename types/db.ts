@@ -16,6 +16,14 @@ export type RoomUser = typeof RoomUsersTable.$inferSelect;
 export type RoomUserWithPopulatedUser = RoomUser & { user: User };
 export type RoomUserWithPopulatedRoom = RoomUser & { room: Room };
 
-export type Message = typeof MessagesTable.$inferSelect;
+type Roll = {
+  count: number;
+  sides: number;
+  modifier: number;
+  rolls: number[];
+  total: number;
+  v: number;
+};
+export type Message = typeof MessagesTable.$inferSelect & { roll: Roll };
 export type NewMessage = typeof MessagesTable.$inferInsert;
 export type MessageWithPopulatedUser = Message & { user: User };

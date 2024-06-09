@@ -2,6 +2,7 @@ import { relations } from 'drizzle-orm';
 import {
   pgTable,
   text,
+  json,
   serial,
   timestamp,
   uuid,
@@ -11,6 +12,7 @@ import {
 export const MessagesTable = pgTable('messages', {
   id: serial('id').primaryKey(),
   message: text('message').notNull(),
+  roll: json('roll'),
   createdAt: timestamp('createdAt'),
   email: text('email').notNull(),
   room: uuid('room').notNull(),
