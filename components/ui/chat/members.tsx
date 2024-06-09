@@ -7,6 +7,10 @@ import { RoomUserWithPopulatedUser } from '@/types/db';
 import { Skeleton } from '../skeleton';
 import { useEffect, useState } from 'react';
 import { pusherClient } from '@/lib/pusher';
+import { cn } from '@/lib/utils';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Button } from '../button';
+import { Users } from 'lucide-react';
 
 export default function Members({
   roomId,
@@ -32,7 +36,7 @@ export default function Members({
 
   if (isPending) {
     return (
-      <div className={className}>
+      <div className={cn('hidden md:block', className)}>
         <TypographyH3>Members</TypographyH3>
         <div className="flex items-center gap-2">
           <Skeleton className="h-8 w-8 rounded-full" />
@@ -53,7 +57,7 @@ export default function Members({
   }
 
   return (
-    <MembersContent
+    <MembersData
       joinedMembers={joinedMembers}
       invitedMembers={invitedMembers}
       roomId={roomId}
@@ -62,7 +66,7 @@ export default function Members({
   );
 }
 
-function MembersContent({
+function MembersData({
   joinedMembers,
   invitedMembers,
   roomId,
@@ -73,8 +77,12 @@ function MembersContent({
   roomId: string;
   className?: string;
 }) {
-  const [jMembers, setJoinedMembers] = useState<RoomUserWithPopulatedUser[]>();
-  const [iMembers, setInvitedMembers] = useState<RoomUserWithPopulatedUser[]>();
+  const [jMembers, setJoinedMembers] = useState<RoomUserWithPopulatedUser[]>(
+    []
+  );
+  const [iMembers, setInvitedMembers] = useState<RoomUserWithPopulatedUser[]>(
+    []
+  );
 
   /**
    * this is responsible for updating jMembers when the joinedMembers prop changes
@@ -128,9 +136,42 @@ function MembersContent({
   }); // todo consider adding roomId to dep array
 
   return (
-    <div className={className}>
+    <>
+      <div className={cn('hidden md:block', className)}>
+        <MembersContent joinedMembers={jMembers} invitedMembers={iMembers} />
+        <InviteMemberForm roomId={roomId} />
+      </div>
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button
+            className="shrink-0 md:hidden mt-2"
+            size="icon"
+            variant="outline"
+          >
+            <Users />
+            <span className="sr-only">Toggle users menu</span>
+          </Button>
+        </SheetTrigger>
+        <SheetContent>
+          <MembersContent joinedMembers={jMembers} invitedMembers={iMembers} />
+          <InviteMemberForm roomId={roomId} />
+        </SheetContent>
+      </Sheet>
+    </>
+  );
+}
+
+function MembersContent({
+  joinedMembers,
+  invitedMembers,
+}: {
+  joinedMembers: RoomUserWithPopulatedUser[];
+  invitedMembers: RoomUserWithPopulatedUser[];
+}) {
+  return (
+    <>
       <TypographyH3>Members</TypographyH3>
-      {jMembers?.map((member: RoomUserWithPopulatedUser) => (
+      {joinedMembers?.map((member: RoomUserWithPopulatedUser) => (
         <div key={member.userId} className="flex items-center gap-2">
           <Image
             src={member.user.avatar || '#'}
@@ -143,7 +184,7 @@ function MembersContent({
         </div>
       ))}
       <TypographyH4 className="mt-4">Invited</TypographyH4>
-      {iMembers?.map((member: RoomUserWithPopulatedUser) => (
+      {invitedMembers?.map((member: RoomUserWithPopulatedUser) => (
         <div key={member.userId} className="flex items-center gap-2">
           <Image
             src={member.user.avatar || '#'}
@@ -155,7 +196,6 @@ function MembersContent({
           <div className="my-2 w-52 text-secondary">{member.user.email}</div>
         </div>
       ))}
-      <InviteMemberForm roomId={roomId} />
-    </div>
+    </>
   );
 }
