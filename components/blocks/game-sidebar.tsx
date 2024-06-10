@@ -68,6 +68,26 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
               >
                 Playbooks
               </Link>
+              <Link
+                href="/game/osg"
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                  pathname === '/game/osg'
+                    ? 'bg-muted'
+                    : 'text-muted-foreground'
+                } transition-all hover:text-primary`}
+              >
+                OSG: Twisted Scion
+              </Link>
+              <Link
+                href="/game/blog"
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                  pathname === '/game/blog'
+                    ? 'bg-muted'
+                    : 'text-muted-foreground'
+                } transition-all hover:text-primary`}
+              >
+                Blog
+              </Link>
             </nav>
           </div>
         </div>
@@ -142,6 +162,26 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                   }  transition-all hover:text-primary`}
                 >
                   Playbooks
+                </Link>
+                <Link
+                  href="/game/osg"
+                  className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                    pathname === '/game/osg'
+                      ? 'bg-muted'
+                      : 'text-muted-foreground'
+                  } transition-all hover:text-primary`}
+                >
+                  OSG: Twisted Scion
+                </Link>
+                <Link
+                  href="/game/blog"
+                  className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                    pathname === '/game/blog'
+                      ? 'bg-muted'
+                      : 'text-muted-foreground'
+                  } transition-all hover:text-primary`}
+                >
+                  Blog
                 </Link>
               </nav>
             </SheetContent>

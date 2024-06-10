@@ -36,7 +36,6 @@ export default async function Navbar({
                 <NavbarLink href="/">Home</NavbarLink>
                 <NavbarLink href="/setting">Setting</NavbarLink>
                 <NavbarLink href="/game">Game</NavbarLink>
-                <NavbarLink href="/osg">OSG: Twisted Scion</NavbarLink>
                 <NavbarLink href="/chat">
                   Chat{' '}
                   <Badge className="ml-2" variant="destructive">
@@ -55,9 +54,6 @@ export default async function Navbar({
             </Link>
             <Link href="/game" className="hidden md:block">
               <Button variant="ghost">Game</Button>
-            </Link>
-            <Link href="/osg" className="hidden md:block">
-              <Button variant="ghost">OSG: Twisted Scion</Button>
             </Link>
             <Link href="/chat" className="hidden md:block">
               <Button variant="ghost">
