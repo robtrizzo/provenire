@@ -1,6 +1,7 @@
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { cn } from '@/lib/utils';
 import { MessageWithPopulatedUser } from '@/types/db';
+import { User } from 'lucide-react';
 export default function Message({
   message,
   className,
@@ -13,11 +14,12 @@ export default function Message({
       <div className={cn('my-1 bg-slate-800 p-4 rounded-md', className)}>
         <div className="flex items-center gap-4">
           <Avatar className="h-6 w-6">
-            <AvatarImage src={message.user.avatar || ''} />
+            <AvatarImage src={message.user.avatar!} />
             <AvatarFallback>
-              {message.user.displayName![0] || message.user.email[0]}
+              <User />
             </AvatarFallback>
           </Avatar>
+
           <div>
             {message.user.displayName}: rolled {message.roll.count}d
             {message.roll.sides}
@@ -41,9 +43,9 @@ export default function Message({
   return (
     <div className={cn('my-1 flex items-center gap-4', className)}>
       <Avatar className="h-6 w-6">
-        <AvatarImage src={message.user.avatar || ''} />
+        <AvatarImage src={message.user.avatar!} />
         <AvatarFallback>
-          {message.user.displayName![0] || message.user.email[0]}
+          <User />
         </AvatarFallback>
       </Avatar>
       <div>

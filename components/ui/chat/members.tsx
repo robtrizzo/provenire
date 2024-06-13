@@ -10,7 +10,8 @@ import { pusherClient } from '@/lib/pusher';
 import { cn } from '@/lib/utils';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '../button';
-import { Users } from 'lucide-react';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import { Users, User } from 'lucide-react';
 
 export default function Members({
   roomId,
@@ -173,26 +174,24 @@ function MembersContent({
       <TypographyH3>Members</TypographyH3>
       {joinedMembers?.map((member: RoomUserWithPopulatedUser) => (
         <div key={member.userId} className="flex items-center gap-2">
-          <Image
-            src={member.user.avatar || '#'}
-            alt={member.user.email}
-            width={30}
-            height={30}
-            className="rounded-full"
-          />
+          <Avatar className="h-6 w-6">
+            <AvatarImage src={member.user.avatar!} />
+            <AvatarFallback>
+              <User />
+            </AvatarFallback>
+          </Avatar>
           <div className="my-2 w-52">{member.user.displayName}</div>
         </div>
       ))}
       <TypographyH4 className="mt-4">Invited</TypographyH4>
       {invitedMembers?.map((member: RoomUserWithPopulatedUser) => (
         <div key={member.userId} className="flex items-center gap-2">
-          <Image
-            src={member.user.avatar || '#'}
-            alt={member.user.email}
-            width={30}
-            height={30}
-            className="rounded-full"
-          />
+          <Avatar className="h-6 w-6">
+            <AvatarImage src={member.user.avatar!} />
+            <AvatarFallback>
+              <User />
+            </AvatarFallback>
+          </Avatar>
           <div className="my-2 w-52 text-secondary">{member.user.email}</div>
         </div>
       ))}

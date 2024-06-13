@@ -11,7 +11,7 @@ export default function Transition({
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ ease: 'easeInOut', duration: 0.33 }}
+      transition={{ ease: 'easeInOut', duration: 0.2 }}
       className="flex flex-col gap-4"
     >
       {children}
