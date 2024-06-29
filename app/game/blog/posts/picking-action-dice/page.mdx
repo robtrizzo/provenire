@@ -6,7 +6,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
+} from '@/components/ui/table';
 
 # Picking Action Dice
 
@@ -50,25 +50,28 @@ Now to pick it apart because I'm designing a game and I feel the need to prove t
 
 I'm looking for these things in progression:
 
- - Characters should feel like they're getting better at things.
- - Players should be able to express themselves and their character through their progression choices.
- - There should be interesting choices every time.
- - There should be enough choices that no one character can take every option, but not so many that players feel overwhelmed.
+- Characters should feel like they're getting better at things.
+- Players should be able to express themselves and their character through their progression choices.
+- There should be interesting choices every time.
+- There should be enough choices that no one character can take every option, but not so many that players feel overwhelmed.
 
 FitD effectively accomplishes the first three goals. Gaining a special ability or extra dot in an action feels like a large powerup. And since there are 12 actions as well as dozens of special abilities to pick from, there are interesting choices to make at every stage of the game. Through stress and traumas as well, FitD puts a timer on how long any character can continue to be played as well, so that's a natural limit on progression.
 
-The one thing that I think FitD lacks for me is a means of self expression through advancement. I think this isn't a fault of FitD but instead a feature of how all characters are scoundrels and the game is about the score. Throughout the games I've run of BitD, there are 3 main ways that characters interact with the game. They're muscle, fast-talkers, or technicians. To be clear, there *is* more nuance to it, but this is pretty close to the reality. So in my opinion, there are three directions to take a character in FitD which limits self expression.
+The one thing that I think FitD lacks for me is a means of self expression through advancement. I think this isn't a fault of FitD but instead a feature of how all characters are scoundrels and the game is about the score. Throughout the games I've run of BitD, there are 3 main ways that characters interact with the game. They're muscle, fast-talkers, or technicians. To be clear, there _is_ more nuance to it, but this is pretty close to the reality. So in my opinion, there are three directions to take a character in FitD which limits self expression.
 
 What I'd want out of an ideal system is a way to express onesself through progression choices in all three of those dimensions (combat, social, and projects).
 
 ### Math of success
+
 The following table is taken from [Thoughts on FitD](https://smallcoolgames.itch.io/thoughts-on-forging-in-the-dark) by Small Cool Games. Let's talk about what we can learn from this.
 
 <Table>
   <TableCaption>Odds of success with a d6 dice pool.</TableCaption>
   <TableHeader>
     <TableRow>
-      <TableHead className="w-16 border-r-slate-800 border-r-[1px]">Dice</TableHead>
+      <TableHead className="w-16 border-r-slate-800 border-r-[1px]">
+        Dice
+      </TableHead>
       <TableHead className="w-20">Critical</TableHead>
       <TableHead className="w-20">Success</TableHead>
       <TableHead className="w-20">Partial</TableHead>
@@ -77,49 +80,63 @@ The following table is taken from [Thoughts on FitD](https://smallcoolgames.itch
   </TableHeader>
   <TableBody>
     <TableRow>
-      <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">0</TableCell>
+      <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">
+        0
+      </TableCell>
       <TableCell className="w-20">0%</TableCell>
       <TableCell className="w-20">3%</TableCell>
       <TableCell className="w-20">22%</TableCell>
       <TableCell className="w-20">75%</TableCell>
     </TableRow>
     <TableRow>
-      <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">1</TableCell>
+      <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">
+        1
+      </TableCell>
       <TableCell className="w-20">0%</TableCell>
       <TableCell className="w-20">17%</TableCell>
       <TableCell className="w-20">33%</TableCell>
       <TableCell className="w-20">50%</TableCell>
     </TableRow>
     <TableRow>
-      <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">2</TableCell>
+      <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">
+        2
+      </TableCell>
       <TableCell className="w-20">3%</TableCell>
       <TableCell className="w-20">28%</TableCell>
       <TableCell className="w-20">44%</TableCell>
       <TableCell className="w-20">25%</TableCell>
     </TableRow>
     <TableRow>
-      <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">3</TableCell>
+      <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">
+        3
+      </TableCell>
       <TableCell className="w-20">7%</TableCell>
       <TableCell className="w-20">35%</TableCell>
       <TableCell className="w-20">45%</TableCell>
       <TableCell className="w-20">13%</TableCell>
     </TableRow>
     <TableRow>
-      <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">4</TableCell>
+      <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">
+        4
+      </TableCell>
       <TableCell className="w-20">13%</TableCell>
       <TableCell className="w-20">39%</TableCell>
       <TableCell className="w-20">42%</TableCell>
       <TableCell className="w-20">6%</TableCell>
     </TableRow>
     <TableRow>
-      <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">5</TableCell>
+      <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">
+        5
+      </TableCell>
       <TableCell className="w-20">20%</TableCell>
       <TableCell className="w-20">40%</TableCell>
       <TableCell className="w-20">37%</TableCell>
       <TableCell className="w-20">3%</TableCell>
     </TableRow>
     <TableRow>
-      <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">6</TableCell>
+      <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">
+        6
+      </TableCell>
       <TableCell className="w-20">26%</TableCell>
       <TableCell className="w-20">40%</TableCell>
       <TableCell className="w-20">32%</TableCell>
