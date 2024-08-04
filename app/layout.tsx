@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
 import { Josefin_Sans as FontSans, Cardo as FontSerif } from 'next/font/google';
-import Providers from '@/components/providers';
+import Providers from '@/providers/providers';
 import { cn } from '@/lib/utils';
 import './globals.css';
-import Navbar from '@/components/navbar';
 
 const fontSans = FontSans({
   subsets: ['latin'],

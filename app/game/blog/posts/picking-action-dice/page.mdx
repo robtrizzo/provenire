@@ -1,0 +1,139 @@
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+
+# Picking Action Dice
+
+When I say action dice, I mean the dice and method used to determine the outcome of actions in a game. To use a well known example, in D&D 5e the action dice are 1d20+modifiers. In this post I want to talk through the different types of action dice I want to consider and the pros and cons of each.
+
+## 1d20+modifier, target number
+
+For a long time I've known that I don't want to use 1d20+modifier as the action dice in my game. This is for two reasons. The first reason is that the balance of randomness versus character skill is difficult to strike. For level 1 characters in D&D 5e, their modifiers are likely between -1 and +4. But the standard deviation of a 1d20 roll is ~6, so the randomness is more influential than the character's skill. This changes as the characters level up, and then the randomness becomes far less influential at the cost of the next reason I don't want to use 1d20+mod: Difficult Classes being out of reach.
+
+In D&D 5e and other similar systems, you're rolling the dice, adding your modifier, and comparing it to a target number. That target number is the Difficulty Class (or DC). It's a binary pass/fail system. If something is very difficult, the DC might be set to 15. For level 1 characters, this could be between a 25% and 50% chance of success. But for a level 20 character, this could be between a 75% and 100% chance of success. What if you want something to be hard for a level 20 character? You could set the DC to 30, but this becomes no longer accomplishable for level 1 characters.
+
+This is the crux of the issue. The DC system is binary, and it's difficult to make something difficult for high level characters without making it impossible for low level characters. And vice versa, it's difficult to make something easy for low level characters without making it trivial for high level characters.
+
+It would be fair to ask _"Well, why do you care? Just balance the DCs for the level of your party."_ That's fair. I do have a few nitpicks though. First - what if the level 20 wizard attempts stealth alongisde the level 20 rogue? Absent some spell that changes things, the wizard is literally incapable of accompanying the rogue on a stealth mission. Perhaps this is desirable, but this pattern leads to characters being siloed into their class roles.
+
+## 2d12+modifier, target number
+
+Where the standard deviation of 2d12+modifier is less (~5), it still falls victim to the same issues as 1d20+modifier. The DC system is still binary, and it's still difficult to make something difficult for high level characters without making it impossible for low level characters.
+
+## 2d6+modifier, thresholded success
+
+This is the standard Apocalypse World and PbtA system. Characters can have modifiers ranging from -2 to +3. The standard deviation of 2d6 is ~2.5, which means the modifier is around as influential as the randomness. There are 3 degrees of success: miss, partial, and success. Miss is at 6-, partial at 7-9, success at 10+. The modifier caps are also set up so that even the worst modifier is capable of a 10 and the best modifier is capable of a 6. This ensures that no matter what, any character at any level is capable of success or failure.
+
+You might be wondering a good question: "Well, what if there shouldn't be a chance of success? Why should the wizard be capable of succeeding a stealth roll to infiltrate the max security vault?" And you're right. There are situations where it wouldn't be ideal to allow a roll. In PbtA games and by extension games that use this threshold system, it's up to the GM to only call for rolls in moments of drama where the results are uncertain. There's also a decent amount of game design over the Moves that characters have where they get to initiate a roll. They're framed in such a way that the player and GM have a lot of input into how things manifest in the game.
+
+Let's use the wizard stealth check as an example. Say that characters have a Move caled Traverse Treacherous Terrain. It lets them roll +Cunning to determine the result. Let's say this wizard has +1 cunning and rolls a 8+1 for a total of 9. That's a partial. So it's up to the GM and player to work together to explain the results of the dice. The wizard was sneaking into the max security vault. The player and GM know the wizard isn't stealthy, so perhaps they used magic which got them into the vault but tripped an alarm.
+
+As you can tell, this is fairly different from the target number method of doing things. Clever GMs can work with the target number system to give a similar feel, but the thresholded success system with bounded dice really lends itself to making this style of play flow well.
+
+## Dice Pool, thresholded success
+
+This is the system used in Blades in the Dark and Forged in the Dark (FitD) games. Characters can have a stat ranging from 0 to 4 where their stat represents how many d6s they roll - and take the highest result. Sidenote: 0 means they roll 2d6 and take the lowest. A 6 is a success, 4-5 is a partial success, and 1-3 is a failure. The standard deviation of 1d6 is ~1.7, 2d6 is ~2.5, 3d6 is ~3, and 4d6 is ~3.4.
+
+FitD adds an additional dimension to this system by adding Position and Effect. The GM gets to determine these things - it's their job to ground the players' actions in the fiction. To quote the Blades in the Dark book: "Position is how dangerous or troublesome an action is." and "Effect is how much the action can accomplish."
+
+So all in all, FitD provides a staggering 27 dimensions of results. 3 degrees of success, 3 degrees of position, and 3 degrees of effect. This accomplishes two of the main criteria I'm looking for in a dice system: it abstracts the results enough so that it's difficult to metagage and it's easy to determine the results of the dice. Great!
+
+Now to pick it apart because I'm designing a game and I feel the need to prove to myself if something is the right choice. I want to examine two things in particular: progression, and the actual math of success as the dice pool grows.
+
+### Progression
+
+I'm looking for these things in progression:
+
+ - Characters should feel like they're getting better at things.
+ - Players should be able to express themselves and their character through their progression choices.
+ - There should be interesting choices every time.
+ - There should be enough choices that no one character can take every option, but not so many that players feel overwhelmed.
+
+FitD effectively accomplishes the first three goals. Gaining a special ability or extra dot in an action feels like a large powerup. And since there are 12 actions as well as dozens of special abilities to pick from, there are interesting choices to make at every stage of the game. Through stress and traumas as well, FitD puts a timer on how long any character can continue to be played as well, so that's a natural limit on progression.
+
+The one thing that I think FitD lacks for me is a means of self expression through advancement. I think this isn't a fault of FitD but instead a feature of how all characters are scoundrels and the game is about the score. Throughout the games I've run of BitD, there are 3 main ways that characters interact with the game. They're muscle, fast-talkers, or technicians. To be clear, there *is* more nuance to it, but this is pretty close to the reality. So in my opinion, there are three directions to take a character in FitD which limits self expression.
+
+What I'd want out of an ideal system is a way to express onesself through progression choices in all three of those dimensions (combat, social, and projects).
+
+### Math of success
+The following table is taken from [Thoughts on FitD](https://smallcoolgames.itch.io/thoughts-on-forging-in-the-dark) by Small Cool Games. Let's talk about what we can learn from this.
+
+<Table>
+  <TableCaption>Odds of success with a d6 dice pool.</TableCaption>
+  <TableHeader>
+    <TableRow>
+      <TableHead className="w-16 border-r-slate-800 border-r-[1px]">Dice</TableHead>
+      <TableHead className="w-20">Critical</TableHead>
+      <TableHead className="w-20">Success</TableHead>
+      <TableHead className="w-20">Partial</TableHead>
+      <TableHead className="w-20">Fail</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">0</TableCell>
+      <TableCell className="w-20">0%</TableCell>
+      <TableCell className="w-20">3%</TableCell>
+      <TableCell className="w-20">22%</TableCell>
+      <TableCell className="w-20">75%</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">1</TableCell>
+      <TableCell className="w-20">0%</TableCell>
+      <TableCell className="w-20">17%</TableCell>
+      <TableCell className="w-20">33%</TableCell>
+      <TableCell className="w-20">50%</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">2</TableCell>
+      <TableCell className="w-20">3%</TableCell>
+      <TableCell className="w-20">28%</TableCell>
+      <TableCell className="w-20">44%</TableCell>
+      <TableCell className="w-20">25%</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">3</TableCell>
+      <TableCell className="w-20">7%</TableCell>
+      <TableCell className="w-20">35%</TableCell>
+      <TableCell className="w-20">45%</TableCell>
+      <TableCell className="w-20">13%</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">4</TableCell>
+      <TableCell className="w-20">13%</TableCell>
+      <TableCell className="w-20">39%</TableCell>
+      <TableCell className="w-20">42%</TableCell>
+      <TableCell className="w-20">6%</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">5</TableCell>
+      <TableCell className="w-20">20%</TableCell>
+      <TableCell className="w-20">40%</TableCell>
+      <TableCell className="w-20">37%</TableCell>
+      <TableCell className="w-20">3%</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">6</TableCell>
+      <TableCell className="w-20">26%</TableCell>
+      <TableCell className="w-20">40%</TableCell>
+      <TableCell className="w-20">32%</TableCell>
+      <TableCell className="w-20">2%</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+
+New characters in BitD have starting stats ranging from 0 to 2. Characters who have to use actions they're not particularly good at (0 in the stat) have a small chance of success (25% to get a 4-6) are nearly guaranteed to have complications (97% to get a 1-5). Characters who are good at something (2 in the stat) have a small chance to crit (3% double 6s), a good chance to succeed (72% to get a 4-6) and a moderate chance of complications (69% to get a 1-5).
+
+This is a sweet spot for me; I'll explain. For starters, no matter what a character's stat is, they have a chance to succeed. This can give a moment of excitement at the table instead of knowing that rolling a 0 stat means near-certain failure and nothing else. Second, characters who are bad at something actually reflect that in their rolls. Where this doesn't feel the best for those characters, it does make the characters with a 1 or 2 in that stat feel powerful. Next, complications are fun! They're the texture of a session that makes things interesting. So for our compenent characters with 2 in a stat, the most likely outcome is that they get to feel powerful and have the story move forward in an interesting way. This is a win-win in my book.
+
+This all leaves out how characters can gain dice for a roll. In FitD, characters can gain a die for a roll by Pushing themselves and/or by getting assisted by another character. These cost Stress to do (a finite resource from session to session). With that in mind, even characters with 0 in a stat can gain the same odds as someone who's competent. And characters who are competent can gain a 13% odds of a crit, 81% chance of a success, and a 48% chance of complications. This is a good way to make sure that characters who are good at something are rewarded for being good at it.
+
+Characters in FitD can gradually progress and gain 3 or even 4 in their stats. This represents the characters becoming incredibly competent! It does come with some complications for the GM though. As characters gain these extra dice, the chance of complications goes down substantially. This removes one of the main ways that the GM can make the story more interesting. And that's a shame! So it requires new tools to make up for it.
+
+My final takeaways from the data is this: FitD puts new characters in a sweet spot of the odds both being fair as well as being grounded in the fiction. It gives characters the temporary tools to far exceed their normal capabilities. Lastly, characters gaining 3 or 4 in a stat can make the game less interesting since there will be far fewer complications.

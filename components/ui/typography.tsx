@@ -101,3 +101,11 @@ export function TypographyInlineCode({
     </code>
   );
 }
+
+export function TypographyUnorderedList({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <ul className="mb-4 ml-6 list-disc [&>li]:mt-2">{children}</ul>;
+}

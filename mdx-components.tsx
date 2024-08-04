@@ -7,6 +7,7 @@ import {
   TypographyBlockquote,
   TypographyInlineCode,
   TypographyP,
+  TypographyUnorderedList,
 } from '@/components/ui/typography';
 import Link from 'next/link';
 
@@ -27,6 +28,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <Link href={href!} className="text-red-700 underline">
         <span>{children}</span>
       </Link>
+    ),
+    ul: ({ children }) => (
+      <TypographyUnorderedList>{children}</TypographyUnorderedList>
     ),
     ...components,
   };
