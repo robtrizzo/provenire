@@ -17,7 +17,7 @@ export default async function Page({ params }: { params: { roomId: string } }) {
     <div className="flex flex-col flex-grow p-4 md:p-6">
       <TypographyH1 className="mb-2">{room.name}</TypographyH1>
       <div className="flex flex-row flex-grow align-top gap-2 border-t-2">
-        <div className="flex flex-col flex-grow w-full overflow-hidden">
+        <div className="flex flex-col flex-grow w-full overflow-hidden dice-arena">
           <Messages className="flex flex-col flex-grow h-0 p-4 overflow-auto" />
           <MessageForm roomId={roomId} />
         </div>
