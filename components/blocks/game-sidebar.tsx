@@ -88,6 +88,16 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
               >
                 Blog
               </Link>
+              <Link
+                href="/game/fitd-char-sheet"
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                  pathname === '/game/fitd-char-sheet'
+                    ? 'bg-muted'
+                    : 'text-muted-foreground'
+                } transition-all hover:text-primary`}
+              >
+                Character Sheet
+              </Link>
             </nav>
           </div>
         </div>
@@ -182,6 +192,16 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                   } transition-all hover:text-primary`}
                 >
                   Blog
+                </Link>
+                <Link
+                  href="/game/fitd-char-sheet"
+                  className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                    pathname === '/game/fitd-char-sheet'
+                      ? 'bg-muted'
+                      : 'text-muted-foreground'
+                  } transition-all hover:text-primary`}
+                >
+                  Character Sheet
                 </Link>
               </nav>
             </SheetContent>
