@@ -1,0 +1,20 @@
+[
+  {
+    "category": "Anidinian",
+    "heritages": [{ "name": "Cumerian" }, { "name": "Gredoran" }]
+  },
+  {
+    "category": "Arborian",
+    "heritages": [{ "name": "Argosi" }, { "name": "Kiposi" }]
+  },
+  { "name": "Narscillian" },
+  { "name": "Kilder" },
+  {
+    "category": "Rathi",
+    "heritages": [{ "name": "Bwarhein" }, { "name": "Fenrir" }]
+  },
+  {
+    "category": "Toran",
+    "heritages": [{ "name": "Heian" }, { "name": "Yaman" }]
+  }
+]

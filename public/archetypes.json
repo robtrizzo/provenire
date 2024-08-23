@@ -1,0 +1,122 @@
+[
+  {
+    "name": "Strategist",
+    "questions": [
+      "Whose life have you saved in the Steel Trap because of your decisive action and split second ingenuity?",
+      "Who would you love to date, to give your all, if only you could figure out a good way to ... whatever people do to start dating?",
+      "Which one of the overseers gave you a brutal beating after your correct, but irreverent, nay, scathing contrarianism?",
+      "Which one of the overseers do you have dirt on? How might they be exploited for your advantage?",
+      "Whose romantic advances have you ruined with brutal honesty and tactless criticism?"
+    ]
+  },
+  {
+    "name": "Engineer",
+    "questions": [
+      "Happy moments are rare in the Steel Trap; how did you use your creativity to bring joy to your friends?",
+      "Who is a pleasant distraction from your thoughts? Why can't you work up the courage to ask them out?",
+      "You reinvented the wheel behind the overseers' backs and it resulted in a close friend getting injured. Who?",
+      "You've already figured out one of the new machines in the Steel trap. How could it be used to your advantage?",
+      "Whose romantic advances have you ruined with your stubborn willful ignorance of feelings?"
+    ]
+  },
+  {
+    "name": "Commander",
+    "questions": [
+      "What's the name of your group of loyal lackeys?",
+      "Who would you love to date, if only they took romance as seriously as you do?",
+      "Which overseer publicly humiliated you after a spat about who gives orders to your gang?",
+      "Who else knows about the secret network of informants you've set up throughout the Steel Trap?",
+      "Whose romantic advances have you spurned because they weren't putting in as much to the relationship as you?"
+    ]
+  },
+  {
+    "name": "Visionary",
+    "questions": [
+      "Who have you inspired with your relentless wit and sharp eye for revolutionary rhetoric?",
+      "Who would you love to date, if only you could find the right opportunity for your grand gesture of affection?",
+      "Which one of the overseers withholds rations from you due to your terrible performance at tedious tasks?",
+      "Which overseer have you so chronically debated that they become irritated with you on sight? What's the moment you think they realized you're right?",
+      "Whose romantic advances have you ruined because they couldn't keep up with your constant need for growth and novelty?"
+    ]
+  },
+  {
+    "name": "Advocate",
+    "questions": [
+      "Whose life have you saved by stepping in and taking the punishment for them?",
+      "Who do you have a deep romantic, or even spiritual connection with? What's stopping you from dating each other?",
+      "Which one of the overseers forced you to carry out an especially violent beating, or else they would kill one of your loved ones?",
+      "Your indominable dedication to your principles and peers has resulted in years of horrible beatings. How has this scarred you? Through this ordeal, you've turned the heart of an overseer. Who are they?",
+      "Whose romantic advances have you spurned because they don't share your core values?"
+    ]
+  },
+  {
+    "name": "Idealist",
+    "questions": [
+      "Who is your best friend? Someone you've inspired with grand visions of the future and who you've always helped out of bad spots?",
+      "Who would you love to date despite all of their superficial flaws? Why are they your soul-mate?",
+      "Which one of the overseers threatens your best friend in order to get you to be an informant to Lawler?",
+      "The overseers work to sow discord and conflict among the workers. You've mediated and mended hatred between two of your community's leaders. Who are they?",
+      "Who broke your heart because dating them wasn't everything you'd imagined it would be?"
+    ]
+  },
+  {
+    "name": "Leader",
+    "questions": [
+      "When your community leader passed away, who advocated for you to take their place? How is filling their shoes going?",
+      "Who's the one who got away? Where are they now, and what's your plan to win them back?",
+      "Which one of the overseers poisoned food meant for you, resulting in the death of one of your loved ones? Who?",
+      "You have lead the way in forming secret fight clubs to train for rebellion one day. Who is the instructor you found for your community, and what combat form do they teach?",
+      "Who rejected you after what seemed to them as a sudden declaration of your love?"
+    ]
+  },
+  {
+    "name": "Dreamer",
+    "questions": [
+      "Your dreams are vivid, almost ... real? What scheme have you crafted in your dreams to bring freedom to your brethren?",
+      "Who's your ex who you would love to date again? Why does it seem like too much work?",
+      "Which one of the overseers watches your each and every move, punishing you immediately if you so much as toe the line of the box they've defined for you?",
+      "You had found a win-win relationship between your former overseer and your work pod. Who are they? Why did they get fired?",
+      "Who did you break up with after an intense honeymoon phase because the flames of romance started to flicker?"
+    ]
+  },
+  {
+    "name": "Logistician",
+    "questions": [
+      "Whose life have you saved by doing their work in addition to your own while they were hurt?",
+      "Who do you have feelings for, who just makes sense for you? How long have you been waiting for them to make a move?",
+      "Which one of the overseers noticed how hard you worked and then doubled your shift's duties because of it?",
+      "You've been invited to meetings between the overseers and Lawler; they consulted you about how to rework the factory for the new project. What have you learned that will help your crew ruin Lawler's plans?",
+      "Who broke up with you despite you being the one who won every argument?"
+    ]
+  },
+  {
+    "name": "Defender",
+    "questions": [
+      "You've been giving every spare scrap of your food to your fellow shift workers. What toll on your body has this taken?",
+      "Who do you have a crush on; who you jump to the defense of, even when it doesn't make sense? Why haven't you expressed your feelings?",
+      "Which one of the overseers loves tormenting you, beating you, watching you suffer as you quietly work in order to support your family?",
+      "One of the overseers nearly killed one of your fellow shift workers last week. Rather than sit by, you shoved his head into a piston and killed him. Who have you gotten to pose as the overseer?",
+      "Who broke up with you because you never let them fight their own battles?"
+    ]
+  },
+  {
+    "name": "Executive",
+    "questions": [
+      "You have a set of beliefs sacred to your people that give you hope: beliefs now outlawed by the King. What are they?",
+      "Who do you see at social gatherings who really interests you? What position do you need to be in before you know they'd go out with you?",
+      "Which one of the overseers has spirited you away on late shifts to experiment on you? What scars has their tampering left?",
+      "Many of these years you have shut out the external horrors and focused wholeheartedly on yourself. What special skill have you honed in this time?",
+      "Who broke up with you because you're incapable of having your mind changed?"
+    ]
+  },
+  {
+    "name": "Consul",
+    "questions": [
+      "Each night you tell stories of rebels and heroes of the common people. It brings your community together. Who are these heroes?",
+      "Someone is always there for you, reassuring you when you doubt yourself and supporting you through hard times. Who are they? How do you plan to win their heart?",
+      "Which one of the overseers takes joy in publicly humiliating you and discrediting you in front of your peers?",
+      "You and your shiftmates have worked together in secret for years to build a secret passage within the factory. Where does it go?",
+      "Who did you break up with because they never gave you the approval you need, even when you changed yourself for them?"
+    ]
+  }
+]
