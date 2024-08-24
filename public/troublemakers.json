@@ -1,26 +1,34 @@
 [
   {
-    "name": "Chisel"
+    "name": "Chisel",
+    "shortDescription": "A crafty sabetour and wright"
   },
   {
-    "name": "Flywheel"
+    "name": "Flywheel",
+    "shortDescription": "A daring scoundrel and acrobat"
   },
   {
-    "name": "Fume"
+    "name": "Fume",
+    "shortDescription": "A manipulative and intimidating schemer"
   },
   {
-    "name": "Grease"
+    "name": "Grease",
+    "shortDescription": "A canny and resourceful blusterer"
   },
   {
-    "name": "Hammer"
+    "name": "Hammer",
+    "shortDescription": "A strong and fearless brawler"
   },
   {
-    "name": "Nail"
+    "name": "Nail",
+    "shortDescription": "An audacious and inspiring ringleader"
   },
   {
-    "name": "Spark"
+    "name": "Spark",
+    "shortDescription": "A quick-witted and charming protector"
   },
   {
-    "name": "Vapor"
+    "name": "Vapor",
+    "shortDescription": "An elusive infiltrator and thief"
   }
 ]

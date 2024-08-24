@@ -88,6 +88,16 @@ export function Charsheet() {
                       ))}
                     </SelectGroup>
                   );
+                } else if (heritage.name) {
+                  return (
+                    <SelectItem
+                      key={heritage.name}
+                      value={heritage.name}
+                      className="text-lg"
+                    >
+                      {heritage.name}
+                    </SelectItem>
+                  );
                 }
               })}
             </SelectContent>
@@ -109,6 +119,9 @@ export function Charsheet() {
               {backgrounds.map((background) => (
                 <SelectItem key={background.name} value={background.name}>
                   {background.name}
+                  <span className="text-muted-foreground ml-4">
+                    {background.shortDescription}
+                  </span>
                 </SelectItem>
               ))}
             </SelectContent>
@@ -134,6 +147,9 @@ export function Charsheet() {
               {troublemakers.map((troublemaker) => (
                 <SelectItem key={troublemaker.name} value={troublemaker.name}>
                   {troublemaker.name}
+                  <span className="text-muted-foreground ml-4">
+                    {troublemaker.shortDescription}
+                  </span>
                 </SelectItem>
               ))}
             </SelectContent>
@@ -155,6 +171,9 @@ export function Charsheet() {
               {archetypes.map((archetype) => (
                 <SelectItem key={archetype.name} value={archetype.name}>
                   {archetype.name}
+                  <span className="text-muted-foreground ml-4">
+                    {archetype.shortDescription}
+                  </span>
                 </SelectItem>
               ))}
             </SelectContent>
@@ -228,7 +247,12 @@ export function Charsheet() {
         </TabsContent>
         <TabsContent value="mission" className="w-full">
           <div className="my-3">
-            <TypographyH2>{selectedTroublemaker?.name}</TypographyH2>
+            <TypographyH2>
+              {selectedTroublemaker?.name}
+              <span className="text-muted-foreground text-lg ml-8">
+                {selectedTroublemaker?.shortDescription}
+              </span>
+            </TypographyH2>
             <div className="flex my-3">
               <div className="flex-grow"></div>
               <div>
@@ -256,7 +280,7 @@ export function Charsheet() {
                     <Checkbox className="rounded-none" />
                   </div>
                 </div>
-                <div className="flex space-x-4">
+                <div className="grid grid-cols-2 gap-4 m-2">
                   <div className="flex flex-col">
                     <TypographyH4 className="h-8 flex items-center">
                       Defy
@@ -267,12 +291,78 @@ export function Charsheet() {
                   </div>
                   <div className="flex flex-col">
                     <div className="h-8 flex items-center">
-                      <Checkbox className="rounded-full" />
+                      <ActionCheckbox />
                       <Separator orientation="vertical" className="mx-2" />
-                      <Checkbox className="rounded-full" />
+                      <ActionCheckbox />
                     </div>
                     <div className="h-8 flex items-center">
-                      <Checkbox className="rounded-full" />
+                      <ActionCheckbox />
+                      <Separator orientation="vertical" className="mx-2" />
+                      <ActionCheckbox />
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-4 flex  justify-between gap-4">
+                  <TypographyH3>Instinct</TypographyH3>
+                  <div className="flex items-center gap-1">
+                    <Checkbox className="rounded-none" />
+                    <Checkbox className="rounded-none" />
+                    <Checkbox className="rounded-none" />
+                    <Checkbox className="rounded-none" />
+                    <Checkbox className="rounded-none" />
+                    <Checkbox className="rounded-none" />
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-4 m-2">
+                  <div className="flex flex-col">
+                    <TypographyH4 className="h-8 flex items-center">
+                      Charge
+                    </TypographyH4>
+                    <TypographyH4 className="h-8 flex items-center">
+                      Prowl
+                    </TypographyH4>
+                  </div>
+                  <div className="flex flex-col">
+                    <div className="h-8 flex items-center">
+                      <ActionCheckbox />
+                      <Separator orientation="vertical" className="mx-2" />
+                      <ActionCheckbox />
+                    </div>
+                    <div className="h-8 flex items-center">
+                      <ActionCheckbox />
+                      <Separator orientation="vertical" className="mx-2" />
+                      <ActionCheckbox />
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-4 flex  justify-between gap-4">
+                  <TypographyH3>Machina</TypographyH3>
+                  <div className="flex items-center gap-1">
+                    <Checkbox className="rounded-none" />
+                    <Checkbox className="rounded-none" />
+                    <Checkbox className="rounded-none" />
+                    <Checkbox className="rounded-none" />
+                    <Checkbox className="rounded-none" />
+                    <Checkbox className="rounded-none" />
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-4 m-2">
+                  <div className="flex flex-col">
+                    <TypographyH4 className="h-8 flex items-center">
+                      Scheme
+                    </TypographyH4>
+                    <TypographyH4 className="h-8 flex items-center">
+                      Survey
+                    </TypographyH4>
+                  </div>
+                  <div className="flex flex-col">
+                    <div className="h-8 flex items-center">
+                      <ActionCheckbox />
+                      <Separator orientation="vertical" className="mx-2" />
+                      <ActionCheckbox />
+                    </div>
+                    <div className="h-8 flex items-center">
+                      <ActionCheckbox />
                       <Separator orientation="vertical" className="mx-2" />
                       <ActionCheckbox />
                     </div>

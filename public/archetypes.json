@@ -1,6 +1,7 @@
 [
   {
     "name": "Strategist",
+    "shortDescription": "Intense, inquisitive, perceptive.",
     "questions": [
       "Whose life have you saved in the Steel Trap because of your decisive action and split second ingenuity?",
       "Who would you love to date, to give your all, if only you could figure out a good way to ... whatever people do to start dating?",
@@ -11,6 +12,7 @@
   },
   {
     "name": "Engineer",
+    "shortDescription": "Cerebral, experimental, positive.",
     "questions": [
       "Happy moments are rare in the Steel Trap; how did you use your creativity to bring joy to your friends?",
       "Who is a pleasant distraction from your thoughts? Why can't you work up the courage to ask them out?",
@@ -21,6 +23,7 @@
   },
   {
     "name": "Commander",
+    "shortDescription": "Decisive, ruthless, disciplined.",
     "questions": [
       "What's the name of your group of loyal lackeys?",
       "Who would you love to date, if only they took romance as seriously as you do?",
@@ -31,6 +34,7 @@
   },
   {
     "name": "Visionary",
+    "shortDescription": "Bold, rebellious, contrarian.",
     "questions": [
       "Who have you inspired with your relentless wit and sharp eye for revolutionary rhetoric?",
       "Who would you love to date, if only you could find the right opportunity for your grand gesture of affection?",
@@ -41,6 +45,7 @@
   },
   {
     "name": "Advocate",
+    "shortDescription": "Thoughtful, principled, altruistic.",
     "questions": [
       "Whose life have you saved by stepping in and taking the punishment for them?",
       "Who do you have a deep romantic, or even spiritual connection with? What's stopping you from dating each other?",
@@ -51,6 +56,7 @@
   },
   {
     "name": "Idealist",
+    "shortDescription": "Imaginative, empathetic, compassionate.",
     "questions": [
       "Who is your best friend? Someone you've inspired with grand visions of the future and who you've always helped out of bad spots?",
       "Who would you love to date despite all of their superficial flaws? Why are they your soul-mate?",
@@ -61,6 +67,7 @@
   },
   {
     "name": "Leader",
+    "shortDescription": "Warm, passionate, optimistic.",
     "questions": [
       "When your community leader passed away, who advocated for you to take their place? How is filling their shoes going?",
       "Who's the one who got away? Where are they now, and what's your plan to win them back?",
@@ -71,6 +78,7 @@
   },
   {
     "name": "Dreamer",
+    "shortDescription": "Hopeful, openhearted, carefree.",
     "questions": [
       "Your dreams are vivid, almost ... real? What scheme have you crafted in your dreams to bring freedom to your brethren?",
       "Who's your ex who you would love to date again? Why does it seem like too much work?",
@@ -81,6 +89,7 @@
   },
   {
     "name": "Logistician",
+    "shortDescription": "Willful, rational, methodical.",
     "questions": [
       "Whose life have you saved by doing their work in addition to your own while they were hurt?",
       "Who do you have feelings for, who just makes sense for you? How long have you been waiting for them to make a move?",
@@ -91,6 +100,7 @@
   },
   {
     "name": "Defender",
+    "shortDescription": "Steady, responsible, understanding.",
     "questions": [
       "You've been giving every spare scrap of your food to your fellow shift workers. What toll on your body has this taken?",
       "Who do you have a crush on; who you jump to the defense of, even when it doesn't make sense? Why haven't you expressed your feelings?",
@@ -101,6 +111,7 @@
   },
   {
     "name": "Executive",
+    "shortDescription": "Resilient, diligent, stabilizing.",
     "questions": [
       "You have a set of beliefs sacred to your people that give you hope: beliefs now outlawed by the King. What are they?",
       "Who do you see at social gatherings who really interests you? What position do you need to be in before you know they'd go out with you?",
@@ -111,12 +122,57 @@
   },
   {
     "name": "Consul",
+    "shortDescription": "Attentive, encouraging, generous.",
     "questions": [
       "Each night you tell stories of rebels and heroes of the common people. It brings your community together. Who are these heroes?",
       "Someone is always there for you, reassuring you when you doubt yourself and supporting you through hard times. Who are they? How do you plan to win their heart?",
       "Which one of the overseers takes joy in publicly humiliating you and discrediting you in front of your peers?",
       "You and your shiftmates have worked together in secret for years to build a secret passage within the factory. Where does it go?",
       "Who did you break up with because they never gave you the approval you need, even when you changed yourself for them?"
+    ]
+  },
+  {
+    "name": "Virtuoso",
+    "shortDescription": "Solitary, exploratory, direct.",
+    "questions": [
+      "Who is your mentor? A fellow tinkerer who has helped you learn the multitude of your interests?",
+      "Who is the latest flame to catch your eye? What's your novel plan to initiate love?",
+      "Which one of the overseers gets a little too close? Breathes down your neck? Is visible from the corner of your eye as you walk home at night?",
+      "You've slain a great beast in a hunt not too long back, and you managed to preserve the remains - a great cache of food. But you can't access it easily, what's the catch?",
+      "Who did you break up with because they wanted to get serious too quickly?"
+    ]
+  },
+  {
+    "name": "Artist",
+    "shortDescription": "Centered, interested, openminded.",
+    "questions": [
+      "You and a close friend relax by acrobatics in and around the equipment. Who are they? Which region of the Steel Trap is it?",
+      "Who do you delight in surprising in little ways? Why haven't they asked you out yet?",
+      "Which one of the overseers takes delight in working to control you? To break you of your resolve and small acts of defiance?",
+      "You've been working on a passion project, some form of creativity and insight to express your bold ideas and speak to your fellows' hearts. What is it?",
+      "Who did you mutually break up with due to their pushiness and your guarded emotions?"
+    ]
+  },
+  {
+    "name": "Adventurer",
+    "shortDescription": "Energetic, enthusiastic, impulsive.",
+    "questions": [
+      "Who is your partner in crime? Your confidant and close friend who you adventure with?",
+      "Who would you love to introduce to all of your hobbies? To explore and have fun with?",
+      "Which one of the overseers locked you and your best friend up into solitary confinement for months? Why did they let you out but not your friend?",
+      "You've been using your large social circle to spread rumors amongst the workers. What are the rumors and how will they work to your crew's advantage?",
+      "Who broke up with you because they were looking for something not just fun, but deeper?"
+    ]
+  },
+  {
+    "name": "Entertainer",
+    "shortDescription": "Social, witty, observant.",
+    "questions": [
+      "Sometimes when you dream, you make contact with someone else in a very real way. Who are they?",
+      "Who excites you? Makes you full of energy with just their presence? What's stopping you?",
+      "Which one of the overseers takes time to sabotage or outright ruin your clothing and appearance?",
+      "Your wide socialization has brought people together from many walks of life. What is this unlikely group of friends and what have you all accomplished which could only have been done together?",
+      "Who did you break up with because they criticized you and just killed the spark?"
     ]
   }
 ]
