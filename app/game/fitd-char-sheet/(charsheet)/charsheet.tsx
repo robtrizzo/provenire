@@ -167,7 +167,7 @@ export function Charsheet() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 w-full my-1">
         <div>
           <Select
-            key={archetypeSelectKey}
+            key={troublemakerSelectKey}
             onValueChange={(value) => {
               const foundTroublemaker = troublemakers.find(
                 (t) => t.name === value
@@ -207,7 +207,7 @@ export function Charsheet() {
         </div>
         <div>
           <Select
-            key={troublemakerSelectKey}
+            key={archetypeSelectKey}
             onValueChange={(value) => {
               const foundArchetype = archetypes.find((a) => a.name === value);
               if (foundArchetype) {
