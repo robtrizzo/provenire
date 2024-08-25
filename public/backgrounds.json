@@ -3,9 +3,9 @@
     "name": "Archivist",
     "shortDescription": "Read manuals and catalog inventory",
     "attributes": {
-      "Heart": [],
+      "Heart": ["Organize"],
       "Instinct": [],
-      "Machina": ["Study"]
+      "Machina": ["Read"]
     }
   },
   {
@@ -14,14 +14,14 @@
     "attributes": {
       "Heart": [],
       "Instinct": ["Frighten"],
-      "Machina": []
+      "Machina": ["Observe"]
     }
   },
   {
     "name": "Machinist",
     "shortDescription": "Living replacement for broken parts",
     "attributes": {
-      "Heart": [],
+      "Heart": ["Interface"],
       "Instinct": ["Squeeze"],
       "Machina": []
     }
@@ -31,7 +31,7 @@
     "shortDescription": "Pull levers and crank wheels",
     "attributes": {
       "Heart": ["Endure"],
-      "Instinct": [],
+      "Instinct": ["Pull"],
       "Machina": []
     }
   },
@@ -40,8 +40,8 @@
     "shortDescription": "Carry messages and transport crates",
     "attributes": {
       "Heart": [],
-      "Instinct": [],
-      "Machina": []
+      "Instinct": ["Carry"],
+      "Machina": ["Evesdrop"]
     }
   },
   {
@@ -49,17 +49,17 @@
     "shortDescription": "Sort broken parts and salvage scrap",
     "attributes": {
       "Heart": [],
-      "Instinct": [],
-      "Machina": []
+      "Instinct": ["Step"],
+      "Machina": ["Rummage"]
     }
   },
   {
     "name": "Stoker",
     "shortDescription": "Shovel coal and stoke the fires",
     "attributes": {
-      "Heart": [],
+      "Heart": ["Brace"],
       "Instinct": [],
-      "Machina": []
+      "Machina": ["Ignite"]
     }
   }
 ]

@@ -280,7 +280,7 @@ export function Charsheet() {
                     <Checkbox className="rounded-none" />
                   </div>
                 </div>
-                <div className="grid grid-cols-2 gap-4 m-2">
+                <div className="grid grid-cols-4 gap-4 m-2">
                   <div className="flex flex-col">
                     <TypographyH4 className="h-8 flex items-center">
                       Defy
@@ -290,16 +290,65 @@ export function Charsheet() {
                     </TypographyH4>
                   </div>
                   <div className="flex flex-col">
-                    <div className="h-8 flex items-center">
+                    <div className="h-8 flex items-center justify-end">
                       <ActionCheckbox />
                       <Separator orientation="vertical" className="mx-2" />
                       <ActionCheckbox />
                     </div>
-                    <div className="h-8 flex items-center">
+                    <div className="h-8 flex items-center justify-end">
                       <ActionCheckbox />
                       <Separator orientation="vertical" className="mx-2" />
                       <ActionCheckbox />
                     </div>
+                  </div>
+                  <div className="flex flex-col">
+                    {selectedBackground?.attributes.Heart.map((_, i) => (
+                      <div key={`sh-${i}`} className="h-8 flex items-center">
+                        <ActionCheckbox />
+                        <Separator orientation="vertical" className="mx-2" />
+                        <ActionCheckbox />
+                      </div>
+                    ))}
+                    {selectedArchetype?.attributes.Heart.map((_, i) => (
+                      <div key={`sh-${i}`} className="h-8 flex items-center">
+                        <ActionCheckbox />
+                        <Separator orientation="vertical" className="mx-2" />
+                        <ActionCheckbox />
+                      </div>
+                    ))}
+                    {selectedTroublemaker?.attributes.Heart.map((_, i) => (
+                      <div key={`sh-${i}`} className="h-8 flex items-center">
+                        <ActionCheckbox />
+                        <Separator orientation="vertical" className="mx-2" />
+                        <ActionCheckbox />
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex flex-col">
+                    {selectedBackground?.attributes.Heart.map((a, i) => (
+                      <TypographyH4
+                        key={`ah-${i}`}
+                        className="h-8 flex items-center justify-start"
+                      >
+                        {a}
+                      </TypographyH4>
+                    ))}
+                    {selectedArchetype?.attributes.Heart.map((a, i) => (
+                      <TypographyH4
+                        key={`ah-${i}`}
+                        className="h-8 flex items-center justify-start"
+                      >
+                        {a}
+                      </TypographyH4>
+                    ))}
+                    {selectedTroublemaker?.attributes.Heart.map((a, i) => (
+                      <TypographyH4
+                        key={`ah-${i}`}
+                        className="h-8 flex items-center justify-start"
+                      >
+                        {a}
+                      </TypographyH4>
+                    ))}
                   </div>
                 </div>
                 <div className="mt-4 flex  justify-between gap-4">
@@ -313,7 +362,7 @@ export function Charsheet() {
                     <Checkbox className="rounded-none" />
                   </div>
                 </div>
-                <div className="grid grid-cols-2 gap-4 m-2">
+                <div className="grid grid-cols-4 gap-4 m-2">
                   <div className="flex flex-col">
                     <TypographyH4 className="h-8 flex items-center">
                       Charge
@@ -323,19 +372,77 @@ export function Charsheet() {
                     </TypographyH4>
                   </div>
                   <div className="flex flex-col">
-                    <div className="h-8 flex items-center">
+                    <div className="h-8 flex items-center justify-end">
                       <ActionCheckbox />
                       <Separator orientation="vertical" className="mx-2" />
                       <ActionCheckbox />
                     </div>
-                    <div className="h-8 flex items-center">
+                    <div className="h-8 flex items-center justify-end">
                       <ActionCheckbox />
                       <Separator orientation="vertical" className="mx-2" />
                       <ActionCheckbox />
                     </div>
                   </div>
+                  <div className="flex flex-col">
+                    {selectedBackground?.attributes.Instinct.map((_, i) => (
+                      <div
+                        key={`si-${i}`}
+                        className="h-8 flex items-center justify-start"
+                      >
+                        <ActionCheckbox />
+                        <Separator orientation="vertical" className="mx-2" />
+                        <ActionCheckbox />
+                      </div>
+                    ))}
+                    {selectedArchetype?.attributes.Instinct.map((_, i) => (
+                      <div
+                        key={`si-${i}`}
+                        className="h-8 flex items-center justify-start"
+                      >
+                        <ActionCheckbox />
+                        <Separator orientation="vertical" className="mx-2" />
+                        <ActionCheckbox />
+                      </div>
+                    ))}
+                    {selectedTroublemaker?.attributes.Instinct.map((_, i) => (
+                      <div
+                        key={`si-${i}`}
+                        className="h-8 flex items-center justify-start"
+                      >
+                        <ActionCheckbox />
+                        <Separator orientation="vertical" className="mx-2" />
+                        <ActionCheckbox />
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex flex-col">
+                    {selectedBackground?.attributes.Instinct.map((a, i) => (
+                      <TypographyH4
+                        key={`ai-${i}`}
+                        className="h-8 flex items-center"
+                      >
+                        {a}
+                      </TypographyH4>
+                    ))}
+                    {selectedArchetype?.attributes.Instinct.map((a, i) => (
+                      <TypographyH4
+                        key={`ai-${i}`}
+                        className="h-8 flex items-center"
+                      >
+                        {a}
+                      </TypographyH4>
+                    ))}
+                    {selectedTroublemaker?.attributes.Instinct.map((a, i) => (
+                      <TypographyH4
+                        key={`ai-${i}`}
+                        className="h-8 flex items-center"
+                      >
+                        {a}
+                      </TypographyH4>
+                    ))}
+                  </div>
                 </div>
-                <div className="mt-4 flex  justify-between gap-4">
+                <div className="mt-4 flex justify-between gap-4">
                   <TypographyH3>Machina</TypographyH3>
                   <div className="flex items-center gap-1">
                     <Checkbox className="rounded-none" />
@@ -346,26 +453,75 @@ export function Charsheet() {
                     <Checkbox className="rounded-none" />
                   </div>
                 </div>
-                <div className="grid grid-cols-2 gap-4 m-2">
+                <div className="grid grid-cols-4 gap-4 m-2">
                   <div className="flex flex-col">
                     <TypographyH4 className="h-8 flex items-center">
-                      Scheme
+                      Suggest
                     </TypographyH4>
                     <TypographyH4 className="h-8 flex items-center">
                       Survey
                     </TypographyH4>
                   </div>
                   <div className="flex flex-col">
-                    <div className="h-8 flex items-center">
+                    <div className="h-8 flex items-center justify-end">
                       <ActionCheckbox />
                       <Separator orientation="vertical" className="mx-2" />
                       <ActionCheckbox />
                     </div>
-                    <div className="h-8 flex items-center">
+                    <div className="h-8 flex items-center justify-end">
                       <ActionCheckbox />
                       <Separator orientation="vertical" className="mx-2" />
                       <ActionCheckbox />
                     </div>
+                  </div>
+                  <div className="flex flex-col">
+                    {selectedBackground?.attributes.Machina.map((_, i) => (
+                      <div key={`sm-${i}`} className="h-8 flex items-center">
+                        <ActionCheckbox />
+                        <Separator orientation="vertical" className="mx-2" />
+                        <ActionCheckbox />
+                      </div>
+                    ))}
+                    {selectedArchetype?.attributes.Machina.map((_, i) => (
+                      <div key={`sm-${i}`} className="h-8 flex items-center">
+                        <ActionCheckbox />
+                        <Separator orientation="vertical" className="mx-2" />
+                        <ActionCheckbox />
+                      </div>
+                    ))}
+                    {selectedTroublemaker?.attributes.Machina.map((_, i) => (
+                      <div key={`sm-${i}`} className="h-8 flex items-center">
+                        <ActionCheckbox />
+                        <Separator orientation="vertical" className="mx-2" />
+                        <ActionCheckbox />
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex flex-col">
+                    {selectedBackground?.attributes.Machina.map((a, i) => (
+                      <TypographyH4
+                        key={`am-${i}`}
+                        className="h-8 flex items-center"
+                      >
+                        {a}
+                      </TypographyH4>
+                    ))}
+                    {selectedArchetype?.attributes.Machina.map((a, i) => (
+                      <TypographyH4
+                        key={`am-${i}`}
+                        className="h-8 flex items-center"
+                      >
+                        {a}
+                      </TypographyH4>
+                    ))}
+                    {selectedTroublemaker?.attributes.Machina.map((a, i) => (
+                      <TypographyH4
+                        key={`am-${i}`}
+                        className="h-8 flex items-center"
+                      >
+                        {a}
+                      </TypographyH4>
+                    ))}
                   </div>
                 </div>
               </div>

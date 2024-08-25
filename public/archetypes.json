@@ -8,7 +8,12 @@
       "Which one of the overseers gave you a brutal beating after your correct, but irreverent, nay, scathing contrarianism?",
       "Which one of the overseers do you have dirt on? How might they be exploited for your advantage?",
       "Whose romantic advances have you ruined with brutal honesty and tactless criticism?"
-    ]
+    ],
+    "attributes": {
+      "Heart": [],
+      "Instinct": [],
+      "Machina": ["Scheme"]
+    }
   },
   {
     "name": "Engineer",
@@ -19,7 +24,12 @@
       "You reinvented the wheel behind the overseers' backs and it resulted in a close friend getting injured. Who?",
       "You've already figured out one of the new machines in the Steel trap. How could it be used to your advantage?",
       "Whose romantic advances have you ruined with your stubborn willful ignorance of feelings?"
-    ]
+    ],
+    "attributes": {
+      "Heart": [],
+      "Instinct": [],
+      "Machina": ["Tinker"]
+    }
   },
   {
     "name": "Commander",
@@ -30,7 +40,12 @@
       "Which overseer publicly humiliated you after a spat about who gives orders to your gang?",
       "Who else knows about the secret network of informants you've set up throughout the Steel Trap?",
       "Whose romantic advances have you spurned because they weren't putting in as much to the relationship as you?"
-    ]
+    ],
+    "attributes": {
+      "Heart": ["Command"],
+      "Instinct": [],
+      "Machina": []
+    }
   },
   {
     "name": "Visionary",
@@ -41,7 +56,12 @@
       "Which one of the overseers withholds rations from you due to your terrible performance at tedious tasks?",
       "Which overseer have you so chronically debated that they become irritated with you on sight? What's the moment you think they realized you're right?",
       "Whose romantic advances have you ruined because they couldn't keep up with your constant need for growth and novelty?"
-    ]
+    ],
+    "attributes": {
+      "Heart": [],
+      "Instinct": [],
+      "Machina": ["Rhetoric"]
+    }
   },
   {
     "name": "Advocate",
@@ -52,7 +72,12 @@
       "Which one of the overseers forced you to carry out an especially violent beating, or else they would kill one of your loved ones?",
       "Your indominable dedication to your principles and peers has resulted in years of horrible beatings. How has this scarred you? Through this ordeal, you've turned the heart of an overseer. Who are they?",
       "Whose romantic advances have you spurned because they don't share your core values?"
-    ]
+    ],
+    "attributes": {
+      "Heart": [],
+      "Instinct": [],
+      "Machina": ["Connect"]
+    }
   },
   {
     "name": "Idealist",
@@ -63,7 +88,12 @@
       "Which one of the overseers threatens your best friend in order to get you to be an informant to Lawler?",
       "The overseers work to sow discord and conflict among the workers. You've mediated and mended hatred between two of your community's leaders. Who are they?",
       "Who broke your heart because dating them wasn't everything you'd imagined it would be?"
-    ]
+    ],
+    "attributes": {
+      "Heart": ["Comfort"],
+      "Instinct": [],
+      "Machina": []
+    }
   },
   {
     "name": "Leader",
@@ -74,7 +104,12 @@
       "Which one of the overseers poisoned food meant for you, resulting in the death of one of your loved ones? Who?",
       "You have lead the way in forming secret fight clubs to train for rebellion one day. Who is the instructor you found for your community, and what combat form do they teach?",
       "Who rejected you after what seemed to them as a sudden declaration of your love?"
-    ]
+    ],
+    "attributes": {
+      "Heart": ["Inspire"],
+      "Instinct": [],
+      "Machina": []
+    }
   },
   {
     "name": "Dreamer",
@@ -85,7 +120,12 @@
       "Which one of the overseers watches your each and every move, punishing you immediately if you so much as toe the line of the box they've defined for you?",
       "You had found a win-win relationship between your former overseer and your work pod. Who are they? Why did they get fired?",
       "Who did you break up with after an intense honeymoon phase because the flames of romance started to flicker?"
-    ]
+    ],
+    "attributes": {
+      "Heart": [],
+      "Instinct": [],
+      "Machina": ["Read Someone"]
+    }
   },
   {
     "name": "Logistician",
@@ -96,7 +136,12 @@
       "Which one of the overseers noticed how hard you worked and then doubled your shift's duties because of it?",
       "You've been invited to meetings between the overseers and Lawler; they consulted you about how to rework the factory for the new project. What have you learned that will help your crew ruin Lawler's plans?",
       "Who broke up with you despite you being the one who won every argument?"
-    ]
+    ],
+    "attributes": {
+      "Heart": [],
+      "Instinct": [],
+      "Machina": ["Logic"]
+    }
   },
   {
     "name": "Defender",
@@ -107,7 +152,12 @@
       "Which one of the overseers loves tormenting you, beating you, watching you suffer as you quietly work in order to support your family?",
       "One of the overseers nearly killed one of your fellow shift workers last week. Rather than sit by, you shoved his head into a piston and killed him. Who have you gotten to pose as the overseer?",
       "Who broke up with you because you never let them fight their own battles?"
-    ]
+    ],
+    "attributes": {
+      "Heart": ["Loyalty"],
+      "Instinct": [],
+      "Machina": []
+    }
   },
   {
     "name": "Executive",
@@ -118,7 +168,12 @@
       "Which one of the overseers has spirited you away on late shifts to experiment on you? What scars has their tampering left?",
       "Many of these years you have shut out the external horrors and focused wholeheartedly on yourself. What special skill have you honed in this time?",
       "Who broke up with you because you're incapable of having your mind changed?"
-    ]
+    ],
+    "attributes": {
+      "Heart": [],
+      "Instinct": [],
+      "Machina": ["Berate"]
+    }
   },
   {
     "name": "Consul",
@@ -129,7 +184,12 @@
       "Which one of the overseers takes joy in publicly humiliating you and discrediting you in front of your peers?",
       "You and your shiftmates have worked together in secret for years to build a secret passage within the factory. Where does it go?",
       "Who did you break up with because they never gave you the approval you need, even when you changed yourself for them?"
-    ]
+    ],
+    "attributes": {
+      "Heart": ["Encourage"],
+      "Instinct": [],
+      "Machina": []
+    }
   },
   {
     "name": "Virtuoso",
@@ -140,7 +200,12 @@
       "Which one of the overseers gets a little too close? Breathes down your neck? Is visible from the corner of your eye as you walk home at night?",
       "You've slain a great beast in a hunt not too long back, and you managed to preserve the remains - a great cache of food. But you can't access it easily, what's the catch?",
       "Who did you break up with because they wanted to get serious too quickly?"
-    ]
+    ],
+    "attributes": {
+      "Heart": [],
+      "Instinct": ["Stubborn"],
+      "Machina": []
+    }
   },
   {
     "name": "Artist",
@@ -151,7 +216,12 @@
       "Which one of the overseers takes delight in working to control you? To break you of your resolve and small acts of defiance?",
       "You've been working on a passion project, some form of creativity and insight to express your bold ideas and speak to your fellows' hearts. What is it?",
       "Who did you mutually break up with due to their pushiness and your guarded emotions?"
-    ]
+    ],
+    "attributes": {
+      "Heart": [],
+      "Instinct": [],
+      "Machina": ["Drama"]
+    }
   },
   {
     "name": "Adventurer",
@@ -162,7 +232,12 @@
       "Which one of the overseers locked you and your best friend up into solitary confinement for months? Why did they let you out but not your friend?",
       "You've been using your large social circle to spread rumors amongst the workers. What are the rumors and how will they work to your crew's advantage?",
       "Who broke up with you because they were looking for something not just fun, but deeper?"
-    ]
+    ],
+    "attributes": {
+      "Heart": [],
+      "Instinct": ["Initiate"],
+      "Machina": []
+    }
   },
   {
     "name": "Entertainer",
@@ -173,6 +248,11 @@
       "Which one of the overseers takes time to sabotage or outright ruin your clothing and appearance?",
       "Your wide socialization has brought people together from many walks of life. What is this unlikely group of friends and what have you all accomplished which could only have been done together?",
       "Who did you break up with because they criticized you and just killed the spark?"
-    ]
+    ],
+    "attributes": {
+      "Heart": [],
+      "Instinct": ["Visual Calculus"],
+      "Machina": []
+    }
   }
 ]

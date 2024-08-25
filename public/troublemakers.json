@@ -1,34 +1,74 @@
 [
   {
     "name": "Chisel",
-    "shortDescription": "A crafty sabetour and wright"
+    "shortDescription": "A crafty sabetour and wright",
+    "attributes": {
+      "Heart": [],
+      "Instinct": [],
+      "Machina": ["Sabotage"]
+    }
   },
   {
     "name": "Flywheel",
-    "shortDescription": "A daring scoundrel and acrobat"
+    "shortDescription": "A daring scoundrel and acrobat",
+    "attributes": {
+      "Heart": [],
+      "Instinct": ["Acrobatics"],
+      "Machina": []
+    }
   },
   {
     "name": "Fume",
-    "shortDescription": "A manipulative and intimidating schemer"
+    "shortDescription": "A manipulative and intimidating schemer",
+    "attributes": {
+      "Heart": [],
+      "Instinct": [],
+      "Machina": ["Manipulate"]
+    }
   },
   {
     "name": "Grease",
-    "shortDescription": "A canny and resourceful blusterer"
+    "shortDescription": "A canny and resourceful blusterer",
+    "attributes": {
+      "Heart": ["Candor"],
+      "Instinct": [],
+      "Machina": []
+    }
   },
   {
     "name": "Hammer",
-    "shortDescription": "A strong and fearless brawler"
+    "shortDescription": "A strong and fearless brawler",
+    "attributes": {
+      "Heart": [],
+      "Instinct": ["Smash"],
+      "Machina": []
+    }
   },
   {
     "name": "Nail",
-    "shortDescription": "An audacious and inspiring ringleader"
+    "shortDescription": "An audacious and inspiring ringleader",
+    "attributes": {
+      "Heart": ["Challenge"],
+      "Instinct": [],
+      "Machina": []
+    }
   },
   {
     "name": "Spark",
-    "shortDescription": "A quick-witted and charming protector"
+    "shortDescription": "A quick-witted and charming protector",
+    "attributes": {
+      "Heart": [],
+      "Instinct": ["Intercede"],
+      "Machina": []
+    }
   },
   {
     "name": "Vapor",
-    "shortDescription": "An elusive infiltrator and thief"
+    "shortDescription": "An elusive infiltrator and thief",
+    "attributes": {
+      "Heart": [],
+      "Instinct": [],
+      "Machina": ["Impersonate"]
+    }
   }
 ]

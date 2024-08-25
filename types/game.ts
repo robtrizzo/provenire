@@ -2,6 +2,7 @@ export type Archetype = {
   name: string;
   questions: string[];
   shortDescription: string;
+  attributes: Attributes;
 };
 
 interface Attributes {
@@ -23,4 +24,5 @@ export type Heritage = {
 export type Troublemaker = {
   name: string;
   shortDescription: string;
+  attributes: Attributes;
 };
