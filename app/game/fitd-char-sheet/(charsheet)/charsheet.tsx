@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
@@ -46,6 +46,40 @@ export function Charsheet() {
   const [troublemakerSelectKey, setTroublemakerSelectKey] = useState(
     +new Date()
   );
+  const [changes, setChanges] = useState(false);
+
+  useEffect(() => {
+    if (window === undefined) return;
+    const data = localStorage.getItem('charsheet');
+    if (data) {
+      const parsed = JSON.parse(data);
+      setSelectedArchetype(parsed.selectedArchetype);
+      setSelectedTroublemaker(parsed.selectedTroublemaker);
+      setSelectedBackground(parsed.selectedBackground);
+      setSelectedHeritage(parsed.selectedHeritage);
+    }
+  }, []);
+
+  // every 0.5 seconds, check if there are changes and save them to local storage and the server
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (changes) {
+        // save to local storage
+        const data = {
+          selectedArchetype,
+          selectedTroublemaker,
+          selectedBackground,
+          selectedHeritage,
+        };
+        localStorage.setItem('charsheet', JSON.stringify(data));
+        // TODO save to server
+        setChanges(false);
+      }
+    }, 500);
+    return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [changes]);
+
   return (
     <div>
       <div className="flex gap-1 w-full">
@@ -62,21 +96,24 @@ export function Charsheet() {
         <div>
           <Select
             key={heritageSelectKey}
+            value={selectedHeritage?.name}
             onValueChange={(value) => {
               for (const heritage of heritages) {
                 if (heritage.name && heritage.name === value) {
                   setSelectedHeritage(heritage);
+                  setChanges(true);
                 } else if (heritage.heritages) {
                   for (const h of heritage.heritages) {
                     if (h.name === value) {
                       setSelectedHeritage(h);
+                      setChanges(true);
                     }
                   }
                 }
               }
             }}
           >
-            <SelectTrigger>
+            <SelectTrigger className="font-bold underline decoration-sky-500">
               <SelectValue placeholder="Select a heritage" />
             </SelectTrigger>
             <SelectContent>
@@ -117,6 +154,7 @@ export function Charsheet() {
                 onClick={(e) => {
                   e.stopPropagation();
                   setSelectedHeritage(undefined);
+                  setChanges(true);
                   setHeritageSelectKey(+new Date());
                 }}
               >
@@ -128,14 +166,16 @@ export function Charsheet() {
         <div>
           <Select
             key={backgroundSelectKey}
+            value={selectedBackground?.name}
             onValueChange={(value) => {
               const foundBackground = backgrounds.find((b) => b.name === value);
               if (foundBackground) {
                 setSelectedBackground(foundBackground);
+                setChanges(true);
               }
             }}
           >
-            <SelectTrigger>
+            <SelectTrigger className="font-bold underline decoration-red-500">
               <SelectValue placeholder="Select a background" />
             </SelectTrigger>
             <SelectContent>
@@ -155,6 +195,7 @@ export function Charsheet() {
                 onClick={(e) => {
                   e.stopPropagation();
                   setSelectedBackground(undefined);
+                  setChanges(true);
                   setBackgroundSelectKey(+new Date());
                 }}
               >
@@ -168,16 +209,18 @@ export function Charsheet() {
         <div>
           <Select
             key={troublemakerSelectKey}
+            value={selectedTroublemaker?.name}
             onValueChange={(value) => {
               const foundTroublemaker = troublemakers.find(
                 (t) => t.name === value
               );
               if (foundTroublemaker) {
                 setSelectedTroublemaker(foundTroublemaker);
+                setChanges(true);
               }
             }}
           >
-            <SelectTrigger>
+            <SelectTrigger className="font-bold underline decoration-indigo-500">
               <SelectValue placeholder="Select a troublemaker" />
             </SelectTrigger>
             <SelectContent>
@@ -197,6 +240,7 @@ export function Charsheet() {
                 onClick={(e) => {
                   e.stopPropagation();
                   setSelectedTroublemaker(undefined);
+                  setChanges(true);
                   setTroublemakerSelectKey(+new Date());
                 }}
               >
@@ -208,14 +252,16 @@ export function Charsheet() {
         <div>
           <Select
             key={archetypeSelectKey}
+            value={selectedArchetype?.name}
             onValueChange={(value) => {
               const foundArchetype = archetypes.find((a) => a.name === value);
               if (foundArchetype) {
                 setSelectedArchetype(foundArchetype);
+                setChanges(true);
               }
             }}
           >
-            <SelectTrigger>
+            <SelectTrigger className="font-bold underline decoration-amber-500">
               <SelectValue placeholder="Select an archetype" />
             </SelectTrigger>
             <SelectContent>
@@ -235,6 +281,7 @@ export function Charsheet() {
                 onClick={(e) => {
                   e.stopPropagation();
                   setSelectedArchetype(undefined);
+                  setChanges(true);
                   setArchetypeSelectKey(+new Date());
                 }}
               >
@@ -392,15 +439,7 @@ export function Charsheet() {
                     {selectedBackground?.attributes.Heart.map((a, i) => (
                       <TypographyH4
                         key={`ah-${i}`}
-                        className="h-8 flex items-center justify-start"
-                      >
-                        {a}
-                      </TypographyH4>
-                    ))}
-                    {selectedArchetype?.attributes.Heart.map((a, i) => (
-                      <TypographyH4
-                        key={`ah-${i}`}
-                        className="h-8 flex items-center justify-start"
+                        className="h-8 flex items-center justify-start underline decoration-red-500"
                       >
                         {a}
                       </TypographyH4>
@@ -408,7 +447,15 @@ export function Charsheet() {
                     {selectedTroublemaker?.attributes.Heart.map((a, i) => (
                       <TypographyH4
                         key={`ah-${i}`}
-                        className="h-8 flex items-center justify-start"
+                        className="h-8 flex items-center justify-start underline decoration-indigo-500"
+                      >
+                        {a}
+                      </TypographyH4>
+                    ))}
+                    {selectedArchetype?.attributes.Heart.map((a, i) => (
+                      <TypographyH4
+                        key={`ah-${i}`}
+                        className="h-8 flex items-center justify-start underline decoration-amber-500"
                       >
                         {a}
                       </TypographyH4>
@@ -483,15 +530,7 @@ export function Charsheet() {
                     {selectedBackground?.attributes.Instinct.map((a, i) => (
                       <TypographyH4
                         key={`ai-${i}`}
-                        className="h-8 flex items-center"
-                      >
-                        {a}
-                      </TypographyH4>
-                    ))}
-                    {selectedArchetype?.attributes.Instinct.map((a, i) => (
-                      <TypographyH4
-                        key={`ai-${i}`}
-                        className="h-8 flex items-center"
+                        className="h-8 flex items-center underline decoration-red-500"
                       >
                         {a}
                       </TypographyH4>
@@ -499,7 +538,15 @@ export function Charsheet() {
                     {selectedTroublemaker?.attributes.Instinct.map((a, i) => (
                       <TypographyH4
                         key={`ai-${i}`}
-                        className="h-8 flex items-center"
+                        className="h-8 flex items-center underline decoration-indigo-500"
+                      >
+                        {a}
+                      </TypographyH4>
+                    ))}
+                    {selectedArchetype?.attributes.Instinct.map((a, i) => (
+                      <TypographyH4
+                        key={`ai-${i}`}
+                        className="h-8 flex items-center underline decoration-amber-500"
                       >
                         {a}
                       </TypographyH4>
@@ -565,15 +612,7 @@ export function Charsheet() {
                     {selectedBackground?.attributes.Machina.map((a, i) => (
                       <TypographyH4
                         key={`am-${i}`}
-                        className="h-8 flex items-center"
-                      >
-                        {a}
-                      </TypographyH4>
-                    ))}
-                    {selectedArchetype?.attributes.Machina.map((a, i) => (
-                      <TypographyH4
-                        key={`am-${i}`}
-                        className="h-8 flex items-center"
+                        className="h-8 flex items-center underline decoration-red-500"
                       >
                         {a}
                       </TypographyH4>
@@ -581,7 +620,15 @@ export function Charsheet() {
                     {selectedTroublemaker?.attributes.Machina.map((a, i) => (
                       <TypographyH4
                         key={`am-${i}`}
-                        className="h-8 flex items-center"
+                        className="h-8 flex items-center underline decoration-indigo-500"
+                      >
+                        {a}
+                      </TypographyH4>
+                    ))}
+                    {selectedArchetype?.attributes.Machina.map((a, i) => (
+                      <TypographyH4
+                        key={`am-${i}`}
+                        className="h-8 flex items-center underline decoration-amber-500"
                       >
                         {a}
                       </TypographyH4>
