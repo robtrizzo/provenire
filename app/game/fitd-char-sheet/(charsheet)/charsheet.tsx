@@ -9,6 +9,7 @@ import {
   SelectGroup,
   SelectItem,
   SelectLabel,
+  SelectSeparator,
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
@@ -31,6 +32,7 @@ import type {
   Heritage,
 } from '@/types/game';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Button } from '@/components/ui/button';
 
 export function Charsheet() {
   const [selectedArchetype, setSelectedArchetype] = useState<Archetype>();
@@ -38,6 +40,12 @@ export function Charsheet() {
     useState<Troublemaker>();
   const [selectedBackground, setSelectedBackground] = useState<Background>();
   const [selectedHeritage, setSelectedHeritage] = useState<Heritage>();
+  const [heritageSelectKey, setHeritageSelectKey] = useState(+new Date());
+  const [archetypeSelectKey, setArchetypeSelectKey] = useState(+new Date());
+  const [backgroundSelectKey, setBackgroundSelectKey] = useState(+new Date());
+  const [troublemakerSelectKey, setTroublemakerSelectKey] = useState(
+    +new Date()
+  );
   return (
     <div>
       <div className="flex gap-1 w-full">
@@ -53,6 +61,7 @@ export function Charsheet() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 w-full my-1">
         <div>
           <Select
+            key={heritageSelectKey}
             onValueChange={(value) => {
               for (const heritage of heritages) {
                 if (heritage.name && heritage.name === value) {
@@ -71,7 +80,6 @@ export function Charsheet() {
               <SelectValue placeholder="Select a heritage" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="None" className="py-4"></SelectItem>
               {heritages.map((heritage) => {
                 if (heritage.category) {
                   return (
@@ -101,11 +109,25 @@ export function Charsheet() {
                   );
                 }
               })}
+              <SelectSeparator />
+              <Button
+                variant="secondary"
+                size="sm"
+                className="w-full px-2"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedHeritage(undefined);
+                  setHeritageSelectKey(+new Date());
+                }}
+              >
+                Clear
+              </Button>
             </SelectContent>
           </Select>
         </div>
         <div>
           <Select
+            key={backgroundSelectKey}
             onValueChange={(value) => {
               const foundBackground = backgrounds.find((b) => b.name === value);
               if (foundBackground) {
@@ -125,6 +147,19 @@ export function Charsheet() {
                   </span>
                 </SelectItem>
               ))}
+              <SelectSeparator />
+              <Button
+                variant="secondary"
+                size="sm"
+                className="w-full px-2"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedBackground(undefined);
+                  setBackgroundSelectKey(+new Date());
+                }}
+              >
+                Clear
+              </Button>
             </SelectContent>
           </Select>
         </div>
@@ -132,6 +167,7 @@ export function Charsheet() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 w-full my-1">
         <div>
           <Select
+            key={archetypeSelectKey}
             onValueChange={(value) => {
               const foundTroublemaker = troublemakers.find(
                 (t) => t.name === value
@@ -153,11 +189,25 @@ export function Charsheet() {
                   </span>
                 </SelectItem>
               ))}
+              <SelectSeparator />
+              <Button
+                variant="secondary"
+                size="sm"
+                className="w-full px-2"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedTroublemaker(undefined);
+                  setTroublemakerSelectKey(+new Date());
+                }}
+              >
+                Clear
+              </Button>
             </SelectContent>
           </Select>
         </div>
         <div>
           <Select
+            key={troublemakerSelectKey}
             onValueChange={(value) => {
               const foundArchetype = archetypes.find((a) => a.name === value);
               if (foundArchetype) {
@@ -177,6 +227,19 @@ export function Charsheet() {
                   </span>
                 </SelectItem>
               ))}
+              <SelectSeparator />
+              <Button
+                variant="secondary"
+                size="sm"
+                className="w-full px-2"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedArchetype(undefined);
+                  setArchetypeSelectKey(+new Date());
+                }}
+              >
+                Clear
+              </Button>
             </SelectContent>
           </Select>
         </div>
