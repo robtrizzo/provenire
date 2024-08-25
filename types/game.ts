@@ -26,3 +26,21 @@ export type Troublemaker = {
   shortDescription: string;
   attributes: Attributes;
 };
+
+export type CharacterAttributes = {
+  Heart: {
+    Defy: number[];
+    Persuade: number[];
+    [key: string]: number[];
+  };
+  Instinct: {
+    Charge: number[];
+    Prowl: number[];
+    [key: string]: number[];
+  };
+  Machina: {
+    Suggest: number[];
+    Survey: number[];
+    [key: string]: number[];
+  };
+};

@@ -25,14 +25,16 @@ import heritages from '@/public/heritages.json';
 import backgrounds from '@/public/backgrounds.json';
 import archetypes from '@/public/archetypes.json';
 import troublemakers from '@/public/troublemakers.json';
-import type {
-  Archetype,
-  Troublemaker,
-  Background,
-  Heritage,
+import {
+  type Archetype,
+  type Troublemaker,
+  type Background,
+  type Heritage,
+  CharacterAttributes,
 } from '@/types/game';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
+import { BuildupCheckboxes } from '@/components/ui/buildup-checkboxes';
+import { ActionScore } from '@/components/ui/action-score';
 
 export function Charsheet() {
   const [selectedArchetype, setSelectedArchetype] = useState<Archetype>();
@@ -40,12 +42,25 @@ export function Charsheet() {
     useState<Troublemaker>();
   const [selectedBackground, setSelectedBackground] = useState<Background>();
   const [selectedHeritage, setSelectedHeritage] = useState<Heritage>();
+
   const [heritageSelectKey, setHeritageSelectKey] = useState(+new Date());
   const [archetypeSelectKey, setArchetypeSelectKey] = useState(+new Date());
   const [backgroundSelectKey, setBackgroundSelectKey] = useState(+new Date());
   const [troublemakerSelectKey, setTroublemakerSelectKey] = useState(
     +new Date()
   );
+
+  const [troublemakerXp, setTroublemakerXp] = useState(0);
+  const [heartXp, setHeartXp] = useState(0);
+  const [instinctXp, setInstinctXp] = useState(0);
+  const [machinaXp, setMachinaXp] = useState(0);
+
+  const [attributes, setAttributes] = useState<CharacterAttributes>({
+    Heart: { Defy: [0, 0], Persuade: [0, 0] },
+    Instinct: { Charge: [0, 0], Prowl: [0, 0] },
+    Machina: { Suggest: [0, 0], Survey: [0, 0] },
+  });
+
   const [changes, setChanges] = useState(false);
 
   useEffect(() => {
@@ -57,6 +72,13 @@ export function Charsheet() {
       setSelectedTroublemaker(parsed.selectedTroublemaker);
       setSelectedBackground(parsed.selectedBackground);
       setSelectedHeritage(parsed.selectedHeritage);
+      setTroublemakerXp(parsed.troublemakerXp || 0);
+      setHeartXp(parsed.heartXp || 0);
+      setInstinctXp(parsed.instinctXp || 0);
+      setMachinaXp(parsed.machinaXp || 0);
+      if (parsed.attributes) {
+        setAttributes(parsed.attributes);
+      }
     }
   }, []);
 
@@ -70,6 +92,11 @@ export function Charsheet() {
           selectedTroublemaker,
           selectedBackground,
           selectedHeritage,
+          troublemakerXp,
+          heartXp,
+          instinctXp,
+          machinaXp,
+          attributes,
         };
         localStorage.setItem('charsheet', JSON.stringify(data));
         // TODO save to server
@@ -79,6 +106,18 @@ export function Charsheet() {
     return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [changes]);
+
+  function handleUpdateActionScore(
+    attribute: 'Heart' | 'Instinct' | 'Machina',
+    action: string,
+    score: number[]
+  ) {
+    setAttributes({
+      ...attributes,
+      [attribute]: { ...attributes[attribute], [action]: score },
+    });
+    setChanges(true);
+  }
 
   return (
     <div>
@@ -369,27 +408,25 @@ export function Charsheet() {
               <div>
                 <div className="flex gap-4">
                   <TypographyH3>Troublemaker</TypographyH3>
-                  <div className="flex justify-between items-center gap-1">
-                    <Checkbox className="rounded-none" />
-                    <Checkbox className="rounded-none" />
-                    <Checkbox className="rounded-none" />
-                    <Checkbox className="rounded-none" />
-                    <Checkbox className="rounded-none" />
-                    <Checkbox className="rounded-none" />
-                    <Checkbox className="rounded-none" />
-                    <Checkbox className="rounded-none" />
-                  </div>
+                  <BuildupCheckboxes
+                    max={8}
+                    current={troublemakerXp}
+                    onChange={(n) => {
+                      setTroublemakerXp(n);
+                      setChanges(true);
+                    }}
+                  />
                 </div>
                 <div className="mt-8 flex  justify-between gap-4">
                   <TypographyH3>Heart</TypographyH3>
-                  <div className="flex items-center gap-1">
-                    <Checkbox className="rounded-none" />
-                    <Checkbox className="rounded-none" />
-                    <Checkbox className="rounded-none" />
-                    <Checkbox className="rounded-none" />
-                    <Checkbox className="rounded-none" />
-                    <Checkbox className="rounded-none" />
-                  </div>
+                  <BuildupCheckboxes
+                    max={6}
+                    current={heartXp}
+                    onChange={(n) => {
+                      setHeartXp(n);
+                      setChanges(true);
+                    }}
+                  />
                 </div>
                 <div className="grid grid-cols-4 gap-4 m-2">
                   <div className="flex flex-col">
@@ -401,38 +438,51 @@ export function Charsheet() {
                     </TypographyH4>
                   </div>
                   <div className="flex flex-col">
-                    <div className="h-8 flex items-center justify-end">
-                      <ActionCheckbox />
-                      <Separator orientation="vertical" className="mx-2" />
-                      <ActionCheckbox />
-                    </div>
-                    <div className="h-8 flex items-center justify-end">
-                      <ActionCheckbox />
-                      <Separator orientation="vertical" className="mx-2" />
-                      <ActionCheckbox />
-                    </div>
+                    <ActionScore
+                      score={attributes.Heart.Defy}
+                      onChange={(s) => {
+                        handleUpdateActionScore('Heart', 'Defy', s);
+                      }}
+                      className="h-8 justify-end"
+                    />
+                    <ActionScore
+                      score={attributes.Heart.Persuade}
+                      onChange={(s) => {
+                        handleUpdateActionScore('Heart', 'Persuade', s);
+                      }}
+                      className="h-8 justify-end"
+                    />
                   </div>
                   <div className="flex flex-col">
-                    {selectedBackground?.attributes.Heart.map((_, i) => (
-                      <div key={`sh-${i}`} className="h-8 flex items-center">
-                        <ActionCheckbox />
-                        <Separator orientation="vertical" className="mx-2" />
-                        <ActionCheckbox />
-                      </div>
+                    {selectedBackground?.attributes.Heart.map((k) => (
+                      <ActionScore
+                        key={`bh-${k}`}
+                        score={attributes.Heart[k]}
+                        onChange={(s) => {
+                          handleUpdateActionScore('Heart', k, s);
+                        }}
+                        className="h-8"
+                      />
                     ))}
-                    {selectedArchetype?.attributes.Heart.map((_, i) => (
-                      <div key={`sh-${i}`} className="h-8 flex items-center">
-                        <ActionCheckbox />
-                        <Separator orientation="vertical" className="mx-2" />
-                        <ActionCheckbox />
-                      </div>
+                    {selectedTroublemaker?.attributes.Heart.map((k) => (
+                      <ActionScore
+                        key={`th-${k}`}
+                        score={attributes.Heart[k]}
+                        onChange={(s) => {
+                          handleUpdateActionScore('Heart', k, s);
+                        }}
+                        className="h-8"
+                      />
                     ))}
-                    {selectedTroublemaker?.attributes.Heart.map((_, i) => (
-                      <div key={`sh-${i}`} className="h-8 flex items-center">
-                        <ActionCheckbox />
-                        <Separator orientation="vertical" className="mx-2" />
-                        <ActionCheckbox />
-                      </div>
+                    {selectedArchetype?.attributes.Heart.map((k) => (
+                      <ActionScore
+                        key={`arh-${k}`}
+                        score={attributes.Heart[k]}
+                        onChange={(s) => {
+                          handleUpdateActionScore('Heart', k, s);
+                        }}
+                        className="h-8"
+                      />
                     ))}
                   </div>
                   <div className="flex flex-col">
@@ -464,14 +514,14 @@ export function Charsheet() {
                 </div>
                 <div className="mt-4 flex  justify-between gap-4">
                   <TypographyH3>Instinct</TypographyH3>
-                  <div className="flex items-center gap-1">
-                    <Checkbox className="rounded-none" />
-                    <Checkbox className="rounded-none" />
-                    <Checkbox className="rounded-none" />
-                    <Checkbox className="rounded-none" />
-                    <Checkbox className="rounded-none" />
-                    <Checkbox className="rounded-none" />
-                  </div>
+                  <BuildupCheckboxes
+                    max={6}
+                    current={instinctXp}
+                    onChange={(n) => {
+                      setInstinctXp(n);
+                      setChanges(true);
+                    }}
+                  />
                 </div>
                 <div className="grid grid-cols-4 gap-4 m-2">
                   <div className="flex flex-col">
@@ -483,47 +533,51 @@ export function Charsheet() {
                     </TypographyH4>
                   </div>
                   <div className="flex flex-col">
-                    <div className="h-8 flex items-center justify-end">
-                      <ActionCheckbox />
-                      <Separator orientation="vertical" className="mx-2" />
-                      <ActionCheckbox />
-                    </div>
-                    <div className="h-8 flex items-center justify-end">
-                      <ActionCheckbox />
-                      <Separator orientation="vertical" className="mx-2" />
-                      <ActionCheckbox />
-                    </div>
+                    <ActionScore
+                      score={attributes.Instinct.Charge}
+                      onChange={(s) => {
+                        handleUpdateActionScore('Instinct', 'Charge', s);
+                      }}
+                      className="h-8 justify-end"
+                    />
+                    <ActionScore
+                      score={attributes.Instinct.Prowl}
+                      onChange={(s) => {
+                        handleUpdateActionScore('Instinct', 'Prowl', s);
+                      }}
+                      className="h-8 justify-end"
+                    />
                   </div>
                   <div className="flex flex-col">
-                    {selectedBackground?.attributes.Instinct.map((_, i) => (
-                      <div
-                        key={`si-${i}`}
-                        className="h-8 flex items-center justify-start"
-                      >
-                        <ActionCheckbox />
-                        <Separator orientation="vertical" className="mx-2" />
-                        <ActionCheckbox />
-                      </div>
+                    {selectedBackground?.attributes.Instinct.map((k) => (
+                      <ActionScore
+                        key={`bi-${k}`}
+                        score={attributes.Instinct[k]}
+                        onChange={(s) => {
+                          handleUpdateActionScore('Instinct', k, s);
+                        }}
+                        className="h-8"
+                      />
                     ))}
-                    {selectedArchetype?.attributes.Instinct.map((_, i) => (
-                      <div
-                        key={`si-${i}`}
-                        className="h-8 flex items-center justify-start"
-                      >
-                        <ActionCheckbox />
-                        <Separator orientation="vertical" className="mx-2" />
-                        <ActionCheckbox />
-                      </div>
+                    {selectedTroublemaker?.attributes.Instinct.map((k) => (
+                      <ActionScore
+                        key={`ti-${k}`}
+                        score={attributes.Instinct[k]}
+                        onChange={(s) => {
+                          handleUpdateActionScore('Instinct', k, s);
+                        }}
+                        className="h-8"
+                      />
                     ))}
-                    {selectedTroublemaker?.attributes.Instinct.map((_, i) => (
-                      <div
-                        key={`si-${i}`}
-                        className="h-8 flex items-center justify-start"
-                      >
-                        <ActionCheckbox />
-                        <Separator orientation="vertical" className="mx-2" />
-                        <ActionCheckbox />
-                      </div>
+                    {selectedArchetype?.attributes.Instinct.map((k) => (
+                      <ActionScore
+                        key={`ari-${k}`}
+                        score={attributes.Instinct[k]}
+                        onChange={(s) => {
+                          handleUpdateActionScore('Instinct', k, s);
+                        }}
+                        className="h-8"
+                      />
                     ))}
                   </div>
                   <div className="flex flex-col">
@@ -555,14 +609,14 @@ export function Charsheet() {
                 </div>
                 <div className="mt-4 flex justify-between gap-4">
                   <TypographyH3>Machina</TypographyH3>
-                  <div className="flex items-center gap-1">
-                    <Checkbox className="rounded-none" />
-                    <Checkbox className="rounded-none" />
-                    <Checkbox className="rounded-none" />
-                    <Checkbox className="rounded-none" />
-                    <Checkbox className="rounded-none" />
-                    <Checkbox className="rounded-none" />
-                  </div>
+                  <BuildupCheckboxes
+                    max={6}
+                    current={machinaXp}
+                    onChange={(n) => {
+                      setMachinaXp(n);
+                      setChanges(true);
+                    }}
+                  />
                 </div>
                 <div className="grid grid-cols-4 gap-4 m-2">
                   <div className="flex flex-col">
@@ -574,38 +628,51 @@ export function Charsheet() {
                     </TypographyH4>
                   </div>
                   <div className="flex flex-col">
-                    <div className="h-8 flex items-center justify-end">
-                      <ActionCheckbox />
-                      <Separator orientation="vertical" className="mx-2" />
-                      <ActionCheckbox />
-                    </div>
-                    <div className="h-8 flex items-center justify-end">
-                      <ActionCheckbox />
-                      <Separator orientation="vertical" className="mx-2" />
-                      <ActionCheckbox />
-                    </div>
+                    <ActionScore
+                      score={attributes.Machina.Suggest}
+                      onChange={(s) => {
+                        handleUpdateActionScore('Machina', 'Suggest', s);
+                      }}
+                      className="h-8 justify-end"
+                    />
+                    <ActionScore
+                      score={attributes.Machina.Survey}
+                      onChange={(s) => {
+                        handleUpdateActionScore('Machina', 'Survey', s);
+                      }}
+                      className="h-8 justify-end"
+                    />
                   </div>
                   <div className="flex flex-col">
-                    {selectedBackground?.attributes.Machina.map((_, i) => (
-                      <div key={`sm-${i}`} className="h-8 flex items-center">
-                        <ActionCheckbox />
-                        <Separator orientation="vertical" className="mx-2" />
-                        <ActionCheckbox />
-                      </div>
+                    {selectedBackground?.attributes.Machina.map((k) => (
+                      <ActionScore
+                        key={`bm-${k}`}
+                        score={attributes.Machina[k]}
+                        onChange={(s) => {
+                          handleUpdateActionScore('Machina', k, s);
+                        }}
+                        className="h-8"
+                      />
                     ))}
-                    {selectedArchetype?.attributes.Machina.map((_, i) => (
-                      <div key={`sm-${i}`} className="h-8 flex items-center">
-                        <ActionCheckbox />
-                        <Separator orientation="vertical" className="mx-2" />
-                        <ActionCheckbox />
-                      </div>
+                    {selectedTroublemaker?.attributes.Machina.map((k) => (
+                      <ActionScore
+                        key={`tm-${k}`}
+                        score={attributes.Machina[k]}
+                        onChange={(s) => {
+                          handleUpdateActionScore('Machina', k, s);
+                        }}
+                        className="h-8"
+                      />
                     ))}
-                    {selectedTroublemaker?.attributes.Machina.map((_, i) => (
-                      <div key={`sm-${i}`} className="h-8 flex items-center">
-                        <ActionCheckbox />
-                        <Separator orientation="vertical" className="mx-2" />
-                        <ActionCheckbox />
-                      </div>
+                    {selectedArchetype?.attributes.Machina.map((k) => (
+                      <ActionScore
+                        key={`arm-${k}`}
+                        score={attributes.Machina[k]}
+                        onChange={(s) => {
+                          handleUpdateActionScore('Machina', k, s);
+                        }}
+                        className="h-8"
+                      />
                     ))}
                   </div>
                   <div className="flex flex-col">
@@ -647,37 +714,4 @@ export function Charsheet() {
       </Tabs>
     </div>
   );
-}
-
-function ActionCheckbox() {
-  const [level, setLevel] = useState(0);
-  if (level === 0) {
-    return (
-      <Checkbox
-        onClick={() => {
-          setLevel(1);
-        }}
-        className="rounded-full"
-        checked={false}
-      />
-    );
-  }
-  if (level === 1) {
-    return (
-      <Checkbox
-        onClick={() => setLevel(2)}
-        className="rounded-full data-[state=checked]:bg-red-600 data-[state=checked]:text-red-600"
-        checked={true}
-      />
-    );
-  }
-  if (level === 2) {
-    return (
-      <Checkbox
-        onClick={() => setLevel(0)}
-        className="rounded-full data-[state=checked]:bg-blue-600 data-[state=checked]:text-blue-600"
-        checked={true}
-      />
-    );
-  }
 }
