@@ -71,6 +71,7 @@ export function Charsheet() {
               <SelectValue placeholder="Select a heritage" />
             </SelectTrigger>
             <SelectContent>
+              <SelectItem value="None" className="py-4"></SelectItem>
               {heritages.map((heritage) => {
                 if (heritage.category) {
                   return (

@@ -3,7 +3,7 @@
     "name": "Chisel",
     "shortDescription": "A crafty sabetour and wright",
     "attributes": {
-      "Heart": [],
+      "Heart": ["Cobble"],
       "Instinct": [],
       "Machina": ["Sabotage"]
     }
@@ -14,14 +14,14 @@
     "attributes": {
       "Heart": [],
       "Instinct": ["Acrobatics"],
-      "Machina": []
+      "Machina": ["Spin"]
     }
   },
   {
     "name": "Fume",
     "shortDescription": "A manipulative and intimidating schemer",
     "attributes": {
-      "Heart": [],
+      "Heart": ["Organize"],
       "Instinct": [],
       "Machina": ["Manipulate"]
     }
@@ -32,14 +32,14 @@
     "attributes": {
       "Heart": ["Candor"],
       "Instinct": [],
-      "Machina": []
+      "Machina": ["Obfuscate"]
     }
   },
   {
     "name": "Hammer",
     "shortDescription": "A strong and fearless brawler",
     "attributes": {
-      "Heart": [],
+      "Heart": ["Persevere"],
       "Instinct": ["Smash"],
       "Machina": []
     }
@@ -48,8 +48,8 @@
     "name": "Nail",
     "shortDescription": "An audacious and inspiring ringleader",
     "attributes": {
-      "Heart": ["Challenge"],
-      "Instinct": [],
+      "Heart": ["Rally"],
+      "Instinct": ["Challenge"],
       "Machina": []
     }
   },
@@ -57,7 +57,7 @@
     "name": "Spark",
     "shortDescription": "A quick-witted and charming protector",
     "attributes": {
-      "Heart": [],
+      "Heart": ["Ignite"],
       "Instinct": ["Intercede"],
       "Machina": []
     }
@@ -67,7 +67,7 @@
     "shortDescription": "An elusive infiltrator and thief",
     "attributes": {
       "Heart": [],
-      "Instinct": [],
+      "Instinct": ["Lift"],
       "Machina": ["Impersonate"]
     }
   }

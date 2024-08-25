@@ -5,7 +5,7 @@
     "attributes": {
       "Heart": ["Organize"],
       "Instinct": [],
-      "Machina": ["Read"]
+      "Machina": ["Study"]
     }
   },
   {
@@ -30,7 +30,7 @@
     "name": "Operator",
     "shortDescription": "Pull levers and crank wheels",
     "attributes": {
-      "Heart": ["Endure"],
+      "Heart": ["Disconnect"],
       "Instinct": ["Pull"],
       "Machina": []
     }
@@ -59,7 +59,7 @@
     "attributes": {
       "Heart": ["Brace"],
       "Instinct": [],
-      "Machina": ["Ignite"]
+      "Machina": ["Fuel"]
     }
   }
 ]
