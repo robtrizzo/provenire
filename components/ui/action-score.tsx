@@ -17,14 +17,14 @@ export function ActionScore({
       <ActionCheckbox
         initialLevel={score?.[0] ?? 0}
         onClick={(n) => {
-          onChange([n, score[1]]);
+          onChange([n, score?.[1] ?? 0]);
         }}
       />
       <Separator orientation="vertical" className="mx-2" />
       <ActionCheckbox
         initialLevel={score?.[1] ?? 0}
         onClick={(n) => {
-          onChange([score[0], n]);
+          onChange([score?.[0] ?? 0, n]);
         }}
       />
     </div>

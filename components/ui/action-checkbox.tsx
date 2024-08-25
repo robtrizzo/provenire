@@ -28,6 +28,11 @@ export function ActionCheckbox({
           setLevel(2);
           onClick && onClick(2);
         }}
+        onContextMenu={(e) => {
+          e.preventDefault();
+          setLevel(0);
+          onClick && onClick(0);
+        }}
         className="rounded-full data-[state=checked]:bg-red-600 data-[state=checked]:text-red-600"
         checked={true}
       />
@@ -39,6 +44,11 @@ export function ActionCheckbox({
         onClick={() => {
           setLevel(0);
           onClick && onClick(0);
+        }}
+        onContextMenu={(e) => {
+          e.preventDefault();
+          setLevel(1);
+          onClick && onClick(1);
         }}
         className="rounded-full data-[state=checked]:bg-blue-600 data-[state=checked]:text-blue-600"
         checked={true}

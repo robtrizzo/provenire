@@ -3,7 +3,7 @@
     "name": "Archivist",
     "shortDescription": "Read manuals and catalog inventory",
     "attributes": {
-      "Heart": ["Organize"],
+      "Heart": ["Assess"],
       "Instinct": [],
       "Machina": ["Study"]
     }
