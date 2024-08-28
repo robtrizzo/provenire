@@ -156,6 +156,7 @@ export function Charsheet() {
           break;
       }
       toast({
+        variant: 'grid',
         // @ts-ignore
         title: (
           <div className="flex gap-1">
@@ -211,6 +212,7 @@ export function Charsheet() {
         break;
     }
     toast({
+      variant: 'grid',
       // @ts-ignore
       title: (
         <div className="flex items-start gap-1">
@@ -265,6 +267,7 @@ export function Charsheet() {
       let r2 = Math.floor(Math.random() * 6) + 1;
       const roll = Math.min(r1, r2);
       toast({
+        variant: 'grid',
         // @ts-ignore
         title: (
           <div className="flex gap-1">
@@ -288,6 +291,7 @@ export function Charsheet() {
     }
     const roll = Math.max(...rolls);
     toast({
+      variant: 'grid',
       // @ts-ignore
       title: (
         <div className="flex gap-1">
