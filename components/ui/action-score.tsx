@@ -13,14 +13,13 @@ export function ActionScore({
   className?: string;
 }) {
   return (
-    <div className={cn('flex items-center', className)}>
+    <div className={cn('flex items-center gap-4', className)}>
       <ActionCheckbox
         initialLevel={score?.[0] ?? 0}
         onClick={(n) => {
           onChange([n, score?.[1] ?? 0]);
         }}
       />
-      <Separator orientation="vertical" className="mx-2" />
       <ActionCheckbox
         initialLevel={score?.[1] ?? 0}
         onClick={(n) => {

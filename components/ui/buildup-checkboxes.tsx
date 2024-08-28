@@ -3,14 +3,18 @@ import { useState } from 'react';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
 import { X } from 'lucide-react';
+import { cn } from '@/lib/utils';
+
 export function BuildupCheckboxes({
   max,
   current,
   onChange,
+  className,
 }: {
   max: number;
   current: number;
   onChange: (n: number) => void;
+  className?: string;
 }) {
   const [localCurrent, setLocalCurrent] = useState(current);
   const handleOnChange = (n: number) => {
@@ -18,7 +22,7 @@ export function BuildupCheckboxes({
     onChange(n);
   };
   return (
-    <div className="flex justify-between items-center gap-1">
+    <div className={cn('flex justify-end items-center gap-1', className)}>
       <Button
         size="icon"
         variant="ghost"

@@ -6,7 +6,11 @@
       "Heart": ["Cobble"],
       "Instinct": [],
       "Machina": ["Sabotage"]
-    }
+    },
+    "questions": [
+      "A dangerous machine you were tampering with lashed out at you. What was the machine and how did it scar you?",
+      "The factory's every creation leaves behind piles of refuse. What waste do you see as useful materials that others don't?"
+    ]
   },
   {
     "name": "Flywheel",
@@ -15,7 +19,11 @@
       "Heart": [],
       "Instinct": ["Acrobatics"],
       "Machina": ["Spin"]
-    }
+    },
+    "questions": [
+      "The Beast Lanes are dangerous places, and not everyone is as talented as you are. What tragedy has befallen someone who followed you there?",
+      "Your abilities have allowed you to climb to the top of the factory and see the sky. How did seeing the wider world and starry cosmos affect you?"
+    ]
   },
   {
     "name": "Fume",
@@ -24,7 +32,11 @@
       "Heart": ["Organize"],
       "Instinct": [],
       "Machina": ["Manipulate"]
-    }
+    },
+    "questions": [
+      "You've seen the worst of the Steel Trap's workers. What is the most desperate thing you've seen someone do?",
+      "You got too close to one of your informats once. What happened?"
+    ]
   },
   {
     "name": "Grease",
@@ -33,7 +45,11 @@
       "Heart": ["Candor"],
       "Instinct": [],
       "Machina": ["Obfuscate"]
-    }
+    },
+    "questions": [
+      "You've made a deal with one of the overseers that went wrong. What did you have to give up to them?",
+      "A faction in your neighborhood still owes you a favor. Who are they and how did you earn it?"
+    ]
   },
   {
     "name": "Hammer",
@@ -42,7 +58,11 @@
       "Heart": ["Persevere"],
       "Instinct": ["Smash"],
       "Machina": []
-    }
+    },
+    "questions": [
+      "You were forced to fight a friend in the pits. Only one of you got to leave. What happened?",
+      "Which one of the overseers is nervous around you?"
+    ]
   },
   {
     "name": "Nail",
@@ -51,7 +71,11 @@
       "Heart": ["Rally"],
       "Instinct": ["Challenge"],
       "Machina": []
-    }
+    },
+    "questions": [
+      "You've learned the source of many folks' hopelessness. What could change their minds?",
+      "Someone you inspired to stand up to the overseers was caught. What happened to them?"
+    ]
   },
   {
     "name": "Spark",
@@ -60,7 +84,11 @@
       "Heart": ["Ignite"],
       "Instinct": ["Intercede"],
       "Machina": []
-    }
+    },
+    "questions": [
+      "You incited an incident between workers and an overseer. It turned ugly. Who couldn't you protect?",
+      "You convinced two factions with a grudge to settle the score. How well has it turned out?"
+    ]
   },
   {
     "name": "Vapor",
@@ -69,6 +97,10 @@
       "Heart": [],
       "Instinct": ["Lift"],
       "Machina": ["Impersonate"]
-    }
+    },
+    "questions": [
+      "You were caught in the act of stealing from the overseers. Who did you throw under the bus to get out of trouble?",
+      "One of the overseers knows what you're up to, but instead of reporting you, they're using you. What do they want?"
+    ]
   }
 ]

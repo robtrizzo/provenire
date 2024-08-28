@@ -491,7 +491,7 @@ export function Charsheet() {
               }
             }}
           >
-            <SelectTrigger className="font-bold underline decoration-amber-500">
+            <SelectTrigger className="font-bold underline decoration-amber-700">
               <SelectValue placeholder="Select an archetype" />
             </SelectTrigger>
             <SelectContent>
@@ -531,31 +531,26 @@ export function Charsheet() {
           <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-1">
             <div className="w-full gap-1.5 my-2">
               <Label htmlFor="look">Look</Label>
-              <Textarea placeholder="Type your look here." id="look" />
+              <Textarea id="look" />
+            </div>
+
+            <div className="w-full gap-1.5 my-2">
+              <Label htmlFor="dream">What&apos;s your dream?</Label>
+              <Textarea id="dream" />
+            </div>
+            <div className="w-full gap-1.5 my-2">
+              <Label htmlFor="faith">What do you have faith in?</Label>
+              <Textarea id="faith" />
             </div>
             <div className="w-full gap-1.5 my-2">
               <Label htmlFor="hurt">What&apos;s your hurt?</Label>
               <Textarea id="look" />
             </div>
             <div className="w-full gap-1.5 my-2">
-              <Label htmlFor="life">
-                What makes your life hard in the factory?
-              </Label>
-              <Textarea id="life" />
-            </div>
-            <div className="w-full gap-1.5 my-2">
-              <Label htmlFor="dream">What&apos;s your dream?</Label>
-              <Textarea id="dream" />
-            </div>
-            <div className="w-full gap-1.5 my-2">
               <Label htmlFor="option">
                 What has shown you that there&apos;s no other option?
               </Label>
               <Textarea id="option" />
-            </div>
-            <div className="w-full gap-1.5 my-2">
-              <Label htmlFor="faith">What do you have faith in?</Label>
-              <Textarea id="faith" />
             </div>
             <div className="w-full gap-1.5 my-2">
               <Label htmlFor="bloodshed" className="text-red-700">
@@ -578,9 +573,22 @@ export function Charsheet() {
           </div>
           <Separator className="my-3"></Separator>
           <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-1">
+            {selectedTroublemaker?.questions?.map((q, i) => (
+              <div key={`q-${i}`} className="w-full gap-1.5 my-2">
+                <Label htmlFor={`q-${i}`} className="text-indigo-500">
+                  {q}
+                </Label>
+                <Textarea id={`q-${i}`} />
+              </div>
+            ))}
+          </div>
+          <Separator className="my-3"></Separator>
+          <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-1">
             {selectedArchetype?.questions.map((q, i) => (
               <div key={`q-${i}`} className="w-full gap-1.5 my-2">
-                <Label htmlFor={`q-${i}`}>{q}</Label>
+                <Label htmlFor={`q-${i}`} className="text-amber-700">
+                  {q}
+                </Label>
                 <Textarea id={`q-${i}`} />
               </div>
             ))}
@@ -608,9 +616,9 @@ export function Charsheet() {
                     }}
                   />
                 </div>
-                <div className="mt-8 flex  justify-between gap-4">
+                <div className="grid grid-cols-2 border-b-[1px]">
                   <div
-                    className="hover:cursor-pointer group"
+                    className="hover:cursor-pointer group border-r-[1px] mt-8"
                     onClick={() => {
                       rollAttribute('Heart');
                     }}
@@ -626,12 +634,13 @@ export function Charsheet() {
                       setHeartXp(n);
                       setChanges(true);
                     }}
+                    className="items-center mt-auto mb-2"
                   />
                 </div>
-                <div className="grid grid-cols-4 gap-4 m-2">
+                <div className="grid grid-cols-4 mx-2">
                   <div className="flex flex-col">
                     <div
-                      className="h-8 flex items-center hover:cursor-pointer group"
+                      className="h-10 flex items-center hover:cursor-pointer group"
                       onClick={() => {
                         rollAction('Heart', 'Defy');
                       }}
@@ -640,8 +649,9 @@ export function Charsheet() {
                         Defy
                       </TypographyH4>
                     </div>
+                    <Separator />
                     <div
-                      className="h-8 flex items-center hover:cursor-pointer group"
+                      className="h-10 flex items-center hover:cursor-pointer group"
                       onClick={() => {
                         rollAction('Heart', 'Persuade');
                       }}
@@ -651,42 +661,49 @@ export function Charsheet() {
                       </TypographyH4>
                     </div>
                   </div>
-                  <div className="flex flex-col">
+                  <div className="flex flex-col  border-r-[1px]">
                     <ActionScore
                       score={attributes.Heart.Defy}
                       onChange={(s) => {
                         handleUpdateActionScore('Heart', 'Defy', s);
                       }}
-                      className="h-8 justify-end"
+                      className="h-10 justify-end mr-2"
                     />
+                    <Separator />
                     <ActionScore
                       score={attributes.Heart.Persuade}
                       onChange={(s) => {
                         handleUpdateActionScore('Heart', 'Persuade', s);
                       }}
-                      className="h-8 justify-end"
+                      className="h-10 justify-end mr-2"
                     />
                   </div>
                   <div className="flex flex-col">
                     {selectedBackground?.attributes.Heart.map((k) => (
-                      <ActionScore
-                        key={`bh-${k}`}
-                        score={attributes.Heart[k]}
-                        onChange={(s) => {
-                          handleUpdateActionScore('Heart', k, s);
-                        }}
-                        className="h-8"
-                      />
+                      <>
+                        <ActionScore
+                          key={`bh-${k}`}
+                          score={attributes.Heart[k]}
+                          onChange={(s) => {
+                            handleUpdateActionScore('Heart', k, s);
+                          }}
+                          className="h-10 ml-2"
+                        />
+                        <Separator />
+                      </>
                     ))}
                     {selectedTroublemaker?.attributes.Heart.map((k) => (
-                      <ActionScore
-                        key={`th-${k}`}
-                        score={attributes.Heart[k]}
-                        onChange={(s) => {
-                          handleUpdateActionScore('Heart', k, s);
-                        }}
-                        className="h-8"
-                      />
+                      <>
+                        <ActionScore
+                          key={`th-${k}`}
+                          score={attributes.Heart[k]}
+                          onChange={(s) => {
+                            handleUpdateActionScore('Heart', k, s);
+                          }}
+                          className="h-10 ml-2"
+                        />
+                        <Separator />
+                      </>
                     ))}
                     {selectedArchetype?.attributes.Heart.map((k) => (
                       <ActionScore
@@ -695,55 +712,61 @@ export function Charsheet() {
                         onChange={(s) => {
                           handleUpdateActionScore('Heart', k, s);
                         }}
-                        className="h-8"
+                        className="h-10 ml-2"
                       />
                     ))}
                   </div>
                   <div className="flex flex-col">
                     {selectedBackground?.attributes.Heart.map((a, i) => (
-                      <div
-                        key={`ah-${i}`}
-                        className="h-8 hover:cursor-pointer group"
-                        onClick={() => {
-                          rollAction('Heart', a);
-                        }}
-                      >
-                        <TypographyH4 className="flex items-center justify-start underline decoration-red-500 group-hover:font-extrabold">
-                          {a}
-                        </TypographyH4>
-                      </div>
+                      <>
+                        <div
+                          key={`ah-${i}`}
+                          className="h-10 hover:cursor-pointer group"
+                          onClick={() => {
+                            rollAction('Heart', a);
+                          }}
+                        >
+                          <TypographyH4 className="h-10 flex items-center justify-end underline decoration-red-500 group-hover:font-extrabold">
+                            {a}
+                          </TypographyH4>
+                        </div>
+                        <Separator />
+                      </>
                     ))}
                     {selectedTroublemaker?.attributes.Heart.map((a, i) => (
-                      <div
-                        key={`ah-${i}`}
-                        className="h-8 hover:cursor-pointer group"
-                        onClick={() => {
-                          rollAction('Heart', a);
-                        }}
-                      >
-                        <TypographyH4 className="h-8 flex items-center justify-start underline decoration-indigo-500 group-hover:font-extrabold">
-                          {a}
-                        </TypographyH4>
-                      </div>
+                      <>
+                        <div
+                          key={`ah-${i}`}
+                          className="h-10 hover:cursor-pointer group"
+                          onClick={() => {
+                            rollAction('Heart', a);
+                          }}
+                        >
+                          <TypographyH4 className="h-10 flex items-center justify-end underline decoration-indigo-500 group-hover:font-extrabold">
+                            {a}
+                          </TypographyH4>
+                        </div>
+                        <Separator />
+                      </>
                     ))}
                     {selectedArchetype?.attributes.Heart.map((a, i) => (
                       <div
                         key={`ah-${i}`}
-                        className="h-8 hover:cursor-pointer group"
+                        className="h-10 hover:cursor-pointer group"
                         onClick={() => {
                           rollAction('Heart', a);
                         }}
                       >
-                        <TypographyH4 className="h-8 flex items-center justify-start underline decoration-amber-500 group-hover:font-extrabold">
+                        <TypographyH4 className="h-10 flex items-center justify-end underline decoration-amber-700 group-hover:font-extrabold">
                           {a}
                         </TypographyH4>
                       </div>
                     ))}
                   </div>
                 </div>
-                <div className="mt-4 flex justify-between gap-4">
+                <div className="grid grid-cols-2 border-b-[1px]">
                   <div
-                    className="hover:cursor-pointer group"
+                    className="hover:cursor-pointer group border-r-[1px] pt-8"
                     onClick={() => {
                       rollAttribute('Instinct');
                     }}
@@ -759,12 +782,13 @@ export function Charsheet() {
                       setInstinctXp(n);
                       setChanges(true);
                     }}
+                    className="items-center mt-auto mb-2"
                   />
                 </div>
-                <div className="grid grid-cols-4 gap-4 m-2">
+                <div className="grid grid-cols-4 mx-2">
                   <div className="flex flex-col">
                     <div
-                      className="h-8 flex items-center hover:cursor-pointer group"
+                      className="h-10 flex items-center hover:cursor-pointer group"
                       onClick={() => {
                         rollAction('Instinct', 'Charge');
                       }}
@@ -773,8 +797,9 @@ export function Charsheet() {
                         Charge
                       </TypographyH4>
                     </div>
+                    <Separator />
                     <div
-                      className="h-8 flex items-center hover:cursor-pointer group"
+                      className="h-10 flex items-center hover:cursor-pointer group"
                       onClick={() => {
                         rollAction('Instinct', 'Prowl');
                       }}
@@ -784,42 +809,49 @@ export function Charsheet() {
                       </TypographyH4>
                     </div>
                   </div>
-                  <div className="flex flex-col">
+                  <div className="flex flex-col border-r-[1px]">
                     <ActionScore
                       score={attributes.Instinct.Charge}
                       onChange={(s) => {
                         handleUpdateActionScore('Instinct', 'Charge', s);
                       }}
-                      className="h-8 justify-end"
+                      className="h-10 justify-end mr-2"
                     />
+                    <Separator />
                     <ActionScore
                       score={attributes.Instinct.Prowl}
                       onChange={(s) => {
                         handleUpdateActionScore('Instinct', 'Prowl', s);
                       }}
-                      className="h-8 justify-end"
+                      className="h-10 justify-end mr-2"
                     />
                   </div>
                   <div className="flex flex-col">
                     {selectedBackground?.attributes.Instinct.map((k) => (
-                      <ActionScore
-                        key={`bi-${k}`}
-                        score={attributes.Instinct[k]}
-                        onChange={(s) => {
-                          handleUpdateActionScore('Instinct', k, s);
-                        }}
-                        className="h-8"
-                      />
+                      <>
+                        <ActionScore
+                          key={`bi-${k}`}
+                          score={attributes.Instinct[k]}
+                          onChange={(s) => {
+                            handleUpdateActionScore('Instinct', k, s);
+                          }}
+                          className="h-10 ml-2"
+                        />
+                        <Separator />
+                      </>
                     ))}
                     {selectedTroublemaker?.attributes.Instinct.map((k) => (
-                      <ActionScore
-                        key={`ti-${k}`}
-                        score={attributes.Instinct[k]}
-                        onChange={(s) => {
-                          handleUpdateActionScore('Instinct', k, s);
-                        }}
-                        className="h-8"
-                      />
+                      <>
+                        <ActionScore
+                          key={`ti-${k}`}
+                          score={attributes.Instinct[k]}
+                          onChange={(s) => {
+                            handleUpdateActionScore('Instinct', k, s);
+                          }}
+                          className="h-10 ml-2"
+                        />
+                        <Separator />
+                      </>
                     ))}
                     {selectedArchetype?.attributes.Instinct.map((k) => (
                       <ActionScore
@@ -828,55 +860,61 @@ export function Charsheet() {
                         onChange={(s) => {
                           handleUpdateActionScore('Instinct', k, s);
                         }}
-                        className="h-8"
+                        className="h-10 ml-2"
                       />
                     ))}
                   </div>
                   <div className="flex flex-col">
                     {selectedBackground?.attributes.Instinct.map((a, i) => (
-                      <div
-                        key={`ai-${i}`}
-                        className="h-8 hover:cursor-pointer group"
-                        onClick={() => {
-                          rollAction('Instinct', a);
-                        }}
-                      >
-                        <TypographyH4 className="h-8 flex items-center underline decoration-red-500 group-hover:font-extrabold">
-                          {a}
-                        </TypographyH4>
-                      </div>
+                      <>
+                        <div
+                          key={`ai-${i}`}
+                          className="h-10 hover:cursor-pointer group"
+                          onClick={() => {
+                            rollAction('Instinct', a);
+                          }}
+                        >
+                          <TypographyH4 className="h-10 flex items-center justify-end underline decoration-red-500 group-hover:font-extrabold">
+                            {a}
+                          </TypographyH4>
+                        </div>
+                        <Separator />
+                      </>
                     ))}
                     {selectedTroublemaker?.attributes.Instinct.map((a, i) => (
-                      <div
-                        key={`ai-${i}`}
-                        className="h-8 hover:cursor-pointer group"
-                        onClick={() => {
-                          rollAction('Instinct', a);
-                        }}
-                      >
-                        <TypographyH4 className="h-8 flex items-center underline decoration-indigo-500 group-hover:font-extrabold">
-                          {a}
-                        </TypographyH4>
-                      </div>
+                      <>
+                        <div
+                          key={`ai-${i}`}
+                          className="h-10 hover:cursor-pointer group"
+                          onClick={() => {
+                            rollAction('Instinct', a);
+                          }}
+                        >
+                          <TypographyH4 className="h-10 flex items-center justify-end underline decoration-indigo-500 group-hover:font-extrabold">
+                            {a}
+                          </TypographyH4>
+                        </div>
+                        <Separator />
+                      </>
                     ))}
                     {selectedArchetype?.attributes.Instinct.map((a, i) => (
                       <div
                         key={`ai-${i}`}
-                        className="h-8 hover:cursor-pointer group"
+                        className="h-10 hover:cursor-pointer group"
                         onClick={() => {
                           rollAction('Instinct', a);
                         }}
                       >
-                        <TypographyH4 className="h-8 flex items-center underline decoration-amber-500 group-hover:font-extrabold">
+                        <TypographyH4 className="h-10 flex items-center justify-end underline decoration-amber-700 group-hover:font-extrabold">
                           {a}
                         </TypographyH4>
                       </div>
                     ))}
                   </div>
                 </div>
-                <div className="mt-4 flex justify-between gap-4">
+                <div className="grid grid-cols-2 border-b-[1px]">
                   <div
-                    className="hover:cursor-pointer group"
+                    className="hover:cursor-pointer group border-r-[1px] pt-8"
                     onClick={() => {
                       rollAttribute('Machina');
                     }}
@@ -892,12 +930,13 @@ export function Charsheet() {
                       setMachinaXp(n);
                       setChanges(true);
                     }}
+                    className="items-center mt-auto mb-2"
                   />
                 </div>
-                <div className="grid grid-cols-4 gap-4 m-2">
+                <div className="grid grid-cols-4 mx-2">
                   <div className="flex flex-col">
                     <div
-                      className="h-8 flex items-center hover:cursor-pointer group"
+                      className="h-10 flex items-center hover:cursor-pointer group"
                       onClick={() => {
                         rollAction('Machina', 'Suggest');
                       }}
@@ -906,8 +945,9 @@ export function Charsheet() {
                         Suggest
                       </TypographyH4>
                     </div>
+                    <Separator />
                     <div
-                      className="h-8 flex items-center hover:cursor-pointer group"
+                      className="h-10 flex items-center hover:cursor-pointer group"
                       onClick={() => {
                         rollAction('Machina', 'Survey');
                       }}
@@ -917,42 +957,49 @@ export function Charsheet() {
                       </TypographyH4>
                     </div>
                   </div>
-                  <div className="flex flex-col">
+                  <div className="flex flex-col border-r-[1px]">
                     <ActionScore
                       score={attributes.Machina.Suggest}
                       onChange={(s) => {
                         handleUpdateActionScore('Machina', 'Suggest', s);
                       }}
-                      className="h-8 justify-end"
+                      className="h-10 justify-end mr-2"
                     />
+                    <Separator />
                     <ActionScore
                       score={attributes.Machina.Survey}
                       onChange={(s) => {
                         handleUpdateActionScore('Machina', 'Survey', s);
                       }}
-                      className="h-8 justify-end"
+                      className="h-10 justify-end mr-2"
                     />
                   </div>
                   <div className="flex flex-col">
                     {selectedBackground?.attributes.Machina.map((k) => (
-                      <ActionScore
-                        key={`bm-${k}`}
-                        score={attributes.Machina[k]}
-                        onChange={(s) => {
-                          handleUpdateActionScore('Machina', k, s);
-                        }}
-                        className="h-8"
-                      />
+                      <>
+                        <ActionScore
+                          key={`bm-${k}`}
+                          score={attributes.Machina[k]}
+                          onChange={(s) => {
+                            handleUpdateActionScore('Machina', k, s);
+                          }}
+                          className="h-10 ml-2"
+                        />
+                        <Separator />
+                      </>
                     ))}
                     {selectedTroublemaker?.attributes.Machina.map((k) => (
-                      <ActionScore
-                        key={`tm-${k}`}
-                        score={attributes.Machina[k]}
-                        onChange={(s) => {
-                          handleUpdateActionScore('Machina', k, s);
-                        }}
-                        className="h-8"
-                      />
+                      <>
+                        <ActionScore
+                          key={`tm-${k}`}
+                          score={attributes.Machina[k]}
+                          onChange={(s) => {
+                            handleUpdateActionScore('Machina', k, s);
+                          }}
+                          className="h-10 ml-2"
+                        />
+                        <Separator />
+                      </>
                     ))}
                     {selectedArchetype?.attributes.Machina.map((k) => (
                       <ActionScore
@@ -961,46 +1008,52 @@ export function Charsheet() {
                         onChange={(s) => {
                           handleUpdateActionScore('Machina', k, s);
                         }}
-                        className="h-8"
+                        className="h-10 ml-2"
                       />
                     ))}
                   </div>
                   <div className="flex flex-col">
                     {selectedBackground?.attributes.Machina.map((a, i) => (
-                      <div
-                        key={`am-${i}`}
-                        className="h-8 hover:cursor-pointer group"
-                        onClick={() => {
-                          rollAction('Machina', a);
-                        }}
-                      >
-                        <TypographyH4 className="h-8 flex items-center underline decoration-red-500 group-hover:font-extrabold">
-                          {a}
-                        </TypographyH4>
-                      </div>
+                      <>
+                        <div
+                          key={`am-${i}`}
+                          className="h-10 hover:cursor-pointer group"
+                          onClick={() => {
+                            rollAction('Machina', a);
+                          }}
+                        >
+                          <TypographyH4 className="h-10 flex items-center justify-end underline decoration-red-500 group-hover:font-extrabold">
+                            {a}
+                          </TypographyH4>
+                        </div>
+                        <Separator />
+                      </>
                     ))}
                     {selectedTroublemaker?.attributes.Machina.map((a, i) => (
-                      <div
-                        key={`am-${i}`}
-                        className="h-8 hover:cursor-pointer group"
-                        onClick={() => {
-                          rollAction('Machina', a);
-                        }}
-                      >
-                        <TypographyH4 className="h-8 flex items-center underline decoration-indigo-500 group-hover:font-extrabold">
-                          {a}
-                        </TypographyH4>
-                      </div>
+                      <>
+                        <div
+                          key={`am-${i}`}
+                          className="h-10 hover:cursor-pointer group"
+                          onClick={() => {
+                            rollAction('Machina', a);
+                          }}
+                        >
+                          <TypographyH4 className="h-10 flex items-center justify-end underline decoration-indigo-500 group-hover:font-extrabold">
+                            {a}
+                          </TypographyH4>
+                        </div>
+                        <Separator />
+                      </>
                     ))}
                     {selectedArchetype?.attributes.Machina.map((a, i) => (
                       <div
                         key={`am-${i}`}
-                        className="h-8 hover:cursor-pointer group"
+                        className="h-10 hover:cursor-pointer group"
                         onClick={() => {
                           rollAction('Machina', a);
                         }}
                       >
-                        <TypographyH4 className="h-8 flex items-center underline decoration-amber-500 group-hover:font-extrabold">
+                        <TypographyH4 className="h-10 flex items-center justify-end underline decoration-amber-700 group-hover:font-extrabold">
                           {a}
                         </TypographyH4>
                       </div>

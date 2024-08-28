@@ -25,6 +25,7 @@ export type Troublemaker = {
   name: string;
   shortDescription: string;
   attributes: Attributes;
+  questions: string[];
 };
 
 export type CharacterAttributes = {
