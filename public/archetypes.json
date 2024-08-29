@@ -17,7 +17,8 @@
     "actions": [
       {
         "name": "Scheme",
-        "attribute": "Machina"
+        "attribute": "Machina",
+        "description": "Make a complicated plan to do something rebellious or immoral"
       }
     ]
   },
@@ -39,7 +40,8 @@
     "actions": [
       {
         "name": "Tinker",
-        "attribute": "Machina"
+        "attribute": "Machina",
+        "description": "Work to understand or improve a machine or device"
       }
     ]
   },
@@ -61,7 +63,8 @@
     "actions": [
       {
         "name": "Command",
-        "attribute": "Heart"
+        "attribute": "Heart",
+        "description": "Wield authority to get things done"
       }
     ]
   },
@@ -83,7 +86,8 @@
     "actions": [
       {
         "name": "Rhetoric",
-        "attribute": "Machina"
+        "attribute": "Machina",
+        "description": "Persuade or manipulate others with the way your words make them feel"
       }
     ]
   },
@@ -105,7 +109,8 @@
     "actions": [
       {
         "name": "Connect",
-        "attribute": "Machina"
+        "attribute": "Machina",
+        "descriptions": "Open up to someone so that they reciprocate"
       }
     ]
   },
@@ -127,7 +132,8 @@
     "actions": [
       {
         "name": "Comfort",
-        "attribute": "Heart"
+        "attribute": "Heart",
+        "description": "Provide emotional support to someone in need"
       }
     ]
   },
@@ -149,7 +155,8 @@
     "actions": [
       {
         "name": "Inspire",
-        "attribute": "Heart"
+        "attribute": "Heart",
+        "description": "Motivate others to take action"
       }
     ]
   },
@@ -171,7 +178,8 @@
     "actions": [
       {
         "name": "Read",
-        "attribute": "Machina"
+        "attribute": "Machina",
+        "description": "Understand the emotions of others"
       }
     ]
   },
@@ -193,7 +201,8 @@
     "actions": [
       {
         "name": "Logic",
-        "attribute": "Machina"
+        "attribute": "Machina",
+        "description": "Analyze something to understand where its axioms lead"
       }
     ]
   },
@@ -215,7 +224,8 @@
     "actions": [
       {
         "name": "Loyalty",
-        "attribute": "Heart"
+        "attribute": "Heart",
+        "descriptions": "Use your commitment to something as a source of strength"
       }
     ]
   },
@@ -237,7 +247,8 @@
     "actions": [
       {
         "name": "Berate",
-        "attribute": "Machina"
+        "attribute": "Machina",
+        "description": "Use your words to make someone feel small"
       }
     ]
   },
@@ -259,7 +270,8 @@
     "actions": [
       {
         "name": "Encourage",
-        "attribute": "Heart"
+        "attribute": "Heart",
+        "description": "Aid someone to feel confident in their own strengths"
       }
     ]
   },
@@ -281,7 +293,8 @@
     "actions": [
       {
         "name": "Stubborn",
-        "attribute": "Instinct"
+        "attribute": "Instinct",
+        "description": "Resist change or pressure"
       }
     ]
   },
@@ -303,7 +316,8 @@
     "actions": [
       {
         "name": "Drama",
-        "attribute": "Machina"
+        "attribute": "Machina",
+        "description": "Appeal to emotions to elicit a response"
       }
     ]
   },
@@ -325,7 +339,8 @@
     "actions": [
       {
         "name": "Initiate",
-        "attribute": "Instinct"
+        "attribute": "Instinct",
+        "description": "Start something dangerous or take the first step into the unknown"
       }
     ]
   },
@@ -347,7 +362,8 @@
     "actions": [
       {
         "name": "Visual Calculus",
-        "attribute": "Instinct"
+        "attribute": "Instinct",
+        "description": "Understand how physical things in the world will affect each other"
       }
     ]
   }
