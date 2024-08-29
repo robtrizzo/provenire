@@ -21,14 +21,19 @@ export function TypographyH1({
 export function TypographyH2({
   children,
   id,
+  className,
 }: {
   children: React.ReactNode;
   id?: string;
+  className?: string;
 }) {
   return (
     <h2
       id={id}
-      className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0"
+      className={cn(
+        'scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0',
+        className
+      )}
     >
       {children}
     </h2>

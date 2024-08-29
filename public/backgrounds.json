@@ -10,6 +10,18 @@
     "questions": [
       "You've been having strange dreams about the factory's machinery. What do you see?",
       "You've been noticing discrepancies in the factory's inventory. What's missing?"
+    ],
+    "actions": [
+      {
+        "name": "Assess",
+        "attribute": "Heart",
+        "description": "Think before acting. Catalog the possible advantages and consequences of a course of action."
+      },
+      {
+        "name": "Study",
+        "attribute": "Machina",
+        "description": "Research a topic or item. Gain insight into its function or history."
+      }
     ]
   },
   {
@@ -23,6 +35,18 @@
     "questions": [
       "Why do you do the overseers' bidding? What happened to you?",
       "You know a flaw in the overseers' penal pen security. What is it?"
+    ],
+    "actions": [
+      {
+        "name": "Frighten",
+        "attribute": "Instinct",
+        "description": "Use fear as a blunt instrument."
+      },
+      {
+        "name": "Observe",
+        "attribute": "Machina",
+        "description": "Watch and learn. Gain insight into a person or situation."
+      }
     ]
   },
   {
@@ -36,6 +60,18 @@
     "questions": [
       "You've found a hidden compartment in the machinery. What's inside?",
       "A friend got lost in the matrix and you had to leave them behind. What happened?"
+    ],
+    "actions": [
+      {
+        "name": "Interface",
+        "attribute": "Heart",
+        "description": "Work with the machinery to accomplish a task."
+      },
+      {
+        "name": "Squeeze",
+        "attribute": "Instinct",
+        "description": "Get into or out of a tight spot."
+      }
     ]
   },
   {
@@ -49,6 +85,18 @@
     "questions": [
       "What form of medidation have you learned to stave off the boredom?",
       "A fellow worker hasn't been meeting quotas and you're not strong enough to cover for them. Who are they?"
+    ],
+    "actions": [
+      {
+        "name": "Disconnect",
+        "attribute": "Heart",
+        "description": "Fortify your mind against upsetting stimuli."
+      },
+      {
+        "name": "Pull",
+        "attribute": "Instinct",
+        "description": "Move something heavy or difficult."
+      }
     ]
   },
   {
@@ -62,6 +110,18 @@
     "questions": [
       "Two overseers are plotting against each other. What are they planning?",
       "An overseer took a shipment from you and framed you for it. What was in the shipment?"
+    ],
+    "actions": [
+      {
+        "name": "Carry",
+        "attribute": "Instinct",
+        "description": "Traverse the factory while under a heavy load."
+      },
+      {
+        "name": "Eavesdrop",
+        "attribute": "Machina",
+        "description": "Listen in on a conversation without being noticed."
+      }
     ]
   },
   {
@@ -75,6 +135,18 @@
     "questions": [
       "You've found a nearly functional weapon meant for Fenrir's soldiers. What is it?",
       "All your life you've heard whispered stories about the curse of the scrapyard. What have you experienced that makes you think they're right?"
+    ],
+    "actions": [
+      {
+        "name": "Step",
+        "attribute": "Instinct",
+        "description": "Move carefully through dangerous terrain."
+      },
+      {
+        "name": "Rummage",
+        "attribute": "Machina",
+        "description": "Search through refuse for something useful."
+      }
     ]
   },
   {
@@ -88,6 +160,18 @@
     "questions": [
       "You see something in the smoke and flames no one else does. What is it?",
       "The overseers thought it would be funny to lock you all in the furnace room. Who did you lose that day?"
+    ],
+    "actions": [
+      {
+        "name": "Brace",
+        "attribute": "Heart",
+        "description": "Prepare for a sudden pain or shock."
+      },
+      {
+        "name": "Fuel",
+        "attribute": "Machina",
+        "description": "Inflame a fire or strong emotion."
+      }
     ]
   }
 ]

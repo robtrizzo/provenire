@@ -3,6 +3,7 @@ export type Archetype = {
   questions: string[];
   shortDescription: string;
   attributes: Attributes;
+  actions: Action[];
 };
 
 interface Attributes {
@@ -16,17 +17,25 @@ export type Background = {
   shortDescription: string;
   attributes: Attributes;
   questions: string[];
+  actions: Action[];
 };
 
 export type Heritage = {
   name: string;
 };
 
+export interface Action {
+  name: string;
+  attribute: 'Heart' | 'Instinct' | 'Machina';
+  description: string;
+}
+
 export type Troublemaker = {
   name: string;
   shortDescription: string;
   attributes: Attributes;
   questions: string[];
+  actions: Action[];
 };
 
 export type CharacterAttributes = {

@@ -13,7 +13,13 @@
       "Heart": [],
       "Instinct": [],
       "Machina": ["Scheme"]
-    }
+    },
+    "actions": [
+      {
+        "name": "Scheme",
+        "attribute": "Machina"
+      }
+    ]
   },
   {
     "name": "Engineer",
@@ -29,7 +35,13 @@
       "Heart": [],
       "Instinct": [],
       "Machina": ["Tinker"]
-    }
+    },
+    "actions": [
+      {
+        "name": "Tinker",
+        "attribute": "Machina"
+      }
+    ]
   },
   {
     "name": "Commander",
@@ -45,7 +57,13 @@
       "Heart": ["Command"],
       "Instinct": [],
       "Machina": []
-    }
+    },
+    "actions": [
+      {
+        "name": "Command",
+        "attribute": "Heart"
+      }
+    ]
   },
   {
     "name": "Visionary",
@@ -61,7 +79,13 @@
       "Heart": [],
       "Instinct": [],
       "Machina": ["Rhetoric"]
-    }
+    },
+    "actions": [
+      {
+        "name": "Rhetoric",
+        "attribute": "Machina"
+      }
+    ]
   },
   {
     "name": "Advocate",
@@ -77,7 +101,13 @@
       "Heart": [],
       "Instinct": [],
       "Machina": ["Connect"]
-    }
+    },
+    "actions": [
+      {
+        "name": "Connect",
+        "attribute": "Machina"
+      }
+    ]
   },
   {
     "name": "Idealist",
@@ -93,7 +123,13 @@
       "Heart": ["Comfort"],
       "Instinct": [],
       "Machina": []
-    }
+    },
+    "actions": [
+      {
+        "name": "Comfort",
+        "attribute": "Heart"
+      }
+    ]
   },
   {
     "name": "Leader",
@@ -109,7 +145,13 @@
       "Heart": ["Inspire"],
       "Instinct": [],
       "Machina": []
-    }
+    },
+    "actions": [
+      {
+        "name": "Inspire",
+        "attribute": "Heart"
+      }
+    ]
   },
   {
     "name": "Dreamer",
@@ -125,7 +167,13 @@
       "Heart": [],
       "Instinct": [],
       "Machina": ["Read"]
-    }
+    },
+    "actions": [
+      {
+        "name": "Read",
+        "attribute": "Machina"
+      }
+    ]
   },
   {
     "name": "Logistician",
@@ -141,7 +189,13 @@
       "Heart": [],
       "Instinct": [],
       "Machina": ["Logic"]
-    }
+    },
+    "actions": [
+      {
+        "name": "Logic",
+        "attribute": "Machina"
+      }
+    ]
   },
   {
     "name": "Defender",
@@ -157,7 +211,13 @@
       "Heart": ["Loyalty"],
       "Instinct": [],
       "Machina": []
-    }
+    },
+    "actions": [
+      {
+        "name": "Loyalty",
+        "attribute": "Heart"
+      }
+    ]
   },
   {
     "name": "Executive",
@@ -173,7 +233,13 @@
       "Heart": [],
       "Instinct": [],
       "Machina": ["Berate"]
-    }
+    },
+    "actions": [
+      {
+        "name": "Berate",
+        "attribute": "Machina"
+      }
+    ]
   },
   {
     "name": "Consul",
@@ -189,7 +255,13 @@
       "Heart": ["Encourage"],
       "Instinct": [],
       "Machina": []
-    }
+    },
+    "actions": [
+      {
+        "name": "Encourage",
+        "attribute": "Heart"
+      }
+    ]
   },
   {
     "name": "Virtuoso",
@@ -205,7 +277,13 @@
       "Heart": [],
       "Instinct": ["Stubborn"],
       "Machina": []
-    }
+    },
+    "actions": [
+      {
+        "name": "Stubborn",
+        "attribute": "Instinct"
+      }
+    ]
   },
   {
     "name": "Artist",
@@ -221,7 +299,13 @@
       "Heart": [],
       "Instinct": [],
       "Machina": ["Drama"]
-    }
+    },
+    "actions": [
+      {
+        "name": "Drama",
+        "attribute": "Machina"
+      }
+    ]
   },
   {
     "name": "Adventurer",
@@ -237,7 +321,13 @@
       "Heart": [],
       "Instinct": ["Initiate"],
       "Machina": []
-    }
+    },
+    "actions": [
+      {
+        "name": "Initiate",
+        "attribute": "Instinct"
+      }
+    ]
   },
   {
     "name": "Entertainer",
@@ -253,6 +343,12 @@
       "Heart": [],
       "Instinct": ["Visual Calculus"],
       "Machina": []
-    }
+    },
+    "actions": [
+      {
+        "name": "Visual Calculus",
+        "attribute": "Instinct"
+      }
+    ]
   }
 ]

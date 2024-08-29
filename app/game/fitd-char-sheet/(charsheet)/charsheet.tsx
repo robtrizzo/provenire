@@ -38,6 +38,8 @@ import { ActionScore } from '@/components/ui/action-score';
 import { useToast } from '@/components/ui/use-toast';
 import { Die } from '@/components/ui/die';
 import { cn } from '@/lib/utils';
+import { VenetianMask, Flame, Activity } from 'lucide-react';
+import ActionDescription from '@/components/ui/action-description';
 
 export function Charsheet() {
   const [selectedArchetype, setSelectedArchetype] = useState<Archetype>();
@@ -398,7 +400,9 @@ export function Charsheet() {
             key={backgroundSelectKey}
             value={selectedBackground?.name}
             onValueChange={(value) => {
-              const foundBackground = backgrounds.find((b) => b.name === value);
+              const foundBackground = backgrounds.find(
+                (b) => b.name === value
+              ) as Background | undefined;
               if (foundBackground) {
                 setSelectedBackground(foundBackground);
                 setChanges(true);
@@ -443,7 +447,7 @@ export function Charsheet() {
             onValueChange={(value) => {
               const foundTroublemaker = troublemakers.find(
                 (t) => t.name === value
-              );
+              ) as Troublemaker | undefined;
               if (foundTroublemaker) {
                 setSelectedTroublemaker(foundTroublemaker);
                 setChanges(true);
@@ -484,7 +488,9 @@ export function Charsheet() {
             key={archetypeSelectKey}
             value={selectedArchetype?.name}
             onValueChange={(value) => {
-              const foundArchetype = archetypes.find((a) => a.name === value);
+              const foundArchetype = archetypes.find(
+                (a) => a.name === value
+              ) as Archetype | undefined;
               if (foundArchetype) {
                 setSelectedArchetype(foundArchetype);
                 setChanges(true);
@@ -605,13 +611,51 @@ export function Charsheet() {
           </div>
         </TabsContent>
         <TabsContent value="mission" className="w-full">
-          <div className="my-3">
-            <TypographyH2>
-              {selectedTroublemaker?.name}
-              <span className="text-muted-foreground text-lg ml-8">
-                {selectedTroublemaker?.shortDescription}
-              </span>
-            </TypographyH2>
+          <div className="my-3 grid grid-cols-1 md:grid-cols-2 gap-2">
+            <div>
+              <TypographyH2 className="text-red-500">
+                {selectedBackground?.name}
+                <span className="text-muted-foreground text-lg ml-8">
+                  {selectedBackground?.shortDescription}
+                </span>
+              </TypographyH2>
+              <div className="mt-4">
+                <TypographyH3>Actions</TypographyH3>
+                <div className="ml-2">
+                  {selectedBackground?.actions?.map((action, i) => (
+                    <ActionDescription key={i} action={action} />
+                  ))}
+                </div>
+              </div>
+              <TypographyH2 className="text-indigo-500 mt-4">
+                {selectedTroublemaker?.name}
+                <span className="text-muted-foreground text-lg ml-8">
+                  {selectedTroublemaker?.shortDescription}
+                </span>
+              </TypographyH2>
+              <div className="mt-4">
+                <TypographyH3>Actions</TypographyH3>
+                <div className="ml-2">
+                  {selectedTroublemaker?.actions?.map((action, i) => (
+                    <ActionDescription key={i} action={action} />
+                  ))}
+                </div>
+              </div>
+              <TypographyH2 className="text-amber-700 mt-4">
+                {selectedArchetype?.name}
+                <span className="text-muted-foreground text-lg ml-8">
+                  {selectedArchetype?.shortDescription}
+                </span>
+              </TypographyH2>
+              <div className="mt-4">
+                <TypographyH3>Actions</TypographyH3>
+                <div className="ml-2">
+                  {selectedArchetype?.actions?.map((action, i) => (
+                    <ActionDescription key={i} action={action} />
+                  ))}
+                </div>
+              </div>
+            </div>
             <div className="flex my-3">
               <div className="flex-grow"></div>
               <div>
@@ -634,7 +678,7 @@ export function Charsheet() {
                     }}
                   >
                     <TypographyH3 className="group-hover:font-extrabold">
-                      Heart
+                      Heart <Flame className="inline mb-2" />
                     </TypographyH3>
                   </div>
                   <BuildupCheckboxes
@@ -782,7 +826,7 @@ export function Charsheet() {
                     }}
                   >
                     <TypographyH3 className="group-hover:font-extrabold">
-                      Instinct
+                      Instinct <Activity className="inline mb-2" />
                     </TypographyH3>
                   </div>
                   <BuildupCheckboxes
@@ -930,7 +974,7 @@ export function Charsheet() {
                     }}
                   >
                     <TypographyH3 className="group-hover:font-extrabold">
-                      Machina
+                      Machina <VenetianMask className="inline mb-1" />
                     </TypographyH3>
                   </div>
                   <BuildupCheckboxes
@@ -1076,7 +1120,9 @@ export function Charsheet() {
         </TabsContent>
         <TabsContent value="churn" className="w-full">
           <div className="my-3">
-            <TypographyH2>{selectedArchetype?.name}</TypographyH2>
+            <TypographyH2>Substenance</TypographyH2>
+            <TypographyH2 className="mt-4">Agendas</TypographyH2>
+            <TypographyH2 className="mt-4">Downtime</TypographyH2>
           </div>
         </TabsContent>
       </Tabs>

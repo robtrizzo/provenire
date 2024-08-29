@@ -10,6 +10,18 @@
     "questions": [
       "A dangerous machine you were tampering with lashed out at you. What was the machine and how did it scar you?",
       "The factory's every creation leaves behind piles of refuse. What waste do you see as useful materials that others don't?"
+    ],
+    "actions": [
+      {
+        "name": "Cobble",
+        "attribute": "Heart",
+        "description": "Rapidly make an improvised tool or weapon from available scrap."
+      },
+      {
+        "name": "Sabotage",
+        "attribute": "Machina",
+        "description": "Tamper with or damage a machine or device."
+      }
     ]
   },
   {
@@ -23,6 +35,18 @@
     "questions": [
       "The Beast Lanes are dangerous places, and not everyone is as talented as you are. What tragedy has befallen someone who followed you there?",
       "Your abilities have allowed you to climb to the top of the factory and see the sky. How did seeing the wider world and starry cosmos affect you?"
+    ],
+    "actions": [
+      {
+        "name": "Acrobatics",
+        "attribute": "Instinct",
+        "description": "Traverse the mechanical matrix of the factory with grace and speed."
+      },
+      {
+        "name": "Spin",
+        "attribute": "Machina",
+        "description": "Twist the truth or redirect conversation to your advantage."
+      }
     ]
   },
   {
@@ -36,6 +60,18 @@
     "questions": [
       "You've seen the worst of the Steel Trap's workers. What is the most desperate thing you've seen someone do?",
       "You got too close to one of your informats once. What happened?"
+    ],
+    "actions": [
+      {
+        "name": "Organize",
+        "attribute": "Heart",
+        "description": "Arrange meetings, get people on the same page, or create understanding from chaos."
+      },
+      {
+        "name": "Manipulate",
+        "attribute": "Machina",
+        "description": "Deceive or coerce someone into doing what you want."
+      }
     ]
   },
   {
@@ -49,6 +85,18 @@
     "questions": [
       "You've made a deal with one of the overseers that went wrong. What did you have to give up to them?",
       "A faction in your neighborhood still owes you a favor. Who are they and how did you earn it?"
+    ],
+    "actions": [
+      {
+        "name": "Candor",
+        "attribute": "Heart",
+        "description": "Get someone to view you favorably or reveal a secret."
+      },
+      {
+        "name": "Obfuscate",
+        "attribute": "Machina",
+        "description": "Hide your true intentions or confound someone's understanding."
+      }
     ]
   },
   {
@@ -62,6 +110,18 @@
     "questions": [
       "You were forced to fight a friend in the pits. Only one of you got to leave. What happened?",
       "Which one of the overseers is nervous around you?"
+    ],
+    "actions": [
+      {
+        "name": "Persevere",
+        "attribute": "Heart",
+        "description": "Endure pain or hardship to accomplish a task."
+      },
+      {
+        "name": "Smash",
+        "attribute": "Instinct",
+        "description": "Hurt someone or damage something with brute force."
+      }
     ]
   },
   {
@@ -75,6 +135,18 @@
     "questions": [
       "You've learned the source of many folks' hopelessness. What could change their minds?",
       "Someone you inspired to stand up to the overseers was caught. What happened to them?"
+    ],
+    "actions": [
+      {
+        "name": "Rally",
+        "attribute": "Heart",
+        "description": "Inspire others to come together and act as one."
+      },
+      {
+        "name": "Challenge",
+        "attribute": "Instinct",
+        "description": "Confront someone in a way that demands a response."
+      }
     ]
   },
   {
@@ -88,6 +160,18 @@
     "questions": [
       "You incited an incident between workers and an overseer. It turned ugly. Who couldn't you protect?",
       "You convinced two factions with a grudge to settle the score. How well has it turned out?"
+    ],
+    "actions": [
+      {
+        "name": "Ignite",
+        "attribute": "Heart",
+        "description": "Incite action from an individual or group on the brink of conflict."
+      },
+      {
+        "name": "Intercede",
+        "attribute": "Instinct",
+        "description": "Put yourself in harm's way to protect someone else."
+      }
     ]
   },
   {
@@ -101,6 +185,18 @@
     "questions": [
       "You were caught in the act of stealing from the overseers. Who did you throw under the bus to get out of trouble?",
       "One of the overseers knows what you're up to, but instead of reporting you, they're using you. What do they want?"
+    ],
+    "actions": [
+      {
+        "name": "Lift",
+        "attribute": "Instinct",
+        "description": "Take something from someone without them noticing."
+      },
+      {
+        "name": "Impersonate",
+        "attribute": "Machina",
+        "description": "Pass yourself off as someone who you aren't."
+      }
     ]
   }
 ]
