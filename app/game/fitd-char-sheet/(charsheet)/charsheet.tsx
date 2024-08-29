@@ -528,12 +528,11 @@ export function Charsheet() {
           <TabsTrigger value="churn">The Churn</TabsTrigger>
         </TabsList>
         <TabsContent value="profile" className="w-full">
-          <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-1">
+          <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-2">
             <div className="w-full gap-1.5 my-2">
               <Label htmlFor="look">Look</Label>
               <Textarea id="look" />
             </div>
-
             <div className="w-full gap-1.5 my-2">
               <Label htmlFor="dream">What&apos;s your dream?</Label>
               <Textarea id="dream" />
@@ -572,10 +571,10 @@ export function Charsheet() {
             </div>
           </div>
           <Separator className="my-3"></Separator>
-          <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-1">
-            {selectedTroublemaker?.questions?.map((q, i) => (
+          <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-2">
+            {selectedBackground?.questions?.map((q, i) => (
               <div key={`q-${i}`} className="w-full gap-1.5 my-2">
-                <Label htmlFor={`q-${i}`} className="text-indigo-500">
+                <Label htmlFor={`q-${i}`} className="text-red-500 box-border">
                   {q}
                 </Label>
                 <Textarea id={`q-${i}`} />
@@ -583,10 +582,21 @@ export function Charsheet() {
             ))}
           </div>
           <Separator className="my-3"></Separator>
-          <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-1">
+          <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-2">
+            {selectedTroublemaker?.questions?.map((q, i) => (
+              <div key={`q-${i}`} className="w-full gap-1.5 my-2">
+                <Label htmlFor={`q-${i}`} className="text-indigo-500 ">
+                  {q}
+                </Label>
+                <Textarea id={`q-${i}`} />
+              </div>
+            ))}
+          </div>
+          <Separator className="my-3"></Separator>
+          <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-2">
             {selectedArchetype?.questions.map((q, i) => (
               <div key={`q-${i}`} className="w-full gap-1.5 my-2">
-                <Label htmlFor={`q-${i}`} className="text-amber-700">
+                <Label htmlFor={`q-${i}`} className="text-amber-700 box-border">
                   {q}
                 </Label>
                 <Textarea id={`q-${i}`} />

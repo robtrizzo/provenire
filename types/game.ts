@@ -15,6 +15,7 @@ export type Background = {
   name: string;
   shortDescription: string;
   attributes: Attributes;
+  questions: string[];
 };
 
 export type Heritage = {

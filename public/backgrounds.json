@@ -6,7 +6,11 @@
       "Heart": ["Assess"],
       "Instinct": [],
       "Machina": ["Study"]
-    }
+    },
+    "questions": [
+      "You've been having strange dreams about the factory's machinery. What do you see?",
+      "You've been noticing discrepancies in the factory's inventory. What's missing?"
+    ]
   },
   {
     "name": "Enforcer",
@@ -15,7 +19,11 @@
       "Heart": [],
       "Instinct": ["Frighten"],
       "Machina": ["Observe"]
-    }
+    },
+    "questions": [
+      "Why do you do the overseers' bidding? What happened to you?",
+      "You know a flaw in the overseers' penal pen security. What is it?"
+    ]
   },
   {
     "name": "Machinist",
@@ -24,7 +32,11 @@
       "Heart": ["Interface"],
       "Instinct": ["Squeeze"],
       "Machina": []
-    }
+    },
+    "questions": [
+      "You've found a hidden compartment in the machinery. What's inside?",
+      "A friend got lost in the matrix and you had to leave them behind. What happened?"
+    ]
   },
   {
     "name": "Operator",
@@ -33,7 +45,11 @@
       "Heart": ["Disconnect"],
       "Instinct": ["Pull"],
       "Machina": []
-    }
+    },
+    "questions": [
+      "What form of medidation have you learned to stave off the boredom?",
+      "A fellow worker hasn't been meeting quotas and you're not strong enough to cover for them. Who are they?"
+    ]
   },
   {
     "name": "Runner",
@@ -42,7 +58,11 @@
       "Heart": [],
       "Instinct": ["Carry"],
       "Machina": ["Eavesdrop"]
-    }
+    },
+    "questions": [
+      "Two overseers are plotting against each other. What are they planning?",
+      "An overseer took a shipment from you and framed you for it. What was in the shipment?"
+    ]
   },
   {
     "name": "Scrapper",
@@ -51,7 +71,11 @@
       "Heart": [],
       "Instinct": ["Step"],
       "Machina": ["Rummage"]
-    }
+    },
+    "questions": [
+      "You've found a nearly functional weapon meant for Fenrir's soldiers. What is it?",
+      "All your life you've heard whispered stories about the curse of the scrapyard. What have you experienced that makes you think they're right?"
+    ]
   },
   {
     "name": "Stoker",
@@ -60,6 +84,10 @@
       "Heart": ["Brace"],
       "Instinct": [],
       "Machina": ["Fuel"]
-    }
+    },
+    "questions": [
+      "You see something in the smoke and flames no one else does. What is it?",
+      "The overseers thought it would be funny to lock you all in the furnace room. Who did you lose that day?"
+    ]
   }
 ]
