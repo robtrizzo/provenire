@@ -1,5 +1,8 @@
 import { TypographyH2 } from '@/components/ui/typography'
-import {VenetianMask, Flame, Activity} from 'lucide-react'
+import { Separator } from '@/components/ui/separator';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import {VenetianMask, Flame, Activity, ChevronLeft, ChevronRight} from 'lucide-react'
 
 
 
@@ -259,3 +262,17 @@ Stokers are the workers who keep the fires burning. Shoveling coal, shaping the 
 **Failure Consequence** (choose one):
  - The furnace room's smoke is poisoning you. Add a level 1 permanent harm: "black lung".
  - The furnace is missing a crucial part that no one knows how to fix. Advance the **Detonation** clock by 1.
+
+<Separator />
+<div className="w-full flex justify-between">
+    <Link href="/game/the-churn">
+        <Button variant="outline">
+            <ChevronLeft className="inline-block" /> The Churn
+        </Button>
+    </Link>
+    <Link href="/game/troublemakers">
+        <Button variant="outline">
+            Troublemakers <ChevronRight className="inline-block" />
+        </Button>
+    </Link>
+</div>

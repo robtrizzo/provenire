@@ -24,9 +24,9 @@ export default function Page() {
       </TypographyP>
       <Separator />
       <div className="flex flex-row mt-2">
-        <Link href="/game/basic-rules" className="ml-auto">
+        <Link href="/game/core-system" className="ml-auto">
           <Button variant="outline">
-            Basic Rules <ChevronRight />
+            Core System <ChevronRight />
           </Button>
         </Link>
       </div>

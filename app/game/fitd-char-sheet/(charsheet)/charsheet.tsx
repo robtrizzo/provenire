@@ -40,6 +40,7 @@ import { Die } from '@/components/ui/die';
 import { cn } from '@/lib/utils';
 import { VenetianMask, Flame, Activity } from 'lucide-react';
 import ActionDescription from '@/components/ui/action-description';
+import { Card, CardContent, CardTitle } from '@/components/ui/card';
 
 export function Charsheet() {
   const [selectedArchetype, setSelectedArchetype] = useState<Archetype>();
@@ -69,6 +70,9 @@ export function Charsheet() {
   const { toast } = useToast();
 
   const [changes, setChanges] = useState(false);
+
+  const [rollLeft, setRollLeft] = useState<string>('');
+  const [rollRight, setRollRight] = useState<string>('');
 
   useEffect(() => {
     if (window === undefined) return;
@@ -242,6 +246,128 @@ export function Charsheet() {
     });
   }
 
+  function rollCombo(
+    attribute1: 'Heart' | 'Instinct' | 'Machina',
+    action1: string,
+    attribute2: 'Heart' | 'Instinct' | 'Machina',
+    action2: string
+  ) {
+    const score1 = attributes[attribute1][action1] || [0, 0];
+    const score2 = attributes[attribute2][action2] || [0, 0];
+    const dice = [...score1, ...score2];
+    if (dice.reduce((acc, s) => acc + s, 0) === 0) {
+      // roll 2d6 and take the lowest
+      let r1 = Math.floor(Math.random() * 6) + 1;
+      let r2 = Math.floor(Math.random() * 6) + 1;
+      const result = Math.min(r1, r2);
+      let resultText = '';
+      switch (result) {
+        case 1:
+        case 2:
+        case 3:
+          resultText = 'Miss. Suffer the consequences.';
+          break;
+        case 4:
+        case 5:
+          resultText =
+            'Partial hit. Succeed, but suffer the consequences and take reduced effect.';
+          break;
+        case 6:
+          resultText = 'Hit! Succeed, but take reduced effect.';
+          break;
+        default:
+          resultText = 'Unknown result';
+          break;
+      }
+      toast({
+        variant: 'grid',
+        // @ts-ignore
+        title: (
+          <div className="flex gap-1">
+            <span className="mt-1">
+              Rolled {action1} + {action2}
+            </span>
+            <Die roll={r1} className="h-5 w-5" />
+            <Die roll={r2} className="h-5 w-5" />
+          </div>
+        ),
+        description: (
+          <div className="flex gap-4">
+            <Die roll={result} className="h-5 w-5" />
+            <span className="mt-1">{resultText}</span>
+          </div>
+        ),
+      });
+      return;
+    }
+    let red = dice.reduce((acc, s) => (s === 1 ? acc + 1 : acc), 0);
+    let blue = dice.reduce((acc, s) => (s === 2 ? acc + 1 : acc), 0);
+    let redRolls = [];
+    let blueRolls = [];
+    for (let i = 0; i < red; i++) {
+      redRolls.push(Math.floor(Math.random() * 6) + 1);
+    }
+    for (let i = 0; i < blue; i++) {
+      blueRolls.push(Math.floor(Math.random() * 6) + 1);
+    }
+    let highestRed = Math.max(...redRolls);
+    let highestBlue = Math.max(...blueRolls);
+    const result = Math.max(highestBlue, highestRed);
+    const blueHigher = highestBlue >= highestRed;
+
+    let resultText = '';
+    switch (result) {
+      case 1:
+      case 2:
+      case 3:
+        resultText = 'Miss. Suffer the consequences.';
+        break;
+      case 4:
+      case 5:
+        resultText = `Partial hit. Suceed, but suffer the consequences${
+          blueHigher ? '' : ' and take reduced effect'
+        }.`;
+        break;
+      case 6:
+        resultText = `Hit! Succeed${
+          blueHigher ? '' : ', but take reduced effect'
+        }.`;
+        break;
+      default:
+        resultText = 'Unknown result';
+        break;
+    }
+    toast({
+      variant: 'grid',
+      // @ts-ignore
+      title: (
+        <div className="flex items-start gap-1">
+          <span className="mt-1">
+            Rolled {action1} + {action2}
+          </span>
+          {redRolls.map((r, i) => (
+            <Die key={i} roll={r} className="h-5 w-5 text-red-500" />
+          ))}
+          {blueRolls.map((r, i) => (
+            <Die key={i} roll={r} className="h-5 w-5 text-blue-500" />
+          ))}
+        </div>
+      ),
+      description: (
+        <div className="flex gap-4">
+          <Die
+            roll={result}
+            className={cn(
+              'h-5 w-5',
+              blueHigher ? 'text-blue-500' : 'text-red-500'
+            )}
+          />
+          <span className="mt-1">{resultText}</span>
+        </div>
+      ),
+    });
+  }
+
   // helper function to get the explicit keys for each attribute
   const attributeExplicitKeys = {
     Heart: ['Defy', 'Persuade'],
@@ -345,7 +471,7 @@ export function Charsheet() {
               }
             }}
           >
-            <SelectTrigger className="font-bold underline decoration-sky-500">
+            <SelectTrigger className="font-bold text-sky-500">
               <SelectValue placeholder="Select a heritage" />
             </SelectTrigger>
             <SelectContent>
@@ -409,7 +535,7 @@ export function Charsheet() {
               }
             }}
           >
-            <SelectTrigger className="font-bold underline decoration-red-500">
+            <SelectTrigger className="font-bold text-red-500">
               <SelectValue placeholder="Select a background" />
             </SelectTrigger>
             <SelectContent>
@@ -454,7 +580,7 @@ export function Charsheet() {
               }
             }}
           >
-            <SelectTrigger className="font-bold underline decoration-indigo-500">
+            <SelectTrigger className="font-bold text-indigo-500">
               <SelectValue placeholder="Select a troublemaker" />
             </SelectTrigger>
             <SelectContent>
@@ -497,7 +623,7 @@ export function Charsheet() {
               }
             }}
           >
-            <SelectTrigger className="font-bold underline decoration-amber-700">
+            <SelectTrigger className="font-bold text-amber-700">
               <SelectValue placeholder="Select an archetype" />
             </SelectTrigger>
             <SelectContent>
@@ -611,50 +737,62 @@ export function Charsheet() {
           </div>
         </TabsContent>
         <TabsContent value="mission" className="w-full">
-          <div className="my-3 grid grid-cols-1 md:grid-cols-2 gap-2">
-            <div>
-              <TypographyH2 className="text-red-500">
-                {selectedBackground?.name}
-                <span className="text-muted-foreground text-lg ml-8">
-                  {selectedBackground?.shortDescription}
-                </span>
-              </TypographyH2>
-              <div className="mt-4">
-                <TypographyH3>Actions</TypographyH3>
-                <div className="ml-2">
-                  {selectedBackground?.actions?.map((action, i) => (
-                    <ActionDescription key={i} action={action} />
-                  ))}
+          <div className="my-3 grid grid-cols-1 md:grid-cols-2 gap-2 select-none focus-visible:outline-none">
+            <div className="mt-4">
+              {selectedBackground && (
+                <div>
+                  <TypographyH2 className="text-red-500">
+                    {selectedBackground?.name}
+                    <span className="text-muted-foreground text-lg ml-8">
+                      {selectedBackground?.shortDescription}
+                    </span>
+                  </TypographyH2>
+                  <div className="mt-4">
+                    <TypographyH3>Actions</TypographyH3>
+                    <div className="ml-2">
+                      {selectedBackground?.actions?.map((action, i) => (
+                        <ActionDescription key={i} action={action} />
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <TypographyH2 className="text-indigo-500 mt-4">
-                {selectedTroublemaker?.name}
-                <span className="text-muted-foreground text-lg ml-8">
-                  {selectedTroublemaker?.shortDescription}
-                </span>
-              </TypographyH2>
-              <div className="mt-4">
-                <TypographyH3>Actions</TypographyH3>
-                <div className="ml-2">
-                  {selectedTroublemaker?.actions?.map((action, i) => (
-                    <ActionDescription key={i} action={action} />
-                  ))}
+              )}
+              {selectedTroublemaker && (
+                <div className="mt-4">
+                  <TypographyH2 className="text-indigo-500">
+                    {selectedTroublemaker?.name}
+                    <span className="text-muted-foreground text-lg ml-8">
+                      {selectedTroublemaker?.shortDescription}
+                    </span>
+                  </TypographyH2>
+                  <div className="mt-4">
+                    <TypographyH3>Actions</TypographyH3>
+                    <div className="ml-2">
+                      {selectedTroublemaker?.actions?.map((action, i) => (
+                        <ActionDescription key={i} action={action} />
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <TypographyH2 className="text-amber-700 mt-4">
-                {selectedArchetype?.name}
-                <span className="text-muted-foreground text-lg ml-8">
-                  {selectedArchetype?.shortDescription}
-                </span>
-              </TypographyH2>
-              <div className="mt-4">
-                <TypographyH3>Actions</TypographyH3>
-                <div className="ml-2">
-                  {selectedArchetype?.actions?.map((action, i) => (
-                    <ActionDescription key={i} action={action} />
-                  ))}
+              )}
+              {selectedArchetype && (
+                <div className="mt-4">
+                  <TypographyH2 className="text-amber-700">
+                    {selectedArchetype?.name}
+                    <span className="text-muted-foreground text-lg ml-8">
+                      {selectedArchetype?.shortDescription}
+                    </span>
+                  </TypographyH2>
+                  <div className="mt-4">
+                    <TypographyH3>Actions</TypographyH3>
+                    <div className="ml-2">
+                      {selectedArchetype?.actions?.map((action, i) => (
+                        <ActionDescription key={i} action={action} />
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
             <div className="flex my-3">
               <div className="flex-grow"></div>
@@ -695,8 +833,12 @@ export function Charsheet() {
                   <div className="flex flex-col">
                     <div
                       className="h-10 flex items-center hover:cursor-pointer group"
-                      onClick={() => {
-                        rollAction('Heart', 'Defy');
+                      onClick={(e) => {
+                        if (e.shiftKey) {
+                          rollAction('Heart', 'Defy');
+                        } else {
+                          setRollLeft('Heart-Defy');
+                        }
                       }}
                     >
                       <TypographyH4 className="group-hover:font-extrabold">
@@ -706,8 +848,12 @@ export function Charsheet() {
                     <Separator />
                     <div
                       className="h-10 flex items-center hover:cursor-pointer group"
-                      onClick={() => {
-                        rollAction('Heart', 'Persuade');
+                      onClick={(e) => {
+                        if (e.shiftKey) {
+                          rollAction('Heart', 'Persuade');
+                        } else {
+                          setRollLeft('Heart-Persuade');
+                        }
                       }}
                     >
                       <TypographyH4 className="group-hover:font-extrabold">
@@ -733,6 +879,65 @@ export function Charsheet() {
                     />
                   </div>
                   <div className="flex flex-col">
+                    {selectedBackground?.attributes.Heart.map((a, i) => (
+                      <>
+                        <div
+                          key={`ah-${i}`}
+                          className="h-10 hover:cursor-pointer group"
+                          onClick={(e) => {
+                            if (e.shiftKey) {
+                              rollAction('Heart', a);
+                            } else {
+                              setRollRight(`Heart-${a}`);
+                            }
+                          }}
+                        >
+                          <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:font-extrabold">
+                            {a}
+                          </TypographyH4>
+                        </div>
+                        <Separator />
+                      </>
+                    ))}
+                    {selectedTroublemaker?.attributes.Heart.map((a, i) => (
+                      <>
+                        <div
+                          key={`ah-${i}`}
+                          className="h-10 hover:cursor-pointer group"
+                          onClick={(e) => {
+                            if (e.shiftKey) {
+                              rollAction('Heart', a);
+                            } else {
+                              setRollRight(`Heart-${a}`);
+                            }
+                          }}
+                        >
+                          <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:font-extrabold">
+                            {a}
+                          </TypographyH4>
+                        </div>
+                        <Separator />
+                      </>
+                    ))}
+                    {selectedArchetype?.attributes.Heart.map((a, i) => (
+                      <div
+                        key={`ah-${i}`}
+                        className="h-10 hover:cursor-pointer group"
+                        onClick={(e) => {
+                          if (e.shiftKey) {
+                            rollAction('Heart', a);
+                          } else {
+                            setRollRight(`Heart-${a}`);
+                          }
+                        }}
+                      >
+                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:font-extrabold">
+                          {a}
+                        </TypographyH4>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex flex-col">
                     {selectedBackground?.attributes.Heart.map((k) => (
                       <>
                         <ActionScore
@@ -741,7 +946,7 @@ export function Charsheet() {
                           onChange={(s) => {
                             handleUpdateActionScore('Heart', k, s);
                           }}
-                          className="h-10 ml-2"
+                          className="h-10 justify-end"
                         />
                         <Separator />
                       </>
@@ -754,7 +959,7 @@ export function Charsheet() {
                           onChange={(s) => {
                             handleUpdateActionScore('Heart', k, s);
                           }}
-                          className="h-10 ml-2"
+                          className="h-10 justify-end"
                         />
                         <Separator />
                       </>
@@ -766,55 +971,8 @@ export function Charsheet() {
                         onChange={(s) => {
                           handleUpdateActionScore('Heart', k, s);
                         }}
-                        className="h-10 ml-2"
+                        className="h-10 justify-end"
                       />
-                    ))}
-                  </div>
-                  <div className="flex flex-col">
-                    {selectedBackground?.attributes.Heart.map((a, i) => (
-                      <>
-                        <div
-                          key={`ah-${i}`}
-                          className="h-10 hover:cursor-pointer group"
-                          onClick={() => {
-                            rollAction('Heart', a);
-                          }}
-                        >
-                          <TypographyH4 className="h-10 flex items-center justify-end underline decoration-red-500 group-hover:font-extrabold">
-                            {a}
-                          </TypographyH4>
-                        </div>
-                        <Separator />
-                      </>
-                    ))}
-                    {selectedTroublemaker?.attributes.Heart.map((a, i) => (
-                      <>
-                        <div
-                          key={`ah-${i}`}
-                          className="h-10 hover:cursor-pointer group"
-                          onClick={() => {
-                            rollAction('Heart', a);
-                          }}
-                        >
-                          <TypographyH4 className="h-10 flex items-center justify-end underline decoration-indigo-500 group-hover:font-extrabold">
-                            {a}
-                          </TypographyH4>
-                        </div>
-                        <Separator />
-                      </>
-                    ))}
-                    {selectedArchetype?.attributes.Heart.map((a, i) => (
-                      <div
-                        key={`ah-${i}`}
-                        className="h-10 hover:cursor-pointer group"
-                        onClick={() => {
-                          rollAction('Heart', a);
-                        }}
-                      >
-                        <TypographyH4 className="h-10 flex items-center justify-end underline decoration-amber-700 group-hover:font-extrabold">
-                          {a}
-                        </TypographyH4>
-                      </div>
                     ))}
                   </div>
                 </div>
@@ -843,8 +1001,12 @@ export function Charsheet() {
                   <div className="flex flex-col">
                     <div
                       className="h-10 flex items-center hover:cursor-pointer group"
-                      onClick={() => {
-                        rollAction('Instinct', 'Charge');
+                      onClick={(e) => {
+                        if (e.shiftKey) {
+                          rollAction('Instinct', 'Charge');
+                        } else {
+                          setRollLeft('Instinct-Charge');
+                        }
                       }}
                     >
                       <TypographyH4 className="group-hover:font-extrabold">
@@ -854,8 +1016,12 @@ export function Charsheet() {
                     <Separator />
                     <div
                       className="h-10 flex items-center hover:cursor-pointer group"
-                      onClick={() => {
-                        rollAction('Instinct', 'Prowl');
+                      onClick={(e) => {
+                        if (e.shiftKey) {
+                          rollAction('Instinct', 'Prowl');
+                        } else {
+                          setRollLeft('Instinct-Prowl');
+                        }
                       }}
                     >
                       <TypographyH4 className="group-hover:font-extrabold">
@@ -881,6 +1047,65 @@ export function Charsheet() {
                     />
                   </div>
                   <div className="flex flex-col">
+                    {selectedBackground?.attributes.Instinct.map((a, i) => (
+                      <>
+                        <div
+                          key={`ai-${i}`}
+                          className="h-10 hover:cursor-pointer group"
+                          onClick={(e) => {
+                            if (e.shiftKey) {
+                              rollAction('Instinct', a);
+                            } else {
+                              setRollRight(`Instinct-${a}`);
+                            }
+                          }}
+                        >
+                          <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:font-extrabold">
+                            {a}
+                          </TypographyH4>
+                        </div>
+                        <Separator />
+                      </>
+                    ))}
+                    {selectedTroublemaker?.attributes.Instinct.map((a, i) => (
+                      <>
+                        <div
+                          key={`ai-${i}`}
+                          className="h-10 hover:cursor-pointer group"
+                          onClick={(e) => {
+                            if (e.shiftKey) {
+                              rollAction('Instinct', a);
+                            } else {
+                              setRollRight(`Instinct-${a}`);
+                            }
+                          }}
+                        >
+                          <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:font-extrabold">
+                            {a}
+                          </TypographyH4>
+                        </div>
+                        <Separator />
+                      </>
+                    ))}
+                    {selectedArchetype?.attributes.Instinct.map((a, i) => (
+                      <div
+                        key={`ai-${i}`}
+                        className="h-10 hover:cursor-pointer group"
+                        onClick={(e) => {
+                          if (e.shiftKey) {
+                            rollAction('Instinct', a);
+                          } else {
+                            setRollRight(`Instinct-${a}`);
+                          }
+                        }}
+                      >
+                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:font-extrabold">
+                          {a}
+                        </TypographyH4>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex flex-col">
                     {selectedBackground?.attributes.Instinct.map((k) => (
                       <>
                         <ActionScore
@@ -889,7 +1114,7 @@ export function Charsheet() {
                           onChange={(s) => {
                             handleUpdateActionScore('Instinct', k, s);
                           }}
-                          className="h-10 ml-2"
+                          className="h-10 justify-end"
                         />
                         <Separator />
                       </>
@@ -902,7 +1127,7 @@ export function Charsheet() {
                           onChange={(s) => {
                             handleUpdateActionScore('Instinct', k, s);
                           }}
-                          className="h-10 ml-2"
+                          className="h-10 justify-end"
                         />
                         <Separator />
                       </>
@@ -914,55 +1139,8 @@ export function Charsheet() {
                         onChange={(s) => {
                           handleUpdateActionScore('Instinct', k, s);
                         }}
-                        className="h-10 ml-2"
+                        className="h-10 justify-end"
                       />
-                    ))}
-                  </div>
-                  <div className="flex flex-col">
-                    {selectedBackground?.attributes.Instinct.map((a, i) => (
-                      <>
-                        <div
-                          key={`ai-${i}`}
-                          className="h-10 hover:cursor-pointer group"
-                          onClick={() => {
-                            rollAction('Instinct', a);
-                          }}
-                        >
-                          <TypographyH4 className="h-10 flex items-center justify-end underline decoration-red-500 group-hover:font-extrabold">
-                            {a}
-                          </TypographyH4>
-                        </div>
-                        <Separator />
-                      </>
-                    ))}
-                    {selectedTroublemaker?.attributes.Instinct.map((a, i) => (
-                      <>
-                        <div
-                          key={`ai-${i}`}
-                          className="h-10 hover:cursor-pointer group"
-                          onClick={() => {
-                            rollAction('Instinct', a);
-                          }}
-                        >
-                          <TypographyH4 className="h-10 flex items-center justify-end underline decoration-indigo-500 group-hover:font-extrabold">
-                            {a}
-                          </TypographyH4>
-                        </div>
-                        <Separator />
-                      </>
-                    ))}
-                    {selectedArchetype?.attributes.Instinct.map((a, i) => (
-                      <div
-                        key={`ai-${i}`}
-                        className="h-10 hover:cursor-pointer group"
-                        onClick={() => {
-                          rollAction('Instinct', a);
-                        }}
-                      >
-                        <TypographyH4 className="h-10 flex items-center justify-end underline decoration-amber-700 group-hover:font-extrabold">
-                          {a}
-                        </TypographyH4>
-                      </div>
                     ))}
                   </div>
                 </div>
@@ -991,8 +1169,12 @@ export function Charsheet() {
                   <div className="flex flex-col">
                     <div
                       className="h-10 flex items-center hover:cursor-pointer group"
-                      onClick={() => {
-                        rollAction('Machina', 'Suggest');
+                      onClick={(e) => {
+                        if (e.shiftKey) {
+                          rollAction('Machina', 'Suggest');
+                        } else {
+                          setRollLeft('Machina-Suggest');
+                        }
                       }}
                     >
                       <TypographyH4 className="group-hover:font-extrabold">
@@ -1002,8 +1184,12 @@ export function Charsheet() {
                     <Separator />
                     <div
                       className="h-10 flex items-center hover:cursor-pointer group"
-                      onClick={() => {
-                        rollAction('Machina', 'Survey');
+                      onClick={(e) => {
+                        if (e.shiftKey) {
+                          rollAction('Machina', 'Survey');
+                        } else {
+                          setRollLeft('Machina-Survey');
+                        }
                       }}
                     >
                       <TypographyH4 className="group-hover:font-extrabold">
@@ -1029,6 +1215,65 @@ export function Charsheet() {
                     />
                   </div>
                   <div className="flex flex-col">
+                    {selectedBackground?.attributes.Machina.map((a, i) => (
+                      <>
+                        <div
+                          key={`am-${i}`}
+                          className="h-10 hover:cursor-pointer group"
+                          onClick={(e) => {
+                            if (e.shiftKey) {
+                              rollAction('Machina', a);
+                            } else {
+                              setRollRight(`Machina-${a}`);
+                            }
+                          }}
+                        >
+                          <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:font-extrabold">
+                            {a}
+                          </TypographyH4>
+                        </div>
+                        <Separator />
+                      </>
+                    ))}
+                    {selectedTroublemaker?.attributes.Machina.map((a, i) => (
+                      <>
+                        <div
+                          key={`am-${i}`}
+                          className="h-10 hover:cursor-pointer group"
+                          onClick={(e) => {
+                            if (e.shiftKey) {
+                              rollAction('Machina', a);
+                            } else {
+                              setRollRight(`Machina-${a}`);
+                            }
+                          }}
+                        >
+                          <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:font-extrabold">
+                            {a}
+                          </TypographyH4>
+                        </div>
+                        <Separator />
+                      </>
+                    ))}
+                    {selectedArchetype?.attributes.Machina.map((a, i) => (
+                      <div
+                        key={`am-${i}`}
+                        className="h-10 hover:cursor-pointer group"
+                        onClick={(e) => {
+                          if (e.shiftKey) {
+                            rollAction('Machina', a);
+                          } else {
+                            setRollRight(`Machina-${a}`);
+                          }
+                        }}
+                      >
+                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:font-extrabold">
+                          {a}
+                        </TypographyH4>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex flex-col">
                     {selectedBackground?.attributes.Machina.map((k) => (
                       <>
                         <ActionScore
@@ -1037,7 +1282,7 @@ export function Charsheet() {
                           onChange={(s) => {
                             handleUpdateActionScore('Machina', k, s);
                           }}
-                          className="h-10 ml-2"
+                          className="h-10 justify-end"
                         />
                         <Separator />
                       </>
@@ -1050,7 +1295,7 @@ export function Charsheet() {
                           onChange={(s) => {
                             handleUpdateActionScore('Machina', k, s);
                           }}
-                          className="h-10 ml-2"
+                          className="h-10 justify-end"
                         />
                         <Separator />
                       </>
@@ -1062,67 +1307,157 @@ export function Charsheet() {
                         onChange={(s) => {
                           handleUpdateActionScore('Machina', k, s);
                         }}
-                        className="h-10 ml-2"
+                        className="h-10 justify-end"
                       />
                     ))}
                   </div>
-                  <div className="flex flex-col">
-                    {selectedBackground?.attributes.Machina.map((a, i) => (
-                      <>
-                        <div
-                          key={`am-${i}`}
-                          className="h-10 hover:cursor-pointer group"
-                          onClick={() => {
-                            rollAction('Machina', a);
-                          }}
-                        >
-                          <TypographyH4 className="h-10 flex items-center justify-end underline decoration-red-500 group-hover:font-extrabold">
-                            {a}
-                          </TypographyH4>
-                        </div>
-                        <Separator />
-                      </>
-                    ))}
-                    {selectedTroublemaker?.attributes.Machina.map((a, i) => (
-                      <>
-                        <div
-                          key={`am-${i}`}
-                          className="h-10 hover:cursor-pointer group"
-                          onClick={() => {
-                            rollAction('Machina', a);
-                          }}
-                        >
-                          <TypographyH4 className="h-10 flex items-center justify-end underline decoration-indigo-500 group-hover:font-extrabold">
-                            {a}
-                          </TypographyH4>
-                        </div>
-                        <Separator />
-                      </>
-                    ))}
-                    {selectedArchetype?.attributes.Machina.map((a, i) => (
-                      <div
-                        key={`am-${i}`}
-                        className="h-10 hover:cursor-pointer group"
-                        onClick={() => {
-                          rollAction('Machina', a);
-                        }}
-                      >
-                        <TypographyH4 className="h-10 flex items-center justify-end underline decoration-amber-700 group-hover:font-extrabold">
-                          {a}
-                        </TypographyH4>
-                      </div>
-                    ))}
-                  </div>
                 </div>
+                <Card className="mt-4 p-4 flex flex-col gap-4">
+                  <div className="flex gap-4">
+                    <Select
+                      value={rollLeft}
+                      onValueChange={(value) => {
+                        setRollLeft(value);
+                      }}
+                    >
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Heart-Defy">Defy</SelectItem>
+                        <SelectItem value="Heart-Persuade">Persuade</SelectItem>
+                        <SelectItem value="Instinct-Charge">Charge</SelectItem>
+                        <SelectItem value="Instinct-Prowl">Prowl</SelectItem>
+                        <SelectItem value="Machina-Suggest">Suggest</SelectItem>
+                        <SelectItem value="Machina-Survey">Survey</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <Button
+                      onClick={() => {
+                        if (!rollLeft && !rollRight) return;
+                        if (!rollLeft) {
+                          const [attribute, action] = rollRight.split('-') as [
+                            'Heart' | 'Instinct' | 'Machina',
+                            string
+                          ];
+                          rollAction(attribute, action);
+                        } else if (!rollRight) {
+                          const [attribute, action] = rollLeft.split('-') as [
+                            'Heart' | 'Instinct' | 'Machina',
+                            string
+                          ];
+                          rollAction(attribute, action);
+                        }
+                        const [attributeLeft, actionLeft] = rollLeft.split(
+                          '-'
+                        ) as ['Heart' | 'Instinct' | 'Machina', string];
+                        const [attributeRight, actionRight] = rollRight.split(
+                          '-'
+                        ) as ['Heart' | 'Instinct' | 'Machina', string];
+                        rollCombo(
+                          attributeLeft,
+                          actionLeft,
+                          attributeRight,
+                          actionRight
+                        );
+                      }}
+                    >
+                      Roll
+                    </Button>
+                    <Select
+                      value={rollRight}
+                      onValueChange={(value) => {
+                        setRollRight(value);
+                      }}
+                    >
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {selectedBackground?.attributes.Heart.map((a, i) => (
+                          <SelectItem key={i} value={`Heart-${a}`}>
+                            {a}
+                          </SelectItem>
+                        ))}
+                        {selectedTroublemaker?.attributes.Heart.map((a, i) => (
+                          <SelectItem key={i} value={`Heart-${a}`}>
+                            {a}
+                          </SelectItem>
+                        ))}
+                        {selectedArchetype?.attributes.Heart.map((a, i) => (
+                          <SelectItem key={i} value={`Heart-${a}`}>
+                            {a}
+                          </SelectItem>
+                        ))}
+                        {selectedBackground?.attributes.Instinct.map((a, i) => (
+                          <SelectItem key={i} value={`Instinct-${a}`}>
+                            {a}
+                          </SelectItem>
+                        ))}
+                        {selectedTroublemaker?.attributes.Instinct.map(
+                          (a, i) => (
+                            <SelectItem key={i} value={`Instinct-${a}`}>
+                              {a}
+                            </SelectItem>
+                          )
+                        )}
+                        {selectedArchetype?.attributes.Instinct.map((a, i) => (
+                          <SelectItem key={i} value={`Instinct-${a}`}>
+                            {a}
+                          </SelectItem>
+                        ))}
+                        {selectedBackground?.attributes.Machina.map((a, i) => (
+                          <SelectItem key={i} value={`Machina-${a}`}>
+                            {a}
+                          </SelectItem>
+                        ))}
+                        {selectedTroublemaker?.attributes.Machina.map(
+                          (a, i) => (
+                            <SelectItem key={i} value={`Machina-${a}`}>
+                              {a}
+                            </SelectItem>
+                          )
+                        )}
+                        {selectedArchetype?.attributes.Machina.map((a, i) => (
+                          <SelectItem key={i} value={`Machina-${a}`}>
+                            {a}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="flex gap-4">
+                    <Select>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Position" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="controlled">Controlled</SelectItem>
+                        <SelectItem value="risky">Risky</SelectItem>
+                        <SelectItem value="desperate">Desperate</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <Select>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Effect" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="great">Great</SelectItem>
+                        <SelectItem value="standard">Standard</SelectItem>
+                        <SelectItem value="limited">Limited</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </Card>
               </div>
             </div>
           </div>
         </TabsContent>
         <TabsContent value="churn" className="w-full">
           <div className="my-3">
-            <TypographyH2>Substenance</TypographyH2>
+            <TypographyH2>Subsistence</TypographyH2>
             <TypographyH2 className="mt-4">Agendas</TypographyH2>
-            <TypographyH2 className="mt-4">Downtime</TypographyH2>
+            <TypographyH2 className="mt-4">The Churn</TypographyH2>
           </div>
         </TabsContent>
       </Tabs>

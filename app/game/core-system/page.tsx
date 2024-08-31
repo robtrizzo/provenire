@@ -19,8 +19,8 @@ import {
 export default function Page() {
   return (
     <>
-      <TypographyH1>Basic Rules</TypographyH1>
-      <TypographyP>
+      <TypographyH1>Core System</TypographyH1>
+      {/* <TypographyP>
         <Donum>Provenire&apos;s</Donum> basic system is based heavily on{' '}
         <strong>Masks</strong>. If you&apos;re familiar with{' '}
         <strong>Masks</strong> or other{' '}
@@ -101,7 +101,7 @@ export default function Page() {
         a proper meal. <Hunger /> can&apos;t be spent like blood can, as it
         becomes higher, your character come closer to starvation. More details
         on <Hunger /> can be found in the{' '}
-        <Link href="/game/downtime">Downtime</Link> rules.
+        <Link href="/game/the-churn">The Churn</Link> rules.
       </TypographyP>
       <TypographyH2>Terms</TypographyH2>
       <TypographyP>
@@ -167,16 +167,16 @@ export default function Page() {
         Being <strong>taken out of the action</strong> means your character is
         incapacitated, runs away, or is otherwise unable to act: your choice.
       </TypographyP>
-      <Separator />
+      <Separator /> */}
       <div className="w-full flex justify-between">
         <Link href="/game">
           <Button variant="outline">
             <ChevronLeft /> Introduction
           </Button>
         </Link>
-        <Link href="/game/basic-moves">
+        <Link href="/game/actions-and-attributes">
           <Button variant="outline">
-            Basic Moves <ChevronRight />
+            Actions & Attributes <ChevronRight />
           </Button>
         </Link>
       </div>

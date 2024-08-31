@@ -2291,9 +2291,9 @@ export default function Page() {
       </div>
       <Separator />
       <div className="w-full flex">
-        <Link href="/game/downtime" className="mr-auto">
+        <Link href="/game/the-churn" className="mr-auto">
           <Button variant="outline">
-            <ChevronLeft /> Downtime
+            <ChevronLeft /> The Churn
           </Button>
         </Link>
       </div>

@@ -6,6 +6,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import AuthButton from '@/components/ui/AuthButton.client';
 import { ModeToggle } from '@/components/ui/mode-toggle';
 import { usePathname } from 'next/navigation';
+import { Separator } from '@/components/ui/separator';
 
 export function Sidebar({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -29,34 +30,54 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                 Introduction
               </Link>
               <Link
-                href="/game/basic-rules"
+                href="/game/core-system"
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
-                  pathname === '/game/basic-rules'
+                  pathname === '/game/core-system'
                     ? 'bg-muted'
                     : 'text-muted-foreground'
                 }  transition-all hover:text-primary`}
               >
-                Basic Rules
+                Core System
               </Link>
               <Link
-                href="/game/basic-moves"
+                href="/game/actions-and-attributes"
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
-                  pathname === '/game/basic-moves'
+                  pathname === '/game/actions-and-attributes'
                     ? 'bg-muted'
                     : 'text-muted-foreground'
                 } transition-all hover:text-primary`}
               >
-                Basic Moves
+                Actions & Attributes
               </Link>
               <Link
-                href="/game/downtime"
+                href="/game/the-churn"
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
-                  pathname === '/game/downtime'
+                  pathname === '/game/the-churn'
                     ? 'bg-muted'
                     : 'text-muted-foreground'
                 }  transition-all hover:text-primary`}
               >
-                Downtime
+                The Churn
+              </Link>
+              <Link
+                href="/game/backgrounds"
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                  pathname === '/game/playbooks'
+                    ? 'bg-muted'
+                    : 'text-muted-foreground'
+                } transition-all hover:text-primary`}
+              >
+                Backgrounds
+              </Link>
+              <Link
+                href="/game/troublemakers"
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                  pathname === '/game/playbooks'
+                    ? 'bg-muted'
+                    : 'text-muted-foreground'
+                } transition-all hover:text-primary`}
+              >
+                Troublemakers
               </Link>
               <Link
                 href="/game/playbooks"
@@ -68,6 +89,17 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
               >
                 Playbooks
               </Link>
+              <Link
+                href="/game/fitd-char-sheet"
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                  pathname === '/game/fitd-char-sheet'
+                    ? 'bg-muted'
+                    : 'text-muted-foreground'
+                } transition-all hover:text-primary`}
+              >
+                Character Sheet
+              </Link>
+              <Separator />
               <Link
                 href="/game/osg"
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
@@ -88,16 +120,6 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
               >
                 Blog
               </Link>
-              <Link
-                href="/game/fitd-char-sheet"
-                className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
-                  pathname === '/game/fitd-char-sheet'
-                    ? 'bg-muted'
-                    : 'text-muted-foreground'
-                } transition-all hover:text-primary`}
-              >
-                Character Sheet
-              </Link>
             </nav>
           </div>
         </div>
@@ -116,7 +138,7 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="flex flex-col">
-              <nav className="grid gap-2 text-lg font-medium mt-6">
+              <nav className="flex flex-col gap-2 text-lg font-medium mt-6">
                 <Link
                   href="/"
                   className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
@@ -134,34 +156,54 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                   Introduction
                 </Link>
                 <Link
-                  href="/game/basic-rules"
+                  href="/game/core-system"
                   className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
-                    pathname === '/game/basic-rules'
+                    pathname === '/game/core-system'
                       ? 'bg-muted'
                       : 'text-muted-foreground'
                   } transition-all hover:text-primary`}
                 >
-                  Basic Rules
+                  Core System
                 </Link>
                 <Link
-                  href="/game/basic-moves"
+                  href="/game/actions-and-attributes"
                   className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
-                    pathname === '/game/basic-moves'
+                    pathname === '/game/actions-and-attributes'
                       ? 'bg-muted'
                       : 'text-muted-foreground'
                   } transition-all hover:text-primary`}
                 >
-                  Basic Moves
+                  Actions & Attributes
                 </Link>
                 <Link
-                  href="/game/downtime"
+                  href="/game/the-churn"
                   className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
-                    pathname === '/game/downtime'
+                    pathname === '/game/the-churn'
                       ? 'bg-muted'
                       : 'text-muted-foreground'
                   }  transition-all hover:text-primary`}
                 >
-                  Downtime
+                  The Churn
+                </Link>
+                <Link
+                  href="/game/backgrounds"
+                  className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                    pathname === '/game/playbooks'
+                      ? 'bg-muted'
+                      : 'text-muted-foreground'
+                  }  transition-all hover:text-primary`}
+                >
+                  Backgrounds
+                </Link>
+                <Link
+                  href="/game/troublemakers"
+                  className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                    pathname === '/game/playbooks'
+                      ? 'bg-muted'
+                      : 'text-muted-foreground'
+                  }  transition-all hover:text-primary`}
+                >
+                  Troublemakers
                 </Link>
                 <Link
                   href="/game/playbooks"
@@ -173,6 +215,17 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                 >
                   Playbooks
                 </Link>
+                <Link
+                  href="/game/fitd-char-sheet"
+                  className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                    pathname === '/game/fitd-char-sheet'
+                      ? 'bg-muted'
+                      : 'text-muted-foreground'
+                  } transition-all hover:text-primary`}
+                >
+                  Character Sheet
+                </Link>
+                <Separator />
                 <Link
                   href="/game/osg"
                   className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
@@ -192,16 +245,6 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                   } transition-all hover:text-primary`}
                 >
                   Blog
-                </Link>
-                <Link
-                  href="/game/fitd-char-sheet"
-                  className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
-                    pathname === '/game/fitd-char-sheet'
-                      ? 'bg-muted'
-                      : 'text-muted-foreground'
-                  } transition-all hover:text-primary`}
-                >
-                  Character Sheet
                 </Link>
               </nav>
             </SheetContent>
