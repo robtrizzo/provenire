@@ -20,16 +20,19 @@ import {
   TypographyH2,
   TypographyH3,
   TypographyH4,
+  TypographyP,
 } from '@/components/ui/typography';
 import heritages from '@/public/heritages.json';
 import backgrounds from '@/public/backgrounds.json';
 import archetypes from '@/public/archetypes.json';
-import troublemakers from '@/public/troublemakers.json';
+import skillsets from '@/public/skillsets.json';
+import universal_actions from '@/public/universal_actions.json';
 import {
   type Archetype,
-  type Troublemaker,
+  type Skillset,
   type Background,
   type Heritage,
+  type Action,
   CharacterAttributes,
 } from '@/types/game';
 import { Button } from '@/components/ui/button';
@@ -40,23 +43,20 @@ import { Die } from '@/components/ui/die';
 import { cn } from '@/lib/utils';
 import { VenetianMask, Flame, Activity } from 'lucide-react';
 import ActionDescription from '@/components/ui/action-description';
-import { Card, CardContent, CardTitle } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 
 export function Charsheet() {
   const [selectedArchetype, setSelectedArchetype] = useState<Archetype>();
-  const [selectedTroublemaker, setSelectedTroublemaker] =
-    useState<Troublemaker>();
+  const [selectedSkillset, setSelectedSkillset] = useState<Skillset>();
   const [selectedBackground, setSelectedBackground] = useState<Background>();
   const [selectedHeritage, setSelectedHeritage] = useState<Heritage>();
 
   const [heritageSelectKey, setHeritageSelectKey] = useState(+new Date());
   const [archetypeSelectKey, setArchetypeSelectKey] = useState(+new Date());
   const [backgroundSelectKey, setBackgroundSelectKey] = useState(+new Date());
-  const [troublemakerSelectKey, setTroublemakerSelectKey] = useState(
-    +new Date()
-  );
+  const [skillsetSelectKey, setSkillsetSelectKey] = useState(+new Date());
 
-  const [troublemakerXp, setTroublemakerXp] = useState(0);
+  const [skillsetXp, setSkillsetXp] = useState(0);
   const [heartXp, setHeartXp] = useState(0);
   const [instinctXp, setInstinctXp] = useState(0);
   const [machinaXp, setMachinaXp] = useState(0);
@@ -80,10 +80,10 @@ export function Charsheet() {
     if (data) {
       const parsed = JSON.parse(data);
       setSelectedArchetype(parsed.selectedArchetype);
-      setSelectedTroublemaker(parsed.selectedTroublemaker);
+      setSelectedSkillset(parsed.selectedSkillset);
       setSelectedBackground(parsed.selectedBackground);
       setSelectedHeritage(parsed.selectedHeritage);
-      setTroublemakerXp(parsed.troublemakerXp || 0);
+      setSkillsetXp(parsed.skillsetXp || 0);
       setHeartXp(parsed.heartXp || 0);
       setInstinctXp(parsed.instinctXp || 0);
       setMachinaXp(parsed.machinaXp || 0);
@@ -100,10 +100,10 @@ export function Charsheet() {
         // save to local storage
         const data = {
           selectedArchetype,
-          selectedTroublemaker,
+          selectedSkillset,
           selectedBackground,
           selectedHeritage,
-          troublemakerXp,
+          skillsetXp,
           heartXp,
           instinctXp,
           machinaXp,
@@ -379,7 +379,7 @@ export function Charsheet() {
     const attr = attributes[attribute];
     const ekeys = attributeExplicitKeys[attribute];
     const bkeys = selectedBackground?.attributes?.[attribute] ?? [];
-    const tkeys = selectedTroublemaker?.attributes?.[attribute] ?? [];
+    const tkeys = selectedSkillset?.attributes?.[attribute] ?? [];
     const akeys = selectedArchetype?.attributes?.[attribute] ?? [];
     const keys = [...ekeys, ...bkeys, ...tkeys, ...akeys];
     const scores = keys.map((k) => attr[k]).filter((s) => s);
@@ -568,27 +568,27 @@ export function Charsheet() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 w-full my-1">
         <div>
           <Select
-            key={troublemakerSelectKey}
-            value={selectedTroublemaker?.name}
+            key={skillsetSelectKey}
+            value={selectedSkillset?.name}
             onValueChange={(value) => {
-              const foundTroublemaker = troublemakers.find(
-                (t) => t.name === value
-              ) as Troublemaker | undefined;
-              if (foundTroublemaker) {
-                setSelectedTroublemaker(foundTroublemaker);
+              const foundSkillset = skillsets.find((t) => t.name === value) as
+                | Skillset
+                | undefined;
+              if (foundSkillset) {
+                setSelectedSkillset(foundSkillset);
                 setChanges(true);
               }
             }}
           >
             <SelectTrigger className="font-bold text-indigo-500">
-              <SelectValue placeholder="Select a troublemaker" />
+              <SelectValue placeholder="Select a skillset" />
             </SelectTrigger>
             <SelectContent>
-              {troublemakers.map((troublemaker) => (
-                <SelectItem key={troublemaker.name} value={troublemaker.name}>
-                  {troublemaker.name}
+              {skillsets.map((skillset) => (
+                <SelectItem key={skillset.name} value={skillset.name}>
+                  {skillset.name}
                   <span className="text-muted-foreground ml-4">
-                    {troublemaker.shortDescription}
+                    {skillset.shortDescription}
                   </span>
                 </SelectItem>
               ))}
@@ -599,9 +599,9 @@ export function Charsheet() {
                 className="w-full px-2"
                 onClick={(e) => {
                   e.stopPropagation();
-                  setSelectedTroublemaker(undefined);
+                  setSelectedSkillset(undefined);
                   setChanges(true);
-                  setTroublemakerSelectKey(+new Date());
+                  setSkillsetSelectKey(+new Date());
                 }}
               >
                 Clear
@@ -715,7 +715,7 @@ export function Charsheet() {
           </div>
           <Separator className="my-3"></Separator>
           <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-2">
-            {selectedTroublemaker?.questions?.map((q, i) => (
+            {selectedSkillset?.questions?.map((q, i) => (
               <div key={`q-${i}`} className="w-full gap-1.5 my-2">
                 <Label htmlFor={`q-${i}`} className="text-indigo-500 ">
                   {q}
@@ -739,8 +739,14 @@ export function Charsheet() {
         <TabsContent value="mission" className="w-full">
           <div className="my-3 grid grid-cols-1 md:grid-cols-2 gap-2 select-none focus-visible:outline-none">
             <div className="mt-4">
+              <TypographyH3>Universal Actions</TypographyH3>
+              <div className="ml-2">
+                {universal_actions.map((action, i) => (
+                  <ActionDescription key={i} action={action as Action} />
+                ))}
+              </div>
               {selectedBackground && (
-                <div>
+                <div className="mt-4">
                   <TypographyH2 className="text-red-500">
                     {selectedBackground?.name}
                     <span className="text-muted-foreground text-lg ml-8">
@@ -757,18 +763,18 @@ export function Charsheet() {
                   </div>
                 </div>
               )}
-              {selectedTroublemaker && (
+              {selectedSkillset && (
                 <div className="mt-4">
                   <TypographyH2 className="text-indigo-500">
-                    {selectedTroublemaker?.name}
+                    {selectedSkillset?.name}
                     <span className="text-muted-foreground text-lg ml-8">
-                      {selectedTroublemaker?.shortDescription}
+                      {selectedSkillset?.shortDescription}
                     </span>
                   </TypographyH2>
                   <div className="mt-4">
                     <TypographyH3>Actions</TypographyH3>
                     <div className="ml-2">
-                      {selectedTroublemaker?.actions?.map((action, i) => (
+                      {selectedSkillset?.actions?.map((action, i) => (
                         <ActionDescription key={i} action={action} />
                       ))}
                     </div>
@@ -798,12 +804,12 @@ export function Charsheet() {
               <div className="flex-grow"></div>
               <div>
                 <div className="flex gap-4">
-                  <TypographyH3>Troublemaker</TypographyH3>
+                  <TypographyH3>Skillset</TypographyH3>
                   <BuildupCheckboxes
                     max={8}
-                    current={troublemakerXp}
+                    current={skillsetXp}
                     onChange={(n) => {
-                      setTroublemakerXp(n);
+                      setSkillsetXp(n);
                       setChanges(true);
                     }}
                   />
@@ -815,7 +821,7 @@ export function Charsheet() {
                       rollAttribute('Heart');
                     }}
                   >
-                    <TypographyH3 className="group-hover:font-extrabold">
+                    <TypographyH3 className="group-hover:underline">
                       Heart <Flame className="inline mb-2" />
                     </TypographyH3>
                   </div>
@@ -841,7 +847,7 @@ export function Charsheet() {
                         }
                       }}
                     >
-                      <TypographyH4 className="group-hover:font-extrabold">
+                      <TypographyH4 className="group-hover:underline">
                         Defy
                       </TypographyH4>
                     </div>
@@ -856,7 +862,7 @@ export function Charsheet() {
                         }
                       }}
                     >
-                      <TypographyH4 className="group-hover:font-extrabold">
+                      <TypographyH4 className="group-hover:underline">
                         Persuade
                       </TypographyH4>
                     </div>
@@ -892,14 +898,14 @@ export function Charsheet() {
                             }
                           }}
                         >
-                          <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:font-extrabold">
+                          <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
                             {a}
                           </TypographyH4>
                         </div>
                         <Separator />
                       </>
                     ))}
-                    {selectedTroublemaker?.attributes.Heart.map((a, i) => (
+                    {selectedSkillset?.attributes.Heart.map((a, i) => (
                       <>
                         <div
                           key={`ah-${i}`}
@@ -912,7 +918,7 @@ export function Charsheet() {
                             }
                           }}
                         >
-                          <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:font-extrabold">
+                          <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
                             {a}
                           </TypographyH4>
                         </div>
@@ -931,7 +937,7 @@ export function Charsheet() {
                           }
                         }}
                       >
-                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:font-extrabold">
+                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
                           {a}
                         </TypographyH4>
                       </div>
@@ -951,7 +957,7 @@ export function Charsheet() {
                         <Separator />
                       </>
                     ))}
-                    {selectedTroublemaker?.attributes.Heart.map((k) => (
+                    {selectedSkillset?.attributes.Heart.map((k) => (
                       <>
                         <ActionScore
                           key={`th-${k}`}
@@ -983,7 +989,7 @@ export function Charsheet() {
                       rollAttribute('Instinct');
                     }}
                   >
-                    <TypographyH3 className="group-hover:font-extrabold">
+                    <TypographyH3 className="group-hover:underline">
                       Instinct <Activity className="inline mb-2" />
                     </TypographyH3>
                   </div>
@@ -1009,7 +1015,7 @@ export function Charsheet() {
                         }
                       }}
                     >
-                      <TypographyH4 className="group-hover:font-extrabold">
+                      <TypographyH4 className="group-hover:underline">
                         Charge
                       </TypographyH4>
                     </div>
@@ -1024,7 +1030,7 @@ export function Charsheet() {
                         }
                       }}
                     >
-                      <TypographyH4 className="group-hover:font-extrabold">
+                      <TypographyH4 className="group-hover:underline">
                         Prowl
                       </TypographyH4>
                     </div>
@@ -1060,14 +1066,14 @@ export function Charsheet() {
                             }
                           }}
                         >
-                          <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:font-extrabold">
+                          <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
                             {a}
                           </TypographyH4>
                         </div>
                         <Separator />
                       </>
                     ))}
-                    {selectedTroublemaker?.attributes.Instinct.map((a, i) => (
+                    {selectedSkillset?.attributes.Instinct.map((a, i) => (
                       <>
                         <div
                           key={`ai-${i}`}
@@ -1080,7 +1086,7 @@ export function Charsheet() {
                             }
                           }}
                         >
-                          <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:font-extrabold">
+                          <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
                             {a}
                           </TypographyH4>
                         </div>
@@ -1099,7 +1105,7 @@ export function Charsheet() {
                           }
                         }}
                       >
-                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:font-extrabold">
+                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
                           {a}
                         </TypographyH4>
                       </div>
@@ -1119,7 +1125,7 @@ export function Charsheet() {
                         <Separator />
                       </>
                     ))}
-                    {selectedTroublemaker?.attributes.Instinct.map((k) => (
+                    {selectedSkillset?.attributes.Instinct.map((k) => (
                       <>
                         <ActionScore
                           key={`ti-${k}`}
@@ -1151,7 +1157,7 @@ export function Charsheet() {
                       rollAttribute('Machina');
                     }}
                   >
-                    <TypographyH3 className="group-hover:font-extrabold">
+                    <TypographyH3 className="group-hover:underline">
                       Machina <VenetianMask className="inline mb-1" />
                     </TypographyH3>
                   </div>
@@ -1177,7 +1183,7 @@ export function Charsheet() {
                         }
                       }}
                     >
-                      <TypographyH4 className="group-hover:font-extrabold">
+                      <TypographyH4 className="group-hover:underline">
                         Suggest
                       </TypographyH4>
                     </div>
@@ -1192,7 +1198,7 @@ export function Charsheet() {
                         }
                       }}
                     >
-                      <TypographyH4 className="group-hover:font-extrabold">
+                      <TypographyH4 className="group-hover:underline">
                         Survey
                       </TypographyH4>
                     </div>
@@ -1228,14 +1234,14 @@ export function Charsheet() {
                             }
                           }}
                         >
-                          <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:font-extrabold">
+                          <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
                             {a}
                           </TypographyH4>
                         </div>
                         <Separator />
                       </>
                     ))}
-                    {selectedTroublemaker?.attributes.Machina.map((a, i) => (
+                    {selectedSkillset?.attributes.Machina.map((a, i) => (
                       <>
                         <div
                           key={`am-${i}`}
@@ -1248,7 +1254,7 @@ export function Charsheet() {
                             }
                           }}
                         >
-                          <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:font-extrabold">
+                          <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
                             {a}
                           </TypographyH4>
                         </div>
@@ -1267,7 +1273,7 @@ export function Charsheet() {
                           }
                         }}
                       >
-                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:font-extrabold">
+                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
                           {a}
                         </TypographyH4>
                       </div>
@@ -1287,7 +1293,7 @@ export function Charsheet() {
                         <Separator />
                       </>
                     ))}
-                    {selectedTroublemaker?.attributes.Machina.map((k) => (
+                    {selectedSkillset?.attributes.Machina.map((k) => (
                       <>
                         <ActionScore
                           key={`tm-${k}`}
@@ -1313,6 +1319,9 @@ export function Charsheet() {
                   </div>
                 </div>
                 <Card className="mt-4 p-4 flex flex-col gap-4">
+                  <TypographyP className="text-muted-foreground text-xs">
+                    select two skills to roll or shift+click a skill to roll it
+                  </TypographyP>
                   <div className="flex gap-4">
                     <Select
                       value={rollLeft}
@@ -1360,6 +1369,8 @@ export function Charsheet() {
                           attributeRight,
                           actionRight
                         );
+                        setRollLeft('');
+                        setRollRight('');
                       }}
                     >
                       Roll
@@ -1379,7 +1390,7 @@ export function Charsheet() {
                             {a}
                           </SelectItem>
                         ))}
-                        {selectedTroublemaker?.attributes.Heart.map((a, i) => (
+                        {selectedSkillset?.attributes.Heart.map((a, i) => (
                           <SelectItem key={i} value={`Heart-${a}`}>
                             {a}
                           </SelectItem>
@@ -1394,13 +1405,11 @@ export function Charsheet() {
                             {a}
                           </SelectItem>
                         ))}
-                        {selectedTroublemaker?.attributes.Instinct.map(
-                          (a, i) => (
-                            <SelectItem key={i} value={`Instinct-${a}`}>
-                              {a}
-                            </SelectItem>
-                          )
-                        )}
+                        {selectedSkillset?.attributes.Instinct.map((a, i) => (
+                          <SelectItem key={i} value={`Instinct-${a}`}>
+                            {a}
+                          </SelectItem>
+                        ))}
                         {selectedArchetype?.attributes.Instinct.map((a, i) => (
                           <SelectItem key={i} value={`Instinct-${a}`}>
                             {a}
@@ -1411,13 +1420,11 @@ export function Charsheet() {
                             {a}
                           </SelectItem>
                         ))}
-                        {selectedTroublemaker?.attributes.Machina.map(
-                          (a, i) => (
-                            <SelectItem key={i} value={`Machina-${a}`}>
-                              {a}
-                            </SelectItem>
-                          )
-                        )}
+                        {selectedSkillset?.attributes.Machina.map((a, i) => (
+                          <SelectItem key={i} value={`Machina-${a}`}>
+                            {a}
+                          </SelectItem>
+                        ))}
                         {selectedArchetype?.attributes.Machina.map((a, i) => (
                           <SelectItem key={i} value={`Machina-${a}`}>
                             {a}

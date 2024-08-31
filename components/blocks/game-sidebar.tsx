@@ -70,14 +70,14 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                 Backgrounds
               </Link>
               <Link
-                href="/game/troublemakers"
+                href="/game/skillsets"
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
                   pathname === '/game/playbooks'
                     ? 'bg-muted'
                     : 'text-muted-foreground'
                 } transition-all hover:text-primary`}
               >
-                Troublemakers
+                Skillsets
               </Link>
               <Link
                 href="/game/playbooks"
@@ -196,14 +196,14 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                   Backgrounds
                 </Link>
                 <Link
-                  href="/game/troublemakers"
+                  href="/game/skillsets"
                   className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
                     pathname === '/game/playbooks'
                       ? 'bg-muted'
                       : 'text-muted-foreground'
                   }  transition-all hover:text-primary`}
                 >
-                  Troublemakers
+                  Skillsets
                 </Link>
                 <Link
                   href="/game/playbooks"

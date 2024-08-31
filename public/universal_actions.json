@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Defy",
+    "attribute": "Heart",
+    "description": "Push back or lash out against a higher power or authority."
+  },
+  {
+    "name": "Persuade",
+    "attribute": "Heart",
+    "description": "Convince someone to do something without misleading them."
+  },
+  {
+    "name": "Charge",
+    "attribute": "Instinct",
+    "description": "Rush into danger without a plan."
+  },
+  {
+    "name": "Prowl",
+    "attribute": "Instinct",
+    "description": "Skirt the edges of danger or lurk in the shadows."
+  },
+  {
+    "name": "Suggest",
+    "attribute": "Machina",
+    "description": "Plant an idea in someone's mind without them realizing it."
+  },
+  {
+    "name": "Survey",
+    "attribute": "Machina",
+    "description": "Watch vigilantly to notice details others might miss."
+  }
+]

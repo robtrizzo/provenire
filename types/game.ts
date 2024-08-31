@@ -30,7 +30,7 @@ export interface Action {
   description: string;
 }
 
-export type Troublemaker = {
+export type Skillset = {
   name: string;
   shortDescription: string;
   attributes: Attributes;
