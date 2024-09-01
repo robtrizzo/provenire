@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import FactoryMap from '@/components/ui/factory-map';
 import HierarchyTree from '@/components/ui/hierarchy-tree';
+import ScornTable from '@/components/ui/scorn-table';
 
 # Skillsets
 
@@ -137,11 +138,11 @@ Fumes then spend **Intel** to blackmail or plant informants in the overseers' ra
 <TypographyH2>
   <span className="text-indigo-500">Grease</span>
   <span className="text-muted-foreground text-lg ml-8">
-    A canny and resourceful blunderer
+    A canny and resourceful blusterer
   </span>
 </TypographyH2>
 
-In the midst of the Steel Trap's isolation, tightly knit communities and factions form: often for protection from their fellow workers. Even the overseers have their own factions that don't take kindly to one another. Greases move between these groups, making deals and alliances to keep the crew safe.
+In the midst of the Steel Trap's isolation, tightly knit communities and factions form: often for protection from their fellow workers. Even the overseers have their own factions that don't take kindly to one another. Greases move between these groups, making deals and alliances to advance the crew's goals.
 
 _You've made a deal with one of the overseers that went wrong. What did you have to give up to them?_
 
@@ -156,9 +157,26 @@ _A faction in your neighborhood still owes you a favor. Who are they and how did
 
 #### Special Abilities (WIP)
 
-### The Churn
+### Agendas
 
-During The Churn, Greases are making deals and promises to acquire **materials** and **goodwill** for the crew. These deals and promises are important to accomplish during Missions, or else the Grease is going to get put in a tough spot...
+During The Churn, Greases are making deals and promises to acquire **materials** and **goodwill** for the crew. These deals and promises are important to accomplish during Missions, or else the Grease is going to get put in a tough spot.
+
+**Factions** can be community leaders, worker clans, or overseer packs. Each **faction** has its own agenda and will be working to accomplish it with or without the crew's help. Each **faction** also has a scorn track. This will increase if the Grease fails to accomplish the task they promised to do. If the scorn track reaches 3, the Grease can no longer make deals with that faction.
+
+The Grease can only make deals with **factions** in regions of the factory that the crew has access to.
+
+Before the mission, the Grease chooses the faction they make a deal with. They gain the **faction's** payment up front in exchange for promising to accomplish a task related to the **faction's** agenda. If the crew doesn't accomplish the task, the **faction's** scorn track increases by 1 and the Grease rolls on the Scorn table during the Churn.
+
+#### Factions
+
+- **Scarbacks** (Fabrication) <span className='text-muted-foreground italic'>abuse-hardened workers</span>: Free comrades from the pits.
+- **Gorger's Sommeliers** (Fabrication) <span className='text-muted-foreground italic'>lackeys of a cannabalistic glutton</span>: Acquire the body of a beast, living or dead.
+- **Shrikes** (Fabrication+) <span className='text-muted-foreground italic'>aggressive crow-beast overseers</span>: Put a stop to the inventory discrepencies in Fabrication.
+- **Forlorn Children** (Fabrication) <span className='text-muted-foreground italic'>orphaned and abandoned</span>: Find the kids' missing parents.
+
+#### Scorn Table
+
+<ScornTable />
 
 <TypographyH2>
   <span className="text-indigo-500">Hammer</span>
