@@ -8,6 +8,7 @@ import {
   TypographyInlineCode,
   TypographyP,
   TypographyUnorderedList,
+  TypographyOrderedList,
 } from '@/components/ui/typography';
 import Link from 'next/link';
 
@@ -31,6 +32,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     ul: ({ children }) => (
       <TypographyUnorderedList>{children}</TypographyUnorderedList>
+    ),
+    ol: ({ children }) => (
+      <TypographyOrderedList>{children}</TypographyOrderedList>
     ),
     ...components,
   };

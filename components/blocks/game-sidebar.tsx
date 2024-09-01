@@ -62,7 +62,7 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
               <Link
                 href="/game/backgrounds"
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
-                  pathname === '/game/playbooks'
+                  pathname === '/game/backgrounds'
                     ? 'bg-muted'
                     : 'text-muted-foreground'
                 } transition-all hover:text-primary`}
@@ -72,7 +72,7 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
               <Link
                 href="/game/skillsets"
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
-                  pathname === '/game/playbooks'
+                  pathname === '/game/skillsets'
                     ? 'bg-muted'
                     : 'text-muted-foreground'
                 } transition-all hover:text-primary`}
@@ -188,7 +188,7 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                 <Link
                   href="/game/backgrounds"
                   className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
-                    pathname === '/game/playbooks'
+                    pathname === '/game/backgrounds'
                       ? 'bg-muted'
                       : 'text-muted-foreground'
                   }  transition-all hover:text-primary`}
@@ -198,7 +198,7 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                 <Link
                   href="/game/skillsets"
                   className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
-                    pathname === '/game/playbooks'
+                    pathname === '/game/skillsets'
                       ? 'bg-muted'
                       : 'text-muted-foreground'
                   }  transition-all hover:text-primary`}

@@ -114,3 +114,11 @@ export function TypographyUnorderedList({
 }) {
   return <ul className="mb-4 ml-6 list-disc [&>li]:mt-2">{children}</ul>;
 }
+
+export function TypographyOrderedList({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <ol className="mb-4 ml-6 list-decimal [&>li]:mt-2">{children}</ol>;
+}
