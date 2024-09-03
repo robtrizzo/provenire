@@ -80,14 +80,14 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                 Skillsets
               </Link>
               <Link
-                href="/game/playbooks"
+                href="/game/archetypes"
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
-                  pathname === '/game/playbooks'
+                  pathname === '/game/archetypes'
                     ? 'bg-muted'
                     : 'text-muted-foreground'
                 } transition-all hover:text-primary`}
               >
-                Playbooks
+                Archetypes
               </Link>
               <Link
                 href="/game/fitd-char-sheet"
@@ -206,14 +206,14 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                   Skillsets
                 </Link>
                 <Link
-                  href="/game/playbooks"
+                  href="/game/archetypes"
                   className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
-                    pathname === '/game/playbooks'
+                    pathname === '/game/archetypes'
                       ? 'bg-muted'
                       : 'text-muted-foreground'
                   }  transition-all hover:text-primary`}
                 >
-                  Playbooks
+                  Archetypes
                 </Link>
                 <Link
                   href="/game/fitd-char-sheet"
