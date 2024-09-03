@@ -254,7 +254,13 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
             <ModeToggle />
           </div>
         </header>
-        <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
+        <main className="relative flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
+          <p className="absolute top-2 right-2 text-sm text-muted-foreground">
+            Search with{' '}
+            <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
+              <span className="text-xs">⌘</span>K
+            </kbd>
+          </p>
           {children}
         </main>
       </div>
