@@ -1,6 +1,6 @@
 export default async function FactoryMap() {
   return (
-    <div className="border-[1px] border-border rounded-md p-6 flex items-center w-[900px] ">
+    <div className="border-[1px] border-border rounded-md p-6 flex items-center max-w-[900px]">
       <div className="flex flex-col items-center">
         <div className="h-36 w-36 bg-muted-foreground text-primary-foreground flex items-center justify-center">
           FOUNDRY
