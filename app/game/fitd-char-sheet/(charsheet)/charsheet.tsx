@@ -44,6 +44,8 @@ import { cn } from '@/lib/utils';
 import { VenetianMask, Flame, Activity } from 'lucide-react';
 import ActionDescription from '@/components/ui/action-description';
 import { Card } from '@/components/ui/card';
+import Clock from '@/components/ui/clock';
+import { Condition } from '@/components/ui/condition';
 
 export function Charsheet() {
   const [selectedArchetype, setSelectedArchetype] = useState<Archetype>();
@@ -739,7 +741,27 @@ export function Charsheet() {
         <TabsContent value="mission" className="w-full">
           <div className="my-3 grid grid-cols-1 md:grid-cols-2 gap-2 select-none focus-visible:outline-none">
             <div className="mt-4">
-              <TypographyH3>Universal Actions</TypographyH3>
+              <div>
+                <div className="flex gap-4">
+                  <TypographyH3>Stress</TypographyH3>
+                  <BuildupCheckboxes
+                    max={9}
+                    current={skillsetXp}
+                    onChange={(n) => {
+                      setSkillsetXp(n);
+                      setChanges(true);
+                    }}
+                  />
+                </div>
+                <div className="flex gap-4 flex-wrap">
+                  <Condition name="Insecure" active={false} />
+                  <Condition name="Afraid" active={false} />
+                  <Condition name="Angry" active={false} />
+                  <Condition name="Hopeless" active={false} />
+                  <Condition name="Guilty" active={false} />
+                </div>
+              </div>
+              <TypographyH3 className="mt-4">Universal Actions</TypographyH3>
               <div className="ml-2">
                 {universal_actions.map((action, i) => (
                   <ActionDescription key={i} action={action as Action} />
@@ -804,7 +826,7 @@ export function Charsheet() {
               <div className="flex-grow"></div>
               <div>
                 <div className="flex gap-4">
-                  <TypographyH3>Skillset</TypographyH3>
+                  <TypographyH3>Mission XP</TypographyH3>
                   <BuildupCheckboxes
                     max={8}
                     current={skillsetXp}
