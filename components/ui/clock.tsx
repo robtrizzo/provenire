@@ -8,10 +8,12 @@ export default function Clock({
   max,
   current = 0,
   size = 100,
+  setVal = () => {},
 }: {
   max: number;
   current?: number;
   size?: number;
+  setVal?: (n: number) => void;
 }) {
   const { theme } = useTheme();
   const [time, setTime] = useState<number>(current);
@@ -34,14 +36,21 @@ export default function Clock({
       onClick={() => {
         if (time >= max) return;
         setTime(time + 1);
+        setVal(time + 1);
       }}
       onContextMenu={(e) => {
         e.preventDefault();
         if (time <= 0) return;
         setTime(time - 1);
+        setVal(time - 1);
       }}
       config={chartConfig}
-      className={`mx-auto aspect-square max-h-[${size}px]`}
+      className="aspect-square mx-auto grow flex-shrink-0"
+      style={{
+        maxHeight: `${size}px`,
+        maxWidth: `${size}px`,
+        flexBasis: `${size}px`,
+      }} // Inline style for dynamic height
     >
       <PieChart width={size} height={size}>
         <Pie
