@@ -1,12 +1,305 @@
+import { TypographyH2 } from '@/components/ui/typography';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import {
+  VenetianMask,
+  Flame,
+  Activity,
   ChevronLeft,
   ChevronRight,
 } from 'lucide-react';
 
 # Archetypes
+
+Trouble. Defiance. Rebellion. Danger and thrill at the prospect of making the overseers hurt, even if just a little. Victory at the cost of... well that's the question, isn't it? Who is your character when they aren't fighting the system? How do they treat their friends? What's their relationship with their family? Do they fight for the betterment of the community, or have they lost sight of the bigger picture?
+
+Your character's Archetype is a reflection of their personality and the way they interact with friends, family, and the world around them. It grants unique character questions, actions, and abilities. The ability marked in gold is unlocked when you select the Archetype. Others can be taken as advancements.
+
+<TypographyH2 id="strategist">
+  <span className="text-amber-700">Strategist</span>
+  <span className="text-muted-foreground text-lg ml-8">
+    Intense, inquisitive, perceptive
+  </span>
+</TypographyH2>
+
+_Whose life have you saved in the Steel Trap because of your decisive action and split second ingenuity?_
+
+_Who would you love to date, to give your all, if only you could figure out a good way to ... whatever people do to start dating?_
+
+_Which one of the overseers gave you a brutal beating after your correct, but irreverent, nay, scathing contrarianism?_
+
+_Which one of the overseers do you have dirt on? How might they be exploited for your advantage?_
+
+_Whose romantic advances have you ruined with brutal honesty and tactless criticism?_
+
+### Mission
+
+<span className="inline-block text-amber-700 font-bold">The Chess Game of Life</span>: You have significant people in your life. It's important to you that you have the relationship you want with them. **Friends**: best friend, intellectual match, wise mentor, crush. **Foes**: overseer, abuser, rival, doubter. At the start of each mission, pick one friend or foe. **+1d** to any action that helps shift their view of you in the direction you want.
+
+**My Body is My Machine**: When someone tries to dominate, or intimidate the Strategist, **+1d** on the resistance roll.
+
+#### Action
+
+**Scheme <VenetianMask className="inline-block mb-1" />:** Make a complicated plan to do something rebellious or immoral.
+
+### Downtime
+
+**Villainous Intellect**: When scapegoating someone to **shift the blame**, the Strategist may explain their plans to the scapegoat as it's happening. If they do, spend **1 goodwill** and **mark 1 xp**.
+
+**Thirst for Knowledge**: Strategists may always **train** for free in a single attribute which they failed a roll in last mission. Once per misson, if they get a 6 on a roll with that attribute, they **mark 1 xp**.
+
+<TypographyH2 id="engineer">
+  <span className="text-amber-700">Engineer</span>
+  <span className="text-muted-foreground text-lg ml-8">
+    Cerebral, experimental, positive
+  </span>
+</TypographyH2>
+
+_Happy moments are rare in the Steel Trap; how did you use your creativity to bring joy to your friends?_
+
+_Who is a pleasant distraction from your thoughts? Why can't you work up the courage to ask them out?_
+
+_You reinvented the wheel behind the overseers' backs and it resulted in a close friend getting injured. Who?_
+
+_You've already figured out one of the new machines in the Steel trap. How could it be used to your advantage?_
+
+_Whose romantic advances have you ruined with your stubborn willful ignorance of feelings?_
+
+### Mission
+
+#### Special Abilities
+
+<span className="inline-block text-amber-700 font-bold">The Life of the Mind</span>: A cerebral sort often lost in day-dreams. Once per mission during a desperate situation, the Engineer may withdraw into their thoughts. If they do, they don't get to participate in solving or escaping the situation, but they may make a **[project roll](/game/the-churn#project-rolls)** on any project that the crew is working on, spending crew resources if appropriate. If this completes the project, describe the moment of genius that brings it all together and introduces the result into the scene.
+
+**Mysteries of the Universe**: When the Engineer gathers information about a structure or phenomenon, add the following to the list of questions they can ask:
+ - What is it made of?
+ - How could it be weakened or strengthened?
+ - How could it be used to my advantage?
+ - What is its purpose?
+
+#### Action
+
+**Tinker <VenetianMask className="inline-block mb-1" />:** Work to understand or improve a machine or device.
+
+### Downtime
+
+**Curious and Original**: Engineers may always advance a **long term project** for free each downtime. But to do so, they must come up with a completely new approach to the problem. This may involve starting a sub-project.
+
+**Open Minded**: When someone rejects your advice when you **comfort** them, or when you reject someone's advice when they comfort you, decide if there is sound reasoning behind the rejection. If there is, the character whose advice was rejected does not mark stress.
+
+<TypographyH2 id="commander">
+  <span className="text-amber-700">Commander</span>
+  <span className="text-muted-foreground text-lg ml-8">
+    Decisive, ruthless, disciplined
+  </span>
+</TypographyH2>
+
+_What's the name of your group of loyal lackeys?_
+
+_Who would you love to date, if only they took romance as seriously as you do?_
+
+_Which overseer publicly humiliated you after a spat about who gives orders to your gang?_
+
+_Who else knows about the secret network of informants you've set up throughout the Steel Trap?_
+
+_Whose romantic advances have you spurned because they weren't putting in as much to the relationship as you?_
+
+### Mission
+
+#### Special Abilities
+
+<span className="inline-block text-amber-700 font-bold">A Worthy Challenge</span>: When the crew makes a **group roll** the Commander can demand they take charge. Each team member votes yes or no. The Commander marks **1 stress** for each "no" vote. If "yes" is the majority, only "yes" votes may participate. The roll has increased effect, but each "yes" vote that rolls less than a 6 marks **1 stress**.
+
+**Strive for Greatness**: Direct one teammate to help another. If they do, they add an additional **1 red die**. If they refuse or if the roll is less than a 6, the helping teammate marks an additional **1 stress**.
+
+#### Action
+
+**Command <Flame className="inline-block mb-3" />:** Wield authority to get things done.
+
+### Downtime
+
+**Efficiency is King**: Commanders may always perform an extra downtime action to instruct a teammate how they could be more efficient. Give them advice and make a **[project roll](/game/the-churn#project-rolls)**. If they take the advice, they mark a number of segments on whatever project they're working on according to the result. If they reject the advice, you mark an amount of stress equal to the result.
+
+**Sacrificial Pawn**: When you **shift the blame**, you may order or bully someone close to the team to take the fall. If you do, spend **1 goodwill** and reduce Heat by an additional 2.
+
+<TypographyH2 id="visionary">
+  <span className="text-amber-700">Visionary</span>
+  <span className="text-muted-foreground text-lg ml-8">
+    Bold, rebellious, contrarian
+  </span>
+</TypographyH2>
+
+_Who have you inspired with your relentless wit and sharp eye for revolutionary rhetoric?_
+
+_Who would you love to date, if only you could find the right opportunity for your grand gesture of affection?_
+
+_Which one of the overseers withholds rations from you due to your terrible performance at tedious tasks?_
+
+_Which overseer have you so chronically debated that they become irritated with you on sight? What's the moment you think they realized you're right?_
+
+_Whose romantic advances have you ruined because they couldn't keep up with your constant need for growth and novelty?_
+
+### Mission
+
+#### Special Abilities
+
+<span className="inline-block text-amber-700 font-bold">Rapid Originality</span>: When the Visionary assists a teammate, that teammate doesn't add an extra die to their pool. Instead they may choose to reroll the result with different actions that the Visionary chooses.
+
+**Question Everything**: When the Visionary gathers information about conventional information or wisdom, they add the following to the list of questions they can ask:
+ - What's the critical flaw that makes this not apply to my current situation?
+ - If I do the opposite, what will the consequances be?
+ - What's the advantage to this that they didn't even realize?
+
+#### Action
+
+**Rhetoric <VenetianMask className="inline-block mb-1" />:** Persuade or manipulate others with the way your words make them feel.
+
+### Downtime
+
+**Contrarian Charisma**: When someone rejects your advice when you **comfort** them, or when you reject someone's advice when they comfort you, you may still benefit from half the result, rounded up. They mark half of the stress, rounded up.
+
+**Expert Brainstormer**: Visionaries get **+1d** to the first roll of a **long term project**. They take **-1d** to **long term projects** that are over halway done.
+
+<TypographyH2 id="visionary">
+  <span className="text-amber-700">Advocate</span>
+  <span className="text-muted-foreground text-lg ml-8">
+    Thoughtful, principled, altrustic
+  </span>
+</TypographyH2>
+
+_Whose life have you saved by stepping in and taking the punishment for them?_
+
+_Who do you have a deep romantic, or even spiritual connection with? What's stopping you from dating each other?_
+
+_Which one of the overseers forced you to carry out an especially violent beating, or else they would kill one of your loved ones?_
+
+_Your indominable dedication to your principles and peers has resulted in years of horrible beatings. How has this scarred you? Through this ordeal, you've turned the heart of an overseer. Who are they?_
+
+_Whose romantic advances have you spurned because they don't share your core values?_
+
+### Mission
+
+#### Special Abilities
+
+<span className="inline-block text-amber-700 font-bold">Seeking Purpose</span>: The Advocate is always seeking their purpose. Once they've found it, they strive to do it justice. At the start of the game, pick a purpose from: Protect _ from _ at all costs, Exact vengeance on _ for _, Overcome your personal failing to _, Form a deep connection with _. While in direct pursuit of your purpose, take **-1 stress** to push yourself or assist a teammate. If you betray your purpose, mark a **condition.** When you complete your purpose, mark **1 xp** and choose a new purpose.
+
+**A Personal Mission**: While encountering clear injustice during a mission that isn't the main objective AND pursuing justice would complicate the mission: appeal to your team to right the wrong. If you choose to ignore it, mark **2 stress**. If you pursue it and succeed, each participant marks **1 xp**.
+
+#### Action
+
+**Connect <VenetianMask className="inline-block mb-1" />:** Open up to someone so that they reciprocate.
+
+### Downtime
+
+**Connecting with Others**: Advocates gain increased effect when **comforting** others. Others take reduced effect when **comforting** the Advocate.
+
+**Principled Perfectionism**: Visionaries get an extra downtime activity if they have spent an action to help someone else. If they haven't, they take **-1d** to **relax**.
+
+<TypographyH2 id="idealist">
+  <span className="text-amber-700">Idealist</span>
+  <span className="text-muted-foreground text-lg ml-8">
+    Imaginative, empathetic, compassionate
+  </span>
+</TypographyH2>
+
+_Who is your best friend? Someone you've inspired with grand visions of the future and who you've always helped out of bad spots?_
+
+_Who would you love to date despite all of their superficial flaws? Why are they your soul-mate?_
+
+_Which one of the overseers threatens your best friend in order to get you to be an informant to Lawler?_
+
+_The overseers work to sow discord and conflict among the workers. You've mediated and mended hatred between two of your community's leaders. Who are they?_
+
+_Who broke your heart because dating them wasn't everything you'd imagined it would be?_
+
+### Mission
+
+#### Special Abilities
+
+<span className="inline-block text-amber-700 font-bold">In Search of a Calling</span>: The Idealist is connected with a sense of purpose to uplift others. They feel other people's suffering as if it was their own. At the start of the game, pick a community from: Children working the boiler's valves, Lungsick stokers, Smelter workers on the nightmare shift, Detainees hanging from crow's cages. While in direct pursuit of helping your community, take **-1 stress** to push yourself or assist a teammate. If you betray your community, mark a **condition.** When you complete your community's goal, mark **1 xp** and choose a new community.
+
+**Open Heart**: When an ally maxes out their stress bar during a mission, the Idealist can give them a third option: Take it out on me. If the ally chooses this, the Idealist marks **6 stress**.
+
+#### Action
+
+**Comfort <Flame className="inline-block mb-3" />:** Provide emotional support to someone in need.
+
+### Downtime
+
+**Speaking their Truth**: Idealists can express their inner thoughts and feelings through art. The crew gains **+2 heat**, but everyone recovers **1 stress**.
+
+**Empathize**: Idealists can always **comfort** once per downtime for free. Instead of offering advice, they can ask a deep personal question. The character they comfort may answer or reject it as normal.
+
+<TypographyH2 id="leader">
+  <span className="text-amber-700">Leader</span>
+  <span className="text-muted-foreground text-lg ml-8">
+    Warm, passionate, optimistic
+  </span>
+</TypographyH2>
+
+_When your community leader passed away, who advocated for you to take their place? How is filling their shoes going?_
+
+_Who's the one who got away? Where are they now, and what's your plan to win them back?_
+
+_Which one of the overseers poisoned food meant for you, resulting in the death of one of your loved ones? Who?_
+
+_You have lead the way in forming secret fight clubs to train for rebellion one day. Who is the instructor you found for your community, and what combat form do they teach?_
+
+_Who rejected you after what seemed to them as a sudden declaration of your love?_
+
+### Mission
+
+#### Special Abilities
+
+<span className="inline-block text-amber-700 font-bold">Lead the Way</span>: When a fight starts, you may lead from the front. If you do, the first allied action in the fight gains increased effect. The first enemy action in the fight will target you if possible.
+
+**Intense and Receptive**: At the start of a mission, you can explain your plan. If everyone agrees, **+1d** to the engagement roll. If not, the Leader can assist a teammate twice during the mission without taking stress.
+
+#### Action
+
+**Inspire <Flame className="inline-block mb-3" />:** Motivate others to take action.
+
+### Downtime
+
+**Speaking Up for What's Right**: After a successful mission, Leaders can spend a downtime activity to convince a faction that the crew is only doing what's right. **1-3:** +1 scorn, **4/5:** +1 goodwill, **6:** -1 scorn, **Critical:** +1 goodwill and -1 scorn.
+
+**Getting Involved**: Twice per downtime, Leaders can assist a teammate with a downtime activity without taking stress, but they're in charge. If the teammate refuses, the Leader marks **1 stress**.
+
+<TypographyH2 id="dreamer">
+  <span className="text-amber-700">Dreamer</span>
+  <span className="text-muted-foreground text-lg ml-8">
+    Hopeful, openhearted, carefree
+  </span>
+</TypographyH2>
+
+_Your dreams are vivid, almost ... real? What scheme have you crafted in your dreams to bring freedom to your brethren?_
+
+_Who's your ex who you would love to date again? Why does it seem like too much work?_
+
+_Which one of the overseers watches your each and every move, punishing you immediately if you so much as toe the line of the box they've defined for you?_
+
+_You had found a win-win relationship between your former overseer and your work pod. Who are they? Why did they get fired?_
+
+_Who did you break up with after an intense honeymoon phase because the flames of romance started to flicker?_
+
+### Mission
+
+#### Special Abilities
+
+<span className="inline-block text-amber-700 font-bold">The Magic of Everyday Life</span>:
+
+**Burst of Enthusiasm**:
+
+#### Action
+
+**Read <VenetianMask className="inline-block mb-1" />:** Understand the emotions of others.
+
+### Downtime
+
+**People Pleaser**:
+
+**Emotionally Perceptive**:
 
 <Separator />
 <div className="w-full flex justify-between">
