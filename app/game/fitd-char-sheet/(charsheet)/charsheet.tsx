@@ -46,6 +46,7 @@ import ActionDescription from '@/components/ui/action-description';
 import { Card } from '@/components/ui/card';
 import Clock from '@/components/ui/clock';
 import { Condition } from '@/components/ui/condition';
+import { Checkbox } from '@/components/ui/checkbox';
 
 export function Charsheet() {
   const [selectedArchetype, setSelectedArchetype] = useState<Archetype>();
@@ -76,7 +77,11 @@ export function Charsheet() {
   const [healing, setHealing] = useState<number>(0);
   const [harm3, setHarm3] = useState<string>('');
   const [harm2, setHarm2] = useState<string[]>(['', '']);
-  const [harm1, setHarm1] = useState<string[]>(['', '']);
+  const [harm1, setHarm1] = useState<string[]>(['tired', '']);
+
+  const [armor, setArmor] = useState<boolean>(false);
+  const [hArmor, setHArmor] = useState<boolean>(false);
+  const [sArmor, setSArmor] = useState<boolean>(false);
 
   const { toast } = useToast();
 
@@ -109,7 +114,10 @@ export function Charsheet() {
       setHealing(parsed.healing || 0);
       setHarm3(parsed.harm3 || '');
       setHarm2(parsed.harm2 || ['', '']);
-      setHarm1(parsed.harm1 || ['', '']);
+      setHarm1(parsed.harm1 || ['tired', '']);
+      setArmor(parsed.armor || false);
+      setHArmor(parsed.hArmor || false);
+      setSArmor(parsed.sArmor || false);
     }
   }, []);
 
@@ -135,6 +143,9 @@ export function Charsheet() {
           harm3,
           harm2,
           harm1,
+          armor,
+          hArmor,
+          sArmor,
         };
         localStorage.setItem('charsheet', JSON.stringify(data));
         // TODO save to server
@@ -145,6 +156,7 @@ export function Charsheet() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [changes]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleDebounceChange = useCallback(
     debounce(() => {
       setChanges(true);
@@ -1524,7 +1536,7 @@ export function Charsheet() {
                         />
                       )
                     )}
-                    <div className="flex-shrink-0 ml-auto basis-[100px] border-[1px] border-border rounded-md p-1 flex select-none">
+                    <div className="flex-shrink-0 ml-auto basis-[100px] border-[1px] border-border rounded-md p-1 flex items-center select-none">
                       <Clock
                         max={8}
                         current={conditionRecovery}
@@ -1535,15 +1547,15 @@ export function Charsheet() {
                         }}
                       />
                       <span className="text-xs text-muted-foreground text-center w-full">
-                        recovery clock
+                        recovery
                       </span>
                     </div>
                   </div>
                   <Separator />
                 </div>
-                <div className="flex items-center justify-between mt-4">
+                <div className="flex items-end mt-4 justify-between">
                   <TypographyH3>Harm</TypographyH3>
-                  <div className="flex-shrink-0 border-[1px] max-w-[100px] border-border rounded-b-none rounded-md p-1 select-none flex items-center">
+                  <div className="flex-shrink-0 border-[1px] max-w-[100px] border-border rounded-t-md p-1 select-none flex items-center ">
                     <Clock
                       max={4}
                       current={healing}
@@ -1554,7 +1566,7 @@ export function Charsheet() {
                       }}
                     />
                     <span className="text-xs text-muted-foreground text-center w-full">
-                      healing clock
+                      healing
                     </span>
                   </div>
                 </div>
@@ -1599,6 +1611,7 @@ export function Charsheet() {
                   <Input
                     className="rounded-none"
                     value={harm1[0]}
+                    disabled={true}
                     onChange={(e) => {
                       setHarm1([e.target.value, harm1[1]]);
                       handleDebounceChange();
@@ -1615,6 +1628,38 @@ export function Charsheet() {
                   <span className="bg-secondary p-1.5 h-10 w-16 text-xs text-center shrink-0">
                     LESS EFFECT
                   </span>
+                </div>
+                <div className="border-[1px] border-border rounded-b-md py-1.5 px-4 select-none flex items-center justify-between text-sm">
+                  <div className="flex items-center gap-2">
+                    <Checkbox
+                      checked={armor}
+                      onCheckedChange={() => {
+                        setArmor(!armor);
+                        setChanges(true);
+                      }}
+                    />
+                    Armor
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Checkbox
+                      checked={hArmor}
+                      onCheckedChange={() => {
+                        setHArmor(!hArmor);
+                        setChanges(true);
+                      }}
+                    />{' '}
+                    Heavy
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Checkbox
+                      checked={sArmor}
+                      onCheckedChange={() => {
+                        setSArmor(!sArmor);
+                        setChanges(true);
+                      }}
+                    />{' '}
+                    Special
+                  </div>
                 </div>
               </div>
             </div>
