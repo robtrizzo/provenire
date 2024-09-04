@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
@@ -40,7 +40,7 @@ import { BuildupCheckboxes } from '@/components/ui/buildup-checkboxes';
 import { ActionScore } from '@/components/ui/action-score';
 import { useToast } from '@/components/ui/use-toast';
 import { Die } from '@/components/ui/die';
-import { cn } from '@/lib/utils';
+import { cn, debounce } from '@/lib/utils';
 import { VenetianMask, Flame, Activity } from 'lucide-react';
 import ActionDescription from '@/components/ui/action-description';
 import { Card } from '@/components/ui/card';
@@ -69,6 +69,15 @@ export function Charsheet() {
     Machina: { Suggest: [0, 0], Survey: [0, 0] },
   });
 
+  const [stress, setStress] = useState(0);
+  const [conditions, setConditions] = useState<string[]>([]);
+  const [conditionRecovery, setConditionRecovery] = useState<number>(0);
+
+  const [healing, setHealing] = useState<number>(0);
+  const [harm3, setHarm3] = useState<string>('');
+  const [harm2, setHarm2] = useState<string[]>(['', '']);
+  const [harm1, setHarm1] = useState<string[]>(['', '']);
+
   const { toast } = useToast();
 
   const [changes, setChanges] = useState(false);
@@ -92,6 +101,15 @@ export function Charsheet() {
       if (parsed.attributes) {
         setAttributes(parsed.attributes);
       }
+      if (parsed.conditions) {
+        setConditions(parsed.conditions);
+      }
+      setStress(parsed.stress || 0);
+      setConditionRecovery(parsed.conditionRecovery || 0);
+      setHealing(parsed.healing || 0);
+      setHarm3(parsed.harm3 || '');
+      setHarm2(parsed.harm2 || ['', '']);
+      setHarm1(parsed.harm1 || ['', '']);
     }
   }, []);
 
@@ -110,6 +128,13 @@ export function Charsheet() {
           instinctXp,
           machinaXp,
           attributes,
+          stress,
+          conditions,
+          conditionRecovery,
+          healing,
+          harm3,
+          harm2,
+          harm1,
         };
         localStorage.setItem('charsheet', JSON.stringify(data));
         // TODO save to server
@@ -119,6 +144,13 @@ export function Charsheet() {
     return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [changes]);
+
+  const handleDebounceChange = useCallback(
+    debounce(() => {
+      setChanges(true);
+    }, 300),
+    []
+  );
 
   function handleUpdateActionScore(
     attribute: 'Heart' | 'Instinct' | 'Machina',
@@ -739,28 +771,8 @@ export function Charsheet() {
           </div>
         </TabsContent>
         <TabsContent value="mission" className="w-full">
-          <div className="my-3 grid grid-cols-1 md:grid-cols-2 gap-2 select-none focus-visible:outline-none">
+          <div className="my-3 grid grid-cols-1 md:grid-cols-2 gap-6 focus-visible:outline-none">
             <div className="mt-4">
-              <div>
-                <div className="flex gap-4">
-                  <TypographyH3>Stress</TypographyH3>
-                  <BuildupCheckboxes
-                    max={9}
-                    current={skillsetXp}
-                    onChange={(n) => {
-                      setSkillsetXp(n);
-                      setChanges(true);
-                    }}
-                  />
-                </div>
-                <div className="flex gap-4 flex-wrap">
-                  <Condition name="Insecure" active={false} />
-                  <Condition name="Afraid" active={false} />
-                  <Condition name="Angry" active={false} />
-                  <Condition name="Hopeless" active={false} />
-                  <Condition name="Guilty" active={false} />
-                </div>
-              </div>
               <TypographyH3 className="mt-4">Universal Actions</TypographyH3>
               <div className="ml-2">
                 {universal_actions.map((action, i) => (
@@ -822,20 +834,9 @@ export function Charsheet() {
                 </div>
               )}
             </div>
-            <div className="flex my-3">
-              <div className="flex-grow"></div>
+            <div className="flex my-6 md:mt-3">
+              <div className="md:flex-grow"></div>
               <div>
-                <div className="flex gap-4">
-                  <TypographyH3>Mission XP</TypographyH3>
-                  <BuildupCheckboxes
-                    max={8}
-                    current={skillsetXp}
-                    onChange={(n) => {
-                      setSkillsetXp(n);
-                      setChanges(true);
-                    }}
-                  />
-                </div>
                 <div className="grid grid-cols-2 border-b-[1px]">
                   <div
                     className="hover:cursor-pointer group border-r-[1px] mt-8"
@@ -1478,6 +1479,143 @@ export function Charsheet() {
                     </Select>
                   </div>
                 </Card>
+                <div className="flex justify-between gap-4 mt-4">
+                  <TypographyH3>Experience</TypographyH3>
+                  <BuildupCheckboxes
+                    max={8}
+                    current={skillsetXp}
+                    onChange={(n) => {
+                      setSkillsetXp(n);
+                      setChanges(true);
+                    }}
+                  />
+                </div>
+                <Separator />
+                <div className="flex justify-between gap-4 mt-2">
+                  <TypographyH3>Stress</TypographyH3>
+                  <BuildupCheckboxes
+                    max={9}
+                    current={stress}
+                    onChange={(n) => {
+                      setStress(n);
+                      setChanges(true);
+                    }}
+                  />
+                </div>
+                <div className="flex gap-4 flex-wrap">
+                  <div className="flex gap-4 flex-wrap">
+                    <TypographyH4>Conditions</TypographyH4>
+                    {['Insecure', 'Afraid', 'Angry', 'Hopeless', 'Guilty'].map(
+                      (c) => (
+                        <Condition
+                          key={c}
+                          name={c}
+                          active={conditions.includes(c)}
+                          onClick={() => {
+                            if (conditions.includes(c)) {
+                              setConditions(
+                                conditions.filter((con) => con !== c)
+                              );
+                            } else {
+                              setConditions([...conditions, c]);
+                            }
+                            setChanges(true);
+                          }}
+                        />
+                      )
+                    )}
+                    <div className="flex-shrink-0 ml-auto basis-[100px] border-[1px] border-border rounded-md p-1 flex select-none">
+                      <Clock
+                        max={8}
+                        current={conditionRecovery}
+                        size={35}
+                        setVal={(n) => {
+                          setConditionRecovery(n);
+                          setChanges(true);
+                        }}
+                      />
+                      <span className="text-xs text-muted-foreground text-center w-full">
+                        recovery clock
+                      </span>
+                    </div>
+                  </div>
+                  <Separator />
+                </div>
+                <div className="flex items-center justify-between mt-4">
+                  <TypographyH3>Harm</TypographyH3>
+                  <div className="flex-shrink-0 border-[1px] max-w-[100px] border-border rounded-b-none rounded-md p-1 select-none flex items-center">
+                    <Clock
+                      max={4}
+                      current={healing}
+                      size={35}
+                      setVal={(n) => {
+                        setHealing(n);
+                        setChanges(true);
+                      }}
+                    />
+                    <span className="text-xs text-muted-foreground text-center w-full">
+                      healing clock
+                    </span>
+                  </div>
+                </div>
+                <div className="flex items-center">
+                  <span className="bg-secondary p-2 h-10 w-6 shrink-0">3</span>
+                  <Input
+                    className="rounded-none"
+                    value={harm3}
+                    onChange={(e) => {
+                      setHarm3(e.target.value);
+                      handleDebounceChange();
+                    }}
+                  />
+                  <span className="bg-secondary p-1.5 h-10 w-16 text-xs text-center shrink-0">
+                    NEED HELP
+                  </span>
+                </div>
+                <div className="flex items-center">
+                  <span className="bg-secondary p-2 h-10 w-6 shrink-0">2</span>
+                  <Input
+                    className="rounded-none"
+                    value={harm2[0]}
+                    onChange={(e) => {
+                      setHarm2([e.target.value, harm2[1]]);
+                      handleDebounceChange();
+                    }}
+                  />
+                  <Input
+                    className="rounded-none"
+                    value={harm2[1]}
+                    onChange={(e) => {
+                      setHarm2([harm2[0], e.target.value]);
+                      handleDebounceChange();
+                    }}
+                  />
+                  <span className="bg-secondary px-1.5 py-3 h-10 w-16 text-xs text-center shrink-0">
+                    -1D
+                  </span>
+                </div>
+                <div className="flex items-center">
+                  <span className="bg-secondary p-2 h-10 w-6 shrink-0">1</span>
+                  <Input
+                    className="rounded-none"
+                    value={harm1[0]}
+                    onChange={(e) => {
+                      setHarm1([e.target.value, harm1[1]]);
+                      handleDebounceChange();
+                    }}
+                  />
+                  <Input
+                    className="rounded-none"
+                    value={harm1[1]}
+                    onChange={(e) => {
+                      setHarm1([harm1[0], e.target.value]);
+                      handleDebounceChange();
+                    }}
+                  />
+                  <span className="bg-secondary p-1.5 h-10 w-16 text-xs text-center shrink-0">
+                    LESS EFFECT
+                  </span>
+                </div>
               </div>
             </div>
           </div>
