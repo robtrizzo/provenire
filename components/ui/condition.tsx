@@ -26,7 +26,7 @@ export function Condition({
         className={cn(
           'border-2 text-sm py-0.5 px-4 rounded-lg hover:cursor-pointer hover:bg-border',
           isActive
-            ? 'border-red-950 bg-red-950 hover:bg-red-900'
+            ? 'border-red-950 bg-red-950 hover:bg-red-900 text-white'
             : 'border-border text-muted-foreground'
         )}
       >
