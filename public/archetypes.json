@@ -20,7 +20,29 @@
         "attribute": "Machina",
         "description": "Make a complicated plan to do something rebellious or immoral"
       }
-    ]
+    ],
+    "abilities": {
+      "mission": [
+        {
+          "name": "The Chess Game of Life",
+          "keystone": true
+        },
+        {
+          "name": "My Body is My Machine",
+          "keystone": false
+        }
+      ],
+      "downtime": [
+        {
+          "name": "Villainous Intellect",
+          "keystone": false
+        },
+        {
+          "name": "Thirst for Knowledge",
+          "keystone": false
+        }
+      ]
+    }
   },
   {
     "name": "Engineer",
@@ -43,7 +65,29 @@
         "attribute": "Machina",
         "description": "Work to understand or improve a machine or device"
       }
-    ]
+    ],
+    "abilities": {
+      "mission": [
+        {
+          "name": "The Life of the Mind",
+          "keystone": true
+        },
+        {
+          "name": "Mysteries of the Machines",
+          "keystone": false
+        }
+      ],
+      "downtime": [
+        {
+          "name": "Curious and Original",
+          "keystone": false
+        },
+        {
+          "name": "Open Minded",
+          "keystone": false
+        }
+      ]
+    }
   },
   {
     "name": "Commander",
@@ -66,7 +110,29 @@
         "attribute": "Heart",
         "description": "Wield authority to get things done"
       }
-    ]
+    ],
+    "abilities": {
+      "mission": [
+        {
+          "name": "A Worthy Challenge",
+          "keystone": true
+        },
+        {
+          "name": "Strive for Greatness",
+          "keystone": false
+        }
+      ],
+      "downtime": [
+        {
+          "name": "Efficiency is King",
+          "keystone": false
+        },
+        {
+          "name": "Sacrificial Pawn",
+          "keystone": false
+        }
+      ]
+    }
   },
   {
     "name": "Visionary",
@@ -89,7 +155,29 @@
         "attribute": "Machina",
         "description": "Persuade or manipulate others with the way your words make them feel"
       }
-    ]
+    ],
+    "abilities": {
+      "mission": [
+        {
+          "name": "Rapid Originality",
+          "keystone": true
+        },
+        {
+          "name": "Question Everything",
+          "keystone": false
+        }
+      ],
+      "downtime": [
+        {
+          "name": "Contrarian Charisma",
+          "keystone": false
+        },
+        {
+          "name": "Expert Brainstormer",
+          "keystone": false
+        }
+      ]
+    }
   },
   {
     "name": "Advocate",
@@ -112,7 +200,29 @@
         "attribute": "Machina",
         "descriptions": "Open up to someone so that they reciprocate"
       }
-    ]
+    ],
+    "abilities": {
+      "mission": [
+        {
+          "name": "Seeking Purpose",
+          "keystone": true
+        },
+        {
+          "name": "A Personal Mission",
+          "keystone": false
+        }
+      ],
+      "downtime": [
+        {
+          "name": "Connecting with Others",
+          "keystone": false
+        },
+        {
+          "name": "Principled Perfectionism",
+          "keystone": false
+        }
+      ]
+    }
   },
   {
     "name": "Idealist",
@@ -135,7 +245,29 @@
         "attribute": "Heart",
         "description": "Provide emotional support to someone in need"
       }
-    ]
+    ],
+    "abilities": {
+      "mission": [
+        {
+          "name": "In Search of a Calling",
+          "keystone": true
+        },
+        {
+          "name": "Open Heart",
+          "keystone": false
+        }
+      ],
+      "downtime": [
+        {
+          "name": "Speaking their Truth",
+          "keystone": false
+        },
+        {
+          "name": "Empathize",
+          "keystone": false
+        }
+      ]
+    }
   },
   {
     "name": "Leader",
@@ -158,7 +290,29 @@
         "attribute": "Heart",
         "description": "Motivate others to take action"
       }
-    ]
+    ],
+    "abilities": {
+      "mission": [
+        {
+          "name": "Lead the Way",
+          "keystone": true
+        },
+        {
+          "name": "Intense and Receptive",
+          "keystone": false
+        }
+      ],
+      "downtime": [
+        {
+          "name": "Speaking Up for What's Right",
+          "keystone": false
+        },
+        {
+          "name": "Getting Involved",
+          "keystone": false
+        }
+      ]
+    }
   },
   {
     "name": "Dreamer",
@@ -181,7 +335,29 @@
         "attribute": "Machina",
         "description": "Understand the emotions of others"
       }
-    ]
+    ],
+    "abilities": {
+      "mission": [
+        {
+          "name": "The Magic of Everyday Life",
+          "keystone": true
+        },
+        {
+          "name": "Burst of Enthusiasm",
+          "keystone": false
+        }
+      ],
+      "downtime": [
+        {
+          "name": "People Pleaser",
+          "keystone": false
+        },
+        {
+          "name": "Emotionally Perceptive",
+          "keystone": false
+        }
+      ]
+    }
   },
   {
     "name": "Logistician",
@@ -204,7 +380,29 @@
         "attribute": "Machina",
         "description": "Analyze something to understand where its axioms lead"
       }
-    ]
+    ],
+    "abilities": {
+      "mission": [
+        {
+          "name": "Dutiful Servant of the King",
+          "keystone": true
+        },
+        {
+          "name": "By the Book is Practical",
+          "keystone": false
+        }
+      ],
+      "downtime": [
+        {
+          "name": "Structure and Order",
+          "keystone": false
+        },
+        {
+          "name": "Picking Up the Slack",
+          "keystone": false
+        }
+      ]
+    }
   },
   {
     "name": "Defender",
@@ -227,7 +425,29 @@
         "attribute": "Heart",
         "descriptions": "Use your commitment to something as a source of strength"
       }
-    ]
+    ],
+    "abilities": {
+      "mission": [
+        {
+          "name": "Showing Up",
+          "keystone": true
+        },
+        {
+          "name": "The Gift of Loyalty",
+          "keystone": false
+        }
+      ],
+      "downtime": [
+        {
+          "name": "The Highest Standard",
+          "keystone": false
+        },
+        {
+          "name": "Humble Dedication",
+          "keystone": false
+        }
+      ]
+    }
   },
   {
     "name": "Executive",
@@ -250,7 +470,29 @@
         "attribute": "Machina",
         "description": "Use your words to make someone feel small"
       }
-    ]
+    ],
+    "abilities": {
+      "mission": [
+        {
+          "name": "Lead by Example",
+          "keystone": true
+        },
+        {
+          "name": "Here are the Facts",
+          "keystone": false
+        }
+      ],
+      "downtime": [
+        {
+          "name": "A Greater Responsibility",
+          "keystone": false
+        },
+        {
+          "name": "Climb the Ladder",
+          "keystone": false
+        }
+      ]
+    }
   },
   {
     "name": "Consul",
@@ -273,7 +515,29 @@
         "attribute": "Heart",
         "description": "Aid someone to feel confident in their own strengths"
       }
-    ]
+    ],
+    "abilities": {
+      "mission": [
+        {
+          "name": "Relationships that Last",
+          "keystone": true
+        },
+        {
+          "name": "It's the Little Things",
+          "keystone": false
+        }
+      ],
+      "downtime": [
+        {
+          "name": "Host a Gathering",
+          "keystone": false
+        },
+        {
+          "name": "Living for Connection",
+          "keystone": false
+        }
+      ]
+    }
   },
   {
     "name": "Virtuoso",
@@ -296,7 +560,29 @@
         "attribute": "Instinct",
         "description": "Resist change or pressure"
       }
-    ]
+    ],
+    "abilities": {
+      "mission": [
+        {
+          "name": "Personal Project",
+          "keystone": true
+        },
+        {
+          "name": "Defying the Rules",
+          "keystone": false
+        }
+      ],
+      "downtime": [
+        {
+          "name": "Dare to Differ",
+          "keystone": false
+        },
+        {
+          "name": "All Fair Play",
+          "keystone": false
+        }
+      ]
+    }
   },
   {
     "name": "Artist",
@@ -319,7 +605,29 @@
         "attribute": "Machina",
         "description": "Appeal to emotions to elicit a response"
       }
-    ]
+    ],
+    "abilities": {
+      "mission": [
+        {
+          "name": "Many Passions",
+          "keystone": true
+        },
+        {
+          "name": "Pain to Rage",
+          "keystone": false
+        }
+      ],
+      "downtime": [
+        {
+          "name": "Overwhelmed",
+          "keystone": false
+        },
+        {
+          "name": "Read Emotions",
+          "keystone": false
+        }
+      ]
+    }
   },
   {
     "name": "Adventurer",
@@ -342,7 +650,29 @@
         "attribute": "Instinct",
         "description": "Start something dangerous or take the first step into the unknown"
       }
-    ]
+    ],
+    "abilities": {
+      "mission": [
+        {
+          "name": "Dive Right In",
+          "keystone": true
+        },
+        {
+          "name": "Call Them Out",
+          "keystone": false
+        }
+      ],
+      "downtime": [
+        {
+          "name": "Socialite",
+          "keystone": false
+        },
+        {
+          "name": "The Path Less Traveled",
+          "keystone": false
+        }
+      ]
+    }
   },
   {
     "name": "Entertainer",
@@ -365,6 +695,28 @@
         "attribute": "Instinct",
         "description": "Understand how physical things in the world will affect each other"
       }
-    ]
+    ],
+    "abilities": {
+      "mission": [
+        {
+          "name": "A Spontaneous Spirit",
+          "keystone": true
+        },
+        {
+          "name": "Situational Awareness",
+          "keystone": false
+        }
+      ],
+      "downtime": [
+        {
+          "name": "Living With Passion",
+          "keystone": false
+        },
+        {
+          "name": "Avoid Conflict",
+          "keystone": false
+        }
+      ]
+    }
   }
 ]

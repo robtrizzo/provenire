@@ -4,7 +4,16 @@ export type Archetype = {
   shortDescription: string;
   attributes: Attributes;
   actions: Action[];
+  abilities: {
+    mission: Ability[];
+    downtime: Ability[];
+  };
 };
+
+interface Ability {
+  name: string;
+  keystone: boolean;
+}
 
 interface Attributes {
   Heart: string[];

@@ -47,6 +47,7 @@ import { Card } from '@/components/ui/card';
 import Clock from '@/components/ui/clock';
 import { Condition } from '@/components/ui/condition';
 import { Checkbox } from '@/components/ui/checkbox';
+import Link from 'next/link';
 
 export function Charsheet() {
   const [selectedArchetype, setSelectedArchetype] = useState<Archetype>();
@@ -83,6 +84,8 @@ export function Charsheet() {
   const [hArmor, setHArmor] = useState<boolean>(false);
   const [sArmor, setSArmor] = useState<boolean>(false);
 
+  const [abilities, setAbilities] = useState<string[]>([]);
+
   const { toast } = useToast();
 
   const [changes, setChanges] = useState(false);
@@ -118,6 +121,7 @@ export function Charsheet() {
       setArmor(parsed.armor || false);
       setHArmor(parsed.hArmor || false);
       setSArmor(parsed.sArmor || false);
+      setAbilities(parsed.abilities || []);
     }
   }, []);
 
@@ -146,6 +150,7 @@ export function Charsheet() {
           armor,
           hArmor,
           sArmor,
+          abilities,
         };
         localStorage.setItem('charsheet', JSON.stringify(data));
         // TODO save to server
@@ -699,7 +704,7 @@ export function Charsheet() {
           </Select>
         </div>
       </div>
-      <Tabs defaultValue="profile" className="w-full my-3 mx-auto">
+      <Tabs defaultValue="mission" className="w-full my-3 mx-auto">
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="mission">Mission</TabsTrigger>
           <TabsTrigger value="profile">Profile</TabsTrigger>
@@ -758,12 +763,14 @@ export function Charsheet() {
               )}
               {selectedArchetype && (
                 <div className="mt-4">
-                  <TypographyH2 className="text-amber-700">
-                    {selectedArchetype?.name}
-                    <span className="text-muted-foreground text-lg ml-8">
-                      {selectedArchetype?.shortDescription}
-                    </span>
-                  </TypographyH2>
+                  <Link href={`/game/archetypes#${selectedArchetype?.name}`}>
+                    <TypographyH2 className="text-amber-700">
+                      {selectedArchetype?.name}
+                      <span className="text-muted-foreground text-lg ml-8">
+                        {selectedArchetype?.shortDescription}
+                      </span>
+                    </TypographyH2>
+                  </Link>
                   <div className="mt-4">
                     <TypographyH3 className="text-sm text-muted-foreground">
                       Actions
@@ -772,6 +779,36 @@ export function Charsheet() {
                       {selectedArchetype?.actions?.map((action, i) => (
                         <ActionDescription key={i} action={action} />
                       ))}
+                    </div>
+                    <TypographyH3 className="text-sm text-muted-foreground mt-4">
+                      Abilities
+                    </TypographyH3>
+                    <div className="ml-2">
+                      {selectedArchetype?.abilities?.mission?.map(
+                        (ability, i) => (
+                          <div className="flex items-center gap-2" key={i}>
+                            <Checkbox
+                              checked={
+                                ability.keystone
+                                  ? true
+                                  : abilities.includes(ability.name)
+                              }
+                              disabled={ability.keystone}
+                              onCheckedChange={(checked) => {
+                                if (checked) {
+                                  setAbilities([...abilities, ability.name]);
+                                } else {
+                                  setAbilities(
+                                    abilities.filter((a) => a !== ability.name)
+                                  );
+                                }
+                                setChanges(true);
+                              }}
+                            />
+                            <TypographyP>{ability.name}</TypographyP>
+                          </div>
+                        )
+                      )}
                     </div>
                   </div>
                 </div>
