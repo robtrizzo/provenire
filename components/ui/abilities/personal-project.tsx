@@ -5,8 +5,9 @@ export default function PersonalProject() {
       <TypographyP>
         During downtime, the Virtuoso may spend a downtime activity to work on a
         personal project. This is similar to a{' '}
-        <strong>long term project</strong>, but the goal isn't defined at the
-        start and it has no limit on the progress that can be made towards it.
+        <strong>long term project</strong>, but the goal isn&apos;t defined at
+        the start and it has no limit on the progress that can be made towards
+        it.
       </TypographyP>
       <TypographyP>
         During a mission, the Virtuoso can unveil their personal project, say

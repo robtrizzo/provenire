@@ -7,7 +7,7 @@ export default function DareToDiffer() {
         rolls a<strong>1-3</strong>. Spend <strong>3 steady</strong> to have a
         burst of impulsive and creative energy. If you do, you may correct the
         last failed roll. Approach the situation from a compltely different
-        angle and spare no one's feelings. Treat the roll as a{' '}
+        angle and spare no one&apos;s feelings. Treat the roll as a{' '}
         <strong>6</strong> and everyone else in the crew marks{' '}
         <strong>1 stress</strong>.
       </TypographyP>

@@ -12,7 +12,7 @@ export default function SituationalAwareness() {
       </TypographyP>
       <TypographyUnorderedList>
         <li>What key thing has changed?</li>
-        <li>What's best escape route?</li>
+        <li>What&apos;s best escape route?</li>
         <li>Who here is in the most danger?</li>
         <li>Who here is the most dangerous?</li>
       </TypographyUnorderedList>
