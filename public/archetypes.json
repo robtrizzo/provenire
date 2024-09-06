@@ -25,21 +25,25 @@
       "mission": [
         {
           "name": "The Chess Game of Life",
-          "keystone": true
+          "keystone": true,
+          "slug": "the-chess-game-of-life"
         },
         {
           "name": "My Body is My Machine",
-          "keystone": false
+          "keystone": false,
+          "slug": "my-body-is-my-machine"
         }
       ],
       "downtime": [
         {
           "name": "Villainous Intellect",
-          "keystone": false
+          "keystone": false,
+          "slug": "villainous-intellect"
         },
         {
           "name": "Thirst for Knowledge",
-          "keystone": false
+          "keystone": false,
+          "slug": "thirst-for-knowledge"
         }
       ]
     }
@@ -70,21 +74,25 @@
       "mission": [
         {
           "name": "The Life of the Mind",
-          "keystone": true
+          "keystone": true,
+          "slug": "the-life-of-the-mind"
         },
         {
           "name": "Mysteries of the Machines",
-          "keystone": false
+          "keystone": false,
+          "slug": "mysteries-of-the-machines"
         }
       ],
       "downtime": [
         {
           "name": "Curious and Original",
-          "keystone": false
+          "keystone": false,
+          "slug": "curious-and-original"
         },
         {
           "name": "Open Minded",
-          "keystone": false
+          "keystone": false,
+          "slug": "open-minded"
         }
       ]
     }
@@ -115,21 +123,25 @@
       "mission": [
         {
           "name": "A Worthy Challenge",
-          "keystone": true
+          "keystone": true,
+          "slug": "a-worthy-challenge"
         },
         {
           "name": "Strive for Greatness",
-          "keystone": false
+          "keystone": false,
+          "slug": "strive-for-greatness"
         }
       ],
       "downtime": [
         {
           "name": "Efficiency is King",
-          "keystone": false
+          "keystone": false,
+          "slug": "efficiency-is-king"
         },
         {
           "name": "Sacrificial Pawn",
-          "keystone": false
+          "keystone": false,
+          "slug": "sacrificial-pawn"
         }
       ]
     }
@@ -160,21 +172,25 @@
       "mission": [
         {
           "name": "Rapid Originality",
-          "keystone": true
+          "keystone": true,
+          "slug": "rapid-originality"
         },
         {
           "name": "Question Everything",
-          "keystone": false
+          "keystone": false,
+          "slug": "question-everything"
         }
       ],
       "downtime": [
         {
           "name": "Contrarian Charisma",
-          "keystone": false
+          "keystone": false,
+          "slug": "contrarian-charisma"
         },
         {
           "name": "Expert Brainstormer",
-          "keystone": false
+          "keystone": false,
+          "slug": "expert-brainstormer"
         }
       ]
     }
@@ -205,21 +221,25 @@
       "mission": [
         {
           "name": "Seeking Purpose",
-          "keystone": true
+          "keystone": true,
+          "slug": "seeking-purpose"
         },
         {
           "name": "A Personal Mission",
-          "keystone": false
+          "keystone": false,
+          "slug": "a-personal-mission"
         }
       ],
       "downtime": [
         {
           "name": "Connecting with Others",
-          "keystone": false
+          "keystone": false,
+          "slug": "connecting-with-others"
         },
         {
           "name": "Principled Perfectionism",
-          "keystone": false
+          "keystone": false,
+          "slug": "principled-perfectionism"
         }
       ]
     }
@@ -250,21 +270,25 @@
       "mission": [
         {
           "name": "In Search of a Calling",
-          "keystone": true
+          "keystone": true,
+          "slug": "in-search-of-a-calling"
         },
         {
           "name": "Open Heart",
-          "keystone": false
+          "keystone": false,
+          "slug": "open-heart"
         }
       ],
       "downtime": [
         {
           "name": "Speaking their Truth",
-          "keystone": false
+          "keystone": false,
+          "slug": "speaking-their-truth"
         },
         {
           "name": "Empathize",
-          "keystone": false
+          "keystone": false,
+          "slug": "empathize"
         }
       ]
     }
@@ -295,21 +319,25 @@
       "mission": [
         {
           "name": "Lead the Way",
-          "keystone": true
+          "keystone": true,
+          "slug": "lead-the-way"
         },
         {
           "name": "Intense and Receptive",
-          "keystone": false
+          "keystone": false,
+          "slug": "intense-and-receptive"
         }
       ],
       "downtime": [
         {
           "name": "Speaking Up for What's Right",
-          "keystone": false
+          "keystone": false,
+          "slug": "speaking-up-for-whats-right"
         },
         {
           "name": "Getting Involved",
-          "keystone": false
+          "keystone": false,
+          "slug": "getting-involved"
         }
       ]
     }
@@ -340,21 +368,25 @@
       "mission": [
         {
           "name": "The Magic of Everyday Life",
-          "keystone": true
+          "keystone": true,
+          "slug": "the-magic-of-everyday-life"
         },
         {
           "name": "Burst of Enthusiasm",
-          "keystone": false
+          "keystone": false,
+          "slug": "burst-of-enthusiasm"
         }
       ],
       "downtime": [
         {
           "name": "People Pleaser",
-          "keystone": false
+          "keystone": false,
+          "slug": "people-pleaser"
         },
         {
           "name": "Emotionally Perceptive",
-          "keystone": false
+          "keystone": false,
+          "slug": "emotionally-perceptive"
         }
       ]
     }
@@ -385,21 +417,25 @@
       "mission": [
         {
           "name": "Dutiful Servant of the King",
-          "keystone": true
+          "keystone": true,
+          "slug": "dutiful-servant-of-the-king"
         },
         {
           "name": "By the Book is Practical",
-          "keystone": false
+          "keystone": false,
+          "slug": "by-the-book-is-practical"
         }
       ],
       "downtime": [
         {
           "name": "Structure and Order",
-          "keystone": false
+          "keystone": false,
+          "slug": "structure-and-order"
         },
         {
           "name": "Picking Up the Slack",
-          "keystone": false
+          "keystone": false,
+          "slug": "picking-up-the-slack"
         }
       ]
     }
@@ -430,21 +466,25 @@
       "mission": [
         {
           "name": "Showing Up",
-          "keystone": true
+          "keystone": true,
+          "slug": "showing-up"
         },
         {
           "name": "The Gift of Loyalty",
-          "keystone": false
+          "keystone": false,
+          "slug": "the-gift-of-loyalty"
         }
       ],
       "downtime": [
         {
           "name": "The Highest Standard",
-          "keystone": false
+          "keystone": false,
+          "slug": "the-highest-standard"
         },
         {
           "name": "Humble Dedication",
-          "keystone": false
+          "keystone": false,
+          "slug": "humble-dedication"
         }
       ]
     }
@@ -475,21 +515,25 @@
       "mission": [
         {
           "name": "Lead by Example",
-          "keystone": true
+          "keystone": true,
+          "slug": "lead-by-example"
         },
         {
           "name": "Here are the Facts",
-          "keystone": false
+          "keystone": false,
+          "slug": "here-are-the-facts"
         }
       ],
       "downtime": [
         {
           "name": "A Greater Responsibility",
-          "keystone": false
+          "keystone": false,
+          "slug": "a-greater-responsibility"
         },
         {
           "name": "Climb the Ladder",
-          "keystone": false
+          "keystone": false,
+          "slug": "climb-the-ladder"
         }
       ]
     }
@@ -520,21 +564,25 @@
       "mission": [
         {
           "name": "Relationships that Last",
-          "keystone": true
+          "keystone": true,
+          "slug": "relationships-that-last"
         },
         {
           "name": "It's the Little Things",
-          "keystone": false
+          "keystone": false,
+          "slug": "its-the-little-things"
         }
       ],
       "downtime": [
         {
           "name": "Host a Gathering",
-          "keystone": false
+          "keystone": false,
+          "slug": "host-a-gathering"
         },
         {
           "name": "Living for Connection",
-          "keystone": false
+          "keystone": false,
+          "slug": "living-for-connection"
         }
       ]
     }
@@ -565,21 +613,25 @@
       "mission": [
         {
           "name": "Personal Project",
-          "keystone": true
+          "keystone": true,
+          "slug": "personal-project"
         },
         {
           "name": "Defying the Rules",
-          "keystone": false
+          "keystone": false,
+          "slug": "defying-the-rules"
         }
       ],
       "downtime": [
         {
           "name": "Dare to Differ",
-          "keystone": false
+          "keystone": false,
+          "slug": "dare-to-differ"
         },
         {
           "name": "All Fair Play",
-          "keystone": false
+          "keystone": false,
+          "slug": "all-fair-play"
         }
       ]
     }
@@ -610,21 +662,25 @@
       "mission": [
         {
           "name": "Many Passions",
-          "keystone": true
+          "keystone": true,
+          "slug": "many-passions"
         },
         {
           "name": "Pain to Rage",
-          "keystone": false
+          "keystone": false,
+          "slug": "pain-to-rage"
         }
       ],
       "downtime": [
         {
           "name": "Overwhelmed",
-          "keystone": false
+          "keystone": false,
+          "slug": "overwhelmed"
         },
         {
           "name": "Read Emotions",
-          "keystone": false
+          "keystone": false,
+          "slug": "read-emotions"
         }
       ]
     }
@@ -655,21 +711,25 @@
       "mission": [
         {
           "name": "Dive Right In",
-          "keystone": true
+          "keystone": true,
+          "slug": "dive-right-in"
         },
         {
           "name": "Call Them Out",
-          "keystone": false
+          "keystone": false,
+          "slug": "call-them-out"
         }
       ],
       "downtime": [
         {
           "name": "Socialite",
-          "keystone": false
+          "keystone": false,
+          "slug": "socialite"
         },
         {
           "name": "The Path Less Traveled",
-          "keystone": false
+          "keystone": false,
+          "slug": "the-path-less-traveled"
         }
       ]
     }
@@ -700,21 +760,25 @@
       "mission": [
         {
           "name": "A Spontaneous Spirit",
-          "keystone": true
+          "keystone": true,
+          "slug": "a-spontaneous-spirit"
         },
         {
           "name": "Situational Awareness",
-          "keystone": false
+          "keystone": false,
+          "slug": "situational-awareness"
         }
       ],
       "downtime": [
         {
           "name": "Living With Passion",
-          "keystone": false
+          "keystone": false,
+          "slug": "living-with-passion"
         },
         {
           "name": "Avoid Conflict",
-          "keystone": false
+          "keystone": false,
+          "slug": "avoid-conflict"
         }
       ]
     }

@@ -10,9 +10,10 @@ export type Archetype = {
   };
 };
 
-interface Ability {
+export interface Ability {
   name: string;
   keystone: boolean;
+  slug: string;
 }
 
 interface Attributes {

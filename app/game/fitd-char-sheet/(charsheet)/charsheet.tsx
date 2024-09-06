@@ -48,6 +48,7 @@ import Clock from '@/components/ui/clock';
 import { Condition } from '@/components/ui/condition';
 import { Checkbox } from '@/components/ui/checkbox';
 import Link from 'next/link';
+import Abilities from '@/components/ui/abilities/abilities';
 
 export function Charsheet() {
   const [selectedArchetype, setSelectedArchetype] = useState<Archetype>();
@@ -784,31 +785,12 @@ export function Charsheet() {
                       Abilities
                     </TypographyH3>
                     <div className="ml-2">
-                      {selectedArchetype?.abilities?.mission?.map(
-                        (ability, i) => (
-                          <div className="flex items-center gap-2" key={i}>
-                            <Checkbox
-                              checked={
-                                ability.keystone
-                                  ? true
-                                  : abilities.includes(ability.name)
-                              }
-                              disabled={ability.keystone}
-                              onCheckedChange={(checked) => {
-                                if (checked) {
-                                  setAbilities([...abilities, ability.name]);
-                                } else {
-                                  setAbilities(
-                                    abilities.filter((a) => a !== ability.name)
-                                  );
-                                }
-                                setChanges(true);
-                              }}
-                            />
-                            <TypographyP>{ability.name}</TypographyP>
-                          </div>
-                        )
-                      )}
+                      <Abilities
+                        abilities={selectedArchetype?.abilities?.mission}
+                        characterAbilities={abilities}
+                        setCharacterAbilities={setAbilities}
+                        setChanges={setChanges}
+                      />
                     </div>
                   </div>
                 </div>
