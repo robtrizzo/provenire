@@ -1,5 +1,5 @@
 import { TypographyP } from '@/components/ui/typography';
-export default function VillainousIntellect() {
+export default function SpeakingUpForWhatsRight() {
   return (
     <div>
       <TypographyP>
