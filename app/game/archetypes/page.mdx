@@ -9,6 +9,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from 'lucide-react';
+import ArchetypeQuestions from '@/components/ui/archetype-questions';
 
 # Archetypes
 
@@ -23,15 +24,7 @@ Your character's Archetype is a reflection of their personality and the way they
   </span>
 </TypographyH2>
 
-_Whose life have you saved in the Steel Trap because of your decisive action and split second ingenuity?_
-
-_Who would you love to date, to give your all, if only you could figure out a good way to ... whatever people do to start dating?_
-
-_Which one of the overseers gave you a brutal beating after your correct, but irreverent, nay, scathing contrarianism?_
-
-_Which one of the overseers do you have dirt on? How might they be exploited for your advantage?_
-
-_Whose romantic advances have you ruined with brutal honesty and tactless criticism?_
+<ArchetypeQuestions archetype="Strategist" />
 
 ### Mission
 
@@ -56,15 +49,7 @@ _Whose romantic advances have you ruined with brutal honesty and tactless critic
   </span>
 </TypographyH2>
 
-_Happy moments are rare in the Steel Trap; how did you use your creativity to bring joy to your friends?_
-
-_Who is a pleasant distraction from your thoughts? Why can't you work up the courage to ask them out?_
-
-_You reinvented the wheel behind the overseers' backs and it resulted in a close friend getting injured. Who?_
-
-_You've already figured out one of the new machines in the Steel trap. How could it be used to your advantage?_
-
-_Whose romantic advances have you ruined with your stubborn willful ignorance of feelings?_
+<ArchetypeQuestions archetype="Engineer" />
 
 ### Mission
 
@@ -95,15 +80,7 @@ _Whose romantic advances have you ruined with your stubborn willful ignorance of
   </span>
 </TypographyH2>
 
-_What's the name of your group of loyal lackeys?_
-
-_Who would you love to date, if only they took romance as seriously as you do?_
-
-_Which overseer publicly humiliated you after a spat about who gives orders to your gang?_
-
-_Who else knows about the secret network of informants you've set up throughout the Steel Trap?_
-
-_Whose romantic advances have you spurned because they weren't putting in as much to the relationship as you?_
+<ArchetypeQuestions archetype="Commander" />
 
 ### Mission
 
@@ -130,15 +107,7 @@ _Whose romantic advances have you spurned because they weren't putting in as muc
   </span>
 </TypographyH2>
 
-_Who have you inspired with your relentless wit and sharp eye for revolutionary rhetoric?_
-
-_Who would you love to date, if only you could find the right opportunity for your grand gesture of affection?_
-
-_Which one of the overseers withholds rations from you due to your terrible performance at tedious tasks?_
-
-_Which overseer have you so chronically debated that they become irritated with you on sight? What's the moment you think they realized you're right?_
-
-_Whose romantic advances have you ruined because they couldn't keep up with your constant need for growth and novelty?_
+<ArchetypeQuestions archetype="Visionary" />
 
 ### Mission
 
@@ -161,22 +130,14 @@ _Whose romantic advances have you ruined because they couldn't keep up with your
 
 **Expert Brainstormer**: Visionaries get **+1d** to the first roll of a **long term project**. They take **-1d** to **long term projects** that are over halway done.
 
-<TypographyH2 id="visionary">
+<TypographyH2 id="advocate">
   <span className="text-amber-700">Advocate</span>
   <span className="text-muted-foreground text-lg ml-8">
     Thoughtful, principled, altrustic
   </span>
 </TypographyH2>
 
-_Whose life have you saved by stepping in and taking the punishment for them?_
-
-_Who do you have a deep romantic, or even spiritual connection with? What's stopping you from dating each other?_
-
-_Which one of the overseers forced you to carry out an especially violent beating, or else they would kill one of your loved ones?_
-
-_Your indominable dedication to your principles and peers has resulted in years of horrible beatings. How has this scarred you? Through this ordeal, you've turned the heart of an overseer. Who are they?_
-
-_Whose romantic advances have you spurned because they don't share your core values?_
+<ArchetypeQuestions archetype="Advocate" />
 
 ### Mission
 
@@ -203,15 +164,7 @@ _Whose romantic advances have you spurned because they don't share your core val
   </span>
 </TypographyH2>
 
-_Who is your best friend? Someone you've inspired with grand visions of the future and who you've always helped out of bad spots?_
-
-_Who would you love to date despite all of their superficial flaws? Why are they your soul-mate?_
-
-_Which one of the overseers threatens your best friend in order to get you to be an informant to the Factory Master?_
-
-_The overseers work to sow discord and conflict among the workers. You've mediated and mended hatred between two of your community's leaders. Who are they?_
-
-_Who broke your heart because dating them wasn't everything you'd imagined it would be?_
+<ArchetypeQuestions archetype="Idealist" />
 
 ### Mission
 
@@ -238,15 +191,7 @@ _Who broke your heart because dating them wasn't everything you'd imagined it wo
   </span>
 </TypographyH2>
 
-_When your community leader passed away, who advocated for you to take their place? How is filling their shoes going?_
-
-_Who's the one who got away? Where are they now, and what's your plan to win them back?_
-
-_Which one of the overseers poisoned food meant for you, resulting in the death of one of your loved ones? Who?_
-
-_You have lead the way in forming secret fight clubs to train for rebellion one day. Who is the instructor you found for your community, and what combat form do they teach?_
-
-_Who rejected you after what seemed to them as a sudden declaration of your love?_
+<ArchetypeQuestions archetype="Leader" />
 
 ### Mission
 
@@ -273,15 +218,7 @@ _Who rejected you after what seemed to them as a sudden declaration of your love
   </span>
 </TypographyH2>
 
-_Your dreams are vivid, almost ... real? What scheme have you crafted in your dreams to bring freedom to your brethren?_
-
-_Who's your ex who you would love to date again? Why does it seem like too much work?_
-
-_Which one of the overseers watches your each and every move, punishing you immediately if you so much as toe the line of the box they've defined for you?_
-
-_You had found a win-win relationship between your former overseer and your work pod. Who are they? Why did they get fired?_
-
-_Who did you break up with after an intense honeymoon phase because the flames of romance started to flicker?_
+<ArchetypeQuestions archetype="Dreamer" />
 
 ### Mission
 
@@ -308,15 +245,7 @@ _Who did you break up with after an intense honeymoon phase because the flames o
   </span>
 </TypographyH2>
 
-_Whose life have you saved by doing their work in addition to your own while they were hurt?_
-
-_Who do you have feelings for, who just makes sense for you? How long have you been waiting for them to make a move?_
-
-_Which one of the overseers noticed how hard you worked and then doubled your shift's duties because of it?_
-
-_You've been invited to meetings between the overseers and the Factory Master; they consulted you about how to rework the factory for the new project. What have you learned that will help your crew ruin the Factory Master's plans?_
-
-_Who broke up with you despite you being the one who won every argument?_
+<ArchetypeQuestions archetype="Logistician" />
 
 ### Mission
 
@@ -343,15 +272,7 @@ _Who broke up with you despite you being the one who won every argument?_
   </span>
 </TypographyH2>
 
-_You've been giving every spare scrap of your food to your fellow shift workers. What toll on your body has this taken?_
-
-_Who do you have a crush on; who you jump to the defense of, even when it doesn't make sense? Why haven't you expressed your feelings?_
-
-_Which one of the overseers loves tormenting you, beating you, watching you suffer as you quietly work in order to support your family?_
-
-_One of the overseers nearly killed one of your fellow shift workers last week. Rather than sit by, you shoved his head into a piston and killed him. Who have you gotten to pose as the overseer?_
-
-_Who broke up with you because you never let them fight their own battles?_
+<ArchetypeQuestions archetype="Defender" />
 
 ### Mission
 
@@ -378,15 +299,7 @@ _Who broke up with you because you never let them fight their own battles?_
   </span>
 </TypographyH2>
 
-_You have a set of beliefs sacred to your people that give you hope: beliefs now outlawed by the King. What are they?_
-
-_Who do you see at social gatherings who really interests you? What position do you need to be in before you know they'd go out with you?_
-
-_Which one of the overseers has spirited you away on late shifts to experiment on you? What scars has their tampering left?_
-
-_Many of these years you have shut out the external horrors and focused wholeheartedly on yourself. What special skill have you honed in this time?_
-
-_Who broke up with you because you're incapable of having your mind changed?_
+<ArchetypeQuestions archetype="Executive" />
 
 ### Mission
 
@@ -413,15 +326,7 @@ _Who broke up with you because you're incapable of having your mind changed?_
   </span>
 </TypographyH2>
 
-_Each night you tell stories of rebels and heroes of the common people. It brings your community together. Who are these heroes?_
-
-_Someone is always there for you, reassuring you when you doubt yourself and supporting you through hard times. Who are they? How do you plan to win their heart?_
-
-_Which one of the overseers takes joy in publicly humiliating you and discrediting you in front of your peers?_
-
-_You and your shiftmates have worked together in secret for years to build a secret passage within the factory. Where does it go?_
-
-_Who did you break up with because they never gave you the approval you need, even when you changed yourself for them?_
+<ArchetypeQuestions archetype="Consul" />
 
 ### Mission
 
@@ -448,15 +353,7 @@ _Who did you break up with because they never gave you the approval you need, ev
   </span>
 </TypographyH2>
 
-_Who is your mentor? A fellow tinkerer who has helped you learn the multitude of your interests?_
-
-_Who is the latest flame to catch your eye? What's your novel plan to initiate love?_
-
-_Which one of the overseers gets a little too close? Breathes down your neck? Is visible from the corner of your eye as you walk home at night?_
-
-_You've slain a great beast in a hunt not too long back, and you managed to preserve the remains - a great cache of food. But you can't access it easily, what's the catch?_
-
-_Who did you break up with because they wanted to get serious too quickly?_
+<ArchetypeQuestions archetype="Virtuoso" />
 
 ### Mission
 
@@ -483,15 +380,7 @@ _Who did you break up with because they wanted to get serious too quickly?_
   </span>
 </TypographyH2>
 
-_You and a close friend relax by acrobatics in and around the equipment. Who are they? Which region of the Steel Trap is it?_
-
-_Who do you delight in surprising in little ways? Why haven't they asked you out yet?_
-
-_Which one of the overseers takes delight in working to control you? To break you of your resolve and small acts of defiance?_
-
-_You've been working on a passion project, some form of creativity and insight to express your bold ideas and speak to your fellows' hearts. What is it?_
-
-_Who did you mutually break up with due to their pushiness and your guarded emotions?_
+<ArchetypeQuestions archetype="Artist" />
 
 ### Mission
 
@@ -521,15 +410,7 @@ _Who did you mutually break up with due to their pushiness and your guarded emot
   </span>
 </TypographyH2>
 
-_Who is your partner in crime? Your confidant and close friend who you adventure with?_
-
-_Who would you love to introduce to all of your hobbies? To explore and have fun with?_
-
-_Which one of the overseers locked you and your best friend up into solitary confinement for months? Why did they let you out but not your friend?_
-
-_You've been using your large social circle to spread rumors amongst the workers. What are the rumors and how will they work to your crew's advantage?_
-
-_Who broke up with you because they were looking for something not just fun, but deeper?_
+<ArchetypeQuestions archetype="Adventurer" />
 
 ### Mission
 
@@ -556,15 +437,7 @@ _Who broke up with you because they were looking for something not just fun, but
   </span>
 </TypographyH2>
 
-_Sometimes when you dream, you make contact with someone else in a very real way. Who are they?_
-
-_Who excites you? Makes you full of energy with just their presence? What's stopping you?_
-
-_Which one of the overseers takes time to sabotage or outright ruin your clothing and appearance?_
-
-_Your wide socialization has brought people together from many walks of life. What is this unlikely group of friends and what have you all accomplished which could only have been done together?_
-
-_Who did you break up with because they criticized you and just killed the spark?_
+<ArchetypeQuestions archetype="Entertainer" />
 
 ### Mission
 
