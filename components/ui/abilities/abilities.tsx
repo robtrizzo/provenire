@@ -115,7 +115,7 @@ const Abilities = ({
 
   return (
     <Accordion type="multiple" className={cn('w-full', className)}>
-      {abilities.map(renderAbility)}
+      {abilities?.map(renderAbility)}
     </Accordion>
   );
 };
