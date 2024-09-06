@@ -99,6 +99,7 @@ export function Charsheet() {
     const data = localStorage.getItem('charsheet');
     if (data) {
       const parsed = JSON.parse(data);
+      console.log(parsed);
       setSelectedArchetype(parsed.selectedArchetype);
       setSelectedSkillset(parsed.selectedSkillset);
       setSelectedBackground(parsed.selectedBackground);
@@ -108,6 +109,7 @@ export function Charsheet() {
       setInstinctXp(parsed.instinctXp || 0);
       setMachinaXp(parsed.machinaXp || 0);
       if (parsed.attributes) {
+        console.log('setting attributes');
         setAttributes(parsed.attributes);
       }
       if (parsed.conditions) {
@@ -126,7 +128,7 @@ export function Charsheet() {
     }
   }, []);
 
-  // every 0.5 seconds, check if there are changes and save them to local storage and the server
+  // every 0.1 seconds, check if there are changes and save them to local storage and the server
   useEffect(() => {
     const interval = setInterval(() => {
       if (changes) {
@@ -157,7 +159,7 @@ export function Charsheet() {
         // TODO save to server
         setChanges(false);
       }
-    }, 500);
+    }, 100);
     return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [changes]);
@@ -179,6 +181,7 @@ export function Charsheet() {
       ...attributes,
       [attribute]: { ...attributes[attribute], [action]: score },
     });
+    console.log(attributes);
     setChanges(true);
   }
 
@@ -811,6 +814,7 @@ export function Charsheet() {
                     </TypographyH3>
                   </div>
                   <BuildupCheckboxes
+                    key={`heartXp${new Date().getTime()}`}
                     max={6}
                     current={heartXp}
                     onChange={(n) => {
@@ -854,6 +858,7 @@ export function Charsheet() {
                   </div>
                   <div className="flex flex-col  border-r-[1px]">
                     <ActionScore
+                      key={`defy${new Date().getTime()}`}
                       score={attributes.Heart.Defy}
                       onChange={(s) => {
                         handleUpdateActionScore('Heart', 'Defy', s);
@@ -862,6 +867,7 @@ export function Charsheet() {
                     />
                     <Separator />
                     <ActionScore
+                      key={`persuade${new Date().getTime()}`}
                       score={attributes.Heart.Persuade}
                       onChange={(s) => {
                         handleUpdateActionScore('Heart', 'Persuade', s);
@@ -979,6 +985,7 @@ export function Charsheet() {
                     </TypographyH3>
                   </div>
                   <BuildupCheckboxes
+                    key={`instinctXp${new Date().getTime()}`}
                     max={6}
                     current={instinctXp}
                     onChange={(n) => {
@@ -1022,6 +1029,7 @@ export function Charsheet() {
                   </div>
                   <div className="flex flex-col border-r-[1px]">
                     <ActionScore
+                      key={`charge${new Date().getTime()}`}
                       score={attributes.Instinct.Charge}
                       onChange={(s) => {
                         handleUpdateActionScore('Instinct', 'Charge', s);
@@ -1030,6 +1038,7 @@ export function Charsheet() {
                     />
                     <Separator />
                     <ActionScore
+                      key={`prowl${new Date().getTime()}`}
                       score={attributes.Instinct.Prowl}
                       onChange={(s) => {
                         handleUpdateActionScore('Instinct', 'Prowl', s);
@@ -1147,6 +1156,7 @@ export function Charsheet() {
                     </TypographyH3>
                   </div>
                   <BuildupCheckboxes
+                    key={`machinaXp${new Date().getTime()}`}
                     max={6}
                     current={machinaXp}
                     onChange={(n) => {
@@ -1190,6 +1200,7 @@ export function Charsheet() {
                   </div>
                   <div className="flex flex-col border-r-[1px]">
                     <ActionScore
+                      key={`suggest${new Date().getTime()}`}
                       score={attributes.Machina.Suggest}
                       onChange={(s) => {
                         handleUpdateActionScore('Machina', 'Suggest', s);
@@ -1198,6 +1209,7 @@ export function Charsheet() {
                     />
                     <Separator />
                     <ActionScore
+                      key={`survey${new Date().getTime()}`}
                       score={attributes.Machina.Survey}
                       onChange={(s) => {
                         handleUpdateActionScore('Machina', 'Survey', s);
@@ -1446,6 +1458,7 @@ export function Charsheet() {
                     Experience
                   </TypographyH3>
                   <BuildupCheckboxes
+                    key={`xp${new Date().getTime()}`}
                     max={8}
                     current={skillsetXp}
                     onChange={(n) => {
@@ -1460,6 +1473,7 @@ export function Charsheet() {
                     Stress
                   </TypographyH3>
                   <BuildupCheckboxes
+                    key={`stress${new Date().getTime()}`}
                     max={9}
                     current={stress}
                     onChange={(n) => {
@@ -1476,7 +1490,7 @@ export function Charsheet() {
                     {['Insecure', 'Afraid', 'Angry', 'Hopeless', 'Guilty'].map(
                       (c) => (
                         <Condition
-                          key={c}
+                          key={`${c}${new Date().getTime()}`}
                           name={c}
                           active={conditions.includes(c)}
                           onClick={() => {
@@ -1494,6 +1508,7 @@ export function Charsheet() {
                     )}
                     <div className="flex-shrink-0 ml-auto basis-[100px] border-[1px] border-border rounded-md p-1 flex items-center select-none">
                       <Clock
+                        key={`conditionRecovery${new Date().getTime()}`}
                         max={8}
                         current={conditionRecovery}
                         size={35}
@@ -1515,6 +1530,7 @@ export function Charsheet() {
                   </TypographyH3>
                   <div className="flex-shrink-0 border-[1px] max-w-[100px] border-border rounded-t-md p-1 select-none flex items-center ">
                     <Clock
+                      key={`healing${new Date().getTime()}`}
                       max={4}
                       current={healing}
                       size={35}
