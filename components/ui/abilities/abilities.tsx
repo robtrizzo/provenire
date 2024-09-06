@@ -1,3 +1,4 @@
+'use client';
 /* eslint-disable react/display-name */
 import { useState, useEffect, useMemo } from 'react';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -9,18 +10,23 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import type { Ability } from '@/types/game';
-import components from '@/components/ui/abilities/mapping'; // Adjust the import path as needed
+import components from '@/components/ui/abilities/mapping';
+import { cn } from '@/lib/utils';
 
 const Abilities = ({
   abilities,
   characterAbilities,
   setCharacterAbilities,
   setChanges,
+  variant = 'sheet',
+  className,
 }: {
   abilities: Ability[];
-  characterAbilities: string[];
-  setCharacterAbilities: (abilities: string[]) => void;
-  setChanges: (changed: boolean) => void;
+  characterAbilities?: string[];
+  setCharacterAbilities?: (abilities: string[]) => void;
+  setChanges?: (changed: boolean) => void;
+  variant?: 'sheet' | 'wiki';
+  className?: string;
 }) => {
   const [dynamicComponents, setDynamicComponents] = useState<{
     [key: string]: React.FC | null;
@@ -51,31 +57,41 @@ const Abilities = ({
       return (
         <AccordionItem value={ability.name} key={i}>
           <AccordionTrigger>
-            <div className="flex items-center gap-2">
-              <Checkbox
-                checked={
-                  ability.keystone
-                    ? true
-                    : characterAbilities.includes(ability.name)
-                }
-                disabled={ability.keystone}
-                onCheckedChange={(checked) => {
-                  if (checked) {
-                    setCharacterAbilities([
-                      ...characterAbilities,
-                      ability.name,
-                    ]);
-                  } else {
-                    setCharacterAbilities(
-                      characterAbilities.filter((a) => a !== ability.name)
-                    );
+            {variant === 'sheet' && (
+              <div className="flex items-center gap-2">
+                <Checkbox
+                  checked={
+                    characterAbilities && ability.keystone
+                      ? true
+                      : characterAbilities?.includes(ability.name)
                   }
-                  setChanges(true);
-                }}
-                onClick={(e) => e.stopPropagation()}
-              />
-              <TypographyP>{ability.name}</TypographyP>
-            </div>
+                  disabled={ability.keystone}
+                  onCheckedChange={(checked) => {
+                    if (setCharacterAbilities === undefined) return;
+                    if (characterAbilities === undefined) return;
+                    if (setChanges === undefined) return;
+                    if (checked) {
+                      setCharacterAbilities([
+                        ...characterAbilities,
+                        ability.name,
+                      ]);
+                    } else {
+                      setCharacterAbilities(
+                        characterAbilities.filter((a) => a !== ability.name)
+                      );
+                    }
+                    setChanges(true);
+                  }}
+                  onClick={(e) => e.stopPropagation()}
+                />
+                <TypographyP>{ability.name}</TypographyP>
+              </div>
+            )}
+            {variant === 'wiki' && (
+              <TypographyP className={cn(ability.keystone && 'text-amber-700')}>
+                {ability.name}
+              </TypographyP>
+            )}
           </AccordionTrigger>
           <AccordionContent>
             {DynamicComponent ? (
@@ -94,10 +110,11 @@ const Abilities = ({
     characterAbilities,
     setCharacterAbilities,
     setChanges,
+    variant,
   ]);
 
   return (
-    <Accordion type="multiple" className="w-full">
+    <Accordion type="multiple" className={cn('w-full', className)}>
       {abilities.map(renderAbility)}
     </Accordion>
   );

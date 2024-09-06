@@ -1,6 +1,7 @@
 import type { Action } from '@/types/game';
 import { TypographyH4 } from '@/components/ui/typography';
 import { VenetianMask, Flame, Activity } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 function AttributeIcon({
   attribute,
@@ -19,13 +20,17 @@ function AttributeIcon({
   }
 }
 
-export default function ActionDescription({ action }: { action: Action }) {
+export default function ActionDescription({
+  action,
+  className,
+}: {
+  action: Action;
+  className?: string;
+}) {
   return (
-    <div>
-      <TypographyH4>
-        {action.name} <AttributeIcon attribute={action.attribute} />:{' '}
-        <span className="text-sm">{action.description}</span>
-      </TypographyH4>
-    </div>
+    <TypographyH4 className={cn(className)}>
+      {action.name} <AttributeIcon attribute={action.attribute} />:{' '}
+      <span className="text-sm">{action.description}</span>
+    </TypographyH4>
   );
 }

@@ -10,6 +10,8 @@ import {
   ChevronRight,
 } from 'lucide-react';
 import ArchetypeQuestions from '@/components/ui/archetype-questions';
+import archetypes from '@/public/archetypes.json';
+import Abilities from '@/components/ui/abilities/abilities';
 
 # Archetypes
 
@@ -17,30 +19,24 @@ Trouble. Defiance. Rebellion. Danger and thrill at the prospect of making the ov
 
 Your character's Archetype is a reflection of their personality and the way they interact with friends, family, and the world around them. It grants unique character questions, actions, and abilities. The ability marked in gold is unlocked when you select the Archetype. Others can be taken as advancements.
 
-<TypographyH2 id="strategist">
+<TypographyH2 id="strategist" className="flex items-end">
   <span className="text-amber-700">Strategist</span>
   <span className="text-muted-foreground text-lg ml-8">
     Intense, inquisitive, perceptive
   </span>
 </TypographyH2>
 
+**Scheme <VenetianMask className="inline-block mb-1" />:** Make a complicated plan to do something rebellious or immoral.
+
 <ArchetypeQuestions archetype="Strategist" />
 
 ### Mission
 
-<span className="inline-block text-amber-700 font-bold">The Chess Game of Life</span>: You have significant people in your life. It's important to you that you have the relationship you want with them. **Friends**: best friend, intellectual match, wise mentor, crush. **Foes**: overseer, abuser, rival, doubter. At the start of each mission, pick one friend or foe. **+1d** to any action that helps shift their view of you in the direction you want.
-
-**My Body is My Machine**: When someone tries to dominate, or intimidate the Strategist, **+1d** on the resistance roll.
-
-#### Action
-
-**Scheme <VenetianMask className="inline-block mb-1" />:** Make a complicated plan to do something rebellious or immoral.
+<Abilities abilities={archetypes.find((a) => a.name === 'Strategist').abilities.mission} variant="wiki" className="mb-4" />
 
 ### Downtime
 
-**Villainous Intellect**: When scapegoating someone to **shift the blame**, the Strategist may explain their plans to the scapegoat as it's happening. If they do, spend **1 goodwill** and **mark 1 xp**.
-
-**Thirst for Knowledge**: Strategists may always **train** for free in a single attribute which they failed a roll in last mission. Once per misson, if they get a 6 on a roll with that attribute, they **mark 1 xp**.
+<Abilities abilities={archetypes.find((a) => a.name === 'Strategist').abilities.downtime} variant="wiki" className="mb-4" />
 
 <TypographyH2 id="engineer">
   <span className="text-amber-700">Engineer</span>
@@ -53,25 +49,13 @@ Your character's Archetype is a reflection of their personality and the way they
 
 ### Mission
 
-#### Special Abilities
-
-<span className="inline-block text-amber-700 font-bold">The Life of the Mind</span>: A cerebral sort often lost in day-dreams. Once per mission during a desperate situation, the Engineer may withdraw into their thoughts. If they do, they don't get to participate in solving or escaping the situation, but they may make a **[project roll](/game/the-churn#project-rolls)** on any project that the crew is working on, spending crew resources if appropriate. If this completes the project, describe the moment of genius that brings it all together and introduces the result into the scene.
-
-**Mysteries of the Machines**: When the Engineer gathers information about a structure or phenomenon, add the following to the list of questions they can ask:
- - What is it made of?
- - How could it be weakened or strengthened?
- - How could it be used to my advantage?
- - What is its purpose?
-
-#### Action
-
 **Tinker <VenetianMask className="inline-block mb-1" />:** Work to understand or improve a machine or device.
+
+<Abilities abilities={archetypes.find((a) => a.name === 'Engineer').abilities.mission} variant="wiki" className="mb-4" />
 
 ### Downtime
 
-**Curious and Original**: Engineers may always advance a **long term project** for free each downtime. But to do so, they must come up with a completely new approach to the problem. This may involve starting a sub-project.
-
-**Open Minded**: When someone rejects your advice when you **comfort** them, or when you reject someone's advice when they comfort you, decide if there is sound reasoning behind the rejection. If there is, the character whose advice was rejected does not mark stress.
+<Abilities abilities={archetypes.find((a) => a.name === 'Engineer').abilities.downtime} variant="wiki" className="mb-4" />
 
 <TypographyH2 id="commander">
   <span className="text-amber-700">Commander</span>
@@ -84,21 +68,14 @@ Your character's Archetype is a reflection of their personality and the way they
 
 ### Mission
 
-#### Special Abilities
-
-<span className="inline-block text-amber-700 font-bold">A Worthy Challenge</span>: When the crew makes a **group roll** the Commander can demand they take charge. Each team member votes yes or no. The Commander marks **1 stress** for each "no" vote. If "yes" is the majority, only "yes" votes may participate. The roll has increased effect, but each "yes" vote that rolls less than a 6 marks **1 stress**.
-
-**Strive for Greatness**: Direct one teammate to help another. If they do, they add an additional **1 red die**. If they refuse or if the roll is less than a 6, the helping teammate marks an additional **1 stress**.
-
-#### Action
-
 **Command <Flame className="inline-block mb-3" />:** Wield authority to get things done.
+
+<Abilities abilities={archetypes.find((a) => a.name === 'Commander').abilities.mission} variant="wiki" className="mb-4" />
+
 
 ### Downtime
 
-**Efficiency is King**: Commanders may always perform an extra downtime action to instruct a teammate how they could be more efficient. Give them advice and make a **[project roll](/game/the-churn#project-rolls)**. If they take the advice, they mark a number of segments on whatever project they're working on according to the result. If they reject the advice, you mark an amount of stress equal to the result.
-
-**Sacrificial Pawn**: When you **shift the blame**, you may order or bully someone close to the team to take the fall. If you do, spend **1 goodwill** and reduce Heat by an additional 2.
+<Abilities abilities={archetypes.find((a) => a.name === 'Commander').abilities.downtime} variant="wiki" className="mb-4" />
 
 <TypographyH2 id="visionary">
   <span className="text-amber-700">Visionary</span>
@@ -111,24 +88,13 @@ Your character's Archetype is a reflection of their personality and the way they
 
 ### Mission
 
-#### Special Abilities
-
-<span className="inline-block text-amber-700 font-bold">Rapid Originality</span>: When the Visionary assists a teammate, that teammate doesn't add an extra die to their pool. Instead they may choose to reroll the result with different actions that the Visionary chooses.
-
-**Question Everything**: When the Visionary gathers information about conventional information or wisdom, they add the following to the list of questions they can ask:
- - What's the critical flaw that makes this not apply to my current situation?
- - If I do the opposite, what will the consequances be?
- - What's the advantage to this that they didn't even realize?
-
-#### Action
-
 **Rhetoric <VenetianMask className="inline-block mb-1" />:** Persuade or manipulate others with the way your words make them feel.
+
+<Abilities abilities={archetypes.find((a) => a.name === 'Visionary').abilities.mission} variant="wiki" className="mb-4" />
 
 ### Downtime
 
-**Contrarian Charisma**: When someone rejects your advice when you **comfort** them, or when you reject someone's advice when they comfort you, you may still benefit from half the result, rounded up. They mark half of the stress, rounded up.
-
-**Expert Brainstormer**: Visionaries get **+1d** to the first roll of a **long term project**. They take **-1d** to **long term projects** that are over halway done.
+<Abilities abilities={archetypes.find((a) => a.name === 'Visionary').abilities.downtime} variant="wiki" className="mb-4" />
 
 <TypographyH2 id="advocate">
   <span className="text-amber-700">Advocate</span>
