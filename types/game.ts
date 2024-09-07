@@ -65,3 +65,14 @@ export type CharacterAttributes = {
     [key: string]: number[];
   };
 };
+
+export interface Bond {
+  name: string;
+  score: number[];
+}
+
+export type Bonds = {
+  Personal: Bond[];
+  Familial: Bond[];
+  Professional: Bond[];
+};

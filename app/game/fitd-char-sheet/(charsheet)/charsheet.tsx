@@ -33,7 +33,9 @@ import {
   type Background,
   type Heritage,
   type Action,
+  type Bond,
   CharacterAttributes,
+  Bonds,
 } from '@/types/game';
 import { Button } from '@/components/ui/button';
 import { BuildupCheckboxes } from '@/components/ui/buildup-checkboxes';
@@ -41,7 +43,7 @@ import { ActionScore } from '@/components/ui/action-score';
 import { useToast } from '@/components/ui/use-toast';
 import { Die } from '@/components/ui/die';
 import { cn, debounce } from '@/lib/utils';
-import { VenetianMask, Flame, Activity } from 'lucide-react';
+import { VenetianMask, Flame, Activity, Dices } from 'lucide-react';
 import ActionDescription from '@/components/ui/action-description';
 import { Card } from '@/components/ui/card';
 import Clock from '@/components/ui/clock';
@@ -49,6 +51,7 @@ import { Condition } from '@/components/ui/condition';
 import { Checkbox } from '@/components/ui/checkbox';
 import Link from 'next/link';
 import Abilities from '@/components/ui/abilities/abilities';
+import DowntimeActionsAccordion from '@/components/ui/downtime-actions-accordion';
 
 export function Charsheet() {
   const [selectedArchetype, setSelectedArchetype] = useState<Archetype>();
@@ -72,6 +75,21 @@ export function Charsheet() {
     Machina: { Suggest: [0, 0], Survey: [0, 0] },
   });
 
+  const [bonds, setBonds] = useState<Bonds>({
+    Personal: [
+      { name: '', score: [0, 0] },
+      { name: '', score: [0, 0] },
+    ],
+    Familial: [
+      { name: '', score: [0, 0] },
+      { name: '', score: [0, 0] },
+    ],
+    Professional: [
+      { name: '', score: [0, 0] },
+      { name: '', score: [0, 0] },
+    ],
+  });
+
   const [stress, setStress] = useState(0);
   const [conditions, setConditions] = useState<string[]>([]);
   const [conditionRecovery, setConditionRecovery] = useState<number>(0);
@@ -84,6 +102,8 @@ export function Charsheet() {
   const [armor, setArmor] = useState<boolean>(false);
   const [hArmor, setHArmor] = useState<boolean>(false);
   const [sArmor, setSArmor] = useState<boolean>(false);
+
+  const [starvation, setStarvation] = useState<number>(0);
 
   const [abilities, setAbilities] = useState<string[]>([]);
 
@@ -99,7 +119,6 @@ export function Charsheet() {
     const data = localStorage.getItem('charsheet');
     if (data) {
       const parsed = JSON.parse(data);
-      console.log(parsed);
       setSelectedArchetype(parsed.selectedArchetype);
       setSelectedSkillset(parsed.selectedSkillset);
       setSelectedBackground(parsed.selectedBackground);
@@ -109,7 +128,6 @@ export function Charsheet() {
       setInstinctXp(parsed.instinctXp || 0);
       setMachinaXp(parsed.machinaXp || 0);
       if (parsed.attributes) {
-        console.log('setting attributes');
         setAttributes(parsed.attributes);
       }
       if (parsed.conditions) {
@@ -125,6 +143,10 @@ export function Charsheet() {
       setHArmor(parsed.hArmor || false);
       setSArmor(parsed.sArmor || false);
       setAbilities(parsed.abilities || []);
+      if (parsed.bonds) {
+        setBonds(parsed.bonds);
+      }
+      setStarvation(parsed.starvation || 0);
     }
   }, []);
 
@@ -154,6 +176,8 @@ export function Charsheet() {
           hArmor,
           sArmor,
           abilities,
+          bonds,
+          starvation,
         };
         localStorage.setItem('charsheet', JSON.stringify(data));
         // TODO save to server
@@ -181,18 +205,11 @@ export function Charsheet() {
       ...attributes,
       [attribute]: { ...attributes[attribute], [action]: score },
     });
-    console.log(attributes);
     setChanges(true);
   }
 
-  function rollAction(
-    attribute: 'Heart' | 'Instinct' | 'Machina',
-    action: string
-  ) {
-    const score = attributes[attribute][action];
-    const [a, b] = score || [0, 0];
-
-    if (a === 0 && b === 0) {
+  function roll(name: string, score: number[]) {
+    if (score[0] === 0 && score[1] === 0) {
       // roll 2d6 and take the lowest
       let r1 = Math.floor(Math.random() * 6) + 1;
       let r2 = Math.floor(Math.random() * 6) + 1;
@@ -221,7 +238,7 @@ export function Charsheet() {
         // @ts-ignore
         title: (
           <div className="flex gap-1">
-            <span className="mt-1">Rolled {action}</span>
+            <span className="mt-1">Rolled {name}</span>
             <Die roll={r1} className="h-5 w-5" />
             <Die roll={r2} className="h-5 w-5" />
           </div>
@@ -277,7 +294,7 @@ export function Charsheet() {
       // @ts-ignore
       title: (
         <div className="flex items-start gap-1">
-          <span className="mt-1">Rolled {action}</span>
+          <span className="mt-1">Rolled {name}</span>
           {redRolls.map((r, i) => (
             <Die key={i} roll={r} className="h-5 w-5 text-red-500" />
           ))}
@@ -301,15 +318,21 @@ export function Charsheet() {
     });
   }
 
-  function rollCombo(
-    attribute1: 'Heart' | 'Instinct' | 'Machina',
-    action1: string,
-    attribute2: 'Heart' | 'Instinct' | 'Machina',
-    action2: string
+  function rollAction(
+    attribute: 'Heart' | 'Instinct' | 'Machina',
+    action: string
   ) {
-    const score1 = attributes[attribute1][action1] || [0, 0];
-    const score2 = attributes[attribute2][action2] || [0, 0];
-    const dice = [...score1, ...score2];
+    const score = attributes[attribute][action];
+    const [a, b] = score || [0, 0];
+
+    roll(action, [a, b]);
+  }
+
+  function rollBond(bond: Bond) {
+    roll(bond.name, bond.score);
+  }
+
+  function rollCombo(action1: string, action2: string, dice: number[]) {
     if (dice.reduce((acc, s) => acc + s, 0) === 0) {
       // roll 2d6 and take the lowest
       let r1 = Math.floor(Math.random() * 6) + 1;
@@ -423,6 +446,27 @@ export function Charsheet() {
     });
   }
 
+  function rollComboMission(
+    attribute1: 'Heart' | 'Instinct' | 'Machina',
+    action1: string,
+    attribute2: 'Heart' | 'Instinct' | 'Machina',
+    action2: string
+  ) {
+    const score1 = attributes[attribute1][action1] || [0, 0];
+    const score2 = attributes[attribute2][action2] || [0, 0];
+    rollCombo(action1, action2, [...score1, ...score2]);
+  }
+
+  function rollComboChurn(
+    bond: Bond,
+    attribute: 'Heart' | 'Instinct' | 'Machina',
+    action: string
+  ) {
+    const score1 = bond.score || [0, 0];
+    const score2 = attributes[attribute][action] || [0, 0];
+    rollCombo(bond.name, action, [...score1, ...score2]);
+  }
+
   // helper function to get the explicit keys for each attribute
   const attributeExplicitKeys = {
     Heart: ['Defy', 'Persuade'],
@@ -430,14 +474,35 @@ export function Charsheet() {
     Machina: ['Suggest', 'Survey'],
   };
 
-  function rollAttribute(attribute: 'Heart' | 'Instinct' | 'Machina') {
+  function rollAttribute(
+    attribute: 'Heart' | 'Instinct' | 'Machina',
+    variant: string = 'mission'
+  ) {
     const attr = attributes[attribute];
-    const ekeys = attributeExplicitKeys[attribute];
+    let scores: number[][] = [];
     const bkeys = selectedBackground?.attributes?.[attribute] ?? [];
     const tkeys = selectedSkillset?.attributes?.[attribute] ?? [];
     const akeys = selectedArchetype?.attributes?.[attribute] ?? [];
-    const keys = [...ekeys, ...bkeys, ...tkeys, ...akeys];
-    const scores = keys.map((k) => attr[k]).filter((s) => s);
+    if (variant === 'mission') {
+      const ekeys = attributeExplicitKeys[attribute];
+      const keys = [...ekeys, ...bkeys, ...tkeys, ...akeys];
+      scores = keys.map((k) => attr[k]).filter((s) => s);
+    } else if (variant === 'churn') {
+      const keys = [...bkeys, ...tkeys, ...akeys];
+      const filteredScores = keys.map((k) => attr[k]).filter((s) => s);
+      let bondScores: number[][] = [];
+      if (attribute === 'Heart') {
+        bondScores = bonds.Personal.map((b) => b.score).filter((s) => s);
+      } else if (attribute === 'Instinct') {
+        bondScores = bonds.Familial.map((b) => b.score).filter((s) => s);
+      } else if (attribute === 'Machina') {
+        bondScores = bonds.Professional.map((b) => b.score).filter((s) => s);
+      }
+      scores = [...filteredScores, ...bondScores];
+    } else {
+      console.error('Unknown variant', variant);
+      return;
+    }
     const score = scores.reduce((acc, s) => {
       const [a, b] = s;
       if (a > 0 || b > 0) {
@@ -710,9 +775,25 @@ export function Charsheet() {
       </div>
       <Tabs defaultValue="mission" className="w-full my-3 mx-auto">
         <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="mission">Mission</TabsTrigger>
+          <TabsTrigger
+            value="mission"
+            onClick={() => {
+              setRollLeft('');
+              setRollRight('');
+            }}
+          >
+            Mission
+          </TabsTrigger>
           <TabsTrigger value="profile">Profile</TabsTrigger>
-          <TabsTrigger value="churn">The Churn</TabsTrigger>
+          <TabsTrigger
+            value="churn"
+            onClick={() => {
+              setRollLeft('');
+              setRollRight('');
+            }}
+          >
+            The Churn
+          </TabsTrigger>
         </TabsList>
         <TabsContent value="mission" className="w-full">
           <div className="my-3 grid grid-cols-1 md:grid-cols-2 gap-6 focus-visible:outline-none">
@@ -800,7 +881,6 @@ export function Charsheet() {
               )}
             </div>
             <div className="flex my-6 md:mt-3">
-              <div className="md:flex-grow"></div>
               <div>
                 <div className="grid grid-cols-2 border-b-[1px]">
                   <div
@@ -1360,7 +1440,7 @@ export function Charsheet() {
                         const [attributeRight, actionRight] = rollRight.split(
                           '-'
                         ) as ['Heart' | 'Instinct' | 'Machina', string];
-                        rollCombo(
+                        rollComboMission(
                           attributeLeft,
                           actionLeft,
                           attributeRight,
@@ -1717,10 +1797,1123 @@ export function Charsheet() {
           </div>
         </TabsContent>
         <TabsContent value="churn" className="w-full">
-          <div className="my-3">
-            <TypographyH2>Subsistence</TypographyH2>
-            <TypographyH2 className="mt-4">Agendas</TypographyH2>
-            <TypographyH2 className="mt-4">Downtime</TypographyH2>
+          <div className="my-3 grid grid-cols-1 md:grid-cols-2 gap-6 focus-visible:outline-none">
+            <div className="my-3">
+              <TypographyH2 className="mt-4">Bonds</TypographyH2>
+              <TypographyH3 className="mt-4 text-sm text-muted-foreground">
+                Personal
+              </TypographyH3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                <Input
+                  value={bonds.Personal[0].name}
+                  onChange={(e) => {
+                    setBonds({
+                      Personal: [
+                        {
+                          name: e.target.value,
+                          score: bonds.Personal[0].score,
+                        },
+                        {
+                          name: bonds.Personal[1].name,
+                          score: bonds.Personal[1].score,
+                        },
+                      ],
+                      Familial: bonds.Familial,
+                      Professional: bonds.Professional,
+                    });
+                    setChanges(true);
+                  }}
+                />
+                <Input
+                  value={bonds.Personal[1].name}
+                  onChange={(e) => {
+                    setBonds({
+                      Personal: [
+                        {
+                          name: bonds.Personal[0].name,
+                          score: bonds.Personal[0].score,
+                        },
+                        {
+                          name: e.target.value,
+                          score: bonds.Personal[1].score,
+                        },
+                      ],
+                      Familial: bonds.Familial,
+                      Professional: bonds.Professional,
+                    });
+                    setChanges(true);
+                  }}
+                />
+              </div>
+              <TypographyH3 className="mt-4 text-sm text-muted-foreground">
+                Familial
+              </TypographyH3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                <Input
+                  value={bonds.Familial[0].name}
+                  onChange={(e) => {
+                    setBonds({
+                      Personal: bonds.Personal,
+                      Familial: [
+                        {
+                          name: e.target.value,
+                          score: bonds.Familial[0].score,
+                        },
+                        {
+                          name: bonds.Familial[1].name,
+                          score: bonds.Familial[1].score,
+                        },
+                      ],
+                      Professional: bonds.Professional,
+                    });
+                    setChanges(true);
+                  }}
+                />
+                <Input
+                  value={bonds.Familial[1].name}
+                  onChange={(e) => {
+                    setBonds({
+                      Personal: bonds.Personal,
+                      Familial: [
+                        {
+                          name: bonds.Familial[0].name,
+                          score: bonds.Familial[0].score,
+                        },
+                        {
+                          name: e.target.value,
+                          score: bonds.Familial[1].score,
+                        },
+                      ],
+                      Professional: bonds.Professional,
+                    });
+                    setChanges(true);
+                  }}
+                />
+              </div>
+              <TypographyH3 className="mt-4 text-sm text-muted-foreground">
+                Professional
+              </TypographyH3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                <Input
+                  value={bonds.Professional[0].name}
+                  onChange={(e) => {
+                    setBonds({
+                      Personal: bonds.Personal,
+                      Familial: bonds.Familial,
+                      Professional: [
+                        {
+                          name: e.target.value,
+                          score: bonds.Professional[0].score,
+                        },
+                        {
+                          name: bonds.Professional[1].name,
+                          score: bonds.Professional[1].score,
+                        },
+                      ],
+                    });
+                    setChanges(true);
+                  }}
+                />
+                <Input
+                  value={bonds.Professional[1].name}
+                  onChange={(e) => {
+                    setBonds({
+                      Personal: bonds.Personal,
+                      Familial: bonds.Familial,
+                      Professional: [
+                        {
+                          name: bonds.Professional[0].name,
+                          score: bonds.Professional[0].score,
+                        },
+                        {
+                          name: e.target.value,
+                          score: bonds.Professional[1].score,
+                        },
+                      ],
+                    });
+                    setChanges(true);
+                  }}
+                />
+              </div>
+              <TypographyH2 className="mt-4">Phases</TypographyH2>
+              <div className="w-[120px] border-[1px] border-border rounded-md p-1 flex items-center select-none my-2">
+                <Clock
+                  key={`starvation${new Date().getTime()}`}
+                  max={5}
+                  current={starvation}
+                  size={35}
+                  setVal={(n) => {
+                    setStarvation(n);
+                    setChanges(true);
+                  }}
+                />
+                <span className="text-xs text-muted-foreground text-center w-full">
+                  starvation
+                </span>
+              </div>
+              <TypographyH2 className="mt-4">Agendas</TypographyH2>
+              <TypographyH2 className="mt-4">Downtime</TypographyH2>
+              <TypographyH3 className="text-sm text-muted-foreground mt-4">
+                Actions
+              </TypographyH3>
+              <DowntimeActionsAccordion />
+            </div>
+            <div className="my-3 flex flex-col">
+              <div className="grid grid-cols-2 border-b-[1px]">
+                <div
+                  className="hover:cursor-pointer group border-r-[1px] mt-8"
+                  onClick={() => {
+                    rollAttribute('Heart', 'churn');
+                  }}
+                >
+                  <TypographyH3 className="group-hover:underline">
+                    Heart <Flame className="inline mb-2" />
+                  </TypographyH3>
+                </div>
+                <BuildupCheckboxes
+                  key={`heartXp${new Date().getTime()}`}
+                  max={6}
+                  current={heartXp}
+                  onChange={(n) => {
+                    setHeartXp(n);
+                    setChanges(true);
+                  }}
+                  className="items-center mt-auto mb-2"
+                />
+              </div>
+              <div className="grid grid-cols-4 mx-2">
+                <div className="flex flex-col">
+                  <div
+                    className="h-10 flex items-center hover:cursor-pointer group"
+                    onClick={(e) => {
+                      if (e.shiftKey) {
+                        rollBond(bonds.Personal[0]);
+                      } else {
+                        setRollLeft(`Personal-${bonds.Personal[0].name}`);
+                      }
+                    }}
+                  >
+                    <TypographyH4 className="group-hover:underline">
+                      {bonds.Personal[0].name}
+                    </TypographyH4>
+                  </div>
+                  <Separator />
+                  <div
+                    className="h-10 flex items-center hover:cursor-pointer group"
+                    onClick={(e) => {
+                      if (e.shiftKey) {
+                        rollBond(bonds.Personal[1]);
+                      } else {
+                        setRollLeft(`Personal-${bonds.Personal[1].name}`);
+                      }
+                    }}
+                  >
+                    <TypographyH4 className="group-hover:underline">
+                      {bonds.Personal[1].name}
+                    </TypographyH4>
+                  </div>
+                </div>
+                <div className="flex flex-col  border-r-[1px]">
+                  <ActionScore
+                    key={`per0${new Date().getTime()}`}
+                    score={bonds.Personal[0].score}
+                    onChange={(s) => {
+                      setBonds({
+                        Personal: [
+                          {
+                            name: bonds.Personal[0].name,
+                            score: s,
+                          },
+                          {
+                            name: bonds.Personal[1].name,
+                            score: bonds.Personal[1].score,
+                          },
+                        ],
+                        Familial: bonds.Familial,
+                        Professional: bonds.Professional,
+                      });
+                      setChanges(true);
+                    }}
+                    className="h-10 justify-end mr-2"
+                  />
+                  <Separator />
+                  <ActionScore
+                    key={`per1${new Date().getTime()}`}
+                    score={bonds.Personal[1].score}
+                    onChange={(s) => {
+                      setBonds({
+                        Personal: [
+                          {
+                            name: bonds.Personal[0].name,
+                            score: bonds.Personal[0].score,
+                          },
+                          {
+                            name: bonds.Personal[1].name,
+                            score: s,
+                          },
+                        ],
+                        Familial: bonds.Familial,
+                        Professional: bonds.Professional,
+                      });
+                      setChanges(true);
+                    }}
+                    className="h-10 justify-end mr-2"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  {selectedBackground?.attributes.Heart.map((a, i) => (
+                    <>
+                      <div
+                        key={`ah-${i}`}
+                        className="h-10 hover:cursor-pointer group"
+                        onClick={(e) => {
+                          if (e.shiftKey) {
+                            rollAction('Heart', a);
+                          } else {
+                            setRollRight(`Heart-${a}`);
+                          }
+                        }}
+                      >
+                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                          {a}
+                        </TypographyH4>
+                      </div>
+                      <Separator />
+                    </>
+                  ))}
+                  {selectedSkillset?.attributes.Heart.map((a, i) => (
+                    <>
+                      <div
+                        key={`ah-${i}`}
+                        className="h-10 hover:cursor-pointer group"
+                        onClick={(e) => {
+                          if (e.shiftKey) {
+                            rollAction('Heart', a);
+                          } else {
+                            setRollRight(`Heart-${a}`);
+                          }
+                        }}
+                      >
+                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                          {a}
+                        </TypographyH4>
+                      </div>
+                      <Separator />
+                    </>
+                  ))}
+                  {selectedArchetype?.attributes.Heart.map((a, i) => (
+                    <div
+                      key={`ah-${i}`}
+                      className="h-10 hover:cursor-pointer group"
+                      onClick={(e) => {
+                        if (e.shiftKey) {
+                          rollAction('Heart', a);
+                        } else {
+                          setRollRight(`Heart-${a}`);
+                        }
+                      }}
+                    >
+                      <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                        {a}
+                      </TypographyH4>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex flex-col">
+                  {selectedBackground?.attributes.Heart.map((k) => (
+                    <>
+                      <ActionScore
+                        key={`bh-${k}`}
+                        score={attributes.Heart[k]}
+                        onChange={(s) => {
+                          handleUpdateActionScore('Heart', k, s);
+                        }}
+                        className="h-10 justify-end"
+                      />
+                      <Separator />
+                    </>
+                  ))}
+                  {selectedSkillset?.attributes.Heart.map((k) => (
+                    <>
+                      <ActionScore
+                        key={`th-${k}`}
+                        score={attributes.Heart[k]}
+                        onChange={(s) => {
+                          handleUpdateActionScore('Heart', k, s);
+                        }}
+                        className="h-10 justify-end"
+                      />
+                      <Separator />
+                    </>
+                  ))}
+                  {selectedArchetype?.attributes.Heart.map((k) => (
+                    <ActionScore
+                      key={`arh-${k}`}
+                      score={attributes.Heart[k]}
+                      onChange={(s) => {
+                        handleUpdateActionScore('Heart', k, s);
+                      }}
+                      className="h-10 justify-end"
+                    />
+                  ))}
+                </div>
+              </div>
+              <div className="grid grid-cols-2 border-b-[1px]">
+                <div
+                  className="hover:cursor-pointer group border-r-[1px] pt-8"
+                  onClick={() => {
+                    rollAttribute('Instinct', 'churn');
+                  }}
+                >
+                  <TypographyH3 className="group-hover:underline">
+                    Instinct <Activity className="inline mb-2" />
+                  </TypographyH3>
+                </div>
+                <BuildupCheckboxes
+                  key={`instinctXp${new Date().getTime()}`}
+                  max={6}
+                  current={instinctXp}
+                  onChange={(n) => {
+                    setInstinctXp(n);
+                    setChanges(true);
+                  }}
+                  className="items-center mt-auto mb-2"
+                />
+              </div>
+              <div className="grid grid-cols-4 mx-2">
+                <div className="flex flex-col">
+                  <div
+                    className="h-10 flex items-center hover:cursor-pointer group"
+                    onClick={(e) => {
+                      if (e.shiftKey) {
+                        rollBond(bonds.Familial[0]);
+                      } else {
+                        setRollLeft(`Familial-${bonds.Familial[0].name}`);
+                      }
+                    }}
+                  >
+                    <TypographyH4 className="group-hover:underline">
+                      {bonds.Familial[0].name}
+                    </TypographyH4>
+                  </div>
+                  <Separator />
+                  <div
+                    className="h-10 flex items-center hover:cursor-pointer group"
+                    onClick={(e) => {
+                      if (e.shiftKey) {
+                        rollBond(bonds.Familial[1]);
+                      } else {
+                        setRollLeft(`Familial-${bonds.Familial[1].name}`);
+                      }
+                    }}
+                  >
+                    <TypographyH4 className="group-hover:underline">
+                      {bonds.Familial[1].name}
+                    </TypographyH4>
+                  </div>
+                </div>
+                <div className="flex flex-col border-r-[1px]">
+                  <ActionScore
+                    key={`fam0${new Date().getTime()}`}
+                    score={bonds.Familial[0].score}
+                    onChange={(s) => {
+                      setBonds({
+                        Personal: bonds.Personal,
+                        Familial: [
+                          {
+                            name: bonds.Familial[0].name,
+                            score: s,
+                          },
+                          {
+                            name: bonds.Familial[1].name,
+                            score: bonds.Familial[1].score,
+                          },
+                        ],
+                        Professional: bonds.Professional,
+                      });
+                    }}
+                    className="h-10 justify-end mr-2"
+                  />
+                  <Separator />
+                  <ActionScore
+                    key={`fam1${new Date().getTime()}`}
+                    score={bonds.Familial[1].score}
+                    onChange={(s) => {
+                      setBonds({
+                        Personal: bonds.Personal,
+                        Familial: [
+                          {
+                            name: bonds.Familial[0].name,
+                            score: bonds.Familial[0].score,
+                          },
+                          {
+                            name: bonds.Familial[1].name,
+                            score: s,
+                          },
+                        ],
+                        Professional: bonds.Professional,
+                      });
+                    }}
+                    className="h-10 justify-end mr-2"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  {selectedBackground?.attributes.Instinct.map((a, i) => (
+                    <>
+                      <div
+                        key={`ai-${i}`}
+                        className="h-10 hover:cursor-pointer group"
+                        onClick={(e) => {
+                          if (e.shiftKey) {
+                            rollAction('Instinct', a);
+                          } else {
+                            setRollRight(`Instinct-${a}`);
+                          }
+                        }}
+                      >
+                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                          {a}
+                        </TypographyH4>
+                      </div>
+                      <Separator />
+                    </>
+                  ))}
+                  {selectedSkillset?.attributes.Instinct.map((a, i) => (
+                    <>
+                      <div
+                        key={`ai-${i}`}
+                        className="h-10 hover:cursor-pointer group"
+                        onClick={(e) => {
+                          if (e.shiftKey) {
+                            rollAction('Instinct', a);
+                          } else {
+                            setRollRight(`Instinct-${a}`);
+                          }
+                        }}
+                      >
+                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                          {a}
+                        </TypographyH4>
+                      </div>
+                      <Separator />
+                    </>
+                  ))}
+                  {selectedArchetype?.attributes.Instinct.map((a, i) => (
+                    <div
+                      key={`ai-${i}`}
+                      className="h-10 hover:cursor-pointer group"
+                      onClick={(e) => {
+                        if (e.shiftKey) {
+                          rollAction('Instinct', a);
+                        } else {
+                          setRollRight(`Instinct-${a}`);
+                        }
+                      }}
+                    >
+                      <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                        {a}
+                      </TypographyH4>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex flex-col">
+                  {selectedBackground?.attributes.Instinct.map((k) => (
+                    <>
+                      <ActionScore
+                        key={`bi-${k}`}
+                        score={attributes.Instinct[k]}
+                        onChange={(s) => {
+                          handleUpdateActionScore('Instinct', k, s);
+                        }}
+                        className="h-10 justify-end"
+                      />
+                      <Separator />
+                    </>
+                  ))}
+                  {selectedSkillset?.attributes.Instinct.map((k) => (
+                    <>
+                      <ActionScore
+                        key={`ti-${k}`}
+                        score={attributes.Instinct[k]}
+                        onChange={(s) => {
+                          handleUpdateActionScore('Instinct', k, s);
+                        }}
+                        className="h-10 justify-end"
+                      />
+                      <Separator />
+                    </>
+                  ))}
+                  {selectedArchetype?.attributes.Instinct.map((k) => (
+                    <ActionScore
+                      key={`ari-${k}`}
+                      score={attributes.Instinct[k]}
+                      onChange={(s) => {
+                        handleUpdateActionScore('Instinct', k, s);
+                      }}
+                      className="h-10 justify-end"
+                    />
+                  ))}
+                </div>
+              </div>
+              <div className="grid grid-cols-2 border-b-[1px]">
+                <div
+                  className="hover:cursor-pointer group border-r-[1px] pt-8"
+                  onClick={() => {
+                    rollAttribute('Machina', 'churn');
+                  }}
+                >
+                  <TypographyH3 className="group-hover:underline">
+                    Machina <VenetianMask className="inline mb-1" />
+                  </TypographyH3>
+                </div>
+                <BuildupCheckboxes
+                  key={`machinaXp${new Date().getTime()}`}
+                  max={6}
+                  current={machinaXp}
+                  onChange={(n) => {
+                    setMachinaXp(n);
+                    setChanges(true);
+                  }}
+                  className="items-center mt-auto mb-2"
+                />
+              </div>
+              <div className="grid grid-cols-4 mx-2">
+                <div className="flex flex-col">
+                  <div
+                    className="h-10 flex items-center hover:cursor-pointer group"
+                    onClick={(e) => {
+                      if (e.shiftKey) {
+                        rollBond(bonds.Professional[0]);
+                      } else {
+                        setRollLeft(
+                          `Professional-${bonds.Professional[0].name}`
+                        );
+                      }
+                    }}
+                  >
+                    <TypographyH4 className="group-hover:underline">
+                      {bonds.Professional[0].name}
+                    </TypographyH4>
+                  </div>
+                  <Separator />
+                  <div
+                    className="h-10 flex items-center hover:cursor-pointer group"
+                    onClick={(e) => {
+                      if (e.shiftKey) {
+                        rollBond(bonds.Professional[1]);
+                      } else {
+                        setRollLeft(
+                          `Professional-${bonds.Professional[1].name}`
+                        );
+                      }
+                    }}
+                  >
+                    <TypographyH4 className="group-hover:underline">
+                      {bonds.Professional[1].name}
+                    </TypographyH4>
+                  </div>
+                </div>
+                <div className="flex flex-col border-r-[1px]">
+                  <ActionScore
+                    key={`pro0${new Date().getTime()}`}
+                    score={bonds.Professional[0].score}
+                    onChange={(s) => {
+                      setBonds({
+                        Personal: bonds.Personal,
+                        Familial: bonds.Familial,
+                        Professional: [
+                          {
+                            name: bonds.Professional[0].name,
+                            score: s,
+                          },
+                          {
+                            name: bonds.Professional[1].name,
+                            score: bonds.Professional[1].score,
+                          },
+                        ],
+                      });
+                    }}
+                    className="h-10 justify-end mr-2"
+                  />
+                  <Separator />
+                  <ActionScore
+                    key={`pro1${new Date().getTime()}`}
+                    score={bonds.Professional[1].score}
+                    onChange={(s) => {
+                      setBonds({
+                        Personal: bonds.Personal,
+                        Familial: bonds.Familial,
+                        Professional: [
+                          {
+                            name: bonds.Professional[0].name,
+                            score: bonds.Professional[0].score,
+                          },
+                          {
+                            name: bonds.Professional[1].name,
+                            score: s,
+                          },
+                        ],
+                      });
+                    }}
+                    className="h-10 justify-end mr-2"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  {selectedBackground?.attributes.Machina.map((a, i) => (
+                    <>
+                      <div
+                        key={`am-${i}`}
+                        className="h-10 hover:cursor-pointer group"
+                        onClick={(e) => {
+                          if (e.shiftKey) {
+                            rollAction('Machina', a);
+                          } else {
+                            setRollRight(`Machina-${a}`);
+                          }
+                        }}
+                      >
+                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                          {a}
+                        </TypographyH4>
+                      </div>
+                      <Separator />
+                    </>
+                  ))}
+                  {selectedSkillset?.attributes.Machina.map((a, i) => (
+                    <>
+                      <div
+                        key={`am-${i}`}
+                        className="h-10 hover:cursor-pointer group"
+                        onClick={(e) => {
+                          if (e.shiftKey) {
+                            rollAction('Machina', a);
+                          } else {
+                            setRollRight(`Machina-${a}`);
+                          }
+                        }}
+                      >
+                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                          {a}
+                        </TypographyH4>
+                      </div>
+                      <Separator />
+                    </>
+                  ))}
+                  {selectedArchetype?.attributes.Machina.map((a, i) => (
+                    <div
+                      key={`am-${i}`}
+                      className="h-10 hover:cursor-pointer group"
+                      onClick={(e) => {
+                        if (e.shiftKey) {
+                          rollAction('Machina', a);
+                        } else {
+                          setRollRight(`Machina-${a}`);
+                        }
+                      }}
+                    >
+                      <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                        {a}
+                      </TypographyH4>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex flex-col">
+                  {selectedBackground?.attributes.Machina.map((k) => (
+                    <>
+                      <ActionScore
+                        key={`bm-${k}`}
+                        score={attributes.Machina[k]}
+                        onChange={(s) => {
+                          handleUpdateActionScore('Machina', k, s);
+                        }}
+                        className="h-10 justify-end"
+                      />
+                      <Separator />
+                    </>
+                  ))}
+                  {selectedSkillset?.attributes.Machina.map((k) => (
+                    <>
+                      <ActionScore
+                        key={`tm-${k}`}
+                        score={attributes.Machina[k]}
+                        onChange={(s) => {
+                          handleUpdateActionScore('Machina', k, s);
+                        }}
+                        className="h-10 justify-end"
+                      />
+                      <Separator />
+                    </>
+                  ))}
+                  {selectedArchetype?.attributes.Machina.map((k) => (
+                    <ActionScore
+                      key={`arm-${k}`}
+                      score={attributes.Machina[k]}
+                      onChange={(s) => {
+                        handleUpdateActionScore('Machina', k, s);
+                      }}
+                      className="h-10 justify-end"
+                    />
+                  ))}
+                </div>
+              </div>
+              <Card className="mt-4 p-4 flex flex-col gap-4">
+                <TypographyP className="text-muted-foreground text-xs">
+                  select two skills to roll or shift+click a skill to roll it
+                </TypographyP>
+                <div className="flex gap-4">
+                  <Select
+                    value={rollLeft}
+                    onValueChange={(value) => {
+                      setRollLeft(value);
+                    }}
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {bonds.Personal.map((b, i) => {
+                        if (b.name === '') return;
+                        return (
+                          <SelectItem
+                            key={i}
+                            value={`Personal-${b.name}`}
+                            className="group-hover:underline"
+                          >
+                            {b.name}
+                          </SelectItem>
+                        );
+                      })}
+                      {bonds.Familial.map((b, i) => {
+                        if (b.name === '') return;
+                        return (
+                          <SelectItem
+                            key={i}
+                            value={`Familial-${b.name}`}
+                            className="group-hover:underline"
+                          >
+                            {b.name}
+                          </SelectItem>
+                        );
+                      })}
+                      {bonds.Professional.map((b, i) => {
+                        if (b.name === '') return;
+                        return (
+                          <SelectItem
+                            key={i}
+                            value={`Professional-${b.name}`}
+                            className="group-hover:underline"
+                          >
+                            {b.name}
+                          </SelectItem>
+                        );
+                      })}
+                    </SelectContent>
+                  </Select>
+                  <Button
+                    onClick={() => {
+                      if (!rollLeft && !rollRight) return;
+                      if (!rollLeft) {
+                        const [attribute, action] = rollRight.split('-') as [
+                          'Heart' | 'Instinct' | 'Machina',
+                          string
+                        ];
+                        rollAction(attribute, action);
+                      } else if (!rollRight) {
+                        const [bondType, bondName] = rollLeft.split('-') as [
+                          'Personal' | 'Familial' | 'Professional',
+                          string
+                        ];
+                        const b = bonds[bondType].find(
+                          (b) => b.name === bondName
+                        );
+                        if (b) rollBond(b);
+                      } else {
+                        const [bondType, bondName] = rollLeft.split('-') as [
+                          'Personal' | 'Familial' | 'Professional',
+                          string
+                        ];
+                        const b = bonds[bondType].find(
+                          (b) => b.name === bondName
+                        );
+                        const [attributeRight, actionRight] = rollRight.split(
+                          '-'
+                        ) as ['Heart' | 'Instinct' | 'Machina', string];
+                        if (b) {
+                          rollComboChurn(b, attributeRight, actionRight);
+                        }
+                      }
+
+                      setRollLeft('');
+                      setRollRight('');
+                    }}
+                    className="flex items-center gap-2"
+                  >
+                    <Dices /> Roll
+                  </Button>
+                  <Select
+                    value={rollRight}
+                    onValueChange={(value) => {
+                      setRollRight(value);
+                    }}
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {selectedBackground?.attributes.Heart.map((a, i) => (
+                        <SelectItem key={i} value={`Heart-${a}`}>
+                          {a}
+                        </SelectItem>
+                      ))}
+                      {selectedSkillset?.attributes.Heart.map((a, i) => (
+                        <SelectItem key={i} value={`Heart-${a}`}>
+                          {a}
+                        </SelectItem>
+                      ))}
+                      {selectedArchetype?.attributes.Heart.map((a, i) => (
+                        <SelectItem key={i} value={`Heart-${a}`}>
+                          {a}
+                        </SelectItem>
+                      ))}
+                      {selectedBackground?.attributes.Instinct.map((a, i) => (
+                        <SelectItem key={i} value={`Instinct-${a}`}>
+                          {a}
+                        </SelectItem>
+                      ))}
+                      {selectedSkillset?.attributes.Instinct.map((a, i) => (
+                        <SelectItem key={i} value={`Instinct-${a}`}>
+                          {a}
+                        </SelectItem>
+                      ))}
+                      {selectedArchetype?.attributes.Instinct.map((a, i) => (
+                        <SelectItem key={i} value={`Instinct-${a}`}>
+                          {a}
+                        </SelectItem>
+                      ))}
+                      {selectedBackground?.attributes.Machina.map((a, i) => (
+                        <SelectItem key={i} value={`Machina-${a}`}>
+                          {a}
+                        </SelectItem>
+                      ))}
+                      {selectedSkillset?.attributes.Machina.map((a, i) => (
+                        <SelectItem key={i} value={`Machina-${a}`}>
+                          {a}
+                        </SelectItem>
+                      ))}
+                      {selectedArchetype?.attributes.Machina.map((a, i) => (
+                        <SelectItem key={i} value={`Machina-${a}`}>
+                          {a}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="flex gap-4">
+                  <Select>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Position" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="controlled">Controlled</SelectItem>
+                      <SelectItem value="risky">Risky</SelectItem>
+                      <SelectItem value="desperate">Desperate</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <Select>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Effect" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="great">Great</SelectItem>
+                      <SelectItem value="standard">Standard</SelectItem>
+                      <SelectItem value="limited">Limited</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </Card>
+              <div className="flex justify-between gap-4 mt-4">
+                <TypographyH3 className="text-sm text-muted-foreground">
+                  Experience
+                </TypographyH3>
+                <BuildupCheckboxes
+                  key={`xp${new Date().getTime()}`}
+                  max={8}
+                  current={skillsetXp}
+                  onChange={(n) => {
+                    setSkillsetXp(n);
+                    setChanges(true);
+                  }}
+                />
+              </div>
+              <Separator />
+              <div className="flex justify-between gap-4 mt-2">
+                <TypographyH3 className="text-sm text-muted-foreground">
+                  Stress
+                </TypographyH3>
+                <BuildupCheckboxes
+                  key={`stress${new Date().getTime()}`}
+                  max={9}
+                  current={stress}
+                  onChange={(n) => {
+                    setStress(n);
+                    setChanges(true);
+                  }}
+                />
+              </div>
+              <div className="flex gap-4 flex-wrap">
+                <div className="flex gap-4 flex-wrap mt-2">
+                  <TypographyH4 className="text-sm text-muted-foreground">
+                    Conditions
+                  </TypographyH4>
+                  {['Insecure', 'Afraid', 'Angry', 'Hopeless', 'Guilty'].map(
+                    (c) => (
+                      <Condition
+                        key={`${c}${new Date().getTime()}`}
+                        name={c}
+                        active={conditions.includes(c)}
+                        onClick={() => {
+                          if (conditions.includes(c)) {
+                            setConditions(
+                              conditions.filter((con) => con !== c)
+                            );
+                          } else {
+                            setConditions([...conditions, c]);
+                          }
+                          setChanges(true);
+                        }}
+                      />
+                    )
+                  )}
+                  <div className="flex-shrink-0 ml-auto basis-[100px] border-[1px] border-border rounded-md p-1 flex items-center select-none">
+                    <Clock
+                      key={`conditionRecovery${new Date().getTime()}`}
+                      max={8}
+                      current={conditionRecovery}
+                      size={35}
+                      setVal={(n) => {
+                        setConditionRecovery(n);
+                        setChanges(true);
+                      }}
+                    />
+                    <span className="text-xs text-muted-foreground text-center w-full">
+                      recovery
+                    </span>
+                  </div>
+                </div>
+                <Separator />
+              </div>
+              <div className="flex items-end mt-4 justify-between">
+                <TypographyH3 className="text-sm text-muted-foreground">
+                  Harm
+                </TypographyH3>
+                <div className="flex-shrink-0 border-[1px] max-w-[100px] border-border rounded-t-md p-1 select-none flex items-center ">
+                  <Clock
+                    key={`healing${new Date().getTime()}`}
+                    max={4}
+                    current={healing}
+                    size={35}
+                    setVal={(n) => {
+                      setHealing(n);
+                      setChanges(true);
+                    }}
+                  />
+                  <span className="text-xs text-muted-foreground text-center w-full">
+                    healing
+                  </span>
+                </div>
+              </div>
+              <div className="flex items-center">
+                <span className="bg-secondary p-2 h-10 w-6 shrink-0">3</span>
+                <Input
+                  className="rounded-none"
+                  value={harm3}
+                  onChange={(e) => {
+                    setHarm3(e.target.value);
+                    handleDebounceChange();
+                  }}
+                />
+                <span className="bg-secondary p-1.5 h-10 w-16 text-xs text-center shrink-0">
+                  NEED HELP
+                </span>
+              </div>
+              <div className="flex items-center">
+                <span className="bg-secondary p-2 h-10 w-6 shrink-0">2</span>
+                <Input
+                  className="rounded-none"
+                  value={harm2[0]}
+                  onChange={(e) => {
+                    setHarm2([e.target.value, harm2[1]]);
+                    handleDebounceChange();
+                  }}
+                />
+                <Input
+                  className="rounded-none"
+                  value={harm2[1]}
+                  onChange={(e) => {
+                    setHarm2([harm2[0], e.target.value]);
+                    handleDebounceChange();
+                  }}
+                />
+                <span className="bg-secondary px-1.5 py-3 h-10 w-16 text-xs text-center shrink-0">
+                  -1D
+                </span>
+              </div>
+              <div className="flex items-center">
+                <span className="bg-secondary p-2 h-10 w-6 shrink-0">1</span>
+                <Input
+                  className="rounded-none"
+                  value={harm1[0]}
+                  disabled={true}
+                  onChange={(e) => {
+                    setHarm1([e.target.value, harm1[1]]);
+                    handleDebounceChange();
+                  }}
+                />
+                <Input
+                  className="rounded-none"
+                  value={harm1[1]}
+                  onChange={(e) => {
+                    setHarm1([harm1[0], e.target.value]);
+                    handleDebounceChange();
+                  }}
+                />
+                <span className="bg-secondary p-1.5 h-10 w-16 text-xs text-center shrink-0">
+                  LESS EFFECT
+                </span>
+              </div>
+              <div className="border-[1px] border-border rounded-b-md py-1.5 px-4 select-none flex items-center justify-between text-sm">
+                <div className="flex items-center gap-2">
+                  <Checkbox
+                    checked={armor}
+                    onCheckedChange={() => {
+                      setArmor(!armor);
+                      setChanges(true);
+                    }}
+                  />
+                  Armor
+                </div>
+                <div className="flex items-center gap-2">
+                  <Checkbox
+                    checked={hArmor}
+                    onCheckedChange={() => {
+                      setHArmor(!hArmor);
+                      setChanges(true);
+                    }}
+                  />{' '}
+                  Heavy
+                </div>
+                <div className="flex items-center gap-2">
+                  <Checkbox
+                    checked={sArmor}
+                    onCheckedChange={() => {
+                      setSArmor(!sArmor);
+                      setChanges(true);
+                    }}
+                  />{' '}
+                  Special
+                </div>
+              </div>
+            </div>
           </div>
         </TabsContent>
       </Tabs>
