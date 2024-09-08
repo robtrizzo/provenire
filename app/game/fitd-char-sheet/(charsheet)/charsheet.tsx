@@ -1935,7 +1935,7 @@ export function Charsheet() {
                   }}
                 />
               </div>
-              <TypographyH2 className="mt-4">Phases</TypographyH2>
+              <TypographyH2 className="mt-4">Subsistence</TypographyH2>
               <div className="w-[120px] border-[1px] border-border rounded-md p-1 flex items-center select-none my-2">
                 <Clock
                   key={`starvation${new Date().getTime()}`}
@@ -1954,9 +1954,26 @@ export function Charsheet() {
               <TypographyH2 className="mt-4">Agendas</TypographyH2>
               <TypographyH2 className="mt-4">Downtime</TypographyH2>
               <TypographyH3 className="text-sm text-muted-foreground mt-4">
-                Actions
+                Actions (Universal)
               </TypographyH3>
-              <DowntimeActionsAccordion />
+              <div className="ml-2">
+                <DowntimeActionsAccordion />
+              </div>
+              <TypographyH3 className="text-sm text-muted-foreground mt-4">
+                Abilities (
+                <span className="text-amber-700">
+                  {selectedArchetype?.name || 'Archetype'}
+                </span>
+                )
+              </TypographyH3>
+              <div className="ml-2">
+                <Abilities
+                  abilities={selectedArchetype?.abilities?.downtime || []}
+                  characterAbilities={abilities}
+                  setCharacterAbilities={setAbilities}
+                  setChanges={setChanges}
+                />
+              </div>
             </div>
             <div className="my-3 flex flex-col">
               <div className="grid grid-cols-2 border-b-[1px]">
