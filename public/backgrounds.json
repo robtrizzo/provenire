@@ -22,7 +22,8 @@
         "attribute": "Machina",
         "description": "Research a topic or item. Gain insight into its function or history."
       }
-    ]
+    ],
+    "subsistenceClock": "Creator's Whispers"
   },
   {
     "name": "Enforcer",

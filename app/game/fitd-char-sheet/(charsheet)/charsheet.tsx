@@ -52,6 +52,8 @@ import { Checkbox } from '@/components/ui/checkbox';
 import Link from 'next/link';
 import Abilities from '@/components/ui/abilities/abilities';
 import DowntimeActionsAccordion from '@/components/ui/downtime-actions-accordion';
+import Crit from '@/components/ui/subsistence/crit/subsistenceCrit';
+import Consequences from '@/components/ui/subsistence/consequences/subsistenceConsequences';
 
 export function Charsheet() {
   const [selectedArchetype, setSelectedArchetype] = useState<Archetype>();
@@ -1935,22 +1937,37 @@ export function Charsheet() {
                   }}
                 />
               </div>
-              <TypographyH2 className="mt-4">Subsistence</TypographyH2>
-              <div className="w-[120px] border-[1px] border-border rounded-md p-1 flex items-center select-none my-2">
-                <Clock
-                  key={`starvation${new Date().getTime()}`}
-                  max={5}
-                  current={starvation}
-                  size={35}
-                  setVal={(n) => {
-                    setStarvation(n);
-                    setChanges(true);
-                  }}
-                />
-                <span className="text-xs text-muted-foreground text-center w-full">
-                  starvation
-                </span>
-              </div>
+              <TypographyH2 className="mt-4 flex items-end justify-between">
+                Subsistence{' '}
+                <div className="w-[120px] border-[1px] border-border rounded-md p-1 flex items-center select-none">
+                  <Clock
+                    key={`starvation${new Date().getTime()}`}
+                    max={5}
+                    current={starvation}
+                    size={35}
+                    setVal={(n) => {
+                      setStarvation(n);
+                      setChanges(true);
+                    }}
+                  />
+                  <span className="text-xs text-muted-foreground text-center w-full">
+                    starvation
+                  </span>
+                </div>
+              </TypographyH2>
+              <TypographyH3 className="text-sm text-muted-foreground mt-4">
+                Critical Benefit (
+                <span className="text-red-500">{selectedBackground?.name}</span>
+                )
+              </TypographyH3>
+              <Crit background={selectedBackground?.name || ''} />
+              <TypographyH3 className="text-sm text-muted-foreground mt-4">
+                Failure Consequences (
+                <span className="text-red-500">{selectedBackground?.name}</span>
+                )
+              </TypographyH3>
+              <TypographyP>Choose one:</TypographyP>
+              <Consequences background={selectedBackground?.name || ''} />
               <TypographyH2 className="mt-4">Agendas</TypographyH2>
               <TypographyH2 className="mt-4">Downtime</TypographyH2>
               <TypographyH3 className="text-sm text-muted-foreground mt-4">
