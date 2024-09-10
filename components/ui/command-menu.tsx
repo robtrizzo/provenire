@@ -50,9 +50,7 @@ export default function CommandMenu() {
             <CommandItem
               key={background.name}
               onSelect={() => {
-                router.push(
-                  `/game/backgrounds#${background.name.toLocaleLowerCase()}`
-                );
+                router.push(`/game/backgrounds#${background.name}`);
                 setOpen(false);
               }}
             >
@@ -66,9 +64,7 @@ export default function CommandMenu() {
             <CommandItem
               key={skillset.name}
               onSelect={() => {
-                router.push(
-                  `/game/skillsets#${skillset.name.toLocaleLowerCase()}`
-                );
+                router.push(`/game/skillsets#${skillset.name}`);
                 setOpen(false);
               }}
             >
@@ -82,9 +78,7 @@ export default function CommandMenu() {
             <CommandItem
               key={archetype.name}
               onSelect={() => {
-                router.push(
-                  `/game/archetypes#${archetype.name.toLocaleLowerCase()}`
-                );
+                router.push(`/game/archetypes#${archetype.name}`);
                 setOpen(false);
               }}
             >

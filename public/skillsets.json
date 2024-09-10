@@ -22,7 +22,8 @@
         "attribute": "Machina",
         "description": "Tamper with or damage a machine or device."
       }
-    ]
+    ],
+    "agendas": "Create and upgrade the tools of rebellion."
   },
   {
     "name": "Flywheel",
@@ -47,7 +48,8 @@
         "attribute": "Machina",
         "description": "Twist the truth or redirect conversation to your advantage."
       }
-    ]
+    ],
+    "agendas": "Explore the factory's heights and depths."
   },
   {
     "name": "Fume",
@@ -72,7 +74,8 @@
         "attribute": "Machina",
         "description": "Deceive or coerce someone into doing what you want."
       }
-    ]
+    ],
+    "agendas": "Pit the oppressors against each other."
   },
   {
     "name": "Grease",
@@ -97,7 +100,8 @@
         "attribute": "Machina",
         "description": "Hide your true intentions or confound someone's understanding."
       }
-    ]
+    ],
+    "agendas": "Forge a path of connection and conversation."
   },
   {
     "name": "Hammer",
@@ -122,7 +126,8 @@
         "attribute": "Instinct",
         "description": "Hurt someone or damage something with brute force."
       }
-    ]
+    ],
+    "agendas": "Gamble and fight for glory."
   },
   {
     "name": "Nail",
@@ -147,7 +152,8 @@
         "attribute": "Instinct",
         "description": "Confront someone in a way that demands a response."
       }
-    ]
+    ],
+    "agendas": "Make sure they know you're not afraid."
   },
   {
     "name": "Spark",
@@ -172,7 +178,8 @@
         "attribute": "Instinct",
         "description": "Put yourself in harm's way to protect someone else."
       }
-    ]
+    ],
+    "agendas": "Uplift the community. Make the pain worth it."
   },
   {
     "name": "Vapor",
@@ -197,6 +204,7 @@
         "attribute": "Machina",
         "description": "Pass yourself off as someone who you aren't."
       }
-    ]
+    ],
+    "agendas": "Walk among the oppressors and learn their secrets."
   }
 ]

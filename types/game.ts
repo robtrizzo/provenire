@@ -46,6 +46,7 @@ export type Skillset = {
   attributes: Attributes;
   questions: string[];
   actions: Action[];
+  agendas: string;
 };
 
 export type CharacterAttributes = {

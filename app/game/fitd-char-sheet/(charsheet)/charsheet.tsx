@@ -1969,6 +1969,17 @@ export function Charsheet() {
               <TypographyP>Choose one:</TypographyP>
               <Consequences background={selectedBackground?.name || ''} />
               <TypographyH2 className="mt-4">Agendas</TypographyH2>
+              {selectedSkillset && (
+                <TypographyP>
+                  {selectedSkillset.agendas} (
+                  <span className="text-sm text-indigo-500">
+                    <Link href={`/game/skillsets#${selectedSkillset.name}`}>
+                      {selectedSkillset.name}'s Agenda
+                    </Link>
+                  </span>
+                  )
+                </TypographyP>
+              )}
               <TypographyH2 className="mt-4">Downtime</TypographyH2>
               <TypographyH3 className="text-sm text-muted-foreground mt-4">
                 Actions (Universal)

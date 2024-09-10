@@ -1,19 +1,12 @@
 import {
   TypographyH1,
-  TypographyH2,
   TypographyH3,
   TypographyP,
 } from '@/components/ui/typography';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import {
-  VenetianMask,
-  Flame,
-  Activity,
-  ChevronLeft,
-  ChevronRight,
-} from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import ArchetypeQuestions from '@/components/ui/archetype-questions';
 import archetypes from '@/public/archetypes.json';
 import Abilities from '@/components/ui/abilities/abilities';
