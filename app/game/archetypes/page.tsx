@@ -9,7 +9,7 @@ import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import ArchetypeQuestions from '@/components/ui/archetype-questions';
 import archetypes from '@/public/archetypes.json';
-import Abilities from '@/components/ui/abilities/abilities';
+import Abilities from '@/components/ui/archetypes/abilities/abilities';
 import type { Archetype } from '@/types/game';
 import ActionDescription from '@/components/ui/action-description';
 import {

@@ -50,7 +50,7 @@ import Clock from '@/components/ui/clock';
 import { Condition } from '@/components/ui/condition';
 import { Checkbox } from '@/components/ui/checkbox';
 import Link from 'next/link';
-import Abilities from '@/components/ui/abilities/abilities';
+import Abilities from '@/components/ui/archetypes/abilities/abilities';
 import DowntimeActionsAccordion from '@/components/ui/downtime-actions-accordion';
 import Crit from '@/components/ui/subsistence/crit/subsistenceCrit';
 import Consequences from '@/components/ui/subsistence/consequences/subsistenceConsequences';
