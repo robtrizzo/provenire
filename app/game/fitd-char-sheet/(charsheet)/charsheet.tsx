@@ -1985,7 +1985,7 @@ export function Charsheet() {
                   {selectedSkillset.agendas} (
                   <span className="text-sm text-indigo-500">
                     <Link href={`/game/skillsets#${selectedSkillset.name}`}>
-                      {selectedSkillset.name}'s Agenda
+                      {selectedSkillset.name}&apos;s Agenda
                     </Link>
                   </span>
                   )

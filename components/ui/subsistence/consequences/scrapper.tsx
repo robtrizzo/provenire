@@ -5,7 +5,7 @@ export default function Scrapper() {
     <TypographyUnorderedList>
       <li>
         Some scrap you recovered is actually worse than you thought. One piece
-        of the crew's equipment is damaged.
+        of the crew&apos;s equipment is damaged.
       </li>
       <li>
         You hear ominous noises in the scrapyard that follow you home. Advance

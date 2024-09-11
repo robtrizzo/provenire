@@ -3,8 +3,8 @@ export default function Grit() {
   return (
     <TypographyP>
       From hard won experience, you have insulated yourself from the harshest
-      pangs of the factory's indignities. You get <strong>+1 stress box</strong>
-      .
+      pangs of the factory&apos;s indignities. You get{' '}
+      <strong>+1 stress box</strong>.
     </TypographyP>
   );
 }

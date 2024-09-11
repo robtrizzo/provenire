@@ -6,11 +6,11 @@ export default function Archivist() {
       <li>
         The overseers have noticed discrepancies. They force you to stay up for
         days straight to correct the error. Suffer a temporary{' '}
-        <strong>level 2 harm</strong>: "exhausted".
+        <strong>level 2 harm</strong>: &quot;exhausted&quot;.
       </li>
       <li>
-        You hear the Creator's whispers in the machinery. Advance the{' '}
-        <span className="italic">Creator's Madness clock</span> by 1.
+        You hear the Creator&apos;s whispers in the machinery. Advance the{' '}
+        <span className="italic">Creator&apos;s Madness clock</span> by 1.
       </li>
     </TypographyUnorderedList>
   );

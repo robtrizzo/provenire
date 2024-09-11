@@ -4,11 +4,11 @@ export default function Enforcer() {
   return (
     <TypographyUnorderedList>
       <li>
-        You're forced to give an ally a beating. The crew loses{' '}
+        You&apos;re forced to give an ally a beating. The crew loses{' '}
         <strong>1 goodwill</strong>.
       </li>
       <li>
-        You don't do the job the way the overseers want. Advance the{' '}
+        You don&apos;t do the job the way the overseers want. Advance the{' '}
         <span className="italic">Threat to your family clock</span> by 1.
       </li>
     </TypographyUnorderedList>
