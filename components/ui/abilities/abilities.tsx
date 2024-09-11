@@ -10,7 +10,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import type { Ability } from '@/types/game';
-import components from '@/components/ui/archetypes/abilities/mapping';
+import components from '@/components/ui/abilities/mapping';
 import { cn } from '@/lib/utils';
 
 const Abilities = ({
@@ -28,6 +28,7 @@ const Abilities = ({
   variant?: 'sheet' | 'wiki';
   className?: string;
 }) => {
+  console.log(abilities);
   const [dynamicComponents, setDynamicComponents] = useState<{
     [key: string]: React.FC | null;
   }>({});

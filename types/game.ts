@@ -12,7 +12,7 @@ export type Archetype = {
 
 export interface Ability {
   name: string;
-  keystone: boolean;
+  keystone?: boolean;
   slug: string;
 }
 
@@ -47,6 +47,10 @@ export type Skillset = {
   questions: string[];
   actions: Action[];
   agendas: string;
+  abilities: {
+    mission: Ability[];
+    downtime: Ability[];
+  };
 };
 
 export type CharacterAttributes = {

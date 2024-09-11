@@ -23,7 +23,29 @@
         "description": "Tamper with or damage a machine or device."
       }
     ],
-    "agendas": "Create and upgrade the tools of rebellion."
+    "agendas": "Create and upgrade the tools of rebellion.",
+    "abilities": {
+      "mission": [
+        {
+          "name": "Alchemist",
+          "slug": "alchemist"
+        },
+        {
+          "name": "Sabotour",
+          "slug": "sabotour"
+        },
+        {
+          "name": "Prototypes",
+          "slug": "prototypes"
+        }
+      ],
+      "downtime": [
+        {
+          "name": "Mediciner",
+          "slug": "mediciner"
+        }
+      ]
+    }
   },
   {
     "name": "Flywheel",
@@ -49,7 +71,29 @@
         "description": "Twist the truth or redirect conversation to your advantage."
       }
     ],
-    "agendas": "Explore the factory's heights and depths."
+    "agendas": "Explore the factory's heights and depths.",
+    "abilities": {
+      "mission": [
+        {
+          "name": "Devil's Footsteps",
+          "slug": "devils-footsteps"
+        },
+        {
+          "name": "Focused",
+          "slug": "focused"
+        },
+        {
+          "name": "Scout",
+          "slug": "scout"
+        }
+      ],
+      "downtime": [
+        {
+          "name": "A Breath of Fresh Air",
+          "slug": "a-breath-of-fresh-air"
+        }
+      ]
+    }
   },
   {
     "name": "Fume",
@@ -75,7 +119,26 @@
         "description": "Deceive or coerce someone into doing what you want."
       }
     ],
-    "agendas": "Pit the oppressors against each other."
+    "agendas": "Pit the oppressors against each other.",
+    "abilities": {
+      "mission": [
+        {
+          "name": "Ambush",
+          "slug": "ambush"
+        },
+        {
+          "name": "Trust in Me",
+          "slug": "trust-in-me"
+        },
+        { "name": "Savage", "slug": "savage" }
+      ],
+      "downtime": [
+        {
+          "name": "Or Else",
+          "slug": "or-else"
+        }
+      ]
+    }
   },
   {
     "name": "Grease",
@@ -101,7 +164,29 @@
         "description": "Hide your true intentions or confound someone's understanding."
       }
     ],
-    "agendas": "Forge a path of connection and conversation."
+    "agendas": "Forge a path of connection and conversation.",
+    "abilities": {
+      "mission": [
+        {
+          "name": "Grit",
+          "slug": "grit"
+        },
+        {
+          "name": "Wordplay",
+          "slug": "wordplay"
+        },
+        {
+          "name": "Silver Tongue",
+          "slug": "silver-tongue"
+        }
+      ],
+      "downtime": [
+        {
+          "name": "Tidbits",
+          "slug": "tidbits"
+        }
+      ]
+    }
   },
   {
     "name": "Hammer",
@@ -127,7 +212,29 @@
         "description": "Hurt someone or damage something with brute force."
       }
     ],
-    "agendas": "Gamble and fight for glory."
+    "agendas": "Gamble and fight for glory.",
+    "abilities": {
+      "mission": [
+        {
+          "name": "Battleborn",
+          "slug": "battleborn"
+        },
+        {
+          "name": "Tough as Nails",
+          "slug": "tough-as-nails"
+        },
+        {
+          "name": "Not to be Trifled With",
+          "slug": "not-to-be-trifled-with"
+        }
+      ],
+      "downtime": [
+        {
+          "name": "Vigorous",
+          "slug": "vigorous"
+        }
+      ]
+    }
   },
   {
     "name": "Nail",
@@ -153,7 +260,29 @@
         "description": "Confront someone in a way that demands a response."
       }
     ],
-    "agendas": "Make sure they know you're not afraid."
+    "agendas": "Make sure they know you're not afraid.",
+    "abilities": {
+      "mission": [
+        {
+          "name": "Daredevil",
+          "slug": "daredevil"
+        },
+        {
+          "name": "Leader",
+          "slug": "leader"
+        },
+        {
+          "name": "Expertise",
+          "slug": "expertise"
+        }
+      ],
+      "downtime": [
+        {
+          "name": "Vengeful",
+          "slug": "vengeful"
+        }
+      ]
+    }
   },
   {
     "name": "Spark",
@@ -179,7 +308,29 @@
         "description": "Put yourself in harm's way to protect someone else."
       }
     ],
-    "agendas": "Uplift the community. Make the pain worth it."
+    "agendas": "Uplift the community. Make the pain worth it.",
+    "abilities": {
+      "mission": [
+        {
+          "name": "Reflexes",
+          "slug": "reflexes"
+        },
+        {
+          "name": "Mastermind",
+          "slug": "mastermind"
+        },
+        {
+          "name": "That Good",
+          "slug": "that-good"
+        }
+      ],
+      "downtime": [
+        {
+          "name": "In the Good Times",
+          "slug": "in-the-good-times"
+        }
+      ]
+    }
   },
   {
     "name": "Vapor",
@@ -205,6 +356,28 @@
         "description": "Pass yourself off as someone who you aren't."
       }
     ],
-    "agendas": "Walk among the oppressors and learn their secrets."
+    "agendas": "Walk among the oppressors and learn their secrets.",
+    "abilities": {
+      "mission": [
+        {
+          "name": "Cloak and Dagger",
+          "slug": "cloak-and-dagger"
+        },
+        {
+          "name": "Shadow",
+          "slug": "shadow"
+        },
+        {
+          "name": "Infiltrator",
+          "slug": "infiltrator"
+        }
+      ],
+      "downtime": [
+        {
+          "name": "A Little Something on the Side",
+          "slug": "a-little-something-on-the-side"
+        }
+      ]
+    }
   }
 ]

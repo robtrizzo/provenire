@@ -50,7 +50,7 @@ import Clock from '@/components/ui/clock';
 import { Condition } from '@/components/ui/condition';
 import { Checkbox } from '@/components/ui/checkbox';
 import Link from 'next/link';
-import Abilities from '@/components/ui/archetypes/abilities/abilities';
+import Abilities from '@/components/ui/abilities/abilities';
 import DowntimeActionsAccordion from '@/components/ui/downtime-actions-accordion';
 import Crit from '@/components/ui/subsistence/crit/subsistenceCrit';
 import Consequences from '@/components/ui/subsistence/consequences/subsistenceConsequences';
@@ -844,6 +844,17 @@ export function Charsheet() {
                       {selectedSkillset?.actions?.map((action, i) => (
                         <ActionDescription key={i} action={action} />
                       ))}
+                    </div>
+                    <TypographyH3 className="text-sm text-muted-foreground mt-4">
+                      Abilities
+                    </TypographyH3>
+                    <div className="ml-2">
+                      <Abilities
+                        abilities={selectedSkillset?.abilities?.mission}
+                        characterAbilities={abilities}
+                        setCharacterAbilities={setAbilities}
+                        setChanges={setChanges}
+                      />
                     </div>
                   </div>
                 </div>
@@ -1986,6 +1997,21 @@ export function Charsheet() {
               </TypographyH3>
               <div className="ml-2">
                 <DowntimeActionsAccordion />
+              </div>
+              <TypographyH3 className="text-sm text-muted-foreground mt-4">
+                Abilities (
+                <span className="text-indigo-500">
+                  {selectedSkillset?.name || 'Skillset'}
+                </span>
+                )
+              </TypographyH3>
+              <div className="ml-2">
+                <Abilities
+                  abilities={selectedSkillset?.abilities?.downtime || []}
+                  characterAbilities={abilities}
+                  setCharacterAbilities={setAbilities}
+                  setChanges={setChanges}
+                />
               </div>
               <TypographyH3 className="text-sm text-muted-foreground mt-4">
                 Abilities (
