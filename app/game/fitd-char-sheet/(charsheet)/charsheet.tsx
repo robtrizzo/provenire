@@ -115,6 +115,7 @@ export function Charsheet() {
 
   const [rollLeft, setRollLeft] = useState<string>('');
   const [rollRight, setRollRight] = useState<string>('');
+  const [bonusDice, setBonusDice] = useState<number>(0);
 
   useEffect(() => {
     if (window === undefined) return;
@@ -390,33 +391,47 @@ export function Charsheet() {
     for (let i = 0; i < blue; i++) {
       blueRolls.push(Math.floor(Math.random() * 6) + 1);
     }
+
+    let result: number;
+    let resultText = '';
     let highestRed = Math.max(...redRolls);
     let highestBlue = Math.max(...blueRolls);
-    const result = Math.max(highestBlue, highestRed);
     const blueHigher = highestBlue >= highestRed;
 
-    let resultText = '';
-    switch (result) {
-      case 1:
-      case 2:
-      case 3:
-        resultText = 'Miss. Suffer the consequences.';
-        break;
-      case 4:
-      case 5:
-        resultText = `Partial hit. Suceed, but suffer the consequences${
-          blueHigher ? '' : ' and take reduced effect'
-        }.`;
-        break;
-      case 6:
-        resultText = `Hit! Succeed${
-          blueHigher ? '' : ', but take reduced effect'
-        }.`;
-        break;
-      default:
-        resultText = 'Unknown result';
-        break;
+    // detect if there are 2 or more 6s
+    let crit = false;
+    const redSixes = redRolls.filter((r) => r === 6).length;
+    const blueSixes = blueRolls.filter((r) => r === 6).length;
+    if (redSixes + blueSixes >= 2) {
+      crit = true;
+      result = 6;
+      resultText = 'Critical! Succeed with improved effect.';
+    } else {
+      result = Math.max(highestBlue, highestRed);
+
+      switch (result) {
+        case 1:
+        case 2:
+        case 3:
+          resultText = 'Miss. Suffer the consequences.';
+          break;
+        case 4:
+        case 5:
+          resultText = `Partial hit. Suceed, but suffer the consequences${
+            blueHigher ? '' : ' and take reduced effect'
+          }.`;
+          break;
+        case 6:
+          resultText = `Hit! Succeed${
+            blueHigher ? '' : ', but take reduced effect'
+          }.`;
+          break;
+        default:
+          resultText = 'Unknown result';
+          break;
+      }
     }
+
     toast({
       variant: 'grid',
       // @ts-ignore
@@ -435,13 +450,28 @@ export function Charsheet() {
       ),
       description: (
         <div className="flex gap-4">
-          <Die
-            roll={result}
-            className={cn(
-              'h-5 w-5',
-              blueHigher ? 'text-blue-500' : 'text-red-500'
-            )}
-          />
+          {crit ? (
+            [
+              redRolls
+                .filter((r) => r === 6)
+                .map((r, i) => (
+                  <Die key={i} roll={r} className="h-5 w-5 text-red-500" />
+                )),
+              blueRolls
+                .filter((r) => r === 6)
+                .map((r, i) => (
+                  <Die key={i} roll={r} className="h-5 w-5 text-blue-500" />
+                )),
+            ]
+          ) : (
+            <Die
+              roll={result}
+              className={cn(
+                'h-5 w-5',
+                blueHigher ? 'text-blue-500' : 'text-red-500'
+              )}
+            />
+          )}
           <span className="mt-1">{resultText}</span>
         </div>
       ),
@@ -1461,9 +1491,11 @@ export function Charsheet() {
                         );
                         setRollLeft('');
                         setRollRight('');
+                        setBonusDice(0);
                       }}
+                      className="flex items-center gap-2"
                     >
-                      Roll
+                      <Dices /> Roll
                     </Button>
                     <Select
                       value={rollRight}
@@ -1544,6 +1576,45 @@ export function Charsheet() {
                         <SelectItem value="limited">Limited</SelectItem>
                       </SelectContent>
                     </Select>
+                  </div>
+                  <div className="flex gap-4 justify-between flex-wrap">
+                    <div className="flex gap-4">
+                      <div>
+                        <Label htmlFor="bonus-dice">Bonus Dice</Label>
+                        <Input
+                          id="bonus-dice"
+                          type="number"
+                          className="w-20"
+                          min={0}
+                          value={bonusDice}
+                          onChange={(e) => {
+                            setBonusDice(parseInt(e.target.value));
+                          }}
+                        />
+                      </div>
+                      <div className="text-muted-foreground text-xs leading-3 mt-2">
+                        <span>
+                          You can gain bonus dice through:{' '}
+                          <ul className="italic mx-2">
+                            <li>teamwork</li>
+                            <li>push yourself</li>
+                            <li>devil&apos;s bargain</li>
+                            <li>special ability</li>
+                          </ul>
+                        </span>
+                      </div>
+                    </div>
+                    <div>
+                      <Label htmlFor="fortune-dice">Fortune Dice</Label>
+                      <div className="flex gap-4">
+                        <Input
+                          id="fortune-dice"
+                          type="number"
+                          className="w-20"
+                        />
+                        <Button>Fortune Roll</Button>
+                      </div>
+                    </div>
                   </div>
                 </Card>
                 <div className="flex justify-between gap-4 mt-4">
