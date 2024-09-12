@@ -14,7 +14,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 export default function Page() {
   return (
     <>
-      <TypographyH1>Era of Lost Gods</TypographyH1>
+      {/* <TypographyH1>Era of Lost Gods</TypographyH1>
       <TypographyP>
         Since the days of gods and their calamities, the world has been broken
         and reforged countless times by history. It has been left wilder, more
@@ -119,7 +119,7 @@ export default function Page() {
         &ldquo;Weaker&rdquo; flasks can be purchased for a hefty price, but the
         more powerful ones are only given to the King&apos;s most loyal
         subjects.
-      </TypographyP>
+      </TypographyP> */}
       <Separator />
       <div className="w-full flex justify-between">
         <Link href="/setting/second-age/yama">

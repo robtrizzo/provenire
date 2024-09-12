@@ -14,7 +14,7 @@ export default function Page() {
   return (
     <>
       <TypographyH1>Campaign Introduction</TypographyH1>
-      <TypographyBlockquote>
+      {/* <TypographyBlockquote>
         It begins with a factory full of workers pushed to their breaking point.
       </TypographyBlockquote>
       <TypographyP>
@@ -117,7 +117,7 @@ export default function Page() {
         <strong>Royal Rathi Army</strong>. A truly miserable and hopeless place.
         Still, the workers quietly, obediently, dream of a better future.
         That&apos;s where our protagonists come in.
-      </TypographyP>
+      </TypographyP> */}
       <Separator />
       <div className="w-full flex justify-between">
         <Link href="/setting/third-age">
