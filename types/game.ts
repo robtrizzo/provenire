@@ -22,12 +22,19 @@ interface Attributes {
   Machina: string[];
 }
 
+interface ProfBond {
+  name: string;
+  description: string;
+}
+
 export type Background = {
   name: string;
   shortDescription: string;
   attributes: Attributes;
   questions: string[];
   actions: Action[];
+  subsistenceClock: string;
+  professionalBonds: ProfBond[];
 };
 
 export type Heritage = {

@@ -23,7 +23,17 @@
         "description": "Research a topic or item. Gain insight into its function or history."
       }
     ],
-    "subsistenceClock": "Creator's Whispers"
+    "subsistenceClock": "Creator's Whispers",
+    "professionalBonds": [
+      {
+        "name": "Alma",
+        "description": "An expert in the scrawlings of the mad creator. Old, sick, and quite mad themselves."
+      },
+      {
+        "name": "Utthas",
+        "description": "A worker who's been skimming off the top of the inventory. They're in over their head and need help covering their tracks."
+      }
+    ]
   },
   {
     "name": "Enforcer",
@@ -47,6 +57,17 @@
         "name": "Observe",
         "attribute": "Machina",
         "description": "Watch and learn. Gain insight into a person or situation."
+      }
+    ],
+    "subsistenceClock": "Threat to your family",
+    "professionalBonds": [
+      {
+        "name": "Hellet",
+        "description": "An overseer who's willing to do favors in exchange for your help advancing their career."
+      },
+      {
+        "name": "Borani",
+        "description": "An enforcer who uses torture to get what they want."
       }
     ]
   },
@@ -73,6 +94,17 @@
         "attribute": "Instinct",
         "description": "Get into or out of a tight spot."
       }
+    ],
+    "subsistenceClock": "Belly of the Beast",
+    "professionalBonds": [
+      {
+        "name": "Rasha",
+        "description": "A stranger who's been living in the machines for years. You've never seen them, but they talk to you."
+      },
+      {
+        "name": "Geleswin",
+        "description": "An experienced machinist who's a master contortionist."
+      }
     ]
   },
   {
@@ -97,6 +129,17 @@
         "name": "Pull",
         "attribute": "Instinct",
         "description": "Move something heavy or difficult."
+      }
+    ],
+    "subsistenceClock": "Wear and Tear",
+    "professionalBonds": [
+      {
+        "name": "Sigsvult",
+        "description": "A shaman whose salves and tinctures ease the pain of the factory's labor."
+      },
+      {
+        "name": "Nimund",
+        "description": "An operator who is a monster of a person. They could do the work of three people if they chose to."
       }
     ]
   },
@@ -123,6 +166,17 @@
         "attribute": "Machina",
         "description": "Listen in on a conversation without being noticed."
       }
+    ],
+    "subsistenceClock": "Dreadful Cargo",
+    "professionalBonds": [
+      {
+        "name": "Tovarus",
+        "description": "A runner who claims to have seen the outside world."
+      },
+      {
+        "name": "Gelimer",
+        "description": "A community leader who uses runners to keep tabs on the overseers."
+      }
     ]
   },
   {
@@ -148,6 +202,17 @@
         "attribute": "Machina",
         "description": "Search through refuse for something useful."
       }
+    ],
+    "subsistenceClock": "Scrapyard Curse",
+    "professionalBonds": [
+      {
+        "name": "Lorel",
+        "description": "A scrapper who's been hoarding useless scrap for years."
+      },
+      {
+        "name": "Lorya",
+        "description": "An overseer with a penchant for collecting rare and dangerous materials."
+      }
     ]
   },
   {
@@ -172,6 +237,17 @@
         "name": "Fuel",
         "attribute": "Machina",
         "description": "Inflame a fire or strong emotion."
+      }
+    ],
+    "subsistenceClock": "Detonation",
+    "professionalBonds": [
+      {
+        "name": "Wilgefort",
+        "description": "A stoker who's learned to direct steam to other parts of the factory."
+      },
+      {
+        "name": "Gisa",
+        "description": "A worker who swears the water from the overflow vents has healing properties."
       }
     ]
   }
