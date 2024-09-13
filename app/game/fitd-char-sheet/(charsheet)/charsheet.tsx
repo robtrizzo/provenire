@@ -87,8 +87,14 @@ export function Charsheet() {
       { name: '', score: [0, 0] },
     ],
     Professional: [
-      { name: '', score: [0, 0] },
-      { name: '', score: [0, 0] },
+      {
+        name: selectedBackground?.professionalBonds[0]?.name || '',
+        score: [0, 0],
+      },
+      {
+        name: selectedBackground?.professionalBonds[0]?.name || '',
+        score: [0, 0],
+      },
     ],
   });
 
@@ -106,6 +112,7 @@ export function Charsheet() {
   const [sArmor, setSArmor] = useState<boolean>(false);
 
   const [starvation, setStarvation] = useState<number>(0);
+  const [subsist, setSubsist] = useState<number>(0);
 
   const [abilities, setAbilities] = useState<string[]>([]);
 
@@ -116,6 +123,7 @@ export function Charsheet() {
   const [rollLeft, setRollLeft] = useState<string>('');
   const [rollRight, setRollRight] = useState<string>('');
   const [bonusDice, setBonusDice] = useState<number>(0);
+  const [fortuneDice, setFortuneDice] = useState<number>(0);
 
   useEffect(() => {
     if (window === undefined) return;
@@ -150,6 +158,7 @@ export function Charsheet() {
         setBonds(parsed.bonds);
       }
       setStarvation(parsed.starvation || 0);
+      setSubsist(parsed.subsist || 0);
     }
   }, []);
 
@@ -181,6 +190,7 @@ export function Charsheet() {
           abilities,
           bonds,
           starvation,
+          subsist,
         };
         localStorage.setItem('charsheet', JSON.stringify(data));
         // TODO save to server
@@ -211,116 +221,6 @@ export function Charsheet() {
     setChanges(true);
   }
 
-  function roll(name: string, score: number[]) {
-    if (score[0] === 0 && score[1] === 0) {
-      // roll 2d6 and take the lowest
-      let r1 = Math.floor(Math.random() * 6) + 1;
-      let r2 = Math.floor(Math.random() * 6) + 1;
-      const result = Math.min(r1, r2);
-      let resultText = '';
-      switch (result) {
-        case 1:
-        case 2:
-        case 3:
-          resultText = 'Miss. Suffer the consequences.';
-          break;
-        case 4:
-        case 5:
-          resultText =
-            'Partial hit. Succeed, but suffer the consequences and take reduced effect.';
-          break;
-        case 6:
-          resultText = 'Hit! Succeed, but take reduced effect.';
-          break;
-        default:
-          resultText = 'Unknown result';
-          break;
-      }
-      toast({
-        variant: 'grid',
-        // @ts-ignore
-        title: (
-          <div className="flex gap-1">
-            <span className="mt-1">Rolled {name}</span>
-            <Die roll={r1} className="h-5 w-5" />
-            <Die roll={r2} className="h-5 w-5" />
-          </div>
-        ),
-        description: (
-          <div className="flex gap-4">
-            <Die roll={result} className="h-5 w-5" />
-            <span className="mt-1">{resultText}</span>
-          </div>
-        ),
-      });
-      return;
-    }
-    let red = score.reduce((acc, s) => (s === 1 ? acc + 1 : acc), 0);
-    let blue = score.reduce((acc, s) => (s === 2 ? acc + 1 : acc), 0);
-    let redRolls = [];
-    let blueRolls = [];
-    for (let i = 0; i < red; i++) {
-      redRolls.push(Math.floor(Math.random() * 6) + 1);
-    }
-    for (let i = 0; i < blue; i++) {
-      blueRolls.push(Math.floor(Math.random() * 6) + 1);
-    }
-    let highestRed = Math.max(...redRolls);
-    let highestBlue = Math.max(...blueRolls);
-    const result = Math.max(highestBlue, highestRed);
-    const blueHigher = highestBlue >= highestRed;
-
-    let resultText = '';
-    switch (result) {
-      case 1:
-      case 2:
-      case 3:
-        resultText = 'Miss. Suffer the consequences.';
-        break;
-      case 4:
-      case 5:
-        resultText = `Partial hit. Suceed, but suffer the consequences${
-          blueHigher ? '' : ' and take reduced effect'
-        }.`;
-        break;
-      case 6:
-        resultText = `Hit! Succeed${
-          blueHigher ? '' : ', but take reduced effect'
-        }.`;
-        break;
-      default:
-        resultText = 'Unknown result';
-        break;
-    }
-    toast({
-      variant: 'grid',
-      // @ts-ignore
-      title: (
-        <div className="flex items-start gap-1">
-          <span className="mt-1">Rolled {name}</span>
-          {redRolls.map((r, i) => (
-            <Die key={i} roll={r} className="h-5 w-5 text-red-500" />
-          ))}
-          {blueRolls.map((r, i) => (
-            <Die key={i} roll={r} className="h-5 w-5 text-blue-500" />
-          ))}
-        </div>
-      ),
-      description: (
-        <div className="flex gap-4">
-          <Die
-            roll={result}
-            className={cn(
-              'h-5 w-5',
-              blueHigher ? 'text-blue-500' : 'text-red-500'
-            )}
-          />
-          <span className="mt-1">{resultText}</span>
-        </div>
-      ),
-    });
-  }
-
   function rollAction(
     attribute: 'Heart' | 'Instinct' | 'Machina',
     action: string
@@ -328,14 +228,17 @@ export function Charsheet() {
     const score = attributes[attribute][action];
     const [a, b] = score || [0, 0];
 
-    roll(action, [a, b]);
+    rollCombo(action, '', [a, b]);
   }
 
   function rollBond(bond: Bond) {
-    roll(bond.name, bond.score);
+    rollCombo(bond.name, '', bond.score);
   }
 
   function rollCombo(action1: string, action2: string, dice: number[]) {
+    for (let i = 0; i < bonusDice; i++) {
+      dice.push(2);
+    }
     if (dice.reduce((acc, s) => acc + s, 0) === 0) {
       // roll 2d6 and take the lowest
       let r1 = Math.floor(Math.random() * 6) + 1;
@@ -438,7 +341,8 @@ export function Charsheet() {
       title: (
         <div className="flex items-start gap-1">
           <span className="mt-1">
-            Rolled {action1} + {action2}
+            Rolled {action1}
+            {action2 ? ` + ${action2}` : ''}
           </span>
           {redRolls.map((r, i) => (
             <Die key={i} roll={r} className="h-5 w-5 text-red-500" />
@@ -484,8 +388,8 @@ export function Charsheet() {
     attribute2: 'Heart' | 'Instinct' | 'Machina',
     action2: string
   ) {
-    const score1 = attributes[attribute1][action1] || [0, 0];
-    const score2 = attributes[attribute2][action2] || [0, 0];
+    const score1 = attributes?.[attribute1]?.[action1] || [0, 0];
+    const score2 = attributes?.[attribute2]?.[action2] || [0, 0];
     rollCombo(action1, action2, [...score1, ...score2]);
   }
 
@@ -683,6 +587,19 @@ export function Charsheet() {
               ) as Background | undefined;
               if (foundBackground) {
                 setSelectedBackground(foundBackground);
+                setBonds({
+                  ...bonds,
+                  Professional: [
+                    {
+                      name: foundBackground.professionalBonds[0].name,
+                      score: bonds.Professional[0].score,
+                    },
+                    {
+                      name: foundBackground.professionalBonds[1].name,
+                      score: bonds.Professional[1].score,
+                    },
+                  ],
+                });
                 setChanges(true);
               }
             }}
@@ -1611,8 +1528,24 @@ export function Charsheet() {
                           id="fortune-dice"
                           type="number"
                           className="w-20"
+                          min={0}
+                          value={fortuneDice}
+                          onChange={(e) => {
+                            setFortuneDice(parseInt(e.target.value));
+                          }}
                         />
-                        <Button>Fortune Roll</Button>
+                        <Button
+                          onClick={() => {
+                            let dice = [];
+                            for (let i = 0; i < fortuneDice; i++) {
+                              dice.push(2);
+                            }
+                            rollCombo('Fortune', '', dice);
+                            setFortuneDice(0);
+                          }}
+                        >
+                          Fortune Roll
+                        </Button>
                       </div>
                     </div>
                   </div>
@@ -1978,63 +1911,52 @@ export function Charsheet() {
                 Professional
               </TypographyH3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                <Input
-                  value={bonds.Professional[0].name}
-                  onChange={(e) => {
-                    setBonds({
-                      Personal: bonds.Personal,
-                      Familial: bonds.Familial,
-                      Professional: [
-                        {
-                          name: e.target.value,
-                          score: bonds.Professional[0].score,
-                        },
-                        {
-                          name: bonds.Professional[1].name,
-                          score: bonds.Professional[1].score,
-                        },
-                      ],
-                    });
-                    setChanges(true);
-                  }}
-                />
-                <Input
-                  value={bonds.Professional[1].name}
-                  onChange={(e) => {
-                    setBonds({
-                      Personal: bonds.Personal,
-                      Familial: bonds.Familial,
-                      Professional: [
-                        {
-                          name: bonds.Professional[0].name,
-                          score: bonds.Professional[0].score,
-                        },
-                        {
-                          name: e.target.value,
-                          score: bonds.Professional[1].score,
-                        },
-                      ],
-                    });
-                    setChanges(true);
-                  }}
-                />
+                <TypographyP className="m-2">
+                  {selectedBackground?.professionalBonds[0].name}:{' '}
+                  <span className="text-muted-foreground text-xs">
+                    {selectedBackground?.professionalBonds[0].description}
+                  </span>
+                </TypographyP>
+                <TypographyP className="m-2">
+                  {selectedBackground?.professionalBonds[1].name}:{' '}
+                  <span className="text-muted-foreground text-xs">
+                    {selectedBackground?.professionalBonds[1].description}
+                  </span>
+                </TypographyP>
               </div>
               <TypographyH2 className="mt-4 flex items-end justify-between">
                 Subsistence{' '}
-                <div className="w-[120px] border-[1px] border-border rounded-md p-1 flex items-center select-none">
-                  <Clock
-                    key={`starvation${new Date().getTime()}`}
-                    max={5}
-                    current={starvation}
-                    size={35}
-                    setVal={(n) => {
-                      setStarvation(n);
-                      setChanges(true);
-                    }}
-                  />
-                  <span className="text-xs text-muted-foreground text-center w-full">
-                    starvation
-                  </span>
+                <div className="flex gap-4">
+                  <div className="w-[120px] border-[1px] border-border rounded-md p-1 flex items-center select-none">
+                    <Clock
+                      key={`subsist${new Date().getTime()}`}
+                      max={8}
+                      current={subsist}
+                      size={35}
+                      setVal={(n) => {
+                        setSubsist(n);
+                        setChanges(true);
+                      }}
+                    />
+                    <span className="text-xs text-muted-foreground text-center w-full">
+                      {selectedBackground?.subsistenceClock}
+                    </span>
+                  </div>
+                  <div className="w-[120px] border-[1px] border-border rounded-md p-1 flex items-center select-none">
+                    <Clock
+                      key={`starvation${new Date().getTime()}`}
+                      max={5}
+                      current={starvation}
+                      size={35}
+                      setVal={(n) => {
+                        setStarvation(n);
+                        setChanges(true);
+                      }}
+                    />
+                    <span className="text-xs text-muted-foreground text-center w-full">
+                      starvation
+                    </span>
+                  </div>
                 </div>
               </TypographyH2>
               <TypographyH3 className="text-sm text-muted-foreground mt-4">
@@ -2064,7 +1986,7 @@ export function Charsheet() {
               )}
               <TypographyH2 className="mt-4">Downtime</TypographyH2>
               <TypographyH3 className="text-sm text-muted-foreground mt-4">
-                Actions (Universal)
+                Universal Activities
               </TypographyH3>
               <div className="ml-2">
                 <DowntimeActionsAccordion />
@@ -2528,13 +2450,13 @@ export function Charsheet() {
                         rollBond(bonds.Professional[0]);
                       } else {
                         setRollLeft(
-                          `Professional-${bonds.Professional[0].name}`
+                          `Professional-${selectedBackground?.professionalBonds[0].name}`
                         );
                       }
                     }}
                   >
                     <TypographyH4 className="group-hover:underline">
-                      {bonds.Professional[0].name}
+                      {selectedBackground?.professionalBonds[0].name}
                     </TypographyH4>
                   </div>
                   <Separator />
@@ -2545,13 +2467,13 @@ export function Charsheet() {
                         rollBond(bonds.Professional[1]);
                       } else {
                         setRollLeft(
-                          `Professional-${bonds.Professional[1].name}`
+                          `Professional-${selectedBackground?.professionalBonds[1].name}`
                         );
                       }
                     }}
                   >
                     <TypographyH4 className="group-hover:underline">
-                      {bonds.Professional[1].name}
+                      {selectedBackground?.professionalBonds?.[1]?.name}
                     </TypographyH4>
                   </div>
                 </div>
@@ -2737,18 +2659,22 @@ export function Charsheet() {
                           </SelectItem>
                         );
                       })}
-                      {bonds.Professional.map((b, i) => {
-                        if (b.name === '') return;
-                        return (
-                          <SelectItem
-                            key={i}
-                            value={`Professional-${b.name}`}
-                            className="group-hover:underline"
-                          >
-                            {b.name}
-                          </SelectItem>
-                        );
-                      })}
+                      {selectedBackground?.professionalBonds && [
+                        <SelectItem
+                          key={0}
+                          value={`Professional-${selectedBackground.professionalBonds[0].name}`}
+                          className="group-hover:underline"
+                        >
+                          {selectedBackground.professionalBonds[0].name}
+                        </SelectItem>,
+                        <SelectItem
+                          key={1}
+                          value={`Professional-${selectedBackground.professionalBonds[1].name}`}
+                          className="group-hover:underline"
+                        >
+                          {selectedBackground.professionalBonds[1].name}
+                        </SelectItem>,
+                      ]}
                     </SelectContent>
                   </Select>
                   <Button
@@ -2871,6 +2797,61 @@ export function Charsheet() {
                       <SelectItem value="limited">Limited</SelectItem>
                     </SelectContent>
                   </Select>
+                </div>
+                <div className="flex gap-4 justify-between flex-wrap">
+                  <div className="flex gap-4">
+                    <div>
+                      <Label htmlFor="bonus-dice">Bonus Dice</Label>
+                      <Input
+                        id="bonus-dice"
+                        type="number"
+                        className="w-20"
+                        min={0}
+                        value={bonusDice}
+                        onChange={(e) => {
+                          setBonusDice(parseInt(e.target.value));
+                        }}
+                      />
+                    </div>
+                    <div className="text-muted-foreground text-xs leading-3 mt-2">
+                      <span>
+                        You can gain bonus dice through:{' '}
+                        <ul className="italic mx-2">
+                          <li>teamwork</li>
+                          <li>push yourself</li>
+                          <li>devil&apos;s bargain</li>
+                          <li>special ability</li>
+                        </ul>
+                      </span>
+                    </div>
+                  </div>
+                  <div>
+                    <Label htmlFor="fortune-dice">Fortune Dice</Label>
+                    <div className="flex gap-4">
+                      <Input
+                        id="fortune-dice"
+                        type="number"
+                        className="w-20"
+                        min={0}
+                        value={fortuneDice}
+                        onChange={(e) => {
+                          setFortuneDice(parseInt(e.target.value));
+                        }}
+                      />
+                      <Button
+                        onClick={() => {
+                          let dice = [];
+                          for (let i = 0; i < fortuneDice; i++) {
+                            dice.push(2);
+                          }
+                          rollCombo('Fortune', '', dice);
+                          setFortuneDice(0);
+                        }}
+                      >
+                        Fortune Roll
+                      </Button>
+                    </div>
+                  </div>
                 </div>
               </Card>
               <div className="flex justify-between gap-4 mt-4">
