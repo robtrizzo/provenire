@@ -1,11 +1,3 @@
-import Donum from '@/components/stats/donum';
-import Defiance from '@/components/stats/defiance';
-import Heart from '@/components/stats/heart';
-import Ingenuity from '@/components/stats/ingenuity';
-import Machina from '@/components/stats/machina';
-import Savagery from '@/components/stats/savagery';
-import Blood from '@/components/stats/blood';
-import Hunger from '@/components/stats/hunger';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -85,6 +77,27 @@ export default function Page() {
         better their attribute rating.
       </TypographyP>
       <TypographyH2>Resistance Rolls</TypographyH2>
+      <TypographyP>
+        Each attribute resists a different kind of danger. If you get stabbed,
+        for example, you resist sudden violence with your{' '}
+        <strong>Instinct</strong> rating. Resistance rolls always succeed--you
+        diminish or deflect the bad result--but the better you roll, the less{' '}
+        <strong>stress</strong> it costs to reduce or avoid the danger.
+      </TypographyP>
+      <TypographyP>
+        When the enemy has a big advantage, you&apos;ll have to make a
+        resistance roll before you can take your own action. For example, when
+        you duel a master swordswoman, she disarms you before you can strike.
+        You need to make a resistance roll to keep hold of your blade if you
+        want to attack her. Or perhaps you face an area with a powerful psychic
+        drone. Before you can make your own roll, you must resist subservience
+        to the Overseers.
+      </TypographyP>
+      <TypographyP>
+        The Narrator judges the threat level of the enemies and uses these
+        &quot;preemptive&quot; resistance rolls as needed to reflect the
+        capabilities of especially dangerous foes.
+      </TypographyP>
       <Separator />
       <div className="w-full flex justify-between">
         <Link href="/game/core-system">
