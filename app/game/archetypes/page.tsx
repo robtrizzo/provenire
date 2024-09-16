@@ -86,7 +86,7 @@ function ArchetypeContent({ archetype }: { archetype: Archetype }) {
   return (
     <div className="mx-2">
       <div className="ml-4">
-        <ArchetypeQuestions archetype="Strategist" />
+        <ArchetypeQuestions archetype={archetype.name} />
       </div>
       <TypographyH3>Mission</TypographyH3>
       <Abilities
