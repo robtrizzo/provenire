@@ -88,11 +88,11 @@ export function Charsheet() {
     ],
     Professional: [
       {
-        name: selectedBackground?.professionalBonds[0]?.name || '',
+        name: selectedBackground?.professionalBonds?.[0]?.name || '',
         score: [0, 0],
       },
       {
-        name: selectedBackground?.professionalBonds[0]?.name || '',
+        name: selectedBackground?.professionalBonds?.[0]?.name || '',
         score: [0, 0],
       },
     ],
@@ -1912,15 +1912,15 @@ export function Charsheet() {
               </TypographyH3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <TypographyP className="m-2">
-                  {selectedBackground?.professionalBonds[0].name}:{' '}
+                  {selectedBackground?.professionalBonds?.[0].name}:{' '}
                   <span className="text-muted-foreground text-xs">
-                    {selectedBackground?.professionalBonds[0].description}
+                    {selectedBackground?.professionalBonds?.[0].description}
                   </span>
                 </TypographyP>
                 <TypographyP className="m-2">
-                  {selectedBackground?.professionalBonds[1].name}:{' '}
+                  {selectedBackground?.professionalBonds?.[1].name}:{' '}
                   <span className="text-muted-foreground text-xs">
-                    {selectedBackground?.professionalBonds[1].description}
+                    {selectedBackground?.professionalBonds?.[1].description}
                   </span>
                 </TypographyP>
               </div>
@@ -2450,13 +2450,13 @@ export function Charsheet() {
                         rollBond(bonds.Professional[0]);
                       } else {
                         setRollLeft(
-                          `Professional-${selectedBackground?.professionalBonds[0].name}`
+                          `Professional-${selectedBackground?.professionalBonds?.[0].name}`
                         );
                       }
                     }}
                   >
                     <TypographyH4 className="group-hover:underline">
-                      {selectedBackground?.professionalBonds[0].name}
+                      {selectedBackground?.professionalBonds?.[0].name}
                     </TypographyH4>
                   </div>
                   <Separator />
@@ -2467,7 +2467,7 @@ export function Charsheet() {
                         rollBond(bonds.Professional[1]);
                       } else {
                         setRollLeft(
-                          `Professional-${selectedBackground?.professionalBonds[1].name}`
+                          `Professional-${selectedBackground?.professionalBonds?.[1].name}`
                         );
                       }
                     }}
