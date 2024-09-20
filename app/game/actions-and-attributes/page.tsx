@@ -25,10 +25,10 @@ export default function Page() {
       <TypographyP>
         Each <strong>action</strong> has a <strong>rating</strong> (from 0 to
         2b) that tells you how many dice to roll when you perform that action.
-        Action <strong>ratings</strong> don't just represent skill or
-        training--you're free to describe <span className="italic">how</span>{' '}
-        your character performs that type of action based on the type of person
-        they are.
+        Action <strong>ratings</strong> don&apos;t just represent skill or
+        training--you&apos;re free to describe{' '}
+        <span className="italic">how</span> your character performs that type of
+        action based on the type of person they are.
       </TypographyP>
       <TypographyP>
         You choose which action to perform to overcome an obstacle, by

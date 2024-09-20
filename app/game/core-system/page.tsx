@@ -159,15 +159,15 @@ export default function Page() {
       </TypographyP>
       <TypographyP>
         When you read the result of a die roll, note the color of the highest
-        die. If it's red, take reduced effect. If it's blue, effect is not
-        changed.
+        die. If it&apos;s red, take reduced effect. If it&apos;s blue, effect is
+        not changed.
       </TypographyP>
       <TypographyP>
         You&apos;ll usually end up with one to four dice. Even one die is pretty
         good in this game--a 50% chance of success.
       </TypographyP>
       <TypographyP>
-        There are four types of rolls you'll use most often in this game:
+        There are four types of rolls you&apos;ll use most often in this game:
       </TypographyP>
       <TypographyUnorderedList>
         <li>
