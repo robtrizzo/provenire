@@ -8,6 +8,7 @@ import {
   TypographyH3,
   TypographyH4,
   TypographyP,
+  TypographyUnorderedList,
 } from '@/components/ui/typography';
 export default async function Page() {
   return (
@@ -28,8 +29,8 @@ export default async function Page() {
         communicating what is happening. They can describe the environment,
         people, and events that transpire. The Narrator steps in only to play an
         NPC, to provide requested context, or to adjudicate a roll or uncertain
-        interaction. Character scenes continue until the players decide it's
-        time to move on to <strong>gathering information</strong>.
+        interaction. Character scenes continue until the players decide
+        it&apos;s time to move on to <strong>gathering information</strong>.
       </TypographyP>
       <TypographyH3>Gather Information</TypographyH3>
       <TypographyP>
@@ -54,7 +55,286 @@ export default async function Page() {
         during downtime.
       </TypographyP>
       <TypographyH2>Engagement Roll</TypographyH2>
+      <TypographyP>
+        Missions in <span className="italic">Provenire</span> begin &quot;en
+        media res&quot;. This means that planning and preparations are assumed
+        to have already taken place. The Engagement Roll determines how things
+        are already going when we first see the characters in action.
+      </TypographyP>
+      <TypographyH3>Approach</TypographyH3>
+      <TypographyP>
+        Before making the Engagement Roll, the party chooses an approach to the
+        mission. This is in place of planning out every little detail
+        beforehand. Once the party chooses an approach, the{' '}
+        <strong>Narrator</strong> will ask them to fill in a key detail.
+      </TypographyP>
+      <TypographyUnorderedList>
+        <li>
+          <strong>Assault</strong>: Do violence to a target.{' '}
+          <span className="italic">Detail: the point of attack.</span>
+        </li>
+        <li>
+          <strong>Deception</strong>: Lure, trick, or manipulate.{' '}
+          <span className="italic">Detail: the method of deception.</span>
+        </li>
+        <li>
+          <strong>Stealth</strong>: Trespass unseen.{' '}
+          <span className="italic">Detail: the point of infiltration.</span>
+        </li>
+        <li>
+          <strong>Machine</strong>: Engage in the strange workings of the
+          factory.{' '}
+          <span className="italic">Detail: the mechanical method.</span>
+        </li>
+        <li>
+          <strong>Social</strong>: Negotiate, bargain, or persuade.{' '}
+          <span className="italic">Detail: the social connection.</span>
+        </li>
+        <li>
+          <strong>Transport</strong>: Carry cargo or people through danger.{' '}
+          <span className="italic">Detail: the route and means.</span>
+        </li>
+      </TypographyUnorderedList>
+      <TypographyH3>Item Loadouts</TypographyH3>
+      <TypographyP>
+        After the approach and detail are explained, each player chooses their
+        character&apos;s <strong>load</strong>. This indicates how much stuff
+        they&apos;re carrying on the mission. They don&apos;t have to select
+        individual items - just the maximum amount they&apos;ll have access to
+        during the action.
+      </TypographyP>
+      <TypographyUnorderedList>
+        <li>
+          <strong>1 Load: Light.</strong> You&apos;re faster, less conspicuous.
+          You blend in with the other workers.
+        </li>
+        <li>
+          <strong>2-3 Load: Normal.</strong> You look like you&apos;re up to
+          something.
+        </li>
+        <li>
+          <strong>4 Load: Heavy.</strong> You&apos;re slower and stand out. You
+          look like an operative on a mission.
+        </li>
+        <li>
+          <strong>5-7 Load: Encumbered.</strong> You&apos;re overburdened and
+          can&apos;t do anything except move very slowly.
+        </li>
+      </TypographyUnorderedList>
+      <TypographyH3>Major Advantages / Disadvantages</TypographyH3>
+      <TypographyP>
+        The engagement roll is a <strong>fortune roll</strong>, starting with{' '}
+        <strong>0d</strong> because there is no luck in the Steel Trap. The dice
+        pool gets modified by any major advantages or disadvantages the party
+        has.
+      </TypographyP>
+      <TypographyUnorderedList>
+        <li>
+          Is this operation particularly bold or daring? Take{' '}
+          <strong>+1d</strong>. Is this operation overly complex or contingent
+          on many factors? Take <strong>-1d</strong>.
+        </li>
+        <li>
+          Does the <strong>plan&apos;s detail</strong> expose a vulnerability of
+          the target or hit them where they&apos;re weakest? Take{' '}
+          <strong>+1d</strong>. Is the target strongest against this approach,
+          or do they have particular defenses or special preparations? Take{' '}
+          <strong>-1d</strong>.
+        </li>
+        <li>
+          Can any of your <strong>friends or contacts</strong> provide aid for
+          this operation? Take <strong>+1d</strong>. Are any{' '}
+          <strong>enemies or rivals</strong> interfering in the operation? Take{' '}
+          <strong>-1d</strong>. Anyone who volunteers an{' '}
+          <strong>enemy or rival</strong> takes <strong>+1xp</strong>.
+        </li>
+        <li>
+          Is the target of this operation a worker or faction of workers? Take{' '}
+          <strong>+1d</strong>. Is the target an overseer or is an overseer the
+          member of the target group? Take <strong>-2d</strong>.
+        </li>
+      </TypographyUnorderedList>
+      <TypographyP>
+        The engagement roll assumes that the PCs are approaching the target as
+        intelligently as they can, given the plan and detail they provided. We
+        don&apos;t need to play out the tentative probing maneuvers, special
+        precautions, or other ponderous non-action. The engagement roll covers
+        all of that. The PCs are already in action, facing the first obstacle of
+        the mission.
+      </TypographyP>
+      <TypographyP>
+        <strong>Critical</strong>: Exceptional result.{' '}
+        <span className="italic">
+          You&apos;ve already overcome the first obstacle and you&apos;re in a
+          controlled position for what&apos;s next.
+        </span>
+      </TypographyP>
+      <TypographyP>
+        <strong>6</strong>: Good result.{' '}
+        <span className="italic">
+          You&apos;re in a controlled position when the action starts.
+        </span>
+      </TypographyP>
+      <TypographyP>
+        <strong>4/5</strong>: Mixed result.{' '}
+        <span className="italic">
+          You&apos;re in a risky position when the action starts.
+        </span>
+      </TypographyP>
+      <TypographyP>
+        <strong>1-3</strong>: Bad result.{' '}
+        <span className="italic">
+          You&apos;re in a desperate position when the action starts.
+        </span>
+      </TypographyP>
       <TypographyH2>Mission</TypographyH2>
+      <TypographyP>
+        The mission is when the PCs risk their lives for the betterment of their
+        communities. This is when the majority of dice are rolled and
+        consequences occur. Missions have no target length or difficulty:
+        they&apos;re done when they&apos;re done.
+      </TypographyP>
+      <TypographyH3>Actions and Consequences</TypographyH3>
+      <TypographyP>
+        The mission is when the <strong>conversation</strong> between{' '}
+        <strong>Narrator</strong> and player is most important. The{' '}
+        <strong>Narrator</strong> describes the environment, NPCs, and situation
+        the PCs find themselves in. Sometimes the <strong>Narrator</strong> will
+        call for rolls without prompting from the players. The players describe
+        what they would like to do: their approach to the situaion or particular
+        action they would like to take. The <strong>Narrator</strong> will
+        prompt for a roll if the action is uncertain or risky. The player will
+        decide which of their character&apos;s action(s) they think best apply
+        to their approach. The <strong>Narrator</strong> will then set the
+        position and effect, and the player rolls. Once the result is
+        determined, the <strong>Narrator</strong> describes the outcome and the
+        cycle repeats.
+      </TypographyP>
+      <TypographyP>
+        When players roll anywhere from a <strong>1-5</strong>, it means they
+        incurred consequences of varying severity depending on their position.
+        Consequencces can be <strong>harm</strong>, a weaker position or effect,
+        a <strong>clock</strong> getting started or ticked, or anything else the{' '}
+        <strong>Narrator</strong> decides is narratively exciting. Once a
+        consequence is described by the <strong>Narrator</strong>, it is part of
+        the ficiton: the player cannot use a <strong>flashback</strong> to undo
+        it (more on flashbacks below). What the player{' '}
+        <span className="italic">can</span> do is make a{' '}
+        <strong>resistance roll</strong> to avoid or reduce the consequence.{' '}
+        <strong>Resistance rolls</strong> are more of a player move than a
+        character move in <span className="italic">Provenire</span>. The player
+        does not need to justify or explain how they&apos;re resisting, though
+        it&apos;s strongly encouraged for them to do so as it will lead to
+        interesting narrative moments.
+      </TypographyP>
+      <TypographyH3>Flashbacks</TypographyH3>
+      <TypographyP>
+        The rules don&apos;t distinguish between actions performed in the
+        present moment and those performed in the past. When a mission is
+        underway, you can invoke a <strong>flashback</strong> to roll for an
+        action in the past that impacts your current situation. Maybe you
+        convinced an enforcer to cancel their patrol tonight, or you bribed a
+        worker to leave a door unlocked. Whatever it is, it can only{' '}
+        <span className="italic">add</span> to the fiction, not undo it.
+      </TypographyP>
+      <TypographyP>
+        The <strong>Narrator</strong> sets a <strong>stress cost</strong> when
+        you activate a flashback action.
+      </TypographyP>
+      <TypographyUnorderedList>
+        <li>
+          <strong>0 Stress</strong>: An ordinary action for which you had an
+          easy opportunity.
+        </li>
+        <li>
+          <strong>1 Stress</strong>: A complex action or unlikely opportunity.
+        </li>
+        <li>
+          <strong>2 (or more) Stress</strong>: An elaborate action that involved
+          special opportunities or contingencies.
+        </li>
+      </TypographyUnorderedList>
+      <TypographyP>
+        After the stress cost is paid, a flashback action is handled just like
+        any other action. Sometimes it will entail an action roll, because
+        there&apos;s some danger or trouble involved. Sometimes a flashback will
+        entail a fortune roll, because we just need to find out how well (or how
+        much, or how long, etc). Sometimes a flashback won&apos;t call for a
+        roll at all because you can just pay the stress and it&apos;s
+        accomplished.
+      </TypographyP>
+      <TypographyP>
+        If a flashback involves a <strong>downtime</strong> activity, pay an
+        appropriate <strong>churn</strong> resource instead of stress.
+      </TypographyP>
+      <TypographyP>
+        One of the best uses for a flashback is when the{' '}
+        <strong>engagement roll</strong> goes badly. After the{' '}
+        <strong>Narrator</strong> describes the trouble you&apos;re in, you can
+        call for a flashback to a specal preparation you made, &quot;just in
+        case&quot; something like this happened. This way, your flashback
+        planning will be focused on the problems that{' '}
+        <span className="italic">do</span> happen, not the problems that{' '}
+        <span className="italic">might</span> happen.
+      </TypographyP>
+      <TypographyH3>Combat</TypographyH3>
+      <TypographyP>
+        Sometimes the events of a mission lead to a violent confrontation. Of
+        course the PCs can choose to flee, but sometimes the only way through is
+        forward. Combat in <span className="italic">Provenire</span> has
+        slightly more structure to it than the typical{' '}
+        <strong>conversation</strong> during a mission.
+      </TypographyP>
+      <TypographyP>
+        Often the objective of the PCs during a combat is not strictly to kill
+        their opponents, but this is what the rules of combat give structure to.
+        NPCs or gangs have a list of <strong>defenses</strong> that the PCs must
+        overcome to best them. <strong>Defenses</strong> could be anything from{' '}
+        <span className="italic">tough hide</span> to{' '}
+        <span className="italic">nimble</span> to{' '}
+        <span className="italic">numbers</span>. There is no set list of
+        defenses or approaches to dealing with each. This is handled in the
+        fiction and the <strong>conversation</strong> between the players and
+        the Narrator.
+      </TypographyP>
+      <TypographyP>
+        Some enemies may also have <strong>weaknesses</strong> which can be
+        exploited by the PCs. Similar to <strong>defenses</strong>, there is no
+        set list, nor does any have a predefined benefit or approach it enables
+        for the PCs.
+      </TypographyP>
+      <TypographyP>
+        During combat, the PCs will take actions to gain the advantage in the
+        fight and/or overcome their enemies&apos; defenses. As normal, the{' '}
+        <strong>Narrator</strong> will set position and effect, the player picks
+        which of their actions apply to the roll, the <strong>Narrator</strong>{' '}
+        describes the outcome and consequences, and the cycle repeats.
+      </TypographyP>
+      <TypographyH4>Finish Them</TypographyH4>
+      <TypographyP>
+        Once the PCs have narratively overcome each of an enemy&apos;s{' '}
+        <strong>defenses</strong>, they can attempt to{' '}
+        <strong>finish them</strong> with an action roll.
+      </TypographyP>
+      <TypographyUnorderedList>
+        <li>
+          <strong>Critical</strong>: You dismantle the enemy with impressive
+          efficiency. Others will respect or fear you for it.
+        </li>
+        <li>
+          <strong>6</strong>: The enemy is defeated. They are dead, unconscious,
+          or otherwise incapacitated. Describe how you did it.
+        </li>
+        <li>
+          <strong>4-5</strong>: The enemy is badly hurt, but they&apos;re still
+          in the fight. They may choose to flee and nurse their wounds, or they
+          may press on with a new tactic.
+        </li>
+        <li>
+          <strong>1-3</strong>: The enemy is still in the fight and they&apos;re
+          sure to exploit the opening you left.
+        </li>
+      </TypographyUnorderedList>
       <TypographyH2>Churn</TypographyH2>
       <TypographyH3>Subsistence</TypographyH3>
       <TypographyH3>Agendas</TypographyH3>
