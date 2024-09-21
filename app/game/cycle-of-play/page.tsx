@@ -54,6 +54,35 @@ export default async function Page() {
         information should be pursued as a <strong>long term project</strong>{' '}
         during downtime.
       </TypographyP>
+      <TypographyH3>Choose the Mission</TypographyH3>
+      <TypographyP>
+        As opposed to more classic RPG structures where the{' '}
+        <strong>Narrator</strong> preps and then runs their prepared session for
+        the players, in <span className="italic">Provenire</span>, the players
+        choose what they do next. The <strong>Narrator</strong> will have the
+        setting, characters, factions, and threats of the Steel Trap already
+        prepared. They may even have a few missions prepped and presented as
+        options to the players. But the players ultimately decide what they do
+        next - they don&apos;t need to choose one of the options presented to
+        them.
+      </TypographyP>
+      <TypographyP>
+        Once the mission is agreed on by the players, the{' '}
+        <strong>Narrator</strong> tells them what kinds of rewards they can
+        expect from accomplishing the mission. This can take the form of{' '}
+        <strong>rep</strong>, <strong>goodwill</strong>,{' '}
+        <strong>materials</strong>, <strong>food</strong>, or other special
+        rewards (which the <strong>Narrator</strong> may choose to not give
+        specifics on).
+      </TypographyP>
+      <TypographyP>
+        Next, the <strong>Narrator</strong> describes any side objectives that
+        the crew could pursue during the mission. If a <strong>Grease</strong>{' '}
+        has made a promise to a faction, a side objective to fulfill that
+        promise will always be included in the mission. The{' '}
+        <strong>Narrator</strong> states the rewards for accomplishing each side
+        objective.
+      </TypographyP>
       <TypographyH2>Engagement Roll</TypographyH2>
       <TypographyP>
         Missions in <span className="italic">Provenire</span> begin &quot;en
@@ -335,9 +364,141 @@ export default async function Page() {
           sure to exploit the opening you left.
         </li>
       </TypographyUnorderedList>
-      <TypographyH2>Churn</TypographyH2>
+      <TypographyH2>The Churn</TypographyH2>
+      <TypographyP>
+        The adrenaline rush fades and life returns to its standard pace. The PCs
+        are done risking their lives, though they face new challenges in the
+        daily grind.
+      </TypographyP>
+      <TypographyP>
+        During <strong>The Churn</strong>, the <strong>conversation</strong> is
+        shifted to an equal balance between player and <strong>Narrator</strong>
+        . The players have more narrative control to describe the things and
+        people around them, though the <strong>Narrator</strong> will still call
+        for particular actions and/or rolls during{' '}
+        <strong>The Churn&apos;s</strong> phases. More on{' '}
+        <span className="text-red-600">
+          <Link href="/game/the-churn">
+            <strong>The Churn</strong> here
+          </Link>
+        </span>
+        .
+      </TypographyP>
+      <TypographyH3>Payoff</TypographyH3>
+      <TypographyP className="text-secondary-foreground">
+        Where it is common in heist fiction for the payoff to be an ambush or
+        rug-pull, that is not something the PCs should be worrying about every
+        session. In <span className="italic">Provenire</span>, the{' '}
+        <strong>Narrator</strong> does not mess with the <strong>payoff</strong>
+        .
+      </TypographyP>
+      <TypographyP>
+        After a mission, the PCs take stock of their rewards from the operation.
+        The crew earns <strong>rep</strong> according to the following:
+      </TypographyP>
+      <TypographyUnorderedList>
+        <li>
+          <span className="italic">
+            Do you keep your crew's involvement in the mission under wraps?
+          </span>{' '}
+          <strong>Earn 0 rep.</strong>
+        </li>
+        <li>
+          <span className="italic">
+            Was the target of the score an individual worker?
+          </span>{' '}
+          <strong>Earn 0 rep.</strong>
+        </li>
+        <li>
+          <span className="italic">
+            Was the target of the score a group of workers?
+          </span>{' '}
+          <strong>Earn 1 rep.</strong>
+        </li>
+        <li>
+          <span className="italic">
+            Was the target of the score an individual enforcer?
+          </span>{' '}
+          <strong>Earn 2 rep.</strong>
+        </li>
+        <li>
+          <span className="italic">
+            Was the target of the score a group of enforcers?
+          </span>{' '}
+          <strong>Earn 3 rep.</strong>
+        </li>
+        <li>
+          <span className="italic">
+            Was the target of the score an overseer?
+          </span>{' '}
+          <strong>Earn 4 rep.</strong>
+        </li>
+      </TypographyUnorderedList>
+      <TypographyH3>Heat</TypographyH3>
+      <TypographyP>
+        The Steel Trap is a place of prying eyes, informants, and cunning
+        overseers. Anything you do might be witnessed, and there&apos;s always
+        evidence left behind. To represent this, the crew accumulates{' '}
+        <strong>heat</strong> as they cause trouble. After a{' '}
+        <strong>mission</strong> <span className="italic">or</span> conflict
+        with an opponent, the crew takes <strong>heat</strong> according to the
+        following:
+      </TypographyP>
+      <TypographyUnorderedList>
+        <li>
+          <strong>0 heat</strong>: Smooth & quiet; low exposure
+        </li>
+        <li>
+          <strong>2 heat</strong>: Contained; standard exposure
+        </li>
+        <li>
+          <strong>4 heat</strong>: Loud & chaotic; high exposure
+        </li>
+        <li>
+          <strong>6 heat</strong>: Wild; devastating exposure
+        </li>
+      </TypographyUnorderedList>
+      <TypographyP>
+        Add <strong>+1 heat</strong> if an overseer was the target. Add{' '}
+        <strong>+1 heat</strong> if the mission took place outside of scouted
+        territory. Add <strong>+1 heat</strong> if combat was involved; an
+        additional <strong>+1 heat</strong> if there were enemy survivors.
+      </TypographyP>
+      <TypographyP>
+        When your crew reaches <strong>9 heat</strong>, you gain a{' '}
+        <strong>Wanted Level</strong> and clear your <strong>heat</strong>.
+        Excess <strong>heat</strong> rolls over.
+      </TypographyP>
+      <TypographyP>
+        The only way to reduce <strong>Wanted Level</strong> is if a crew
+        member, family member, contact, or framed enemy gets incarcerated. When
+        this happens, reduce <strong>Wanted Level</strong> by 1 and clear your{' '}
+        <strong>heat.</strong>
+      </TypographyP>
+      <TypographyH4>Crackdowns</TypographyH4>
+      <TypographyP>
+        The overseers may appear aloof at times. They prowl the periphery and
+        bark orders. Rarely bothering to do the real work of managing the
+        factory themselves, they're often content to let their enforcers toil on
+        their behalf. The overseers can be stirred to action though. And it
+        won&apos;t be pretty. After each mission, ask the crew the following:
+      </TypographyP>
+      <TypographyUnorderedList>
+        <li>Did we free the workers from their shackles?</li>
+        <li>Did we free the workers from their fear?</li>
+        <li>Did we free the workers from their despair?</li>
+        <li>Did we kill an overseer for the first time?</li>
+      </TypographyUnorderedList>
+      <TypographyP>
+        If the answer to any of these is &quot;yes&quot;, it triggers a{' '}
+        <strong>Crackdown</strong>. The overseers will come out in force to
+        punish every worker in the wing of the factory suspected to house the
+        crew. This is a special event that could be played out should the
+        players choose.
+      </TypographyP>
       <TypographyH3>Subsistence</TypographyH3>
       <TypographyH3>Agendas</TypographyH3>
+      <TypographyH3>Entanglements</TypographyH3>
       <TypographyH3>Downtime</TypographyH3>
       <Separator />
       <div className="w-full flex justify-between">
