@@ -399,7 +399,7 @@ export default async function Page() {
       <TypographyUnorderedList>
         <li>
           <span className="italic">
-            Do you keep your crew's involvement in the mission under wraps?
+            Do you keep your crew&apos;s involvement in the mission under wraps?
           </span>{' '}
           <strong>Earn 0 rep.</strong>
         </li>
@@ -479,9 +479,9 @@ export default async function Page() {
       <TypographyP>
         The overseers may appear aloof at times. They prowl the periphery and
         bark orders. Rarely bothering to do the real work of managing the
-        factory themselves, they're often content to let their enforcers toil on
-        their behalf. The overseers can be stirred to action though. And it
-        won&apos;t be pretty. After each mission, ask the crew the following:
+        factory themselves, they&apos;re often content to let their enforcers
+        toil on their behalf. The overseers can be stirred to action though. And
+        it won&apos;t be pretty. After each mission, ask the crew the following:
       </TypographyP>
       <TypographyUnorderedList>
         <li>Did we free the workers from their shackles?</li>
@@ -497,9 +497,58 @@ export default async function Page() {
         players choose.
       </TypographyP>
       <TypographyH3>Subsistence</TypographyH3>
+      <TypographyP>
+        Time spent on missions and agendas means less time working to feed your
+        family. The harsh truth of your resistance is that it may come at the
+        expense of the ones you&apos;re doing this for. More details on the{' '}
+        <span className="text-red-600">
+          <Link href="/game/the-churn#subsistence">
+            <strong>subsistence phase</strong> here
+          </Link>
+        </span>
+        .
+      </TypographyP>
       <TypographyH3>Agendas</TypographyH3>
+      <TypographyP>
+        The crew needs ever advantage it can get. The work to grow from a
+        scrappy group of troublemakers into a connected and coordinated
+        rebellion takes place here. More on the{' '}
+        <span className="text-red-600">
+          <Link href="/game/the-churn#agendas">
+            <strong>agendas phase</strong> here
+          </Link>
+        </span>
+        .
+      </TypographyP>
       <TypographyH3>Entanglements</TypographyH3>
+      <TypographyP>
+        Your crew didn&apos;t just spring into existence tonight. You have a
+        complex history of favors, commitments, debts, and promises that got you
+        where you are today. To reflect this, after each{' '}
+        <strong>agendas phase</strong> you roll dice to find out which{' '}
+        <strong>entanglement</strong> comes calling. An entanglement might be a
+        rival, opposing faction, an enforcer, overseer, or even the strange
+        workings of the Steel Trap&apos;s machinery.
+      </TypographyP>
+      <TypographyP>
+        The <strong>Narrator</strong> uses the column according to the
+        crew&apos;s <strong>heat</strong> and rolls a number of dice equal to
+        their <strong>Wanted Level</strong>. Extra dice may have been added
+        during the <strong>agendas phase</strong>.
+      </TypographyP>
       <TypographyH3>Downtime</TypographyH3>
+      <TypographyP>
+        A moment to breathe. Some quiet alone time. Quality time with friends
+        and family. Helping each other through your hurt. And never enough time
+        to do it. This is what they've taken from you. This is what it&apos;s
+        about. More on the{' '}
+        <span className="text-red-600">
+          <Link href="/game/the-churn#downtime">
+            <strong>downtime phase</strong> here
+          </Link>
+        </span>
+        .
+      </TypographyP>
       <Separator />
       <div className="w-full flex justify-between">
         <Link href="/game/core-system">
