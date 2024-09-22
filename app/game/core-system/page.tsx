@@ -1,18 +1,10 @@
-import Donum from '@/components/stats/donum';
-import Defiance from '@/components/stats/defiance';
-import Heart from '@/components/stats/heart';
-import Ingenuity from '@/components/stats/ingenuity';
-import Machina from '@/components/stats/machina';
-import Savagery from '@/components/stats/savagery';
-import Blood from '@/components/stats/blood';
-import Hunger from '@/components/stats/hunger';
-import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import {
   TypographyH1,
   TypographyH2,
+  TypographyH3,
   TypographyP,
   TypographyUnorderedList,
 } from '@/components/ui/typography';
@@ -166,6 +158,51 @@ export default function Page() {
         You&apos;ll usually end up with one to four dice. Even one die is pretty
         good in this game--a 50% chance of success.
       </TypographyP>
+      <TypographyH3>Bonus Dice</TypographyH3>
+      <TypographyP>
+        There are a number of ways to gain bonus dice in{' '}
+        <span className="italic">Provenire</span>. All bonus dice are blue,
+        meaning they don&apos;t incur reduced effect if they&apos;re your
+        highest roll.
+      </TypographyP>
+      <TypographyUnorderedList>
+        <li>
+          <strong>Teamwork:</strong> Another member of the crew marks{' '}
+          <strong>1 stress</strong> and describes how they help you out. You get{' '}
+          <strong>1 bonus die</strong>.{' '}
+          <span className="italic">
+            Only one person can help you, otherwise it should be a group roll.
+          </span>
+        </li>
+        <li>
+          <strong>Push yourself:</strong> Describe how you dig deep to ensure
+          success. Mark <strong>2 stress</strong> and get{' '}
+          <strong>1 bonus die</strong>.{' '}
+          <span className="italic">
+            If you push yourself, you cannot also take a devil&apos;s bargain.
+          </span>
+        </li>
+        <li>
+          <strong>Devil&apos;s Bargain:</strong> The <strong>Narrator</strong>{' '}
+          presents an interesting problem or consequence. Decide if you want to
+          take the deal. If you do, get <strong>1 bonus die</strong>.{' '}
+          <span className="italic">
+            You may <strong>resist</strong> the consequences of the bargain if
+            you want.
+          </span>
+        </li>
+        <li>
+          <strong>Group Roll:</strong> Ask of anyone else in the crew wants to
+          make a roll with you. If they do, you decide who the leader is; the
+          leader marks <strong>1 xp</strong>. Then everyone separately rolls the
+          same action as the leader (or at least must include the same universal
+          action). The highest roll among the group is used as the result. For
+          each member of the group that rolls a <strong>1-3</strong>, the leader
+          marks <strong>1 stress</strong>. If the overall result has
+          consequences, everyone suffers them.
+        </li>
+      </TypographyUnorderedList>
+      <TypographyH3>Types of Rolls</TypographyH3>
       <TypographyP>
         There are four types of rolls you&apos;ll use most often in this game:
       </TypographyP>

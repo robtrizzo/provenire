@@ -76,6 +76,17 @@ export default function Page() {
         well-rounded your character is with a particular set of actions, the
         better their attribute rating.
       </TypographyP>
+      <TypographyH3>Advancing an Attribute</TypographyH3>
+      <TypographyP>
+        Each <strong>attribute</strong> has a 6-track xp bar. Each time you roll
+        a desperate action in that attribute, mark <strong>+1 xp</strong> in its
+        track. When the track is full, clear it and advance one of the actions
+        in its category.
+      </TypographyP>
+      <TypographyP>
+        Advancing an action can be done in one of two ways. An empty slot can
+        become red or a red slot can become blue.
+      </TypographyP>
       <TypographyH2>Resistance Rolls</TypographyH2>
       <TypographyP>
         Each attribute resists a different kind of danger. If you get stabbed,
@@ -105,9 +116,9 @@ export default function Page() {
             <ChevronLeft /> Core System
           </Button>
         </Link>
-        <Link href="/game/the-churn">
+        <Link href="/game/cycle-of-play">
           <Button variant="outline">
-            The Churn <ChevronRight />
+            The Cycle of Play <ChevronRight />
           </Button>
         </Link>
       </div>

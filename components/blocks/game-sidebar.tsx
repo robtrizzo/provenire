@@ -50,6 +50,36 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                 Actions & Attributes
               </Link>
               <Link
+                href="/game/cycle-of-play"
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                  pathname === '/game/the-cycle-of-play'
+                    ? 'bg-muted'
+                    : 'text-muted-foreground'
+                }  transition-all hover:text-primary`}
+              >
+                The Cycle of Play
+              </Link>
+              <Link
+                href="/game/before-the-mission"
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                  pathname === '/game/before-the-mission'
+                    ? 'bg-muted'
+                    : 'text-muted-foreground'
+                }  transition-all hover:text-primary`}
+              >
+                Before the Mission
+              </Link>
+              <Link
+                href="/game/mission"
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                  pathname === '/game/mission'
+                    ? 'bg-muted'
+                    : 'text-muted-foreground'
+                }  transition-all hover:text-primary`}
+              >
+                The Mission
+              </Link>
+              <Link
                 href="/game/the-churn"
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
                   pathname === '/game/the-churn'
@@ -174,6 +204,36 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                   } transition-all hover:text-primary`}
                 >
                   Actions & Attributes
+                </Link>
+                <Link
+                  href="/game/cycle-of-play"
+                  className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                    pathname === '/game/cycle-of-play'
+                      ? 'bg-muted'
+                      : 'text-muted-foreground'
+                  }  transition-all hover:text-primary`}
+                >
+                  The Cycle of Play
+                </Link>
+                <Link
+                  href="/game/before-the-mission"
+                  className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                    pathname === '/game/before-the-mission'
+                      ? 'bg-muted'
+                      : 'text-muted-foreground'
+                  }  transition-all hover:text-primary`}
+                >
+                  Before the Mission
+                </Link>
+                <Link
+                  href="/game/mission"
+                  className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                    pathname === '/game/mission'
+                      ? 'bg-muted'
+                      : 'text-muted-foreground'
+                  }  transition-all hover:text-primary`}
+                >
+                  The Mission
                 </Link>
                 <Link
                   href="/game/the-churn"
