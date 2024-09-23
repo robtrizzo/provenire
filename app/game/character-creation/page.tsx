@@ -20,11 +20,11 @@ export default async function Page() {
         <strong>Kingwulf</strong> and his kingdom of Fenrir won long ago.{' '}
         <span className="italic">Won what?</span> Won the war for everything.
         Fenrir is all that is left. Other nations, histories, cultures -
-        consumed by the beast. But they haven't taken everything. Muttered over
-        tin can fires, whispered between siblings when they&apos;re supposed to
-        be going to bed, glimpsed in fleeting dreams are the stories of the
-        past. Memories of ways of life long lost. There are many heritages to
-        choose from in <span className="italic">Provenire</span>:
+        consumed by the beast. But they haven&apos;t taken everything. Muttered
+        over tin can fires, whispered between siblings when they&apos;re
+        supposed to be going to bed, glimpsed in fleeting dreams are the stories
+        of the past. Memories of ways of life long lost. There are many
+        heritages to choose from in <span className="italic">Provenire</span>:
       </TypographyP>
       <TypographyUnorderedList>
         <li>
@@ -60,11 +60,11 @@ export default async function Page() {
       </TypographyUnorderedList>
       <TypographyP>
         <strong className="text-sky-500">Heritages</strong> are the stories and
-        memories of your ancestors' ancestors. They give your character precious
-        traditions to preserve. If you choose Fenrir though, you instead are
-        taught to embrace the cultural norms of the Steel Trap and to think
-        yourself better than the others who are in a slightly lower social
-        caste.
+        memories of your ancestors&apos; ancestors. They give your character
+        precious traditions to preserve. If you choose Fenrir though, you
+        instead are taught to embrace the cultural norms of the Steel Trap and
+        to think yourself better than the others who are in a slightly lower
+        social caste.
       </TypographyP>
       <TypographyP>
         Heritages <span className="italic">do not</span> impart a mandatory
