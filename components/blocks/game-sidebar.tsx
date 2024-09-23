@@ -90,6 +90,16 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                 The Churn
               </Link>
               <Link
+                href="/game/character-creation"
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                  pathname === '/game/character-creation'
+                    ? 'bg-muted'
+                    : 'text-muted-foreground'
+                }  transition-all hover:text-primary`}
+              >
+                Character Creation
+              </Link>
+              <Link
                 href="/game/backgrounds"
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
                   pathname === '/game/backgrounds'
@@ -244,6 +254,16 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                   }  transition-all hover:text-primary`}
                 >
                   The Churn
+                </Link>
+                <Link
+                  href="/game/character-creation"
+                  className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                    pathname === '/game/character-creation'
+                      ? 'bg-muted'
+                      : 'text-muted-foreground'
+                  }  transition-all hover:text-primary`}
+                >
+                  Character Creation
                 </Link>
                 <Link
                   href="/game/backgrounds"

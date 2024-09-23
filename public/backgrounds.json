@@ -217,7 +217,7 @@
   },
   {
     "name": "Stoker",
-    "shortDescription": "Shovel coal and stoke the fires",
+    "shortDescription": "Shovel tar and stoke the fires",
     "attributes": {
       "Heart": ["Brace"],
       "Instinct": [],
