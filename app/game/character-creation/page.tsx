@@ -58,6 +58,12 @@ export default async function Page() {
           <strong>Rathi</strong>: Serve Kingwulf, dominate all others
         </li>
         <li>
+          <strong>Scionic</strong>: Suffering, servitude, Locum
+        </li>
+        <li>
+          <strong>Ulgatian</strong>: Resistance, blood, Jira
+        </li>
+        <li>
           <strong>Yaman</strong>: Pacifism, reverence, order
         </li>
       </TypographyUnorderedList>

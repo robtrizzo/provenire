@@ -175,7 +175,7 @@ export default async function Page() {
         <strong>stress track</strong>, they break for a moment. They can choose
         to lash out against the machine (an outburst which leads to{' '}
         <strong>+6 heat</strong>) or they can lash out against the ones closest
-        to them (mark a <strong>condition).</strong>
+        to them (mark a <strong>condition</strong>.)
       </TypographyP>
       <TypographyH3>Conditions</TypographyH3>
       <TypographyP>

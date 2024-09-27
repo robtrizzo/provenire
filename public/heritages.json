@@ -34,6 +34,14 @@
     "remembrance": "Which of the King's three beasts do you identify with? Which one are you?"
   },
   {
+    "name": "Scionic",
+    "remembrance": "Life could be worse. How do you try to get fellow workers to see that?"
+  },
+  {
+    "name": "Ulgatian",
+    "remembrance": "What is the world's greatest evil? How do you fight it?"
+  },
+  {
     "name": "Yaman",
     "remembrance": "What oaths have you sworn? Have you ever broken one?"
   }
