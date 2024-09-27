@@ -226,7 +226,7 @@ export default async function Page() {
         <li>
           <strong>Hopeless</strong>: You cannot <strong>comfort</strong> or{' '}
           pursue a <strong>long term project</strong>. Clear by flinging
-          yourself into easy reliev (<strong>-2 food or rep</strong>).
+          yourself into easy relief (<strong>-2 food or rep</strong>).
         </li>
       </TypographyUnorderedList>
       <TypographyH2>Harm and Armor</TypographyH2>

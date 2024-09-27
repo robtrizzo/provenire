@@ -169,7 +169,7 @@ export default async function Page() {
       </TypographyP>
       <TypographyP>
         <strong>Fab Floor</strong>: Houses stacked on each other between the
-        machines. Always a risky proposition because of the factory&apps;s
+        machines. Always a risky proposition because of the factory&apos;s
         fickleness. This is where the work gets done. Where hands get stained
         with oil and blood. <strong>The Scarbacks</strong> patrol these streets.
         Everyone works: most get fed. That&apos;s the way of things. No one
