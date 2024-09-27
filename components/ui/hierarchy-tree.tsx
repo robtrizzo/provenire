@@ -21,7 +21,7 @@ export default async function HierarchyTree() {
         <div className="flex flex-col items-center gap-8 w-36">
           <div className="h-36 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
             <TypographyH4 className="text-center">
-              [name] the ROVER
+              KUNI <span className="text-xs">the</span> ROVER
             </TypographyH4>
             <TypographyP className="text-xs text-center">
               <span className="font-bold">+1d</span> to avoid first overseer
@@ -30,7 +30,7 @@ export default async function HierarchyTree() {
           </div>
           <div className="h-36 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
             <TypographyH4 className="text-center">
-              [name] the CRUMBER
+              SVINTHA <span className="text-xs">the</span> CRUMBER
             </TypographyH4>
             <TypographyP className="text-xs text-center">
               <span className="font-bold">+1 food</span> per successful mission
@@ -38,7 +38,7 @@ export default async function HierarchyTree() {
           </div>
           <div className="h-36 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
             <TypographyH4 className="text-center">
-              [name] the GORGER
+              AUDO <span className="text-xs">the</span> GORGER
             </TypographyH4>
             <TypographyP className="text-xs text-center">
               may trade <span className="font-bold">1 food</span> for{' '}
@@ -46,7 +46,9 @@ export default async function HierarchyTree() {
             </TypographyP>
           </div>
           <div className="h-36 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
-            <TypographyH4 className="text-center">[name] the RAT</TypographyH4>
+            <TypographyH4 className="text-center">
+              RIKS <span className="text-xs">the</span> RAT
+            </TypographyH4>
             <TypographyP className="text-xs text-center">
               <span className="font-bold">+1d</span> when gahering info on
               fellow workers
@@ -54,7 +56,7 @@ export default async function HierarchyTree() {
           </div>
           <div className="h-36 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
             <TypographyH4 className="text-center">
-              [name] the STALKER
+              RADEGOND <span className="text-xs">the</span> STALKER
             </TypographyH4>
             <TypographyP className="text-xs text-center">
               <span className="font-bold">+1d</span> to engagement roll when
@@ -63,7 +65,7 @@ export default async function HierarchyTree() {
           </div>
           <div className="h-36 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
             <TypographyH4 className="text-center">
-              [name] the SWINDLER
+              NARIC <span className="text-xs">the</span> SWINDLER
             </TypographyH4>
             <TypographyP className="text-xs text-center">
               <span className="font-bold">+1d</span> to engagement roll when
@@ -72,7 +74,7 @@ export default async function HierarchyTree() {
           </div>
           <div className="h-36 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
             <TypographyH4 className="text-center">
-              [name] the BULLY
+              GISAVA <span className="text-xs">the</span> BULLY
             </TypographyH4>
             <TypographyP className="text-xs text-center">
               may trade <span className="font-bold">1 goodwill</span> for{' '}
@@ -80,7 +82,9 @@ export default async function HierarchyTree() {
             </TypographyP>
           </div>
           <div className="h-36 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
-            <TypographyH4 className="text-center">[name] the DAFT</TypographyH4>
+            <TypographyH4 className="text-center">
+              GAILA <span className="text-xs">the</span> DAFT
+            </TypographyH4>
             <TypographyP className="text-xs text-center">
               may trade <span className="font-bold">1 goodwill</span> for{' '}
               <span className="font-bold">1 intel</span> each agendas phase
@@ -141,7 +145,9 @@ export default async function HierarchyTree() {
         <div className="flex flex-col items-center gap-8 w-36">
           <div className="h-18" />
           <div className="h-36 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
-            <TypographyH4 className="text-center">[name] the BEAR</TypographyH4>
+            <TypographyH4 className="text-center">
+              MARNGIL <span className="text-xs">the</span> BEAR
+            </TypographyH4>
             <TypographyP className="text-xs text-center">
               whenever you gain rep, gain{' '}
               <span className="font-bold">+1 rep</span>
@@ -149,15 +155,19 @@ export default async function HierarchyTree() {
           </div>
           <div className="h-36" />
           <div className="h-36 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
-            <TypographyH4 className="text-center">[name] the CROW</TypographyH4>
+            <TypographyH4 className="text-center">
+              AMALINA <span className="text-xs">the</span> CROW
+            </TypographyH4>
             <TypographyP className="text-xs text-center">
-              <span className="font-bold">+1d</span> when gathering info on
-              overseers
+              <span className="font-bold">+1d</span> when ga
+              <span className="text-xs">the</span>ring info on overseers
             </TypographyP>
           </div>
           <div className="h-36" />
           <div className="h-36 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
-            <TypographyH4 className="text-center">[name] the WOLF</TypographyH4>
+            <TypographyH4 className="text-center">
+              ULF <span className="text-xs">the</span> WOLF
+            </TypographyH4>
             <TypographyP className="text-xs text-center">
               <span className="font-bold">+1d</span> to engagement roll when
               using stealth to commit murder
@@ -166,7 +176,7 @@ export default async function HierarchyTree() {
           <div className="h-36" />
           <div className="h-36 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
             <TypographyH4 className="text-center">
-              [name] the THINBLOOD
+              DUARA <span className="text-xs">the</span> THINBLOOD
             </TypographyH4>
             <TypographyP className="text-xs text-center">
               <span className="font-bold">+1 materials</span> on successful
@@ -208,7 +218,7 @@ export default async function HierarchyTree() {
           <div className="w-36 h-[672px] flex items-center justify-center">
             <div className="h-36 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
               <TypographyH4 className="text-center">
-                [name] the RAVENOUS
+                RADEGON <span className="text-xs">the</span> RAVENOUS
               </TypographyH4>
               <TypographyP className="text-xs text-center">
                 may trade a <span className="font-bold">crew contact</span> to
@@ -220,7 +230,7 @@ export default async function HierarchyTree() {
           <div className="w-36 h-[672px] flex items-center justify-center">
             <div className="h-36 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
               <TypographyH4 className="text-center">
-                [name] the TORTURER
+                THEODORIC <span className="text-xs">the</span> TORTURER
               </TypographyH4>
               <TypographyP className="text-xs text-center">
                 may trade <span className="font-bold">1 goodwill</span> for{' '}
@@ -248,11 +258,11 @@ export default async function HierarchyTree() {
         <div className="flex flex-col">
           <div className="h-36 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
             <TypographyH4 className="text-center">
-              [name] the CRUEL
+              FRIDA <span className="text-xs">the</span> CRUEL
             </TypographyH4>
             <TypographyP className="text-xs text-center">
               when you roll <span className="font-bold">entanglements</span>,
-              roll twice and take the better result
+              roll twice and take better result
             </TypographyP>
           </div>
         </div>
