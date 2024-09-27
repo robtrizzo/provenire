@@ -10,7 +10,7 @@ export default function Archivist() {
       </li>
       <li>
         You hear the Creator&apos;s whispers in the machinery. Advance the{' '}
-        <span className="italic">Creator&apos;s Madness clock</span> by 1.
+        <span className="italic">Ritiger&apos;s Madness clock</span> by 1.
       </li>
     </TypographyUnorderedList>
   );

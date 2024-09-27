@@ -5,9 +5,12 @@ import { ChevronRight, ChevronLeft } from 'lucide-react';
 import {
   TypographyH1,
   TypographyH2,
+  TypographyH3,
+  TypographyH4,
   TypographyP,
 } from '@/components/ui/typography';
 import Blood from '@/components/stats/blood';
+import FactoryMap from '@/components/ui/factory-map';
 
 export default async function Page() {
   return (
@@ -118,6 +121,59 @@ export default async function Page() {
         the <span className="italic">drone</span> and come together to make life
         more bearable for each other. Quietly, secretly, they dream of a better
         future.
+      </TypographyP>
+      <TypographyH3>Lairs of the Steel Trap</TypographyH3>
+      <TypographyP>
+        Within the factory-prison-fortress there are distinct{' '}
+        <span className="italic">&quot;sectors&quot;</span>, though the workers
+        call them lairs. Each is isolated from its neighbors, secured with vault
+        doors and enforcers to guard them. Sometimes <strong>runners</strong>{' '}
+        are sent between, though it is a perilous journey into the unknown
+        across the vault doors.
+      </TypographyP>
+      <FactoryMap />
+      <TypographyH4>Fabrication</TypographyH4>
+      <TypographyP>
+        This is where our protagonists live. The background noise of their home
+        is hissing, buzzing, sawing, grinding, clattering. The air is acrid with
+        metal dust and tar smoke. Large chambers that may once have been open
+        are now crammed full with dilapidated machinery and shanty homes.
+        Workers maintain machines that rarely produce the same thing twice.
+        Incomprehensible designs added to each next shipment. The floor is
+        littered with piles of scrap and debris.
+      </TypographyP>
+      <TypographyP>
+        <strong>The Bends</strong>: a neighborhood built on top of a factory
+        beam that got bent to a near right angle at some point in the past. Some
+        elders still debate wheter it was an overseer or manufacturing defect
+        that caused it. Regardless of the truth, it&apos;s now a community
+        landmark. <span className="italic">Rub the bend for good luck.</span>.{' '}
+        <strong>Gorger</strong> and his gang of enforcers rule here. Anyone out
+        of line goes missing.
+      </TypographyP>
+      <TypographyP>
+        <strong>Stairwell</strong>: Seventy two flights of stairs from Fab to
+        the Pits. Every corner you turn on the stairs has you passing through
+        someone's home. Chains, ladders, and ramshackle platforms decorate the
+        vertical neighborhood. This is where the <strong>Youngers</strong> stake
+        their claim: bullying and extorting the most vulnerable for food and
+        materials.
+      </TypographyP>
+      <TypographyP>
+        <strong>Lofts</strong>: Thousands of homes arranged on catwalks and
+        platforms above the main factory floor. Difficult to tell what was
+        original construction and what has been added over the generations.
+        It&apos;s warm there, but <strong>Amalina</strong> and her{' '}
+        <strong>Shrikes</strong> have a habit of dropping from the darkness
+        above and terrorizing the community.
+      </TypographyP>
+      <TypographyP>
+        <strong>Fab Floor</strong>: Houses stacked on each other between the
+        machines. Always a risky proposition because of the factory&apps;s
+        fickleness. This is where the work gets done. Where hands get stained
+        with oil and blood. <strong>The Scarbacks</strong> patrol these streets.
+        Everyone works: most get fed. That&apos;s the way of things. No one
+        slacks off on their watch. No one makes trouble for Fab. Or else.
       </TypographyP>
       <Separator />
       <div className="w-full flex justify-between">

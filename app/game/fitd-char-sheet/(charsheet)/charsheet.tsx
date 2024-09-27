@@ -516,13 +516,6 @@ export function Charsheet() {
                 if (heritage.name && heritage.name === value) {
                   setSelectedHeritage(heritage);
                   setChanges(true);
-                } else if (heritage.heritages) {
-                  for (const h of heritage.heritages) {
-                    if (h.name === value) {
-                      setSelectedHeritage(h);
-                      setChanges(true);
-                    }
-                  }
                 }
               }
             }}
@@ -531,35 +524,15 @@ export function Charsheet() {
               <SelectValue placeholder="Select a heritage" />
             </SelectTrigger>
             <SelectContent>
-              {heritages.map((heritage) => {
-                if (heritage.category) {
-                  return (
-                    <SelectGroup
-                      key={heritage.category}
-                      className="border-b-[1px]"
-                    >
-                      <SelectLabel className="text-lg border-t-[1px]">
-                        {heritage.category}
-                      </SelectLabel>
-                      {heritage.heritages.map((h) => (
-                        <SelectItem key={h.name} value={h.name}>
-                          {h.name}
-                        </SelectItem>
-                      ))}
-                    </SelectGroup>
-                  );
-                } else if (heritage.name) {
-                  return (
-                    <SelectItem
-                      key={heritage.name}
-                      value={heritage.name}
-                      className="text-lg"
-                    >
-                      {heritage.name}
-                    </SelectItem>
-                  );
-                }
-              })}
+              {heritages.map((heritage) => (
+                <SelectItem
+                  key={heritage.name}
+                  value={heritage.name}
+                  className="text-lg"
+                >
+                  {heritage.name}
+                </SelectItem>
+              ))}
               <SelectSeparator />
               <Button
                 variant="secondary"
@@ -1781,6 +1754,17 @@ export function Charsheet() {
           </div>
           <Separator className="my-3"></Separator>
           <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-2">
+            {selectedHeritage?.remembrance && (
+              <div className="w-full gap-1.5 my-2">
+                <Label
+                  htmlFor="remembrance"
+                  className="text-sky-500 box-border"
+                >
+                  {selectedHeritage?.remembrance}
+                </Label>
+                <Textarea id="remembrance" />
+              </div>
+            )}
             {selectedBackground?.questions?.map((q, i) => (
               <div key={`q-${i}`} className="w-full gap-1.5 my-2">
                 <Label htmlFor={`q-${i}`} className="text-red-500 box-border">
@@ -1789,9 +1773,6 @@ export function Charsheet() {
                 <Textarea id={`q-${i}`} />
               </div>
             ))}
-          </div>
-          <Separator className="my-3"></Separator>
-          <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-2">
             {selectedSkillset?.questions?.map((q, i) => (
               <div key={`q-${i}`} className="w-full gap-1.5 my-2">
                 <Label htmlFor={`q-${i}`} className="text-indigo-500 ">
@@ -1800,9 +1781,6 @@ export function Charsheet() {
                 <Textarea id={`q-${i}`} />
               </div>
             ))}
-          </div>
-          <Separator className="my-3"></Separator>
-          <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-2">
             {selectedArchetype?.questions.map((q, i) => (
               <div key={`q-${i}`} className="w-full gap-1.5 my-2">
                 <Label htmlFor={`q-${i}`} className="text-amber-700 box-border">

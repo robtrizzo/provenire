@@ -40,9 +40,6 @@ export default async function Page() {
           <strong>Cumerian</strong>: Fearlessness and fearsomeness
         </li>
         <li>
-          <strong>Fenrir</strong>: Serve Kingwulf, dominate all others
-        </li>
-        <li>
           <strong>Gredoran</strong>: Metal, beauty, sacrifice
         </li>
         <li>
@@ -58,20 +55,23 @@ export default async function Page() {
           <strong>Narscillian</strong>: Music, duty, community
         </li>
         <li>
+          <strong>Rathi</strong>: Serve Kingwulf, dominate all others
+        </li>
+        <li>
           <strong>Yaman</strong>: Pacifism, reverence, order
         </li>
       </TypographyUnorderedList>
       <TypographyP>
         <strong className="text-sky-500">Heritages</strong> are the stories and
         memories of your ancestors&apos; ancestors. They give your character
-        precious traditions to preserve. If you choose Fenrir though, you
-        instead are taught to embrace the cultural norms of the Steel Trap and
-        to think yourself better than the others who are in a slightly lower
-        social caste.
+        precious traditions to preserve. If you choose Rathi though, you instead
+        are taught to embrace the cultural norms of the Steel Trap and to think
+        yourself better than the others who are in a slightly lower social
+        caste.
       </TypographyP>
       <TypographyP>
         Heritages <span className="italic">do not</span> impart a mandatory
-        look, outlook, or mechanical benefit. Fenrir workers might inherit
+        look, outlook, or mechanical benefit. Rathi workers might inherit
         physical bestial traits (but they are always{' '}
         <span className="italic">thinbloods</span>).
       </TypographyP>
@@ -79,7 +79,7 @@ export default async function Page() {
       <TypographyP>
         But to our characters, <strong>Kingwulf</strong> and the outside world
         are a faraway thought. They live in the Steel Trap: a weapons factory
-        somewhere within the wildnerness of Fenrir. Why even wonder about
+        somewhere within the wildnerness of Rath. Why even wonder about
         something so outside of their concern? Day in and day out, they work.
         Their toil is rewarded by scraps, and never enough to fill
         everyone&apos;s bellies. But don&apos;t speak out. Don&apos;t question

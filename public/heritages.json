@@ -1,20 +1,40 @@
 [
   {
-    "category": "Anidinian",
-    "heritages": [{ "name": "Cumerian" }, { "name": "Gredoran" }]
+    "name": "Anidinian",
+    "remembrance": "What special marriage traditions do you carry on?"
   },
   {
-    "category": "Arborian",
-    "heritages": [{ "name": "Argosi" }, { "name": "Kiposi" }]
-  },
-  { "name": "Narscillian" },
-  { "name": "Kilder" },
-  {
-    "category": "Rathi",
-    "heritages": [{ "name": "Bwarhein" }, { "name": "Fenrir" }]
+    "name": "Argosi",
+    "remembrance": "How do you value charity while you have nothing to give?"
   },
   {
-    "category": "Toran",
-    "heritages": [{ "name": "Heian" }, { "name": "Yaman" }]
+    "name": "Bwarhein",
+    "remembrance": "Your people crave revenge. Do you? How do you fantasize about it?"
+  },
+  {
+    "name": "Cumerian",
+    "remembrance": "What is your way of defeating fear and seeking glory?"
+  },
+  {
+    "name": "Gredoran",
+    "remembrance": "Which metal in the factory is most holy? How do you worship it?"
+  },
+  { "name": "Heian", "remembrance": "Have you found a way to have honor?" },
+  {
+    "name": "Kilder",
+    "remembrance": "Your people would have assigned you a role at birth. How does that make you feel in the factory?"
+  },
+  { "name": "Kiposi", "remembrance": "What sport do you play?" },
+  {
+    "name": "Narscillian",
+    "remembrance": "What do you sing to remember your ancestors?"
+  },
+  {
+    "name": "Rathi",
+    "remembrance": "Which of the King's three beasts do you identify with? Which one are you?"
+  },
+  {
+    "name": "Yaman",
+    "remembrance": "What oaths have you sworn? Have you ever broken one?"
   }
 ]
