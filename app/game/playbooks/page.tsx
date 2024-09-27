@@ -828,7 +828,7 @@ export default function Page() {
             </TypographyP>
             <TypographyP>
               Which one of the overseers threatens your best friend in order to
-              get you to be an informant to Lawler?
+              get you to be an informant to The Master?
             </TypographyP>
             <TypographyP>
               The overseers work to sow discord and conflict among the workers.
@@ -1270,10 +1270,10 @@ export default function Page() {
               doubled your shift&apos;s duties because of it?
             </TypographyP>
             <TypographyP>
-              You&apos;ve been invited to meetings between the overseers and
-              Lawler; they consulted you about how to rework the factory for the
+              You&apos;ve been invited to meetings between the overseers and The
+              Master; they consulted you about how to rework the factory for the
               new project. What have you learned that will help your crew ruin
-              Lawler&apos;s plans?
+              The Master&apos;s plans?
             </TypographyP>
             <TypographyP>
               Who broke up with you despite you being the one who won every

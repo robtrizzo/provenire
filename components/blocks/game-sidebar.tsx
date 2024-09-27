@@ -30,6 +30,16 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                 Introduction
               </Link>
               <Link
+                href="/game/setting"
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                  pathname === '/game/setting'
+                    ? 'bg-muted'
+                    : 'text-muted-foreground'
+                }  transition-all hover:text-primary`}
+              >
+                Setting
+              </Link>
+              <Link
                 href="/game/core-system"
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
                   pathname === '/game/core-system'
@@ -60,14 +70,14 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                 The Cycle of Play
               </Link>
               <Link
-                href="/game/before-the-mission"
+                href="/game/prelude"
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
-                  pathname === '/game/before-the-mission'
+                  pathname === '/game/prelude'
                     ? 'bg-muted'
                     : 'text-muted-foreground'
                 }  transition-all hover:text-primary`}
               >
-                Before the Mission
+                Prelude
               </Link>
               <Link
                 href="/game/mission"
@@ -196,6 +206,16 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                   Introduction
                 </Link>
                 <Link
+                  href="/game/setting"
+                  className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                    pathname === '/game/setting'
+                      ? 'bg-muted'
+                      : 'text-muted-foreground'
+                  }  transition-all hover:text-primary`}
+                >
+                  Setting
+                </Link>
+                <Link
                   href="/game/core-system"
                   className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
                     pathname === '/game/core-system'
@@ -226,14 +246,14 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                   The Cycle of Play
                 </Link>
                 <Link
-                  href="/game/before-the-mission"
+                  href="/game/prelude"
                   className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
-                    pathname === '/game/before-the-mission'
+                    pathname === '/game/prelude'
                       ? 'bg-muted'
                       : 'text-muted-foreground'
                   }  transition-all hover:text-primary`}
                 >
-                  Before the Mission
+                  Prelude
                 </Link>
                 <Link
                   href="/game/mission"

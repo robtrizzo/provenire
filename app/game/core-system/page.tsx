@@ -241,9 +241,9 @@ export default function Page() {
         </li>
       </TypographyUnorderedList>
       <div className="w-full flex justify-between">
-        <Link href="/game">
+        <Link href="/game/setting">
           <Button variant="outline">
-            <ChevronLeft /> Introduction
+            <ChevronLeft /> Setting
           </Button>
         </Link>
         <Link href="/game/actions-and-attributes">

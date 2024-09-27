@@ -18,15 +18,18 @@ export default function Page() {
       <TypographyP>
         <Donum>Provenire</Donum> is both a setting and a system. The system is a
         narrative-focused and rules-light system based heavily on{' '}
-        <strong>Masks</strong> and <strong>Blades in the Dark</strong>. The
-        setting is a world with very alien forces and natural laws at play, and
-        barely understood by the people who live in it.
+        <span className="italic">Blades in the Dark</span>,{' '}
+        <span className="italic">Masks</span>,{' '}
+        <span className="italic">Band of Blades</span>, and{' '}
+        <span className="italic">Fellowship</span>. The setting is a world with
+        very alien forces and natural laws at play, and barely understood by the
+        people who live in it.
       </TypographyP>
       <Separator />
       <div className="flex flex-row mt-2">
-        <Link href="/game/core-system" className="ml-auto">
+        <Link href="/game/setting" className="ml-auto">
           <Button variant="outline">
-            Core System <ChevronRight />
+            Setting <ChevronRight />
           </Button>
         </Link>
       </div>

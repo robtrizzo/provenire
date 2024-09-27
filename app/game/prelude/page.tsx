@@ -14,7 +14,7 @@ import {
 export default async function Page() {
   return (
     <>
-      <TypographyH1>Before the Mission</TypographyH1>
+      <TypographyH1>Prelude</TypographyH1>
       <TypographyH2>Free Play</TypographyH2>
       <TypographyH3>Character Scenes</TypographyH3>
       <TypographyP>

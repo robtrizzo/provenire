@@ -28,6 +28,9 @@ export default async function Page() {
       </TypographyP>
       <TypographyUnorderedList>
         <li>
+          <strong>Anidinian</strong>: Power, marriage, Amati
+        </li>
+        <li>
           <strong>Argosi</strong>: Charity, gratitude, purity
         </li>
         <li>
@@ -40,7 +43,7 @@ export default async function Page() {
           <strong>Fenrir</strong>: Serve Kingwulf, dominate all others
         </li>
         <li>
-          <strong>Gredoran</strong>: Beauty, art, and sacrifice
+          <strong>Gredoran</strong>: Metal, beauty, sacrifice
         </li>
         <li>
           <strong>Heian</strong>: Honor, agility, Draconis

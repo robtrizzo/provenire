@@ -267,9 +267,9 @@ export default async function Page() {
       </TypographyP>
       <Separator />
       <div className="w-full flex justify-between">
-        <Link href="/game/before-the-mission">
+        <Link href="/game/prelude">
           <Button variant="outline">
-            <ChevronLeft /> Before the Mission
+            <ChevronLeft /> Prelude
           </Button>
         </Link>
         <Link href="/game/the-churn">

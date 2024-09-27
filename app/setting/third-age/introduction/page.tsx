@@ -25,23 +25,23 @@ export default function Page() {
         Its workers labor among a dangerous matrix of twisted, screeching
         machinery; breathe in foulness that leaves them dizzy for days; and must
         withstand horrible abuses from their higher-ups. Towering above the
-        workforce is <strong>Lawler</strong>, their fearsome foreman, and the
+        workforce is <strong>The Master</strong>, their fearsome foreman, and the
         Royal Guards and hired beasts he&apos;s got watching the place.
       </TypographyP>
       <TypographyP>
         Punishing and brutal work only punctuated by the sleeping hours.
         Something has changed, though. An <strong>Imperial Legate</strong> met
-        with <strong>Lawler</strong> last week, and some whisper about a secret
+        with <strong>The Master</strong> last week, and some whisper about a secret
         shipment brought into <strong>The Steel Trap</strong> in the dead of
         night. Shifts are longer, the equipment different, and{' '}
-        <strong>Lawler</strong> more ruthless.
+        <strong>The Master</strong> more ruthless.
       </TypographyP>
       <TypographyP>
         <strong>Sten</strong>, an eight-year-old steel scrapper, was recently
         killed by one of the new machines. His older sister{' '}
         <strong>Quill</strong>, also a worker at the factory, could recover no
         more than his severed head after the accident. In compensation for the
-        death of her brother, <strong>Lawler</strong> has given her a single day
+        death of her brother, <strong>The Master</strong> has given her a single day
         off for the burial.
       </TypographyP>
       <TypographyP>

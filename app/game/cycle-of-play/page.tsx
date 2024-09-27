@@ -17,11 +17,11 @@ export default async function Page() {
       <TypographyH1>The Cycle of Play</TypographyH1>
       <TypographyP>
         Sessions of <span className="italic">Provenire</span> take place in
-        three major phases: <strong>Before the Mission</strong>,{' '}
+        three major phases: <strong>Prelude</strong>,{' '}
         <strong>The Mission</strong>, and <strong>The Churn</strong>. Each
-        session always begins with <strong>Before the Mission</strong> and ends
-        with <strong>The Churn</strong>. Multiple cycles can take place durring
-        one session depending on how long you&apos;re together.
+        session always begins with <strong>Prelude</strong> and ends with{' '}
+        <strong>The Churn</strong>. Multiple cycles can take place durring one
+        session depending on how long you&apos;re together.
       </TypographyP>
       <Separator />
       <div className="w-full flex justify-between">
@@ -30,9 +30,9 @@ export default async function Page() {
             <ChevronLeft /> Actions & Attributes
           </Button>
         </Link>
-        <Link href="/game/before-the-mission">
+        <Link href="/game/prelude">
           <Button variant="outline">
-            Before the Mission <ChevronRight />
+            Prelude <ChevronRight />
           </Button>
         </Link>
       </div>
