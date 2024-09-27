@@ -77,7 +77,7 @@ export default function Page() {
           Which consequences are inflicted to manifest the dangers in a given
           circumstance?{' '}
           <span className="italic">
-            Does this fall from the roof break your leg? Do the Bluecoats merely
+            Does this fall from the roof break your leg? Do the enforcers merely
             become suspicious or do they already have you trapped?
           </span>{' '}
           The <strong>Narrator</strong> has final say

@@ -154,10 +154,10 @@ export default async function Page() {
       <TypographyP>
         <strong>Stairwell</strong>: Seventy two flights of stairs from Fab to
         the Pits. Every corner you turn on the stairs has you passing through
-        someone's home. Chains, ladders, and ramshackle platforms decorate the
-        vertical neighborhood. This is where the <strong>Youngers</strong> stake
-        their claim: bullying and extorting the most vulnerable for food and
-        materials.
+        someone&apos;s home. Chains, ladders, and ramshackle platforms decorate
+        the vertical neighborhood. This is where the <strong>Youngers</strong>{' '}
+        stake their claim: bullying and extorting the most vulnerable for food
+        and materials.
       </TypographyP>
       <TypographyP>
         <strong>Lofts</strong>: Thousands of homes arranged on catwalks and
