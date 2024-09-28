@@ -28,7 +28,6 @@ const Abilities = ({
   variant?: 'sheet' | 'wiki';
   className?: string;
 }) => {
-  console.log(abilities);
   const [dynamicComponents, setDynamicComponents] = useState<{
     [key: string]: React.FC | null;
   }>({});

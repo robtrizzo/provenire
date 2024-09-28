@@ -52,6 +52,7 @@ import Abilities from '@/components/ui/abilities/abilities';
 import DowntimeActionsAccordion from '@/components/ui/downtime-actions-accordion';
 import Crit from '@/components/ui/subsistence/crit/subsistenceCrit';
 import Consequences from '@/components/ui/subsistence/consequences/subsistenceConsequences';
+import StressCheckboxes from '@/components/ui/stress-checkboxes';
 
 export function Charsheet() {
   const [tab, setTab] = useState('mission');
@@ -1606,10 +1607,11 @@ export function Charsheet() {
                   <TypographyH3 className="text-sm text-muted-foreground">
                     Stress
                   </TypographyH3>
-                  <BuildupCheckboxes
+                  <StressCheckboxes
                     key={`stress${new Date().getTime()}`}
-                    max={9}
+                    max={9} // todo refactor with a variable maxStress
                     current={stress}
+                    conditions={conditions}
                     onChange={(n) => {
                       setStress(n);
                       setChanges(true);
@@ -1627,12 +1629,16 @@ export function Charsheet() {
                           key={`${c}${new Date().getTime()}`}
                           name={c}
                           active={conditions.includes(c)}
+                          disabled={
+                            conditions.length >= 4 && !conditions.includes(c)
+                          }
                           onClick={() => {
                             if (conditions.includes(c)) {
                               setConditions(
                                 conditions.filter((con) => con !== c)
                               );
-                            } else {
+                            } else if (conditions.length < 4) {
+                              // todo refactor with a variable maxStress
                               setConditions([...conditions, c]);
                             }
                             setChanges(true);
@@ -3022,9 +3028,10 @@ export function Charsheet() {
                 <TypographyH3 className="text-sm text-muted-foreground">
                   Stress
                 </TypographyH3>
-                <BuildupCheckboxes
+                <StressCheckboxes
                   key={`stress${new Date().getTime()}`}
                   max={9}
+                  conditions={conditions}
                   current={stress}
                   onChange={(n) => {
                     setStress(n);

@@ -7,15 +7,18 @@ import { cn } from '@/lib/utils';
 
 export function BuildupCheckboxes({
   max,
+  numDisabled,
   current,
   onChange,
   className,
 }: {
   max: number;
+  numDisabled?: number;
   current: number;
   onChange: (n: number) => void;
   className?: string;
 }) {
+  const numToDisable = numDisabled || 0;
   const [localCurrent, setLocalCurrent] = useState(current);
   const handleOnChange = (n: number) => {
     setLocalCurrent(n);
@@ -33,17 +36,19 @@ export function BuildupCheckboxes({
       >
         <X className="h-3 w-3" />
       </Button>
-      {Array.from({ length: localCurrent }).map((_, i) => (
-        <Checkbox
-          key={`checked-${i}`}
-          onClick={() => {
-            handleOnChange(i + 1);
-          }}
-          checked={true}
-          className="rounded-none data-[state=checked]:bg-red-600 data-[state=checked]:text-red-600"
-        />
-      ))}
-      {Array.from({ length: max - localCurrent }).map((_, i) => (
+      {Array.from({ length: Math.min(localCurrent, max - numToDisable) }).map(
+        (_, i) => (
+          <Checkbox
+            key={`checked-${i}`}
+            onClick={() => {
+              handleOnChange(i + 1);
+            }}
+            checked={true}
+            className="rounded-none data-[state=checked]:bg-red-600 data-[state=checked]:text-red-600"
+          />
+        )
+      )}
+      {Array.from({ length: max - numToDisable - localCurrent }).map((_, i) => (
         <Checkbox
           key={`unchecked-${i}`}
           onClick={() => {
@@ -51,6 +56,14 @@ export function BuildupCheckboxes({
           }}
           checked={false}
           className="rounded-none"
+        />
+      ))}
+      {Array.from({ length: numToDisable }).map((_, i) => (
+        <Checkbox
+          key={`disabled-${i}`}
+          disabled={true}
+          checked={true}
+          className="rounded-none data-[state=checked]:bg-red-800 data-[state=checked]:text-red-800"
         />
       ))}
     </div>
