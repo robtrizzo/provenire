@@ -8,13 +8,13 @@ export default async function HierarchyTree() {
           <TypographyH3 className="text-center">Enforcers</TypographyH3>
         </div>
         <div className="w-36">
-          <TypographyH3 className="text-center">Beasts</TypographyH3>
+          <TypographyH3 className="text-center">Prowlers</TypographyH3>
         </div>
         <div className="w-36">
-          <TypographyH3 className="text-center">Overseers</TypographyH3>
+          <TypographyH3 className="text-center">Marshalls</TypographyH3>
         </div>
         <div className="w-36">
-          <TypographyH3 className="text-center">Management</TypographyH3>
+          <TypographyH3 className="text-center">Commander</TypographyH3>
         </div>
       </div>
       <div className="flex items-center">
@@ -223,7 +223,7 @@ export default async function HierarchyTree() {
               <TypographyP className="text-xs text-center">
                 may trade a <span className="font-bold">crew contact</span> to
                 eliminate an enforcer;{' '}
-                <span className="font-bold">2 contacts</span> for a beast.
+                <span className="font-bold">2 contacts</span> for a prowler.
               </TypographyP>
             </div>
           </div>
