@@ -9,7 +9,7 @@ export default function SkillsetAbilities({
   const skillset = skillsets.find((s) => s.name === skillsetName);
   return (
     <Abilities
-      className="ml-4"
+      className="mx-4"
       abilities={[
         ...(skillset?.abilities?.mission || []),
         ...(skillset?.abilities?.downtime || []),
