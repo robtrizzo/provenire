@@ -7,7 +7,8 @@ export default function LeadByExample() {
         glorify you, but makes the best use of everyone&apos;s talents in your
         opinion. Each teammate who agrees may <strong>push themselves</strong>{' '}
         for 1 stress for as long as they are furthering your plan. If anyone
-        agrees and you fail at your part in the plan, mark a condition.
+        agrees and you fail at your part in the plan, mark{' '}
+        <strong>4 stress</strong>.
       </TypographyP>
     </div>
   );

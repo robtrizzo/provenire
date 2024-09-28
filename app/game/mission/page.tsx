@@ -175,7 +175,9 @@ export default async function Page() {
         <strong>stress track</strong>, they break for a moment. They can choose
         to lash out against the machine (an outburst which leads to{' '}
         <strong>+6 heat</strong>) or they can lash out against the ones closest
-        to them (mark a <strong>condition</strong>.)
+        to them (mark a <strong>condition</strong>.) Then they clear their{' '}
+        <strong>stress track</strong> (rolling over excess stress) and continue
+        on.
       </TypographyP>
       <TypographyH3>Conditions</TypographyH3>
       <TypographyP>
@@ -192,14 +194,21 @@ export default async function Page() {
       </TypographyP>
       <TypographyP>
         Each <strong>condition</strong> prohibits two different downtime
-        activities; and each has a different shitty thing a character can do to
-        be rid of them. Alternatively, another PC can <strong>comfort</strong>{' '}
-        your character, advancing your <strong>recovery</strong> clock. More on{' '}
-        <strong>recovery</strong>{' '}
+        activities. They can be removed by either <strong>clearing</strong> them
+        or <strong>recovering</strong> from them. To{' '}
+        <strong>recover from them</strong>, another PC can{' '}
+        <strong>comfort</strong> your character, advancing your{' '}
+        <strong>recovery</strong> clock. More on <strong>recovery</strong>{' '}
         <span className="text-red-600 underline">
           <Link href="/game/the-churn#downtime">here</Link>
         </span>
-        . The <strong>conditions</strong> are:
+        . To <strong>clear</strong> a <strong>condition</strong>, the PC has to
+        do a unique shitty thing which is both a narrative action and a material
+        cost. If they do this, they mark <strong>+1xp</strong> and clear their{' '}
+        <strong>stress track</strong>.
+      </TypographyP>
+      <TypographyP>
+        The <strong>conditions</strong> are:
       </TypographyP>
       <TypographyUnorderedList>
         <li>
@@ -216,12 +225,13 @@ export default async function Page() {
         <li>
           <strong>Guilty</strong>: You cannot <strong>shift blame</strong> or{' '}
           <strong>recover</strong>. Clear by confessing to someone and making a
-          sacrifice (<strong>+3 heat or -2 materials</strong>).
+          sacrifice (<strong>+7 heat or -2 materials</strong>).
         </li>
         <li>
           <strong>Insecure</strong>: You cannot <strong>train</strong> or{' '}
           <strong>shift blame</strong>. Clear by taking foolhardy action without
-          telling the crew (<strong>-2 intel or +3 heat</strong>).
+          telling the crew (<strong>-2 intel</strong> or <strong>+2d</strong> to
+          the entanglements dice pool).
         </li>
         <li>
           <strong>Hopeless</strong>: You cannot <strong>comfort</strong> or{' '}
