@@ -1779,7 +1779,7 @@ export function Charsheet() {
               <Label htmlFor="look">Look</Label>
               <Textarea
                 id="look"
-                value={univQuestions[0]}
+                value={univQuestions?.[0] || ''}
                 onChange={(e) => {
                   setUnivQuestions([
                     e.target.value,
@@ -1796,7 +1796,7 @@ export function Charsheet() {
               <Label htmlFor="dream">What&apos;s your dream?</Label>
               <Textarea
                 id="dream"
-                value={univQuestions[1]}
+                value={univQuestions?.[1] || ''}
                 onChange={(e) => {
                   setUnivQuestions([
                     univQuestions[0],
@@ -1813,7 +1813,7 @@ export function Charsheet() {
               <Label htmlFor="faith">What do you have faith in?</Label>
               <Textarea
                 id="faith"
-                value={univQuestions[2]}
+                value={univQuestions?.[2] || ''}
                 onChange={(e) => {
                   setUnivQuestions([
                     univQuestions[0],
@@ -1830,7 +1830,7 @@ export function Charsheet() {
               <Label htmlFor="hurt">What&apos;s your hurt?</Label>
               <Textarea
                 id="hurt"
-                value={univQuestions[3]}
+                value={univQuestions?.[3] || ''}
                 onChange={(e) => {
                   setUnivQuestions([
                     univQuestions[0],
@@ -1849,7 +1849,7 @@ export function Charsheet() {
               </Label>
               <Textarea
                 id="option"
-                value={univQuestions[4]}
+                value={univQuestions?.[4] || ''}
                 onChange={(e) => {
                   setUnivQuestions([
                     univQuestions[0],
