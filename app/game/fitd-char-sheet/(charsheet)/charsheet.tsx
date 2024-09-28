@@ -6,9 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectSeparator,
   SelectTrigger,
   SelectValue,
@@ -56,6 +54,8 @@ import Crit from '@/components/ui/subsistence/crit/subsistenceCrit';
 import Consequences from '@/components/ui/subsistence/consequences/subsistenceConsequences';
 
 export function Charsheet() {
+  const [tab, setTab] = useState('mission');
+
   const [selectedArchetype, setSelectedArchetype] = useState<Archetype>();
   const [selectedSkillset, setSelectedSkillset] = useState<Skillset>();
   const [selectedBackground, setSelectedBackground] = useState<Background>();
@@ -65,6 +65,14 @@ export function Charsheet() {
   const [archetypeSelectKey, setArchetypeSelectKey] = useState(+new Date());
   const [backgroundSelectKey, setBackgroundSelectKey] = useState(+new Date());
   const [skillsetSelectKey, setSkillsetSelectKey] = useState(+new Date());
+
+  const [name, setName] = useState('');
+  const [alias, setAlias] = useState('');
+  const [univQuestions, setUnivQuestions] = useState<string[]>([]);
+  const [bloodshedQ, setBloodshedQ] = useState<string>();
+
+  // where this is convenient, the performance is mid
+  const [questions, setQuestions] = useState<Map<string, string>>(new Map());
 
   const [skillsetXp, setSkillsetXp] = useState(0);
   const [heartXp, setHeartXp] = useState(0);
@@ -127,13 +135,23 @@ export function Charsheet() {
 
   useEffect(() => {
     if (window === undefined) return;
+    // read the hash and set the tab
+    const hash = window.location.hash;
+    if (hash && ['mission', 'profile', 'churn'].includes(hash.substring(1))) {
+      setTab(hash.substring(1));
+    }
     const data = localStorage.getItem('charsheet');
     if (data) {
       const parsed = JSON.parse(data);
+      setName(parsed.name);
+      setAlias(parsed.alias);
+      setUnivQuestions(parsed.univQuestions);
+      setBloodshedQ(parsed.bloodshedQ);
       setSelectedArchetype(parsed.selectedArchetype);
       setSelectedSkillset(parsed.selectedSkillset);
       setSelectedBackground(parsed.selectedBackground);
       setSelectedHeritage(parsed.selectedHeritage);
+      setQuestions(new Map(parsed.questions));
       setSkillsetXp(parsed.skillsetXp || 0);
       setHeartXp(parsed.heartXp || 0);
       setInstinctXp(parsed.instinctXp || 0);
@@ -168,10 +186,15 @@ export function Charsheet() {
       if (changes) {
         // save to local storage
         const data = {
+          name,
+          alias,
+          univQuestions,
+          bloodshedQ,
           selectedArchetype,
           selectedSkillset,
           selectedBackground,
           selectedHeritage,
+          questions: Array.from(questions),
           skillsetXp,
           heartXp,
           instinctXp,
@@ -208,6 +231,16 @@ export function Charsheet() {
     }, 300),
     []
   );
+
+  function handleUpdateQuestion(key: string, value: string) {
+    if (value === '') {
+      // Map.delete mutates and returns a boolean, so we have to get creative to create a copy of the map without the key
+      setQuestions(new Map(Array.from(questions).filter(([k]) => k !== key)));
+    } else {
+      setQuestions(new Map(questions.set(key, value)));
+    }
+    handleDebounceChange();
+  }
 
   function handleUpdateActionScore(
     attribute: 'Heart' | 'Instinct' | 'Machina',
@@ -499,11 +532,27 @@ export function Charsheet() {
       <div className="flex gap-1 w-full">
         <div className="flex-grow">
           <Label htmlFor="name">Name</Label>
-          <Input id="name" placeholder="Name" />
+          <Input
+            id="name"
+            placeholder="Name"
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value);
+              handleDebounceChange();
+            }}
+          />
         </div>
         <div>
           <Label htmlFor="alias">Alias</Label>
-          <Input id="alias" placeholder="Alias" />
+          <Input
+            id="alias"
+            placeholder="Alias"
+            value={alias}
+            onChange={(e) => {
+              setAlias(e.target.value);
+              handleDebounceChange();
+            }}
+          />
         </div>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 w-full my-1">
@@ -695,23 +744,38 @@ export function Charsheet() {
           </Select>
         </div>
       </div>
-      <Tabs defaultValue="mission" className="w-full my-3 mx-auto">
+      <Tabs defaultValue="mission" value={tab} className="w-full my-3 mx-auto">
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger
             value="mission"
             onClick={() => {
               setRollLeft('');
               setRollRight('');
+              setTab('mission');
+              // save the tab to the hash
+              window.location.hash = 'mission';
             }}
           >
             Mission
           </TabsTrigger>
-          <TabsTrigger value="profile">Profile</TabsTrigger>
+          <TabsTrigger
+            value="profile"
+            onClick={() => {
+              setTab('profile');
+              // save the tab to the hash
+              window.location.hash = 'profile';
+            }}
+          >
+            Profile
+          </TabsTrigger>
           <TabsTrigger
             value="churn"
             onClick={() => {
               setRollLeft('');
               setRollRight('');
+              setTab('churn');
+              // save the tab to the hash
+              window.location.hash = 'churn';
             }}
           >
             The Churn
@@ -1713,31 +1777,102 @@ export function Charsheet() {
           <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-2">
             <div className="w-full gap-1.5 my-2">
               <Label htmlFor="look">Look</Label>
-              <Textarea id="look" />
+              <Textarea
+                id="look"
+                value={univQuestions[0]}
+                onChange={(e) => {
+                  setUnivQuestions([
+                    e.target.value,
+                    univQuestions[1],
+                    univQuestions[2],
+                    univQuestions[3],
+                    univQuestions[4],
+                  ]);
+                  handleDebounceChange();
+                }}
+              />
             </div>
             <div className="w-full gap-1.5 my-2">
               <Label htmlFor="dream">What&apos;s your dream?</Label>
-              <Textarea id="dream" />
+              <Textarea
+                id="dream"
+                value={univQuestions[1]}
+                onChange={(e) => {
+                  setUnivQuestions([
+                    univQuestions[0],
+                    e.target.value,
+                    univQuestions[2],
+                    univQuestions[3],
+                    univQuestions[4],
+                  ]);
+                  handleDebounceChange();
+                }}
+              />
             </div>
             <div className="w-full gap-1.5 my-2">
               <Label htmlFor="faith">What do you have faith in?</Label>
-              <Textarea id="faith" />
+              <Textarea
+                id="faith"
+                value={univQuestions[2]}
+                onChange={(e) => {
+                  setUnivQuestions([
+                    univQuestions[0],
+                    univQuestions[1],
+                    e.target.value,
+                    univQuestions[3],
+                    univQuestions[4],
+                  ]);
+                  handleDebounceChange();
+                }}
+              />
             </div>
             <div className="w-full gap-1.5 my-2">
               <Label htmlFor="hurt">What&apos;s your hurt?</Label>
-              <Textarea id="look" />
+              <Textarea
+                id="hurt"
+                value={univQuestions[3]}
+                onChange={(e) => {
+                  setUnivQuestions([
+                    univQuestions[0],
+                    univQuestions[1],
+                    univQuestions[2],
+                    e.target.value,
+                    univQuestions[4],
+                  ]);
+                  handleDebounceChange();
+                }}
+              />
             </div>
             <div className="w-full gap-1.5 my-2">
               <Label htmlFor="option">
                 What has shown you that there&apos;s no other option?
               </Label>
-              <Textarea id="option" />
+              <Textarea
+                id="option"
+                value={univQuestions[4]}
+                onChange={(e) => {
+                  setUnivQuestions([
+                    univQuestions[0],
+                    univQuestions[1],
+                    univQuestions[2],
+                    univQuestions[3],
+                    e.target.value,
+                  ]);
+                  handleDebounceChange();
+                }}
+              />
             </div>
             <div className="w-full gap-1.5 my-2">
               <Label htmlFor="bloodshed" className="text-red-700">
                 Will there be bloodshed?
               </Label>
-              <Select>
+              <Select
+                value={bloodshedQ}
+                onValueChange={(value) => {
+                  setBloodshedQ(value);
+                  setChanges(true);
+                }}
+              >
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
@@ -1762,7 +1897,16 @@ export function Charsheet() {
                 >
                   {selectedHeritage?.remembrance}
                 </Label>
-                <Textarea id="remembrance" />
+                <Textarea
+                  id="remembrance"
+                  value={questions.get(`${selectedHeritage.name}-0`)}
+                  onChange={(e) => {
+                    handleUpdateQuestion(
+                      `${selectedHeritage.name}-0`,
+                      e.target.value
+                    );
+                  }}
+                />
               </div>
             )}
             {selectedBackground?.questions?.map((q, i) => (
@@ -1770,7 +1914,16 @@ export function Charsheet() {
                 <Label htmlFor={`q-${i}`} className="text-red-500 box-border">
                   {q}
                 </Label>
-                <Textarea id={`q-${i}`} />
+                <Textarea
+                  id={`q-${i}`}
+                  value={questions.get(`${selectedBackground.name}-${i}`) || ''}
+                  onChange={(e) => {
+                    handleUpdateQuestion(
+                      `${selectedBackground.name}-${i}`,
+                      e.target.value
+                    );
+                  }}
+                />
               </div>
             ))}
             {selectedSkillset?.questions?.map((q, i) => (
@@ -1778,7 +1931,16 @@ export function Charsheet() {
                 <Label htmlFor={`q-${i}`} className="text-indigo-500 ">
                   {q}
                 </Label>
-                <Textarea id={`q-${i}`} />
+                <Textarea
+                  id={`q-${i}`}
+                  value={questions.get(`${selectedSkillset.name}-${i}`)}
+                  onChange={(e) => {
+                    handleUpdateQuestion(
+                      `${selectedSkillset.name}-${i}`,
+                      e.target.value
+                    );
+                  }}
+                />
               </div>
             ))}
             {selectedArchetype?.questions.map((q, i) => (
@@ -1786,7 +1948,16 @@ export function Charsheet() {
                 <Label htmlFor={`q-${i}`} className="text-amber-700 box-border">
                   {q}
                 </Label>
-                <Textarea id={`q-${i}`} />
+                <Textarea
+                  id={`q-${i}`}
+                  value={questions.get(`${selectedArchetype.name}-${i}`)}
+                  onChange={(e) => {
+                    handleUpdateQuestion(
+                      `${selectedArchetype.name}-${i}`,
+                      e.target.value
+                    );
+                  }}
+                />
               </div>
             ))}
           </div>
