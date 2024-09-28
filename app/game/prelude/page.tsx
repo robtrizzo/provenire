@@ -133,6 +133,19 @@ export default async function Page() {
         individual items - just the maximum amount they&apos;ll have access to
         during the action.
       </TypographyP>
+      <TypographyP>
+        Your character has a number of item slots equal to their{' '}
+        <strong>load</strong>. During the mission, you can{' '}
+        <strong>flashback</strong> to having brought any item &quot;just in
+        case&quot; instead of having to plan ahead beforehand. When you do this,
+        mark off an item slot. If you don&apos;t have any item slots left, you
+        can still flashback, but you must include stashing the item somewhere in
+        the scene.
+      </TypographyP>
+      <TypographyP className="italic">
+        Some items cost more than one load, like armor (which costs 2). Heavy
+        armor costs 3.
+      </TypographyP>
       <TypographyUnorderedList>
         <li>
           <strong>1 Load: Light.</strong> You&apos;re faster, less conspicuous.
