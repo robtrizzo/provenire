@@ -62,7 +62,7 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
               <Link
                 href="/game/cycle-of-play"
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
-                  pathname === '/game/the-cycle-of-play'
+                  pathname === '/game/cycle-of-play'
                     ? 'bg-muted'
                     : 'text-muted-foreground'
                 }  transition-all hover:text-primary`}

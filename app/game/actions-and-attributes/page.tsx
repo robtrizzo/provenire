@@ -87,7 +87,7 @@ export default function Page() {
         Advancing an action can be done in one of two ways. An empty slot can
         become red or a red slot can become blue.
       </TypographyP>
-      <TypographyH2>Resistance Rolls</TypographyH2>
+      <TypographyH2 id="resistance-roll">Resistance Rolls</TypographyH2>
       <TypographyP>
         Each attribute resists a different kind of danger. If you get stabbed,
         for example, you resist sudden violence with your{' '}

@@ -30,7 +30,7 @@ export default async function Page() {
         </span>
         .
       </TypographyP>
-      <TypographyH2>Kingwulf</TypographyH2>
+      <TypographyH2 id="kingwulf">Kingwulf</TypographyH2>
       <TypographyP>
         Immortal God King of the <strong>Rathi Empire</strong>. They{' '}
         <span className="italic">say</span> he has been King since the day the
@@ -43,7 +43,7 @@ export default async function Page() {
         <span className="italic">say</span> that one day, he will bless the
         world one final time when he devours it.
       </TypographyP>
-      <TypographyH2>Liberty City</TypographyH2>
+      <TypographyH2 id="liberty-city">Liberty City</TypographyH2>
       <TypographyP>
         Our story begins in <strong>Vizgod</strong>, a territory of the{' '}
         <strong>Rathi Empire</strong> characterized by a forest of massive pines
@@ -80,7 +80,7 @@ export default async function Page() {
           shanty towns. They only know screeching pipes and roaring furnaces.
         </span>
       </TypographyP>
-      <TypographyH2>The Steel Trap</TypographyH2>
+      <TypographyH2 id="the-steel-trap">The Steel Trap</TypographyH2>
       <TypographyP>
         A factory full of workers pushed to their breaking point. Unlovingly
         named <span className="italic">The Steel Trap</span>, it produces
@@ -132,7 +132,7 @@ export default async function Page() {
         across the vault doors.
       </TypographyP>
       <FactoryMap />
-      <TypographyH4>Fabrication</TypographyH4>
+      <TypographyH4 id="fabrication">Fabrication</TypographyH4>
       <TypographyP>
         This is where our protagonists live. The background noise of their home
         is hissing, buzzing, sawing, grinding, clattering. The air is acrid with

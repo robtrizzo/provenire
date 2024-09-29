@@ -33,7 +33,7 @@ export default async function Page() {
         interaction. Character scenes continue until the players decide
         it&apos;s time to move on to <strong>gathering information</strong>.
       </TypographyP>
-      <TypographyH3>Gather Information</TypographyH3>
+      <TypographyH3 id="gather-information">Gather Information</TypographyH3>
       <TypographyP>
         During this phase the characters may do the footwork required to pull
         off successful missions in the Steel Trap. If the information is common
@@ -84,14 +84,14 @@ export default async function Page() {
         <strong>Narrator</strong> states the rewards for accomplishing each side
         objective.
       </TypographyP>
-      <TypographyH2>Engagement Roll</TypographyH2>
+      <TypographyH2 id="engagement-roll">Engagement Roll</TypographyH2>
       <TypographyP>
         Missions in <span className="italic">Provenire</span> begin &quot;en
         media res&quot;. This means that planning and preparations are assumed
         to have already taken place. The Engagement Roll determines how things
         are already going when we first see the characters in action.
       </TypographyP>
-      <TypographyH3>Approach</TypographyH3>
+      <TypographyH3 id="approach">Approach</TypographyH3>
       <TypographyP>
         Before making the Engagement Roll, the party chooses an approach to the
         mission. This is in place of planning out every little detail
@@ -125,7 +125,7 @@ export default async function Page() {
           <span className="italic">Detail: the route and means.</span>
         </li>
       </TypographyUnorderedList>
-      <TypographyH3>Item Loadouts</TypographyH3>
+      <TypographyH3 id="loadout">Item Loadouts</TypographyH3>
       <TypographyP>
         After the approach and detail are explained, each player chooses their
         character&apos;s <strong>load</strong>. This indicates how much stuff

@@ -41,13 +41,16 @@ export function TypographyH2({
 }
 export function TypographyH3({
   children,
+  id,
   className,
 }: {
   children: React.ReactNode;
+  id?: string;
   className?: string;
 }) {
   return (
     <h3
+      id={id}
       className={cn(
         'scroll-m-20 text-2xl font-semibold tracking-tight' + ' ' + className
       )}
@@ -58,13 +61,16 @@ export function TypographyH3({
 }
 export function TypographyH4({
   children,
+  id,
   className,
 }: {
   children: React.ReactNode;
+  id?: string;
   className?: string;
 }) {
   return (
     <h4
+      id={id}
       className={cn(
         'scroll-m-20 text-xl font-semibold tracking-tight' + ' ' + className
       )}

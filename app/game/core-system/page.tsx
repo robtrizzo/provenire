@@ -158,7 +158,7 @@ export default function Page() {
         You&apos;ll usually end up with one to four dice. Even one die is pretty
         good in this game--a 50% chance of success.
       </TypographyP>
-      <TypographyH3>Bonus Dice</TypographyH3>
+      <TypographyH3 id="bonus-dice">Bonus Dice</TypographyH3>
       <TypographyP>
         There are a number of ways to gain bonus dice in{' '}
         <span className="italic">Provenire</span>. All bonus dice are blue,

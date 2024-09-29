@@ -53,7 +53,7 @@ export default async function Page() {
         it&apos;s strongly encouraged for them to do so as it will lead to
         interesting narrative moments.
       </TypographyP>
-      <TypographyH2>Flashbacks</TypographyH2>
+      <TypographyH2 id="flashbacks">Flashbacks</TypographyH2>
       <TypographyP>
         The rules don&apos;t distinguish between actions performed in the
         present moment and those performed in the past. When a mission is
@@ -103,7 +103,7 @@ export default async function Page() {
         <span className="italic">do</span> happen, not the problems that{' '}
         <span className="italic">might</span> happen.
       </TypographyP>
-      <TypographyH2>Combat</TypographyH2>
+      <TypographyH2 id="combat">Combat</TypographyH2>
       <TypographyP>
         Sometimes the events of a mission lead to a violent confrontation. Of
         course the PCs can choose to flee, but sometimes the only way through is
@@ -161,7 +161,7 @@ export default async function Page() {
           sure to exploit the opening you left.
         </li>
       </TypographyUnorderedList>
-      <TypographyH2>Stress and Conditions</TypographyH2>
+      <TypographyH2 id="stress">Stress and Conditions</TypographyH2>
       <TypographyP>
         Living and working in the Steel Trap is stressful on its own. Defying
         centuries of oppresion and risking your life is another matter entirely.{' '}
@@ -179,7 +179,7 @@ export default async function Page() {
         <strong>stress track</strong> (rolling over excess stress) and continue
         on.
       </TypographyP>
-      <TypographyH3>Conditions</TypographyH3>
+      <TypographyH3 id="conditions">Conditions</TypographyH3>
       <TypographyP>
         <strong>Conditions</strong> are powerful negative emotions which the PCs
         cannot shed without some effort. They can be compartmentalized and
@@ -239,7 +239,7 @@ export default async function Page() {
           yourself into easy relief (<strong>-2 food or rep</strong>).
         </li>
       </TypographyUnorderedList>
-      <TypographyH2>Harm and Armor</TypographyH2>
+      <TypographyH2 id="harm">Harm and Armor</TypographyH2>
       <TypographyP>
         Harm represents a long-lasting debility (or death). When you suffer
         harm, record the specific injurty on your character sheet equal to the
@@ -268,7 +268,7 @@ export default async function Page() {
         <strong>permanent</strong> and can be shifted but not removed until
         special conditions are met.
       </TypographyP>
-      <TypographyH3>Armor</TypographyH3>
+      <TypographyH3 id="armor">Armor</TypographyH3>
       <TypographyP>
         Armor is a special type of equipment which is expended once used. When
         you would suffer harm, you can choose to expend 1 armor to reduce the
