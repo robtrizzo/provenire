@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Light",
+    "load": 1,
+    "desc": "You're faster, less conspicuous. You blend in with the other workers."
+  },
+  {
+    "name": "Normal",
+    "load": 3,
+    "desc": "You look like you're up to something."
+  },
+  {
+    "name": "Heavy",
+    "load": 4,
+    "desc": "You're slower and stand out. You look like an operative on a mission."
+  },
+  {
+    "name": "Encumbered",
+    "load": 7,
+    "desc": "You're overburdened and can't do anything except move very slowly."
+  }
+]

@@ -89,3 +89,9 @@ export type Bonds = {
   Familial: Bond[];
   Professional: Bond[];
 };
+
+export type Loadout = {
+  name: string;
+  load: number;
+  desc: string;
+};

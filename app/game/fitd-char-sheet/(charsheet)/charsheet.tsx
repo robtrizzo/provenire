@@ -25,6 +25,7 @@ import backgrounds from '@/public/backgrounds.json';
 import archetypes from '@/public/archetypes.json';
 import skillsets from '@/public/skillsets.json';
 import universal_actions from '@/public/universal_actions.json';
+import loadouts from '@/public/loadouts.json';
 import {
   type Archetype,
   type Skillset,
@@ -34,6 +35,7 @@ import {
   type Bond,
   CharacterAttributes,
   Bonds,
+  Loadout,
 } from '@/types/game';
 import { Button } from '@/components/ui/button';
 import { BuildupCheckboxes } from '@/components/ui/buildup-checkboxes';
@@ -125,6 +127,8 @@ export function Charsheet() {
   const [armor, setArmor] = useState<boolean>(false);
   const [hArmor, setHArmor] = useState<boolean>(false);
   const [sArmor, setSArmor] = useState<boolean>(false);
+
+  const [loadout, setLoadout] = useState<Loadout>();
 
   const [starvation, setStarvation] = useState<number>(0);
   const [subsist, setSubsist] = useState<number>(0);
@@ -1779,6 +1783,46 @@ export function Charsheet() {
                       }}
                     />{' '}
                     Special
+                  </div>
+                </div>
+                <div className="mt-6">
+                  <TypographyH3 className="text-sm text-muted-foreground">
+                    Loadout
+                  </TypographyH3>
+                </div>
+                {loadout && (
+                  <TypographyP className="text-sm text-muted-foreground">
+                    {loadout.desc}
+                  </TypographyP>
+                )}
+                <Separator className="mt-1 mb-2" />
+                <div className="flex align-end justify-between">
+                  <div className="flex items-center gap-2">
+                    <Checkbox
+                      checked={loadout?.name === 'Light'}
+                      onCheckedChange={() => {
+                        setLoadout(loadouts[0]);
+                      }}
+                    />{' '}
+                    Light
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Checkbox
+                      checked={loadout?.name === 'Normal'}
+                      onCheckedChange={() => {
+                        setLoadout(loadouts[1]);
+                      }}
+                    />{' '}
+                    Normal
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Checkbox
+                      checked={loadout?.name === 'Heavy'}
+                      onCheckedChange={() => {
+                        setLoadout(loadouts[2]);
+                      }}
+                    />{' '}
+                    Heavy
                   </div>
                 </div>
               </div>
