@@ -69,7 +69,13 @@ export function Charsheet() {
 
   const [name, setName] = useState('');
   const [alias, setAlias] = useState('');
-  const [univQuestions, setUnivQuestions] = useState<string[]>([]);
+  const [univQuestions, setUnivQuestions] = useState<string[]>([
+    '',
+    '',
+    '',
+    '',
+    '',
+  ]);
   const [bloodshedQ, setBloodshedQ] = useState<string>();
 
   // where this is convenient, the performance is mid
@@ -1789,10 +1795,10 @@ export function Charsheet() {
                 onChange={(e) => {
                   setUnivQuestions([
                     e.target.value,
-                    univQuestions[1],
-                    univQuestions[2],
-                    univQuestions[3],
-                    univQuestions[4],
+                    univQuestions?.[1] || '',
+                    univQuestions?.[2] || '',
+                    univQuestions?.[3] || '',
+                    univQuestions?.[4] || '',
                   ]);
                   handleDebounceChange();
                 }}
@@ -1805,11 +1811,11 @@ export function Charsheet() {
                 value={univQuestions?.[1] || ''}
                 onChange={(e) => {
                   setUnivQuestions([
-                    univQuestions[0],
+                    univQuestions?.[0] || '',
                     e.target.value,
-                    univQuestions[2],
-                    univQuestions[3],
-                    univQuestions[4],
+                    univQuestions?.[2] || '',
+                    univQuestions?.[3] || '',
+                    univQuestions?.[4] || '',
                   ]);
                   handleDebounceChange();
                 }}
@@ -1822,11 +1828,11 @@ export function Charsheet() {
                 value={univQuestions?.[2] || ''}
                 onChange={(e) => {
                   setUnivQuestions([
-                    univQuestions[0],
-                    univQuestions[1],
+                    univQuestions?.[0] || '',
+                    univQuestions?.[1] || '',
                     e.target.value,
-                    univQuestions[3],
-                    univQuestions[4],
+                    univQuestions?.[3] || '',
+                    univQuestions?.[4] || '',
                   ]);
                   handleDebounceChange();
                 }}
@@ -1839,11 +1845,11 @@ export function Charsheet() {
                 value={univQuestions?.[3] || ''}
                 onChange={(e) => {
                   setUnivQuestions([
-                    univQuestions[0],
-                    univQuestions[1],
-                    univQuestions[2],
+                    univQuestions?.[0] || '',
+                    univQuestions?.[1] || '',
+                    univQuestions?.[2] || '',
                     e.target.value,
-                    univQuestions[4],
+                    univQuestions?.[4] || '',
                   ]);
                   handleDebounceChange();
                 }}
@@ -1858,10 +1864,10 @@ export function Charsheet() {
                 value={univQuestions?.[4] || ''}
                 onChange={(e) => {
                   setUnivQuestions([
-                    univQuestions[0],
-                    univQuestions[1],
-                    univQuestions[2],
-                    univQuestions[3],
+                    univQuestions?.[0] || '',
+                    univQuestions?.[1] || '',
+                    univQuestions?.[2] || '',
+                    univQuestions?.[3] || '',
                     e.target.value,
                   ]);
                   handleDebounceChange();
