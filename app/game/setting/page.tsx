@@ -15,7 +15,7 @@ import FactoryMap from '@/components/ui/factory-map';
 export default async function Page() {
   return (
     <>
-      <TypographyH1>
+      <TypographyH1 className="">
         <span className="italic">Provenire</span>, Era 3
       </TypographyH1>
       <TypographyH2>Rath</TypographyH2>
@@ -174,6 +174,80 @@ export default async function Page() {
         with oil and blood. <strong>The Scarbacks</strong> patrol these streets.
         Everyone works: most get fed. That&apos;s the way of things. No one
         slacks off on their watch. No one makes trouble for Fab. Or else.
+      </TypographyP>
+      <TypographyH2>Culture</TypographyH2>
+      <TypographyP>
+        <strong>Rath</strong> is vast. It stretches from the King&apos;s jungle
+        doorstep to the northern Tarakon Bogs to Ilswinth&apos;s sandswept dunes
+        in the West. The people of Rath are as varied as the land itself. But
+        there are common threads that bind them all.
+      </TypographyP>
+      <TypographyH3>Blood</TypographyH3>
+      <TypographyP>
+        Kingwulf&apos;s holy bloodline reigns supreme. The three bestial
+        bloodlines (wolves, bears, crows) beneath him: bloodline of the wolf
+        above the rest. But even further, there is a convoluted matrix of lesser
+        geniologies and hierarchies which dictate one&apos;s place in society.
+      </TypographyP>
+      <TypographyP>
+        It is a subject of fascination for Rath&apos;s high society, though only
+        understood by geniological scholars. Heritage outside of the beastly
+        bloodlines is undesirable, though if it is in a small proportion and
+        hails from a notable bloodline, it is desirable. Being capable of
+        bestial transformation is incredibly important, though those only
+        capable of partial transformation is looked down upon. Being birthed
+        from a mother in a bestial form is confoundingly undesirable as opposed
+        to being birthed from a human mother. It goes on and on. Most people
+        colloquially use the terms <strong>thickblood</strong> (meaning{' '}
+        <i>good</i>, <i>powerful</i>, <i>pure</i>, higher in the hierarchy) and{' '}
+        <strong>thinblood</strong> (meaning lower) to approximate.
+      </TypographyP>
+      <TypographyH3>Marriage</TypographyH3>
+      <TypographyP>
+        The obsession with bloodline extends to marriage and children.{' '}
+        <strong>Thickblooded</strong> Rathi view it as their societal duty to
+        spread their bloodline as far as they can. Though paradoxically, as much
+        of the geniological drivel is, most Rathi highborns are unwilling to
+        have children with <strong>thinbloods</strong>.
+      </TypographyP>
+      <TypographyP>
+        Even more pernicious is the tradition of marriage itself. To the Rathi,{' '}
+        <strong>Kingwulf</strong> posesses the right to marry any woman. And so
+        anyone who wants to marry needs <strong>Kingwulf&apos;s</strong>{' '}
+        permission first. And he does not give it lightly. Before one can take a
+        wife, they must prove themselves in the eyes of the King. This is
+        typically military or hunting success, though there is no consistent
+        metric.
+      </TypographyP>
+      <TypographyP>
+        Once they have been granted a wife, they may choose any unmarried woman
+        in the empire. And that man may keep proving himself and keep taking
+        wives for as long as <strong>Kingwulf</strong> chooses to grant them.
+        The women they choose get no say in the matter. Their only way out is to
+        kill their husband. And many do; it&apos;s seen as what happens when a
+        man chooses a wife outside of his station. This has created a cultural
+        phenomenon of powerful and desirable women with a string of dead
+        husbands. The more husbands they kill, the more powerful her bloodline
+        clearly is - which in turn makes her even more desirable. These women
+        are coined <i>dire wives.</i>
+      </TypographyP>
+      <TypographyP>
+        It would be impossible for <strong>Kingwulf</strong> to give his spoken
+        permission to every marriage in the empire. So this right has unspokenly
+        passed on to Dukes and even some lesser nobility as the King&apos;s
+        proxies. <strong>Kingwulf</strong> never spoke this into law, but he has
+        not spoken against it either. And so marriage rights have become as
+        complicated as the matrix of bloodline heirarchy is. Who exactly can
+        give marriage permissions? What happens when two nobles disagree on
+        giving permission? Since the King&apos;s proxies have authority to marry
+        any woman, what happens when they use that right in another proxy&apos;s
+        territory?
+      </TypographyP>
+      <TypographyP>
+        In reality, this means the powerful hoard wives and the weak are left to
+        work and toil desperately for their approval. The term for these
+        desperate unmarried men is simply: <i>unworthy</i>. A population of men
+        willing to resort to more and more extreme lengths to gain a wife.
       </TypographyP>
       <Separator />
       <div className="w-full flex justify-between">
