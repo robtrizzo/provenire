@@ -5,8 +5,6 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import {
   TypographyH1,
   TypographyH2,
-  TypographyH3,
-  TypographyH4,
   TypographyP,
   TypographyUnorderedList,
 } from '@/components/ui/typography';
@@ -67,7 +65,7 @@ export default async function Page() {
           <strong>Yaman</strong>: Pacifism, reverence, order
         </li>
       </TypographyUnorderedList>
-      <TypographyP>
+      <TypographyP id="heritage">
         <strong className="text-sky-500">Heritages</strong> are the stories and
         memories of your ancestors&apos; ancestors. They give your character
         precious traditions to preserve. If you choose Rathi though, you instead
@@ -116,7 +114,7 @@ export default async function Page() {
           <strong>Stoker</strong>: Shovel tar and stoke the fires
         </li>
       </TypographyUnorderedList>
-      <TypographyP>
+      <TypographyP id="background">
         <strong className="text-red-500">Backgrounds</strong> grant two unique
         mission actions, two profile questions, two professional bonds, and a
         subsistence activity.
@@ -156,7 +154,7 @@ export default async function Page() {
           <strong>Vapor</strong>: an elusive infiltrator and thief
         </li>
       </TypographyUnorderedList>
-      <TypographyP>
+      <TypographyP id="skillset">
         <strong className="text-indigo-500">Skillsets</strong> grant two unique
         mission actions, three mission abilities, two profile questions, an
         agenda, and a downtime ability.
@@ -175,7 +173,7 @@ export default async function Page() {
           </li>
         ))}
       </TypographyUnorderedList>
-      <TypographyP>
+      <TypographyP id="archetype">
         <strong className="text-amber-700">Archetypes</strong> grant a unique
         mission action, two mission abilities, five profile questions, and two
         downtime abilities.
@@ -213,9 +211,9 @@ export default async function Page() {
             <ChevronLeft /> The Churn
           </Button>
         </Link>
-        <Link href="/game/backgrounds">
+        <Link href="/game/heritages">
           <Button variant="outline">
-            Backgrounds <ChevronRight />
+            Heritages <ChevronRight />
           </Button>
         </Link>
       </div>

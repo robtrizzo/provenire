@@ -85,13 +85,16 @@ export function TypographyH4({
 }
 export function TypographyP({
   children,
+  id,
   className,
 }: {
   children: React.ReactNode;
+  id?: string;
   className?: string;
 }) {
   return (
     <p
+      id={id}
       className={cn(
         'font-serif leading-7 [&:not(:first-child)]:mt-2',
         className
