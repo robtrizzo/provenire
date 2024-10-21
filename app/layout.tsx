@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
-import { Josefin_Sans as FontSans, Cardo as FontSerif } from 'next/font/google';
+import {
+  Josefin_Sans as FontSans,
+  Caudex as FontSerif,
+} from 'next/font/google';
 import Providers from '@/providers/providers';
 import { cn } from '@/lib/utils';
 import './globals.css';
@@ -17,6 +20,8 @@ const fontSerif = FontSerif({
   display: 'swap',
   variable: '--font-serif',
 });
+
+// Kotta One would be good for script
 
 export const metadata: Metadata = {
   title: 'Provenire',
