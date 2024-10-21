@@ -110,6 +110,16 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                 Character Creation
               </Link>
               <Link
+                href="/game/heritages"
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                  pathname === '/game/heritages'
+                    ? 'bg-muted'
+                    : 'text-muted-foreground'
+                } transition-all hover:text-primary`}
+              >
+                Heritages
+              </Link>
+              <Link
                 href="/game/backgrounds"
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
                   pathname === '/game/backgrounds'
@@ -148,6 +158,17 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                 } transition-all hover:text-primary`}
               >
                 Character Sheet
+              </Link>
+              <Separator />
+              <Link
+                href="/game/playtest-one"
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                  pathname === '/game/playtest-one'
+                    ? 'bg-muted'
+                    : 'text-muted-foreground'
+                } transition-all hover:text-primary`}
+              >
+                Playtest One
               </Link>
               <Separator />
               <Link
@@ -284,6 +305,16 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                   }  transition-all hover:text-primary`}
                 >
                   Character Creation
+                </Link>
+                <Link
+                  href="/game/heritages"
+                  className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
+                    pathname === '/game/heritages'
+                      ? 'bg-muted'
+                      : 'text-muted-foreground'
+                  } transition-all hover:text-primary`}
+                >
+                  Heritages
                 </Link>
                 <Link
                   href="/game/backgrounds"

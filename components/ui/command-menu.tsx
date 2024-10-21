@@ -12,6 +12,7 @@ import {
   CommandItem,
   CommandSeparator,
 } from '@/components/ui/command';
+import heritages from '@/public/heritages.json';
 import backgrounds from '@/public/backgrounds.json';
 import skillsets from '@/public/skillsets.json';
 import archetypes from '@/public/archetypes.json';
@@ -64,7 +65,36 @@ export default function CommandMenu() {
           </CommandItem>
         </CommandGroup>
         <CommandSeparator />
+        <CommandGroup heading="Heritages">
+          <CommandItem
+            onSelect={() => {
+              router.push('/game/heritages');
+              setOpen(false);
+            }}
+          >
+            Heritages
+          </CommandItem>
+          {heritages.map((heritage) => (
+            <CommandItem
+              key={heritage.name}
+              onSelect={() => {
+                router.push(`/game/heritages#${heritage.name}`);
+                setOpen(false);
+              }}
+            >
+              {heritage.name}
+            </CommandItem>
+          ))}
+        </CommandGroup>
         <CommandGroup heading="Backgrounds">
+          <CommandItem
+            onSelect={() => {
+              router.push('/game/backgrounds');
+              setOpen(false);
+            }}
+          >
+            Backgrounds
+          </CommandItem>
           {backgrounds.map((background) => (
             <CommandItem
               key={background.name}
@@ -79,6 +109,14 @@ export default function CommandMenu() {
         </CommandGroup>
         <CommandSeparator />
         <CommandGroup heading="Skillsets">
+          <CommandItem
+            onSelect={() => {
+              router.push('/game/skillsets');
+              setOpen(false);
+            }}
+          >
+            Skillsets
+          </CommandItem>
           {skillsets.map((skillset) => (
             <CommandItem
               key={skillset.name}
@@ -93,6 +131,14 @@ export default function CommandMenu() {
         </CommandGroup>
         <CommandSeparator />
         <CommandGroup heading="Archetypes">
+          <CommandItem
+            onSelect={() => {
+              router.push('/game/archetypes');
+              setOpen(false);
+            }}
+          >
+            Archetypes
+          </CommandItem>
           {archetypes.map((archetype) => (
             <CommandItem
               key={archetype.name}
@@ -391,6 +437,41 @@ export default function CommandMenu() {
             }}
           >
             Fabrication
+          </CommandItem>
+        </CommandGroup>
+        <CommandSeparator />
+        <CommandGroup heading="Character Creation">
+          <CommandItem
+            onSelect={() => {
+              router.push('/game/character-creation#heritage');
+              setOpen(false);
+            }}
+          >
+            Heritage
+          </CommandItem>
+          <CommandItem
+            onSelect={() => {
+              router.push('/game/character-creation#background');
+              setOpen(false);
+            }}
+          >
+            Background
+          </CommandItem>
+          <CommandItem
+            onSelect={() => {
+              router.push('/game/character-creation#skillset');
+              setOpen(false);
+            }}
+          >
+            Skillset
+          </CommandItem>
+          <CommandItem
+            onSelect={() => {
+              router.push('/game/character-creation#archetype');
+              setOpen(false);
+            }}
+          >
+            Archetype
           </CommandItem>
         </CommandGroup>
         <CommandSeparator />
