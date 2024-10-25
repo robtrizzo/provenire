@@ -41,7 +41,7 @@ export default function CommandMenu() {
         <CommandGroup heading="Character Sheet">
           <CommandItem
             onSelect={() => {
-              router.push('/game/fitd-char-sheet#mission');
+              router.push('/game/character-sheet#mission');
               setOpen(false);
             }}
           >
@@ -49,7 +49,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/fitd-char-sheet#profile');
+              router.push('/game/character-sheet#profile');
               setOpen(false);
             }}
           >
@@ -57,7 +57,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/fitd-char-sheet#churn');
+              router.push('/game/character-sheet#churn');
               setOpen(false);
             }}
           >

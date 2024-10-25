@@ -8,6 +8,15 @@ import {
   TableRow,
 } from '@/components/ui/table';
 
+import Breadcrumbs from '@/components/ui/breadcrumbs';
+
+<Breadcrumbs
+        crumbs={[
+          { name: 'Blog', href: '/game/blog' },
+          { name: 'Picking Action Dice', href: '#' },
+        ]}
+      />
+
 # Picking Action Dice
 
 When I say action dice, I mean the dice and method used to determine the outcome of actions in a game. To use a well known example, in D&D 5e the action dice are 1d20+modifiers. In this post I want to talk through the different types of action dice I want to consider and the pros and cons of each.

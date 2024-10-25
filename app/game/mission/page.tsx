@@ -10,10 +10,17 @@ import {
   TypographyP,
   TypographyUnorderedList,
 } from '@/components/ui/typography';
+import Breadcrumbs from '@/components/ui/breadcrumbs';
 
 export default async function Page() {
   return (
     <>
+      <Breadcrumbs
+        crumbs={[
+          { name: 'Rules', href: '/game/core-system' },
+          { name: 'Mission', href: '#' },
+        ]}
+      />
       <TypographyH1>The Mission</TypographyH1>
       <TypographyP>
         The mission is when the PCs risk their lives for the betterment of their

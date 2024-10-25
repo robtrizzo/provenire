@@ -4,9 +4,12 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
 import { TypographyH1, TypographyP } from '@/components/ui/typography';
+import Breadcrumbs from '@/components/ui/breadcrumbs';
+
 export default function Page() {
   return (
     <>
+      <Breadcrumbs crumbs={[{ name: 'Introduction', href: '#' }]} />
       <TypographyH1>Introduction to Provenire</TypographyH1>
       <TypographyP>
         The word <Donum>Provenire</Donum> is Latin, and has a cluster of

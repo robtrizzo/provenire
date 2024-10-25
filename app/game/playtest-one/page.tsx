@@ -6,10 +6,17 @@ import {
   TypographyP,
   TypographyUnorderedList,
 } from '@/components/ui/typography';
+import Breadcrumbs from '@/components/ui/breadcrumbs';
 
 export default async function Page() {
   return (
     <>
+      <Breadcrumbs
+        crumbs={[
+          { name: 'Playtests', href: '#' },
+          { name: 'Playtest One', href: '#' },
+        ]}
+      />
       <TypographyH1>Playtest One</TypographyH1>
       <TypographyP>
         The playtest will involve character creation and two full cycles of{' '}
@@ -17,9 +24,9 @@ export default async function Page() {
         <span className="italic">mission</span> -{'>'}{' '}
         <span className="italic">churn</span>. You&apos;ll be playing a
         character that you won&apos;t be playing in the main game. But the
-        events of this playtest <i>will</i> be canonical to the story of the main game.
-        So please experiment and push the boundaries of the game, but remember
-        that your choices will linger.
+        events of this playtest <i>will</i> be canonical to the story of the
+        main game. So please experiment and push the boundaries of the game, but
+        remember that your choices will linger.
       </TypographyP>
       <Separator className="my-5" />
       <TypographyH3>Primer</TypographyH3>

@@ -8,10 +8,17 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import heritages from '@/public/heritages.json';
+import Breadcrumbs from '@/components/ui/breadcrumbs';
 
 export default async function Page() {
   return (
     <div>
+      <Breadcrumbs
+        crumbs={[
+          { name: 'Character Creation', href: '/game/character-creation' },
+          { name: 'Heritages', href: '#' },
+        ]}
+      />
       <TypographyH1 className="mb-12">Heritages</TypographyH1>
       {heritages.map((heritage, i) => (
         <div key={i} className="mt-6">

@@ -8,10 +8,17 @@ import {
   TypographyH3,
   TypographyP,
 } from '@/components/ui/typography';
+import Breadcrumbs from '@/components/ui/breadcrumbs';
 
 export default function Page() {
   return (
     <>
+      <Breadcrumbs
+        crumbs={[
+          { name: 'Rules', href: '/game/core-system' },
+          { name: 'Actions & Attributes', href: '#' },
+        ]}
+      />
       <TypographyH1>Actions & Attributes</TypographyH1>
       <TypographyH2>Action Ratings</TypographyH2>
       <TypographyP>

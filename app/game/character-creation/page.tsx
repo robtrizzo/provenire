@@ -9,10 +9,12 @@ import {
   TypographyUnorderedList,
 } from '@/components/ui/typography';
 import archetypes from '@/public/archetypes.json';
+import Breadcrumbs from '@/components/ui/breadcrumbs';
 
 export default async function Page() {
   return (
     <>
+      <Breadcrumbs crumbs={[{ name: 'Character Creation', href: '#' }]} />
       <TypographyH1>Character Creation</TypographyH1>
       <TypographyP>
         <strong>Kingwulf</strong> and his kingdom of Fenrir won long ago.{' '}

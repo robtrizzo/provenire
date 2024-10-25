@@ -11,10 +11,17 @@ import {
 } from '@/components/ui/typography';
 import Blood from '@/components/stats/blood';
 import FactoryMap from '@/components/ui/factory-map';
+import Breadcrumbs from '@/components/ui/breadcrumbs';
 
 export default async function Page() {
   return (
     <>
+      <Breadcrumbs
+        crumbs={[
+          { name: 'Setting', href: '/game' },
+          { name: 'Era 3', href: '#' },
+        ]}
+      />
       <TypographyH1 className="">
         <span className="italic">Provenire</span>, Era 3
       </TypographyH1>

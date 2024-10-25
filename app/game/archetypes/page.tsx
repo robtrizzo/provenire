@@ -18,10 +18,17 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import Breadcrumbs from '@/components/ui/breadcrumbs';
 
 export default async function Page() {
   return (
     <div>
+      <Breadcrumbs
+        crumbs={[
+          { name: 'Character Creation', href: '/game/character-creation' },
+          { name: 'Archetypes', href: '#' },
+        ]}
+      />
       <TypographyH1>Archetypes</TypographyH1>
       <TypographyP>
         Trouble. Defiance. Rebellion. Danger and thrill at the prospect of

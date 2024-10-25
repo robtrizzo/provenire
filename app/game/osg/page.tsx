@@ -15,6 +15,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { Separator } from '@/components/ui/separator';
+import Breadcrumbs from '@/components/ui/breadcrumbs';
 const BorderHeading = ({ children }: { children: React.ReactNode }) => (
   <TypographyH3 className="border-solid border-b-2 border-indigo-700 mb-8 mt-4">
     {children}
@@ -22,7 +23,8 @@ const BorderHeading = ({ children }: { children: React.ReactNode }) => (
 );
 export default function Page() {
   return (
-    <div className="p-6">
+    <div className="p-4">
+      <Breadcrumbs crumbs={[{ name: 'OSG: Twisted Scion', href: '#' }]} />
       <TypographyH1 className="mb-9">Twisted Scion</TypographyH1>
       <main className="md:columns-2">
         <article>

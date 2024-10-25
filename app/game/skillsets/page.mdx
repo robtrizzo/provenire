@@ -13,6 +13,14 @@ import FactoryMap from '@/components/ui/factory-map';
 import HierarchyTree from '@/components/ui/hierarchy-tree';
 import ScornTable from '@/components/ui/scorn-table';
 import SkillsetAbilities from '@/components/ui/skillsetAbilities.tsx'
+import Breadcrumbs from '@/components/ui/breadcrumbs';
+
+<Breadcrumbs
+        crumbs={[
+          { name: 'Character Creation', href: '/game/character-creation' },
+          { name: 'Skillsets', href: '#' },
+        ]}
+      />
 
 # Skillsets
 
@@ -43,7 +51,6 @@ _The factory's every creation leaves behind piles of refuse. What waste do you s
 #### Special Abilities
 
 <SkillsetAbilities skillsetName="Chisel" />
-
 ### Agendas
 
 During The Churn, Chisels are designing, forging, and building new equipment for the crew... if only they have the **materials**. These items are equipable by the crew until they become damaged or lost. If the Chisel has no materials, they can only research new designs.

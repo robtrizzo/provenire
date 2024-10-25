@@ -8,10 +8,17 @@ import {
   TypographyP,
   TypographyUnorderedList,
 } from '@/components/ui/typography';
+import Breadcrumbs from '@/components/ui/breadcrumbs';
 
 export default function Page() {
   return (
     <>
+      <Breadcrumbs
+        crumbs={[
+          { name: 'Rules', href: '#' },
+          { name: 'Core System', href: '#' },
+        ]}
+      />
       <TypographyH1>Core System</TypographyH1>
       <TypographyP className="text-muted-foreground text-sm">
         The Core System section in Blades in the Dark is nearly perfect, so why

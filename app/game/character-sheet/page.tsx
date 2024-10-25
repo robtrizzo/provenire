@@ -55,8 +55,9 @@ import DowntimeActionsAccordion from '@/components/ui/downtime-actions-accordion
 import Crit from '@/components/ui/subsistence/crit/subsistenceCrit';
 import Consequences from '@/components/ui/subsistence/consequences/subsistenceConsequences';
 import StressCheckboxes from '@/components/ui/stress-checkboxes';
+import Breadcrumbs from '@/components/ui/breadcrumbs';
 
-export function Charsheet() {
+export default function Charsheet() {
   const [tab, setTab] = useState('mission');
 
   const [selectedArchetype, setSelectedArchetype] = useState<Archetype>();
@@ -540,6 +541,12 @@ export function Charsheet() {
 
   return (
     <div>
+      <Breadcrumbs
+        crumbs={[
+          { name: 'Character Creation', href: '/game/character-creation' },
+          { name: 'Character Sheet', href: '#' },
+        ]}
+      />
       <div className="flex gap-1 w-full">
         <div className="flex-grow">
           <Label htmlFor="name">Name</Label>
