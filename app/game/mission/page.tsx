@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import {
+  TypographyBlockquote,
   TypographyH1,
   TypographyH2,
   TypographyH3,
@@ -112,6 +113,34 @@ export default async function Page() {
         <strong>conversation</strong> during a mission.
       </TypographyP>
       <TypographyP>
+        PCs will take actions to gain the advantage in the fight and/or overcome
+        their enemies&apos; defenses. As normal, the <strong>Narrator</strong>{' '}
+        will set position and effect, the player picks which of their actions
+        apply to the roll, the <strong>Narrator</strong> describes the outcome
+        and consequences, and the cycle repeats.
+      </TypographyP>
+      <TypographyH3>Initiative</TypographyH3>
+      <TypographyP>
+        Combat does not have rounds or a strict turn order like traditional d20
+        tabletop games. Each player has an initiative tracker. Each time you
+        take an action, clear your tracker. Each time another PC takes an action
+        in combat, mark 1 cell in your initiative tracker (the Narrator&apos;s
+        actions don&apos;t count). Once it&apos;s full, you get to take whatever
+        action you want, no matter the circumstances.
+      </TypographyP>
+      <TypographyBlockquote>
+        Instead of adding more structure to combat as a whole, this initiative
+        rule gives a way for players who have been waiting patiently to insert
+        themselves into the action.
+      </TypographyBlockquote>
+      <TypographyP>
+        The Narrator has an initiative tracker as well. This represents the
+        countdown to <i>something bad</i> happening, which gets cleared every
+        time there&apos;s a lull in the action and the PC&apos;s foes take the
+        opportunity to act.
+      </TypographyP>
+      <TypographyH3>Defenses</TypographyH3>
+      <TypographyP>
         Often the objective of the PCs during a combat is not strictly to kill
         their opponents, but this is what the rules of combat give structure to.
         NPCs or gangs have a list of <strong>defenses</strong> that the PCs must
@@ -124,17 +153,18 @@ export default async function Page() {
         the Narrator.
       </TypographyP>
       <TypographyP>
+        The Narrator will tell the players what each enemy&apos;s defenses are
+        (with rare exceptions). In the event of the players not knowing an
+        enemy&apos;s defenses, they can attempt to <strong>Finish Them</strong>{' '}
+        and find out what stops them from succeeding - that&apos;s the
+        enemy&apos;s defense.
+      </TypographyP>
+      <TypographyH3>Weaknesses</TypographyH3>
+      <TypographyP>
         Some enemies may also have <strong>weaknesses</strong> which can be
         exploited by the PCs. Similar to <strong>defenses</strong>, there is no
         set list, nor does any have a predefined benefit or approach it enables
         for the PCs.
-      </TypographyP>
-      <TypographyP>
-        During combat, the PCs will take actions to gain the advantage in the
-        fight and/or overcome their enemies&apos; defenses. As normal, the{' '}
-        <strong>Narrator</strong> will set position and effect, the player picks
-        which of their actions apply to the roll, the <strong>Narrator</strong>{' '}
-        describes the outcome and consequences, and the cycle repeats.
       </TypographyP>
       <TypographyH3>Finish Them</TypographyH3>
       <TypographyP>

@@ -18,7 +18,12 @@ export default async function Page() {
           <TypographyH3 id={heritage.name} className="text-sky-500">
             {heritage.name}
           </TypographyH3>
-          <TypographyP>{heritage.remembrance}</TypographyP>
+          <span className="text-lg text-muted-foreground">
+            {heritage.shortDescription}
+          </span>
+          <TypographyP className="text-md italic">
+            {heritage.remembrance}
+          </TypographyP>
           <Separator className="my-3" />
         </div>
       ))}

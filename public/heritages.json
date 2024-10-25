@@ -1,48 +1,67 @@
 [
   {
     "name": "Anidinian",
-    "remembrance": "What special marriage traditions do you carry on?"
+    "remembrance": "What special marriage traditions do you carry on?",
+    "shortDescription": "Power, marriage, Amati"
   },
   {
     "name": "Argosi",
-    "remembrance": "How do you value charity while you have nothing to give?"
+    "remembrance": "How do you value charity while you have nothing to give?",
+    "shortDescription": "Charity, gratitude, purity"
   },
   {
     "name": "Bwarhein",
-    "remembrance": "Your people crave revenge. Do you? How do you fantasize about it?"
+    "remembrance": "Your people crave revenge. Do you? How do you fantasize about it?",
+    "shortDescription": "Vengeance, rage, bestiality"
   },
   {
     "name": "Cumerian",
-    "remembrance": "What is your way of defeating fear and seeking glory?"
+    "remembrance": "What is your way of defeating fear and seeking glory?",
+    "shortDescription": "Fearlessness and fearsomeness"
   },
   {
     "name": "Gredoran",
-    "remembrance": "Which metal in the factory is most holy? How do you worship it?"
+    "remembrance": "Which metal in the factory is most holy? How do you worship it?",
+    "shortDescription": "Metal, beauty, sacrifice"
   },
-  { "name": "Heian", "remembrance": "Have you found a way to have honor?" },
+  {
+    "name": "Heian",
+    "remembrance": "Have you found a way to have honor?",
+    "shortDescription": "Honor, agility, Draconis"
+  },
   {
     "name": "Kilder",
-    "remembrance": "Your people would have assigned you a role at birth. How does that make you feel in the factory?"
+    "remembrance": "Your people would have assigned you a role at birth. How does that make you feel in the factory?",
+    "shortDescription": "Discipline, resilience, philosophy"
   },
-  { "name": "Kiposi", "remembrance": "What sport do you play?" },
+  {
+    "name": "Kiposi",
+    "remembrance": "What sport do you play?",
+    "shortDescription": "Agriculture, sport, liberty"
+  },
   {
     "name": "Narscillian",
-    "remembrance": "What do you sing to remember your ancestors?"
+    "remembrance": "What do you sing to remember your ancestors?",
+    "shortDescription": "Music, duty, community"
   },
   {
     "name": "Rathi",
-    "remembrance": "Which of the King's three beasts do you identify with? Which one are you?"
+    "remembrance": "Which of the King's three beasts do you identify with? Which one are you?",
+    "shortDescription": "Serve Kingwulf, dominate all others"
   },
   {
     "name": "Scionic",
-    "remembrance": "Locum will save us all. How do you pray for them?"
+    "remembrance": "Locum will save us all. How do you pray for them?",
+    "shortDescription": "Suffering, servitude, Locum"
   },
   {
     "name": "Ulgatian",
-    "remembrance": "What is the world's greatest evil? How do you fight it?"
+    "remembrance": "What is the world's greatest evil? How do you fight it?",
+    "shortDescription": "Resistance, blood, Jira"
   },
   {
     "name": "Yaman",
-    "remembrance": "What oaths have you sworn? Have you ever broken one?"
+    "remembrance": "What oaths have you sworn? Have you ever broken one?",
+    "shortDescription": "Pacifism, reverence, order"
   }
 ]

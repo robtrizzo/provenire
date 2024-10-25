@@ -3,12 +3,12 @@ export default function DiveRightIn() {
   return (
     <div>
       <TypographyP>
-        At the start of the mission or during the mission when there&apos;s a
-        lul in the action, the Adventurer can make an{' '}
-        <strong>engagement roll</strong>. If they do, they explain their
-        approach and launch the crew into action. If they do, they mark{' '}
-        <strong>1 xp</strong>. If they end up in a desperate position, they mark
-        a unique condition: <strong>Frantic</strong>.
+        During the mission when there&apos;s a lull in the action, the
+        Adventurer can make an <strong>engagement roll</strong> with their{' '}
+        <strong>Initiate</strong> action. If they do, they explain their
+        approach, launch the crew into action, and mark <strong>1 xp</strong>.
+        If they end up in a desperate position, they mark a unique condition:{' '}
+        <strong>Frantic</strong> (this condition may also be marked as normal).
       </TypographyP>
       <TypographyP>
         <strong>Frantic</strong>: You cannot <strong>relax</strong> or{' '}

@@ -500,13 +500,13 @@ export function Charsheet() {
         title: (
           <div className="flex gap-1">
             <span className="mt-1">Rolled {attribute}</span>
-            <Die roll={r1} className="h-5 w-5" />
-            <Die roll={r2} className="h-5 w-5" />
+            <Die roll={r1} className="h-6 w-6" />
+            <Die roll={r2} className="h-6 w-6" />
           </div>
         ),
         description: (
           <div className="flex gap-4">
-            <Die roll={roll} className="h-5 w-5" />
+            <Die roll={roll} className="h-6 w-6" />
             <span className="mt-1">Take {6 - roll} stress.</span>
           </div>
         ),
@@ -525,13 +525,13 @@ export function Charsheet() {
         <div className="flex gap-1">
           <span className="mt-1">Rolled {attribute}</span>
           {rolls.map((r, i) => (
-            <Die key={i} roll={r} className="h-5 w-5 text-red-500" />
+            <Die key={i} roll={r} className="h-6 w-6 text-red-500" />
           ))}
         </div>
       ),
       description: (
         <div className="flex gap-4">
-          <Die roll={roll} className="h-5 w-5 text-red-500" />
+          <Die roll={roll} className="h-6 w-6 text-red-500" />
           <span className="mt-1">Take {6 - roll} stress.</span>
         </div>
       ),
