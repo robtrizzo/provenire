@@ -56,6 +56,8 @@ import Crit from '@/components/ui/subsistence/crit/subsistenceCrit';
 import Consequences from '@/components/ui/subsistence/consequences/subsistenceConsequences';
 import StressCheckboxes from '@/components/ui/stress-checkboxes';
 import Breadcrumbs from '@/components/ui/breadcrumbs';
+import SaveCharacter from './(components)/save-character';
+import LoadCharacter from './(components)/load-character';
 
 export default function Charsheet() {
   const [tab, setTab] = useState('mission');
@@ -145,6 +147,12 @@ export default function Charsheet() {
   const [bonusDice, setBonusDice] = useState<number>(0);
   const [fortuneDice, setFortuneDice] = useState<number>(0);
 
+  const [characterLoaded, setCharacterLoaded] = useState<Date>(new Date());
+
+  function triggerCharacterLoaded() {
+    setCharacterLoaded(new Date());
+  }
+
   useEffect(() => {
     if (window === undefined) return;
     // read the hash and set the tab
@@ -190,7 +198,7 @@ export default function Charsheet() {
       setStarvation(parsed.starvation || 0);
       setSubsist(parsed.subsist || 0);
     }
-  }, []);
+  }, [characterLoaded]);
 
   // every 0.1 seconds, check if there are changes and save them to local storage and the server
   useEffect(() => {
@@ -541,12 +549,18 @@ export default function Charsheet() {
 
   return (
     <div>
-      <Breadcrumbs
-        crumbs={[
-          { name: 'Character Creation', href: '/game/character-creation' },
-          { name: 'Character Sheet', href: '#' },
-        ]}
-      />
+      <div className="flex justify-between">
+        <Breadcrumbs
+          crumbs={[
+            { name: 'Character Creation', href: '/game/character-creation' },
+            { name: 'Character Sheet', href: '#' },
+          ]}
+        />
+        <div className="flex gap-2">
+          <SaveCharacter initialName={name} />
+          <LoadCharacter triggerCharacterLoaded={triggerCharacterLoaded} />
+        </div>
+      </div>
       <div className="flex gap-1 w-full">
         <div className="flex-grow">
           <Label htmlFor="name">Name</Label>

@@ -229,7 +229,7 @@ export default async function HierarchyTree() {
           </div>
           <div className="w-36 h-[672px] flex items-center justify-center">
             <div className="h-36 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
-              <TypographyH4 className="text-center">
+              <TypographyH4 className="text-center leading-[1.1]">
                 THEODORIC <span className="text-xs">the</span> TORTURER
               </TypographyH4>
               <TypographyP className="text-xs text-center">

@@ -6,7 +6,7 @@ export default function Vengeful() {
       <span className="italic">
         You got payback against someone who harmed you or someone you care about
       </span>
-      . If your crew helped you getj payback, mark <strong>+1 rep</strong>.
+      . If your crew helped you get payback, mark <strong>+1 rep</strong>.
     </TypographyP>
   );
 }

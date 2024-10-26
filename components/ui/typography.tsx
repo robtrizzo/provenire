@@ -110,7 +110,9 @@ export function TypographyBlockquote({
   children: React.ReactNode;
 }) {
   return (
-    <blockquote className="mt-6 border-l-2 pl-6 italic">{children}</blockquote>
+    <blockquote className="mt-6 border-l-2 pl-6 font-serif italic">
+      {children}
+    </blockquote>
   );
 }
 export function TypographyInlineCode({
@@ -130,7 +132,9 @@ export function TypographyUnorderedList({
 }: {
   children: React.ReactNode;
 }) {
-  return <ul className="mb-4 ml-6 list-disc [&>li]:mt-2">{children}</ul>;
+  return (
+    <ul className="mb-4 ml-6 list-disc [&>li]:mt-2 font-serif">{children}</ul>
+  );
 }
 
 export function TypographyOrderedList({
@@ -138,5 +142,9 @@ export function TypographyOrderedList({
 }: {
   children: React.ReactNode;
 }) {
-  return <ol className="mb-4 ml-6 list-decimal [&>li]:mt-2">{children}</ol>;
+  return (
+    <ol className="mb-4 ml-6 list-decimal [&>li]:mt-2 font-serif">
+      {children}
+    </ol>
+  );
 }
