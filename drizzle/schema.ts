@@ -18,7 +18,12 @@ export const MessagesTable = pgTable('messages', {
   room: uuid('room').notNull(),
 });
 
-export const USER_ROLE = pgEnum('user_role', ['user', 'alpha-tester', 'admin']);
+export const USER_ROLE = pgEnum('user_role', [
+  'user',
+  'alpha-tester',
+  'player',
+  'admin',
+]);
 
 export const UsersTable = pgTable('users', {
   id: uuid('id').primaryKey(),
@@ -74,5 +79,21 @@ export const roomUsersRelations = relations(RoomUsersTable, ({ one }) => ({
     fields: [RoomUsersTable.roomId],
     references: [RoomsTable.id],
     relationName: 'room',
+  }),
+}));
+
+export const CharactersTable = pgTable('characters', {
+  id: uuid('id').primaryKey(),
+  name: text('name').notNull(),
+  path: text('path').notNull(),
+  createdAt: timestamp('createdAt'),
+  userId: uuid('userId').references(() => UsersTable.id),
+});
+
+export const characterUserRelations = relations(CharactersTable, ({ one }) => ({
+  user: one(UsersTable, {
+    fields: [CharactersTable.userId],
+    references: [UsersTable.email],
+    relationName: 'user',
   }),
 }));

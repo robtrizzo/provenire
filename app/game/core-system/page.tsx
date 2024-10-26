@@ -199,7 +199,7 @@ export default function Page() {
           </span>
         </li>
         <li>
-          <strong>Group Roll:</strong> Ask of anyone else in the crew wants to
+          <strong>Group Roll:</strong> Ask if anyone else in the crew wants to
           make a roll with you. If they do, you decide who the leader is; the
           leader marks <strong>1 xp</strong>. Then everyone separately rolls the
           same action as the leader (or at least must include the same universal

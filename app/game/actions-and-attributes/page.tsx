@@ -52,7 +52,7 @@ export default function Page() {
         the <strong>action roll</strong> depend on your character&apos;s
         position. There are three positions: <strong>controlled</strong>,{' '}
         <strong>risky</strong>, and <strong>desperate</strong>. If you&apos;re
-        in a<strong>controlled</strong> position, the possible consequences are
+        in a <strong>controlled</strong> position, the possible consequences are
         less serious. If you’re in a <strong>desperate</strong> position, the
         consequences can be severe. If you&apos;re somewhere in between,
         it&apos;s <strong>risky</strong>—usually considered the

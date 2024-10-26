@@ -3,6 +3,7 @@ import {
   UsersTable,
   RoomsTable,
   MessagesTable,
+  CharactersTable,
 } from '@/drizzle/schema';
 
 export type User = typeof UsersTable.$inferSelect;
@@ -27,3 +28,6 @@ type Roll = {
 export type Message = typeof MessagesTable.$inferSelect & { roll: Roll };
 export type NewMessage = typeof MessagesTable.$inferInsert;
 export type MessageWithPopulatedUser = Message & { user: User };
+
+export type NewCharacter = typeof CharactersTable.$inferInsert;
+export type Character = typeof CharactersTable.$inferSelect;

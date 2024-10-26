@@ -5,9 +5,19 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 import { TypographyH4 } from '@/components/ui/typography';
 import { CloudDownload, HardDriveUpload, X, FileUp } from 'lucide-react';
 import { Close } from '@radix-ui/react-popover';
+import { useQuery } from '@tanstack/react-query';
+import { Character } from '@/types/db';
 
 export default function LoadCharacter({
   triggerCharacterLoaded,
@@ -15,6 +25,10 @@ export default function LoadCharacter({
   triggerCharacterLoaded: () => void;
 }) {
   const [open, setOpen] = useState(false);
+
+  function closePopover() {
+    setOpen(false);
+  }
 
   function loadFromDevice() {
     const input = document.createElement('input');
@@ -34,7 +48,7 @@ export default function LoadCharacter({
         }
         localStorage.setItem('charsheet', data.toString());
         triggerCharacterLoaded();
-        setOpen(false);
+        closePopover();
       };
       reader.readAsText(file);
     });
@@ -58,10 +72,10 @@ export default function LoadCharacter({
             <HardDriveUpload />
             Load from Device
           </Button>
-          <Button variant="outline" disabled={true}>
-            <CloudDownload />
-            Load from Cloud
-          </Button>
+          <LoadFromCloud
+            triggerCharacterLoaded={triggerCharacterLoaded}
+            closePopover={closePopover}
+          />
           <Close asChild>
             <Button variant="destructive" className="text-sm">
               <X />
@@ -74,5 +88,100 @@ export default function LoadCharacter({
         </Close>
       </PopoverContent>
     </Popover>
+  );
+}
+
+function LoadFromCloud({
+  triggerCharacterLoaded,
+  closePopover,
+}: {
+  triggerCharacterLoaded: () => void;
+  closePopover: () => void;
+}) {
+  const [open, setOpen] = useState(false);
+  function closeDialog() {
+    setOpen(false);
+  }
+  const { data, isPending } = useQuery({
+    queryKey: ['messages'],
+    queryFn: async () => {
+      const response = await fetch('/api/characters', { cache: 'no-cache' });
+      return response.json();
+    },
+    staleTime: 100,
+  });
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button variant="outline">
+          <CloudDownload />
+          Load from Cloud
+        </Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Select a character</DialogTitle>
+          <DialogDescription>
+            This will overwrite your current character!
+          </DialogDescription>
+        </DialogHeader>
+        {isPending && <div>Loading...</div>}
+        {data?.error && <div>Error: {data.error}</div>}
+        <div className="flex flex-col gap-2"></div>
+        {data?.characters?.map((char: Character) => (
+          <LoadCharacterButton
+            key={char.id}
+            char={char}
+            triggerCharacterLoaded={triggerCharacterLoaded}
+            closeDialog={closeDialog}
+            closePopover={closePopover}
+          />
+        ))}
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+function LoadCharacterButton({
+  char,
+  triggerCharacterLoaded,
+  closeDialog,
+  closePopover,
+}: {
+  char: Character;
+  triggerCharacterLoaded: () => void;
+  closeDialog: () => void;
+  closePopover: () => void;
+}) {
+  let formattedDate = '';
+  if (char.createdAt) {
+    const date = new Date(char.createdAt);
+    formattedDate = `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+  }
+
+  async function loadCharacter() {
+    const response = await fetch(char.path);
+    const data = await response.json();
+    localStorage.setItem('charsheet', JSON.stringify(data));
+    triggerCharacterLoaded();
+    closeDialog();
+    closePopover();
+  }
+
+  return (
+    <Button
+      key={char.id}
+      variant="outline"
+      className="flex justify-between"
+      onClick={async () => await loadCharacter()}
+    >
+      {char.name}
+      {char.createdAt && (
+        <span className="text-muted-foreground">
+          (saved at {formattedDate})
+        </span>
+      )}
+    </Button>
   );
 }

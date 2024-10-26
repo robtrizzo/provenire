@@ -11,15 +11,23 @@ import {
   CloudUpload,
   HardDriveDownload,
   X,
+  Loader,
   Save as SaveIcon,
 } from 'lucide-react';
 import { Close } from '@radix-ui/react-popover';
+import { useMutation } from '@tanstack/react-query';
+
 export default function SaveCharacter({
   initialName,
 }: {
   initialName: string;
 }) {
   const [name, setName] = useState(initialName);
+  const [open, setOpen] = useState(false);
+
+  function closePopover() {
+    setOpen(false);
+  }
 
   function saveToDevice() {
     const data = localStorage.getItem('charsheet');
@@ -34,8 +42,29 @@ export default function SaveCharacter({
     a.click();
   }
 
+  const { mutateAsync: saveToCloud, isPending } = useMutation({
+    mutationFn: async () => {
+      const data = localStorage.getItem('charsheet');
+      if (!data) {
+        return;
+      }
+      const file = new File([data], `${name}.json`, { type: 'text/json' });
+      const response = await fetch(`/api/characters/upload?filename=${name}`, {
+        method: 'POST',
+        body: file,
+      });
+      return response.json();
+    },
+    onError: (error) => {
+      console.error('Error saving character to cloud', error);
+    },
+    onSuccess: () => {
+      closePopover();
+    },
+  });
+
   return (
-    <Popover>
+    <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button variant="secondary" className="text-sm">
           <SaveIcon />
@@ -61,8 +90,14 @@ export default function SaveCharacter({
             <HardDriveDownload />
             Save to Device
           </Button>
-          <Button variant="outline" disabled={true}>
-            <CloudUpload />
+          <Button
+            variant="outline"
+            disabled={isPending}
+            onClick={async () => {
+              await saveToCloud();
+            }}
+          >
+            {isPending ? <Loader className="animate-spin" /> : <CloudUpload />}
             Save to Cloud
           </Button>
         </div>

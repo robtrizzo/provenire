@@ -70,7 +70,7 @@ export default function DowntimeActionsAccordion({
             Some harm can&apos;t be healed by normal means. Examples incude
             &quot;hungry&quot; and &quot;tired&quot;. These can have their
             levels reduced by recovery, but require specific actions to heal
-            engirely.
+            entirely.
           </TypographyP>
         </AccordionContent>
       </AccordionItem>
