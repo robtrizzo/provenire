@@ -98,7 +98,11 @@ const data = {
     {
       title: 'Playtests',
       url: '#',
-      items: [{ title: 'Playtest One', url: '/game/playtest-one' }],
+      items: [
+        { title: 'Playtest One', url: '/game/playtest-one' },
+        { title: 'Playtest Two', url: '/game/playtest-two' },
+        { title: 'Playtest Three', url: '/game/playtest-three' },
+      ],
     },
     {
       title: 'OSG: Twisted Scion',
