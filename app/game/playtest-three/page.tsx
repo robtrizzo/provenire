@@ -83,7 +83,7 @@ export default async function Page() {
       <TypographyP>
         Next, pick a{' '}
         <span className="underline text-indigo-500">
-          <Link href="/game/archetypes">skillset</Link>
+          <Link href="/game/skillsets">skillset</Link>
         </span>{' '}
         and answer its questions.
       </TypographyP>
