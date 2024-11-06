@@ -36,6 +36,7 @@ import {
   CharacterAttributes,
   Bonds,
   Loadout,
+  Item,
 } from '@/types/game';
 import { Button } from '@/components/ui/button';
 import { BuildupCheckboxes } from '@/components/ui/buildup-checkboxes';
@@ -58,6 +59,7 @@ import StressCheckboxes from '@/components/ui/stress-checkboxes';
 import Breadcrumbs from '@/components/ui/breadcrumbs';
 import SaveCharacter from './(components)/save-character';
 import LoadCharacter from './(components)/load-character';
+import ItemsTable from '@/app/game/character-sheet/(components)/items-table';
 
 export default function Charsheet() {
   const [tab, setTab] = useState('mission');
@@ -132,6 +134,7 @@ export default function Charsheet() {
   const [sArmor, setSArmor] = useState<boolean>(false);
 
   const [loadout, setLoadout] = useState<Loadout>();
+  const [items, setItems] = useState<Item[]>([]);
 
   const [starvation, setStarvation] = useState<number>(0);
   const [subsist, setSubsist] = useState<number>(0);
@@ -197,6 +200,8 @@ export default function Charsheet() {
       }
       setStarvation(parsed.starvation || 0);
       setSubsist(parsed.subsist || 0);
+      setLoadout(parsed.loadout);
+      setItems(parsed.items);
     }
   }, [characterLoaded]);
 
@@ -234,6 +239,8 @@ export default function Charsheet() {
           bonds,
           starvation,
           subsist,
+          loadout,
+          items,
         };
         localStorage.setItem('charsheet', JSON.stringify(data));
         // TODO save to server
@@ -259,6 +266,20 @@ export default function Charsheet() {
     } else {
       setQuestions(new Map(questions.set(key, value)));
     }
+    handleDebounceChange();
+  }
+
+  function handleUpdateItemName(index: number, value: string) {
+    const newItems = [...items];
+    newItems[index] = { ...newItems[index], name: value };
+    setItems(newItems);
+    handleDebounceChange();
+  }
+  function handleUpdateItemSlots(index: number, value: number) {
+    const newValue = value < 0 ? 0 : value;
+    const newItems = [...items];
+    newItems[index] = { ...newItems[index], slots: newValue };
+    setItems(newItems);
     handleDebounceChange();
   }
 
@@ -1823,6 +1844,7 @@ export default function Charsheet() {
                       checked={loadout?.name === 'Light'}
                       onCheckedChange={() => {
                         setLoadout(loadouts[0]);
+                        setChanges(true);
                       }}
                     />{' '}
                     Light
@@ -1832,6 +1854,7 @@ export default function Charsheet() {
                       checked={loadout?.name === 'Normal'}
                       onCheckedChange={() => {
                         setLoadout(loadouts[1]);
+                        setChanges(true);
                       }}
                     />{' '}
                     Normal
@@ -1841,11 +1864,50 @@ export default function Charsheet() {
                       checked={loadout?.name === 'Heavy'}
                       onCheckedChange={() => {
                         setLoadout(loadouts[2]);
+                        setChanges(true);
                       }}
                     />{' '}
                     Heavy
                   </div>
                 </div>
+                <ItemsTable
+                  className="mt-4"
+                  items={items}
+                  loadout={loadout}
+                  handleChangeItemName={handleUpdateItemName}
+                  handleChangeItemSlots={handleUpdateItemSlots}
+                  handleAddItem={() => {
+                    if (!items || items.length === 0) {
+                      setItems([
+                        {
+                          name: '',
+                          slots: 1,
+                        },
+                      ]);
+                    } else {
+                      setItems([
+                        ...items,
+                        {
+                          name: '',
+                          slots: 1,
+                        },
+                      ]);
+                    }
+                    setChanges(true);
+                  }}
+                  handleAddBasicItem={(item: Item) => {
+                    if (!items || items.length === 0) {
+                      setItems([item]);
+                    } else {
+                      setItems([...items, item]);
+                    }
+                    setChanges(true);
+                  }}
+                  handleRemoveItem={(index: number) => {
+                    setItems(items.filter((_, i) => i !== index));
+                    setChanges(true);
+                  }}
+                />
               </div>
             </div>
           </div>

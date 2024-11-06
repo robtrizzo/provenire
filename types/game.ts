@@ -95,3 +95,8 @@ export type Loadout = {
   load: number;
   desc: string;
 };
+
+export type Item = {
+  name: string;
+  slots: number;
+};
