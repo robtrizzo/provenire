@@ -104,7 +104,7 @@ export default async function Page() {
         <span className="underline text-amber-700">
           <Link href="/game/archetypes">archetype</Link>
         </span>{' '}
-        but similar to your background&apos;s questions - don&apost; answer your
+        but similar to your background&apos;s questions - don&apos;t answer your
         archetype questions either.
       </TypographyP>
       <TypographyP>
