@@ -59,6 +59,7 @@ import StressCheckboxes from '@/components/ui/stress-checkboxes';
 import Breadcrumbs from '@/components/ui/breadcrumbs';
 import SaveCharacter from './(components)/save-character';
 import LoadCharacter from './(components)/load-character';
+import ClearCharacter from './(components)/clear-character';
 import ItemsTable from '@/app/game/character-sheet/(components)/items-table';
 
 export default function Charsheet() {
@@ -202,6 +203,55 @@ export default function Charsheet() {
       setSubsist(parsed.subsist || 0);
       setLoadout(parsed.loadout);
       setItems(parsed.items);
+    } else {
+      // if there is no data, set the default values
+      setName('');
+      setAlias('');
+      setUnivQuestions(['', '', '', '', '']);
+      setBloodshedQ('');
+      setSelectedArchetype(undefined);
+      setSelectedSkillset(undefined);
+      setSelectedBackground(undefined);
+      setSelectedHeritage(undefined);
+      setQuestions(new Map());
+      setSkillsetXp(0);
+      setHeartXp(0);
+      setInstinctXp(0);
+      setMachinaXp(0);
+      setAttributes({
+        Heart: { Defy: [0, 0], Persuade: [0, 0] },
+        Instinct: { Charge: [0, 0], Prowl: [0, 0] },
+        Machina: { Suggest: [0, 0], Survey: [0, 0] },
+      });
+      setConditions([]);
+      setStress(0);
+      setConditionRecovery(0);
+      setHealing(0);
+      setHarm3('');
+      setHarm2(['', '']);
+      setHarm1(['tired', '']);
+      setArmor(false);
+      setHArmor(false);
+      setSArmor(false);
+      setAbilities([]);
+      setBonds({
+        Personal: [
+          { name: '', score: [0, 0] },
+          { name: '', score: [0, 0] },
+        ],
+        Familial: [
+          { name: '', score: [0, 0] },
+          { name: '', score: [0, 0] },
+        ],
+        Professional: [
+          { name: '', score: [0, 0] },
+          { name: '', score: [0, 0] },
+        ],
+      });
+      setStarvation(0);
+      setSubsist(0);
+      setLoadout(undefined);
+      setItems([]);
     }
   }, [characterLoaded]);
 
@@ -580,6 +630,7 @@ export default function Charsheet() {
         <div className="flex gap-2">
           <SaveCharacter initialName={name} />
           <LoadCharacter triggerCharacterLoaded={triggerCharacterLoaded} />
+          <ClearCharacter triggerCharacterLoaded={triggerCharacterLoaded} />
         </div>
       </div>
       <div className="flex gap-1 w-full">
