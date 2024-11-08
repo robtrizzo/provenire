@@ -163,7 +163,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarGroup className="mt-auto">
           <SidebarMenu>
             <SidebarMenuItem>
-              <div className="flex justify-end">
+              <div className="relative flex justify-end">
+                <p className="absolute top-2 left-2 text-sm text-muted-foreground">
+                  Toggle sidebar with{' '}
+                  <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
+                    <span className="text-xs">⌘</span>B
+                  </kbd>
+                </p>
                 <ModeToggle />
               </div>
             </SidebarMenuItem>

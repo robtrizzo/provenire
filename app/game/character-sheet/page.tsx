@@ -61,6 +61,7 @@ import SaveCharacter from './(components)/save-character';
 import LoadCharacter from './(components)/load-character';
 import ClearCharacter from './(components)/clear-character';
 import ItemsTable from '@/app/game/character-sheet/(components)/items-table';
+import BondInput from './(components)/bond-input';
 
 export default function Charsheet() {
   const [tab, setTab] = useState('mission');
@@ -148,6 +149,9 @@ export default function Charsheet() {
 
   const [rollLeft, setRollLeft] = useState<string>('');
   const [rollRight, setRollRight] = useState<string>('');
+  const [resistanceRoll, setResistanceRoll] = useState<
+    'Heart' | 'Instinct' | 'Machina' | ''
+  >('');
   const [bonusDice, setBonusDice] = useState<number>(0);
   const [fortuneDice, setFortuneDice] = useState<number>(0);
 
@@ -391,17 +395,17 @@ export default function Charsheet() {
         variant: 'grid',
         // @ts-ignore
         title: (
-          <div className="flex gap-1">
+          <div className="flex items-center gap-1">
             <span className="mt-1">
               Rolled {action1} + {action2}
             </span>
-            <Die roll={r1} className="h-5 w-5" />
-            <Die roll={r2} className="h-5 w-5" />
+            <Die roll={r1} className="h-10 w-10" />
+            <Die roll={r2} className="h-10 w-10" />
           </div>
         ),
         description: (
-          <div className="flex gap-4">
-            <Die roll={result} className="h-5 w-5" />
+          <div className="flex gap-4 items-center">
+            <Die roll={result} className="h-10 w-10" />
             <span className="mt-1">{resultText}</span>
           </div>
         ),
@@ -463,40 +467,40 @@ export default function Charsheet() {
       variant: 'grid',
       // @ts-ignore
       title: (
-        <div className="flex items-start gap-1">
+        <div className="flex items-center flex-wrap gap-1">
           <span className="mt-1">
             Rolled {action1}
             {action2 ? ` + ${action2}` : ''}
           </span>
           {redRolls.map((r, i) => (
-            <Die key={i} roll={r} className="h-5 w-5 text-red-500" />
+            <Die key={i} roll={r} className="h-8 w-8 text-red-800" />
           ))}
           {blueRolls.map((r, i) => (
-            <Die key={i} roll={r} className="h-5 w-5 text-blue-500" />
+            <Die key={i} roll={r} className="h-8 w-8 text-blue-800" />
           ))}
         </div>
       ),
       description: (
-        <div className="flex gap-4">
+        <div className="flex items-center gap-4">
           {crit ? (
             [
               redRolls
                 .filter((r) => r === 6)
                 .map((r, i) => (
-                  <Die key={i} roll={r} className="h-5 w-5 text-red-500" />
+                  <Die key={i} roll={r} className="h-10 w-10 text-red-400" />
                 )),
               blueRolls
                 .filter((r) => r === 6)
                 .map((r, i) => (
-                  <Die key={i} roll={r} className="h-5 w-5 text-blue-500" />
+                  <Die key={i} roll={r} className="h-10 w-10 text-blue-400" />
                 )),
             ]
           ) : (
             <Die
               roll={result}
               className={cn(
-                'h-5 w-5',
-                blueHigher ? 'text-blue-500' : 'text-red-500'
+                'h-10 w-10',
+                blueHigher ? 'text-blue-400' : 'text-red-400'
               )}
             />
           )}
@@ -578,15 +582,15 @@ export default function Charsheet() {
         variant: 'grid',
         // @ts-ignore
         title: (
-          <div className="flex gap-1">
+          <div className="flex items-center gap-1">
             <span className="mt-1">Rolled {attribute}</span>
-            <Die roll={r1} className="h-6 w-6" />
-            <Die roll={r2} className="h-6 w-6" />
+            <Die roll={r1} className="h-10 w-10" />
+            <Die roll={r2} className="h-10 w-10" />
           </div>
         ),
         description: (
-          <div className="flex gap-4">
-            <Die roll={roll} className="h-6 w-6" />
+          <div className="flex items-center gap-4">
+            <Die roll={roll} className="h-10 w-10" />
             <span className="mt-1">Take {6 - roll} stress.</span>
           </div>
         ),
@@ -602,16 +606,16 @@ export default function Charsheet() {
       variant: 'grid',
       // @ts-ignore
       title: (
-        <div className="flex gap-1">
+        <div className="flex items-center gap-1">
           <span className="mt-1">Rolled {attribute}</span>
           {rolls.map((r, i) => (
-            <Die key={i} roll={r} className="h-6 w-6 text-red-500" />
+            <Die key={i} roll={r} className="h-10 w-10 text-red-800" />
           ))}
         </div>
       ),
       description: (
-        <div className="flex gap-4">
-          <Die roll={roll} className="h-6 w-6 text-red-500" />
+        <div className="flex items-center gap-4">
+          <Die roll={roll} className="h-10 w-10 text-red-400" />
           <span className="mt-1">Take {6 - roll} stress.</span>
         </div>
       ),
@@ -627,13 +631,13 @@ export default function Charsheet() {
             { name: 'Character Sheet', href: '#' },
           ]}
         />
-        <div className="flex gap-2">
+        <div className="flex gap-2 mt-5">
           <SaveCharacter initialName={name} />
           <LoadCharacter triggerCharacterLoaded={triggerCharacterLoaded} />
           <ClearCharacter triggerCharacterLoaded={triggerCharacterLoaded} />
         </div>
       </div>
-      <div className="flex gap-1 w-full">
+      <div className="flex gap-1 w-full mt-1">
         <div className="flex-grow">
           <Label htmlFor="name">Name</Label>
           <Input
@@ -1553,7 +1557,7 @@ export default function Charsheet() {
                       }}
                       className="flex items-center gap-2"
                     >
-                      <Dices /> Roll
+                      <Dices /> Action
                     </Button>
                     <Select
                       value={rollRight}
@@ -1614,26 +1618,31 @@ export default function Charsheet() {
                     </Select>
                   </div>
                   <div className="flex gap-4">
-                    <Select>
+                    <Select
+                      value={resistanceRoll}
+                      onValueChange={(
+                        value: 'Heart' | 'Instinct' | 'Machina' | ''
+                      ) => {
+                        setResistanceRoll(value);
+                      }}
+                    >
                       <SelectTrigger>
-                        <SelectValue placeholder="Position" />
+                        <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="controlled">Controlled</SelectItem>
-                        <SelectItem value="risky">Risky</SelectItem>
-                        <SelectItem value="desperate">Desperate</SelectItem>
+                        <SelectItem value="Heart">Heart</SelectItem>
+                        <SelectItem value="Instinct">Instinct</SelectItem>
+                        <SelectItem value="Machina">Machina</SelectItem>
                       </SelectContent>
                     </Select>
-                    <Select>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Effect" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="great">Great</SelectItem>
-                        <SelectItem value="standard">Standard</SelectItem>
-                        <SelectItem value="limited">Limited</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <Button
+                      onClick={() => {
+                        if (!resistanceRoll) return;
+                        rollAttribute(resistanceRoll, 'mission');
+                      }}
+                    >
+                      <Dices /> Resistance
+                    </Button>
                   </div>
                   <div className="flex gap-4 justify-between flex-wrap">
                     <div className="flex gap-4">
@@ -1749,12 +1758,12 @@ export default function Charsheet() {
                         />
                       )
                     )}
-                    <div className="flex-shrink-0 ml-auto basis-[100px] border-[1px] border-border rounded-md p-1 flex items-center select-none">
+                    <div className="flex-shrink-0 ml-auto basis-[120px] border-[1px] border-border rounded-md p-1 flex items-center select-none">
                       <Clock
                         key={`conditionRecovery${new Date().getTime()}`}
                         max={8}
                         current={conditionRecovery}
-                        size={35}
+                        size={50}
                         setVal={(n) => {
                           setConditionRecovery(n);
                           setChanges(true);
@@ -1771,12 +1780,12 @@ export default function Charsheet() {
                   <TypographyH3 className="text-sm text-muted-foreground">
                     Harm
                   </TypographyH3>
-                  <div className="flex-shrink-0 border-[1px] max-w-[100px] border-border rounded-t-md p-1 select-none flex items-center ">
+                  <div className="flex-shrink-0 border-[1px] basis-[120px] border-border rounded-t-md p-1 select-none flex items-center ">
                     <Clock
                       key={`healing${new Date().getTime()}`}
                       max={4}
                       current={healing}
-                      size={35}
+                      size={50}
                       setVal={(n) => {
                         setHealing(n);
                         setChanges(true);
@@ -2160,19 +2169,17 @@ export default function Charsheet() {
                 Personal
               </TypographyH3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                <Input
-                  value={bonds.Personal[0].name}
-                  onChange={(e) => {
+                <BondInput
+                  bond={bonds.Personal[0]}
+                  handleSave={(name: string, description: string) => {
                     setBonds({
                       Personal: [
                         {
-                          name: e.target.value,
+                          name,
                           score: bonds.Personal[0].score,
+                          description,
                         },
-                        {
-                          name: bonds.Personal[1].name,
-                          score: bonds.Personal[1].score,
-                        },
+                        bonds.Personal[1],
                       ],
                       Familial: bonds.Familial,
                       Professional: bonds.Professional,
@@ -2180,18 +2187,16 @@ export default function Charsheet() {
                     setChanges(true);
                   }}
                 />
-                <Input
-                  value={bonds.Personal[1].name}
-                  onChange={(e) => {
+                <BondInput
+                  bond={bonds.Personal[1]}
+                  handleSave={(name: string, description: string) => {
                     setBonds({
                       Personal: [
+                        bonds.Personal[0],
                         {
-                          name: bonds.Personal[0].name,
-                          score: bonds.Personal[0].score,
-                        },
-                        {
-                          name: e.target.value,
+                          name,
                           score: bonds.Personal[1].score,
+                          description,
                         },
                       ],
                       Familial: bonds.Familial,
@@ -2205,39 +2210,35 @@ export default function Charsheet() {
                 Familial
               </TypographyH3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                <Input
-                  value={bonds.Familial[0].name}
-                  onChange={(e) => {
+                <BondInput
+                  bond={bonds.Familial[0]}
+                  handleSave={(name: string, description: string) => {
                     setBonds({
                       Personal: bonds.Personal,
                       Familial: [
                         {
-                          name: e.target.value,
+                          name,
                           score: bonds.Familial[0].score,
+                          description,
                         },
-                        {
-                          name: bonds.Familial[1].name,
-                          score: bonds.Familial[1].score,
-                        },
+                        bonds.Familial[1],
                       ],
                       Professional: bonds.Professional,
                     });
                     setChanges(true);
                   }}
                 />
-                <Input
-                  value={bonds.Familial[1].name}
-                  onChange={(e) => {
+                <BondInput
+                  bond={bonds.Familial[1]}
+                  handleSave={(name: string, description: string) => {
                     setBonds({
                       Personal: bonds.Personal,
                       Familial: [
+                        bonds.Familial[0],
                         {
-                          name: bonds.Familial[0].name,
-                          score: bonds.Familial[0].score,
-                        },
-                        {
-                          name: e.target.value,
+                          name,
                           score: bonds.Familial[1].score,
+                          description,
                         },
                       ],
                       Professional: bonds.Professional,
@@ -2266,12 +2267,12 @@ export default function Charsheet() {
               <TypographyH2 className="mt-4 flex items-end justify-between">
                 Subsistence{' '}
                 <div className="flex gap-4">
-                  <div className="w-[120px] border-[1px] border-border rounded-md p-1 flex items-center select-none">
+                  <div className="basis-[120px] border-[1px] border-border rounded-md p-1 flex items-center select-none">
                     <Clock
                       key={`subsist${new Date().getTime()}`}
                       max={8}
                       current={subsist}
-                      size={35}
+                      size={50}
                       setVal={(n) => {
                         setSubsist(n);
                         setChanges(true);
@@ -2281,12 +2282,12 @@ export default function Charsheet() {
                       {selectedBackground?.subsistenceClock}
                     </span>
                   </div>
-                  <div className="w-[120px] border-[1px] border-border rounded-md p-1 flex items-center select-none">
+                  <div className="basis-[120px] border-[1px] border-border rounded-md p-1 flex items-center select-none">
                     <Clock
                       key={`starvation${new Date().getTime()}`}
                       max={5}
                       current={starvation}
-                      size={35}
+                      size={50}
                       setVal={(n) => {
                         setStarvation(n);
                         setChanges(true);
@@ -2425,12 +2426,10 @@ export default function Charsheet() {
                         Personal: [
                           {
                             name: bonds.Personal[0].name,
+                            description: bonds.Personal[0].description,
                             score: s,
                           },
-                          {
-                            name: bonds.Personal[1].name,
-                            score: bonds.Personal[1].score,
-                          },
+                          bonds.Personal[1],
                         ],
                         Familial: bonds.Familial,
                         Professional: bonds.Professional,
@@ -2446,13 +2445,11 @@ export default function Charsheet() {
                     onChange={(s) => {
                       setBonds({
                         Personal: [
-                          {
-                            name: bonds.Personal[0].name,
-                            score: bonds.Personal[0].score,
-                          },
+                          bonds.Personal[0],
                           {
                             name: bonds.Personal[1].name,
                             score: s,
+                            description: bonds.Personal[1].description,
                           },
                         ],
                         Familial: bonds.Familial,
@@ -2626,11 +2623,9 @@ export default function Charsheet() {
                           {
                             name: bonds.Familial[0].name,
                             score: s,
+                            description: bonds.Familial[0].description,
                           },
-                          {
-                            name: bonds.Familial[1].name,
-                            score: bonds.Familial[1].score,
-                          },
+                          bonds.Familial[1],
                         ],
                         Professional: bonds.Professional,
                       });
@@ -2645,13 +2640,11 @@ export default function Charsheet() {
                       setBonds({
                         Personal: bonds.Personal,
                         Familial: [
-                          {
-                            name: bonds.Familial[0].name,
-                            score: bonds.Familial[0].score,
-                          },
+                          bonds.Familial[0],
                           {
                             name: bonds.Familial[1].name,
                             score: s,
+                            description: bonds.Familial[1].description,
                           },
                         ],
                         Professional: bonds.Professional,
@@ -2829,10 +2822,7 @@ export default function Charsheet() {
                             name: bonds.Professional[0].name,
                             score: s,
                           },
-                          {
-                            name: bonds.Professional[1].name,
-                            score: bonds.Professional[1].score,
-                          },
+                          bonds.Professional[1],
                         ],
                       });
                     }}
@@ -2847,10 +2837,7 @@ export default function Charsheet() {
                         Personal: bonds.Personal,
                         Familial: bonds.Familial,
                         Professional: [
-                          {
-                            name: bonds.Professional[0].name,
-                            score: bonds.Professional[0].score,
-                          },
+                          bonds.Professional[0],
                           {
                             name: bonds.Professional[1].name,
                             score: s,
@@ -3055,7 +3042,7 @@ export default function Charsheet() {
                     }}
                     className="flex items-center gap-2"
                   >
-                    <Dices /> Roll
+                    <Dices /> Action
                   </Button>
                   <Select
                     value={rollRight}
@@ -3116,26 +3103,31 @@ export default function Charsheet() {
                   </Select>
                 </div>
                 <div className="flex gap-4">
-                  <Select>
+                  <Select
+                    value={resistanceRoll}
+                    onValueChange={(
+                      value: 'Heart' | 'Instinct' | 'Machina' | ''
+                    ) => {
+                      setResistanceRoll(value);
+                    }}
+                  >
                     <SelectTrigger>
-                      <SelectValue placeholder="Position" />
+                      <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="controlled">Controlled</SelectItem>
-                      <SelectItem value="risky">Risky</SelectItem>
-                      <SelectItem value="desperate">Desperate</SelectItem>
+                      <SelectItem value="Heart">Heart</SelectItem>
+                      <SelectItem value="Instinct">Instinct</SelectItem>
+                      <SelectItem value="Machina">Machina</SelectItem>
                     </SelectContent>
                   </Select>
-                  <Select>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Effect" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="great">Great</SelectItem>
-                      <SelectItem value="standard">Standard</SelectItem>
-                      <SelectItem value="limited">Limited</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  <Button
+                    onClick={() => {
+                      if (!resistanceRoll) return;
+                      rollAttribute(resistanceRoll, 'churn');
+                    }}
+                  >
+                    <Dices /> Resistance
+                  </Button>
                 </div>
                 <div className="flex gap-4 justify-between flex-wrap">
                   <div className="flex gap-4">
@@ -3247,12 +3239,12 @@ export default function Charsheet() {
                       />
                     )
                   )}
-                  <div className="flex-shrink-0 ml-auto basis-[100px] border-[1px] border-border rounded-md p-1 flex items-center select-none">
+                  <div className="flex-shrink-0 ml-auto basis-[120px] border-[1px] border-border rounded-md p-1 flex items-center select-none">
                     <Clock
                       key={`conditionRecovery${new Date().getTime()}`}
                       max={8}
                       current={conditionRecovery}
-                      size={35}
+                      size={50}
                       setVal={(n) => {
                         setConditionRecovery(n);
                         setChanges(true);
@@ -3269,12 +3261,12 @@ export default function Charsheet() {
                 <TypographyH3 className="text-sm text-muted-foreground">
                   Harm
                 </TypographyH3>
-                <div className="flex-shrink-0 border-[1px] max-w-[100px] border-border rounded-t-md p-1 select-none flex items-center ">
+                <div className="flex-shrink-0 border-[1px] basis-[120px] border-border rounded-t-md p-1 select-none flex items-center ">
                   <Clock
                     key={`healing${new Date().getTime()}`}
                     max={4}
                     current={healing}
-                    size={35}
+                    size={50}
                     setVal={(n) => {
                       setHealing(n);
                       setChanges(true);

@@ -95,12 +95,12 @@ export default function ItemsTable({
             <Button
               size="icon"
               variant="ghost"
-              className="p-1 text-green-600 hover:text-green-600 h-6 w-6"
+              className="p-1 text-green-600 hover:text-green-600 h-10 w-10"
               onClick={() => {
                 handleAddItem();
               }}
             >
-              <DiamondPlus className="h-3 w-3" />
+              <DiamondPlus style={{ height: '24px', width: '24px' }} />
             </Button>
           </TableHead>
         </TableRow>
@@ -179,9 +179,9 @@ function ItemsList({ addBasicItem }: { addBasicItem: (item: Item) => void }) {
         <Button
           size="icon"
           variant="ghost"
-          className="p-1 text-blue-600 hover:text-blue-600 h-6 w-6"
+          className="p-1 text-blue-600 hover:text-blue-600 h-10 w-10"
         >
-          <BookOpen className="h-3 w-3" />
+          <BookOpen style={{ height: '24px', width: '24px' }} />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-80 relative">

@@ -81,6 +81,7 @@ export type CharacterAttributes = {
 
 export interface Bond {
   name: string;
+  description?: string;
   score: number[];
 }
 
