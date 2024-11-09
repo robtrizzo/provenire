@@ -88,7 +88,7 @@ const Abilities = ({
               </div>
             )}
             {variant === 'wiki' && (
-              <TypographyP className={cn(ability.keystone && 'text-amber-700')}>
+              <TypographyP className={cn(ability.keystone && 'text-amber-500')}>
                 {ability.name}
               </TypographyP>
             )}

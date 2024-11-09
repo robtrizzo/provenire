@@ -82,7 +82,7 @@ export default async function Page() {
       </TypographyP>
       <TypographyP>
         Next, pick an{' '}
-        <span className="underline text-amber-700">
+        <span className="underline text-amber-500">
           <Link href="/game/archetypes">archetype</Link>
         </span>{' '}
         but don&apos;t worry about answering its questions. We&apos;ll be doing
@@ -114,7 +114,7 @@ export default async function Page() {
       <TypographyP>
         Next, I want feedback on the{' '}
         <span className="text-sky-500">heritage</span> and{' '}
-        <span className="text-amber-700">archetype</span> options. Specifically:
+        <span className="text-amber-500">archetype</span> options. Specifically:
       </TypographyP>
       <TypographyUnorderedList>
         <li>Are they compelling?</li>

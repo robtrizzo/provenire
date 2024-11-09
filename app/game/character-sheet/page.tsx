@@ -822,7 +822,7 @@ export default function Charsheet() {
               }
             }}
           >
-            <SelectTrigger className="font-bold text-amber-700">
+            <SelectTrigger className="font-bold text-amber-500">
               <SelectValue placeholder="Select an archetype" />
             </SelectTrigger>
             <SelectContent>
@@ -954,7 +954,7 @@ export default function Charsheet() {
               {selectedArchetype && (
                 <div className="mt-4">
                   <Link href={`/game/archetypes#${selectedArchetype?.name}`}>
-                    <TypographyH2 className="text-amber-700">
+                    <TypographyH2 className="text-amber-500">
                       {selectedArchetype?.name}
                       <span className="text-muted-foreground text-lg ml-8">
                         {selectedArchetype?.shortDescription}
@@ -2144,7 +2144,7 @@ export default function Charsheet() {
             ))}
             {selectedArchetype?.questions.map((q, i) => (
               <div key={`q-${i}`} className="w-full gap-1.5 my-2">
-                <Label htmlFor={`q-${i}`} className="text-amber-700 box-border">
+                <Label htmlFor={`q-${i}`} className="text-amber-500 box-border">
                   {q}
                 </Label>
                 <Textarea
@@ -2348,7 +2348,7 @@ export default function Charsheet() {
               </div>
               <TypographyH3 className="text-sm text-muted-foreground mt-4">
                 Abilities (
-                <span className="text-amber-700">
+                <span className="text-amber-500">
                   {selectedArchetype?.name || 'Archetype'}
                 </span>
                 )

@@ -76,7 +76,7 @@ export default async function Page() {
         </li>
         <li>
           <span className="italic">
-            What could convince you to betray your crewmates?
+            What could convince you to betray your community?
           </span>
         </li>
       </TypographyUnorderedList>

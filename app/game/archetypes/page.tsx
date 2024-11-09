@@ -79,7 +79,7 @@ function ArchetypeTitle({ archetype }: { archetype: Archetype }) {
   return (
     <div className="flex items-end justify-between w-full" id={archetype.name}>
       <div className="flex flex-col items-start">
-        <span className="text-amber-700 text-3xl">{archetype.name}</span>
+        <span className="text-amber-500 text-3xl">{archetype.name}</span>
         <span className="text-lg text-muted-foreground">
           {archetype.shortDescription}
         </span>

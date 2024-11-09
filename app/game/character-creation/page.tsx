@@ -68,12 +68,14 @@ export default async function Page() {
         </li>
       </TypographyUnorderedList>
       <TypographyP id="heritage">
-        <strong className="text-sky-500">Heritages</strong> are the stories and
-        memories of your ancestors&apos; ancestors. They give your character
-        precious traditions to preserve. If you choose Rathi though, you instead
-        are taught to embrace the cultural norms of the Steel Trap and to think
-        yourself better than the others who are in a slightly lower social
-        caste.
+        <Link href="/game/heritages">
+          <strong className="text-sky-500 underline">Heritages</strong>
+        </Link>{' '}
+        are the stories and memories of your ancestors&apos; ancestors. They
+        give your character precious traditions to preserve. If you choose Rathi
+        though, you instead are taught to embrace the cultural norms of the
+        Steel Trap and to think yourself better than the others who are in a
+        slightly lower social caste.
       </TypographyP>
       <TypographyP>
         Heritages <span className="italic">do not</span> impart a mandatory
@@ -117,9 +119,11 @@ export default async function Page() {
         </li>
       </TypographyUnorderedList>
       <TypographyP id="background">
-        <strong className="text-red-500">Backgrounds</strong> grant two unique
-        mission actions, two profile questions, two professional bonds, and a
-        subsistence activity.
+        <Link href="/game/backgrounds">
+          <strong className="text-red-500 underline">Backgrounds</strong>
+        </Link>{' '}
+        grant two unique mission actions, two profile questions, two
+        professional bonds, and a subsistence activity.
       </TypographyP>
       <Separator />
       <TypographyP>
@@ -157,9 +161,11 @@ export default async function Page() {
         </li>
       </TypographyUnorderedList>
       <TypographyP id="skillset">
-        <strong className="text-indigo-500">Skillsets</strong> grant two unique
-        mission actions, three mission abilities, two profile questions, an
-        agenda, and a downtime ability.
+        <Link href="/game/skillsets">
+          <strong className="text-indigo-500 underline">Skillsets</strong>
+        </Link>{' '}
+        grant two unique mission actions, three mission abilities, two profile
+        questions, an agenda, and a downtime ability.
       </TypographyP>
       <Separator />
       <TypographyP>
@@ -176,9 +182,11 @@ export default async function Page() {
         ))}
       </TypographyUnorderedList>
       <TypographyP id="archetype">
-        <strong className="text-amber-700">Archetypes</strong> grant a unique
-        mission action, two mission abilities, five profile questions, and two
-        downtime abilities.
+        <Link href="/game/archetypes">
+          <strong className="text-amber-500 underline">Archetypes</strong>
+        </Link>{' '}
+        grant a unique mission action, two mission abilities, five profile
+        questions, and two downtime abilities.
       </TypographyP>
       <TypographyH2>Filling in the blanks</TypographyH2>
       <TypographyP>
