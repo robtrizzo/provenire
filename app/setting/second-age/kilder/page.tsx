@@ -68,7 +68,7 @@ export default function Page() {
         <strong>Aalia&apos;s</strong> powers were no secret to the world. From a
         young age she demonstrated strategic and tactical genius as well as the
         adoration of the <strong>Kilder</strong> people. She lead a viscious
-        campaign to clain the northern territories in <strong>Kilder</strong>{' '}
+        campaign to claim the northern territories in <strong>Kilder</strong>{' '}
         from the beasts, making it her own and founding the city of{' '}
         <strong>Tria Aderfia</strong>. But as the celebrations of victory
         concluded, <strong>Kilder</strong> was met with four armies on its
@@ -95,7 +95,7 @@ export default function Page() {
         soldiers alike, the battle wasn&apos;t to be. On the morning of the
         battle, <strong>Aalia</strong> walked alone into the center of the two
         armies and took her own life where all could see. The next day, the{' '}
-        <strong>Cardinal Concord</strong> began themarch home, leaving the{' '}
+        <strong>Cardinal Concord</strong> began the march home, leaving the{' '}
         <strong>Kilder</strong> to grieve the loss of their great leader. The
         city of <strong>Tria Aderfia</strong> was renamed in her honor.
       </TypographyP>

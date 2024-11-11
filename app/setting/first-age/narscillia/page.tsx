@@ -97,7 +97,7 @@ export default function Page() {
       </TypographyP>
       <TypographyBlockquote>
         <TypographyP>
-          That tone, the one that sound skind of sad, what is that one for?
+          That tone, the one that sounds kind of sad, what is that one for?
         </TypographyP>
         <TypographyP>A red cape on the horizon.</TypographyP>
       </TypographyBlockquote>

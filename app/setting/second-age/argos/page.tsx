@@ -38,7 +38,7 @@ export default function Page() {
         cultivated a bloodline of exceedingly powerful <em>Wielders</em> of{' '}
         <Donum>Donum Aquae</Donum>. Where in the rest of the world, the average
         power of <em>Wielders</em> has decreased, <strong>Arbor</strong>{' '}
-        <em>Wielders</em> have only become stronger, even stronger in the
+        <em>Wielders</em> have only become stronger, even stronger than in the
         so-called <strong>Golden Age</strong>. The <strong>Argosi</strong> are
         certain that if anyone is going to succeed at <em>Ascension</em>, it
         will be an <strong>Arbor</strong>.

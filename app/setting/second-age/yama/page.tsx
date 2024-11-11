@@ -31,7 +31,7 @@ export default function Page() {
         <strong>Yamans</strong> take it far more seriously.
       </TypographyP>
       <TypographyP>
-        Within the confines of <strong>Dictate</strong>, obligation an
+        Within the confines of <strong>Dictate</strong>, obligation is an
         incredibly serious matter. Those with so much obligation that they could
         no longer confidently partake in society would exile themselves into the
         mountains.

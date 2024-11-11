@@ -57,7 +57,7 @@ export default function Page() {
             <strong>Bwarhein</strong> monsters to the East.{' '}
             <strong>Cumeria</strong> has been in a difficult position for a long
             time. But even with this, the tribal leaders have forever failed to
-            form a meaningful alliance to fight hteir enemies on a united front.
+            form a meaningful alliance to fight their enemies on a united front.
             Conflicts between tribes, long blood feuds, and a general dispassion
             for the troubles of other tibes: the very things{' '}
             <strong>Asherah the Healer</strong> had taught them to overcome were

@@ -26,7 +26,7 @@ export default function Page() {
         buffalo, antelope, and elephants roam the open landscape, and predators
         trail behind. Territory bountiful enough that one might think it&apos;s
         perfect to settle and domesticate. The <strong>Torans</strong> made this
-        mistake once, and of the last time. Because circling overhead in the
+        mistake once, and for the last time. Because circling overhead in the
         quiet grasslands are one of the world&apos;s most dangerous predators:
         dragons.
       </TypographyP>
