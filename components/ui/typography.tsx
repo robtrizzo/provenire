@@ -110,7 +110,7 @@ export function TypographyBlockquote({
   children: React.ReactNode;
 }) {
   return (
-    <blockquote className="mt-6 border-l-2 pl-6 font-serif italic">
+    <blockquote className="my-4 border-l-2 pl-6 font-serif italic">
       {children}
     </blockquote>
   );

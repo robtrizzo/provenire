@@ -4,7 +4,7 @@ export default function Stoker() {
   return (
     <TypographyUnorderedList>
       <li>
-        The furnace room&apos;s smoke is poisoning you. Add a permanent{' '}
+        The furnace room&apos;s smoke is poisoning you. Add a temporary{' '}
         <strong>level 1 harm</strong>: &quot;black lung&quot;.
       </li>
       <li>

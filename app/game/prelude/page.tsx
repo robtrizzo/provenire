@@ -40,28 +40,6 @@ export default async function Page() {
         interaction. Character scenes continue until the players decide
         it&apos;s time to move on to <strong>gathering information</strong>.
       </TypographyP>
-      <TypographyH3 id="gather-information">Gather Information</TypographyH3>
-      <TypographyP>
-        During this phase the characters may do the footwork required to pull
-        off successful missions in the Steel Trap. If the information is common
-        knowledge, the Narrator will simply explain. If there is some kind of
-        obstacle, the Narrator might call for a roll to determine the quality of
-        the information. If it&apos;s not common knowledge but there&apos;s no
-        obstacle to overcome, the Narrator will call for a{' '}
-        <strong>fortune</strong> roll.
-      </TypographyP>
-      <TypographyP>
-        Time is short in the Steel Trap, and characters will often only get one
-        chance per <strong>gather information</strong> phase to ask a question.
-        So choose wisely.
-      </TypographyP>
-      <TypographyH4>Investigation</TypographyH4>
-      <TypographyP>
-        Some information is too obscure or has too complex a barrier to answer
-        with one <strong>gather information</strong> phase. These pieces of
-        information should be pursued as a <strong>long term project</strong>{' '}
-        during downtime.
-      </TypographyP>
       <TypographyH3>Choose the Mission</TypographyH3>
       <TypographyP>
         As opposed to more classic RPG structures where the{' '}
@@ -90,6 +68,30 @@ export default async function Page() {
         promise will always be included in the mission. The{' '}
         <strong>Narrator</strong> states the rewards for accomplishing each side
         objective.
+      </TypographyP>
+      <TypographyH3 id="gather-information">Gather Information</TypographyH3>
+      <TypographyP>
+        During this phase the characters may do the footwork required to pull
+        off successful missions in the Steel Trap. If the information is common
+        knowledge, the Narrator will simply explain. If the characters simply
+        don&apos;t know something, the <strong>Narrator</strong> will offer a{' '}
+        <strong>devil&apos;s bargain</strong> to learn the information. Often
+        this will take the form of: &quot;Pay <strong>1 intel</strong> or face
+        the threat of <i>bad information</i>&quot;. In this situation,
+        characters roll to avoid consequences rather than to see if they
+        succeed.
+      </TypographyP>
+      <TypographyP>
+        Time is short in the Steel Trap, and characters will often only get one
+        chance per <strong>gather information</strong> phase to ask a question.
+        So choose wisely.
+      </TypographyP>
+      <TypographyH4>Investigation</TypographyH4>
+      <TypographyP>
+        Some information is too obscure or has too complex a barrier to answer
+        with one <strong>gather information</strong> phase. These pieces of
+        information should be pursued as a <strong>long term project</strong>{' '}
+        during downtime.
       </TypographyP>
       <TypographyH2 id="engagement-roll">Engagement Roll</TypographyH2>
       <TypographyP>
@@ -150,24 +152,24 @@ export default async function Page() {
         the scene.
       </TypographyP>
       <TypographyP className="italic">
-        Some items cost more than one load, like armor (which costs 2). Heavy
+        Some items cost more than 1 load, like armor (which costs 2). Heavy
         armor costs 3.
       </TypographyP>
       <TypographyUnorderedList>
         <li>
-          <strong>1 Load: Light.</strong> You&apos;re faster, less conspicuous.
-          You blend in with the other workers.
+          <strong>Discreet: 1 load.</strong> You&apos;re faster, and blend in
+          with the other workers. You cannot carry heavy items.
         </li>
         <li>
-          <strong>2-3 Load: Normal.</strong> You look like you&apos;re up to
+          <strong>Conspicuous: 3 load.</strong> You look like you&apos;re up to
           something.
         </li>
         <li>
-          <strong>4 Load: Heavy.</strong> You&apos;re slower and stand out. You
-          look like an operative on a mission.
+          <strong>Bulky: 4 load.</strong> You look like an operative on a
+          mission. Your movements are hampered.
         </li>
         <li>
-          <strong>5-7 Load: Encumbered.</strong> You&apos;re overburdened and
+          <strong>Encumbered: 7 load.</strong> You&apos;re overburdened and
           can&apos;t do anything except move very slowly.
         </li>
       </TypographyUnorderedList>
@@ -192,10 +194,15 @@ export default async function Page() {
           <strong>-1d</strong>.
         </li>
         <li>
-          Can any of your <strong>friends or contacts</strong> provide aid for
-          this operation? Take <strong>+1d</strong>. Are any{' '}
-          <strong>enemies or rivals</strong> interfering in the operation? Take{' '}
-          <strong>-1d</strong>. Anyone who volunteers an{' '}
+          Are you operating on particularly useful intel? Take{' '}
+          <strong>+1d</strong>. Are you operating on faulty or bad intel? Take{' '}
+          <strong>-1d</strong>.
+        </li>
+        <li>
+          Are any of your <strong>friends or contacts</strong> providing aid for
+          this operation (at risk of their safety)? Take <strong>+1d</strong>.
+          Are any <strong>enemies or rivals</strong> interfering in the
+          operation? Take <strong>-1d</strong>. Anyone who volunteers an{' '}
           <strong>enemy or rival</strong> takes <strong>+1xp</strong>.
         </li>
         <li>

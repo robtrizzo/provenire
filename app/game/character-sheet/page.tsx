@@ -1901,33 +1901,33 @@ export default function Charsheet() {
                 <div className="flex align-end justify-between">
                   <div className="flex items-center gap-2">
                     <Checkbox
-                      checked={loadout?.name === 'Light'}
+                      checked={loadout?.name === 'Discreet'}
                       onCheckedChange={() => {
                         setLoadout(loadouts[0]);
                         setChanges(true);
                       }}
                     />{' '}
-                    Light
+                    Discreet
                   </div>
                   <div className="flex items-center gap-2">
                     <Checkbox
-                      checked={loadout?.name === 'Normal'}
+                      checked={loadout?.name === 'Conspicuous'}
                       onCheckedChange={() => {
                         setLoadout(loadouts[1]);
                         setChanges(true);
                       }}
                     />{' '}
-                    Normal
+                    Conspicuous
                   </div>
                   <div className="flex items-center gap-2">
                     <Checkbox
-                      checked={loadout?.name === 'Heavy'}
+                      checked={loadout?.name === 'Bulky'}
                       onCheckedChange={() => {
                         setLoadout(loadouts[2]);
                         setChanges(true);
                       }}
                     />{' '}
-                    Heavy
+                    Bulky
                   </div>
                 </div>
                 <ItemsTable

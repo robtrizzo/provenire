@@ -1,18 +1,18 @@
 [
   {
-    "name": "Light",
+    "name": "Discreet",
     "load": 1,
-    "desc": "You're faster, less conspicuous. You blend in with the other workers."
+    "desc": "You're faster, and blend in with the other workers. You cannot carry heavy items."
   },
   {
-    "name": "Normal",
+    "name": "Conspicuous",
     "load": 3,
     "desc": "You look like you're up to something."
   },
   {
-    "name": "Heavy",
+    "name": "Bulky",
     "load": 4,
-    "desc": "You're slower and stand out. You look like an operative on a mission."
+    "desc": "You look like an operative on a mission. Your movements are hampered."
   },
   {
     "name": "Encumbered",
