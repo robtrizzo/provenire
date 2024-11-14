@@ -913,7 +913,7 @@ export default function Charsheet() {
                   />
                   <div className="ml-auto border-[1px] border-border rounded-md p-1 flex items-center gap-2 select-none">
                     <Clock
-                      key={`conditionRecovery${new Date().getTime()}`}
+                      key={`conditionRecovery-${new Date().getTime()}`}
                       max={8}
                       current={conditionRecoveryRef.current}
                       width={35}
@@ -1560,7 +1560,7 @@ export default function Charsheet() {
                   xpRef.current = n;
                   setChanges(true);
                 }}
-                key={`xpclocks${new Date().getTime()}`}
+                key={`xpclocks-${new Date().getTime()}`}
               />
 
               <div className="flex items-end mt-4 justify-between">
@@ -2172,7 +2172,7 @@ export default function Charsheet() {
                   />
                   <div className="ml-auto border-[1px] border-border rounded-md p-1 flex items-center gap-2 select-none">
                     <Clock
-                      key={`conditionRecovery${new Date().getTime()}`}
+                      key={`conditionRecovery-${new Date().getTime()}`}
                       max={8}
                       current={conditionRecoveryRef.current}
                       width={35}
@@ -2940,7 +2940,7 @@ export default function Charsheet() {
                   xpRef.current = n;
                   setChanges(true);
                 }}
-                key={`xpclocks${new Date().getTime()}`}
+                key={`xpclocks-${new Date().getTime()}`}
               />
               <div className="flex items-end mt-4 justify-between">
                 <TypographyH3 className="text-sm text-muted-foreground">
@@ -3002,7 +3002,7 @@ export default function Charsheet() {
                 </div>
                 <div className="flex flex-col items-center justify-center w-16 gap-4 border-[1px] border-border h-[120px]">
                   <Clock
-                    key={`healing${new Date().getTime()}`}
+                    key={`healing-${new Date().getTime()}`}
                     max={4}
                     current={healing}
                     height={35}
@@ -3294,7 +3294,7 @@ export default function Charsheet() {
                   <div className="border-[1px] border-border rounded-md p-1 flex items-center gap-2 select-none basis-[120px]">
                     <div className="shrink-9">
                       <Clock
-                        key={`subsist${new Date().getTime()}`}
+                        key={`subsist-${new Date().getTime()}`}
                         max={8}
                         current={subsist}
                         height={35}
@@ -3312,7 +3312,7 @@ export default function Charsheet() {
                   <div className="border-[1px] border-border rounded-md p-1 flex items-center gap-2 select-none basis-[120px]">
                     <div className="shrink-0">
                       <Clock
-                        key={`starvation${new Date().getTime()}`}
+                        key={`starvation-${new Date().getTime()}`}
                         max={5}
                         current={starvation}
                         height={35}
