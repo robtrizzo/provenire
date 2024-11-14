@@ -3,9 +3,8 @@ export default function LivingWithPassion() {
   return (
     <div>
       <TypographyP>
-        During downtime, the Entertainer may echew their shift during the
-        <strong>subsistence</strong> phase to gain two extra downtime
-        activities.
+        The Entertainer may echew their shift during the <b>subsistence</b>{' '}
+        phase to instead gain two extra downtime activities.
       </TypographyP>
     </div>
   );

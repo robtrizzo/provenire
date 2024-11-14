@@ -4,9 +4,8 @@ export default function Overwhelmed() {
     <div>
       <TypographyP>
         The Artist has an extra condition they may mark called{' '}
-        <strong>Overwhelmed</strong>. While it&apos;s marked, they take{' '}
-        <strong>+1 stress</strong> from all sources. It may be cleared by by
-        rolling a <strong>6</strong> on a <strong>relax</strong> action.
+        <b>Overwhelmed</b>. While it&apos;s marked, they take <b>+1 stress</b>{' '}
+        from all sources. It may be cleared by <b>taking a breather</b>.
       </TypographyP>
     </div>
   );

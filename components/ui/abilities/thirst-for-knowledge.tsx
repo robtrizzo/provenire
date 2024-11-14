@@ -3,10 +3,9 @@ export default function ThirstForKnowledge() {
   return (
     <div>
       <TypographyP>
-        Strategists may always <strong>train</strong> for free in a single
-        attribute which they failed a roll in last mission. Once per misson, if
-        they get a 6 on a roll with that attribute, they{' '}
-        <strong>mark 1 xp</strong>.
+        The Strategist is a lifelong student and has a network of expert
+        instructors. When they <b>advance</b> with one of these instructors,
+        they mark <b>1 xp</b>.
       </TypographyP>
     </div>
   );

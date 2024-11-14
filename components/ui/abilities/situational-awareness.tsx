@@ -7,8 +7,8 @@ export default function SituationalAwareness() {
     <div>
       <TypographyP>
         When the Entertainer <strong>gathers information</strong> about real
-        material things going on around them, they can add the following to the
-        list of questions they can ask:
+        material things going on around them, the <b>Narrator</b> will
+        truthfully answer one of the following:
       </TypographyP>
       <TypographyUnorderedList>
         <li>What key thing has changed?</li>

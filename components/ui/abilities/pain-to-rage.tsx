@@ -9,7 +9,7 @@ export default function PainToRage() {
           <Link href="#">The King&apos;s Spell</Link>
         </span>{' '}
         is used on you, you may choose to ignore it. If you do, you must attack
-        them.
+        the source of the spell.
       </TypographyP>
     </div>
   );

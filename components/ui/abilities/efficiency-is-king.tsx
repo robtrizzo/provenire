@@ -5,7 +5,7 @@ export default function EfficiencyIsKing() {
     <div>
       <TypographyP>
         Commanders may always perform an extra downtime action to instruct a
-        teammate how they could be more efficient. Give them advice and make a
+        teammate how they could be more efficient. Give them advice and make a{' '}
         <span className="text-red-700 font-bold underline">
           <Link href="/game/prelude#project-rolls">project roll</Link>
         </span>

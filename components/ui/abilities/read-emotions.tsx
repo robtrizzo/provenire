@@ -6,9 +6,9 @@ export default function ReadEmotions() {
   return (
     <div>
       <TypographyP>
-        The Artist may spend a downtime activty to make a{' '}
-        <strong>gather information</strong> roll on a character they&apos;ve
-        spent time with. If they do, they may ask any of:
+        When the Artist <b>consorts</b> or <b>gathers information</b> about a
+        person&apos;s life or conditions, the <b>Narrator</b> will truthfully
+        answer one of the following:
       </TypographyP>
       <TypographyUnorderedList>
         <li>What&apos;s upsetting them?</li>
