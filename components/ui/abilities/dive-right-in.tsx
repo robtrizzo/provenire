@@ -4,14 +4,16 @@ export default function DiveRightIn() {
     <div>
       <TypographyP>
         During the mission when there&apos;s a lull in the action, the
-        Adventurer can make an <strong>engagement roll</strong> with their{' '}
-        <strong>Initiate</strong> action. If they do, they explain their
-        approach, launch the crew into action, and mark <strong>1 xp</strong>.
-        If they end up in a desperate position, they mark a unique condition:{' '}
-        <strong>Frantic</strong> (this condition may also be marked as normal).
+        Adventurer can explain what they want and declare that they&apos;re{' '}
+        <b>diving in</b>. They mark <b>1 xp</b>. The <b>Narrator</b> describes
+        the first obstacle; the Adventurer describes how the crew has already
+        overcome it and makes an action roll using <b>Initiate</b>. <b>Crit</b>:
+        no consequences; <b>6</b>: one consequence; <b>4,5</b>: two
+        consequences; <b>1-3</b>: two consequences and the Adventurer marks a
+        unique condition: <b>Frantic</b>.
       </TypographyP>
       <TypographyP>
-        <strong>Frantic</strong>: You cannot <strong>relax</strong> or{' '}
+        <strong>Frantic</strong>: You cannot <strong>take a breather</strong> or{' '}
         <strong>recover</strong>. Clear by making it up to the crew (fix the
         current situation or spend downtime activities helping others until
         you&apos;re forgiven).

@@ -4,9 +4,8 @@ export default function StructureAndOrder() {
     <div>
       <TypographyP>
         Logisticians can spend a downtime activity to work a double shift. If
-        they do, they can roll to reduce the <strong>starvation clock</strong> a
-        second time. The Overseers get some insight into the crew&apos;s ops:{' '}
-        <strong>+1 heat</strong>.
+        they do, they can roll to reduce the <b>starvation clock</b>. The
+        Overseers get some insight into the crew&apos;s ops: <b>+1 heat</b>.
       </TypographyP>
     </div>
   );

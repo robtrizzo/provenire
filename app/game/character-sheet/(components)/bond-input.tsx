@@ -24,7 +24,7 @@ export default function BondInput({
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <div className="hover:bg-secondary hover:cursor-pointer rounded-md box-border p-2 transition-all">
+        <div className="hover:bg-secondary hover:cursor-pointer rounded-md box-border p-2 transition-all max-w-96">
           <TypographyP>
             {bond.name || 'Bond Name'}:{' '}
             <span className="text-muted-foreground text-xs">

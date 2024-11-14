@@ -7,7 +7,8 @@ export default function MysteriesOfTheMachines() {
     <div>
       <TypographyP>
         When the Engineer <strong>gathers information</strong> about a structure
-        or phenomenon, add the following to the list of questions they can ask:
+        or phenomenon, the <b>Narrator</b> will truthfully answer one of the
+        following:
       </TypographyP>
       <TypographyUnorderedList>
         <li>What is it made of?</li>

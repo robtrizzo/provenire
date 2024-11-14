@@ -5,9 +5,9 @@ export default function AGreaterResponsibility() {
       <TypographyP>
         During downtime, you may berate an ally who you think has jeopardized
         the mission due to incompetence, laziness, or dishonesty. They take{' '}
-        <strong>2 stress</strong>. Tell them what they can do during downtime to
-        make it right. If they agree, they mark <strong>1 xp</strong>. If they
-        refuse, you mark <strong>2 stress</strong>.
+        <b>2 stress</b>. Tell them what they can do during downtime to make it
+        right. If they agree, you each mark <b>1 xp</b>. If they refuse, you
+        mark <b>2 stress</b>.
       </TypographyP>
     </div>
   );

@@ -3,8 +3,7 @@ export default function Savage() {
   return (
     <TypographyP>
       When you unleash physical violence, it&apos;s especially frightening. When
-      you <strong>manipulate</strong> a frightened target, take{' '}
-      <strong>+1d</strong>.
+      you manipulate a frightened target, take <b>+1d</b>.
     </TypographyP>
   );
 }

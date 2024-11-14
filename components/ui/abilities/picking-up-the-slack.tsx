@@ -3,11 +3,9 @@ export default function PickingUpTheSlack() {
   return (
     <div>
       <TypographyP>
-        If a teammate <strong>recovers</strong>, <strong>rests</strong>, or{' '}
-        <strong>comforts</strong> someone, the Logistician can take another
-        downtime activity. If they do, they cannot <strong>rest</strong>,{' '}
-        <strong>recover</strong>, or <strong>comfort</strong> during this
-        downtime.
+        If a teammate <b>comforts</b>, <b>consorts</b>, or <b>recovers</b>, the
+        Logistician can take another downtime activity. If they do, they cannot{' '}
+        <b>comfort</b>, <b>consort</b>, or <b>recover</b> during this downtime.
       </TypographyP>
     </div>
   );

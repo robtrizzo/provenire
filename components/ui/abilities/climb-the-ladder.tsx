@@ -6,7 +6,7 @@ export default function ClimbTheLadder() {
       <TypographyP>
         During downtime, the Executive may make a{' '}
         <span className="text-red-700 font-bold underline">
-          <Link href="/game/the-churn#project-rolls">project roll</Link>
+          <Link href="/game/prelude#project-rolls">project roll</Link>
         </span>{' '}
         to climb the ladder of a community or organization that the crew is
         familiar with. Each completed project represents gaining higher

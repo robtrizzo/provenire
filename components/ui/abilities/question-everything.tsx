@@ -7,8 +7,8 @@ export default function QuestionEverything() {
     <div>
       <TypographyP>
         When the Visionary <strong>gathers information</strong> about
-        conventional information or wisdom, they add the following to the list
-        of questions they can ask:
+        conventional information or wisdom, the <b>Narrator</b> truthfully
+        answers one of the following:
       </TypographyP>
       <TypographyUnorderedList>
         <li>
