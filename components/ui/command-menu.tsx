@@ -325,11 +325,11 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/the-churn#payoff');
+              router.push('/game/the-churn#aftermath');
               setOpen(false);
             }}
           >
-            Payoff
+            Aftermath
           </CommandItem>
           <CommandItem
             onSelect={() => {
@@ -397,7 +397,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/the-churn#project-rolls');
+              router.push('/game/prelude#project-rolls');
               setOpen(false);
             }}
           >

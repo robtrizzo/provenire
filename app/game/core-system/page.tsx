@@ -221,11 +221,11 @@ export default function Page() {
           the game.
         </li>
         <li>
-          <strong>Project Roll</strong>: When the PCs are done with the mission,
-          they can perform a series of activities during the{' '}
-          <strong>Churn</strong>. You make project rolls to see how much you get
+          <strong>Project Roll</strong>: When the PCs are preparing for the
+          mission, some activities create <b>clocks</b> to represent how close
+          they are to complete. You make project rolls to see how much you get
           done. See{' '}
-          <Link href="/game/the-churn#project-rolls">project rolls</Link> for
+          <Link href="/game/prelude#project-rolls">project rolls</Link> for
           more.
         </li>
         <li>

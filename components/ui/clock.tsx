@@ -45,7 +45,7 @@ export default function Clock({
         setVal(time - 1);
       }}
       config={chartConfig}
-      className="aspect-square mx-auto grow flex-shrink-0"
+      className="aspect-square grow flex-shrink-0"
       style={{
         maxHeight: `${size}px`,
         maxWidth: `${size}px`,

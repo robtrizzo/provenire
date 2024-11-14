@@ -7,6 +7,7 @@ import {
   TypographyH1,
   TypographyH2,
   TypographyH3,
+  TypographyH4,
   TypographyP,
   TypographyUnorderedList,
 } from '@/components/ui/typography';
@@ -254,10 +255,10 @@ export default async function Page() {
           difficult (<strong>-2 rep or goodwill</strong>).
         </li>
         <li>
-          <strong>Angry</strong>: You cannot <strong>comfort</strong> or{' '}
-          <strong>relax</strong>. Clear by breaking something important (
-          <strong>-2 material</strong>) or hurting someone (
-          <strong>-2 goodwill</strong>).
+          <strong>Angry</strong>: You cannot <strong>comfort</strong>.{' '}
+          <strong>Taking a breather</strong> requires a downtime activity. Clear
+          by breaking something important (<strong>-2 material</strong>) or
+          hurting someone (<strong>-2 goodwill</strong>).
         </li>
         <li>
           <strong>Guilty</strong>: You cannot <strong>shift blame</strong> or{' '}
@@ -267,8 +268,8 @@ export default async function Page() {
         <li>
           <strong>Insecure</strong>: You cannot <strong>train</strong> or{' '}
           <strong>shift blame</strong>. Clear by taking foolhardy action without
-          telling the crew (<strong>-2 intel</strong> or <strong>+2d</strong> to
-          the entanglements dice pool).
+          telling the crew (<strong>-2 intel</strong> or{' '}
+          <strong>raise the stakes</strong>).
         </li>
         <li>
           <strong>Hopeless</strong>: You cannot <strong>comfort</strong> or{' '}
@@ -276,17 +277,30 @@ export default async function Page() {
           yourself into easy relief (<strong>-2 food or rep</strong>).
         </li>
       </TypographyUnorderedList>
+      <TypographyP>
+        The <strong>Narrator</strong> may freely invoke one of your conditions
+        to cause problems for you in the fiction. When they do, mark{' '}
+        <strong>+1 xp</strong>. You may resist this as normal, or you may choose
+        to <strong>steel your heart</strong>.
+      </TypographyP>
+      <TypographyH4>Steeling Your Heart</TypographyH4>
+      <TypographyP>
+        When you <strong>steel your heart</strong>, you still mark{' '}
+        <strong>+1 xp</strong> from the <strong>Narrator</strong> invoking your
+        condition. You describe how you compartmentalize your emotions - the{' '}
+        <strong>Narrator</strong> may no longer invoke that condition for the
+        rest of the mission, though you become vulnerable to the{' '}
+        <strong>drone</strong> and{' '}
+        <span className="font-bold text-fuchsia-700 underline">
+          <Link href="#">The King&apos;s Spell</Link>
+        </span>
+        .
+      </TypographyP>
       <TypographyH2 id="harm">Harm and Armor</TypographyH2>
       <TypographyP>
         Harm represents a long-lasting debility (or death). When you suffer
         harm, record the specific injurty on your character sheet equal to the
         level of harm you suffered.
-      </TypographyP>
-      <TypographyP>
-        You suffer the penalty at the end of the row if any or all injuries in
-        that row apply to the situation at hand. When you&apos;re impared by an
-        injury in the top row (level 3 harm), your character is incapacitated
-        and can&apos;t do anything unless they push themselves.
       </TypographyP>
       <TypographyP>
         If you need to mark a harm, but that row is already full, the harm moves
@@ -295,6 +309,20 @@ export default async function Page() {
       <TypographyP>
         When you make a <strong>resistance roll</strong> to avoid or reduce
         harm, it lowers the level of harm you suffer by 2.
+      </TypographyP>
+      <TypographyP>
+        The <strong>Narrator</strong> may freely invoke one of your harms to
+        cause problems for you in the fiction. When they do, mark{' '}
+        <strong>+1 xp</strong>. You may resist this as normal, or you may choose
+        to <strong>tough it out</strong>.
+      </TypographyP>
+      <TypographyH4>Toughing it Out</TypographyH4>
+      <TypographyP>
+        When you <strong>tough it out</strong>, you still mark{' '}
+        <strong>+1 xp</strong> from the <strong>Narrator</strong> invoking your
+        harm. You describe how you push through the pain and keep going - the{' '}
+        <strong>Narrator</strong> may no longer invoke that harm for the rest of
+        the mission.
       </TypographyP>
       <TypographyH3>Recovering from Harm</TypographyH3>
       <TypographyP>
@@ -310,7 +338,8 @@ export default async function Page() {
         Armor is a special type of equipment which is expended once used. When
         you would suffer harm, you can choose to expend 1 armor to reduce the
         level of harm you suffer by 2. This does mean that you need to mark an{' '}
-        <strong>item slot</strong> to have brought the armor.
+        <strong>item slot</strong> (or multiple item slots) to have brought the
+        armor.
       </TypographyP>
       <Separator />
       <div className="w-full flex justify-between">

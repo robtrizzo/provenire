@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
@@ -39,12 +39,18 @@ import {
   Item,
 } from '@/types/game';
 import { Button } from '@/components/ui/button';
-import { BuildupCheckboxes } from '@/components/ui/buildup-checkboxes';
 import { ActionScore } from '@/components/ui/action-score';
 import { useToast } from '@/components/ui/use-toast';
 import { Die } from '@/components/ui/die';
 import { cn, debounce } from '@/lib/utils';
-import { VenetianMask, Flame, Activity, Dices } from 'lucide-react';
+import {
+  VenetianMask,
+  Flame,
+  Activity,
+  Dices,
+  BookOpen,
+  X,
+} from 'lucide-react';
 import ActionDescription from '@/components/ui/action-description';
 import { Card } from '@/components/ui/card';
 import Clock from '@/components/ui/clock';
@@ -62,6 +68,14 @@ import LoadCharacter from './(components)/load-character';
 import ClearCharacter from './(components)/clear-character';
 import ItemsTable from '@/app/game/character-sheet/(components)/items-table';
 import BondInput from './(components)/bond-input';
+import ExperimentalClock from '@/components/ui/experimental-clock';
+import XPClocks from './(components)/xp-clocks';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
+import { Close } from '@radix-ui/react-popover';
 
 export default function Charsheet() {
   const [tab, setTab] = useState('mission');
@@ -75,6 +89,9 @@ export default function Charsheet() {
   const [archetypeSelectKey, setArchetypeSelectKey] = useState(+new Date());
   const [backgroundSelectKey, setBackgroundSelectKey] = useState(+new Date());
   const [skillsetSelectKey, setSkillsetSelectKey] = useState(+new Date());
+
+  const [actionReferencePopopverOpen, setActionReferencePopopverOpen] =
+    useState(false);
 
   const [name, setName] = useState('');
   const [alias, setAlias] = useState('');
@@ -94,6 +111,7 @@ export default function Charsheet() {
   const [heartXp, setHeartXp] = useState(0);
   const [instinctXp, setInstinctXp] = useState(0);
   const [machinaXp, setMachinaXp] = useState(0);
+  const xpRef = useRef(0);
 
   const [attributes, setAttributes] = useState<CharacterAttributes>({
     Heart: { Defy: [0, 0], Persuade: [0, 0] },
@@ -124,7 +142,7 @@ export default function Charsheet() {
 
   const [stress, setStress] = useState(0);
   const [conditions, setConditions] = useState<string[]>([]);
-  const [conditionRecovery, setConditionRecovery] = useState<number>(0);
+  const conditionRecoveryRef = useRef(0);
 
   const [healing, setHealing] = useState<number>(0);
   const [harm3, setHarm3] = useState<string>('');
@@ -191,7 +209,7 @@ export default function Charsheet() {
         setConditions(parsed.conditions);
       }
       setStress(parsed.stress || 0);
-      setConditionRecovery(parsed.conditionRecovery || 0);
+      conditionRecoveryRef.current = parsed.conditionRecovery || 0;
       setHealing(parsed.healing || 0);
       setHarm3(parsed.harm3 || '');
       setHarm2(parsed.harm2 || ['', '']);
@@ -229,7 +247,7 @@ export default function Charsheet() {
       });
       setConditions([]);
       setStress(0);
-      setConditionRecovery(0);
+      conditionRecoveryRef.current = 0;
       setHealing(0);
       setHarm3('');
       setHarm2(['', '']);
@@ -281,7 +299,7 @@ export default function Charsheet() {
           attributes,
           stress,
           conditions,
-          conditionRecovery,
+          conditionRecovery: conditionRecoveryRef.current,
           healing,
           harm3,
           harm2,
@@ -892,216 +910,197 @@ export default function Charsheet() {
         <TabsContent value="mission" className="w-full">
           <div className="my-3 grid grid-cols-1 md:grid-cols-2 gap-6 focus-visible:outline-none">
             <div className="mt-4">
-              <TypographyH3 className="mt-4 text-sm text-muted-foreground">
-                Universal Actions
-              </TypographyH3>
-              <div className="ml-2">
-                {universal_actions.map((action, i) => (
-                  <ActionDescription key={i} action={action as Action} />
-                ))}
-              </div>
-              {selectedBackground && (
-                <div className="mt-4">
-                  <TypographyH2 className="text-red-500">
-                    {selectedBackground?.name}
-                    <span className="text-muted-foreground text-lg ml-8">
-                      {selectedBackground?.shortDescription}
-                    </span>
-                  </TypographyH2>
-                  <div className="mt-4">
-                    <TypographyH3 className="text-sm text-muted-foreground">
-                      Actions
-                    </TypographyH3>
-                    <div className="ml-2">
-                      {selectedBackground?.actions?.map((action, i) => (
-                        <ActionDescription key={i} action={action} />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              )}
-              {selectedSkillset && (
-                <div className="mt-4">
-                  <TypographyH2 className="text-indigo-500">
-                    {selectedSkillset?.name}
-                    <span className="text-muted-foreground text-lg ml-8">
-                      {selectedSkillset?.shortDescription}
-                    </span>
-                  </TypographyH2>
-                  <div className="mt-4">
-                    <TypographyH3 className="text-sm text-muted-foreground">
-                      Actions
-                    </TypographyH3>
-                    <div className="ml-2">
-                      {selectedSkillset?.actions?.map((action, i) => (
-                        <ActionDescription key={i} action={action} />
-                      ))}
-                    </div>
-                    <TypographyH3 className="text-sm text-muted-foreground mt-4">
-                      Abilities
-                    </TypographyH3>
-                    <div className="ml-2">
-                      <Abilities
-                        abilities={selectedSkillset?.abilities?.mission}
-                        characterAbilities={abilities}
-                        setCharacterAbilities={setAbilities}
-                        setChanges={setChanges}
-                      />
-                    </div>
-                  </div>
-                </div>
-              )}
-              {selectedArchetype && (
-                <div className="mt-4">
-                  <Link href={`/game/archetypes#${selectedArchetype?.name}`}>
-                    <TypographyH2 className="text-amber-500">
-                      {selectedArchetype?.name}
-                      <span className="text-muted-foreground text-lg ml-8">
-                        {selectedArchetype?.shortDescription}
-                      </span>
-                    </TypographyH2>
-                  </Link>
-                  <div className="mt-4">
-                    <TypographyH3 className="text-sm text-muted-foreground">
-                      Actions
-                    </TypographyH3>
-                    <div className="ml-2">
-                      {selectedArchetype?.actions?.map((action, i) => (
-                        <ActionDescription key={i} action={action} />
-                      ))}
-                    </div>
-                    <TypographyH3 className="text-sm text-muted-foreground mt-4">
-                      Abilities
-                    </TypographyH3>
-                    <div className="ml-2">
-                      <Abilities
-                        abilities={selectedArchetype?.abilities?.mission}
-                        characterAbilities={abilities}
-                        setCharacterAbilities={setAbilities}
-                        setChanges={setChanges}
-                      />
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-            <div className="flex my-6 md:mt-3">
-              <div>
-                <div className="grid grid-cols-2 border-b-[1px]">
-                  <div
-                    className="hover:cursor-pointer group border-r-[1px] mt-8"
-                    onClick={() => {
-                      rollAttribute('Heart');
-                    }}
-                  >
-                    <TypographyH3 className="group-hover:underline">
-                      Heart <Flame className="inline mb-2" />
-                    </TypographyH3>
-                  </div>
-                  <BuildupCheckboxes
-                    key={`heartXp${new Date().getTime()}`}
-                    max={6}
-                    current={heartXp}
+              <div className="flex flex-col gap-2">
+                <TypographyH2 className="text-md text-muted-foreground">
+                  Stress & Conditions
+                </TypographyH2>
+                <div className="flex justify-between">
+                  <StressCheckboxes
+                    key={`stress${new Date().getTime()}`}
+                    max={9}
+                    conditions={conditions}
+                    current={stress}
                     onChange={(n) => {
-                      setHeartXp(n);
+                      setStress(n);
                       setChanges(true);
                     }}
-                    className="items-center mt-auto mb-2"
+                  />
+                  <div className="ml-auto border-[1px] border-border rounded-md p-1 flex items-center gap-2 select-none">
+                    <ExperimentalClock
+                      key={`conditionRecovery${new Date().getTime()}`}
+                      max={8}
+                      current={conditionRecoveryRef.current}
+                      width={35}
+                      height={35}
+                      setVal={(n) => {
+                        conditionRecoveryRef.current = n;
+                        setChanges(true);
+                      }}
+                    />
+                    <span className="text-xs text-muted-foreground text-center">
+                      recovery
+                    </span>
+                  </div>
+                </div>
+                <div className="flex gap-4 flex-wrap mt-2">
+                  {['Insecure', 'Afraid', 'Angry', 'Hopeless', 'Guilty'].map(
+                    (c) => (
+                      <Condition
+                        key={`${c}${new Date().getTime()}`}
+                        name={c}
+                        active={conditions.includes(c)}
+                        disabled={
+                          conditions.length >= 4 && !conditions.includes(c)
+                        }
+                        onClick={() => {
+                          if (conditions.includes(c)) {
+                            setConditions(
+                              conditions.filter((con) => con !== c)
+                            );
+                          } else if (conditions.length < 4) {
+                            // todo refactor with a variable maxStress
+                            setConditions([...conditions, c]);
+                          }
+                          setChanges(true);
+                        }}
+                      />
+                    )
+                  )}
+                </div>
+              </div>
+              <TypographyH2 className="text-md text-muted-foreground mt-8 flex items-end justify-between">
+                Actions{' '}
+                <Popover
+                  open={actionReferencePopopverOpen}
+                  onOpenChange={setActionReferencePopopverOpen}
+                >
+                  <PopoverTrigger asChild>
+                    <Button
+                      size="icon"
+                      variant="ghost"
+                      className="p-1 text-blue-600 hover:text-blue-600 h-10 w-10"
+                    >
+                      <BookOpen style={{ height: '24px', width: '24px' }} />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-full relative">
+                    <Close className="absolute top-2 right-2 h-6 w-6 text-red-400 hover:text-red-400 hover:bg-background rounded-md flex items-center justify-center">
+                      <X className="h-4 w-4" />
+                    </Close>
+                    <TypographyH4 className="text-md">Actions</TypographyH4>
+                    <TypographyH3 className="mt-4 text-sm text-muted-foreground">
+                      Universal Actions
+                    </TypographyH3>
+                    <div className="ml-2">
+                      {universal_actions.map((action, i) => (
+                        <ActionDescription key={i} action={action as Action} />
+                      ))}
+                    </div>
+                    {selectedBackground && (
+                      <div>
+                        <TypographyH3 className="text-sm text-muted-foreground text-red-500">
+                          {selectedBackground?.name}&apos;s Actions
+                        </TypographyH3>
+                        <div className="ml-2">
+                          {selectedBackground?.actions?.map((action, i) => (
+                            <ActionDescription key={i} action={action} />
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    {selectedSkillset && (
+                      <div>
+                        <TypographyH3 className="text-sm text-muted-foreground text-indigo-500">
+                          {selectedSkillset?.name}&apos;s Actions
+                        </TypographyH3>
+                        <div className="ml-2">
+                          {selectedSkillset?.actions?.map((action, i) => (
+                            <ActionDescription key={i} action={action} />
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    {selectedArchetype && (
+                      <div>
+                        <TypographyH3 className="text-sm text-muted-foreground text-amber-500">
+                          {selectedArchetype?.name}&apos;s Action
+                        </TypographyH3>
+                        <div className="ml-2">
+                          {selectedArchetype?.actions?.map((action, i) => (
+                            <ActionDescription key={i} action={action} />
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </PopoverContent>
+                </Popover>
+              </TypographyH2>
+              <div className="border-b-[1px]">
+                <div
+                  className="hover:cursor-pointer group mt-8"
+                  onClick={() => {
+                    rollAttribute('Heart');
+                  }}
+                >
+                  <TypographyH3 className="group-hover:underline text-center">
+                    Heart <Flame className="inline mb-2" />
+                  </TypographyH3>
+                </div>
+              </div>
+              <div className="grid grid-cols-4 mx-2">
+                <div className="flex flex-col">
+                  <div
+                    className="h-10 flex items-center hover:cursor-pointer group"
+                    onClick={(e) => {
+                      if (e.shiftKey) {
+                        rollAction('Heart', 'Defy');
+                      } else {
+                        setRollLeft('Heart-Defy');
+                      }
+                    }}
+                  >
+                    <TypographyH4 className="group-hover:underline">
+                      Defy
+                    </TypographyH4>
+                  </div>
+                  <Separator />
+                  <div
+                    className="h-10 flex items-center hover:cursor-pointer group"
+                    onClick={(e) => {
+                      if (e.shiftKey) {
+                        rollAction('Heart', 'Persuade');
+                      } else {
+                        setRollLeft('Heart-Persuade');
+                      }
+                    }}
+                  >
+                    <TypographyH4 className="group-hover:underline">
+                      Persuade
+                    </TypographyH4>
+                  </div>
+                </div>
+                <div className="flex flex-col  border-r-[1px]">
+                  <ActionScore
+                    key={`defy${new Date().getTime()}`}
+                    score={attributes.Heart.Defy}
+                    onChange={(s) => {
+                      handleUpdateActionScore('Heart', 'Defy', s);
+                    }}
+                    className="h-10 justify-end mr-2"
+                  />
+                  <Separator />
+                  <ActionScore
+                    key={`persuade${new Date().getTime()}`}
+                    score={attributes.Heart.Persuade}
+                    onChange={(s) => {
+                      handleUpdateActionScore('Heart', 'Persuade', s);
+                    }}
+                    className="h-10 justify-end mr-2"
                   />
                 </div>
-                <div className="grid grid-cols-4 mx-2">
-                  <div className="flex flex-col">
-                    <div
-                      className="h-10 flex items-center hover:cursor-pointer group"
-                      onClick={(e) => {
-                        if (e.shiftKey) {
-                          rollAction('Heart', 'Defy');
-                        } else {
-                          setRollLeft('Heart-Defy');
-                        }
-                      }}
-                    >
-                      <TypographyH4 className="group-hover:underline">
-                        Defy
-                      </TypographyH4>
-                    </div>
-                    <Separator />
-                    <div
-                      className="h-10 flex items-center hover:cursor-pointer group"
-                      onClick={(e) => {
-                        if (e.shiftKey) {
-                          rollAction('Heart', 'Persuade');
-                        } else {
-                          setRollLeft('Heart-Persuade');
-                        }
-                      }}
-                    >
-                      <TypographyH4 className="group-hover:underline">
-                        Persuade
-                      </TypographyH4>
-                    </div>
-                  </div>
-                  <div className="flex flex-col  border-r-[1px]">
-                    <ActionScore
-                      key={`defy${new Date().getTime()}`}
-                      score={attributes.Heart.Defy}
-                      onChange={(s) => {
-                        handleUpdateActionScore('Heart', 'Defy', s);
-                      }}
-                      className="h-10 justify-end mr-2"
-                    />
-                    <Separator />
-                    <ActionScore
-                      key={`persuade${new Date().getTime()}`}
-                      score={attributes.Heart.Persuade}
-                      onChange={(s) => {
-                        handleUpdateActionScore('Heart', 'Persuade', s);
-                      }}
-                      className="h-10 justify-end mr-2"
-                    />
-                  </div>
-                  <div className="flex flex-col">
-                    {selectedBackground?.attributes.Heart.map((a, i) => (
-                      <>
-                        <div
-                          key={`ah-${i}`}
-                          className="h-10 hover:cursor-pointer group"
-                          onClick={(e) => {
-                            if (e.shiftKey) {
-                              rollAction('Heart', a);
-                            } else {
-                              setRollRight(`Heart-${a}`);
-                            }
-                          }}
-                        >
-                          <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
-                            {a}
-                          </TypographyH4>
-                        </div>
-                        <Separator />
-                      </>
-                    ))}
-                    {selectedSkillset?.attributes.Heart.map((a, i) => (
-                      <>
-                        <div
-                          key={`ah-${i}`}
-                          className="h-10 hover:cursor-pointer group"
-                          onClick={(e) => {
-                            if (e.shiftKey) {
-                              rollAction('Heart', a);
-                            } else {
-                              setRollRight(`Heart-${a}`);
-                            }
-                          }}
-                        >
-                          <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
-                            {a}
-                          </TypographyH4>
-                        </div>
-                        <Separator />
-                      </>
-                    ))}
-                    {selectedArchetype?.attributes.Heart.map((a, i) => (
+                <div className="flex flex-col">
+                  {selectedBackground?.attributes.Heart.map((a, i) => (
+                    <>
                       <div
                         key={`ah-${i}`}
                         className="h-10 hover:cursor-pointer group"
@@ -1117,162 +1116,152 @@ export default function Charsheet() {
                           {a}
                         </TypographyH4>
                       </div>
-                    ))}
-                  </div>
-                  <div className="flex flex-col">
-                    {selectedBackground?.attributes.Heart.map((k) => (
-                      <>
-                        <ActionScore
-                          key={`bh-${k}`}
-                          score={attributes.Heart[k]}
-                          onChange={(s) => {
-                            handleUpdateActionScore('Heart', k, s);
-                          }}
-                          className="h-10 justify-end"
-                        />
-                        <Separator />
-                      </>
-                    ))}
-                    {selectedSkillset?.attributes.Heart.map((k) => (
-                      <>
-                        <ActionScore
-                          key={`th-${k}`}
-                          score={attributes.Heart[k]}
-                          onChange={(s) => {
-                            handleUpdateActionScore('Heart', k, s);
-                          }}
-                          className="h-10 justify-end"
-                        />
-                        <Separator />
-                      </>
-                    ))}
-                    {selectedArchetype?.attributes.Heart.map((k) => (
+                      <Separator />
+                    </>
+                  ))}
+                  {selectedSkillset?.attributes.Heart.map((a, i) => (
+                    <>
+                      <div
+                        key={`ah-${i}`}
+                        className="h-10 hover:cursor-pointer group"
+                        onClick={(e) => {
+                          if (e.shiftKey) {
+                            rollAction('Heart', a);
+                          } else {
+                            setRollRight(`Heart-${a}`);
+                          }
+                        }}
+                      >
+                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                          {a}
+                        </TypographyH4>
+                      </div>
+                      <Separator />
+                    </>
+                  ))}
+                  {selectedArchetype?.attributes.Heart.map((a, i) => (
+                    <div
+                      key={`ah-${i}`}
+                      className="h-10 hover:cursor-pointer group"
+                      onClick={(e) => {
+                        if (e.shiftKey) {
+                          rollAction('Heart', a);
+                        } else {
+                          setRollRight(`Heart-${a}`);
+                        }
+                      }}
+                    >
+                      <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                        {a}
+                      </TypographyH4>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex flex-col">
+                  {selectedBackground?.attributes.Heart.map((k) => (
+                    <>
                       <ActionScore
-                        key={`arh-${k}`}
+                        key={`bh-${k}`}
                         score={attributes.Heart[k]}
                         onChange={(s) => {
                           handleUpdateActionScore('Heart', k, s);
                         }}
                         className="h-10 justify-end"
                       />
-                    ))}
-                  </div>
+                      <Separator />
+                    </>
+                  ))}
+                  {selectedSkillset?.attributes.Heart.map((k) => (
+                    <>
+                      <ActionScore
+                        key={`th-${k}`}
+                        score={attributes.Heart[k]}
+                        onChange={(s) => {
+                          handleUpdateActionScore('Heart', k, s);
+                        }}
+                        className="h-10 justify-end"
+                      />
+                      <Separator />
+                    </>
+                  ))}
+                  {selectedArchetype?.attributes.Heart.map((k) => (
+                    <ActionScore
+                      key={`arh-${k}`}
+                      score={attributes.Heart[k]}
+                      onChange={(s) => {
+                        handleUpdateActionScore('Heart', k, s);
+                      }}
+                      className="h-10 justify-end"
+                    />
+                  ))}
                 </div>
-                <div className="grid grid-cols-2 border-b-[1px]">
+              </div>
+              <div className="border-b-[1px]">
+                <div
+                  className="hover:cursor-pointer pt-8"
+                  onClick={() => {
+                    rollAttribute('Instinct');
+                  }}
+                >
+                  <TypographyH3 className="group-hover:underline text-center">
+                    Instinct <Activity className="inline mb-2" />
+                  </TypographyH3>
+                </div>
+              </div>
+              <div className="grid grid-cols-4 mx-2">
+                <div className="flex flex-col">
                   <div
-                    className="hover:cursor-pointer group border-r-[1px] pt-8"
-                    onClick={() => {
-                      rollAttribute('Instinct');
+                    className="h-10 flex items-center hover:cursor-pointer group"
+                    onClick={(e) => {
+                      if (e.shiftKey) {
+                        rollAction('Instinct', 'Charge');
+                      } else {
+                        setRollLeft('Instinct-Charge');
+                      }
                     }}
                   >
-                    <TypographyH3 className="group-hover:underline">
-                      Instinct <Activity className="inline mb-2" />
-                    </TypographyH3>
+                    <TypographyH4 className="group-hover:underline">
+                      Charge
+                    </TypographyH4>
                   </div>
-                  <BuildupCheckboxes
-                    key={`instinctXp${new Date().getTime()}`}
-                    max={6}
-                    current={instinctXp}
-                    onChange={(n) => {
-                      setInstinctXp(n);
-                      setChanges(true);
+                  <Separator />
+                  <div
+                    className="h-10 flex items-center hover:cursor-pointer group"
+                    onClick={(e) => {
+                      if (e.shiftKey) {
+                        rollAction('Instinct', 'Prowl');
+                      } else {
+                        setRollLeft('Instinct-Prowl');
+                      }
                     }}
-                    className="items-center mt-auto mb-2"
+                  >
+                    <TypographyH4 className="group-hover:underline">
+                      Prowl
+                    </TypographyH4>
+                  </div>
+                </div>
+                <div className="flex flex-col border-r-[1px]">
+                  <ActionScore
+                    key={`charge${new Date().getTime()}`}
+                    score={attributes.Instinct.Charge}
+                    onChange={(s) => {
+                      handleUpdateActionScore('Instinct', 'Charge', s);
+                    }}
+                    className="h-10 justify-end mr-2"
+                  />
+                  <Separator />
+                  <ActionScore
+                    key={`prowl${new Date().getTime()}`}
+                    score={attributes.Instinct.Prowl}
+                    onChange={(s) => {
+                      handleUpdateActionScore('Instinct', 'Prowl', s);
+                    }}
+                    className="h-10 justify-end mr-2"
                   />
                 </div>
-                <div className="grid grid-cols-4 mx-2">
-                  <div className="flex flex-col">
-                    <div
-                      className="h-10 flex items-center hover:cursor-pointer group"
-                      onClick={(e) => {
-                        if (e.shiftKey) {
-                          rollAction('Instinct', 'Charge');
-                        } else {
-                          setRollLeft('Instinct-Charge');
-                        }
-                      }}
-                    >
-                      <TypographyH4 className="group-hover:underline">
-                        Charge
-                      </TypographyH4>
-                    </div>
-                    <Separator />
-                    <div
-                      className="h-10 flex items-center hover:cursor-pointer group"
-                      onClick={(e) => {
-                        if (e.shiftKey) {
-                          rollAction('Instinct', 'Prowl');
-                        } else {
-                          setRollLeft('Instinct-Prowl');
-                        }
-                      }}
-                    >
-                      <TypographyH4 className="group-hover:underline">
-                        Prowl
-                      </TypographyH4>
-                    </div>
-                  </div>
-                  <div className="flex flex-col border-r-[1px]">
-                    <ActionScore
-                      key={`charge${new Date().getTime()}`}
-                      score={attributes.Instinct.Charge}
-                      onChange={(s) => {
-                        handleUpdateActionScore('Instinct', 'Charge', s);
-                      }}
-                      className="h-10 justify-end mr-2"
-                    />
-                    <Separator />
-                    <ActionScore
-                      key={`prowl${new Date().getTime()}`}
-                      score={attributes.Instinct.Prowl}
-                      onChange={(s) => {
-                        handleUpdateActionScore('Instinct', 'Prowl', s);
-                      }}
-                      className="h-10 justify-end mr-2"
-                    />
-                  </div>
-                  <div className="flex flex-col">
-                    {selectedBackground?.attributes.Instinct.map((a, i) => (
-                      <>
-                        <div
-                          key={`ai-${i}`}
-                          className="h-10 hover:cursor-pointer group"
-                          onClick={(e) => {
-                            if (e.shiftKey) {
-                              rollAction('Instinct', a);
-                            } else {
-                              setRollRight(`Instinct-${a}`);
-                            }
-                          }}
-                        >
-                          <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
-                            {a}
-                          </TypographyH4>
-                        </div>
-                        <Separator />
-                      </>
-                    ))}
-                    {selectedSkillset?.attributes.Instinct.map((a, i) => (
-                      <>
-                        <div
-                          key={`ai-${i}`}
-                          className="h-10 hover:cursor-pointer group"
-                          onClick={(e) => {
-                            if (e.shiftKey) {
-                              rollAction('Instinct', a);
-                            } else {
-                              setRollRight(`Instinct-${a}`);
-                            }
-                          }}
-                        >
-                          <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
-                            {a}
-                          </TypographyH4>
-                        </div>
-                        <Separator />
-                      </>
-                    ))}
-                    {selectedArchetype?.attributes.Instinct.map((a, i) => (
+                <div className="flex flex-col">
+                  {selectedBackground?.attributes.Instinct.map((a, i) => (
+                    <>
                       <div
                         key={`ai-${i}`}
                         className="h-10 hover:cursor-pointer group"
@@ -1288,162 +1277,152 @@ export default function Charsheet() {
                           {a}
                         </TypographyH4>
                       </div>
-                    ))}
-                  </div>
-                  <div className="flex flex-col">
-                    {selectedBackground?.attributes.Instinct.map((k) => (
-                      <>
-                        <ActionScore
-                          key={`bi-${k}`}
-                          score={attributes.Instinct[k]}
-                          onChange={(s) => {
-                            handleUpdateActionScore('Instinct', k, s);
-                          }}
-                          className="h-10 justify-end"
-                        />
-                        <Separator />
-                      </>
-                    ))}
-                    {selectedSkillset?.attributes.Instinct.map((k) => (
-                      <>
-                        <ActionScore
-                          key={`ti-${k}`}
-                          score={attributes.Instinct[k]}
-                          onChange={(s) => {
-                            handleUpdateActionScore('Instinct', k, s);
-                          }}
-                          className="h-10 justify-end"
-                        />
-                        <Separator />
-                      </>
-                    ))}
-                    {selectedArchetype?.attributes.Instinct.map((k) => (
+                      <Separator />
+                    </>
+                  ))}
+                  {selectedSkillset?.attributes.Instinct.map((a, i) => (
+                    <>
+                      <div
+                        key={`ai-${i}`}
+                        className="h-10 hover:cursor-pointer group"
+                        onClick={(e) => {
+                          if (e.shiftKey) {
+                            rollAction('Instinct', a);
+                          } else {
+                            setRollRight(`Instinct-${a}`);
+                          }
+                        }}
+                      >
+                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                          {a}
+                        </TypographyH4>
+                      </div>
+                      <Separator />
+                    </>
+                  ))}
+                  {selectedArchetype?.attributes.Instinct.map((a, i) => (
+                    <div
+                      key={`ai-${i}`}
+                      className="h-10 hover:cursor-pointer group"
+                      onClick={(e) => {
+                        if (e.shiftKey) {
+                          rollAction('Instinct', a);
+                        } else {
+                          setRollRight(`Instinct-${a}`);
+                        }
+                      }}
+                    >
+                      <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                        {a}
+                      </TypographyH4>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex flex-col">
+                  {selectedBackground?.attributes.Instinct.map((k) => (
+                    <>
                       <ActionScore
-                        key={`ari-${k}`}
+                        key={`bi-${k}`}
                         score={attributes.Instinct[k]}
                         onChange={(s) => {
                           handleUpdateActionScore('Instinct', k, s);
                         }}
                         className="h-10 justify-end"
                       />
-                    ))}
-                  </div>
+                      <Separator />
+                    </>
+                  ))}
+                  {selectedSkillset?.attributes.Instinct.map((k) => (
+                    <>
+                      <ActionScore
+                        key={`ti-${k}`}
+                        score={attributes.Instinct[k]}
+                        onChange={(s) => {
+                          handleUpdateActionScore('Instinct', k, s);
+                        }}
+                        className="h-10 justify-end"
+                      />
+                      <Separator />
+                    </>
+                  ))}
+                  {selectedArchetype?.attributes.Instinct.map((k) => (
+                    <ActionScore
+                      key={`ari-${k}`}
+                      score={attributes.Instinct[k]}
+                      onChange={(s) => {
+                        handleUpdateActionScore('Instinct', k, s);
+                      }}
+                      className="h-10 justify-end"
+                    />
+                  ))}
                 </div>
-                <div className="grid grid-cols-2 border-b-[1px]">
+              </div>
+              <div className="border-b-[1px]">
+                <div
+                  className="hover:cursor-pointer group pt-8"
+                  onClick={() => {
+                    rollAttribute('Machina');
+                  }}
+                >
+                  <TypographyH3 className="group-hover:underline text-center">
+                    Machina <VenetianMask className="inline mb-1" />
+                  </TypographyH3>
+                </div>
+              </div>
+              <div className="grid grid-cols-4 mx-2">
+                <div className="flex flex-col">
                   <div
-                    className="hover:cursor-pointer group border-r-[1px] pt-8"
-                    onClick={() => {
-                      rollAttribute('Machina');
+                    className="h-10 flex items-center hover:cursor-pointer group"
+                    onClick={(e) => {
+                      if (e.shiftKey) {
+                        rollAction('Machina', 'Suggest');
+                      } else {
+                        setRollLeft('Machina-Suggest');
+                      }
                     }}
                   >
-                    <TypographyH3 className="group-hover:underline">
-                      Machina <VenetianMask className="inline mb-1" />
-                    </TypographyH3>
+                    <TypographyH4 className="group-hover:underline">
+                      Suggest
+                    </TypographyH4>
                   </div>
-                  <BuildupCheckboxes
-                    key={`machinaXp${new Date().getTime()}`}
-                    max={6}
-                    current={machinaXp}
-                    onChange={(n) => {
-                      setMachinaXp(n);
-                      setChanges(true);
+                  <Separator />
+                  <div
+                    className="h-10 flex items-center hover:cursor-pointer group"
+                    onClick={(e) => {
+                      if (e.shiftKey) {
+                        rollAction('Machina', 'Survey');
+                      } else {
+                        setRollLeft('Machina-Survey');
+                      }
                     }}
-                    className="items-center mt-auto mb-2"
+                  >
+                    <TypographyH4 className="group-hover:underline">
+                      Survey
+                    </TypographyH4>
+                  </div>
+                </div>
+                <div className="flex flex-col border-r-[1px]">
+                  <ActionScore
+                    key={`suggest${new Date().getTime()}`}
+                    score={attributes.Machina.Suggest}
+                    onChange={(s) => {
+                      handleUpdateActionScore('Machina', 'Suggest', s);
+                    }}
+                    className="h-10 justify-end mr-2"
+                  />
+                  <Separator />
+                  <ActionScore
+                    key={`survey${new Date().getTime()}`}
+                    score={attributes.Machina.Survey}
+                    onChange={(s) => {
+                      handleUpdateActionScore('Machina', 'Survey', s);
+                    }}
+                    className="h-10 justify-end mr-2"
                   />
                 </div>
-                <div className="grid grid-cols-4 mx-2">
-                  <div className="flex flex-col">
-                    <div
-                      className="h-10 flex items-center hover:cursor-pointer group"
-                      onClick={(e) => {
-                        if (e.shiftKey) {
-                          rollAction('Machina', 'Suggest');
-                        } else {
-                          setRollLeft('Machina-Suggest');
-                        }
-                      }}
-                    >
-                      <TypographyH4 className="group-hover:underline">
-                        Suggest
-                      </TypographyH4>
-                    </div>
-                    <Separator />
-                    <div
-                      className="h-10 flex items-center hover:cursor-pointer group"
-                      onClick={(e) => {
-                        if (e.shiftKey) {
-                          rollAction('Machina', 'Survey');
-                        } else {
-                          setRollLeft('Machina-Survey');
-                        }
-                      }}
-                    >
-                      <TypographyH4 className="group-hover:underline">
-                        Survey
-                      </TypographyH4>
-                    </div>
-                  </div>
-                  <div className="flex flex-col border-r-[1px]">
-                    <ActionScore
-                      key={`suggest${new Date().getTime()}`}
-                      score={attributes.Machina.Suggest}
-                      onChange={(s) => {
-                        handleUpdateActionScore('Machina', 'Suggest', s);
-                      }}
-                      className="h-10 justify-end mr-2"
-                    />
-                    <Separator />
-                    <ActionScore
-                      key={`survey${new Date().getTime()}`}
-                      score={attributes.Machina.Survey}
-                      onChange={(s) => {
-                        handleUpdateActionScore('Machina', 'Survey', s);
-                      }}
-                      className="h-10 justify-end mr-2"
-                    />
-                  </div>
-                  <div className="flex flex-col">
-                    {selectedBackground?.attributes.Machina.map((a, i) => (
-                      <>
-                        <div
-                          key={`am-${i}`}
-                          className="h-10 hover:cursor-pointer group"
-                          onClick={(e) => {
-                            if (e.shiftKey) {
-                              rollAction('Machina', a);
-                            } else {
-                              setRollRight(`Machina-${a}`);
-                            }
-                          }}
-                        >
-                          <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
-                            {a}
-                          </TypographyH4>
-                        </div>
-                        <Separator />
-                      </>
-                    ))}
-                    {selectedSkillset?.attributes.Machina.map((a, i) => (
-                      <>
-                        <div
-                          key={`am-${i}`}
-                          className="h-10 hover:cursor-pointer group"
-                          onClick={(e) => {
-                            if (e.shiftKey) {
-                              rollAction('Machina', a);
-                            } else {
-                              setRollRight(`Machina-${a}`);
-                            }
-                          }}
-                        >
-                          <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
-                            {a}
-                          </TypographyH4>
-                        </div>
-                        <Separator />
-                      </>
-                    ))}
-                    {selectedArchetype?.attributes.Machina.map((a, i) => (
+                <div className="flex flex-col">
+                  {selectedBackground?.attributes.Machina.map((a, i) => (
+                    <>
                       <div
                         key={`am-${i}`}
                         className="h-10 hover:cursor-pointer group"
@@ -1459,47 +1438,248 @@ export default function Charsheet() {
                           {a}
                         </TypographyH4>
                       </div>
-                    ))}
-                  </div>
-                  <div className="flex flex-col">
-                    {selectedBackground?.attributes.Machina.map((k) => (
-                      <>
-                        <ActionScore
-                          key={`bm-${k}`}
-                          score={attributes.Machina[k]}
-                          onChange={(s) => {
-                            handleUpdateActionScore('Machina', k, s);
-                          }}
-                          className="h-10 justify-end"
-                        />
-                        <Separator />
-                      </>
-                    ))}
-                    {selectedSkillset?.attributes.Machina.map((k) => (
-                      <>
-                        <ActionScore
-                          key={`tm-${k}`}
-                          score={attributes.Machina[k]}
-                          onChange={(s) => {
-                            handleUpdateActionScore('Machina', k, s);
-                          }}
-                          className="h-10 justify-end"
-                        />
-                        <Separator />
-                      </>
-                    ))}
-                    {selectedArchetype?.attributes.Machina.map((k) => (
+                      <Separator />
+                    </>
+                  ))}
+                  {selectedSkillset?.attributes.Machina.map((a, i) => (
+                    <>
+                      <div
+                        key={`am-${i}`}
+                        className="h-10 hover:cursor-pointer group"
+                        onClick={(e) => {
+                          if (e.shiftKey) {
+                            rollAction('Machina', a);
+                          } else {
+                            setRollRight(`Machina-${a}`);
+                          }
+                        }}
+                      >
+                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                          {a}
+                        </TypographyH4>
+                      </div>
+                      <Separator />
+                    </>
+                  ))}
+                  {selectedArchetype?.attributes.Machina.map((a, i) => (
+                    <div
+                      key={`am-${i}`}
+                      className="h-10 hover:cursor-pointer group"
+                      onClick={(e) => {
+                        if (e.shiftKey) {
+                          rollAction('Machina', a);
+                        } else {
+                          setRollRight(`Machina-${a}`);
+                        }
+                      }}
+                    >
+                      <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                        {a}
+                      </TypographyH4>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex flex-col">
+                  {selectedBackground?.attributes.Machina.map((k) => (
+                    <>
                       <ActionScore
-                        key={`arm-${k}`}
+                        key={`bm-${k}`}
                         score={attributes.Machina[k]}
                         onChange={(s) => {
                           handleUpdateActionScore('Machina', k, s);
                         }}
                         className="h-10 justify-end"
                       />
-                    ))}
+                      <Separator />
+                    </>
+                  ))}
+                  {selectedSkillset?.attributes.Machina.map((k) => (
+                    <>
+                      <ActionScore
+                        key={`tm-${k}`}
+                        score={attributes.Machina[k]}
+                        onChange={(s) => {
+                          handleUpdateActionScore('Machina', k, s);
+                        }}
+                        className="h-10 justify-end"
+                      />
+                      <Separator />
+                    </>
+                  ))}
+                  {selectedArchetype?.attributes.Machina.map((k) => (
+                    <ActionScore
+                      key={`arm-${k}`}
+                      score={attributes.Machina[k]}
+                      onChange={(s) => {
+                        handleUpdateActionScore('Machina', k, s);
+                      }}
+                      className="h-10 justify-end"
+                    />
+                  ))}
+                </div>
+              </div>
+              <TypographyH2 className="text-md text-muted-foreground mt-8">
+                Abilities
+              </TypographyH2>
+              {selectedSkillset && (
+                <div>
+                  <TypographyH3 className="text-sm text-indigo-500 mt-4">
+                    {selectedSkillset?.name}&apos;s Abilities
+                  </TypographyH3>
+                  <div className="ml-2">
+                    <Abilities
+                      abilities={selectedSkillset?.abilities?.mission}
+                      characterAbilities={abilities}
+                      setCharacterAbilities={setAbilities}
+                      setChanges={setChanges}
+                    />
                   </div>
                 </div>
+              )}
+              {selectedArchetype && (
+                <div className="mt-4">
+                  <TypographyH3 className="text-sm text-amber-500 mt-4">
+                    {selectedArchetype?.name}&apos;s Abilities
+                  </TypographyH3>
+                  <div className="ml-2">
+                    <Abilities
+                      abilities={selectedArchetype?.abilities?.mission}
+                      characterAbilities={abilities}
+                      setCharacterAbilities={setAbilities}
+                      setChanges={setChanges}
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+            <div className="flex my-6 md:mt-4">
+              <div>
+                <TypographyH2 className="text-md text-muted-foreground">
+                  Experience
+                </TypographyH2>
+                <XPClocks
+                  current={xpRef.current}
+                  setVal={(n) => {
+                    xpRef.current = n;
+                    setChanges(true);
+                  }}
+                  key={`xpclocks${new Date().getTime()}`}
+                />
+
+                <div className="flex items-end mt-4 justify-between">
+                  <TypographyH3 className="text-sm text-muted-foreground">
+                    Harm
+                  </TypographyH3>
+                </div>
+                <div className="flex items-center">
+                  <div className="flex flex-col items-center">
+                    <span className="bg-secondary p-2 h-10 w-6 shrink-0">
+                      3
+                    </span>
+                    <span className="bg-secondary p-2 h-10 w-6 shrink-0">
+                      2
+                    </span>
+                    <span className="bg-secondary p-2 h-10 w-6 shrink-0">
+                      1
+                    </span>
+                  </div>
+                  <div className="flex flex-col items-center w-full">
+                    <Input
+                      className="rounded-none"
+                      value={harm3}
+                      onChange={(e) => {
+                        setHarm3(e.target.value);
+                        handleDebounceChange();
+                      }}
+                    />
+                    <div className="flex w-full">
+                      <Input
+                        className="rounded-none"
+                        value={harm2[0]}
+                        onChange={(e) => {
+                          setHarm2([e.target.value, harm2[1]]);
+                          handleDebounceChange();
+                        }}
+                      />
+                      <Input
+                        className="rounded-none"
+                        value={harm2[1]}
+                        onChange={(e) => {
+                          setHarm2([harm2[0], e.target.value]);
+                          handleDebounceChange();
+                        }}
+                      />
+                    </div>
+                    <div className="flex w-full">
+                      <Input
+                        className="rounded-none"
+                        value={harm1[0]}
+                        disabled={true}
+                        onChange={(e) => {
+                          setHarm1([e.target.value, harm1[1]]);
+                          handleDebounceChange();
+                        }}
+                      />
+                      <Input
+                        className="rounded-none"
+                        value={harm1[1]}
+                        onChange={(e) => {
+                          setHarm1([harm1[0], e.target.value]);
+                          handleDebounceChange();
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <div className="flex flex-col items-center justify-center w-16 gap-4 border-[1px] border-border h-[120px]">
+                    <ExperimentalClock
+                      key={`healing${new Date().getTime()}`}
+                      max={4}
+                      current={healing}
+                      height={35}
+                      width={35}
+                      setVal={(n) => {
+                        setHealing(n);
+                        setChanges(true);
+                      }}
+                    />
+                    <span className="text-xs text-muted-foreground text-center">
+                      healing
+                    </span>
+                  </div>
+                </div>
+                <div className="border-[1px] border-border rounded-b-md py-1.5 px-4 select-none flex items-center justify-between text-sm">
+                  <div className="flex items-center gap-2">
+                    <Checkbox
+                      checked={armor}
+                      onCheckedChange={() => {
+                        setArmor(!armor);
+                        setChanges(true);
+                      }}
+                    />
+                    Armor
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Checkbox
+                      checked={hArmor}
+                      onCheckedChange={() => {
+                        setHArmor(!hArmor);
+                        setChanges(true);
+                      }}
+                    />{' '}
+                    Heavy
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Checkbox
+                      checked={sArmor}
+                      onCheckedChange={() => {
+                        setSArmor(!sArmor);
+                        setChanges(true);
+                      }}
+                    />{' '}
+                    Special
+                  </div>
+                </div>
+
                 <Card className="mt-4 p-4 flex flex-col gap-4">
                   <TypographyP className="text-muted-foreground text-xs">
                     select two skills to roll or shift+click a skill to roll it
@@ -1700,193 +1880,7 @@ export default function Charsheet() {
                     </div>
                   </div>
                 </Card>
-                <div className="flex justify-between gap-4 mt-4">
-                  <TypographyH3 className="text-sm text-muted-foreground">
-                    Experience
-                  </TypographyH3>
-                  <BuildupCheckboxes
-                    key={`xp${new Date().getTime()}`}
-                    max={8}
-                    current={skillsetXp}
-                    onChange={(n) => {
-                      setSkillsetXp(n);
-                      setChanges(true);
-                    }}
-                  />
-                </div>
-                <Separator />
-                <div className="flex justify-between gap-4 mt-2">
-                  <TypographyH3 className="text-sm text-muted-foreground">
-                    Stress
-                  </TypographyH3>
-                  <StressCheckboxes
-                    key={`stress${new Date().getTime()}`}
-                    max={9} // todo refactor with a variable maxStress
-                    current={stress}
-                    conditions={conditions}
-                    onChange={(n) => {
-                      setStress(n);
-                      setChanges(true);
-                    }}
-                  />
-                </div>
-                <div className="flex gap-4 flex-wrap">
-                  <div className="flex gap-4 flex-wrap mt-2">
-                    <TypographyH4 className="text-sm text-muted-foreground">
-                      Conditions
-                    </TypographyH4>
-                    {['Insecure', 'Afraid', 'Angry', 'Hopeless', 'Guilty'].map(
-                      (c) => (
-                        <Condition
-                          key={`${c}${new Date().getTime()}`}
-                          name={c}
-                          active={conditions.includes(c)}
-                          disabled={
-                            conditions.length >= 4 && !conditions.includes(c)
-                          }
-                          onClick={() => {
-                            if (conditions.includes(c)) {
-                              setConditions(
-                                conditions.filter((con) => con !== c)
-                              );
-                            } else if (conditions.length < 4) {
-                              // todo refactor with a variable maxStress
-                              setConditions([...conditions, c]);
-                            }
-                            setChanges(true);
-                          }}
-                        />
-                      )
-                    )}
-                    <div className="flex-shrink-0 ml-auto basis-[120px] border-[1px] border-border rounded-md p-1 flex items-center select-none">
-                      <Clock
-                        key={`conditionRecovery${new Date().getTime()}`}
-                        max={8}
-                        current={conditionRecovery}
-                        size={50}
-                        setVal={(n) => {
-                          setConditionRecovery(n);
-                          setChanges(true);
-                        }}
-                      />
-                      <span className="text-xs text-muted-foreground text-center w-full">
-                        recovery
-                      </span>
-                    </div>
-                  </div>
-                  <Separator />
-                </div>
-                <div className="flex items-end mt-4 justify-between">
-                  <TypographyH3 className="text-sm text-muted-foreground">
-                    Harm
-                  </TypographyH3>
-                  <div className="flex-shrink-0 border-[1px] basis-[120px] border-border rounded-t-md p-1 select-none flex items-center ">
-                    <Clock
-                      key={`healing${new Date().getTime()}`}
-                      max={4}
-                      current={healing}
-                      size={50}
-                      setVal={(n) => {
-                        setHealing(n);
-                        setChanges(true);
-                      }}
-                    />
-                    <span className="text-xs text-muted-foreground text-center w-full">
-                      healing
-                    </span>
-                  </div>
-                </div>
-                <div className="flex items-center">
-                  <span className="bg-secondary p-2 h-10 w-6 shrink-0">3</span>
-                  <Input
-                    className="rounded-none"
-                    value={harm3}
-                    onChange={(e) => {
-                      setHarm3(e.target.value);
-                      handleDebounceChange();
-                    }}
-                  />
-                  <span className="bg-secondary p-1.5 h-10 w-16 text-xs text-center shrink-0">
-                    NEED HELP
-                  </span>
-                </div>
-                <div className="flex items-center">
-                  <span className="bg-secondary p-2 h-10 w-6 shrink-0">2</span>
-                  <Input
-                    className="rounded-none"
-                    value={harm2[0]}
-                    onChange={(e) => {
-                      setHarm2([e.target.value, harm2[1]]);
-                      handleDebounceChange();
-                    }}
-                  />
-                  <Input
-                    className="rounded-none"
-                    value={harm2[1]}
-                    onChange={(e) => {
-                      setHarm2([harm2[0], e.target.value]);
-                      handleDebounceChange();
-                    }}
-                  />
-                  <span className="bg-secondary px-1.5 py-3 h-10 w-16 text-xs text-center shrink-0">
-                    -1D
-                  </span>
-                </div>
-                <div className="flex items-center">
-                  <span className="bg-secondary p-2 h-10 w-6 shrink-0">1</span>
-                  <Input
-                    className="rounded-none"
-                    value={harm1[0]}
-                    disabled={true}
-                    onChange={(e) => {
-                      setHarm1([e.target.value, harm1[1]]);
-                      handleDebounceChange();
-                    }}
-                  />
-                  <Input
-                    className="rounded-none"
-                    value={harm1[1]}
-                    onChange={(e) => {
-                      setHarm1([harm1[0], e.target.value]);
-                      handleDebounceChange();
-                    }}
-                  />
-                  <span className="bg-secondary p-1.5 h-10 w-16 text-xs text-center shrink-0">
-                    LESS EFFECT
-                  </span>
-                </div>
-                <div className="border-[1px] border-border rounded-b-md py-1.5 px-4 select-none flex items-center justify-between text-sm">
-                  <div className="flex items-center gap-2">
-                    <Checkbox
-                      checked={armor}
-                      onCheckedChange={() => {
-                        setArmor(!armor);
-                        setChanges(true);
-                      }}
-                    />
-                    Armor
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Checkbox
-                      checked={hArmor}
-                      onCheckedChange={() => {
-                        setHArmor(!hArmor);
-                        setChanges(true);
-                      }}
-                    />{' '}
-                    Heavy
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Checkbox
-                      checked={sArmor}
-                      onCheckedChange={() => {
-                        setSArmor(!sArmor);
-                        setChanges(true);
-                      }}
-                    />{' '}
-                    Special
-                  </div>
-                </div>
+
                 <div className="mt-6">
                   <TypographyH3 className="text-sm text-muted-foreground">
                     Loadout
@@ -2363,27 +2357,17 @@ export default function Charsheet() {
               </div>
             </div>
             <div className="my-3 flex flex-col">
-              <div className="grid grid-cols-2 border-b-[1px]">
+              <div className="border-b-[1px]">
                 <div
-                  className="hover:cursor-pointer group border-r-[1px] mt-8"
+                  className="hover:cursor-pointer group mt-8"
                   onClick={() => {
                     rollAttribute('Heart', 'churn');
                   }}
                 >
-                  <TypographyH3 className="group-hover:underline">
+                  <TypographyH3 className="group-hover:underline text-center">
                     Heart <Flame className="inline mb-2" />
                   </TypographyH3>
                 </div>
-                <BuildupCheckboxes
-                  key={`heartXp${new Date().getTime()}`}
-                  max={6}
-                  current={heartXp}
-                  onChange={(n) => {
-                    setHeartXp(n);
-                    setChanges(true);
-                  }}
-                  className="items-center mt-auto mb-2"
-                />
               </div>
               <div className="grid grid-cols-4 mx-2">
                 <div className="flex flex-col">
@@ -2558,27 +2542,17 @@ export default function Charsheet() {
                   ))}
                 </div>
               </div>
-              <div className="grid grid-cols-2 border-b-[1px]">
+              <div className="border-b-[1px]">
                 <div
-                  className="hover:cursor-pointer group border-r-[1px] pt-8"
+                  className="hover:cursor-pointer pt-8"
                   onClick={() => {
                     rollAttribute('Instinct', 'churn');
                   }}
                 >
-                  <TypographyH3 className="group-hover:underline">
+                  <TypographyH3 className="group-hover:underline text-center">
                     Instinct <Activity className="inline mb-2" />
                   </TypographyH3>
                 </div>
-                <BuildupCheckboxes
-                  key={`instinctXp${new Date().getTime()}`}
-                  max={6}
-                  current={instinctXp}
-                  onChange={(n) => {
-                    setInstinctXp(n);
-                    setChanges(true);
-                  }}
-                  className="items-center mt-auto mb-2"
-                />
               </div>
               <div className="grid grid-cols-4 mx-2">
                 <div className="flex flex-col">
@@ -2751,27 +2725,17 @@ export default function Charsheet() {
                   ))}
                 </div>
               </div>
-              <div className="grid grid-cols-2 border-b-[1px]">
+              <div className="border-b-[1px]">
                 <div
-                  className="hover:cursor-pointer group border-r-[1px] pt-8"
+                  className="hover:cursor-pointer group pt-8"
                   onClick={() => {
                     rollAttribute('Machina', 'churn');
                   }}
                 >
-                  <TypographyH3 className="group-hover:underline">
+                  <TypographyH3 className="group-hover:underline text-center">
                     Machina <VenetianMask className="inline mb-1" />
                   </TypographyH3>
                 </div>
-                <BuildupCheckboxes
-                  key={`machinaXp${new Date().getTime()}`}
-                  max={6}
-                  current={machinaXp}
-                  onChange={(n) => {
-                    setMachinaXp(n);
-                    setChanges(true);
-                  }}
-                  className="items-center mt-auto mb-2"
-                />
               </div>
               <div className="grid grid-cols-4 mx-2">
                 <div className="flex flex-col">
@@ -3185,21 +3149,6 @@ export default function Charsheet() {
                   </div>
                 </div>
               </Card>
-              <div className="flex justify-between gap-4 mt-4">
-                <TypographyH3 className="text-sm text-muted-foreground">
-                  Experience
-                </TypographyH3>
-                <BuildupCheckboxes
-                  key={`xp${new Date().getTime()}`}
-                  max={8}
-                  current={skillsetXp}
-                  onChange={(n) => {
-                    setSkillsetXp(n);
-                    setChanges(true);
-                  }}
-                />
-              </div>
-              <Separator />
               <div className="flex justify-between gap-4 mt-2">
                 <TypographyH3 className="text-sm text-muted-foreground">
                   Stress
@@ -3239,18 +3188,19 @@ export default function Charsheet() {
                       />
                     )
                   )}
-                  <div className="flex-shrink-0 ml-auto basis-[120px] border-[1px] border-border rounded-md p-1 flex items-center select-none">
-                    <Clock
+                  <div className="ml-auto border-[1px] border-border rounded-md p-1 flex items-center gap-2 select-none">
+                    <ExperimentalClock
                       key={`conditionRecovery${new Date().getTime()}`}
                       max={8}
-                      current={conditionRecovery}
-                      size={50}
+                      current={conditionRecoveryRef.current}
+                      width={35}
+                      height={35}
                       setVal={(n) => {
-                        setConditionRecovery(n);
+                        conditionRecoveryRef.current = n;
                         setChanges(true);
                       }}
                     />
-                    <span className="text-xs text-muted-foreground text-center w-full">
+                    <span className="text-xs text-muted-foreground text-center">
                       recovery
                     </span>
                   </div>

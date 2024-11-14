@@ -24,7 +24,7 @@ export default function DowntimeActionsAccordion({
             listening ear, or a source of tough love. When you comfort someone,
             name a piece of actionable advice and make a{' '}
             <span className="underline font-bold text-red-600">
-              <Link href="/game/the-churn#project-rolls">project roll</Link>
+              <Link href="/game/prelude#project-rolls">project roll</Link>
             </span>
             . The character you comfort can choose to take the advice or reject
             it. If they take the advice, they mark a number of segments on their
@@ -44,7 +44,7 @@ export default function DowntimeActionsAccordion({
             the clock(s) to create and suggest a method by which you might make
             progress. To advance a long term project, make a{' '}
             <span className="underline font-bold text-red-600">
-              <Link href="/game/the-churn#project-rolls">project roll</Link>
+              <Link href="/game/prelude#project-rolls">project roll</Link>
             </span>{' '}
             as normal.
           </TypographyP>
