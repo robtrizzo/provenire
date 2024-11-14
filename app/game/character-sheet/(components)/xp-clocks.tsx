@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import ExperimentalClock from '@/components/ui/experimental-clock';
+import Clock from '@/components/ui/clock';
 import { Button } from '@/components/ui/button';
 export default function XPClocks({
   current,
@@ -9,7 +9,9 @@ export default function XPClocks({
   current: number;
   setVal: (n: number) => void;
 }) {
+  console.log('current', current);
   const [xp, setXp] = useState<number>(current);
+  console.log('xp', xp);
 
   const numClocks = 5;
 
@@ -19,7 +21,7 @@ export default function XPClocks({
         {Array.from({ length: numClocks }, (_, i) => {
           const clockVal = Math.min(Math.max(xp - i * 6, 0), 6);
           return (
-            <ExperimentalClock
+            <Clock
               key={i}
               width={35}
               height={35}

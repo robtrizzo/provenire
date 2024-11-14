@@ -5,7 +5,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { TypographyP } from '@/components/ui/typography';
+import { TypographyBlockquote, TypographyP } from '@/components/ui/typography';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 
@@ -22,30 +22,68 @@ export default function DowntimeActionsAccordion({
           <TypographyP>
             When you comfort someone, you might be a shoulder to cry on, a
             listening ear, or a source of tough love. When you comfort someone,
-            name a piece of actionable advice and make a{' '}
-            <span className="underline font-bold text-red-600">
-              <Link href="/game/prelude#project-rolls">project roll</Link>
-            </span>
-            . The character you comfort can choose to take the advice or reject
-            it. If they take the advice, they mark a number of segments on their
-            recovery clock according to the result. If they reject the advice,
-            you mark an amount of stress equal to the result.
+            name a piece of actionable advice and <b>ante</b> up a number from 1
+            to 8. The character you comfort can choose to take the advice or
+            reject it. If they take the advice, they mark a number of ticks on
+            their <b>recovery clock</b> according to the <b>ante</b>. If they
+            reject the advice, you mark an amount of stress equal to the{' '}
+            <b>ante</b>.
           </TypographyP>
         </AccordionContent>
       </AccordionItem>
-      <AccordionItem value="long-term-project">
-        <AccordionTrigger>Long Term Project</AccordionTrigger>
+      <AccordionItem value="consort">
+        <AccordionTrigger>Consort</AccordionTrigger>
         <AccordionContent>
           <TypographyP>
-            Work on a long term project not encompassed by the other agendas or
-            downtime activities. This can cover a wide range of activities like
-            puzzling out a mystery, gaining someone&apos;s trust, or building a
-            unique item. Based on the goal of the project, the GM will tell you
-            the clock(s) to create and suggest a method by which you might make
-            progress. To advance a long term project, make a{' '}
-            <span className="underline font-bold text-red-600">
-              <Link href="/game/prelude#project-rolls">project roll</Link>
-            </span>{' '}
+            When you consort, you choose any character (PC or NPC) to spend time
+            with. You can build on your relationship, have a crucial
+            confrontation, or just chat. Set the scene, then play to find out
+            what happens. When you consort, you may choose to <b>spend xp</b> to
+            advance your bond
+            <sup className="text-amber-500">*</sup> with the character
+            you&apos;re consorting with.
+          </TypographyP>
+          <TypographyP className="text-muted-foreground">
+            <sup className="text-amber-500">*</sup>Bonds are WIP and will be
+            expanded on in the next update.
+          </TypographyP>
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="gather-information">
+        <AccordionTrigger>Gather Information</AccordionTrigger>
+        <AccordionContent>
+          <TypographyP>
+            Seek out information that isn&apos;t trivial to come by. The{' '}
+            <b>Narrator</b> will offer a <b>devil&apos;s bargain</b>. Often this
+            will take the form of: &quot;Pay a <b>cost</b> or face the threat of{' '}
+            <i>bad information</i>&quot;. In this situation, characters roll to
+            avoid consequences rather than to see if they succeed.
+          </TypographyP>
+          <TypographyP>
+            Some information is too obscure or has too complex a barrier to
+            answer with one <b>gather information</b> activity. These pieces of
+            information should be pursued as a <b>project</b>.
+          </TypographyP>
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="project">
+        <AccordionTrigger>Project</AccordionTrigger>
+        <AccordionContent>
+          <TypographyP>
+            Accomplish a <b>simple project</b>.
+          </TypographyP>
+          <span className="text-muted-foreground font-serif">or</span>
+          <TypographyP>
+            Work on a <b>long term project</b> not encompassed by the other
+            agendas or downtime activities. This can cover a wide range of
+            activities like puzzling out a mystery, gaining someone&apos;s
+            trust, or building a unique item. Based on the goal of the project,
+            the GM will tell you the clock(s) to create and suggest a method by
+            which you might make progress. To advance a <b>long term project</b>
+            , make a{' '}
+            <Link href="/game/prelude#project-rolls">
+              <span className="text-red-500 underline">project roll</span>
+            </Link>{' '}
             as normal.
           </TypographyP>
         </AccordionContent>
@@ -53,42 +91,29 @@ export default function DowntimeActionsAccordion({
       <AccordionItem value="recover">
         <AccordionTrigger>Recover</AccordionTrigger>
         <AccordionContent>
-          <TypographyP>
-            When you recover, you seek treatment and heal your harm. You might
-            visit a Bond or Contact who can help you, or you might rely on your
-            own skills. Failing that, you bedrest and hope for the best. When
-            you recover, make a{' '}
-            <span className="underline font-bold text-red-600">
-              <Link href="/game/the-churn#project-rolls">project roll</Link>
-            </span>{' '}
-            and mark a number of segments on the healing clock according to the
-            result. When you fill your healing clock, reduce each instance of
+          <TypographyP className="mb-1">
+            When you recover in a safe location, you seek treatment and heal
+            your harm. You gain <b>2 ticks</b> on your <b>healing clock</b>.
+            When you fill your <b>healing clock</b>, reduce each instance of
             harm on your sheet by one level, then clear the clock. If you have
-            more segments to mark, they &quot;roll over&quot;.
+            more ticks to mark, they &quot;roll over.&quot;
           </TypographyP>
+          <span className="text-muted-foreground font-serif">
+            or if you engage the services of a Mediciner you&apos;re familiar
+            with,
+          </span>
           <TypographyP>
+            Receive as good a treatment as you can in the Steel Trap. Remove one
+            instance of harm from your sheet. Pay them <b>2 food/materials</b>{' '}
+            and take <b>+2 heat</b>, or pay for their discretion with{' '}
+            <b>4 food/materials</b>.
+          </TypographyP>
+          <TypographyBlockquote>
             Some harm can&apos;t be healed by normal means. Examples incude
             &quot;hungry&quot; and &quot;tired&quot;. These can have their
             levels reduced by recovery, but require specific actions to heal
             entirely.
-          </TypographyP>
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="relax">
-        <AccordionTrigger>Relax</AccordionTrigger>
-        <AccordionContent>
-          <TypographyP>
-            When you relax, you seek out comfort, peace, or vice. Whatever your
-            character feels they need to reduce the stress of risking their
-            lives on missions. When you relax, roll your lowest attribute. The
-            result determines how much stress you clear.
-          </TypographyP>
-          <TypographyP>
-            If you would clear more stress than you have, it represents
-            overindulgence or neglecting other parts of your life that need
-            attention. Mark an amount of stress equal to the &quot;roll
-            over&quot;.
-          </TypographyP>
+          </TypographyBlockquote>
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="shift-blame">
@@ -99,10 +124,10 @@ export default function DowntimeActionsAccordion({
             heat generated in missions. You might be spreading rumors, bribing
             officials, or framing someone else for your crimes. Whatever your
             approach, you need a scapegoat. Name them and make a{' '}
-            <span className="underline font-bold text-red-600">
-              <Link href="/game/the-churn#project-rolls">project roll</Link>
-            </span>
-            . The result determines how much heat you can reduce.
+            <Link href="/game/prelude#project-rolls">
+              <span className="text-red-500 underline">project roll</span>
+            </Link>
+            . The result determines how much heat you reduce.
           </TypographyP>
         </AccordionContent>
       </AccordionItem>
@@ -110,10 +135,17 @@ export default function DowntimeActionsAccordion({
         <AccordionTrigger>Train</AccordionTrigger>
         <AccordionContent>
           <TypographyP>
-            When you spend time training, <strong>mark 1 xp</strong> on the xp
-            track for an attribute or mission advancement. You can only train a
-            given xp track once per downtime.
+            When you spend time training, <b>spend xp</b> to get an advance for
+            your character. Describe the training montage with an appropriate
+            instructor or mentor. You can choose this activity to act as an{' '}
+            <b>instructor</b> in an area of your expertise. When you&apos;re an
+            instructor, you may <b>spend xp</b> to advance.
           </TypographyP>
+          <TypographyBlockquote>
+            What&apos;s your relationship with you trainer? Has it changed?
+            What&apos;s the most challenging or valuable part of your training
+            session?
+          </TypographyBlockquote>
         </AccordionContent>
       </AccordionItem>
     </Accordion>

@@ -75,28 +75,6 @@ export default async function Page() {
         included in the mission. The <b>Narrator</b> states the rewards for
         accomplishing each side objective.
       </TypographyP>
-      {/* <TypographyH3 id="gather-information">Gather Information</TypographyH3>
-      <TypographyP>
-        During this phase the characters may do the footwork required to pull
-        off successful missions in the Steel Trap. If the information is common
-        knowledge, the Narrator will simply explain. If the characters simply
-        don&apos;t know something, the <b>Narrator</b> will offer a{' '}
-        <b>devil&apos;s bargain</b> to learn the information. Often this will
-        take the form of: &quot;Pay <b>1 intel</b> or face the threat of{' '}
-        <i>bad information</i>&quot;. In this situation, characters roll to
-        avoid consequences rather than to see if they succeed.
-      </TypographyP>
-      <TypographyP>
-        Time is short in the Steel Trap, and characters will often only get one
-        chance per <b>gather information</b> phase to ask a question. So choose
-        wisely.
-      </TypographyP>
-      <TypographyH4>Investigation</TypographyH4>
-      <TypographyP>
-        Some information is too obscure or has too complex a barrier to answer
-        with one <b>gather information</b> phase. These pieces of information
-        should be pursued as a <b>long term project</b> during downtime.
-      </TypographyP> */}
       <TypographyH2 id="downtime">Downtime</TypographyH2>
       <TypographyP>
         In the short time left between <b>subsistence</b>, <b>agendas</b>, and{' '}
