@@ -105,6 +105,10 @@ const data = {
       ],
     },
     {
+      title: 'Crucible',
+      url: '/game/crucible',
+    },
+    {
       title: 'OSG: Twisted Scion',
       url: '/game/osg',
     },
