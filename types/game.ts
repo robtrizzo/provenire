@@ -40,6 +40,7 @@ export type Background = {
 export type Heritage = {
   name: string;
   remembrance: string;
+  shortDescription: string;
 };
 
 export interface Action {
