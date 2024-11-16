@@ -102,6 +102,8 @@ const data = {
         { title: 'Playtest One', url: '/game/playtest-one' },
         { title: 'Playtest Two', url: '/game/playtest-two' },
         { title: 'Playtest Three', url: '/game/playtest-three' },
+        { title: 'Playtest Four', url: '/game/playtest-four' },
+        { title: 'Playtest Five', url: '/game/playtest-five' },
       ],
     },
     {
