@@ -3,7 +3,7 @@ export default function Vigorous() {
   return (
     <TypographyP>
       You recover from harm faster. Reduce your healing clock to 3 segments.
-      Take <strong>+1d</strong> to healing rolls.
+      When others would become tired, you don&apos;t.
     </TypographyP>
   );
 }
