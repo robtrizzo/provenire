@@ -2461,7 +2461,7 @@ export default function Charsheet() {
               </div>
               <div className="border-b-[1px]">
                 <div
-                  className="hover:cursor-pointer pt-8"
+                  className="group hover:cursor-pointer pt-8"
                   onClick={() => {
                     rollAttribute('Instinct', 'churn');
                   }}
