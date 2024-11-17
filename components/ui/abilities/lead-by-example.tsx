@@ -3,12 +3,12 @@ export default function LeadByExample() {
   return (
     <div>
       <TypographyP>
-        At the start of a mission, you may describe a plan which does not
-        glorify you, but makes the best use of everyone&apos;s talents in your
-        opinion. Each teammate who agrees may <strong>push themselves</strong>{' '}
-        for 1 stress for as long as they are furthering your plan. If anyone
-        agrees and you fail at your part in the plan, mark{' '}
-        <strong>4 stress</strong>.
+        When the Executive leads a group roll, they may first roll before
+        everyone else. If they roll a <b>6</b>, they mark <b>+1 xp</b>. After
+        seeing the result, another character may join the group roll and the
+        Executive marks <b>1 stress</b>. After seeing their result, the
+        Executive may opt to repeat this cycle until satisfied with the result
+        or until they call it off.
       </TypographyP>
     </div>
   );

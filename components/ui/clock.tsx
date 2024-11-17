@@ -49,7 +49,7 @@ export default function Clock({
           y1={cy}
           x2={x}
           y2={y}
-          stroke={dark ? 'hsl(217.2 32.6% 17.5%)' : 'hsl(214.3 31.8% 91.4%)'}
+          stroke={dark ? 'hsl(215 20.2% 65.1%)' : 'hsl(215.4 16.3% 46.9%)'}
           strokeWidth={1}
         />
       );
@@ -59,7 +59,7 @@ export default function Clock({
   return (
     theme && (
       <div
-        className="border-solid border-2 relative"
+        className="border-solid border-2 border-muted-foreground relative"
         style={{
           backgroundImage: conicGradient,
           borderRadius: '50%',

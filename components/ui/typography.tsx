@@ -129,11 +129,15 @@ export function TypographyInlineCode({
 
 export function TypographyUnorderedList({
   children,
+  className,
 }: {
   children: React.ReactNode;
+  className?: string;
 }) {
   return (
-    <ul className="mb-4 ml-6 list-disc [&>li]:mt-2 font-serif">{children}</ul>
+    <ul className={cn('mb-4 ml-6 list-disc [&>li]:mt-2 font-serif', className)}>
+      {children}
+    </ul>
   );
 }
 

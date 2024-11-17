@@ -1,14 +1,16 @@
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import {
   TypographyH1,
   TypographyH2,
   TypographyH3,
+  TypographyH4,
   TypographyP,
   TypographyUnorderedList,
 } from '@/components/ui/typography';
 import Breadcrumbs from '@/components/ui/breadcrumbs';
+import { Separator } from '@/components/ui/separator';
 
 export default function Page() {
   return (
@@ -151,10 +153,19 @@ export default function Page() {
         <strong>mission traits</strong> of your character sheet.
       </TypographyP>
       <TypographyP>
-        <strong>Trait ratings</strong> have two marks. Each mark can be empty,
-        red, or blue. Each filled mark represents a die that gets added to the
-        pool. Empty marks add nothing. Red marks add red dice. Blue marks add
-        blue dice. They represent a progression from novice to expert.
+        <strong>Trait ratings</strong> have two marks. Each mark can be{' '}
+        <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 inline-block" />
+        ,{' '}
+        <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 inline-block bg-red-500" />
+        , or{' '}
+        <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 inline-block bg-blue-500" />
+        . Each filled mark represents a die that gets added to the pool.{' '}
+        <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 inline-block" />{' '}
+        adds nothing.{' '}
+        <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 inline-block bg-red-500" />{' '}
+        adds a red die.{' '}
+        <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 inline-block bg-blue-500" />{' '}
+        adds a blue die. They represent a progression from novice to expert.
       </TypographyP>
       <TypographyP>
         When you read the result of a die roll, note the color of the highest
@@ -201,10 +212,9 @@ export default function Page() {
         <li>
           <strong>Group Roll:</strong> Ask if anyone else in the crew wants to
           make a roll with you. If they do, you decide who the leader is; the
-          leader marks <strong>1 xp</strong>. Then everyone separately rolls the
-          same action as the leader (or at least must include the same universal
-          action). The highest roll among the group is used as the result. For
-          each member of the group that rolls a <strong>1-3</strong>, the leader
+          leader marks <strong>1 xp</strong>. Then everyone separately rolls.
+          The highest roll among the group is used as the result. For each
+          member of the group that rolls a <strong>1-3</strong>, the leader
           marks <strong>1 stress</strong>. If the overall result has
           consequences, everyone suffers them.
         </li>
@@ -247,6 +257,136 @@ export default function Page() {
           </span>
         </li>
       </TypographyUnorderedList>
+      <TypographyH3 id="experience-and-advancement">
+        Experience & Advancement
+      </TypographyH3>
+      <TypographyP>
+        Experience in <i>Provenire</i> represents the physical and emotional
+        experiences your character has been through. It is tracked in a series
+        of five <b>xp clocks</b> which have six sections each (for up to a
+        maximum of 30xp). When you gain <b>xp</b>, you mark a tick on one of the
+        <b>xp clocks</b>. When you fill an <b>xp clock</b>, it&apos;s available
+        to be cleared to advance your character.
+      </TypographyP>
+      <TypographyP>
+        You can gain <b>xp</b> during missions and in the <b>Aftermath</b> of a
+        mission. You can advance your character by taking the <b>train</b> or{' '}
+        <b>consort</b> downtime action to clear <b>xp clocks</b>. More on{' '}
+        <b>Downtime</b> in the{' '}
+        <Link href="/game/prelude#downtime">
+          <span className="underline text-red-500">Prelude</span>
+        </Link>
+        .
+      </TypographyP>
+      <TypographyH4>During Mission</TypographyH4>
+      <TypographyP>
+        <b>+1 xp</b> when...
+      </TypographyP>
+      <TypographyUnorderedList>
+        <li>
+          you roll <b>1-3</b> on an <b>action roll</b>
+        </li>
+        <li>
+          you make an <b>action roll</b> in a <b>desperate position</b>
+        </li>
+        <li>
+          you lead a <b>group action</b>
+        </li>
+        <li>
+          the <b>Narrator</b> invokes one of your <b>harms</b>
+        </li>
+        <li>
+          the <b>Narrator</b> invokes one of your <b>conditions</b>
+        </li>
+      </TypographyUnorderedList>
+      <TypographyH4>Mission Aftermath</TypographyH4>
+      <TypographyP>
+        At the end of each mission, for each item below that occurred,{' '}
+        <b>+1 xp</b>. <b>+2 xp</b> if that item occurred multiple times.
+      </TypographyP>
+      <TypographyUnorderedList>
+        <li>
+          You materially improved the conditions of workers in the Steel Trap
+        </li>
+        <li>
+          You struck fear into your foes&apos; hearts with extreme violence
+        </li>
+        <li>You expressed your dream, heritage, or background</li>
+        <li>You struggled with your hurt or conditions</li>
+        <li>You grew closer to someone in your crew</li>
+        <li>
+          You grew apart from someone in the crew... also{' '}
+          <b>strain your bond</b>
+          <sup className="text-amber-500">*</sup>{' '}
+        </li>
+      </TypographyUnorderedList>
+      <span className="text-muted-foreground text-sm mb-4">
+        <sup className="text-amber-500">*</sup>Bonds are WIP and will be
+        expanded on in the next update.
+      </span>
+      <TypographyH4>Advancement</TypographyH4>
+      <TypographyP>
+        Advancements cost a number of <b>xp clocks</b> you must expend.
+      </TypographyP>
+      <div className="flex flex-wrap gap-8">
+        <div className="flex flex-col items-center">
+          <span className="text-sm">1 xp clock</span>
+          <div className="flex items-center gap-4 mt-4">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4"></div>
+            <ArrowRight className="h-4 w-4 text-primary" />
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4"></div>
+          </div>
+        </div>
+        <div className="flex flex-col items-center">
+          <span className="text-sm">2 xp clocks</span>
+          <div className="flex items-center gap-4 mt-4">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4"></div>
+            <ArrowRight className="h-4 w-4 text-primary" />
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+          </div>
+          <div className="flex items-center gap-4 mt-4 mb-2">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4"></div>
+            <ArrowRight className="h-4 w-4 text-primary" />
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4"></div>
+          </div>
+          <span className="text-sm mt-2 text-amber-500">archetype ability</span>
+        </div>
+        <div className="flex flex-col items-center">
+          <span className="text-sm">3 xp clocks</span>
+          <div className="flex items-center gap-4 mt-4">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+            <ArrowRight className="h-4 w-4 text-primary" />
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+          </div>
+          <div className="flex items-center gap-4 mt-4 mb-2">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4"></div>
+            <ArrowRight className="h-4 w-4 text-primary" />
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+          </div>
+          <span className="mt-2 text-sm text-indigo-500">skillset ability</span>
+        </div>
+        <div className="flex flex-col items-center">
+          <span className="text-sm">4 xp clocks</span>
+          <div className="flex items-center gap-4 mt-4">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+            <ArrowRight className="h-4 w-4 text-primary" />
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+          </div>
+        </div>
+      </div>
+      <Separator />
       <div className="w-full flex justify-between">
         <Link href="/game/setting">
           <Button variant="outline">

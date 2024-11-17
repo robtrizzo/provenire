@@ -245,11 +245,11 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/prelude#gather-information');
+              router.push('/game/core-system#experience-and-advancement');
               setOpen(false);
             }}
           >
-            Gather Information
+            Experience & Advancement
           </CommandItem>
           <CommandItem
             onSelect={() => {

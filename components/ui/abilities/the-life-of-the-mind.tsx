@@ -4,10 +4,10 @@ export default function TheLifeOfTheMind() {
   return (
     <div>
       <TypographyP>
-        A cerebral sort often lost in day-dreams. Once per mission during a
-        desperate situation, the Engineer may withdraw into their thoughts. If
-        they do, they don&apos;t get to participate in solving or escaping the
-        situation, but they may make a{' '}
+        A cerebral sort often lost in day-dreams. Once per mission when the crew
+        is grappling with a problem, the Engineer may withdraw into their
+        thoughts. If they do, they don&apos;t get to participate in solving or
+        escaping the situation, but they may make a{' '}
         <span className="text-red-700 font-bold underline">
           <Link href="/game/prelude#project-rolls">project roll</Link>
         </span>{' '}

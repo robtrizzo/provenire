@@ -75,6 +75,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { Close } from '@radix-ui/react-popover';
+import XPInfo from './(components)/xp-info';
 
 export default function Charsheet() {
   const [tab, setTab] = useState('mission');
@@ -1551,8 +1552,8 @@ export default function Charsheet() {
               )}
             </div>
             <div className="flex flex-col my-6 md:mt-4">
-              <TypographyH2 className="text-md text-muted-foreground">
-                Experience
+              <TypographyH2 className="text-md text-muted-foreground flex items-end justify-between">
+                Experience <XPInfo />
               </TypographyH2>
               <XPClocks
                 current={xpRef.current}
@@ -1913,6 +1914,16 @@ export default function Charsheet() {
                     }}
                   />{' '}
                   Bulky
+                </div>
+                <div className="flex items-center gap-2">
+                  <Checkbox
+                    checked={loadout?.name === 'Encumbered'}
+                    onCheckedChange={() => {
+                      setLoadout(loadouts[3]);
+                      setChanges(true);
+                    }}
+                  />{' '}
+                  Encumbered
                 </div>
               </div>
               <ItemsTable
@@ -2931,8 +2942,8 @@ export default function Charsheet() {
               </div>
             </div>
             <div className="my-4 flex flex-col">
-              <TypographyH2 className="text-md text-muted-foreground">
-                Experience
+              <TypographyH2 className="text-md text-muted-foreground flex items-end justify-between">
+                Experience <XPInfo />
               </TypographyH2>
               <XPClocks
                 current={xpRef.current}
