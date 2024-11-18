@@ -89,6 +89,15 @@ export default async function Page() {
         oppressive system of marriage to thin the bloodline that could fight
         back against him.
       </TypographyP>
+      <TypographyP>
+        Argosi especially revere water, going through great lengths to collect,
+        purify, and drink as much as they can. They do this in secret to avoid
+        the viscious mockery of the Rathi.{' '}
+        <i>
+          &quot;Only the thinnest-blooded weaklings would prefer water to
+          blood.&quot;
+        </i>
+      </TypographyP>
       <Separator className="my-3" />
       <div className="w-full flex justify-between">
         <Link href="/game/character-creation">
