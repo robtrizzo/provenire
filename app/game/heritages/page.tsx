@@ -1,4 +1,5 @@
 import {
+  TypographyBlockquote,
   TypographyH1,
   TypographyH3,
   TypographyP,
@@ -98,6 +99,34 @@ export default async function Page() {
           blood.&quot;
         </i>
       </TypographyP>
+      <Separator className="my-3" />
+      <HeritageSummary heritage={heritages[2]} />
+      <TypographyP>
+        For every cruelty, for every indignity, and for every horror Fenrir has
+        inflicted on the world, the Bwarhein have suffered longer and worse. The
+        world is cruel. Life is not fair. In a world of kill or be killed, hunt
+        or be hunted, your people are the prey; the slain. Long gone is your
+        pride. It was torn to shreds - gulped and steeping in the gullets of
+        Fenrir&apos;s monstrous children.
+      </TypographyP>
+      <TypographyP>
+        All that is left of your people is a dream:{' '}
+        <i>Make them hurt. As much as we can.</i>
+      </TypographyP>
+      <TypographyP>
+        Bwarhein in the Steel Trap are indistinguishable from Fenrir. Many even
+        possess a transformation - and powerful ones at that, though their
+        powers are far stronger than even that. With this strength, many
+        Bwarhein find that they have the potential to rise high in the ranks of
+        workers and enforcers, should they choose. A fact many grapple with,
+        given the consequences of their true nature becoming exposed.
+      </TypographyP>
+      <TypographyBlockquote>
+        &quot;These accursed monsters are a smear of degeneracy on our
+        bloodline. Birthed from mothers consorting with demons in vulgar dreams.
+        They too must be made a living example of why even fantasizing about a
+        man other than the holy appointed husband leads to profanity.&quot;
+      </TypographyBlockquote>
       <Separator className="my-3" />
       <div className="w-full flex justify-between">
         <Link href="/game/character-creation">
