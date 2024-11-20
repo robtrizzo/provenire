@@ -128,6 +128,29 @@ export default async function Page() {
         man other than the holy appointed husband leads to profanity.&quot;
       </TypographyBlockquote>
       <Separator className="my-3" />
+      <HeritageSummary heritage={heritages[3]} />
+      <TypographyP>
+        Ferocious and independant, even after generations of conditioning to
+        fall in line. The Cumerians in the Steel Trap perfer to islolate
+        themselves from other communities, treacherously arrangine their hovels
+        high in the rafters. And when they descend, many have learned to avert
+        their gaze and avoid their presence. You never know when they may next
+        lash out.
+      </TypographyP>
+      <TypographyP>
+        From the perspective of others, a Cumerian is just as likely to spit in
+        an overseer&apos;s face as they are to do a normal day&apos;s work.
+        They&apos;re just as likely to attack a friend as they are to defend
+        them. And to make matters worse, they publicly torment their children.
+        They tie them to the rafters and throw them off. If they scream, they do
+        it again and again until the child meets some sort of secret critera.
+      </TypographyP>
+      <TypographyBlockquote>
+        &quot;It&apos;s called <i>tempering</i>. It is not a child&apos;s fault
+        that they fear; children are born unfinished. It is our duty as their
+        protectors to wring it out of them.&quot;
+      </TypographyBlockquote>
+      <Separator className="my-3" />
       <div className="w-full flex justify-between">
         <Link href="/game/character-creation">
           <Button variant="outline">
