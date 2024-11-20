@@ -263,9 +263,9 @@ export default async function Page() {
             <ChevronLeft /> Introduction
           </Button>
         </Link>
-        <Link href="/game/core-system">
+        <Link href="/game/strange-forces">
           <Button variant="outline">
-            Core System <ChevronRight />
+            Strange Forces of the Steel Trap <ChevronRight />
           </Button>
         </Link>
       </div>

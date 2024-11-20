@@ -33,6 +33,10 @@ const data = {
           title: 'Era 3',
           url: '/game/setting',
         },
+        {
+          title: 'Strange Forces',
+          url: '/game/setting/strange-forces',
+        },
       ],
     },
     {
