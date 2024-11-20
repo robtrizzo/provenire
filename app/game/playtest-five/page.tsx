@@ -6,6 +6,7 @@ import {
   TypographyP,
   TypographyUnorderedList,
 } from '@/components/ui/typography';
+import { ArrowRight } from 'lucide-react';
 import Breadcrumbs from '@/components/ui/breadcrumbs';
 
 export default async function Page() {
@@ -103,11 +104,67 @@ export default async function Page() {
         doing that with the characters we play in the main game.
       </TypographyP>
       <TypographyP>
-        To wrap up, name your <strong>bonds</strong> and assign 8 points to your
-        actions. <span className="text-red-500">Red dots</span> cost 1 point.
-        Upgrading to a <span className="text-blue-500">blue dot</span> cost 1
-        point.
+        To wrap up, name your <strong>bonds</strong> and assign 10 points to
+        your actions.
       </TypographyP>
+      <div className="flex flex-wrap gap-8">
+        <div className="flex flex-col items-center">
+          <span className="text-sm">1 point</span>
+          <div className="flex items-center gap-4 mt-4">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4"></div>
+            <ArrowRight className="h-4 w-4 text-primary" />
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4"></div>
+          </div>
+        </div>
+        <div className="flex flex-col items-center">
+          <span className="text-sm">2 points</span>
+          <div className="flex items-center gap-4 mt-4">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4"></div>
+            <ArrowRight className="h-4 w-4 text-primary" />
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+          </div>
+          <div className="flex items-center gap-4 mt-4 mb-2">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4"></div>
+            <ArrowRight className="h-4 w-4 text-primary" />
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4"></div>
+          </div>
+          <span className="text-sm mt-2 text-amber-500">archetype ability</span>
+        </div>
+        <div className="flex flex-col items-center">
+          <span className="text-sm">3 points</span>
+          <div className="flex items-center gap-4 mt-4">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+            <ArrowRight className="h-4 w-4 text-primary" />
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+          </div>
+          <div className="flex items-center gap-4 mt-4 mb-2">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4"></div>
+            <ArrowRight className="h-4 w-4 text-primary" />
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+          </div>
+          <span className="mt-2 text-sm text-indigo-500">skillset ability</span>
+        </div>
+        <div className="flex flex-col items-center">
+          <span className="text-sm">4 points</span>
+          <div className="flex items-center gap-4 mt-4">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+            <ArrowRight className="h-4 w-4 text-primary" />
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+          </div>
+        </div>
+      </div>
       <Separator className="my-5" />
       <TypographyH3>Feedback</TypographyH3>
       <TypographyP>
