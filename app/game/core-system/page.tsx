@@ -235,8 +235,10 @@ export default function Page() {
           mission, some activities create <b>clocks</b> to represent how close
           they are to complete. You make project rolls to see how much you get
           done. See{' '}
-          <Link href="/game/prelude#project-rolls">project rolls</Link> for
-          more.
+          <Link href="/game/actions-and-rolls#project-rolls">
+            project rolls
+          </Link>{' '}
+          for more.
         </li>
         <li>
           <strong>Fortune Roll</strong>: The GM can make a fortune roll to
@@ -393,9 +395,9 @@ export default function Page() {
             <ChevronLeft /> Setting
           </Button>
         </Link>
-        <Link href="/game/actions-and-attributes">
+        <Link href="/game/actions-and-rolls">
           <Button variant="outline">
-            Actions & Attributes <ChevronRight />
+            Actions & Rolls <ChevronRight />
           </Button>
         </Link>
       </div>

@@ -50,6 +50,8 @@ import {
   Dices,
   BookOpen,
   X,
+  Cog,
+  ShieldAlert,
 } from 'lucide-react';
 import ActionDescription from '@/components/ui/action-description';
 import { Card } from '@/components/ui/card';
@@ -526,6 +528,176 @@ export default function Charsheet() {
     rollCombo(action1, action2, [...score1, ...score2]);
   }
 
+  function rollResistChurn(
+    bond: Bond,
+    attribute: 'Heart' | 'Instinct' | 'Machina',
+    action: string
+  ) {
+    const score1 = bond.score || [0, 0];
+    const score2 = attributes[attribute][action] || [0, 0];
+    rollResist(bond.name, action, [...score1, ...score2]);
+  }
+
+  function rollResistMission(
+    attribute1: 'Heart' | 'Instinct' | 'Machina',
+    action1: string,
+    attribute2: 'Heart' | 'Instinct' | 'Machina',
+    action2: string
+  ) {
+    const score1 = attributes?.[attribute1]?.[action1] || [0, 0];
+    const score2 = attributes?.[attribute2]?.[action2] || [0, 0];
+    rollResist(action1, action2, [...score1, ...score2]);
+  }
+
+  function rollResist(action1: string, action2: string, dice: number[]) {
+    for (let i = 0; i < bonusDice; i++) {
+      dice.push(2);
+    }
+    if (dice.reduce((acc, s) => acc + s, 0) === 0) {
+      // roll 2d6 and take the lowest
+      let r1 = Math.floor(Math.random() * 6) + 1;
+      let r2 = Math.floor(Math.random() * 6) + 1;
+      const result = Math.min(r1, r2);
+      let stress: number;
+      switch (result) {
+        case 1:
+        case 2:
+        case 3:
+          stress = 4;
+          break;
+        case 4:
+        case 5:
+          stress = 3;
+          break;
+        case 6:
+          stress = 2;
+          break;
+        default:
+          stress = 4;
+          break;
+      }
+      toast({
+        variant: 'grid',
+        // @ts-ignore
+        title: (
+          <div className="flex items-center gap-1">
+            <span className="mt-1">
+              Rolled {action1} + {action2}
+            </span>
+            <Die roll={r1} className="h-10 w-10" />
+            <Die roll={r2} className="h-10 w-10" />
+          </div>
+        ),
+        description: (
+          <div className="flex gap-4 items-center">
+            <Die roll={result} className="h-10 w-10" />
+            <span className="mt-1">{`Take ${stress} stress.`}</span>
+          </div>
+        ),
+      });
+      return;
+    }
+    let red = dice.reduce((acc, s) => (s === 1 ? acc + 1 : acc), 0);
+    let blue = dice.reduce((acc, s) => (s === 2 ? acc + 1 : acc), 0);
+    let redRolls = [];
+    let blueRolls = [];
+    for (let i = 0; i < red; i++) {
+      redRolls.push(Math.floor(Math.random() * 6) + 1);
+    }
+    for (let i = 0; i < blue; i++) {
+      blueRolls.push(Math.floor(Math.random() * 6) + 1);
+    }
+
+    let result: number;
+    let resultText: string;
+    // detect if there are 2 or more 6s
+    let redcrit = false;
+    let bluecrit = false;
+    const redSixes = redRolls.filter((r) => r === 6).length;
+    const blueSixes = blueRolls.filter((r) => r === 6).length;
+    let highestRed = Math.max(...redRolls);
+    let highestBlue = Math.max(...blueRolls);
+    const blueHigher = highestBlue >= highestRed;
+    if (blueSixes >= 2) {
+      bluecrit = true;
+      resultText = 'Crit! Clear 1 stress.';
+    } else if (blueSixes + redSixes >= 2) {
+      redcrit = true;
+      resultText = 'Crit! Take no stress.';
+    } else {
+      result = blueHigher ? highestBlue : highestRed;
+      let stress: number;
+      switch (result) {
+        case 1:
+        case 2:
+        case 3:
+          stress = blueHigher ? 3 : 4;
+          break;
+        case 4:
+        case 5:
+          stress = blueHigher ? 2 : 3;
+          break;
+        case 6:
+          if (bluecrit) {
+            stress = -1;
+          } else if (redcrit || blueHigher) {
+            stress = 0;
+          } else {
+            stress = 1;
+          }
+          break;
+        default:
+          stress = 4;
+          break;
+      }
+      resultText = `Take ${stress} stress.`;
+    }
+    toast({
+      variant: 'grid',
+      // @ts-ignore
+      title: (
+        <div className="flex items-center gap-1">
+          <span className="mt-1">
+            Resisted with {action1} + {action2}
+          </span>
+          {redRolls.map((r, i) => (
+            <Die key={i} roll={r} className="h-8 w-8 text-red-800" />
+          ))}
+          {blueRolls.map((r, i) => (
+            <Die key={i} roll={r} className="h-8 w-8 text-blue-800" />
+          ))}
+        </div>
+      ),
+      description: (
+        <div className="flex items-center gap-4">
+          {redcrit || bluecrit ? (
+            [
+              redRolls
+                .filter((r) => r === 6)
+                .map((r, i) => (
+                  <Die key={i} roll={r} className="h-10 w-10 text-red-400" />
+                )),
+              blueRolls
+                .filter((r) => r === 6)
+                .map((r, i) => (
+                  <Die key={i} roll={r} className="h-10 w-10 text-blue-400" />
+                )),
+            ]
+          ) : (
+            <Die
+              roll={blueHigher ? highestBlue : highestRed}
+              className={cn(
+                'h-10 w-10',
+                blueHigher ? 'text-blue-400' : 'text-red-400'
+              )}
+            />
+          )}
+          <span className="mt-1">{resultText}</span>
+        </div>
+      ),
+    });
+  }
+
   function rollComboChurn(
     bond: Bond,
     attribute: 'Heart' | 'Instinct' | 'Machina',
@@ -534,97 +706,6 @@ export default function Charsheet() {
     const score1 = bond.score || [0, 0];
     const score2 = attributes[attribute][action] || [0, 0];
     rollCombo(bond.name, action, [...score1, ...score2]);
-  }
-
-  // helper function to get the explicit keys for each attribute
-  const attributeExplicitKeys = {
-    Heart: ['Defy', 'Persuade'],
-    Instinct: ['Charge', 'Prowl'],
-    Machina: ['Suggest', 'Survey'],
-  };
-
-  function rollAttribute(
-    attribute: 'Heart' | 'Instinct' | 'Machina',
-    variant: string = 'mission'
-  ) {
-    const attr = attributes[attribute];
-    let scores: number[][] = [];
-    const bkeys = selectedBackground?.attributes?.[attribute] ?? [];
-    const tkeys = selectedSkillset?.attributes?.[attribute] ?? [];
-    const akeys = selectedArchetype?.attributes?.[attribute] ?? [];
-    if (variant === 'mission') {
-      const ekeys = attributeExplicitKeys[attribute];
-      const keys = [...ekeys, ...bkeys, ...tkeys, ...akeys];
-      scores = keys.map((k) => attr[k]).filter((s) => s);
-    } else if (variant === 'churn') {
-      const keys = [...bkeys, ...tkeys, ...akeys];
-      const filteredScores = keys.map((k) => attr[k]).filter((s) => s);
-      let bondScores: number[][] = [];
-      if (attribute === 'Heart') {
-        bondScores = bonds.Personal.map((b) => b.score).filter((s) => s);
-      } else if (attribute === 'Instinct') {
-        bondScores = bonds.Familial.map((b) => b.score).filter((s) => s);
-      } else if (attribute === 'Machina') {
-        bondScores = bonds.Professional.map((b) => b.score).filter((s) => s);
-      }
-      scores = [...filteredScores, ...bondScores];
-    } else {
-      console.error('Unknown variant', variant);
-      return;
-    }
-    const score = scores.reduce((acc, s) => {
-      const [a, b] = s;
-      if (a > 0 || b > 0) {
-        return acc + 1;
-      }
-      return acc;
-    }, 0);
-    if (score === 0) {
-      let r1 = Math.floor(Math.random() * 6) + 1;
-      let r2 = Math.floor(Math.random() * 6) + 1;
-      const roll = Math.min(r1, r2);
-      toast({
-        variant: 'grid',
-        // @ts-ignore
-        title: (
-          <div className="flex items-center gap-1">
-            <span className="mt-1">Rolled {attribute}</span>
-            <Die roll={r1} className="h-10 w-10" />
-            <Die roll={r2} className="h-10 w-10" />
-          </div>
-        ),
-        description: (
-          <div className="flex items-center gap-4">
-            <Die roll={roll} className="h-10 w-10" />
-            <span className="mt-1">Take {6 - roll} stress.</span>
-          </div>
-        ),
-      });
-      return;
-    }
-    let rolls = [];
-    for (let i = 0; i < score; i++) {
-      rolls.push(Math.floor(Math.random() * 6) + 1);
-    }
-    const roll = Math.max(...rolls);
-    toast({
-      variant: 'grid',
-      // @ts-ignore
-      title: (
-        <div className="flex items-center gap-1">
-          <span className="mt-1">Rolled {attribute}</span>
-          {rolls.map((r, i) => (
-            <Die key={i} roll={r} className="h-10 w-10 text-red-800" />
-          ))}
-        </div>
-      ),
-      description: (
-        <div className="flex items-center gap-4">
-          <Die roll={roll} className="h-10 w-10 text-red-400" />
-          <span className="mt-1">Take {6 - roll} stress.</span>
-        </div>
-      ),
-    });
   }
 
   return (
@@ -1023,13 +1104,8 @@ export default function Charsheet() {
                 </Popover>
               </TypographyH2>
               <div className="border-b-[1px]">
-                <div
-                  className="hover:cursor-pointer group mt-8"
-                  onClick={() => {
-                    rollAttribute('Heart');
-                  }}
-                >
-                  <TypographyH3 className="group-hover:underline text-center">
+                <div className=" mt-8">
+                  <TypographyH3 className="text-center">
                     Heart <Flame className="inline mb-2" />
                   </TypographyH3>
                 </div>
@@ -1184,13 +1260,8 @@ export default function Charsheet() {
                 </div>
               </div>
               <div className="border-b-[1px]">
-                <div
-                  className="group hover:cursor-pointer pt-8"
-                  onClick={() => {
-                    rollAttribute('Instinct');
-                  }}
-                >
-                  <TypographyH3 className="group-hover:underline text-center">
+                <div className="pt-8">
+                  <TypographyH3 className="text-center">
                     Instinct <Activity className="inline mb-2" />
                   </TypographyH3>
                 </div>
@@ -1345,13 +1416,8 @@ export default function Charsheet() {
                 </div>
               </div>
               <div className="border-b-[1px]">
-                <div
-                  className="hover:cursor-pointer group pt-8"
-                  onClick={() => {
-                    rollAttribute('Machina');
-                  }}
-                >
-                  <TypographyH3 className="group-hover:underline text-center">
+                <div className="pt-8">
+                  <TypographyH3 className="text-center">
                     Machina <VenetianMask className="inline mb-1" />
                   </TypographyH3>
                 </div>
@@ -1695,42 +1761,7 @@ export default function Charsheet() {
                       <SelectItem value="Machina-Survey">Survey</SelectItem>
                     </SelectContent>
                   </Select>
-                  <Button
-                    onClick={() => {
-                      if (!rollLeft && !rollRight) return;
-                      if (!rollLeft) {
-                        const [attribute, action] = rollRight.split('-') as [
-                          'Heart' | 'Instinct' | 'Machina',
-                          string
-                        ];
-                        rollAction(attribute, action);
-                      } else if (!rollRight) {
-                        const [attribute, action] = rollLeft.split('-') as [
-                          'Heart' | 'Instinct' | 'Machina',
-                          string
-                        ];
-                        rollAction(attribute, action);
-                      }
-                      const [attributeLeft, actionLeft] = rollLeft.split(
-                        '-'
-                      ) as ['Heart' | 'Instinct' | 'Machina', string];
-                      const [attributeRight, actionRight] = rollRight.split(
-                        '-'
-                      ) as ['Heart' | 'Instinct' | 'Machina', string];
-                      rollComboMission(
-                        attributeLeft,
-                        actionLeft,
-                        attributeRight,
-                        actionRight
-                      );
-                      setRollLeft('');
-                      setRollRight('');
-                      setBonusDice(0);
-                    }}
-                    className="flex items-center gap-2"
-                  >
-                    <Dices /> Action
-                  </Button>
+
                   <Select
                     value={rollRight}
                     onValueChange={(value) => {
@@ -1789,31 +1820,81 @@ export default function Charsheet() {
                     </SelectContent>
                   </Select>
                 </div>
-                <div className="flex gap-4">
-                  <Select
-                    value={resistanceRoll}
-                    onValueChange={(
-                      value: 'Heart' | 'Instinct' | 'Machina' | ''
-                    ) => {
-                      setResistanceRoll(value);
+                <div className="flex gap-4 mx-auto">
+                  <Button
+                    variant="destructive"
+                    onClick={() => {
+                      if (!rollLeft && !rollRight) return;
+                      if (!rollLeft) {
+                        const [attribute, action] = rollRight.split('-') as [
+                          'Heart' | 'Instinct' | 'Machina',
+                          string
+                        ];
+                        rollAction(attribute, action);
+                      } else if (!rollRight) {
+                        const [attribute, action] = rollLeft.split('-') as [
+                          'Heart' | 'Instinct' | 'Machina',
+                          string
+                        ];
+                        rollAction(attribute, action);
+                      }
+                      const [attributeLeft, actionLeft] = rollLeft.split(
+                        '-'
+                      ) as ['Heart' | 'Instinct' | 'Machina', string];
+                      const [attributeRight, actionRight] = rollRight.split(
+                        '-'
+                      ) as ['Heart' | 'Instinct' | 'Machina', string];
+                      rollResistMission(
+                        attributeLeft,
+                        actionLeft,
+                        attributeRight,
+                        actionRight
+                      );
+                      setRollLeft('');
+                      setRollRight('');
+                      setBonusDice(0);
                     }}
                   >
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="Heart">Heart</SelectItem>
-                      <SelectItem value="Instinct">Instinct</SelectItem>
-                      <SelectItem value="Machina">Machina</SelectItem>
-                    </SelectContent>
-                  </Select>
+                    <ShieldAlert /> Resist
+                  </Button>
                   <Button
                     onClick={() => {
-                      if (!resistanceRoll) return;
-                      rollAttribute(resistanceRoll, 'mission');
+                      if (!rollLeft && !rollRight) return;
+                      if (!rollLeft) {
+                        const [attribute, action] = rollRight.split('-') as [
+                          'Heart' | 'Instinct' | 'Machina',
+                          string
+                        ];
+                        rollAction(attribute, action);
+                      } else if (!rollRight) {
+                        const [attribute, action] = rollLeft.split('-') as [
+                          'Heart' | 'Instinct' | 'Machina',
+                          string
+                        ];
+                        rollAction(attribute, action);
+                      }
+                      const [attributeLeft, actionLeft] = rollLeft.split(
+                        '-'
+                      ) as ['Heart' | 'Instinct' | 'Machina', string];
+                      const [attributeRight, actionRight] = rollRight.split(
+                        '-'
+                      ) as ['Heart' | 'Instinct' | 'Machina', string];
+                      rollComboMission(
+                        attributeLeft,
+                        actionLeft,
+                        attributeRight,
+                        actionRight
+                      );
+                      setRollLeft('');
+                      setRollRight('');
+                      setBonusDice(0);
                     }}
+                    className="flex items-center gap-2"
                   >
-                    <Dices /> Resistance
+                    <Dices /> Action
+                  </Button>
+                  <Button variant="secondary" disabled>
+                    <Cog /> Project
                   </Button>
                 </div>
                 <div className="flex gap-4 justify-between flex-wrap">
@@ -2286,13 +2367,8 @@ export default function Charsheet() {
                 </Popover>
               </TypographyH2>
               <div className="border-b-[1px]">
-                <div
-                  className="hover:cursor-pointer group mt-8"
-                  onClick={() => {
-                    rollAttribute('Heart', 'churn');
-                  }}
-                >
-                  <TypographyH3 className="group-hover:underline text-center">
+                <div className="mt-8">
+                  <TypographyH3 className="text-center">
                     Heart <Flame className="inline mb-2" />
                   </TypographyH3>
                 </div>
@@ -2471,13 +2547,8 @@ export default function Charsheet() {
                 </div>
               </div>
               <div className="border-b-[1px]">
-                <div
-                  className="group hover:cursor-pointer pt-8"
-                  onClick={() => {
-                    rollAttribute('Instinct', 'churn');
-                  }}
-                >
-                  <TypographyH3 className="group-hover:underline text-center">
+                <div className="pt-8">
+                  <TypographyH3 className="text-center">
                     Instinct <Activity className="inline mb-2" />
                   </TypographyH3>
                 </div>
@@ -2654,13 +2725,8 @@ export default function Charsheet() {
                 </div>
               </div>
               <div className="border-b-[1px]">
-                <div
-                  className="hover:cursor-pointer group pt-8"
-                  onClick={() => {
-                    rollAttribute('Machina', 'churn');
-                  }}
-                >
-                  <TypographyH3 className="group-hover:underline text-center">
+                <div className="pt-8">
+                  <TypographyH3 className="text-center">
                     Machina <VenetianMask className="inline mb-1" />
                   </TypographyH3>
                 </div>
@@ -3117,47 +3183,7 @@ export default function Charsheet() {
                       ]}
                     </SelectContent>
                   </Select>
-                  <Button
-                    onClick={() => {
-                      if (!rollLeft && !rollRight) return;
-                      if (!rollLeft) {
-                        const [attribute, action] = rollRight.split('-') as [
-                          'Heart' | 'Instinct' | 'Machina',
-                          string
-                        ];
-                        rollAction(attribute, action);
-                      } else if (!rollRight) {
-                        const [bondType, bondName] = rollLeft.split('-') as [
-                          'Personal' | 'Familial' | 'Professional',
-                          string
-                        ];
-                        const b = bonds[bondType].find(
-                          (b) => b.name === bondName
-                        );
-                        if (b) rollBond(b);
-                      } else {
-                        const [bondType, bondName] = rollLeft.split('-') as [
-                          'Personal' | 'Familial' | 'Professional',
-                          string
-                        ];
-                        const b = bonds[bondType].find(
-                          (b) => b.name === bondName
-                        );
-                        const [attributeRight, actionRight] = rollRight.split(
-                          '-'
-                        ) as ['Heart' | 'Instinct' | 'Machina', string];
-                        if (b) {
-                          rollComboChurn(b, attributeRight, actionRight);
-                        }
-                      }
 
-                      setRollLeft('');
-                      setRollRight('');
-                    }}
-                    className="flex items-center gap-2"
-                  >
-                    <Dices /> Action
-                  </Button>
                   <Select
                     value={rollRight}
                     onValueChange={(value) => {
@@ -3216,31 +3242,91 @@ export default function Charsheet() {
                     </SelectContent>
                   </Select>
                 </div>
-                <div className="flex gap-4">
-                  <Select
-                    value={resistanceRoll}
-                    onValueChange={(
-                      value: 'Heart' | 'Instinct' | 'Machina' | ''
-                    ) => {
-                      setResistanceRoll(value);
+                <div className="flex gap-4 mx-auto">
+                  <Button
+                    variant="destructive"
+                    onClick={() => {
+                      if (!rollLeft && !rollRight) return;
+                      if (!rollLeft) {
+                        const [attribute, action] = rollRight.split('-') as [
+                          'Heart' | 'Instinct' | 'Machina',
+                          string
+                        ];
+                        rollAction(attribute, action);
+                      } else if (!rollRight) {
+                        const [bondType, bondName] = rollLeft.split('-') as [
+                          'Personal' | 'Familial' | 'Professional',
+                          string
+                        ];
+                        const b = bonds[bondType].find(
+                          (b) => b.name === bondName
+                        );
+                        if (b) rollBond(b);
+                      } else {
+                        const [bondType, bondName] = rollLeft.split('-') as [
+                          'Personal' | 'Familial' | 'Professional',
+                          string
+                        ];
+                        const b = bonds[bondType].find(
+                          (b) => b.name === bondName
+                        );
+                        const [attributeRight, actionRight] = rollRight.split(
+                          '-'
+                        ) as ['Heart' | 'Instinct' | 'Machina', string];
+                        if (b) {
+                          rollResistChurn(b, attributeRight, actionRight);
+                        }
+                      }
+
+                      setRollLeft('');
+                      setRollRight('');
                     }}
                   >
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="Heart">Heart</SelectItem>
-                      <SelectItem value="Instinct">Instinct</SelectItem>
-                      <SelectItem value="Machina">Machina</SelectItem>
-                    </SelectContent>
-                  </Select>
+                    <ShieldAlert /> Resist
+                  </Button>
                   <Button
                     onClick={() => {
-                      if (!resistanceRoll) return;
-                      rollAttribute(resistanceRoll, 'churn');
+                      if (!rollLeft && !rollRight) return;
+                      if (!rollLeft) {
+                        const [attribute, action] = rollRight.split('-') as [
+                          'Heart' | 'Instinct' | 'Machina',
+                          string
+                        ];
+                        rollAction(attribute, action);
+                      } else if (!rollRight) {
+                        const [bondType, bondName] = rollLeft.split('-') as [
+                          'Personal' | 'Familial' | 'Professional',
+                          string
+                        ];
+                        const b = bonds[bondType].find(
+                          (b) => b.name === bondName
+                        );
+                        if (b) rollBond(b);
+                      } else {
+                        const [bondType, bondName] = rollLeft.split('-') as [
+                          'Personal' | 'Familial' | 'Professional',
+                          string
+                        ];
+                        const b = bonds[bondType].find(
+                          (b) => b.name === bondName
+                        );
+                        const [attributeRight, actionRight] = rollRight.split(
+                          '-'
+                        ) as ['Heart' | 'Instinct' | 'Machina', string];
+                        if (b) {
+                          rollComboChurn(b, attributeRight, actionRight);
+                        }
+                      }
+
+                      setRollLeft('');
+                      setRollRight('');
                     }}
+                    className="flex items-center gap-2"
                   >
-                    <Dices /> Resistance
+                    <Dices /> Action
+                  </Button>
+                  <Button variant="secondary" disabled>
+                    <Cog /> Project
                   </Button>
                 </div>
                 <div className="flex gap-4 justify-between flex-wrap">

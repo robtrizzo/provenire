@@ -174,9 +174,9 @@ export default function Page() {
             <ChevronLeft /> Introduction
           </Button>
         </Link>
-        <Link href="/game/actions-and-attributes">
+        <Link href="/game/actions-and-rolls">
           <Button variant="outline">
-            Actions & Attributes <ChevronRight />
+            Actions & Rolls <ChevronRight />
           </Button>
         </Link>
       </div>

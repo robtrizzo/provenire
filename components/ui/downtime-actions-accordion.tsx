@@ -81,7 +81,7 @@ export default function DowntimeActionsAccordion({
             the GM will tell you the clock(s) to create and suggest a method by
             which you might make progress. To advance a <b>long term project</b>
             , make a{' '}
-            <Link href="/game/prelude#project-rolls">
+            <Link href="/game/actions-and-rolls#project-rolls">
               <span className="text-red-500 underline">project roll</span>
             </Link>{' '}
             as normal.
@@ -124,7 +124,7 @@ export default function DowntimeActionsAccordion({
             heat generated in missions. You might be spreading rumors, bribing
             officials, or framing someone else for your crimes. Whatever your
             approach, you need a scapegoat. Name them and make a{' '}
-            <Link href="/game/prelude#project-rolls">
+            <Link href="/game/actions-and-rolls#project-rolls">
               <span className="text-red-500 underline">project roll</span>
             </Link>
             . The result determines how much heat you reduce.

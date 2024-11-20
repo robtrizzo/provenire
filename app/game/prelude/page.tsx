@@ -11,15 +11,6 @@ import {
   TypographyP,
   TypographyUnorderedList,
 } from '@/components/ui/typography';
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
 import Breadcrumbs from '@/components/ui/breadcrumbs';
 
 export default async function Page() {
@@ -134,7 +125,7 @@ export default async function Page() {
           or building a unique item. Based on the goal of the project, the GM
           will tell you the clock(s) to create and suggest a method by which you
           might make progress. To advance a <b>long term project</b>, make a{' '}
-          <Link href="/game/prelude#project-rolls">
+          <Link href="/game/actions-and-rolls#project-rolls">
             <span className="text-red-500 underline">project roll</span>
           </Link>{' '}
           as normal.
@@ -332,63 +323,6 @@ export default async function Page() {
           You&apos;re in a desperate position when the action starts.
         </span>
       </TypographyP>
-      <TypographyH2 id="project-rolls">Project Rolls</TypographyH2>
-      <TypographyP>
-        During the <b>Prelude</b>, there are many types of projects which the
-        characters can undertake. Those projects are represented by a{' '}
-        <b>clock</b> set by the rules or the <b>Narrator</b>. Before rolling for
-        a project, the player decides the approach they want to take to pursue
-        it. The <b>Narrator</b> then sets the effect and the player rolls. The
-        effect and roll together determines how much progress is made on the
-        clock. Consequences of failure depend on the posistion as normal.
-      </TypographyP>
-      <Table>
-        <TableCaption>project roll results</TableCaption>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="w-16 border-r-slate-800 border-r-[1px]">
-              Roll
-            </TableHead>
-            <TableHead className="w-20">Limited Effect</TableHead>
-            <TableHead className="w-20">Standard Effect</TableHead>
-            <TableHead className="w-20">Great Effect</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          <TableRow>
-            <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">
-              1-3
-            </TableCell>
-            <TableCell className="w-20">0</TableCell>
-            <TableCell className="w-20">1</TableCell>
-            <TableCell className="w-20">1</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">
-              4,5
-            </TableCell>
-            <TableCell className="w-20">1</TableCell>
-            <TableCell className="w-20">2</TableCell>
-            <TableCell className="w-20">3</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">
-              6
-            </TableCell>
-            <TableCell className="w-20">2</TableCell>
-            <TableCell className="w-20">3</TableCell>
-            <TableCell className="w-20">5</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">
-              Critical
-            </TableCell>
-            <TableCell className="w-20">3</TableCell>
-            <TableCell className="w-20">5</TableCell>
-            <TableCell className="w-20">7</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
       <Separator />
       <div className="w-full flex justify-between">
         <Link href="/game/cycle-of-play">

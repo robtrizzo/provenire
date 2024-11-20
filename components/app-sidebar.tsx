@@ -44,8 +44,8 @@ const data = {
           url: '/game/core-system',
         },
         {
-          title: 'Actions & Attributes',
-          url: '/game/actions-and-attributes',
+          title: 'Actions & Rolls',
+          url: '/game/actions-and-rolls',
         },
         {
           title: 'The Cycle of Play',

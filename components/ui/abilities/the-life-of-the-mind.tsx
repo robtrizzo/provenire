@@ -9,7 +9,7 @@ export default function TheLifeOfTheMind() {
         thoughts. If they do, they don&apos;t get to participate in solving or
         escaping the situation, but they may make a{' '}
         <span className="text-red-700 font-bold underline">
-          <Link href="/game/prelude#project-rolls">project roll</Link>
+          <Link href="/game/actions-and-rolls#project-rolls">project roll</Link>
         </span>{' '}
         on any project that the crew is working on, spending crew resources if
         appropriate. If this completes the project, describe the moment of

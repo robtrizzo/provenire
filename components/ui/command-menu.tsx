@@ -179,11 +179,11 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/actions-and-attributes');
+              router.push('/game/actions-and-rolls');
               setOpen(false);
             }}
           >
-            Actions & Attributes
+            Actions & Rolls
           </CommandItem>
           <CommandItem
             onSelect={() => {
@@ -397,7 +397,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/prelude#project-rolls');
+              router.push('/game/actions-and-rolls#project-rolls');
               setOpen(false);
             }}
           >

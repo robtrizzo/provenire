@@ -50,14 +50,14 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                 Core System
               </Link>
               <Link
-                href="/game/actions-and-attributes"
+                href="/game/actions-and-rolls"
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
-                  pathname === '/game/actions-and-attributes'
+                  pathname === '/game/actions-and-rolls'
                     ? 'bg-muted'
                     : 'text-muted-foreground'
                 } transition-all hover:text-primary`}
               >
-                Actions & Attributes
+                Actions & Rolls
               </Link>
               <Link
                 href="/game/cycle-of-play"
@@ -247,14 +247,14 @@ export function Sidebar({ children }: { children: React.ReactNode }) {
                   Core System
                 </Link>
                 <Link
-                  href="/game/actions-and-attributes"
+                  href="/game/actions-and-rolls"
                   className={`flex items-center gap-3 rounded-lg px-3 py-2 ${
-                    pathname === '/game/actions-and-attributes'
+                    pathname === '/game/actions-and-rolls'
                       ? 'bg-muted'
                       : 'text-muted-foreground'
                   } transition-all hover:text-primary`}
                 >
-                  Actions & Attributes
+                  Actions & Rolls
                 </Link>
                 <Link
                   href="/game/cycle-of-play"
