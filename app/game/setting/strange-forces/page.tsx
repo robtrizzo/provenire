@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 import {
+  TypographyBlockquote,
   TypographyH1,
   TypographyH2,
   TypographyH3,
@@ -72,6 +73,11 @@ export default async function Page() {
         <b>resistance roll</b>. If you do, the wielder must in turn struggle to
         keep inflicting the spell on you. Whoever gives in first is the loser.
       </TypographyP>
+      <TypographyBlockquote>
+        If a PC has the <b className="text-fuchsia-700">King&apos;s Spell</b>{' '}
+        used on them, their player may for any reason signal that this makes
+        them uncomfortable and opt out of this happening.
+      </TypographyBlockquote>
       <TypographyH2>Dreamstorms</TypographyH2>
       <p style={distortedStyle} className="select-none">
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquam error
@@ -81,6 +87,45 @@ export default async function Page() {
         consectetur adipisicing elit. Rem cum reiciendis, libero natus earum
         optio voluptatum officiis fuga quod consequuntur, ut a. Corporis harum
         praesentium repellendus ea accusamus esse. In.
+      </p>
+      <TypographyH2>Bestial Transformations</TypographyH2>
+      <p style={distortedStyle} className="select-none">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis porro
+        dicta, itaque qui ea error perferendis excepturi perspiciatis sapiente
+        aspernatur. Molestiae quisquam commodi consequatur labore quo, sit
+        recusandae excepturi fuga.
+      </p>
+      <p style={distortedStyle}>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos,
+        aspernatur perferendis fugiat ab porro ratione natus vitae quos veniam
+        quam cupiditate iure corrupti necessitatibus obcaecati tenetur nihil.
+        Expedita, consequuntur eius. Lorem ipsum dolor sit amet consectetur
+        adipisicing elit. Blanditiis harum ullam dignissimos reprehenderit
+        libero expedita fugiat quam, quis odit quo omnis dolorem cupiditate
+        sequi tempora minima suscipit voluptate itaque doloribus!
+      </p>
+      <TypographyH2>The Machines</TypographyH2>
+      <p style={distortedStyle} className="select-none">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquam error
+        minima id possimus, eaque molestias delectus sequi suscipit quo
+        consequuntur, harum doloribus aliquid! Minus asperiores labore fugit,
+        recusandae exercitationem laboriosam? Lorem ipsum dolor sit amet
+        consectetur adipisicing elit. Rem cum reiciendis, libero natus earum
+        optio voluptatum officiis fuga quod consequuntur, ut a. Corporis harum
+        praesentium repellendus ea accusamus esse. In.
+      </p>
+      <p style={distortedStyle} className="select-none">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Hic asperiores
+        optio illum similique assumenda numquam veniam maxime earum incidunt
+        velit, praesentium aut tenetur, laborum facilis libero dolore quisquam
+        nemo! Repudiandae. Lorem ipsum dolor sit amet consectetur, adipisicing
+        elit. Quidem, maiores beatae dignissimos quibusdam repellat eius
+        voluptatum accusantium reprehenderit impedit, ipsum earum! Ullam
+        quisquam expedita aperiam rerum quis illum voluptate mollitia. Lorem
+        ipsum dolor, sit amet consectetur adipisicing elit. A vitae quidem
+        fugiat, perspiciatis molestias soluta explicabo ipsa nemo consectetur
+        rem voluptas excepturi, laborum eaque corporis recusandae possimus
+        itaque, beatae maxime.
       </p>
       <Separator />
       <div className="w-full flex justify-between">
