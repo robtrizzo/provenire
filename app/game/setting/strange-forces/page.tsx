@@ -64,13 +64,13 @@ export default async function Page() {
         , utter <b>Kingwulf&apos;s</b> name and make a simple demand. If they
         are your lesser, they must either do it or struggle to resist. Each time
         they successfully struggle, make a <b>resistance roll</b>. Whoever gives
-        in first is the victor.
+        in first is the loser.
       </TypographyP>
       <TypographyP>
         When the <b className="text-fuchsia-700">King&apos;s Spell</b> is
         wielded against you, either do what they say or make a{' '}
         <b>resistance roll</b>. If you do, the wielder must in turn struggle to
-        keep inflicting the spell on you. Whoever gives in first is the victor.
+        keep inflicting the spell on you. Whoever gives in first is the loser.
       </TypographyP>
       <TypographyH2>Dreamstorms</TypographyH2>
       <p style={distortedStyle} className="select-none">
