@@ -662,7 +662,7 @@
       "mission": [
         {
           "name": "Many Passions",
-          "keystone": true,
+          "keystone": false,
           "slug": "many-passions"
         },
         {
@@ -679,7 +679,7 @@
         },
         {
           "name": "Read Emotions",
-          "keystone": false,
+          "keystone": true,
           "slug": "read-emotions"
         }
       ]
