@@ -171,6 +171,14 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
+              router.push('/game/setting/strange-forces');
+              setOpen(false);
+            }}
+          >
+            Strange Forces of the Steel Trap
+          </CommandItem>
+          <CommandItem
+            onSelect={() => {
               router.push('/game/core-system');
               setOpen(false);
             }}
@@ -250,6 +258,38 @@ export default function CommandMenu() {
             }}
           >
             Experience & Advancement
+          </CommandItem>
+          <CommandItem
+            onSelect={() => {
+              router.push('/game/actions-and-rolls#action-roll');
+              setOpen(false);
+            }}
+          >
+            Action Rolls
+          </CommandItem>
+          <CommandItem
+            onSelect={() => {
+              router.push('/game/actions-and-rolls#resistance-roll');
+              setOpen(false);
+            }}
+          >
+            Resistance Rolls
+          </CommandItem>
+          <CommandItem
+            onSelect={() => {
+              router.push('/game/actions-and-rolls#project-rolls');
+              setOpen(false);
+            }}
+          >
+            Project Rolls
+          </CommandItem>
+          <CommandItem
+            onSelect={() => {
+              router.push('/game/prelude#downtime');
+              setOpen(false);
+            }}
+          >
+            Downtime
           </CommandItem>
           <CommandItem
             onSelect={() => {
@@ -389,19 +429,11 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/the-churn#downtime');
+              router.push('/game/setting/strange-forces#kings-spell');
               setOpen(false);
             }}
           >
-            Downtime
-          </CommandItem>
-          <CommandItem
-            onSelect={() => {
-              router.push('/game/actions-and-rolls#project-rolls');
-              setOpen(false);
-            }}
-          >
-            Project Rolls
+            The King&apos;s Spell
           </CommandItem>
         </CommandGroup>
         <CommandSeparator />

@@ -67,7 +67,7 @@ export default function Page() {
         action, you&apos;ll make an <strong>action roll</strong> to see how it
         turns out
       </TypographyP>
-      <TypographyH2>Action Roll</TypographyH2>
+      <TypographyH2 id="action-roll">Action Roll</TypographyH2>
       <TypographyP>
         You make an <strong>action roll</strong> when your character does
         something potentially dangerous or troublesome. The possible results of
