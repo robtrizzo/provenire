@@ -6,8 +6,6 @@ import {
   TypographyBlockquote,
   TypographyH1,
   TypographyH2,
-  TypographyH3,
-  TypographyH4,
   TypographyP,
 } from '@/components/ui/typography';
 import Breadcrumbs from '@/components/ui/breadcrumbs';
@@ -50,7 +48,7 @@ export default async function Page() {
         veniam ratione rem placeat officiis a, dignissimos ex vero ut sed esse
         incidunt, voluptatibus est!
       </p>
-      <TypographyH2>The King&apos;s Spell</TypographyH2>
+      <TypographyH2 id="kings-spell">The King&apos;s Spell</TypographyH2>
       <TypographyP>
         For some workers, they find salvation in the embrace of{' '}
         <b>Kingwulf&apos;s</b> order. For this, they may wield the{' '}

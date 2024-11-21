@@ -6,7 +6,9 @@ export default function PainToRage() {
       <TypographyP>
         When the{' '}
         <span className="font-bold text-fuchsia-700 underline">
-          <Link href="#">The King&apos;s Spell</Link>
+          <Link href="/game/setting/strange-forces#kings-spell">
+            The King&apos;s Spell
+          </Link>
         </span>{' '}
         is used on you, you may choose to ignore it. If you do, you must attack
         the source of the spell.

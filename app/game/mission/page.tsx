@@ -292,7 +292,9 @@ export default async function Page() {
         rest of the mission, though you become vulnerable to the{' '}
         <strong>drone</strong> and{' '}
         <span className="font-bold text-fuchsia-700 underline">
-          <Link href="#">The King&apos;s Spell</Link>
+          <Link href="/game/setting/strange-forces#kings-spell">
+            The King&apos;s Spell
+          </Link>
         </span>
         .
       </TypographyP>
