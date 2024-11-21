@@ -78,6 +78,7 @@ import {
 } from '@/components/ui/popover';
 import { Close } from '@radix-ui/react-popover';
 import XPInfo from './(components)/xp-info';
+import ConditionsInfo from './(components)/conditions-info';
 
 export default function Charsheet() {
   const [tab, setTab] = useState('mission');
@@ -563,17 +564,17 @@ export default function Charsheet() {
         case 1:
         case 2:
         case 3:
-          stress = 4;
+          stress = 3;
           break;
         case 4:
         case 5:
-          stress = 3;
-          break;
-        case 6:
           stress = 2;
           break;
+        case 6:
+          stress = 1;
+          break;
         default:
-          stress = 4;
+          stress = 3;
           break;
       }
       toast({
@@ -631,11 +632,11 @@ export default function Charsheet() {
         case 1:
         case 2:
         case 3:
-          stress = blueHigher ? 3 : 4;
+          stress = blueHigher ? 2 : 3;
           break;
         case 4:
         case 5:
-          stress = blueHigher ? 2 : 3;
+          stress = blueHigher ? 1 : 2;
           break;
         case 6:
           if (bluecrit) {
@@ -647,7 +648,7 @@ export default function Charsheet() {
           }
           break;
         default:
-          stress = 4;
+          stress = 3;
           break;
       }
       resultText = `Take ${stress} stress.`;
@@ -979,8 +980,8 @@ export default function Charsheet() {
           <div className="my-3 grid grid-cols-1 md:grid-cols-2 gap-6 focus-visible:outline-none">
             <div className="mt-4">
               <div className="flex flex-col gap-2">
-                <TypographyH2 className="text-md text-muted-foreground">
-                  Stress & Conditions
+                <TypographyH2 className="text-md text-muted-foreground flex items-end justify-between">
+                  Stress & Conditions <ConditionsInfo />
                 </TypographyH2>
                 <div className="flex justify-between">
                   <StressCheckboxes
@@ -2248,8 +2249,8 @@ export default function Charsheet() {
           <div className="my-3 grid grid-cols-1 md:grid-cols-2 gap-6 focus-visible:outline-none">
             <div className="my-4">
               <div className="flex flex-col gap-2">
-                <TypographyH2 className="text-md text-muted-foreground">
-                  Stress & Conditions
+                <TypographyH2 className="text-md text-muted-foreground flex items-end justify-between">
+                  Stress & Conditions <ConditionsInfo />
                 </TypographyH2>
                 <div className="flex justify-between">
                   <StressCheckboxes

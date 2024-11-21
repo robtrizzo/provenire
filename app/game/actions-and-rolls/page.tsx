@@ -120,22 +120,22 @@ export default function Page() {
             <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">
               1-3
             </TableCell>
-            <TableCell className="w-20">4 stress</TableCell>
             <TableCell className="w-20">3 stress</TableCell>
+            <TableCell className="w-20">2 stress</TableCell>
           </TableRow>
           <TableRow>
             <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">
               4,5
             </TableCell>
-            <TableCell className="w-20">3 stress</TableCell>
             <TableCell className="w-20">2 stress</TableCell>
+            <TableCell className="w-20">1 stress</TableCell>
           </TableRow>
           <TableRow>
             <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">
               6
             </TableCell>
-            <TableCell className="w-20">2 stress</TableCell>
             <TableCell className="w-20">1 stress</TableCell>
+            <TableCell className="w-20">0 stress</TableCell>
           </TableRow>
           <TableRow>
             <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">

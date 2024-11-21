@@ -350,14 +350,16 @@ export default function Page() {
             <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
             <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
           </div>
-          <div className="flex items-center gap-4 mt-4 mb-2">
+          <span className="text-muted-foreground">or</span>
+          <div className="flex items-center gap-4">
             <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
             <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4"></div>
             <ArrowRight className="h-4 w-4 text-primary" />
             <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
             <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4"></div>
           </div>
-          <span className="text-sm mt-2 text-amber-500">archetype ability</span>
+          <span className="text-muted-foreground">or</span>
+          <span className="text-sm text-amber-500">archetype ability</span>
         </div>
         <div className="flex flex-col items-center">
           <span className="text-sm">3 xp clocks</span>
@@ -368,14 +370,16 @@ export default function Page() {
             <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
             <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
           </div>
-          <div className="flex items-center gap-4 mt-4 mb-2">
+          <span className="text-muted-foreground">or</span>
+          <div className="flex items-center gap-4">
             <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
             <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4"></div>
             <ArrowRight className="h-4 w-4 text-primary" />
             <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
             <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
           </div>
-          <span className="mt-2 text-sm text-indigo-500">skillset ability</span>
+          <span className="text-muted-foreground">or</span>
+          <span className="text-sm text-indigo-500">skillset ability</span>
         </div>
         <div className="flex flex-col items-center">
           <span className="text-sm">4 xp clocks</span>
