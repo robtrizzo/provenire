@@ -174,6 +174,35 @@ export default async function Page() {
         metal eludes them. If only its name wasn&apos;t lost to them as well...
       </TypographyP>
       <Separator className="my-3" />
+      <HeritageSummary heritage={heritages[5]} />
+      <TypographyP>
+        Heians aren&apos;t recognizable by any common traits or dress. Not
+        necessarily a point of pride for them, but something they refuse to be
+        ashamed of in spite of Rathi&apos;s scorn. In fact, more than any other
+        people, the Rathi despise Heians the most.
+      </TypographyP>
+      <TypographyBlockquote>
+        &quot;Their bloodline was so diluted that it naturally begged to be
+        subsumed.&quot;
+      </TypographyBlockquote>
+      <TypographyP>
+        What does set Heians apart in the Steel Trap are their attitudes. More
+        accepting of others but harsh on themselves when it comes to a personal
+        code of honor.{' '}
+        <i>
+          Do not commit avoidable violence. Accept defeat before considering
+          treachery. Do not seek power over others.
+        </i>
+      </TypographyP>
+      <TypographyP>
+        On an espeically cold day, the Heians celebrate Draconis day. They light
+        a bonfire over a basin of ice before joining in dance and song to
+        remember their eternal protectors: dragons. Any and all are welcome to
+        come to witness, participate, or share their own remembrances. That is,
+        as long as they promise to keep the &quot;demon-worship&quot; ceremony a
+        secret.
+      </TypographyP>
+      <Separator className="my-3" />
       <div className="w-full flex justify-between">
         <Link href="/game/character-creation">
           <Button variant="outline">
