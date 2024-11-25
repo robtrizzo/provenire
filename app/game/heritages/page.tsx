@@ -132,7 +132,7 @@ export default async function Page() {
       <TypographyP>
         Ferocious and independant, even after generations of conditioning to
         fall in line. The Cumerians in the Steel Trap perfer to islolate
-        themselves from other communities, treacherously arrangine their hovels
+        themselves from other communities, treacherously arranging their hovels
         high in the rafters. And when they descend, many have learned to avert
         their gaze and avoid their presence. You never know when they may next
         lash out.
@@ -150,6 +150,29 @@ export default async function Page() {
         that they fear; children are born unfinished. It is our duty as their
         protectors to wring it out of them.&quot;
       </TypographyBlockquote>
+      <Separator className="my-3" />
+      <HeritageSummary heritage={heritages[4]} />
+      <TypographyP>
+        A somber, diligent, scrupulous people. Gredorans in the Steel Trap the
+        perfect workers by Fenrir standards. Easily identified by the metals
+        they weave into their long braids, they are the most likely to find
+        genuine joy in the factory&apos;s labor. Even beyond that, it&apos;s not
+        unheard of to find a Gredoran staring teary-eyed into a fire or
+        reverently stroking a piece of metal.
+      </TypographyP>
+      <TypographyP>
+        The Gredorans believe that centuries ago they were visited by their long
+        lost god; a god who damned them for forgetting their name. The forgotten
+        god constructed the Steel Trap to serve as a hell for the Gredorans, a
+        place where they would repent until judged worthy of atonement. It is
+        only natural that of all people, the forgotten god chose <b>Kingwulf</b>{' '}
+        and his kin to serve as hell&apos;s jailers.
+      </TypographyP>
+      <TypographyP>
+        And so the Gredorans work. They must accept their punishment. They
+        collect metals to revere the minor deities, but the forgotten god&apos;s
+        metal eludes them. If only its name wasn&apos;t lost to them as well...
+      </TypographyP>
       <Separator className="my-3" />
       <div className="w-full flex justify-between">
         <Link href="/game/character-creation">
