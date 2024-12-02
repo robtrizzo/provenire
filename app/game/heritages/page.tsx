@@ -203,6 +203,85 @@ export default async function Page() {
         secret.
       </TypographyP>
       <Separator className="my-3" />
+      <HeritageSummary heritage={heritages[6]} />
+      <TypographyP>
+        Most of the Kilder in the Steel Trap have integrated into Rathi culture,
+        stripped of their traditions and beliefs. So much so, that they cannot
+        be identified as Kilder, nor would they claim to be.
+      </TypographyP>
+      <TypographyBlockquote>
+        <i>
+          Who is a Kilder when taken from their marshes? When separated from
+          their chain of command? When deprived the teachings of their
+          community? They are just a man. Prey.
+        </i>
+      </TypographyBlockquote>
+      <TypographyP>
+        Some have chosen to nurture the vestiges of their heritage. They further
+        trim their rag clothing into the minimalistic marshland garb. They
+        gather every evening to play drums and dance. And they choose one member
+        of the community to be their <b>philosopher</b>: someone who&apos;s only
+        responsibility is to consider the bigger questions in life. The rest of
+        the community provides for them in turn.
+      </TypographyP>
+      <TypographyP>
+        On the fringes of those community gatherings, the philosophers whisper
+        stories of ancient Kilder warriors and their heroics. They tell the tale
+        of Malak Ghodbane, the teenage boy who defeated <b>Kingwulf</b> and
+        conquered half the known world. Of Aalia, and her sacrifice to save her
+        people. They whisper about Kilder&apos;s martial might - and lament
+        their loss of the knowledge of how.
+      </TypographyP>
+      <Separator className="my-3" />
+      <HeritageSummary heritage={heritages[7]} />
+      <TypographyP>
+        The Kiposi despair. This metal prison is as inhospitable an environment
+        for them as they could have ever imagined. For so many centuries, their
+        ancestors fought back the ravenous flock of Fenrir&apos;s Western
+        territories. But in the end, they failed. Fenrir took their sky, their
+        wheat fields, their hard-fought liberty - and devoured it all.
+      </TypographyP>
+      <TypographyP>
+        This despair is generational. Parents pass it on to their children, who
+        resent it, resist it, then succumb as everyone else does. Save for a
+        few. The most stubborn among them try and try and try again to force
+        something to grow. Anything. And in spite of their brethren, sometimes
+        they succeed.
+      </TypographyP>
+      <TypographyP>
+        Others steel their resolve in another manner. Kipos was founded on
+        strong democratic values - many of which are poorly remembered, but that
+        doesn&apos;t stop some from trying anyway. Many of the Steel Trap&apos;s
+        worker organizations are entrenched in the internal ideological struggle
+        between Kiposi democracy and Fenrir authoritarianism.
+      </TypographyP>
+      <Separator className="my-3" />
+      <HeritageSummary heritage={heritages[8]} />
+      <TypographyP>
+        Narscillians act with a rhythm in everything they do. To one ignorant to
+        their ways, it seems like bizarre swaying and flourishes. And when two
+        Narscillians meet, their movements synchronize - further befuddling the
+        uninitiated.
+      </TypographyP>
+      <TypographyP>
+        The overseers banned music a long time ago. It attracts{' '}
+        <i>dreamstorms</i>, inviting disaster onto a sector. Narscillians long
+        refused to give up their songs, but as it turns out, the overseers spoke
+        the truth. Generation after generation of Narscillians have been lost to
+        the natural disasters of their own creation. So now they dance to a
+        silent song. The rythm is the same, but every Narscillian is singing a
+        different tune in their minds.
+      </TypographyP>
+      <TypographyP>
+        The silent song isn&apos;t the only tradition they carry on in secret.
+        Every few years, a child is picked to become a <i>Relict</i>. They are
+        ruthlessly indoctrinated into the sole purpose of hurting the overseers.
+        Then they are cast out - exiled from their community and forbidden from
+        the silent song. Their actions cannot come back to harm their families.
+      </TypographyP>
+      <Separator className="my-3" />
+      <HeritageSummary heritage={heritages[9]} />
+      <Separator className="my-3" />
       <div className="w-full flex justify-between">
         <Link href="/game/character-creation">
           <Button variant="outline">
