@@ -281,6 +281,97 @@ export default async function Page() {
       </TypographyP>
       <Separator className="my-3" />
       <HeritageSummary heritage={heritages[9]} />
+      <TypographyP>
+        Pride in the empire. Shame in their inadequacy. Prisoners to the
+        hierarchy. Derision for the ones beneath them. Dream large, do not be
+        afraid to dine with kings. Have no mercy for the weak who hold you back
+        from your destiny. Serve your greaters dutifully and you will be
+        rewarded with love and family.
+      </TypographyP>
+      <TypographyP>
+        Where these mantras are rarely stated plainly, this is the overwhelming
+        subtext of a Rathi upbringing. The empire is vast, and so Rathi culture
+        varies with it. This is especially distinct between the three bestial
+        transformations. People of each transformation are impacted by both a
+        desire to exemplify the prototypical &quot;good&quot; traits of their
+        beast as well as overcome the &quot;bad&quot;. What these things mean
+        vary wildly as well.
+      </TypographyP>
+      <TypographyP>
+        For the Rathi, there is an endemic anxiety which grows the lower down
+        one finds themselves in the hierarcy. An anxiety originating from
+        certain judgement, though on unpredictable and arbitrary values. The
+        solution? Many throw themselves deeply into a fanatically Rathi mindset
+        - let no one question your beastly virtues or dedication to Kingwulf and
+        Fenrir.
+      </TypographyP>
+      <Separator className="my-3" />
+      <HeritageSummary heritage={heritages[10]} />
+      <TypographyP>
+        The ideal workers. Scionics never put up a fight when Fenrir consumed
+        their measly settlements. The human condition is to suffer. The world is
+        made this way and mere mortals have no chance to change it. Having the
+        arrogance to think otherwise is a disastrous folly. And Scionics make
+        many follies in their lives. Love, children, defiance - sometimes their
+        hearts act in conflict with their ineffable reality.
+      </TypographyP>
+      <TypographyP>
+        Scionics tell the tale of their god, <i>Locum</i> who once had the
+        chance to remake the world to be kinder. But he was defeated by{' '}
+        <i>Jira</i>: the avatar of suffering, who locked <i>Locum</i> away.
+      </TypographyP>
+      <TypographyP>
+        There is nothing the Scionics can do. No amount of prayer, rebellion,
+        struggle, or might can free their god. They can only pray that{' '}
+        <i>Locum</i> will one day gather the strength to escape and save the
+        world.
+      </TypographyP>
+      <Separator className="my-3" />
+      <HeritageSummary heritage={heritages[11]} />
+      <TypographyP>
+        Ulgate stemmed the tide of darkness for generation after generation;
+        ultimately giving everything for the sake of victory. These short
+        centuries of confinement in the Steel Trap will not defeat the human
+        will. Fight.
+      </TypographyP>
+      <TypographyP>
+        There is no longer such a thing as the Ulgatian bloodline. By all
+        accounts, they were wiped out centuries ago when Fenrir first conquered
+        the North. But inexplicably, their values live on.
+      </TypographyP>
+      <TypographyP>
+        It can happen to anyone. A worker who crawls on their belly one day
+        seems possessed by the spirit of defiance the next. An etherial
+        contagion haunts the workers of the Steel Trap, bestowing the
+        unfortunate with an unquenchable rage and indominable resolve. They are
+        always short lived.
+      </TypographyP>
+      <Separator className="my-3" />
+      <HeritageSummary heritage={heritages[12]} />
+
+      <TypographyP>
+        Yamans are always identified easily. They dress in all white, or as
+        white as they can manage. And they walk with their shoulders back and
+        their gaze directly in front of them, rather than the stooped posture
+        and downcast eyes which workers have learned to adopt. They adhere to a
+        volumnuous moral code which includes inviolable oaths and pacifism while
+        within their communities.
+      </TypographyP>
+      <TypographyP>
+        Their ways are just as incompatible with society in the Steel Trap as it
+        would initially seem. As Yaman children grow older, they swear a
+        progressively more strict set of oaths. Some abandon these oaths, tired
+        of being perpetually exploited by overseer and worker alike.
+        Unsurprisingly, the Yaman dogma never permits them back home.
+      </TypographyP>
+      <TypographyP>
+        Despite their outwardly craven customs, the Yamans persist.
+      </TypographyP>
+      <TypographyBlockquote>
+        This heinous Empire cannot last. Eventually they will consume themselves
+        - they have enshrined it in their very mythology. There are one thousand
+        ways to wait for the inevitable without compromising your morality.
+      </TypographyBlockquote>
       <Separator className="my-3" />
       <div className="w-full flex justify-between">
         <Link href="/game/character-creation">
