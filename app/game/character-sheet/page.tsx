@@ -172,7 +172,8 @@ export default function Charsheet() {
   const [rollLeft, setRollLeft] = useState<string>('');
   const [rollRight, setRollRight] = useState<string>('');
 
-  const [bonusDice, setBonusDice] = useState<number>(0);
+  const [bonusDiceRed, setBonusDiceRed] = useState<number>(0);
+  const [bonusDiceBlue, setBonusDiceBlue] = useState<number>(0);
   const [fortuneDice, setFortuneDice] = useState<number>(0);
 
   const [characterLoaded, setCharacterLoaded] = useState<Date>(new Date());
@@ -379,7 +380,10 @@ export default function Charsheet() {
   }
 
   function rollCombo(action1: string, action2: string, dice: number[]) {
-    for (let i = 0; i < bonusDice; i++) {
+    for (let i = 0; i < bonusDiceRed; i++) {
+      dice.push(1);
+    }
+    for (let i = 0; i < bonusDiceBlue; i++) {
       dice.push(2);
     }
     if (dice.reduce((acc, s) => acc + s, 0) === 0) {
@@ -558,7 +562,10 @@ export default function Charsheet() {
   }
 
   function rollResist(action1: string, action2: string, dice: number[]) {
-    for (let i = 0; i < bonusDice; i++) {
+    for (let i = 0; i < bonusDiceRed; i++) {
+      dice.push(1);
+    }
+    for (let i = 0; i < bonusDiceBlue; i++) {
       dice.push(2);
     }
     if (dice.reduce((acc, s) => acc + s, 0) === 0) {
@@ -1860,7 +1867,8 @@ export default function Charsheet() {
                       );
                       setRollLeft('');
                       setRollRight('');
-                      setBonusDice(0);
+                      setBonusDiceRed(0);
+                      setBonusDiceBlue(0);
                     }}
                   >
                     <ShieldAlert /> Resist
@@ -1895,7 +1903,8 @@ export default function Charsheet() {
                       );
                       setRollLeft('');
                       setRollRight('');
-                      setBonusDice(0);
+                      setBonusDiceRed(0);
+                      setBonusDiceBlue(0);
                     }}
                     className="flex items-center gap-2"
                   >
@@ -1907,18 +1916,38 @@ export default function Charsheet() {
                 </div>
                 <div className="flex gap-4 justify-between flex-wrap">
                   <div className="flex gap-4">
-                    <div>
-                      <Label htmlFor="bonus-dice">Bonus Dice</Label>
-                      <Input
-                        id="bonus-dice"
-                        type="number"
-                        className="w-20"
-                        min={0}
-                        value={bonusDice}
-                        onChange={(e) => {
-                          setBonusDice(parseInt(e.target.value));
-                        }}
-                      />
+                    <div className="flex flex-col gap-2">
+                      <Label htmlFor="bonus-dice" className="text-center">
+                        Bonus Dice
+                      </Label>
+                      <div className="flex gap-2">
+                        <div className="flex gap-2 items-center">
+                          <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500" />
+                          <Input
+                            id="bonus-dice"
+                            type="number"
+                            className="w-20"
+                            min={0}
+                            value={bonusDiceRed}
+                            onChange={(e) => {
+                              setBonusDiceRed(parseInt(e.target.value));
+                            }}
+                          />
+                        </div>
+                        <div className="flex gap-2 items-center">
+                          <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500" />
+                          <Input
+                            id="bonus-dice"
+                            type="number"
+                            className="w-20"
+                            min={0}
+                            value={bonusDiceBlue}
+                            onChange={(e) => {
+                              setBonusDiceBlue(parseInt(e.target.value));
+                            }}
+                          />
+                        </div>
+                      </div>
                     </div>
                     <div className="text-muted-foreground text-xs leading-3 mt-2">
                       <span>
@@ -3251,46 +3280,12 @@ export default function Charsheet() {
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      {bonds.Personal.map((b, i) => {
-                        if (b.name === '') return;
-                        return (
-                          <SelectItem
-                            key={i}
-                            value={`Personal-${b.name}`}
-                            className="group-hover:underline"
-                          >
-                            {b.name}
-                          </SelectItem>
-                        );
-                      })}
-                      {bonds.Familial.map((b, i) => {
-                        if (b.name === '') return;
-                        return (
-                          <SelectItem
-                            key={i}
-                            value={`Familial-${b.name}`}
-                            className="group-hover:underline"
-                          >
-                            {b.name}
-                          </SelectItem>
-                        );
-                      })}
-                      {selectedBackground?.professionalBonds && [
-                        <SelectItem
-                          key={0}
-                          value={`Professional-${selectedBackground.professionalBonds[0].name}`}
-                          className="group-hover:underline"
-                        >
-                          {selectedBackground.professionalBonds[0].name}
-                        </SelectItem>,
-                        <SelectItem
-                          key={1}
-                          value={`Professional-${selectedBackground.professionalBonds[1].name}`}
-                          className="group-hover:underline"
-                        >
-                          {selectedBackground.professionalBonds[1].name}
-                        </SelectItem>,
-                      ]}
+                      <SelectItem value="Heart-Defy">Defy</SelectItem>
+                      <SelectItem value="Heart-Persuade">Persuade</SelectItem>
+                      <SelectItem value="Instinct-Charge">Charge</SelectItem>
+                      <SelectItem value="Instinct-Prowl">Prowl</SelectItem>
+                      <SelectItem value="Machina-Suggest">Suggest</SelectItem>
+                      <SelectItem value="Machina-Survey">Survey</SelectItem>
                     </SelectContent>
                   </Select>
 
@@ -3364,32 +3359,28 @@ export default function Charsheet() {
                         ];
                         rollAction(attribute, action);
                       } else if (!rollRight) {
-                        const [bondType, bondName] = rollLeft.split('-') as [
-                          'Personal' | 'Familial' | 'Professional',
+                        const [attribute, action] = rollLeft.split('-') as [
+                          'Heart' | 'Instinct' | 'Machina',
                           string
                         ];
-                        const b = bonds[bondType].find(
-                          (b) => b.name === bondName
-                        );
-                        if (b) rollBond(b);
-                      } else {
-                        const [bondType, bondName] = rollLeft.split('-') as [
-                          'Personal' | 'Familial' | 'Professional',
-                          string
-                        ];
-                        const b = bonds[bondType].find(
-                          (b) => b.name === bondName
-                        );
-                        const [attributeRight, actionRight] = rollRight.split(
-                          '-'
-                        ) as ['Heart' | 'Instinct' | 'Machina', string];
-                        if (b) {
-                          rollResistChurn(b, attributeRight, actionRight);
-                        }
+                        rollAction(attribute, action);
                       }
-
+                      const [attributeLeft, actionLeft] = rollLeft.split(
+                        '-'
+                      ) as ['Heart' | 'Instinct' | 'Machina', string];
+                      const [attributeRight, actionRight] = rollRight.split(
+                        '-'
+                      ) as ['Heart' | 'Instinct' | 'Machina', string];
+                      rollResistMission(
+                        attributeLeft,
+                        actionLeft,
+                        attributeRight,
+                        actionRight
+                      );
                       setRollLeft('');
                       setRollRight('');
+                      setBonusDiceRed(0);
+                      setBonusDiceBlue(0);
                     }}
                   >
                     <ShieldAlert /> Resist
@@ -3404,32 +3395,28 @@ export default function Charsheet() {
                         ];
                         rollAction(attribute, action);
                       } else if (!rollRight) {
-                        const [bondType, bondName] = rollLeft.split('-') as [
-                          'Personal' | 'Familial' | 'Professional',
+                        const [attribute, action] = rollLeft.split('-') as [
+                          'Heart' | 'Instinct' | 'Machina',
                           string
                         ];
-                        const b = bonds[bondType].find(
-                          (b) => b.name === bondName
-                        );
-                        if (b) rollBond(b);
-                      } else {
-                        const [bondType, bondName] = rollLeft.split('-') as [
-                          'Personal' | 'Familial' | 'Professional',
-                          string
-                        ];
-                        const b = bonds[bondType].find(
-                          (b) => b.name === bondName
-                        );
-                        const [attributeRight, actionRight] = rollRight.split(
-                          '-'
-                        ) as ['Heart' | 'Instinct' | 'Machina', string];
-                        if (b) {
-                          rollComboChurn(b, attributeRight, actionRight);
-                        }
+                        rollAction(attribute, action);
                       }
-
+                      const [attributeLeft, actionLeft] = rollLeft.split(
+                        '-'
+                      ) as ['Heart' | 'Instinct' | 'Machina', string];
+                      const [attributeRight, actionRight] = rollRight.split(
+                        '-'
+                      ) as ['Heart' | 'Instinct' | 'Machina', string];
+                      rollComboMission(
+                        attributeLeft,
+                        actionLeft,
+                        attributeRight,
+                        actionRight
+                      );
                       setRollLeft('');
                       setRollRight('');
+                      setBonusDiceRed(0);
+                      setBonusDiceBlue(0);
                     }}
                     className="flex items-center gap-2"
                   >
@@ -3441,18 +3428,38 @@ export default function Charsheet() {
                 </div>
                 <div className="flex gap-4 justify-between flex-wrap">
                   <div className="flex gap-4">
-                    <div>
-                      <Label htmlFor="bonus-dice">Bonus Dice</Label>
-                      <Input
-                        id="bonus-dice"
-                        type="number"
-                        className="w-20"
-                        min={0}
-                        value={bonusDice}
-                        onChange={(e) => {
-                          setBonusDice(parseInt(e.target.value));
-                        }}
-                      />
+                    <div className="flex flex-col gap-2">
+                      <Label htmlFor="bonus-dice" className="text-center">
+                        Bonus Dice
+                      </Label>
+                      <div className="flex gap-2">
+                        <div className="flex gap-2 items-center">
+                          <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500" />
+                          <Input
+                            id="bonus-dice"
+                            type="number"
+                            className="w-20"
+                            min={0}
+                            value={bonusDiceRed}
+                            onChange={(e) => {
+                              setBonusDiceRed(parseInt(e.target.value));
+                            }}
+                          />
+                        </div>
+                        <div className="flex gap-2 items-center">
+                          <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500" />
+                          <Input
+                            id="bonus-dice"
+                            type="number"
+                            className="w-20"
+                            min={0}
+                            value={bonusDiceBlue}
+                            onChange={(e) => {
+                              setBonusDiceBlue(parseInt(e.target.value));
+                            }}
+                          />
+                        </div>
+                      </div>
                     </div>
                     <div className="text-muted-foreground text-xs leading-3 mt-2">
                       <span>
