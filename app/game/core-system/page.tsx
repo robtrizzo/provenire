@@ -392,6 +392,15 @@ export default function Page() {
           </div>
         </div>
       </div>
+      <TypographyH2>The Cycle of Play</TypographyH2>
+      <TypographyP>
+        Sessions of <span className="italic">Provenire</span> take place in
+        three major phases: <strong>Prelude</strong>,{' '}
+        <strong>The Mission</strong>, and <strong>The Churn</strong>. Each
+        session always begins with <strong>Prelude</strong> and ends with{' '}
+        <strong>The Churn</strong>. Multiple cycles can take place durring one
+        session depending on how long you&apos;re together.
+      </TypographyP>
       <Separator />
       <div className="w-full flex justify-between">
         <Link href="/game/setting">

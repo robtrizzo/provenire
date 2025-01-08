@@ -195,14 +195,6 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/cycle-of-play');
-              setOpen(false);
-            }}
-          >
-            The Cycle of Play
-          </CommandItem>
-          <CommandItem
-            onSelect={() => {
               router.push('/game/prelude');
               setOpen(false);
             }}

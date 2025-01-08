@@ -225,9 +225,9 @@ export default function Page() {
             <ChevronLeft /> Core System
           </Button>
         </Link>
-        <Link href="/game/cycle-of-play">
+        <Link href="/game/prelude">
           <Button variant="outline">
-            The Cycle of Play <ChevronRight />
+            Prelude <ChevronRight />
           </Button>
         </Link>
       </div>

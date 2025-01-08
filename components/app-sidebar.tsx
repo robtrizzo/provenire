@@ -52,10 +52,6 @@ const data = {
           url: '/game/actions-and-rolls',
         },
         {
-          title: 'The Cycle of Play',
-          url: '/game/cycle-of-play',
-        },
-        {
           title: 'Prelude',
           url: '/game/prelude',
         },
