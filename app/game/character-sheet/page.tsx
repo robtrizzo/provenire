@@ -52,6 +52,7 @@ import {
   X,
   Cog,
   ShieldAlert,
+  DiamondPlus,
 } from 'lucide-react';
 import ActionDescription from '@/components/ui/action-description';
 import { Card } from '@/components/ui/card';
@@ -138,8 +139,8 @@ export default function Charsheet() {
       },
     ],
     Crew: [
-      { name: '', score: [0, 0] },
-      { name: '', score: [0, 0] },
+      { name: '', score: [1, 0] },
+      { name: '', score: [1, 0] },
     ],
   });
 
@@ -265,8 +266,8 @@ export default function Charsheet() {
           { name: '', score: [0, 0] },
         ],
         Crew: [
-          { name: '', score: [0, 0] },
-          { name: '', score: [0, 0] },
+          { name: '', score: [1, 0] },
+          { name: '', score: [1, 0] },
         ],
       });
       setStarvation(0);
@@ -2844,8 +2845,25 @@ export default function Charsheet() {
               <TypographyH2 className="text-md text-muted-foreground mb-2 mt-8">
                 Bonds
               </TypographyH2>
-              <TypographyH3 className="mt-4 text-sm text-muted-foreground">
+              <TypographyH3 className="mt-4 text-sm text-muted-foreground flex items-center justify-between">
                 Personal
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  className="p-1 text-green-600 hover:text-green-600 h-10 w-10"
+                  onClick={() => {
+                    setBonds((prevBonds) => ({
+                      ...prevBonds,
+                      Personal: [
+                        ...prevBonds.Personal,
+                        { name: '', score: [0, 0], description: '' },
+                      ],
+                    }));
+                    setChanges(true);
+                  }}
+                >
+                  <DiamondPlus style={{ height: '24px', width: '24px' }} />
+                </Button>
               </TypographyH3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {bonds.Personal.map((b, i) => (
@@ -2882,11 +2900,37 @@ export default function Charsheet() {
                       }));
                       setChanges(true);
                     }}
+                    handleDeleteBond={() => {
+                      setBonds((prevBonds) => ({
+                        ...prevBonds,
+                        Personal: prevBonds.Personal.filter(
+                          (_, index) => i !== index
+                        ),
+                      }));
+                      setChanges(true);
+                    }}
                   />
                 ))}
               </div>
-              <TypographyH3 className="mt-4 text-sm text-muted-foreground">
+              <TypographyH3 className="mt-4 text-sm text-muted-foreground flex items-center justify-between">
                 Familial
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  className="p-1 text-green-600 hover:text-green-600 h-10 w-10"
+                  onClick={() => {
+                    setBonds((prevBonds) => ({
+                      ...prevBonds,
+                      Familial: [
+                        ...prevBonds.Familial,
+                        { name: '', score: [0, 0], description: '' },
+                      ],
+                    }));
+                    setChanges(true);
+                  }}
+                >
+                  <DiamondPlus style={{ height: '24px', width: '24px' }} />
+                </Button>
               </TypographyH3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {bonds.Familial.map((b, i) => (
@@ -2920,6 +2964,15 @@ export default function Charsheet() {
                         ),
                         Professional: prevBonds.Professional,
                         Crew: prevBonds.Crew,
+                      }));
+                      setChanges(true);
+                    }}
+                    handleDeleteBond={() => {
+                      setBonds((prevBonds) => ({
+                        ...prevBonds,
+                        Familial: prevBonds.Familial.filter(
+                          (_, index) => i !== index
+                        ),
                       }));
                       setChanges(true);
                     }}
@@ -2998,8 +3051,25 @@ export default function Charsheet() {
                   view professional bonds
                 </TypographyP>
               )}
-              <TypographyH3 className="mt-4 text-sm text-muted-foreground">
+              <TypographyH3 className="mt-4 text-sm text-muted-foreground flex items-center justify-between">
                 Crew
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  className="p-1 text-green-600 hover:text-green-600 h-10 w-10"
+                  onClick={() => {
+                    setBonds((prevBonds) => ({
+                      ...prevBonds,
+                      Crew: [
+                        ...prevBonds.Crew,
+                        { name: '', score: [1, 0], description: '' },
+                      ],
+                    }));
+                    setChanges(true);
+                  }}
+                >
+                  <DiamondPlus style={{ height: '24px', width: '24px' }} />
+                </Button>
               </TypographyH3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {bonds.Crew?.map((b, i) => (
@@ -3033,6 +3103,13 @@ export default function Charsheet() {
                               }
                             : bond
                         ),
+                      }));
+                      setChanges(true);
+                    }}
+                    handleDeleteBond={() => {
+                      setBonds((prevBonds) => ({
+                        ...prevBonds,
+                        Crew: prevBonds.Crew.filter((_, index) => i !== index),
                       }));
                       setChanges(true);
                     }}

@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Close } from '@radix-ui/react-popover';
-import { X, SaveIcon } from 'lucide-react';
+import { X, SaveIcon, Bomb } from 'lucide-react';
 import { TypographyH4, TypographyP } from '@/components/ui/typography';
 import { Bond } from '@/types/game';
 import { ActionScore } from '@/components/ui/action-score';
@@ -17,10 +17,12 @@ export default function BondInput({
   bond,
   handleSave,
   handleChangeScore,
+  handleDeleteBond = () => {},
 }: {
   bond: Bond;
   handleSave: (name: string, description: string) => void;
   handleChangeScore: (s: number[]) => void;
+  handleDeleteBond: () => void;
 }) {
   const [open, setOpen] = useState(false);
 
@@ -53,12 +55,17 @@ export default function BondInput({
           className="mt-2"
         />
         <div className="mt-2 flex justify-between">
-          <Close asChild>
-            <Button variant="destructive" className="text-sm">
-              <X />
-              Cancel
-            </Button>
-          </Close>
+          <Button
+            variant="destructive"
+            className="text-sm"
+            onClick={() => {
+              handleDeleteBond();
+              setOpen(false);
+            }}
+          >
+            <Bomb />
+            Delete
+          </Button>
           <Button
             variant="secondary"
             className="text-sm"
