@@ -137,6 +137,10 @@ export default function Charsheet() {
         score: [0, 0],
       },
     ],
+    Crew: [
+      { name: '', score: [0, 0] },
+      { name: '', score: [0, 0] },
+    ],
   });
 
   const [stress, setStress] = useState(0);
@@ -166,9 +170,7 @@ export default function Charsheet() {
 
   const [rollLeft, setRollLeft] = useState<string>('');
   const [rollRight, setRollRight] = useState<string>('');
-  const [resistanceRoll, setResistanceRoll] = useState<
-    'Heart' | 'Instinct' | 'Machina' | ''
-  >('');
+
   const [bonusDice, setBonusDice] = useState<number>(0);
   const [fortuneDice, setFortuneDice] = useState<number>(0);
 
@@ -259,6 +261,10 @@ export default function Charsheet() {
           { name: '', score: [0, 0] },
         ],
         Professional: [
+          { name: '', score: [0, 0] },
+          { name: '', score: [0, 0] },
+        ],
+        Crew: [
           { name: '', score: [0, 0] },
           { name: '', score: [0, 0] },
         ],
@@ -2368,7 +2374,7 @@ export default function Charsheet() {
                 </Popover>
               </TypographyH2>
               <div className="border-b-[1px]">
-                <div className="mt-8">
+                <div className=" mt-8">
                   <TypographyH3 className="text-center">
                     Heart <Flame className="inline mb-2" />
                   </TypographyH3>
@@ -2380,14 +2386,14 @@ export default function Charsheet() {
                     className="h-10 flex items-center hover:cursor-pointer group"
                     onClick={(e) => {
                       if (e.shiftKey) {
-                        rollBond(bonds.Personal[0]);
+                        rollAction('Heart', 'Defy');
                       } else {
-                        setRollLeft(`Personal-${bonds.Personal[0].name}`);
+                        setRollLeft('Heart-Defy');
                       }
                     }}
                   >
                     <TypographyH4 className="group-hover:underline">
-                      {bonds.Personal[0].name}
+                      Defy
                     </TypographyH4>
                   </div>
                   <Separator />
@@ -2395,56 +2401,32 @@ export default function Charsheet() {
                     className="h-10 flex items-center hover:cursor-pointer group"
                     onClick={(e) => {
                       if (e.shiftKey) {
-                        rollBond(bonds.Personal[1]);
+                        rollAction('Heart', 'Persuade');
                       } else {
-                        setRollLeft(`Personal-${bonds.Personal[1].name}`);
+                        setRollLeft('Heart-Persuade');
                       }
                     }}
                   >
                     <TypographyH4 className="group-hover:underline">
-                      {bonds.Personal[1].name}
+                      Persuade
                     </TypographyH4>
                   </div>
                 </div>
                 <div className="flex flex-col  border-r-[1px]">
                   <ActionScore
-                    key={`per0${new Date().getTime()}`}
-                    score={bonds.Personal[0].score}
+                    key={`defy${new Date().getTime()}`}
+                    score={attributes.Heart.Defy}
                     onChange={(s) => {
-                      setBonds({
-                        Personal: [
-                          {
-                            name: bonds.Personal[0].name,
-                            description: bonds.Personal[0].description,
-                            score: s,
-                          },
-                          bonds.Personal[1],
-                        ],
-                        Familial: bonds.Familial,
-                        Professional: bonds.Professional,
-                      });
-                      setChanges(true);
+                      handleUpdateActionScore('Heart', 'Defy', s);
                     }}
                     className="h-10 justify-end mr-2"
                   />
                   <Separator />
                   <ActionScore
-                    key={`per1${new Date().getTime()}`}
-                    score={bonds.Personal[1].score}
+                    key={`persuade${new Date().getTime()}`}
+                    score={attributes.Heart.Persuade}
                     onChange={(s) => {
-                      setBonds({
-                        Personal: [
-                          bonds.Personal[0],
-                          {
-                            name: bonds.Personal[1].name,
-                            score: s,
-                            description: bonds.Personal[1].description,
-                          },
-                        ],
-                        Familial: bonds.Familial,
-                        Professional: bonds.Professional,
-                      });
-                      setChanges(true);
+                      handleUpdateActionScore('Heart', 'Persuade', s);
                     }}
                     className="h-10 justify-end mr-2"
                   />
@@ -2560,14 +2542,14 @@ export default function Charsheet() {
                     className="h-10 flex items-center hover:cursor-pointer group"
                     onClick={(e) => {
                       if (e.shiftKey) {
-                        rollBond(bonds.Familial[0]);
+                        rollAction('Instinct', 'Charge');
                       } else {
-                        setRollLeft(`Familial-${bonds.Familial[0].name}`);
+                        setRollLeft('Instinct-Charge');
                       }
                     }}
                   >
                     <TypographyH4 className="group-hover:underline">
-                      {bonds.Familial[0].name}
+                      Charge
                     </TypographyH4>
                   </div>
                   <Separator />
@@ -2575,54 +2557,32 @@ export default function Charsheet() {
                     className="h-10 flex items-center hover:cursor-pointer group"
                     onClick={(e) => {
                       if (e.shiftKey) {
-                        rollBond(bonds.Familial[1]);
+                        rollAction('Instinct', 'Prowl');
                       } else {
-                        setRollLeft(`Familial-${bonds.Familial[1].name}`);
+                        setRollLeft('Instinct-Prowl');
                       }
                     }}
                   >
                     <TypographyH4 className="group-hover:underline">
-                      {bonds.Familial[1].name}
+                      Prowl
                     </TypographyH4>
                   </div>
                 </div>
                 <div className="flex flex-col border-r-[1px]">
                   <ActionScore
-                    key={`fam0${new Date().getTime()}`}
-                    score={bonds.Familial[0].score}
+                    key={`charge${new Date().getTime()}`}
+                    score={attributes.Instinct.Charge}
                     onChange={(s) => {
-                      setBonds({
-                        Personal: bonds.Personal,
-                        Familial: [
-                          {
-                            name: bonds.Familial[0].name,
-                            score: s,
-                            description: bonds.Familial[0].description,
-                          },
-                          bonds.Familial[1],
-                        ],
-                        Professional: bonds.Professional,
-                      });
+                      handleUpdateActionScore('Instinct', 'Charge', s);
                     }}
                     className="h-10 justify-end mr-2"
                   />
                   <Separator />
                   <ActionScore
-                    key={`fam1${new Date().getTime()}`}
-                    score={bonds.Familial[1].score}
+                    key={`prowl${new Date().getTime()}`}
+                    score={attributes.Instinct.Prowl}
                     onChange={(s) => {
-                      setBonds({
-                        Personal: bonds.Personal,
-                        Familial: [
-                          bonds.Familial[0],
-                          {
-                            name: bonds.Familial[1].name,
-                            score: s,
-                            description: bonds.Familial[1].description,
-                          },
-                        ],
-                        Professional: bonds.Professional,
-                      });
+                      handleUpdateActionScore('Instinct', 'Prowl', s);
                     }}
                     className="h-10 justify-end mr-2"
                   />
@@ -2738,16 +2698,14 @@ export default function Charsheet() {
                     className="h-10 flex items-center hover:cursor-pointer group"
                     onClick={(e) => {
                       if (e.shiftKey) {
-                        rollBond(bonds.Professional[0]);
+                        rollAction('Machina', 'Suggest');
                       } else {
-                        setRollLeft(
-                          `Professional-${selectedBackground?.professionalBonds?.[0].name}`
-                        );
+                        setRollLeft('Machina-Suggest');
                       }
                     }}
                   >
                     <TypographyH4 className="group-hover:underline">
-                      {selectedBackground?.professionalBonds?.[0].name}
+                      Suggest
                     </TypographyH4>
                   </div>
                   <Separator />
@@ -2755,54 +2713,32 @@ export default function Charsheet() {
                     className="h-10 flex items-center hover:cursor-pointer group"
                     onClick={(e) => {
                       if (e.shiftKey) {
-                        rollBond(bonds.Professional[1]);
+                        rollAction('Machina', 'Survey');
                       } else {
-                        setRollLeft(
-                          `Professional-${selectedBackground?.professionalBonds?.[1].name}`
-                        );
+                        setRollLeft('Machina-Survey');
                       }
                     }}
                   >
                     <TypographyH4 className="group-hover:underline">
-                      {selectedBackground?.professionalBonds?.[1]?.name}
+                      Survey
                     </TypographyH4>
                   </div>
                 </div>
                 <div className="flex flex-col border-r-[1px]">
                   <ActionScore
-                    key={`pro0${new Date().getTime()}`}
-                    score={bonds.Professional[0].score}
+                    key={`suggest${new Date().getTime()}`}
+                    score={attributes.Machina.Suggest}
                     onChange={(s) => {
-                      setBonds({
-                        Personal: bonds.Personal,
-                        Familial: bonds.Familial,
-                        Professional: [
-                          {
-                            name: bonds.Professional[0].name,
-                            score: s,
-                          },
-                          bonds.Professional[1],
-                        ],
-                      });
+                      handleUpdateActionScore('Machina', 'Suggest', s);
                     }}
                     className="h-10 justify-end mr-2"
                   />
                   <Separator />
                   <ActionScore
-                    key={`pro1${new Date().getTime()}`}
-                    score={bonds.Professional[1].score}
+                    key={`survey${new Date().getTime()}`}
+                    score={attributes.Machina.Survey}
                     onChange={(s) => {
-                      setBonds({
-                        Personal: bonds.Personal,
-                        Familial: bonds.Familial,
-                        Professional: [
-                          bonds.Professional[0],
-                          {
-                            name: bonds.Professional[1].name,
-                            score: s,
-                          },
-                        ],
-                      });
+                      handleUpdateActionScore('Machina', 'Survey', s);
                     }}
                     className="h-10 justify-end mr-2"
                   />
@@ -2912,100 +2848,196 @@ export default function Charsheet() {
                 Personal
               </TypographyH3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                <BondInput
-                  bond={bonds.Personal[0]}
-                  handleSave={(name: string, description: string) => {
-                    setBonds({
-                      Personal: [
-                        {
-                          name,
-                          score: bonds.Personal[0].score,
-                          description,
-                        },
-                        bonds.Personal[1],
-                      ],
-                      Familial: bonds.Familial,
-                      Professional: bonds.Professional,
-                    });
-                    setChanges(true);
-                  }}
-                />
-                <BondInput
-                  bond={bonds.Personal[1]}
-                  handleSave={(name: string, description: string) => {
-                    setBonds({
-                      Personal: [
-                        bonds.Personal[0],
-                        {
-                          name,
-                          score: bonds.Personal[1].score,
-                          description,
-                        },
-                      ],
-                      Familial: bonds.Familial,
-                      Professional: bonds.Professional,
-                    });
-                    setChanges(true);
-                  }}
-                />
+                {bonds.Personal.map((b, i) => (
+                  <BondInput
+                    key={`bond-personal-${i}`}
+                    bond={b}
+                    handleSave={(name: string, description: string) => {
+                      setBonds((prevBonds) => ({
+                        Personal: prevBonds.Personal.map((bond, index) =>
+                          index === i
+                            ? { name, score: bond.score, description }
+                            : bond
+                        ),
+                        Familial: prevBonds.Familial,
+                        Professional: prevBonds.Professional,
+                        Crew: prevBonds.Crew,
+                      }));
+                      setChanges(true);
+                    }}
+                    handleChangeScore={(s: number[]) => {
+                      setBonds((prevBonds) => ({
+                        Personal: prevBonds.Personal.map((bond, index) =>
+                          index === i
+                            ? {
+                                name: bond.name,
+                                score: s,
+                                description: bond.description,
+                              }
+                            : bond
+                        ),
+                        Familial: prevBonds.Familial,
+                        Professional: prevBonds.Professional,
+                        Crew: prevBonds.Crew,
+                      }));
+                      setChanges(true);
+                    }}
+                  />
+                ))}
               </div>
               <TypographyH3 className="mt-4 text-sm text-muted-foreground">
                 Familial
               </TypographyH3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                <BondInput
-                  bond={bonds.Familial[0]}
-                  handleSave={(name: string, description: string) => {
-                    setBonds({
-                      Personal: bonds.Personal,
-                      Familial: [
-                        {
-                          name,
-                          score: bonds.Familial[0].score,
-                          description,
-                        },
-                        bonds.Familial[1],
-                      ],
-                      Professional: bonds.Professional,
-                    });
-                    setChanges(true);
-                  }}
-                />
-                <BondInput
-                  bond={bonds.Familial[1]}
-                  handleSave={(name: string, description: string) => {
-                    setBonds({
-                      Personal: bonds.Personal,
-                      Familial: [
-                        bonds.Familial[0],
-                        {
-                          name,
-                          score: bonds.Familial[1].score,
-                          description,
-                        },
-                      ],
-                      Professional: bonds.Professional,
-                    });
-                    setChanges(true);
-                  }}
-                />
+                {bonds.Familial.map((b, i) => (
+                  <BondInput
+                    key={`bond-familial-${i}`}
+                    bond={b}
+                    handleSave={(name: string, description: string) => {
+                      setBonds((prevBonds) => ({
+                        Personal: prevBonds.Personal,
+                        Familial: prevBonds.Familial.map((bond, index) =>
+                          index === i
+                            ? { name, score: bond.score, description }
+                            : bond
+                        ),
+                        Professional: prevBonds.Professional,
+                        Crew: prevBonds.Crew,
+                      }));
+                      setChanges(true);
+                    }}
+                    handleChangeScore={(s: number[]) => {
+                      setBonds((prevBonds) => ({
+                        Personal: prevBonds.Personal,
+                        Familial: prevBonds.Familial.map((bond, index) =>
+                          index === i
+                            ? {
+                                name: bond.name,
+                                score: s,
+                                description: bond.description,
+                              }
+                            : bond
+                        ),
+                        Professional: prevBonds.Professional,
+                        Crew: prevBonds.Crew,
+                      }));
+                      setChanges(true);
+                    }}
+                  />
+                ))}
               </div>
               <TypographyH3 className="mt-4 text-sm text-muted-foreground">
                 Professional
               </TypographyH3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 ">
-                <TypographyP className="m-2 max-w-96">
-                  {selectedBackground?.professionalBonds?.[0].name}:{' '}
-                  <span className="text-muted-foreground text-xs">
-                    {selectedBackground?.professionalBonds?.[0].description}
-                  </span>
+              {selectedBackground ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 ">
+                  <div className="m-2 max-w-96">
+                    <div className="flex justify-between items-center">
+                      <TypographyP>
+                        {selectedBackground.professionalBonds?.[0].name}
+                      </TypographyP>
+                      <ActionScore
+                        score={bonds.Professional[0].score}
+                        onChange={(s: number[]) => {
+                          setBonds((prevBonds) => ({
+                            Personal: prevBonds.Personal,
+                            Familial: prevBonds.Familial,
+                            Professional: [
+                              {
+                                name: prevBonds.Professional[0].name,
+                                description:
+                                  prevBonds.Professional[0].description,
+                                score: s,
+                              },
+                              prevBonds.Professional[1],
+                            ],
+                            Crew: prevBonds.Crew,
+                          }));
+                          setChanges(true);
+                        }}
+                      />
+                    </div>
+                    <TypographyP className="text-muted-foreground text-xs">
+                      {selectedBackground?.professionalBonds?.[0].description}
+                    </TypographyP>
+                  </div>
+                  <div className="m-2 max-w-96">
+                    <div className="flex justify-between items-center">
+                      <TypographyP>
+                        {selectedBackground.professionalBonds?.[1].name}
+                      </TypographyP>
+                      <ActionScore
+                        score={bonds.Professional[1].score}
+                        onChange={(s: number[]) => {
+                          setBonds((prevBonds) => ({
+                            Personal: prevBonds.Personal,
+                            Familial: prevBonds.Familial,
+                            Professional: [
+                              prevBonds.Professional[0],
+                              {
+                                name: prevBonds.Professional[1].name,
+                                description:
+                                  prevBonds.Professional[1].description,
+                                score: s,
+                              },
+                            ],
+                            Crew: prevBonds.Crew,
+                          }));
+                          setChanges(true);
+                        }}
+                      />
+                    </div>
+                    <TypographyP className="text-muted-foreground text-xs">
+                      {selectedBackground?.professionalBonds?.[0].description}
+                    </TypographyP>
+                  </div>
+                </div>
+              ) : (
+                <TypographyP className="text-center">
+                  Select a <span className="text-red-500">background</span> to
+                  view professional bonds
                 </TypographyP>
-                <TypographyP className="m-2 max-w-96">
-                  {selectedBackground?.professionalBonds?.[1].name}:{' '}
-                  <span className="text-muted-foreground text-xs">
-                    {selectedBackground?.professionalBonds?.[1].description}
-                  </span>
-                </TypographyP>
+              )}
+              <TypographyH3 className="mt-4 text-sm text-muted-foreground">
+                Crew
+              </TypographyH3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                {bonds.Crew?.map((b, i) => (
+                  <BondInput
+                    key={`bond-crew-${i}`}
+                    bond={b}
+                    handleSave={(name: string, description: string) => {
+                      setBonds((prevBonds) => ({
+                        Personal: prevBonds.Personal,
+                        Familial: prevBonds.Familial,
+                        Professional: prevBonds.Professional,
+                        Crew: prevBonds.Crew.map((bond, index) =>
+                          index === i
+                            ? { name, score: bond.score, description }
+                            : bond
+                        ),
+                      }));
+                      setChanges(true);
+                    }}
+                    handleChangeScore={(s: number[]) => {
+                      setBonds((prevBonds) => ({
+                        Personal: prevBonds.Personal,
+                        Familial: prevBonds.Familial,
+                        Professional: prevBonds.Professional,
+                        Crew: prevBonds.Crew.map((bond, index) =>
+                          index === i
+                            ? {
+                                name: bond.name,
+                                score: s,
+                                description: bond.description,
+                              }
+                            : bond
+                        ),
+                      }));
+                      setChanges(true);
+                    }}
+                  />
+                ))}
               </div>
             </div>
             <div className="my-4 flex flex-col">

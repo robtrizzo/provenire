@@ -90,6 +90,7 @@ export type Bonds = {
   Personal: Bond[];
   Familial: Bond[];
   Professional: Bond[];
+  Crew: Bond[];
 };
 
 export type Loadout = {

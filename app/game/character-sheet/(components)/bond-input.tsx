@@ -11,13 +11,16 @@ import { Close } from '@radix-ui/react-popover';
 import { X, SaveIcon } from 'lucide-react';
 import { TypographyH4, TypographyP } from '@/components/ui/typography';
 import { Bond } from '@/types/game';
+import { ActionScore } from '@/components/ui/action-score';
 
 export default function BondInput({
   bond,
   handleSave,
+  handleChangeScore,
 }: {
   bond: Bond;
   handleSave: (name: string, description: string) => void;
+  handleChangeScore: (s: number[]) => void;
 }) {
   const [open, setOpen] = useState(false);
 
@@ -25,11 +28,14 @@ export default function BondInput({
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <div className="hover:bg-secondary hover:cursor-pointer rounded-md box-border p-2 transition-all max-w-96">
-          <TypographyP>
-            {bond.name || 'Bond Name'}:{' '}
-            <span className="text-muted-foreground text-xs">
-              {bond.description || 'Bond Description'}
-            </span>
+          <div className="flex justify-between items-center">
+            <TypographyP>{bond.name || 'Bond Name'}</TypographyP>
+            <div onClick={(e) => e.stopPropagation()}>
+              <ActionScore score={bond.score} onChange={handleChangeScore} />
+            </div>
+          </div>
+          <TypographyP className="text-muted-foreground text-xs">
+            {bond.description || 'Bond Description'}
           </TypographyP>
         </div>
       </PopoverTrigger>
