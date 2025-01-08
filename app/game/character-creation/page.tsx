@@ -1,14 +1,14 @@
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import {
   TypographyH1,
   TypographyH2,
+  TypographyH3,
   TypographyP,
-  TypographyUnorderedList,
+  TypographyBlockquote,
 } from '@/components/ui/typography';
-import archetypes from '@/public/archetypes.json';
 import Breadcrumbs from '@/components/ui/breadcrumbs';
 
 export default async function Page() {
@@ -24,64 +24,24 @@ export default async function Page() {
         over tin can fires, whispered between siblings when they&apos;re
         supposed to be going to bed, glimpsed in fleeting dreams are the stories
         of the past. Memories of ways of life long lost. There are many
-        heritages to choose from in <span className="italic">Provenire</span>:
-      </TypographyP>
-      <TypographyUnorderedList>
-        <li>
-          <strong>Anidinian</strong>: Power, marriage, Amati
-        </li>
-        <li>
-          <strong>Argosi</strong>: Charity, gratitude, purity
-        </li>
-        <li>
-          <strong>Bwarhein</strong>: Vengeance, rage, bestiality
-        </li>
-        <li>
-          <strong>Cumerian</strong>: Fearlessness and fearsomeness
-        </li>
-        <li>
-          <strong>Gredoran</strong>: Metal, beauty, sacrifice
-        </li>
-        <li>
-          <strong>Heian</strong>: Honor, agility, Draconis
-        </li>
-        <li>
-          <strong>Kilder</strong>: Discipline, resilience, philosophy
-        </li>
-        <li>
-          <strong>Kiposi</strong>: Agriculture, sport, liberty
-        </li>
-        <li>
-          <strong>Narscillian</strong>: Music, duty, community
-        </li>
-        <li>
-          <strong>Rathi</strong>: Serve Kingwulf, dominate all others
-        </li>
-        <li>
-          <strong>Scionic</strong>: Suffering, servitude, Locum
-        </li>
-        <li>
-          <strong>Ulgatian</strong>: Resistance, blood, Jira
-        </li>
-        <li>
-          <strong>Yaman</strong>: Pacifism, reverence, order
-        </li>
-      </TypographyUnorderedList>
-      <TypographyP id="heritage">
+        heritages to choose from in <span className="italic">Provenire</span>.
+        You can find them here:{' '}
         <Link href="/game/heritages">
           <strong className="text-sky-500 underline">Heritages</strong>
-        </Link>{' '}
-        are the stories and memories of your ancestors&apos; ancestors. They
-        give your character precious traditions to preserve. If you choose Rathi
-        though, you instead are taught to embrace the cultural norms of the
-        Steel Trap and to think yourself better than the others who are in a
-        slightly lower social caste.
+        </Link>
+      </TypographyP>
+      <TypographyP id="heritage">
+        Heritages are the stories and memories of your ancestors&apos;
+        ancestors. They give your character precious traditions to preserve. If
+        you choose Rathi though, you instead are taught to embrace the cultural
+        norms of the Steel Trap and to think yourself better than the others who
+        are in a slightly lower social caste.
       </TypographyP>
       <TypographyP>
-        Heritages <span className="italic">do not</span> impart a mandatory
-        look, outlook, or mechanical benefit. Rathi workers might inherit
-        physical bestial traits (but they are always{' '}
-        <span className="italic">thinbloods</span>).
+        Heritages grant a unique profile question. They{' '}
+        <span className="italic">do not</span> impart a mandatory look, outlook,
+        or mechanical benefit. Rathi workers might inherit physical bestial
+        traits (but they are always <span className="italic">thinbloods</span>).
       </TypographyP>
       <Separator />
       <TypographyP>
@@ -93,36 +53,13 @@ export default async function Page() {
         everyone&apos;s bellies. But don&apos;t speak out. Don&apos;t question
         the status quo. The overseers are watching, and they don&apos;t take
         kindly to troublemakers. There are many tasks workers are forced to do
-        in the Steel Trap. Some of them are:
-      </TypographyP>
-      <TypographyUnorderedList>
-        <li>
-          <strong>Archivist</strong>: Read manuals and catalog inventory
-        </li>
-        <li>
-          <strong>Enforcer</strong>: Keep the fear and enforce the rules
-        </li>
-        <li>
-          <strong>Machinist</strong>: Living replacement for broken parts
-        </li>
-        <li>
-          <strong>Operator</strong>: Pull levers and crank wheels
-        </li>
-        <li>
-          <strong>Runner</strong>: Carry messages and transport crates
-        </li>
-        <li>
-          <strong>Scrapper</strong>: Sort broken parts and salvage scrap
-        </li>
-        <li>
-          <strong>Stoker</strong>: Shovel tar and stoke the fires
-        </li>
-      </TypographyUnorderedList>
-      <TypographyP id="background">
+        in the Steel Trap. You can find them here:{' '}
         <Link href="/game/backgrounds">
           <strong className="text-red-500 underline">Backgrounds</strong>
-        </Link>{' '}
-        grant two unique mission actions, two profile questions, two
+        </Link>
+      </TypographyP>
+      <TypographyP id="background">
+        Backgrounds grant two unique mission actions, two profile questions, two
         professional bonds, and a subsistence activity.
       </TypographyP>
       <Separator />
@@ -132,87 +69,175 @@ export default async function Page() {
         of competent revolutionaries. They do this by taking illegal jobs from
         clients, planning their own devious missions, making alliances,
         destroying their enemies, and trying to stay one step ahead of the
-        overseers. Some of the ways they go about this are:
-      </TypographyP>
-      <TypographyUnorderedList>
-        <li>
-          <strong>Chisel</strong>: a crafty sabotuer and wright
-        </li>
-        <li>
-          <strong>Flywheel</strong>: a daring scoundrel and acrobat
-        </li>
-        <li>
-          <strong>Fume</strong>: a manipulative and intimidating schemer
-        </li>
-        <li>
-          <strong>Grease</strong>: a canny and resourceful blusterer
-        </li>
-        <li>
-          <strong>Hammer</strong>: a strong and fearless brawler
-        </li>
-        <li>
-          <strong>Nail</strong>: an audacious and inspiring ringleader
-        </li>
-        <li>
-          <strong>Spark</strong>: a quick-witted and charming protector
-        </li>
-        <li>
-          <strong>Vapor</strong>: an elusive infiltrator and thief
-        </li>
-      </TypographyUnorderedList>
-      <TypographyP id="skillset">
+        overseers. Some of the ways they go about this can be found here:{' '}
         <Link href="/game/skillsets">
           <strong className="text-indigo-500 underline">Skillsets</strong>
-        </Link>{' '}
-        grant two unique mission actions, three mission abilities, two profile
-        questions, an agenda, and a downtime ability.
+        </Link>
+      </TypographyP>
+      <TypographyP id="skillset">
+        Skillsets grant two unique mission actions, three mission abilities, two
+        profile questions, an agenda, and a downtime ability.
       </TypographyP>
       <Separator />
       <TypographyP>
         But who are these characters when they aren&apos;t working and
         aren&apos;t fighting back? What kind of friends, family members,
         coworkers, and lovers are they? How do they care for the people around
-        them? Some of their personality types are:
-      </TypographyP>
-      <TypographyUnorderedList>
-        {archetypes.map((archetype) => (
-          <li key={archetype.name}>
-            <strong>{archetype.name}</strong>: {archetype.shortDescription}
-          </li>
-        ))}
-      </TypographyUnorderedList>
-      <TypographyP id="archetype">
+        them? Some of their personality types can be found here:{' '}
         <Link href="/game/archetypes">
           <strong className="text-amber-500 underline">Archetypes</strong>
-        </Link>{' '}
-        grant a unique mission action, two mission abilities, five profile
-        questions, and two downtime abilities.
+        </Link>
       </TypographyP>
-      <TypographyH2>Filling in the blanks</TypographyH2>
-      <TypographyP>
-        Once you&apos;ve made your selections from the options above, there are
-        a few things left to do before you&apos;re ready to play. First, fill
-        out all of your profile questions. These are open-ended intentionally;
-        you can be creative with your answers and even create fiction to support
-        them. Keep in mind that the <strong>Narrator</strong> will review your
-        answers to help you stay within the bounds of the fiction.
+      <TypographyP id="archetype">
+        Archetypes grant a unique mission action, two mission abilities, five
+        profile questions, and two downtime abilities.
       </TypographyP>
+      <TypographyH2 className="mt-8">Character questions</TypographyH2>
       <TypographyP>
-        Next, name your familial and personal bonds. These NPCs along with the
-        professional bonds you get from your background replace your{' '}
-        <strong>universal actions</strong> during <strong>the churn</strong>.
-        You can think of them as your &quot;stats&quot; outside of the mission.
+        First, fill out all of your profile questions. These are open-ended
+        intentionally; you can be creative with your answers and even create
+        fiction to support them. Keep in mind that the <strong>Narrator</strong>{' '}
+        will review your answers to help you stay within the bounds of the
+        fiction.
       </TypographyP>
+      <TypographyH2 className="mt-4">Bonds</TypographyH2>
       <TypographyP>
-        Next, assign 8 points to your <strong>actions</strong>.{' '}
-        <span className="text-red-500">Red dots</span> cost 1 point and{' '}
-        <span className="text-blue-500">blue dots</span> cost 2 points. Be
-        aware, your <strong>bonds</strong> also count for this, so if you
-        neglect them, you&apos;ll be weaker during <strong>the churn.</strong>
+        First, name your familial and personal bonds. These NPCs are yours to
+        envision and flesh out. Who are they? What are their dreams? What
+        injustices do they endure for the ones they love?
       </TypographyP>
       <TypographyP>
-        Finally, name your character, give them an alias, and finish the common
-        questions in your character profile. Then you&apos;re ready to play!
+        Your professional bonds are with NPCs the <b>Narrator</b> has created,
+        but feel free to expand on your relationship and history with them.
+      </TypographyP>
+      <TypographyP>
+        Lastly, your crew bonds are with fellow PCs. Feel free to invent any
+        form or amount of history or preexisting relationships with one another.
+      </TypographyP>
+      <TypographyP>
+        Assign{' '}
+        <div className="inline-block">
+          <div className="flex gap-2 mx-2">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500" />
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
+          </div>
+        </div>{' '}
+        to each <b>crew bond</b>. Then assign{' '}
+        <div className="inline-block">
+          <div className="flex gap-2 mx-2">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500" />
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
+          </div>
+        </div>{' '}
+        to any three of your <b>personal, familial,</b> and{' '}
+        <b>professional bonds</b>. Finally, choose one <b>bond</b> to set to{' '}
+        <div className="inline-block">
+          <div className="flex gap-2 mx-2">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500" />
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500" />
+          </div>
+        </div>{' '}
+        or{' '}
+        <div className="inline-block">
+          <div className="flex gap-2 mx-2">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500" />
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
+          </div>
+        </div>
+        .
+      </TypographyP>
+      <TypographyH3>Instructors</TypographyH3>
+      <TypographyP>
+        When using downtime to <b>train</b>, your character will learn crucial
+        skills from one or more <b>instructors</b>. These can be other PCs, NPCs
+        of the <b>Narrator&apos;s</b> creation, or ones you invent. Think about
+        your character&apos;s relationship with their <b>instructor(s)</b>. Who
+        are they? Why aren&apos;t <i>they</i> on missions? How do they know what
+        they know? Or is that a mystery?
+      </TypographyP>
+      <TypographyH2 className="mt-4">Actions & Abilities</TypographyH2>
+      <TypographyP>
+        All of your actions begin at{' '}
+        <div className="inline-block">
+          <div className="flex gap-2 mx-2">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
+          </div>
+        </div>
+        . You begin play with 12 points you can spend to enhance your actions
+        and unlock abilities.
+      </TypographyP>
+      <div className="flex flex-wrap gap-8">
+        <div className="flex flex-col items-center">
+          <span className="text-sm">1 point</span>
+          <div className="flex items-center gap-4 mt-4">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4"></div>
+            <ArrowRight className="h-4 w-4 text-primary" />
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4"></div>
+          </div>
+        </div>
+        <div className="flex flex-col items-center">
+          <span className="text-sm">2 points</span>
+          <div className="flex items-center gap-4 mt-4">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4"></div>
+            <ArrowRight className="h-4 w-4 text-primary" />
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+          </div>
+          <span className="text-muted-foreground">or</span>
+          <div className="flex items-center gap-4">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4"></div>
+            <ArrowRight className="h-4 w-4 text-primary" />
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4"></div>
+          </div>
+          <span className="text-muted-foreground">or</span>
+          <span className="text-sm text-amber-500">archetype ability</span>
+        </div>
+        <div className="flex flex-col items-center">
+          <span className="text-sm">3 points</span>
+          <div className="flex items-center gap-4 mt-4">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+            <ArrowRight className="h-4 w-4 text-primary" />
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+          </div>
+          <span className="text-muted-foreground">or</span>
+          <div className="flex items-center gap-4">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4"></div>
+            <ArrowRight className="h-4 w-4 text-primary" />
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+          </div>
+          <span className="text-muted-foreground">or</span>
+          <span className="text-sm text-indigo-500">skillset ability</span>
+        </div>
+        <div className="flex flex-col items-center">
+          <span className="text-sm">4 points</span>
+          <div className="flex items-center gap-4 mt-4">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+            <ArrowRight className="h-4 w-4 text-primary" />
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+          </div>
+        </div>
+      </div>
+      <TypographyBlockquote>
+        You begin play with your{' '}
+        <b className="text-amber-500">archetype&apos;s key ability</b> unlocked
+        - which will be checked by default on your character sheet.
+      </TypographyBlockquote>
+      <TypographyH2 className="mt-4">Filling in the blanks</TypographyH2>
+      <TypographyP>
+        Name your character, give them an alias, and finish the common questions
+        in your character profile. Then you&apos;re ready to play!
       </TypographyP>
       <Separator />
       <div className="w-full flex justify-between">
