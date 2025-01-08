@@ -191,7 +191,7 @@ export default function CommandMenu() {
               setOpen(false);
             }}
           >
-            Actions & Rolls
+            Actions, Bonds, & Rolls
           </CommandItem>
           <CommandItem
             onSelect={() => {
@@ -250,6 +250,14 @@ export default function CommandMenu() {
             }}
           >
             Experience & Advancement
+          </CommandItem>
+          <CommandItem
+            onSelect={() => {
+              router.push('/game/actions-and-rolls#bonds');
+              setOpen(false);
+            }}
+          >
+            Bonds
           </CommandItem>
           <CommandItem
             onSelect={() => {

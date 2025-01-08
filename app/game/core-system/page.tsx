@@ -43,21 +43,19 @@ export default function Page() {
         from a series of discrete moments.
       </TypographyP>
       <TypographyP>
-        <strong>No one is in charge of the story.</strong> The story is what
-        happens as a result of the situation presented by the GM, the actions
-        the characters take, the outcomes of the mechanics, and the consequences
-        that result. The story emerges from the unpredictable collision of all
-        of these elements. You <strong>play to find out</strong> what the story
-        will be.
+        <b>No one is in charge of the story.</b> The story is what happens as a
+        result of the situation presented by the GM, the actions the characters
+        take, the outcomes of the mechanics, and the consequences that result.
+        The story emerges from the unpredictable collision of all of these
+        elements. You <b>play to find out</b> what the story will be.
       </TypographyP>
       <TypographyH2>Judgement Calls</TypographyH2>
       <TypographyP>
         Since roleplaying is a collaborative, expressive act, not a purely
         strategic endeavor, you&apos;ll need to make judgment calls. By making
         these choices, the game group together establishes a style, tone, and
-        form the fiction of play. <span className="italic">Provenire</span> is
-        designed to bring these judgment calls to the forefront and make them
-        explicit tools of the game
+        form the fiction of play. <i>Provenire</i> is designed to bring these
+        judgment calls to the forefront and make them explicit tools of the game
       </TypographyP>
       <TypographyP>
         When you play, you&apos;ll make several key judgment calls. Everyone
@@ -67,93 +65,91 @@ export default function Page() {
       <TypographyUnorderedList>
         <li>
           Which actions are reasonable as a solution to a problem?{' '}
-          <span className="italic">
+          <i>
             Can this person be swayed? Must we get out the tools and tinker with
             this old rusty lock, or could it also be quietly finessed?
-          </span>{' '}
-          The <strong>players</strong> have final say
+          </i>{' '}
+          The <b>players</b> have final say
         </li>
         <li>
           How dangerous and how effective is a given action in this
           circumstance?{' '}
-          <span className="italic">
+          <i>
             How risky is this? Can this person be swayed very little or a whole
             lot?
-          </span>{' '}
-          The <strong>Narrator</strong> has final say
+          </i>{' '}
+          The <b>Narrator</b> has final say
         </li>
         <li>
           Which consequences are inflicted to manifest the dangers in a given
           circumstance?{' '}
-          <span className="italic">
+          <i>
             Does this fall from the roof break your leg? Do the enforcers merely
             become suspicious or do they already have you trapped?
-          </span>{' '}
-          The <strong>Narrator</strong> has final say
+          </i>{' '}
+          The <b>Narrator</b> has final say
         </li>
         <li>
           Does this situation call for a dice roll, and which one?{' '}
-          <span className="italic">
+          <i>
             Is your scoundrel in position to make an action roll or must they
             first make a resistance roll to gain initiative?
-          </span>{' '}
-          The <strong>Narrator</strong> has final say.
+          </i>{' '}
+          The <b>Narrator</b> has final say.
         </li>
         <li>
           Which events in the story match the experience triggers for character
           and crew advancement?{' '}
-          <span className="italic">
+          <i>
             Did you express your character’s beliefs, drives, heritage, or
             background? You tell us.
-          </span>{' '}
-          The <strong>players</strong> have final say.
+          </i>{' '}
+          The <b>players</b> have final say.
         </li>
       </TypographyUnorderedList>
       <TypographyP>
         The particular choices you make will create your own unique story in{' '}
-        <span className="italic">Provenire</span>. You’ll say something about
-        the world and the characters, about revolutionary fiction, and even
-        about the human condition. What will you say? There’s only one way to
-        find out.
+        <i>Provenire</i>. You’ll say something about the world and the
+        characters, about revolutionary fiction, and even about the human
+        condition. What will you say? There’s only one way to find out.
       </TypographyP>
       <TypographyH2>Rolling the Dice</TypographyH2>
       <TypographyP>
-        <span className="italic">Provenire</span> uses six-sided dice. You roll
-        several at once and read the <strong>single highest result</strong>.
+        <i>Provenire</i> uses six-sided dice. You roll several at once and read
+        the <b>single highest result</b>.
       </TypographyP>
       <TypographyUnorderedList>
         <li>
-          If the highest die is a <strong>6</strong>, it&apos;s a{' '}
-          <strong>full success</strong>--things go well. If you roll more than
-          one <strong>6</strong>, it&apos;s a <strong>Critical success</strong>
+          If the highest die is a <b>6</b>, it&apos;s a <b>full success</b>
+          --things go well. If you roll more than one <b>6</b>, it&apos;s a{' '}
+          <b>Critical success</b>
           --you gain some additional advantage.
         </li>
         <li>
-          If the highest die is a <strong>4 or 5</strong>, that&apos;s a{' '}
-          <strong>partial success</strong>--you do what you were trying to do,
-          but there are consequences: trouble, harm, reduced effect, etc.
+          If the highest die is a <b>4 or 5</b>, that&apos;s a{' '}
+          <b>partial success</b>--you do what you were trying to do, but there
+          are consequences: trouble, harm, reduced effect, etc.
         </li>
         <li>
-          If the highest die is a <strong>1-3</strong>, it&apos;s a{' '}
-          <strong>bad outcome</strong>. Things go poorly. You probably
-          don&apos;t achieve your goal and you suffer complications, too
+          If the highest die is a <b>1-3</b>, it&apos;s a <b>bad outcome</b>.
+          Things go poorly. You probably don&apos;t achieve your goal and you
+          suffer complications, too
         </li>
       </TypographyUnorderedList>
       <TypographyP className="italic">
         If you ever need to roll but you have zero (or negative) dice, roll two
         dice and take the single lowest result. You can’t roll a{' '}
-        <strong className="no-italic">Critical</strong> when you have zero dice.
+        <b className="no-italic">Critical</b> when you have zero dice.
       </TypographyP>
       <TypographyP>
         To create a dice pool for a roll, you&apos;ll use one or two{' '}
-        <strong>traits</strong> (like your <strong>Prowl</strong> or your{' '}
-        <strong>Survey</strong>) and take dice equal to their combined{' '}
-        <strong>rating</strong>. When selecting <strong>traits</strong>, you may
-        choose one from the left and right sides of the{' '}
-        <strong>mission traits</strong> of your character sheet.
+        <b>traits</b> (like your <b>Prowl</b> or your <b>Survey</b>) and take
+        dice equal to their combined <b>rating</b>. When selecting <b>traits</b>
+        , you may choose one from the left and right sides of the{' '}
+        <b>mission traits</b> of your character sheet.
       </TypographyP>
       <TypographyP>
-        <strong>Trait ratings</strong> have two marks. Each mark can be{' '}
+        <b>Trait ratings</b> have two marks. Each mark can be{' '}
         <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 inline-block" />
         ,{' '}
         <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 inline-block bg-red-500" />
@@ -178,45 +174,42 @@ export default function Page() {
       </TypographyP>
       <TypographyH3 id="bonus-dice">Bonus Dice</TypographyH3>
       <TypographyP>
-        There are a number of ways to gain bonus dice in{' '}
-        <span className="italic">Provenire</span>. All bonus dice are blue,
-        meaning they don&apos;t incur reduced effect if they&apos;re your
-        highest roll.
+        There are a number of ways to gain bonus dice in <i>Provenire</i>. All
+        bonus dice are blue, meaning they don&apos;t incur reduced effect if
+        they&apos;re your highest roll.
       </TypographyP>
       <TypographyUnorderedList>
         <li>
-          <strong>Teamwork:</strong> Another member of the crew marks{' '}
-          <strong>1 stress</strong> and describes how they help you out. You get{' '}
-          <strong>1 bonus die</strong>.{' '}
-          <span className="italic">
+          <b>Teamwork:</b> Another member of the crew marks <b>1 stress</b> and
+          describes how they help you out. You add their <b>bond</b> with{' '}
+          <b>you</b> to your roll.{' '}
+          <i>
             Only one person can help you, otherwise it should be a group roll.
-          </span>
+          </i>
         </li>
         <li>
-          <strong>Push yourself:</strong> Describe how you dig deep to ensure
-          success. Mark <strong>2 stress</strong> and get{' '}
-          <strong>1 bonus die</strong>.{' '}
-          <span className="italic">
+          <b>Push yourself:</b> Describe how you dig deep to ensure success.
+          Mark <b>2 stress</b> and get <b>1 bonus die</b>.{' '}
+          <i>
             If you push yourself, you cannot also take a devil&apos;s bargain.
-          </span>
+          </i>
         </li>
         <li>
-          <strong>Devil&apos;s Bargain:</strong> The <strong>Narrator</strong>{' '}
-          presents an interesting problem or consequence. Decide if you want to
-          take the deal. If you do, get <strong>1 bonus die</strong>.{' '}
-          <span className="italic">
-            You may <strong>resist</strong> the consequences of the bargain if
-            you want.
-          </span>
+          <b>Devil&apos;s Bargain:</b> The <b>Narrator</b> presents an
+          interesting problem or consequence. Decide if you want to take the
+          deal. If you do, get <b>1 bonus die</b>.{' '}
+          <i>
+            You may <b>resist</b> the consequences of the bargain if you want.
+          </i>
         </li>
         <li>
-          <strong>Group Roll:</strong> Ask if anyone else in the crew wants to
-          make a roll with you. If they do, you decide who the leader is; the
-          leader marks <strong>1 xp</strong>. Then everyone separately rolls.
-          The highest roll among the group is used as the result. For each
-          member of the group that rolls a <strong>1-3</strong>, the leader
-          marks <strong>1 stress</strong>. If the overall result has
-          consequences, everyone suffers them.
+          <b>Group Roll:</b> Ask if anyone else in the crew wants to make a roll
+          with you. If they do, you decide who the leader is; the leader marks{' '}
+          <b>1 xp</b>. Then everyone separately rolls their <b>bond</b> with the{' '}
+          <b>leader</b> plus an action of their choice. The highest roll among
+          the group is used as the result. For each member of the group that
+          rolls a <b>1-3</b>, the leader marks <b>1 stress</b>. If the overall
+          result has consequences, everyone suffers them.
         </li>
       </TypographyUnorderedList>
       <TypographyH3>Types of Rolls</TypographyH3>
@@ -225,38 +218,37 @@ export default function Page() {
       </TypographyP>
       <TypographyUnorderedList>
         <li>
-          <strong>Action Roll</strong>: When a PC attempts an action that&apos;s
-          dangerous or troublesome, you make an action roll to find out how it
-          goes. Action rolls and their effects and consequences drive most of
-          the game.
+          <b>Action Roll</b>: When a PC attempts an action that&apos;s dangerous
+          or troublesome, you make an action roll to find out how it goes.
+          Action rolls and their effects and consequences drive most of the
+          game.
         </li>
         <li>
-          <strong>Project Roll</strong>: When the PCs are preparing for the
-          mission, some activities create <b>clocks</b> to represent how close
-          they are to complete. You make project rolls to see how much you get
-          done. See{' '}
+          <b>Project Roll</b>: When the PCs are preparing for the mission, some
+          activities create <b>clocks</b> to represent how close they are to
+          complete. You make project rolls to see how much you get done. See{' '}
           <Link href="/game/actions-and-rolls#project-rolls">
             project rolls
           </Link>{' '}
           for more.
         </li>
         <li>
-          <strong>Fortune Roll</strong>: The GM can make a fortune roll to
-          disclaim decision making and leave something up to chance.{' '}
-          <span className="italic">
+          <b>Fortune Roll</b>: The GM can make a fortune roll to disclaim
+          decision making and leave something up to chance.{' '}
+          <i>
             How loyal is an NPC? How much does the plague spread? How much
             evidence is burned before the Overseers kick in the door?
-          </span>
+          </i>
         </li>
         <li>
-          <strong>Resistance Roll</strong>: A player can make a resistance roll
-          when their character suffers a consequence they don&apos;t like. The
-          roll tells us how much stress their character suffers to reduce the
-          severity of a consequence.{' '}
-          <span className="italic">
+          <b>Resistance Roll</b>: A player can make a resistance roll when their
+          character suffers a consequence they don&apos;t like. The roll tells
+          us how much stress their character suffers to reduce the severity of a
+          consequence.{' '}
+          <i>
             When you resist that &quot;Broken Leg&quot; harm, you take some
             stress and now it’s only a &quot;Sprained Ankle&quot; instead.
-          </span>
+          </i>
         </li>
       </TypographyUnorderedList>
       <TypographyH3 id="experience-and-advancement">
@@ -394,12 +386,11 @@ export default function Page() {
       </div>
       <TypographyH2>The Cycle of Play</TypographyH2>
       <TypographyP>
-        Sessions of <span className="italic">Provenire</span> take place in
-        three major phases: <strong>Prelude</strong>,{' '}
-        <strong>The Mission</strong>, and <strong>The Churn</strong>. Each
-        session always begins with <strong>Prelude</strong> and ends with{' '}
-        <strong>The Churn</strong>. Multiple cycles can take place durring one
-        session depending on how long you&apos;re together.
+        Sessions of <i>Provenire</i> take place in three major phases:{' '}
+        <b>Prelude</b>, <b>The Mission</b>, and <b>The Churn</b>. Each session
+        always begins with <b>Prelude</b> and ends with <b>The Churn</b>.
+        Multiple cycles can take place durring one session depending on how long
+        you&apos;re together.
       </TypographyP>
       <Separator />
       <div className="w-full flex justify-between">
@@ -410,7 +401,7 @@ export default function Page() {
         </Link>
         <Link href="/game/actions-and-rolls">
           <Button variant="outline">
-            Actions & Rolls <ChevronRight />
+            Actions, Bonds, & Rolls <ChevronRight />
           </Button>
         </Link>
       </div>

@@ -84,20 +84,16 @@ export default async function Page() {
         character you comfort can choose to take the advice or reject it. If
         they take the advice, they mark a number of ticks on their{' '}
         <b>recovery clock</b> according to the <b>ante</b>. If they reject the
-        advice, you mark an amount of stress equal to the <b>ante</b>.
+        advice, you mark an amount of stress equal to the <b>ante</b> or{' '}
+        <b>strain your bond</b>.
       </TypographyP>
       <TypographyH4>Consort</TypographyH4>
       <TypographyP>
         When you consort, you choose any character (PC or NPC) to spend time
         with. You can build on your relationship, have a crucial confrontation,
         or just chat. Set the scene, then play to find out what happens. When
-        you consort, you may choose to <b>spend xp</b> to advance your bond
-        <sup className="text-amber-500">*</sup> with the character you&apos;re
-        consorting with.
-      </TypographyP>
-      <TypographyP className="text-muted-foreground">
-        <sup className="text-amber-500">*</sup>Bonds are WIP and will be
-        expanded on in the next update.
+        you consort, you may choose to <b>spend xp</b> to advance your bond with
+        the character you&apos;re consorting with.
       </TypographyP>
       <TypographyH4>Gather Information</TypographyH4>
       <TypographyP>
@@ -327,7 +323,7 @@ export default async function Page() {
       <div className="w-full flex justify-between">
         <Link href="/game/actions-and-rolls">
           <Button variant="outline">
-            <ChevronLeft /> Actions and Rolls
+            <ChevronLeft /> Actions, Bonds, & Rolls
           </Button>
         </Link>
         <Link href="/game/mission">

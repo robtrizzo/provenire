@@ -48,7 +48,7 @@ const data = {
           url: '/game/core-system',
         },
         {
-          title: 'Actions & Rolls',
+          title: 'Actions, Bonds, & Rolls',
           url: '/game/actions-and-rolls',
         },
         {

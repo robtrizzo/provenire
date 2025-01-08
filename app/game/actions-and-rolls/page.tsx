@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import {
+  TypographyBlockquote,
   TypographyH1,
   TypographyH2,
   TypographyH3,
@@ -28,7 +29,7 @@ export default function Page() {
           { name: 'Actions & Rolls', href: '#' },
         ]}
       />
-      <TypographyH1>Actions & Rolls</TypographyH1>
+      <TypographyH1>Actions, Bonds, & Rolls</TypographyH1>
       <TypographyH2>Action Ratings</TypographyH2>
       <TypographyP>
         There are 6 <strong>universal actions</strong> and 46{' '}
@@ -67,6 +68,82 @@ export default function Page() {
         action, you&apos;ll make an <strong>action roll</strong> to see how it
         turns out
       </TypographyP>
+      <TypographyH2 id="bonds">Bonds</TypographyH2>
+      <TypographyP>
+        Characters in <i>Provenire</i> aren&apos;t invincible. They need the
+        people around them: friends, family, a support system. <b>Bonds</b> are
+        a representation of the ones close to your character who are willing and
+        capable of lending a helping hand when things get tough. There are 4
+        categories of <b>bonds</b>: <i>Crew, Familial, Personal,</i> and{' '}
+        <i>Professional</i>.
+      </TypographyP>
+      <TypographyP>
+        Each <b>bond</b> has a <b>rating</b> (from{' '}
+        <div className="inline-block">
+          <div className="flex gap-2 mx-2">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
+          </div>
+        </div>{' '}
+        to{' '}
+        <div className="inline-block">
+          <div className="flex gap-2 mx-2">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500" />
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500" />
+          </div>
+        </div>
+        ) that tells you how many dice to roll when invoking this <b>bond</b>.
+        Bond ratings don&apos;t just represent dedication or capability --
+        you&apos;re free to describe the manner in which each <b>bond&apos;s</b>{' '}
+        aid manifests in the narrative.
+      </TypographyP>
+      <TypographyP>
+        <b>Bonds</b> are invoked in a few ways. It could be to <b>assist</b> a
+        teammate, to participate in a <b>group roll</b>, or when a roll heavily
+        involves an NPC <b>bond</b> of yours.
+      </TypographyP>
+      <TypographyH3>Straining a Bond</TypographyH3>
+      <TypographyP>
+        There are times when you will be prompted to <b>strain a bond</b> by the
+        rules or the <b>Narrator</b>. This represents a division forming between
+        your character and the <b>bond</b>. When this happens, you reduce the{' '}
+        <b>bond&apos;s rating</b> by any amount. You then gain a number of{' '}
+        <b>experience clocks</b> equal to the number you spent to unlock that{' '}
+        <b>rating</b>.
+      </TypographyP>
+      <TypographyBlockquote>
+        For example, if your character&apos;s <b>bond</b> with <b>Seline</b> is{' '}
+        <div className="inline-block">
+          <div className="flex gap-2 mx-2">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500" />
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500" />
+          </div>
+        </div>{' '}
+        and it becomes strained, you must reduce it to{' '}
+        <div className="inline-block">
+          <div className="flex gap-2 mx-2">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500" />
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500" />
+          </div>
+        </div>{' '}
+        or{' '}
+        <div className="inline-block">
+          <div className="flex gap-2 mx-2">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500" />
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
+          </div>
+        </div>{' '}
+        but you may reduce it by more if you choose. Either of those choices
+        would grant you <b>3 xp clocks</b>. Say that you chose to decrease it by
+        more, to{' '}
+        <div className="inline-block">
+          <div className="flex gap-2 mx-2">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500" />
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
+          </div>
+        </div>
+        : you would gain <b>5 xp clocks</b>.
+      </TypographyBlockquote>
       <TypographyH2 id="action-roll">Action Roll</TypographyH2>
       <TypographyP>
         You make an <strong>action roll</strong> when your character does
