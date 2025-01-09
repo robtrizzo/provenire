@@ -151,6 +151,48 @@ export default function CommandMenu() {
             </CommandItem>
           ))}
         </CommandGroup>
+        <CommandGroup heading="Fighting Styles">
+          <CommandItem
+            onSelect={() => {
+              router.push('/game/fighting-styles#crowdbreaking');
+              setOpen(false);
+            }}
+          >
+            Crowdbreaking
+          </CommandItem>
+          <CommandItem
+            onSelect={() => {
+              router.push('/game/fighting-styles#pipedancing');
+              setOpen(false);
+            }}
+          >
+            Pipedancing
+          </CommandItem>
+          <CommandItem
+            onSelect={() => {
+              router.push('/game/fighting-styles#backsnap');
+              setOpen(false);
+            }}
+          >
+            Backsnap
+          </CommandItem>
+          <CommandItem
+            onSelect={() => {
+              router.push('/game/fighting-styles#bleedout');
+              setOpen(false);
+            }}
+          >
+            Bleedout
+          </CommandItem>
+          <CommandItem
+            onSelect={() => {
+              router.push('/game/fighting-styles#throatgore');
+              setOpen(false);
+            }}
+          >
+            Throatgore
+          </CommandItem>
+        </CommandGroup>
         <CommandSeparator />
         <CommandGroup heading="Rules (Pages)">
           <CommandItem
@@ -442,6 +484,14 @@ export default function CommandMenu() {
             }}
           >
             The King&apos;s Spell
+          </CommandItem>
+          <CommandItem
+            onSelect={() => {
+              router.push('/game/fighting-styles#strain');
+              setOpen(false);
+            }}
+          >
+            Strain
           </CommandItem>
         </CommandGroup>
         <CommandSeparator />
