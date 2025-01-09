@@ -65,9 +65,9 @@ export default async function Page() {
             <ChevronLeft /> Skillsets
           </Button>
         </Link>
-        <Link href="/game/fitd-char-sheet">
+        <Link href="/game/fighting-styles">
           <Button variant="outline">
-            Character Sheet <ChevronRight />
+            Fighting Styles <ChevronRight />
           </Button>
         </Link>
       </div>

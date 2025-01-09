@@ -225,6 +225,14 @@ export default function CommandMenu() {
           >
             Character Creation
           </CommandItem>
+          <CommandItem
+            onSelect={() => {
+              router.push('/game/fighting-styles');
+              setOpen(false);
+            }}
+          >
+            Fighting Styles
+          </CommandItem>
         </CommandGroup>
         <CommandGroup heading="Rules (Terms)">
           <CommandItem

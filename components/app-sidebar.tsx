@@ -90,6 +90,10 @@ const data = {
           url: '/game/archetypes',
         },
         {
+          title: 'Fighting Styles',
+          url: '/game/fighting-styles',
+        },
+        {
           title: 'Character Sheet',
           url: '/game/character-sheet',
         },
