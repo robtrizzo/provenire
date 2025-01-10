@@ -375,10 +375,6 @@ export default function Charsheet() {
     rollCombo(action, '', [a, b]);
   }
 
-  function rollBond(bond: Bond) {
-    rollCombo(bond.name, '', bond.score);
-  }
-
   function rollCombo(action1: string, action2: string, dice: number[]) {
     for (let i = 0; i < bonusDiceRed; i++) {
       dice.push(1);
@@ -538,16 +534,6 @@ export default function Charsheet() {
     const score1 = attributes?.[attribute1]?.[action1] || [0, 0];
     const score2 = attributes?.[attribute2]?.[action2] || [0, 0];
     rollCombo(action1, action2, [...score1, ...score2]);
-  }
-
-  function rollResistChurn(
-    bond: Bond,
-    attribute: 'Heart' | 'Instinct' | 'Machina',
-    action: string
-  ) {
-    const score1 = bond.score || [0, 0];
-    const score2 = attributes[attribute][action] || [0, 0];
-    rollResist(bond.name, action, [...score1, ...score2]);
   }
 
   function rollResistMission(
@@ -713,14 +699,152 @@ export default function Charsheet() {
     });
   }
 
-  function rollComboChurn(
-    bond: Bond,
-    attribute: 'Heart' | 'Instinct' | 'Machina',
-    action: string
+  function rollProject(
+    attribute1: 'Heart' | 'Instinct' | 'Machina',
+    action1: string,
+    attribute2: 'Heart' | 'Instinct' | 'Machina',
+    action2: string
   ) {
-    const score1 = bond.score || [0, 0];
-    const score2 = attributes[attribute][action] || [0, 0];
-    rollCombo(bond.name, action, [...score1, ...score2]);
+    const score1 = attributes?.[attribute1]?.[action1] || [0, 0];
+    const score2 = attributes?.[attribute2]?.[action2] || [0, 0];
+    let dice = [...score1, ...score2];
+    for (let i = 0; i < bonusDiceRed; i++) {
+      dice.push(1);
+    }
+    for (let i = 0; i < bonusDiceBlue; i++) {
+      dice.push(2);
+    }
+    let rolls = [];
+    let result: number;
+    let redcrit = false;
+    let bluecrit = false;
+    let blueHigher = false;
+    if (dice.reduce((acc, s) => acc + s, 0) === 0) {
+      // roll 2d6 and take the lowest
+      let r1 = Math.floor(Math.random() * 6) + 1;
+      rolls.push({ val: r1, element: <Die roll={r1} className="h-10 w-10" /> });
+      let r2 = Math.floor(Math.random() * 6) + 1;
+      rolls.push({ val: r2, element: <Die roll={r2} className="h-10 w-10" /> });
+      result = Math.min(r1, r2);
+    } else {
+      let red = dice.reduce((acc, s) => (s === 1 ? acc + 1 : acc), 0);
+      let blue = dice.reduce((acc, s) => (s === 2 ? acc + 1 : acc), 0);
+      let redRolls = [];
+      let blueRolls = [];
+      for (let i = 0; i < red; i++) {
+        let r = Math.floor(Math.random() * 6) + 1;
+        redRolls.push(r);
+        rolls.push({
+          val: r,
+          element: <Die roll={r} className="h-10 w-10 text-red-400" />,
+        });
+      }
+      for (let i = 0; i < blue; i++) {
+        let r = Math.floor(Math.random() * 6) + 1;
+        blueRolls.push(r);
+        rolls.push({
+          val: r,
+          element: <Die roll={r} className="h-10 w-10 text-blue-400" />,
+        });
+      }
+      const redSixes = redRolls.filter((r) => r === 6).length;
+      const blueSixes = blueRolls.filter((r) => r === 6).length;
+
+      if (blueSixes >= 2) {
+        bluecrit = true;
+      } else if (blueSixes + redSixes >= 2) {
+        redcrit = true;
+      }
+      let highestRed = Math.max(...redRolls);
+      let highestBlue = Math.max(...blueRolls);
+      blueHigher = highestBlue >= highestRed;
+      result = blueHigher ? highestBlue : highestRed;
+    }
+
+    // seven cases for results: 1-3, 4|5(r/b), 6(r/b), crit(r/b)
+    let text;
+    let ticks: number[] = [];
+    if (bluecrit) {
+      text = 'Crit!';
+      ticks = [3, 5, 7];
+    } else if (redcrit) {
+      text = 'Crit! (but take reduced effect)';
+      ticks = [3, 5, 7];
+    } else {
+      switch (result) {
+        case 1:
+        case 2:
+        case 3:
+          if (blueHigher) {
+            text = 'Miss.';
+          } else {
+            text = 'Miss, and take reduced effect.';
+          }
+          ticks = [0, 1, 1];
+          break;
+        case 4:
+        case 5:
+          if (blueHigher) {
+            text = 'Partial hit.';
+          } else {
+            text = 'Partial hit, and take reduced effect';
+          }
+          ticks = [1, 2, 3];
+          break;
+        case 6:
+          if (blueHigher) {
+            text = 'Hit.';
+          } else {
+            text = 'Hit, and take reduced effect.';
+          }
+          ticks = [2, 3, 5];
+          break;
+        default:
+          break;
+      }
+    }
+
+    toast({
+      variant: 'grid',
+      // @ts-ignore
+      title: (
+        <div className="flex items-center gap-1 flex-wrap">
+          <span className="mt-1">
+            Project roll with {action1} + {action2}
+          </span>
+          {rolls.map((r) => r.element)}
+        </div>
+      ),
+      description: (
+        <div className="flex items-center gap-4 flex-wrap">
+          {redcrit || bluecrit ? (
+            [rolls.filter((r) => r.val === 6).map((r) => r.element)]
+          ) : (
+            <Die
+              roll={result}
+              className={cn(
+                'h-10 w-10',
+                blueHigher ? 'text-blue-400' : 'text-red-400'
+              )}
+            />
+          )}
+          <div className="mt-1">
+            <span>{text}</span>
+            <div className="flex items-center justify-center gap-2">
+              <span className="text-center">
+                <b>Limited:</b> {ticks[0]}
+              </span>
+              <span className="text-center">
+                <b>Standard:</b> {ticks[1]}
+              </span>
+              <span className="text-center">
+                <b>Great:</b> {ticks[2]}
+              </span>
+            </div>
+          </div>
+        </div>
+      ),
+    });
   }
 
   return (
@@ -1910,7 +2034,41 @@ export default function Charsheet() {
                   >
                     <Dices /> Action
                   </Button>
-                  <Button variant="secondary" disabled>
+                  <Button
+                    variant="secondary"
+                    onClick={() => {
+                      if (!rollLeft && !rollRight) return;
+                      if (!rollLeft) {
+                        const [attribute, action] = rollRight.split('-') as [
+                          'Heart' | 'Instinct' | 'Machina',
+                          string
+                        ];
+                        rollAction(attribute, action);
+                      } else if (!rollRight) {
+                        const [attribute, action] = rollLeft.split('-') as [
+                          'Heart' | 'Instinct' | 'Machina',
+                          string
+                        ];
+                        rollAction(attribute, action);
+                      }
+                      const [attributeLeft, actionLeft] = rollLeft.split(
+                        '-'
+                      ) as ['Heart' | 'Instinct' | 'Machina', string];
+                      const [attributeRight, actionRight] = rollRight.split(
+                        '-'
+                      ) as ['Heart' | 'Instinct' | 'Machina', string];
+                      rollProject(
+                        attributeLeft,
+                        actionLeft,
+                        attributeRight,
+                        actionRight
+                      );
+                      setRollLeft('');
+                      setRollRight('');
+                      setBonusDiceRed(0);
+                      setBonusDiceBlue(0);
+                    }}
+                  >
                     <Cog /> Project
                   </Button>
                 </div>
@@ -3422,7 +3580,41 @@ export default function Charsheet() {
                   >
                     <Dices /> Action
                   </Button>
-                  <Button variant="secondary" disabled>
+                  <Button
+                    variant="secondary"
+                    onClick={() => {
+                      if (!rollLeft && !rollRight) return;
+                      if (!rollLeft) {
+                        const [attribute, action] = rollRight.split('-') as [
+                          'Heart' | 'Instinct' | 'Machina',
+                          string
+                        ];
+                        rollAction(attribute, action);
+                      } else if (!rollRight) {
+                        const [attribute, action] = rollLeft.split('-') as [
+                          'Heart' | 'Instinct' | 'Machina',
+                          string
+                        ];
+                        rollAction(attribute, action);
+                      }
+                      const [attributeLeft, actionLeft] = rollLeft.split(
+                        '-'
+                      ) as ['Heart' | 'Instinct' | 'Machina', string];
+                      const [attributeRight, actionRight] = rollRight.split(
+                        '-'
+                      ) as ['Heart' | 'Instinct' | 'Machina', string];
+                      rollProject(
+                        attributeLeft,
+                        actionLeft,
+                        attributeRight,
+                        actionRight
+                      );
+                      setRollLeft('');
+                      setRollRight('');
+                      setBonusDiceRed(0);
+                      setBonusDiceBlue(0);
+                    }}
+                  >
                     <Cog /> Project
                   </Button>
                 </div>
