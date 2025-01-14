@@ -1,4 +1,4 @@
-import { TypographyH2 } from '@/components/ui/typography';
+import { TypographyH2, TypographyH4 } from '@/components/ui/typography';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -55,14 +55,14 @@ _The factory's every creation leaves behind piles of refuse. What waste do you s
 
 During The Churn, Chisels are designing, forging, and building new equipment for the crew... if only they have the **materials**. These items are equipable by the crew until they become damaged or lost. If the Chisel has no materials, they can only research new designs.
 
-First, the Chisel picks a design to research and makes a **[project roll](/game/actions-and-rolls#project-rolls)** to pursue it. Once the clock is filled, the design is complete and the Chisel can build it by spending 1 **material**. Instead of researching a new design, the Chisel can start a new project to upgrade an existing design. When an upgrade project is completed, the Chisel can spend 1 **material** to remove a negative trait or add a positive trait to the design. A full list of the traits is **[here](/game/appendix#equipment-traits)**
+First, the Chisel picks a design to research and makes a **[project roll](/game/actions-and-rolls#project-rolls)** to pursue it. Once the clock is filled, the design is complete and the Chisel can build it by spending 1 **material**. Instead of researching a new design, the Chisel can start a new project to upgrade an existing design. When an upgrade project is completed, the Chisel can spend 1 **material** to remove a negative trait or add a positive trait to the design. A full list of equipment traits is **[here](/game/appendix#equipment-traits)**
 
 #### Starting equipment
 
 - **Hand Tool** (3) <span className='text-muted-foreground italic'>unwieldy, dull</span>: Hammers, screwdrivers, prybars, and other odds and ends.
 - **Tar Torch** (3) <span className='text-muted-foreground italic'>unreliable, dim, fragile</span>: Cloth soaked in tar and wrapped around a hafted object.
 
-#### Schematics
+<TypographyH4 id="schematics">Schematics</TypographyH4>
 
 - **Subtle Weapons** (5) <span className='text-muted-foreground italic'>fragile, dull, concealable</span>: Shivs, knives, garottes, and other small weapons.
 - **Heavy Weapons** (5) <span className='text-muted-foreground italic'>fragile, unwieldy</span>: Clubs, axes, and other large weapons.
@@ -73,6 +73,17 @@ First, the Chisel picks a design to research and makes a **[project roll](/game/
 - **Hooded Lantern** (5) <span className='text-muted-foreground italic'>heavy, dim</span>: A lantern that can be hooded to conceal its light.
 - **Demolition Tools** (7): <span className='text-muted-foreground italic'>volatile, imprecise</span>: Explosives and tools for setting them off.
 - **Wrecking Tools** (5): <span className='text-muted-foreground italic'>bulky, noisy</span>: Tools for breaking machines.
+
+<TypographyH4 id="formulae">Formulae</TypographyH4>
+
+Alchemical formulae are researched similarly to **schematics**; but unlike equipment, alchemical concoctions are consumable. When spending **1 material** to create a batch from a formula, the crew gains a **3-clock** representing doses. Whenever someone in the crew uses a dose, mark **1 tick** on the clock. When the clock is complete, the crew is out of doses. A full list of alchemical traits is **[here](/game/appendix#alchemical-traits)**
+
+- **Sweet Dreams** (4) <span className='text-muted-foreground italic'>groggy, acrid</span>: Have pleasurable dreams you remember the next day.
+- **Tarric Acid** (6) <span className='text-muted-foreground italic'>diluted, imprecise</span>: Strong solvent refined from tar byproduct.
+- **Extinguishing Soaps** (6) <span className='text-muted-foreground italic'>messy, imprecise</span>: Quickly expanding foam effective at putting out fires.
+- **Liquid Courage** (6) <span className='text-muted-foreground italic'>addling, acrid</span>: Dulls fear and swells confidence for a short time.
+- **Chew** (3) <span className='text-muted-foreground italic'>jittery, withdrawal</span>: Ignore fatigue and hunger for a day.
+- **Runner's Rub** (4) <span className='text-muted-foreground italic'>light-blind, stains</span>: Apply to the eyes to see in the dark for some time.
 
 <TypographyH2 id="Flywheel">
   <span className="text-indigo-500">Flywheel</span>

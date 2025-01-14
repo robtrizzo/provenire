@@ -261,6 +261,14 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
+              router.push('/game/appendix');
+              setOpen(false);
+            }}
+          >
+            Appendix
+          </CommandItem>
+          <CommandItem
+            onSelect={() => {
               router.push('/game/character-creation');
               setOpen(false);
             }}
@@ -492,6 +500,38 @@ export default function CommandMenu() {
             }}
           >
             Strain
+          </CommandItem>
+          <CommandItem
+            onSelect={() => {
+              router.push('/game/skillsets#schematics');
+              setOpen(false);
+            }}
+          >
+            Equipment & Schematics
+          </CommandItem>
+          <CommandItem
+            onSelect={() => {
+              router.push('/game/appendix#equipment-traits');
+              setOpen(false);
+            }}
+          >
+            Equipment Traits
+          </CommandItem>
+          <CommandItem
+            onSelect={() => {
+              router.push('/game/skillsets#formulae');
+              setOpen(false);
+            }}
+          >
+            Alchemical Formulae
+          </CommandItem>
+          <CommandItem
+            onSelect={() => {
+              router.push('/game/appendix#alchemical-traits');
+              setOpen(false);
+            }}
+          >
+            Alchemical Traits
           </CommandItem>
         </CommandGroup>
         <CommandSeparator />

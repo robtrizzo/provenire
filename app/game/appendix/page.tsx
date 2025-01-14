@@ -16,6 +16,56 @@ export default async function Page() {
         ]}
       />
       <TypographyH1>Appendix</TypographyH1>
+      <TypographyH2 id="alchemical-traits">Alchemical Traits</TypographyH2>
+      <TypographyH3>Positive Traits</TypographyH3>
+      <TypographyP className="[&:not(:first-child)]:mt-0">
+        <b>Nutritious:</b> tick <b>healing clock</b> by <b>1</b>
+      </TypographyP>
+      <TypographyP className="[&:not(:first-child)]:mt-0">
+        <b>Potent:</b> lasts longer than normal
+      </TypographyP>
+      <TypographyP className="[&:not(:first-child)]:mt-0">
+        <b>Simple:</b> create five doses per batch
+      </TypographyP>
+      <TypographyP className="[&:not(:first-child)]:mt-0">
+        <b>Soothing:</b> tick <b>recovery clock</b> by <b>1</b>
+      </TypographyP>
+      <TypographyP className="[&:not(:first-child)]:mt-0">
+        <b>Tasty:</b> can be passed off as a normal drink
+      </TypographyP>
+      <TypographyH3>Negative Traits</TypographyH3>
+      <TypographyP className="[&:not(:first-child)]:mt-0">
+        <b>Acrid:</b> difficult to keep down on an empty stomach
+      </TypographyP>
+      <TypographyP className="[&:not(:first-child)]:mt-0">
+        <b>Addling:</b> slow to react or think through complex situations
+      </TypographyP>
+      <TypographyP className="[&:not(:first-child)]:mt-0">
+        <b>Diluted:</b> not nearly as effective as it could be
+      </TypographyP>
+      <TypographyP className="[&:not(:first-child)]:mt-0">
+        <b>Groggy:</b> risk missing details, or falling asleep while doing
+        simple tasks
+      </TypographyP>
+      <TypographyP className="[&:not(:first-child)]:mt-0">
+        <b>Imprecise:</b> requires skill to use properly, even in ideal
+        circumstances
+      </TypographyP>
+      <TypographyP className="[&:not(:first-child)]:mt-0">
+        <b>Jittery:</b> difficult to remain still or perform precise tasks
+      </TypographyP>
+      <TypographyP className="[&:not(:first-child)]:mt-0">
+        <b>Light-blind:</b> difficult to see in illuminated areas
+      </TypographyP>
+      <TypographyP className="[&:not(:first-child)]:mt-0">
+        <b>Messy:</b> leaves behind overwhelming amounts of evidence
+      </TypographyP>
+      <TypographyP className="[&:not(:first-child)]:mt-0">
+        <b>Stains:</b> difficult to wash off after application
+      </TypographyP>
+      <TypographyP className="[&:not(:first-child)]:mt-0">
+        <b>Withdrawal:</b> leaves you feeling worse for wear afterwards
+      </TypographyP>
       <TypographyH2 id="equipment-traits">Equipment Traits</TypographyH2>
       <TypographyH3>Positive Traits</TypographyH3>
       <TypographyP className="[&:not(:first-child)]:mt-0">
