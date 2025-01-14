@@ -533,6 +533,14 @@ export default function CommandMenu() {
           >
             Alchemical Traits
           </CommandItem>
+          <CommandItem
+            onSelect={() => {
+              router.push('/game/appendix#gang-traits');
+              setOpen(false);
+            }}
+          >
+            Gang Traits
+          </CommandItem>
         </CommandGroup>
         <CommandSeparator />
         <CommandGroup heading="Setting">

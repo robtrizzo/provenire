@@ -16,7 +16,9 @@ export default async function Page() {
         ]}
       />
       <TypographyH1>Appendix</TypographyH1>
-      <TypographyH2 id="alchemical-traits">Alchemical Traits</TypographyH2>
+      <TypographyH2 id="alchemical-traits" className="mt-6">
+        Alchemical Traits
+      </TypographyH2>
       <TypographyH3>Positive Traits</TypographyH3>
       <TypographyP className="[&:not(:first-child)]:mt-0">
         <b>Nutritious:</b> tick <b>healing clock</b> by <b>1</b>
@@ -66,7 +68,9 @@ export default async function Page() {
       <TypographyP className="[&:not(:first-child)]:mt-0">
         <b>Withdrawal:</b> leaves you feeling worse for wear afterwards
       </TypographyP>
-      <TypographyH2 id="equipment-traits">Equipment Traits</TypographyH2>
+      <TypographyH2 id="equipment-traits" className="mt-6">
+        Equipment Traits
+      </TypographyH2>
       <TypographyH3>Positive Traits</TypographyH3>
       <TypographyP className="[&:not(:first-child)]:mt-0">
         <b>Advanced:</b> experts get better results in dire or pressing
@@ -139,6 +143,43 @@ export default async function Page() {
       </TypographyP>
       <TypographyP className="[&:not(:first-child)]:mt-0">
         <b>Volatile:</b> explodes when ignited
+      </TypographyP>
+      <TypographyH2 id="gang-traits" className="mt-6">
+        Gang Traits
+      </TypographyH2>
+      <TypographyH3>Positive Traits</TypographyH3>
+      <TypographyP className="[&:not(:first-child)]:mt-0">
+        <b>Brutal:</b> won&apos;t shy away from extreme violence
+      </TypographyP>
+      <TypographyP className="[&:not(:first-child)]:mt-0">
+        <b>Fearsome:</b> terrifying in aspect and reputation
+      </TypographyP>
+      <TypographyP className="[&:not(:first-child)]:mt-0">
+        <b>Independant:</b> can be trusted to take the initiative and make good
+        decisions on their own
+      </TypographyP>
+      <TypographyP className="[&:not(:first-child)]:mt-0">
+        <b>Loyal:</b> won&apos;t be swayed away from the crew by bribes or
+        nonlethal pressure
+      </TypographyP>
+      <TypographyP className="[&:not(:first-child)]:mt-0">
+        <b>Tenacious:</b> won&apos;t be deterred from a task
+      </TypographyP>
+      <TypographyH3>Negative Traits</TypographyH3>
+      <TypographyP className="[&:not(:first-child)]:mt-0">
+        <b>Braggarts:</b> leak evidence and spread self aggrandizing gossip
+      </TypographyP>
+      <TypographyP className="[&:not(:first-child)]:mt-0">
+        <b>Disorganized:</b> ineffective at complex tasks
+      </TypographyP>
+      <TypographyP className="[&:not(:first-child)]:mt-0">
+        <b>Principled:</b> there are certain ethics this gang won&apos;t betray
+      </TypographyP>
+      <TypographyP className="[&:not(:first-child)]:mt-0">
+        <b>Skiddish:</b> won&apos;t take big risks. Easily intimidated.
+      </TypographyP>
+      <TypographyP className="[&:not(:first-child)]:mt-0">
+        <b>Unreliable:</b> possibly busy, unwilling, or unable to help
       </TypographyP>
     </>
   );
