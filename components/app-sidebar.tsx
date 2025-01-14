@@ -63,6 +63,10 @@ const data = {
           title: 'Churn',
           url: '/game/the-churn',
         },
+        {
+          title: 'Appendix',
+          url: '/game/appendix',
+        },
       ],
     },
     {
