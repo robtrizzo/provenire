@@ -18,6 +18,8 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from '@/components/ui/sidebar';
+import { Button } from './ui/button';
+import Link from 'next/link';
 
 const data = {
   navMain: [
@@ -151,9 +153,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <span className="ml-2">{item.title}</span>
                 ) : (
                   <SidebarMenuButton asChild isActive={item.url === pathname}>
-                    <a href={item.url} className="font-medium">
-                      {item.title}
-                    </a>
+                    <Link href={item.url}>
+                      <span className="font-medium">{item.title}</span>
+                    </Link>
                   </SidebarMenuButton>
                 )}
                 {item.items?.length ? (
@@ -164,7 +166,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                           asChild
                           isActive={item.url === pathname}
                         >
-                          <a href={item.url}>{item.title}</a>
+                          <Link href={item.url}>{item.title}</Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                     ))}
@@ -172,6 +174,17 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 ) : null}
               </SidebarMenuItem>
             ))}
+          </SidebarMenu>
+        </SidebarGroup>
+        <SidebarGroup>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <Link href="/game/play">
+                <Button variant="secondary" className="w-full text-lg py-6">
+                  Play
+                </Button>
+              </Link>
+            </SidebarMenuItem>
           </SidebarMenu>
         </SidebarGroup>
         <SidebarGroup className="mt-auto">

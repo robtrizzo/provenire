@@ -21,6 +21,10 @@ export default function Page() {
   return (
     <>
       <Breadcrumbs crumbs={[{ name: 'Play', href: '#' }]} />
+      <TypographyH1>The Crew</TypographyH1>
+      <div className="flex items-center gap-2 border-solid border-text-secondary border-2 box-border py-2 px-4 rounded-md">
+        character portraits and names go here
+      </div>
       <div className="flex items-center flex-wrap gap-2">
         <ResourceBox>
           <Brain className="text-teal-500" /> <TypographyP>Intel</TypographyP>

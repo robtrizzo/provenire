@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
@@ -30,19 +30,11 @@ import {
   type Archetype,
   type Skillset,
   type Background,
-  type Heritage,
   type Action,
-  type Bond,
-  CharacterAttributes,
-  Bonds,
-  Loadout,
   Item,
 } from '@/types/game';
 import { Button } from '@/components/ui/button';
 import { ActionScore } from '@/components/ui/action-score';
-import { useToast } from '@/components/ui/use-toast';
-import { Die } from '@/components/ui/die';
-import { cn, debounce } from '@/lib/utils';
 import {
   VenetianMask,
   Flame,
@@ -80,103 +72,79 @@ import {
 import { Close } from '@radix-ui/react-popover';
 import XPInfo from './(components)/xp-info';
 import ConditionsInfo from './(components)/conditions-info';
+import { useCharacterSheet } from '@/contexts/characterSheetContext';
+import { useRoll } from '@/contexts/rollContext';
 
 export default function Charsheet() {
   const [tab, setTab] = useState('mission');
 
-  const [selectedArchetype, setSelectedArchetype] = useState<Archetype>();
-  const [selectedSkillset, setSelectedSkillset] = useState<Skillset>();
-  const [selectedBackground, setSelectedBackground] = useState<Background>();
-  const [selectedHeritage, setSelectedHeritage] = useState<Heritage>();
+  const [actionReferencePopopverOpen, setActionReferencePopopverOpen] =
+    useState(false);
 
   const [heritageSelectKey, setHeritageSelectKey] = useState(+new Date());
   const [archetypeSelectKey, setArchetypeSelectKey] = useState(+new Date());
   const [backgroundSelectKey, setBackgroundSelectKey] = useState(+new Date());
   const [skillsetSelectKey, setSkillsetSelectKey] = useState(+new Date());
 
-  const [actionReferencePopopverOpen, setActionReferencePopopverOpen] =
-    useState(false);
-
-  const [name, setName] = useState('');
-  const [alias, setAlias] = useState('');
-  const [univQuestions, setUnivQuestions] = useState<string[]>([
-    '',
-    '',
-    '',
-    '',
-    '',
-  ]);
-  const [bloodshedQ, setBloodshedQ] = useState<string>();
-
-  // where this is convenient, the performance is mid
-  const [questions, setQuestions] = useState<Map<string, string>>(new Map());
-
-  const xpRef = useRef(0);
-
-  const [attributes, setAttributes] = useState<CharacterAttributes>({
-    Heart: { Defy: [0, 0], Persuade: [0, 0] },
-    Instinct: { Charge: [0, 0], Prowl: [0, 0] },
-    Machina: { Suggest: [0, 0], Survey: [0, 0] },
-  });
-
-  const [bonds, setBonds] = useState<Bonds>({
-    Personal: [
-      { name: '', score: [0, 0] },
-      { name: '', score: [0, 0] },
-    ],
-    Familial: [
-      { name: '', score: [0, 0] },
-      { name: '', score: [0, 0] },
-    ],
-    Professional: [
-      {
-        name: selectedBackground?.professionalBonds?.[0]?.name || '',
-        score: [0, 0],
-      },
-      {
-        name: selectedBackground?.professionalBonds?.[0]?.name || '',
-        score: [0, 0],
-      },
-    ],
-    Crew: [
-      { name: '', score: [1, 0] },
-      { name: '', score: [1, 0] },
-    ],
-  });
-
-  const [stress, setStress] = useState(0);
-  const [conditions, setConditions] = useState<string[]>([]);
-  const conditionRecoveryRef = useRef(0);
-
-  const [healing, setHealing] = useState<number>(0);
-  const [harm3, setHarm3] = useState<string>('');
-  const [harm2, setHarm2] = useState<string[]>(['', '']);
-  const [harm1, setHarm1] = useState<string[]>(['tired', '']);
-
-  const [armor, setArmor] = useState<boolean>(false);
-  const [hArmor, setHArmor] = useState<boolean>(false);
-  const [sArmor, setSArmor] = useState<boolean>(false);
-
-  const [loadout, setLoadout] = useState<Loadout>();
-  const [items, setItems] = useState<Item[]>([]);
-
-  const [starvation, setStarvation] = useState<number>(0);
-  const [subsist, setSubsist] = useState<number>(0);
-
-  const [abilities, setAbilities] = useState<string[]>([]);
-
-  const { toast } = useToast();
-
-  const [changes, setChanges] = useState(false);
-
-  const [rollLeft, setRollLeft] = useState<string>('');
-  const [rollRight, setRollRight] = useState<string>('');
-
-  const [bonusDiceRed, setBonusDiceRed] = useState<number>(0);
-  const [bonusDiceBlue, setBonusDiceBlue] = useState<number>(0);
-  const [fortuneDice, setFortuneDice] = useState<number>(0);
-
-  const [characterLoaded, setCharacterLoaded] = useState<Date>(new Date());
+  const {
+    name,
+    alias,
+    univQuestions,
+    bloodshedQ,
+    selectedArchetype,
+    selectedSkillset,
+    selectedBackground,
+    selectedHeritage,
+    questions,
+    xpRef,
+    attributes,
+    stress,
+    conditions,
+    conditionRecoveryRef,
+    healing,
+    harm3,
+    harm2,
+    harm1,
+    armor,
+    hArmor,
+    sArmor,
+    abilities,
+    bonds,
+    starvation,
+    subsist,
+    loadout,
+    items,
+    setName,
+    setAlias,
+    setUnivQuestions,
+    setBloodshedQ,
+    setSelectedArchetype,
+    setSelectedSkillset,
+    setSelectedBackground,
+    setSelectedHeritage,
+    setStress,
+    setConditions,
+    setHealing,
+    setHarm3,
+    setHarm2,
+    setHarm1,
+    setArmor,
+    setHArmor,
+    setSArmor,
+    setAbilities,
+    setBonds,
+    setStarvation,
+    setSubsist,
+    setLoadout,
+    setItems,
+    setChanges,
+    setCharacterLoaded,
+    handleDebounceChange,
+    handleUpdateQuestion,
+    handleUpdateItemName,
+    handleUpdateItemSlots,
+    handleUpdateActionScore,
+  } = useCharacterSheet();
 
   function triggerCharacterLoaded() {
     setCharacterLoaded(new Date());
@@ -189,663 +157,25 @@ export default function Charsheet() {
     if (hash && ['mission', 'profile', 'churn'].includes(hash.substring(1))) {
       setTab(hash.substring(1));
     }
-    const data = localStorage.getItem('charsheet');
-    if (data) {
-      const parsed = JSON.parse(data);
-      setName(parsed.name);
-      setAlias(parsed.alias);
-      setUnivQuestions(parsed.univQuestions);
-      setBloodshedQ(parsed.bloodshedQ);
-      setSelectedArchetype(parsed.selectedArchetype);
-      setSelectedSkillset(parsed.selectedSkillset);
-      setSelectedBackground(parsed.selectedBackground);
-      setSelectedHeritage(parsed.selectedHeritage);
-      setQuestions(new Map(parsed.questions));
-      xpRef.current = parsed.xp || 0;
-      if (parsed.attributes) {
-        setAttributes(parsed.attributes);
-      }
-      if (parsed.conditions) {
-        setConditions(parsed.conditions);
-      }
-      setStress(parsed.stress || 0);
-      conditionRecoveryRef.current = parsed.conditionRecovery || 0;
-      setHealing(parsed.healing || 0);
-      setHarm3(parsed.harm3 || '');
-      setHarm2(parsed.harm2 || ['', '']);
-      setHarm1(parsed.harm1 || ['tired', '']);
-      setArmor(parsed.armor || false);
-      setHArmor(parsed.hArmor || false);
-      setSArmor(parsed.sArmor || false);
-      setAbilities(parsed.abilities || []);
-      if (parsed.bonds) {
-        setBonds(parsed.bonds);
-      }
-      setStarvation(parsed.starvation || 0);
-      setSubsist(parsed.subsist || 0);
-      setLoadout(parsed.loadout);
-      setItems(parsed.items);
-    } else {
-      // if there is no data, set the default values
-      setName('');
-      setAlias('');
-      setUnivQuestions(['', '', '', '', '']);
-      setBloodshedQ('');
-      setSelectedArchetype(undefined);
-      setSelectedSkillset(undefined);
-      setSelectedBackground(undefined);
-      setSelectedHeritage(undefined);
-      setQuestions(new Map());
-      xpRef.current = 0;
-      setAttributes({
-        Heart: { Defy: [0, 0], Persuade: [0, 0] },
-        Instinct: { Charge: [0, 0], Prowl: [0, 0] },
-        Machina: { Suggest: [0, 0], Survey: [0, 0] },
-      });
-      setConditions([]);
-      setStress(0);
-      conditionRecoveryRef.current = 0;
-      setHealing(0);
-      setHarm3('');
-      setHarm2(['', '']);
-      setHarm1(['tired', '']);
-      setArmor(false);
-      setHArmor(false);
-      setSArmor(false);
-      setAbilities([]);
-      setBonds({
-        Personal: [
-          { name: '', score: [0, 0] },
-          { name: '', score: [0, 0] },
-        ],
-        Familial: [
-          { name: '', score: [0, 0] },
-          { name: '', score: [0, 0] },
-        ],
-        Professional: [
-          { name: '', score: [0, 0] },
-          { name: '', score: [0, 0] },
-        ],
-        Crew: [
-          { name: '', score: [1, 0] },
-          { name: '', score: [1, 0] },
-        ],
-      });
-      setStarvation(0);
-      setSubsist(0);
-      setLoadout(undefined);
-      setItems([]);
-    }
-  }, [characterLoaded]);
+  }, []);
 
-  // every 0.1 seconds, check if there are changes and save them to local storage and the server
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (changes) {
-        // save to local storage
-        const data = {
-          name,
-          alias,
-          univQuestions,
-          bloodshedQ,
-          selectedArchetype,
-          selectedSkillset,
-          selectedBackground,
-          selectedHeritage,
-          questions: Array.from(questions),
-          xp: xpRef.current,
-          attributes,
-          stress,
-          conditions,
-          conditionRecovery: conditionRecoveryRef.current,
-          healing,
-          harm3,
-          harm2,
-          harm1,
-          armor,
-          hArmor,
-          sArmor,
-          abilities,
-          bonds,
-          starvation,
-          subsist,
-          loadout,
-          items,
-        };
-        localStorage.setItem('charsheet', JSON.stringify(data));
-        // TODO save to server
-        setChanges(false);
-      }
-    }, 100);
-    return () => clearInterval(interval);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [changes]);
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const handleDebounceChange = useCallback(
-    debounce(() => {
-      setChanges(true);
-    }, 300),
-    []
-  );
-
-  function handleUpdateQuestion(key: string, value: string) {
-    if (value === '') {
-      // Map.delete mutates and returns a boolean, so we have to get creative to create a copy of the map without the key
-      setQuestions(new Map(Array.from(questions).filter(([k]) => k !== key)));
-    } else {
-      setQuestions(new Map(questions.set(key, value)));
-    }
-    handleDebounceChange();
-  }
-
-  function handleUpdateItemName(index: number, value: string) {
-    const newItems = [...items];
-    newItems[index] = { ...newItems[index], name: value };
-    setItems(newItems);
-    handleDebounceChange();
-  }
-  function handleUpdateItemSlots(index: number, value: number) {
-    const newValue = value < 0 ? 0 : value;
-    const newItems = [...items];
-    newItems[index] = { ...newItems[index], slots: newValue };
-    setItems(newItems);
-    handleDebounceChange();
-  }
-
-  function handleUpdateActionScore(
-    attribute: 'Heart' | 'Instinct' | 'Machina',
-    action: string,
-    score: number[]
-  ) {
-    setAttributes({
-      ...attributes,
-      [attribute]: { ...attributes[attribute], [action]: score },
-    });
-    setChanges(true);
-  }
-
-  function rollAction(
-    attribute: 'Heart' | 'Instinct' | 'Machina',
-    action: string
-  ) {
-    const score = attributes[attribute][action];
-    const [a, b] = score || [0, 0];
-
-    rollCombo(action, '', [a, b]);
-  }
-
-  function rollCombo(action1: string, action2: string, dice: number[]) {
-    for (let i = 0; i < bonusDiceRed; i++) {
-      dice.push(1);
-    }
-    for (let i = 0; i < bonusDiceBlue; i++) {
-      dice.push(2);
-    }
-    if (dice.reduce((acc, s) => acc + s, 0) === 0) {
-      // roll 2d6 and take the lowest
-      let r1 = Math.floor(Math.random() * 6) + 1;
-      let r2 = Math.floor(Math.random() * 6) + 1;
-      const result = Math.min(r1, r2);
-      let resultText = '';
-      switch (result) {
-        case 1:
-        case 2:
-        case 3:
-          resultText = 'Miss. Suffer the consequences.';
-          break;
-        case 4:
-        case 5:
-          resultText =
-            'Partial hit. Succeed, but suffer the consequences and take reduced effect.';
-          break;
-        case 6:
-          resultText = 'Hit! Succeed, but take reduced effect.';
-          break;
-        default:
-          resultText = 'Unknown result';
-          break;
-      }
-      toast({
-        variant: 'grid',
-        // @ts-ignore
-        title: (
-          <div className="flex items-center gap-1">
-            <span className="mt-1">
-              Rolled {action1} + {action2}
-            </span>
-            <Die roll={r1} className="h-10 w-10" />
-            <Die roll={r2} className="h-10 w-10" />
-          </div>
-        ),
-        description: (
-          <div className="flex gap-4 items-center">
-            <Die roll={result} className="h-10 w-10" />
-            <span className="mt-1">{resultText}</span>
-          </div>
-        ),
-      });
-      return;
-    }
-    let red = dice.reduce((acc, s) => (s === 1 ? acc + 1 : acc), 0);
-    let blue = dice.reduce((acc, s) => (s === 2 ? acc + 1 : acc), 0);
-    let redRolls = [];
-    let blueRolls = [];
-    for (let i = 0; i < red; i++) {
-      redRolls.push(Math.floor(Math.random() * 6) + 1);
-    }
-    for (let i = 0; i < blue; i++) {
-      blueRolls.push(Math.floor(Math.random() * 6) + 1);
-    }
-
-    let result: number;
-    let resultText = '';
-    let highestRed = Math.max(...redRolls);
-    let highestBlue = Math.max(...blueRolls);
-    const blueHigher = highestBlue >= highestRed;
-
-    // detect if there are 2 or more 6s
-    let crit = false;
-    const redSixes = redRolls.filter((r) => r === 6).length;
-    const blueSixes = blueRolls.filter((r) => r === 6).length;
-    if (redSixes + blueSixes >= 2) {
-      crit = true;
-      result = 6;
-      resultText = 'Critical! Succeed with improved effect.';
-    } else {
-      result = Math.max(highestBlue, highestRed);
-
-      switch (result) {
-        case 1:
-        case 2:
-        case 3:
-          resultText = 'Miss. Suffer the consequences.';
-          break;
-        case 4:
-        case 5:
-          resultText = `Partial hit. Suceed, but suffer the consequences${
-            blueHigher ? '' : ' and take reduced effect'
-          }.`;
-          break;
-        case 6:
-          resultText = `Hit! Succeed${
-            blueHigher ? '' : ', but take reduced effect'
-          }.`;
-          break;
-        default:
-          resultText = 'Unknown result';
-          break;
-      }
-    }
-
-    toast({
-      variant: 'grid',
-      // @ts-ignore
-      title: (
-        <div className="flex items-center flex-wrap gap-1">
-          <span className="mt-1">
-            Rolled {action1}
-            {action2 ? ` + ${action2}` : ''}
-          </span>
-          {redRolls.map((r, i) => (
-            <Die key={i} roll={r} className="h-8 w-8 text-red-800" />
-          ))}
-          {blueRolls.map((r, i) => (
-            <Die key={i} roll={r} className="h-8 w-8 text-blue-800" />
-          ))}
-        </div>
-      ),
-      description: (
-        <div className="flex items-center gap-4">
-          {crit ? (
-            [
-              redRolls
-                .filter((r) => r === 6)
-                .map((r, i) => (
-                  <Die key={i} roll={r} className="h-10 w-10 text-red-400" />
-                )),
-              blueRolls
-                .filter((r) => r === 6)
-                .map((r, i) => (
-                  <Die key={i} roll={r} className="h-10 w-10 text-blue-400" />
-                )),
-            ]
-          ) : (
-            <Die
-              roll={result}
-              className={cn(
-                'h-10 w-10',
-                blueHigher ? 'text-blue-400' : 'text-red-400'
-              )}
-            />
-          )}
-          <span className="mt-1">{resultText}</span>
-        </div>
-      ),
-    });
-  }
-
-  function rollComboMission(
-    attribute1: 'Heart' | 'Instinct' | 'Machina',
-    action1: string,
-    attribute2: 'Heart' | 'Instinct' | 'Machina',
-    action2: string
-  ) {
-    const score1 = attributes?.[attribute1]?.[action1] || [0, 0];
-    const score2 = attributes?.[attribute2]?.[action2] || [0, 0];
-    rollCombo(action1, action2, [...score1, ...score2]);
-  }
-
-  function rollResistMission(
-    attribute1: 'Heart' | 'Instinct' | 'Machina',
-    action1: string,
-    attribute2: 'Heart' | 'Instinct' | 'Machina',
-    action2: string
-  ) {
-    const score1 = attributes?.[attribute1]?.[action1] || [0, 0];
-    const score2 = attributes?.[attribute2]?.[action2] || [0, 0];
-    rollResist(action1, action2, [...score1, ...score2]);
-  }
-
-  function rollResist(action1: string, action2: string, dice: number[]) {
-    for (let i = 0; i < bonusDiceRed; i++) {
-      dice.push(1);
-    }
-    for (let i = 0; i < bonusDiceBlue; i++) {
-      dice.push(2);
-    }
-    if (dice.reduce((acc, s) => acc + s, 0) === 0) {
-      // roll 2d6 and take the lowest
-      let r1 = Math.floor(Math.random() * 6) + 1;
-      let r2 = Math.floor(Math.random() * 6) + 1;
-      const result = Math.min(r1, r2);
-      let stress: number;
-      switch (result) {
-        case 1:
-        case 2:
-        case 3:
-          stress = 3;
-          break;
-        case 4:
-        case 5:
-          stress = 2;
-          break;
-        case 6:
-          stress = 1;
-          break;
-        default:
-          stress = 3;
-          break;
-      }
-      toast({
-        variant: 'grid',
-        // @ts-ignore
-        title: (
-          <div className="flex items-center gap-1">
-            <span className="mt-1">
-              Rolled {action1} + {action2}
-            </span>
-            <Die roll={r1} className="h-10 w-10" />
-            <Die roll={r2} className="h-10 w-10" />
-          </div>
-        ),
-        description: (
-          <div className="flex gap-4 items-center">
-            <Die roll={result} className="h-10 w-10" />
-            <span className="mt-1">{`Take ${stress} stress.`}</span>
-          </div>
-        ),
-      });
-      return;
-    }
-    let red = dice.reduce((acc, s) => (s === 1 ? acc + 1 : acc), 0);
-    let blue = dice.reduce((acc, s) => (s === 2 ? acc + 1 : acc), 0);
-    let redRolls = [];
-    let blueRolls = [];
-    for (let i = 0; i < red; i++) {
-      redRolls.push(Math.floor(Math.random() * 6) + 1);
-    }
-    for (let i = 0; i < blue; i++) {
-      blueRolls.push(Math.floor(Math.random() * 6) + 1);
-    }
-
-    let result: number;
-    let resultText: string;
-    // detect if there are 2 or more 6s
-    let redcrit = false;
-    let bluecrit = false;
-    const redSixes = redRolls.filter((r) => r === 6).length;
-    const blueSixes = blueRolls.filter((r) => r === 6).length;
-    let highestRed = Math.max(...redRolls);
-    let highestBlue = Math.max(...blueRolls);
-    const blueHigher = highestBlue >= highestRed;
-    if (blueSixes >= 2) {
-      bluecrit = true;
-      resultText = 'Crit! Clear 1 stress.';
-    } else if (blueSixes + redSixes >= 2) {
-      redcrit = true;
-      resultText = 'Crit! Take no stress.';
-    } else {
-      result = blueHigher ? highestBlue : highestRed;
-      let stress: number;
-      switch (result) {
-        case 1:
-        case 2:
-        case 3:
-          stress = blueHigher ? 2 : 3;
-          break;
-        case 4:
-        case 5:
-          stress = blueHigher ? 1 : 2;
-          break;
-        case 6:
-          if (bluecrit) {
-            stress = -1;
-          } else if (redcrit || blueHigher) {
-            stress = 0;
-          } else {
-            stress = 1;
-          }
-          break;
-        default:
-          stress = 3;
-          break;
-      }
-      resultText = `Take ${stress} stress.`;
-    }
-    toast({
-      variant: 'grid',
-      // @ts-ignore
-      title: (
-        <div className="flex items-center gap-1">
-          <span className="mt-1">
-            Resisted with {action1} + {action2}
-          </span>
-          {redRolls.map((r, i) => (
-            <Die key={i} roll={r} className="h-8 w-8 text-red-800" />
-          ))}
-          {blueRolls.map((r, i) => (
-            <Die key={i} roll={r} className="h-8 w-8 text-blue-800" />
-          ))}
-        </div>
-      ),
-      description: (
-        <div className="flex items-center gap-4">
-          {redcrit || bluecrit ? (
-            [
-              redRolls
-                .filter((r) => r === 6)
-                .map((r, i) => (
-                  <Die key={i} roll={r} className="h-10 w-10 text-red-400" />
-                )),
-              blueRolls
-                .filter((r) => r === 6)
-                .map((r, i) => (
-                  <Die key={i} roll={r} className="h-10 w-10 text-blue-400" />
-                )),
-            ]
-          ) : (
-            <Die
-              roll={blueHigher ? highestBlue : highestRed}
-              className={cn(
-                'h-10 w-10',
-                blueHigher ? 'text-blue-400' : 'text-red-400'
-              )}
-            />
-          )}
-          <span className="mt-1">{resultText}</span>
-        </div>
-      ),
-    });
-  }
-
-  function rollProject(
-    attribute1: 'Heart' | 'Instinct' | 'Machina',
-    action1: string,
-    attribute2: 'Heart' | 'Instinct' | 'Machina',
-    action2: string
-  ) {
-    const score1 = attributes?.[attribute1]?.[action1] || [0, 0];
-    const score2 = attributes?.[attribute2]?.[action2] || [0, 0];
-    let dice = [...score1, ...score2];
-    for (let i = 0; i < bonusDiceRed; i++) {
-      dice.push(1);
-    }
-    for (let i = 0; i < bonusDiceBlue; i++) {
-      dice.push(2);
-    }
-    let rolls = [];
-    let result: number;
-    let redcrit = false;
-    let bluecrit = false;
-    let blueHigher = false;
-    if (dice.reduce((acc, s) => acc + s, 0) === 0) {
-      // roll 2d6 and take the lowest
-      let r1 = Math.floor(Math.random() * 6) + 1;
-      rolls.push({ val: r1, element: <Die roll={r1} className="h-10 w-10" /> });
-      let r2 = Math.floor(Math.random() * 6) + 1;
-      rolls.push({ val: r2, element: <Die roll={r2} className="h-10 w-10" /> });
-      result = Math.min(r1, r2);
-    } else {
-      let red = dice.reduce((acc, s) => (s === 1 ? acc + 1 : acc), 0);
-      let blue = dice.reduce((acc, s) => (s === 2 ? acc + 1 : acc), 0);
-      let redRolls = [];
-      let blueRolls = [];
-      for (let i = 0; i < red; i++) {
-        let r = Math.floor(Math.random() * 6) + 1;
-        redRolls.push(r);
-        rolls.push({
-          val: r,
-          element: <Die roll={r} className="h-10 w-10 text-red-400" />,
-        });
-      }
-      for (let i = 0; i < blue; i++) {
-        let r = Math.floor(Math.random() * 6) + 1;
-        blueRolls.push(r);
-        rolls.push({
-          val: r,
-          element: <Die roll={r} className="h-10 w-10 text-blue-400" />,
-        });
-      }
-      const redSixes = redRolls.filter((r) => r === 6).length;
-      const blueSixes = blueRolls.filter((r) => r === 6).length;
-
-      if (blueSixes >= 2) {
-        bluecrit = true;
-      } else if (blueSixes + redSixes >= 2) {
-        redcrit = true;
-      }
-      let highestRed = Math.max(...redRolls);
-      let highestBlue = Math.max(...blueRolls);
-      blueHigher = highestBlue >= highestRed;
-      result = blueHigher ? highestBlue : highestRed;
-    }
-
-    // seven cases for results: 1-3, 4|5(r/b), 6(r/b), crit(r/b)
-    let text;
-    let ticks: number[] = [];
-    if (bluecrit) {
-      text = 'Crit!';
-      ticks = [3, 5, 7];
-    } else if (redcrit) {
-      text = 'Crit! (but take reduced effect)';
-      ticks = [3, 5, 7];
-    } else {
-      switch (result) {
-        case 1:
-        case 2:
-        case 3:
-          if (blueHigher) {
-            text = 'Miss.';
-          } else {
-            text = 'Miss, and take reduced effect.';
-          }
-          ticks = [0, 1, 1];
-          break;
-        case 4:
-        case 5:
-          if (blueHigher) {
-            text = 'Partial hit.';
-          } else {
-            text = 'Partial hit, and take reduced effect';
-          }
-          ticks = [1, 2, 3];
-          break;
-        case 6:
-          if (blueHigher) {
-            text = 'Hit.';
-          } else {
-            text = 'Hit, and take reduced effect.';
-          }
-          ticks = [2, 3, 5];
-          break;
-        default:
-          break;
-      }
-    }
-
-    toast({
-      variant: 'grid',
-      // @ts-ignore
-      title: (
-        <div className="flex items-center gap-1 flex-wrap">
-          <span className="mt-1">
-            Project roll with {action1} + {action2}
-          </span>
-          {rolls.map((r) => r.element)}
-        </div>
-      ),
-      description: (
-        <div className="flex items-center gap-4 flex-wrap">
-          {redcrit || bluecrit ? (
-            [rolls.filter((r) => r.val === 6).map((r) => r.element)]
-          ) : (
-            <Die
-              roll={result}
-              className={cn(
-                'h-10 w-10',
-                blueHigher ? 'text-blue-400' : 'text-red-400'
-              )}
-            />
-          )}
-          <div className="mt-1">
-            <span>{text}</span>
-            <div className="flex items-center justify-center gap-2">
-              <span className="text-center">
-                <b>Limited:</b> {ticks[0]}
-              </span>
-              <span className="text-center">
-                <b>Standard:</b> {ticks[1]}
-              </span>
-              <span className="text-center">
-                <b>Great:</b> {ticks[2]}
-              </span>
-            </div>
-          </div>
-        </div>
-      ),
-    });
-  }
+  const {
+    rollAction,
+    rollCombo,
+    rollComboMission,
+    rollResistMission,
+    rollProject,
+    rollLeft,
+    rollRight,
+    setRollLeft,
+    setRollRight,
+    bonusDiceRed,
+    bonusDiceBlue,
+    fortuneDice,
+    setBonusDiceRed,
+    setBonusDiceBlue,
+    setFortuneDice,
+  } = useRoll();
 
   return (
     <div>
