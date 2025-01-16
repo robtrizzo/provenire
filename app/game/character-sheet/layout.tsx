@@ -1,3 +1,5 @@
+'use server';
+
 import CharacterSheetProvider from '@/contexts/characterSheetContext';
 import RollProvider from '@/contexts/rollContext';
 

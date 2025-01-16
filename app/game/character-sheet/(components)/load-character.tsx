@@ -103,12 +103,11 @@ function LoadFromCloud({
     setOpen(false);
   }
   const { data, isPending } = useQuery({
-    queryKey: ['messages'],
+    queryKey: ['character'],
     queryFn: async () => {
       const response = await fetch('/api/characters', { cache: 'no-cache' });
       return response.json();
     },
-    staleTime: 100,
   });
 
   return (

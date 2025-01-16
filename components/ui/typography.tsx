@@ -9,9 +9,8 @@ export function TypographyH1({
   return (
     <h1
       className={cn(
-        'font-sans scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl' +
-          ' ' +
-          className
+        'font-sans scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl',
+        className
       )}
     >
       {children}
@@ -52,9 +51,8 @@ export function TypographyH3({
     <h3
       id={id}
       className={cn(
-        'font-sans scroll-m-20 text-2xl font-semibold tracking-tight' +
-          ' ' +
-          className
+        'font-sans scroll-m-20 text-2xl font-semibold tracking-tight',
+        className
       )}
     >
       {children}
@@ -74,9 +72,8 @@ export function TypographyH4({
     <h4
       id={id}
       className={cn(
-        'font-sans scroll-m-20 text-xl font-semibold tracking-tight' +
-          ' ' +
-          className
+        'font-sans scroll-m-20 text-xl font-semibold tracking-tight',
+        className
       )}
     >
       {children}

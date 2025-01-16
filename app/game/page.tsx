@@ -10,13 +10,14 @@ export default function Page() {
   return (
     <>
       <Breadcrumbs crumbs={[{ name: 'Introduction', href: '#' }]} />
-      <TypographyH1>Introduction to Provenire</TypographyH1>
+      <TypographyH1 className="text-red-500">
+        Introduction to Provenire
+      </TypographyH1>
       <TypographyP>
         The word <Donum>Provenire</Donum> is Latin, and has a cluster of
-        meanings. To <strong>derive</strong> or <strong>originate</strong> from;
-        to <strong>come</strong> from <strong>an implied location</strong>; to{' '}
-        <strong>descend</strong> from; to <strong>arise</strong>; to{' '}
-        <strong>come forth</strong>.
+        meanings. To <b>derive</b> or <b>originate</b> from; to <b>come</b> from{' '}
+        <b>an implied location</b>; to <b>descend</b> from; to <b>arise</b>; to{' '}
+        <b>come forth</b>.
       </TypographyP>
       <TypographyP>
         <Donum>Provenire</Donum> is both a setting and a system. The system is a
