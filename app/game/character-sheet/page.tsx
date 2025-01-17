@@ -74,6 +74,7 @@ import XPInfo from './(components)/xp-info';
 import ConditionsInfo from './(components)/conditions-info';
 import { useCharacterSheet } from '@/contexts/characterSheetContext';
 import { useRoll } from '@/contexts/rollContext';
+import Portrait from './(components)/portrait';
 
 export default function Charsheet() {
   const [tab, setTab] = useState('mission');
@@ -192,219 +193,224 @@ export default function Charsheet() {
           <ClearCharacter triggerCharacterLoaded={triggerCharacterLoaded} />
         </div>
       </div>
-      <div className="flex gap-1 w-full mt-1">
-        <div className="flex-grow">
-          <Label htmlFor="name">Name</Label>
-          <Input
-            id="name"
-            placeholder="Name"
-            value={name}
-            onChange={(e) => {
-              setName(e.target.value);
-              handleDebounceChange();
-            }}
-          />
-        </div>
-        <div>
-          <Label htmlFor="alias">Alias</Label>
-          <Input
-            id="alias"
-            placeholder="Alias"
-            value={alias}
-            onChange={(e) => {
-              setAlias(e.target.value);
-              handleDebounceChange();
-            }}
-          />
-        </div>
-      </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 w-full my-1">
-        <div>
-          <Select
-            key={heritageSelectKey}
-            value={selectedHeritage?.name}
-            onValueChange={(value) => {
-              for (const heritage of heritages) {
-                if (heritage.name && heritage.name === value) {
-                  setSelectedHeritage(heritage);
-                  setChanges(true);
-                }
-              }
-            }}
-          >
-            <SelectTrigger className="font-bold text-sky-500">
-              <SelectValue placeholder="Select a heritage" />
-            </SelectTrigger>
-            <SelectContent>
-              {heritages.map((heritage) => (
-                <SelectItem
-                  key={heritage.name}
-                  value={heritage.name}
-                  className="text-lg"
-                >
-                  {heritage.name}
-                </SelectItem>
-              ))}
-              <SelectSeparator />
-              <Button
-                variant="secondary"
-                size="sm"
-                className="w-full px-2"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setSelectedHeritage(undefined);
-                  setChanges(true);
-                  setHeritageSelectKey(+new Date());
+      <div className="flex flex-col md:flex-row mt-1 items-end gap-1">
+        <Portrait className="mb-1" />
+        <div className="w-full">
+          <div className="flex gap-1 w-full">
+            <div className="flex-grow">
+              <Label htmlFor="name">Name</Label>
+              <Input
+                id="name"
+                placeholder="Name"
+                value={name}
+                onChange={(e) => {
+                  setName(e.target.value);
+                  handleDebounceChange();
+                }}
+              />
+            </div>
+            <div>
+              <Label htmlFor="alias">Alias</Label>
+              <Input
+                id="alias"
+                placeholder="Alias"
+                value={alias}
+                onChange={(e) => {
+                  setAlias(e.target.value);
+                  handleDebounceChange();
+                }}
+              />
+            </div>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 w-full my-1">
+            <div>
+              <Select
+                key={heritageSelectKey}
+                value={selectedHeritage?.name}
+                onValueChange={(value) => {
+                  for (const heritage of heritages) {
+                    if (heritage.name && heritage.name === value) {
+                      setSelectedHeritage(heritage);
+                      setChanges(true);
+                    }
+                  }
                 }}
               >
-                Clear
-              </Button>
-            </SelectContent>
-          </Select>
-        </div>
-        <div>
-          <Select
-            key={backgroundSelectKey}
-            value={selectedBackground?.name}
-            onValueChange={(value) => {
-              const foundBackground = backgrounds.find(
-                (b) => b.name === value
-              ) as Background | undefined;
-              if (foundBackground) {
-                setSelectedBackground(foundBackground);
-                setBonds({
-                  ...bonds,
-                  Professional: [
-                    {
-                      name: foundBackground.professionalBonds[0].name,
-                      score: bonds.Professional[0].score,
-                    },
-                    {
-                      name: foundBackground.professionalBonds[1].name,
-                      score: bonds.Professional[1].score,
-                    },
-                  ],
-                });
-                setChanges(true);
-              }
-            }}
-          >
-            <SelectTrigger className="font-bold text-red-500">
-              <SelectValue placeholder="Select a background" />
-            </SelectTrigger>
-            <SelectContent>
-              {backgrounds.map((background) => (
-                <SelectItem key={background.name} value={background.name}>
-                  {background.name}
-                  <span className="text-muted-foreground ml-4">
-                    {background.shortDescription}
-                  </span>
-                </SelectItem>
-              ))}
-              <SelectSeparator />
-              <Button
-                variant="secondary"
-                size="sm"
-                className="w-full px-2"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setSelectedBackground(undefined);
-                  setChanges(true);
-                  setBackgroundSelectKey(+new Date());
+                <SelectTrigger className="font-bold text-sky-500">
+                  <SelectValue placeholder="Select a heritage" />
+                </SelectTrigger>
+                <SelectContent>
+                  {heritages.map((heritage) => (
+                    <SelectItem
+                      key={heritage.name}
+                      value={heritage.name}
+                      className="text-lg"
+                    >
+                      {heritage.name}
+                    </SelectItem>
+                  ))}
+                  <SelectSeparator />
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    className="w-full px-2"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedHeritage(undefined);
+                      setChanges(true);
+                      setHeritageSelectKey(+new Date());
+                    }}
+                  >
+                    Clear
+                  </Button>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <Select
+                key={backgroundSelectKey}
+                value={selectedBackground?.name}
+                onValueChange={(value) => {
+                  const foundBackground = backgrounds.find(
+                    (b) => b.name === value
+                  ) as Background | undefined;
+                  if (foundBackground) {
+                    setSelectedBackground(foundBackground);
+                    setBonds({
+                      ...bonds,
+                      Professional: [
+                        {
+                          name: foundBackground.professionalBonds[0].name,
+                          score: bonds.Professional[0].score,
+                        },
+                        {
+                          name: foundBackground.professionalBonds[1].name,
+                          score: bonds.Professional[1].score,
+                        },
+                      ],
+                    });
+                    setChanges(true);
+                  }
                 }}
               >
-                Clear
-              </Button>
-            </SelectContent>
-          </Select>
-        </div>
-      </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 w-full my-1">
-        <div>
-          <Select
-            key={skillsetSelectKey}
-            value={selectedSkillset?.name}
-            onValueChange={(value) => {
-              const foundSkillset = skillsets.find((t) => t.name === value) as
-                | Skillset
-                | undefined;
-              if (foundSkillset) {
-                setSelectedSkillset(foundSkillset);
-                setChanges(true);
-              }
-            }}
-          >
-            <SelectTrigger className="font-bold text-indigo-500">
-              <SelectValue placeholder="Select a skillset" />
-            </SelectTrigger>
-            <SelectContent>
-              {skillsets.map((skillset) => (
-                <SelectItem key={skillset.name} value={skillset.name}>
-                  {skillset.name}
-                  <span className="text-muted-foreground ml-4">
-                    {skillset.shortDescription}
-                  </span>
-                </SelectItem>
-              ))}
-              <SelectSeparator />
-              <Button
-                variant="secondary"
-                size="sm"
-                className="w-full px-2"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setSelectedSkillset(undefined);
-                  setChanges(true);
-                  setSkillsetSelectKey(+new Date());
+                <SelectTrigger className="font-bold text-red-500">
+                  <SelectValue placeholder="Select a background" />
+                </SelectTrigger>
+                <SelectContent>
+                  {backgrounds.map((background) => (
+                    <SelectItem key={background.name} value={background.name}>
+                      {background.name}
+                      <span className="text-muted-foreground ml-4">
+                        {background.shortDescription}
+                      </span>
+                    </SelectItem>
+                  ))}
+                  <SelectSeparator />
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    className="w-full px-2"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedBackground(undefined);
+                      setChanges(true);
+                      setBackgroundSelectKey(+new Date());
+                    }}
+                  >
+                    Clear
+                  </Button>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 w-full my-1">
+            <div>
+              <Select
+                key={skillsetSelectKey}
+                value={selectedSkillset?.name}
+                onValueChange={(value) => {
+                  const foundSkillset = skillsets.find(
+                    (t) => t.name === value
+                  ) as Skillset | undefined;
+                  if (foundSkillset) {
+                    setSelectedSkillset(foundSkillset);
+                    setChanges(true);
+                  }
                 }}
               >
-                Clear
-              </Button>
-            </SelectContent>
-          </Select>
-        </div>
-        <div>
-          <Select
-            key={archetypeSelectKey}
-            value={selectedArchetype?.name}
-            onValueChange={(value) => {
-              const foundArchetype = archetypes.find(
-                (a) => a.name === value
-              ) as Archetype | undefined;
-              if (foundArchetype) {
-                setSelectedArchetype(foundArchetype);
-                setChanges(true);
-              }
-            }}
-          >
-            <SelectTrigger className="font-bold text-amber-500">
-              <SelectValue placeholder="Select an archetype" />
-            </SelectTrigger>
-            <SelectContent>
-              {archetypes.map((archetype) => (
-                <SelectItem key={archetype.name} value={archetype.name}>
-                  {archetype.name}
-                  <span className="text-muted-foreground ml-4">
-                    {archetype.shortDescription}
-                  </span>
-                </SelectItem>
-              ))}
-              <SelectSeparator />
-              <Button
-                variant="secondary"
-                size="sm"
-                className="w-full px-2"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setSelectedArchetype(undefined);
-                  setChanges(true);
-                  setArchetypeSelectKey(+new Date());
+                <SelectTrigger className="font-bold text-indigo-500">
+                  <SelectValue placeholder="Select a skillset" />
+                </SelectTrigger>
+                <SelectContent>
+                  {skillsets.map((skillset) => (
+                    <SelectItem key={skillset.name} value={skillset.name}>
+                      {skillset.name}
+                      <span className="text-muted-foreground ml-4">
+                        {skillset.shortDescription}
+                      </span>
+                    </SelectItem>
+                  ))}
+                  <SelectSeparator />
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    className="w-full px-2"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedSkillset(undefined);
+                      setChanges(true);
+                      setSkillsetSelectKey(+new Date());
+                    }}
+                  >
+                    Clear
+                  </Button>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <Select
+                key={archetypeSelectKey}
+                value={selectedArchetype?.name}
+                onValueChange={(value) => {
+                  const foundArchetype = archetypes.find(
+                    (a) => a.name === value
+                  ) as Archetype | undefined;
+                  if (foundArchetype) {
+                    setSelectedArchetype(foundArchetype);
+                    setChanges(true);
+                  }
                 }}
               >
-                Clear
-              </Button>
-            </SelectContent>
-          </Select>
+                <SelectTrigger className="font-bold text-amber-500">
+                  <SelectValue placeholder="Select an archetype" />
+                </SelectTrigger>
+                <SelectContent>
+                  {archetypes.map((archetype) => (
+                    <SelectItem key={archetype.name} value={archetype.name}>
+                      {archetype.name}
+                      <span className="text-muted-foreground ml-4">
+                        {archetype.shortDescription}
+                      </span>
+                    </SelectItem>
+                  ))}
+                  <SelectSeparator />
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    className="w-full px-2"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedArchetype(undefined);
+                      setChanges(true);
+                      setArchetypeSelectKey(+new Date());
+                    }}
+                  >
+                    Clear
+                  </Button>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
         </div>
       </div>
       <Tabs defaultValue="mission" value={tab} className="w-full my-3 mx-auto">

@@ -20,6 +20,7 @@ import {
 import { debounce } from '@/lib/utils';
 
 interface CharacterSheetContextProps {
+  portrait: string;
   name: string;
   alias: string;
   univQuestions: string[];
@@ -47,6 +48,7 @@ interface CharacterSheetContextProps {
   subsist: number;
   loadout: any;
   items: Item[];
+  setPortrait: React.Dispatch<React.SetStateAction<string>>;
   setName: React.Dispatch<React.SetStateAction<string>>;
   setAlias: React.Dispatch<React.SetStateAction<string>>;
   setUnivQuestions: React.Dispatch<React.SetStateAction<string[]>>;
@@ -109,6 +111,7 @@ export default function CharacterSheetProvider({
   const [selectedBackground, setSelectedBackground] = useState<Background>();
   const [selectedHeritage, setSelectedHeritage] = useState<Heritage>();
 
+  const [portrait, setPortrait] = useState('');
   const [name, setName] = useState('');
   const [alias, setAlias] = useState('');
   const [univQuestions, setUnivQuestions] = useState<string[]>([
@@ -185,6 +188,7 @@ export default function CharacterSheetProvider({
     const data = localStorage.getItem('charsheet');
     if (data) {
       const parsed = JSON.parse(data);
+      setPortrait(parsed.portrait);
       setName(parsed.name);
       setAlias(parsed.alias);
       setUnivQuestions(parsed.univQuestions);
@@ -220,6 +224,7 @@ export default function CharacterSheetProvider({
       setItems(parsed.items);
     } else {
       // if there is no data, set the default values
+      setPortrait('');
       setName('');
       setAlias('');
       setUnivQuestions(['', '', '', '', '']);
@@ -276,6 +281,7 @@ export default function CharacterSheetProvider({
     const interval = setInterval(() => {
       if (changes) {
         const data = {
+          portrait,
           name,
           alias,
           univQuestions,
@@ -359,6 +365,7 @@ export default function CharacterSheetProvider({
   return (
     <CharacterSheetContext.Provider
       value={{
+        portrait,
         name,
         alias,
         univQuestions,
@@ -386,6 +393,7 @@ export default function CharacterSheetProvider({
         subsist,
         loadout,
         items,
+        setPortrait,
         setName,
         setAlias,
         setUnivQuestions,

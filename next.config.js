@@ -7,6 +7,12 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'mz3l6y8ywafu109t.public.blob.vercel-storage.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'provenire.s3.amazonaws.com',
         port: '',
         pathname: '/**',
