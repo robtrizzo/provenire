@@ -10,9 +10,7 @@ export default function Page() {
   return (
     <>
       <Breadcrumbs crumbs={[{ name: 'Introduction', href: '#' }]} />
-      <TypographyH1 className="text-red-500">
-        Introduction to Provenire
-      </TypographyH1>
+      <TypographyH1>Introduction to Provenire</TypographyH1>
       <TypographyP>
         The word <Donum>Provenire</Donum> is Latin, and has a cluster of
         meanings. To <b>derive</b> or <b>originate</b> from; to <b>come</b> from{' '}
