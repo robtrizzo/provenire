@@ -16,6 +16,8 @@ export interface Ability {
   slug: string;
 }
 
+export type Attribute = 'Heart' | 'Instinct' | 'Machina';
+
 interface Attributes {
   Heart: string[];
   Instinct: string[];
@@ -45,7 +47,7 @@ export type Heritage = {
 
 export interface Action {
   name: string;
-  attribute: 'Heart' | 'Instinct' | 'Machina';
+  attribute: Attribute;
   description: string;
 }
 

@@ -4,36 +4,30 @@ import { useToast } from '@/components/ui/use-toast';
 import { Die } from '@/components/ui/die';
 import { cn } from '@/lib/utils';
 import { useCharacterSheet } from './characterSheetContext';
+import { Attribute } from '@/types/game';
 
 interface RollContextProps {
-  rollAction: (
-    attribute: 'Heart' | 'Instinct' | 'Machina',
-    action: string
-  ) => void;
+  rollAction: (attribute: Attribute, action: string) => void;
   rollCombo: (action1: string, action2: string, dice: number[]) => void;
   rollResist: (action1: string, action2: string, dice: number[]) => void;
   rollComboMission: (
-    attribute1: 'Heart' | 'Instinct' | 'Machina',
+    attribute1: Attribute,
     action1: string,
-    attribute2: 'Heart' | 'Instinct' | 'Machina',
+    attribute2: Attribute,
     action2: string
   ) => void;
   rollResistMission: (
-    attribute1: 'Heart' | 'Instinct' | 'Machina',
+    attribute1: Attribute,
     action1: string,
-    attribute2: 'Heart' | 'Instinct' | 'Machina',
+    attribute2: Attribute,
     action2: string
   ) => void;
   rollProject: (
-    attribute1: 'Heart' | 'Instinct' | 'Machina',
+    attribute1: Attribute,
     action1: string,
-    attribute2: 'Heart' | 'Instinct' | 'Machina',
+    attribute2: Attribute,
     action2: string
   ) => void;
-  rollLeft: string;
-  rollRight: string;
-  setRollLeft: React.Dispatch<React.SetStateAction<string>>;
-  setRollRight: React.Dispatch<React.SetStateAction<string>>;
   bonusDiceRed: number;
   bonusDiceBlue: number;
   fortuneDice: number;
@@ -55,19 +49,13 @@ export const useRoll = () => {
 export default function RollProvider({ children }: { children: ReactNode }) {
   const { toast } = useToast();
 
-  const { attributes, setAttributes } = useCharacterSheet();
-
-  const [rollLeft, setRollLeft] = useState<string>('');
-  const [rollRight, setRollRight] = useState<string>('');
+  const { attributes } = useCharacterSheet();
 
   const [bonusDiceRed, setBonusDiceRed] = useState<number>(0);
   const [bonusDiceBlue, setBonusDiceBlue] = useState<number>(0);
   const [fortuneDice, setFortuneDice] = useState<number>(0);
 
-  function rollAction(
-    attribute: 'Heart' | 'Instinct' | 'Machina',
-    action: string
-  ) {
+  function rollAction(attribute: Attribute, action: string) {
     const score = attributes[attribute][action];
     const [a, b] = score || [0, 0];
 
@@ -377,9 +365,9 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   };
 
   function rollComboMission(
-    attribute1: 'Heart' | 'Instinct' | 'Machina',
+    attribute1: Attribute,
     action1: string,
-    attribute2: 'Heart' | 'Instinct' | 'Machina',
+    attribute2: Attribute,
     action2: string
   ) {
     const score1 = attributes?.[attribute1]?.[action1] || [0, 0];
@@ -388,9 +376,9 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   }
 
   function rollResistMission(
-    attribute1: 'Heart' | 'Instinct' | 'Machina',
+    attribute1: Attribute,
     action1: string,
-    attribute2: 'Heart' | 'Instinct' | 'Machina',
+    attribute2: Attribute,
     action2: string
   ) {
     const score1 = attributes?.[attribute1]?.[action1] || [0, 0];
@@ -399,9 +387,9 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   }
 
   function rollProject(
-    attribute1: 'Heart' | 'Instinct' | 'Machina',
+    attribute1: Attribute,
     action1: string,
-    attribute2: 'Heart' | 'Instinct' | 'Machina',
+    attribute2: Attribute,
     action2: string
   ) {
     const score1 = attributes?.[attribute1]?.[action1] || [0, 0];
@@ -555,10 +543,6 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         rollResist,
         rollResistMission,
         rollProject,
-        rollLeft,
-        rollRight,
-        setRollLeft,
-        setRollRight,
         bonusDiceRed,
         bonusDiceBlue,
         fortuneDice,

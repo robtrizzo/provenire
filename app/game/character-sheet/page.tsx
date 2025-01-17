@@ -32,6 +32,7 @@ import {
   type Background,
   type Action,
   Item,
+  Attribute,
 } from '@/types/game';
 import { Button } from '@/components/ui/button';
 import { ActionScore } from '@/components/ui/action-score';
@@ -86,6 +87,8 @@ export default function Charsheet() {
   const [archetypeSelectKey, setArchetypeSelectKey] = useState(+new Date());
   const [backgroundSelectKey, setBackgroundSelectKey] = useState(+new Date());
   const [skillsetSelectKey, setSkillsetSelectKey] = useState(+new Date());
+  const [rollLeft, setRollLeft] = useState<string>('');
+  const [rollRight, setRollRight] = useState<string>('');
 
   const {
     name,
@@ -166,10 +169,6 @@ export default function Charsheet() {
     rollComboMission,
     rollResistMission,
     rollProject,
-    rollLeft,
-    rollRight,
-    setRollLeft,
-    setRollRight,
     bonusDiceRed,
     bonusDiceBlue,
     fortuneDice,
@@ -1302,23 +1301,23 @@ export default function Charsheet() {
                       if (!rollLeft && !rollRight) return;
                       if (!rollLeft) {
                         const [attribute, action] = rollRight.split('-') as [
-                          'Heart' | 'Instinct' | 'Machina',
+                          Attribute,
                           string
                         ];
                         rollAction(attribute, action);
                       } else if (!rollRight) {
                         const [attribute, action] = rollLeft.split('-') as [
-                          'Heart' | 'Instinct' | 'Machina',
+                          Attribute,
                           string
                         ];
                         rollAction(attribute, action);
                       }
                       const [attributeLeft, actionLeft] = rollLeft.split(
                         '-'
-                      ) as ['Heart' | 'Instinct' | 'Machina', string];
+                      ) as [Attribute, string];
                       const [attributeRight, actionRight] = rollRight.split(
                         '-'
-                      ) as ['Heart' | 'Instinct' | 'Machina', string];
+                      ) as [Attribute, string];
                       rollResistMission(
                         attributeLeft,
                         actionLeft,
@@ -2848,23 +2847,23 @@ export default function Charsheet() {
                       if (!rollLeft && !rollRight) return;
                       if (!rollLeft) {
                         const [attribute, action] = rollRight.split('-') as [
-                          'Heart' | 'Instinct' | 'Machina',
+                          Attribute,
                           string
                         ];
                         rollAction(attribute, action);
                       } else if (!rollRight) {
                         const [attribute, action] = rollLeft.split('-') as [
-                          'Heart' | 'Instinct' | 'Machina',
+                          Attribute,
                           string
                         ];
                         rollAction(attribute, action);
                       }
                       const [attributeLeft, actionLeft] = rollLeft.split(
                         '-'
-                      ) as ['Heart' | 'Instinct' | 'Machina', string];
+                      ) as [Attribute, string];
                       const [attributeRight, actionRight] = rollRight.split(
                         '-'
-                      ) as ['Heart' | 'Instinct' | 'Machina', string];
+                      ) as [Attribute, string];
                       rollResistMission(
                         attributeLeft,
                         actionLeft,
