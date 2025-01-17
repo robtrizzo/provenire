@@ -9,7 +9,7 @@ export async function GET() {
   if (!session?.user?.id) {
     return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
   }
-  if (!['player', 'admin'].includes(session?.user?.role as string)) {
+  if (!['alpha-tester', 'admin'].includes(session?.user?.role as string)) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
   }
   try {

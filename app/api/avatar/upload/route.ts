@@ -19,7 +19,9 @@ export async function POST(request: Request): Promise<NextResponse> {
         if (!session) {
           throw new Error('Unauthenticated');
         }
-        if (!['player', 'admin'].includes(session?.user?.role as string)) {
+        if (
+          !['alpha-tester', 'admin'].includes(session?.user?.role as string)
+        ) {
           throw new Error('Unauthorized');
         }
 
