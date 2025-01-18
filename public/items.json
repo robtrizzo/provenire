@@ -1,5 +1,42 @@
 {
-  "starting": [],
-  "schematics": [],
+  "starting": [
+    {
+      "name": "Hand Tool",
+      "ticks": 3,
+      "slots": 1,
+      "traits": ["unwieldy", "dull"],
+      "description": "Hammers, screwdrivers, prybars, and other odds and ends."
+    },
+    {
+      "name": "Tar Torch",
+      "ticks": 3,
+      "slots": 1,
+      "traits": ["unreliable", "dim", "fragile"],
+      "description": "Cloth soaked in tar and wrapped around a hafted object."
+    }
+  ],
+  "schematics": [
+    {
+      "name": "Subtle Weapons",
+      "ticks": 5,
+      "slots": 1,
+      "traits": ["fragile", "dull", "concealable"],
+      "description": "Shivs, knives, garottes, and other small weapons."
+    },
+    {
+      "name": "Heavy Weapons",
+      "ticks": 5,
+      "slots": 1,
+      "traits": ["fragile", "unwieldy"],
+      "description": "Clubs, axes, and other large weapons."
+    },
+    {
+      "name": "Armor",
+      "ticks": 5,
+      "slots": 2,
+      "traits": ["bulky", "heavy", "noisy"],
+      "description": "Padded, leather, or metal armor."
+    }
+  ],
   "formulae": []
 }
