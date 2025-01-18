@@ -438,7 +438,7 @@ export default async function Page() {
       <TypographyH4>Gamble</TypographyH4>
       <TypographyP>
         When Hammers gamble, they bet <b>1 food</b> or <b>1 material</b>, then
-        make a<b>fighter tier roll</b>: <b>1-3:</b> lose the bet, <b>4-5:</b>{" "}
+        make a <b>fighter tier roll</b>: <b>1-3:</b> lose the bet, <b>4-5:</b>{" "}
         break even,
         <b>6:</b> +2 food or materials.
       </TypographyP>
@@ -554,8 +554,7 @@ export default async function Page() {
         gain
         <b>rep</b>. First they add <b>raise the stakes</b>. Then they make roll
         and add rep according to the result: <b>1-3:</b> 0, <b>4-5:</b> 1,{" "}
-        <b>6:</b> 2,
-        <b>Critical:</b> 3.
+        <b>6:</b> 2, <b>Critical:</b> 3.
       </TypographyP>
       <TypographyH4>Cohorts</TypographyH4>
       <TypographyP>
