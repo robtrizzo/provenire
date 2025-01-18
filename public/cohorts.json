@@ -1,0 +1,30 @@
+{
+    "gangs": [
+        {
+            "name": "Laborers",
+            "location": "Fabrication",
+            "ticks": 3,
+            "traits": ["skiddish", "disorganized", "loyal"]
+        },
+        {
+            "name": "Pit Fighters",
+            "location": "Fabrication",
+            "ticks": 4,
+            "traits": ["brutal", "unreliable"]
+        }
+    ],
+    "experts": [
+        {
+            "name": "Adwil the smuggler",
+            "location": "Fabrication",
+            "ticks": 4,
+            "traits": ["sneaky", "secretive", "greedy"]
+        },
+        {
+            "name": "Ciber the priest",
+            "location": "Fabrication",
+            "ticks": 4,
+            "traits": ["influential", "outspoken", "dogmatic"]
+        }
+    ]
+}

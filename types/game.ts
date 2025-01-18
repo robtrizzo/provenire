@@ -116,3 +116,10 @@ export type Faction = {
   agenda: string;
   scorn: number;
 }
+
+export type Cohort = {
+  name: string;
+  location: string;
+  ticks: number;
+  traits: string[];
+}
