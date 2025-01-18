@@ -150,17 +150,17 @@ export default function Page() {
       </TypographyP>
       <TypographyP>
         <b>Trait ratings</b> have two marks. Each mark can be{' '}
-        <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 inline-block" />
+        <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4 inline-block" />
         ,{' '}
-        <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 inline-block bg-red-500" />
+        <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4 inline-block bg-red-500" />
         , or{' '}
-        <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 inline-block bg-blue-500" />
+        <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4 inline-block bg-blue-500" />
         . Each filled mark represents a die that gets added to the pool.{' '}
-        <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 inline-block" />{' '}
+        <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4 inline-block" />{' '}
         adds nothing.{' '}
-        <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 inline-block bg-red-500" />{' '}
+        <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4 inline-block bg-red-500" />{' '}
         adds a red die.{' '}
-        <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 inline-block bg-blue-500" />{' '}
+        <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4 inline-block bg-blue-500" />{' '}
         adds a blue die. They represent a progression from novice to expert.
       </TypographyP>
       <TypographyP>
@@ -392,7 +392,7 @@ export default function Page() {
         Multiple cycles can take place durring one session depending on how long
         you&apos;re together.
       </TypographyP>
-      <Separator />
+      <Separator className="my-4" />
       <div className="w-full flex justify-between">
         <Link href="/game/setting">
           <Button variant="outline">

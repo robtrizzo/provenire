@@ -1,4 +1,4 @@
-import Donum from '@/components/stats/donum';
+import Donum from '@/components/ui/donum';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';

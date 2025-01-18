@@ -1,0 +1,421 @@
+import { TypographyH2, TypographyH4 } from '@/components/ui/typography';
+import { Separator } from '@/components/ui/separator';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import {
+  VenetianMask,
+  Flame,
+  Activity,
+  ChevronLeft,
+  ChevronRight,
+} from 'lucide-react';
+import FactoryMap from '@/components/factory-map';
+import HierarchyTree from '@/components/hierarchy-tree';
+import ScornTable from '@/components/scorn-table';
+import SkillsetAbilities from '@/components/skillsetAbilities.tsx'
+import Breadcrumbs from '@/components/ui/breadcrumbs';
+
+<Breadcrumbs
+        crumbs={[
+          { name: 'Character Creation', href: '/game/character-creation' },
+          { name: 'Skillsets', href: '#' },
+        ]}
+      />
+
+# Skillsets
+
+No one breaks the status quo in the Steel Trap. It's guaranteed failure and hardship for your loved ones. But the PCs are different. They're going to pull it off. Their particular brand of Skillset shows how they go about it.
+
+Your Skillset grants you unique character questions, acions, special abilities, and ways to advance the crew during the [Agendas](/game/the-churn#agendas) phase.
+
+<TypographyH2 id="Chisel">
+  <span className="text-indigo-500">Chisel</span>
+  <span className="text-muted-foreground text-lg ml-8">
+    A crafty sabetour and wright
+  </span>
+</TypographyH2>
+
+The workers of the Steel Trap spend their lives surrounded by the roaring and churning machines of the factory. The Chisel is one of the few who dares to attempt understanding them.
+
+_A dangerous machine you were tampering with lashed out at you. What was the machine and how did it scar you?_
+
+_The factory's every creation leaves behind piles of refuse. What waste do you see as useful materials that others don't?_
+
+### Mission
+
+#### Actions
+
+- **Cobble <Flame className="inline-block mb-3" />:** Rapidly make an improvised tool or weapon from available scrap.
+- **Sabotage <VenetianMask className="inline-block mb-1" />:** Tamper with or damage a machine or device.
+
+#### Special Abilities
+
+<SkillsetAbilities skillsetName="Chisel" />
+### Agendas
+
+During The Churn, Chisels are designing, forging, and building new equipment for the crew... if only they have the **materials**. These items are equipable by the crew until they become damaged or lost. If the Chisel has no materials, they can only research new designs.
+
+First, the Chisel picks a design to research and makes a **[project roll](/game/actions-and-rolls#project-rolls)** to pursue it. Once the clock is filled, the design is complete and the Chisel can build it by spending 1 **material**. Instead of researching a new design, the Chisel can start a new project to upgrade an existing design. When an upgrade project is completed, the Chisel can spend 1 **material** to remove a negative trait or add a positive trait to the design. A full list of equipment traits is **[here](/game/appendix#equipment-traits)**
+
+#### Starting equipment
+
+- **Hand Tool** (3) <span className='text-muted-foreground italic'>unwieldy, dull</span>: Hammers, screwdrivers, prybars, and other odds and ends.
+- **Tar Torch** (3) <span className='text-muted-foreground italic'>unreliable, dim, fragile</span>: Cloth soaked in tar and wrapped around a hafted object.
+
+<TypographyH4 id="schematics">Schematics</TypographyH4>
+
+- **Subtle Weapons** (5) <span className='text-muted-foreground italic'>fragile, dull, concealable</span>: Shivs, knives, garottes, and other small weapons.
+- **Heavy Weapons** (5) <span className='text-muted-foreground italic'>fragile, unwieldy</span>: Clubs, axes, and other large weapons.
+- **Armor** (5) <span className='text-muted-foreground italic'>bulky, heavy, noisy</span>: Padded, leather, or metal armor.
+- **Climbing Gear** (3) <span className='text-muted-foreground italic'>tangled, bulky</span>: Grappling hooks, ropes, and harnesses.
+- **Lockpicks** (3) <span className='text-muted-foreground italic'>fragile, imprecise</span>: Tools for picking locks.
+- **Designs** (7) <span className='text-muted-foreground italic'>convoluted, unreliable</span>: Blueprints for one of the factory's machines.
+- **Hooded Lantern** (5) <span className='text-muted-foreground italic'>heavy, dim</span>: A lantern that can be hooded to conceal its light.
+- **Demolition Tools** (7): <span className='text-muted-foreground italic'>volatile, imprecise</span>: Explosives and tools for setting them off.
+- **Wrecking Tools** (5): <span className='text-muted-foreground italic'>bulky, noisy</span>: Tools for breaking machines.
+
+<TypographyH4 id="formulae">Formulae</TypographyH4>
+
+Alchemical formulae are researched similarly to **schematics**; but unlike equipment, alchemical concoctions are consumable. When spending **1 material** to create a batch from a formula, the crew gains a **3-clock** representing doses. Whenever someone in the crew uses a dose, mark **1 tick** on the clock. When the clock is complete, the crew is out of doses. A full list of alchemical traits is **[here](/game/appendix#alchemical-traits)**
+
+- **Sweet Dreams** (4) <span className='text-muted-foreground italic'>groggy, acrid</span>: Have pleasurable dreams you remember the next day.
+- **Tarric Acid** (6) <span className='text-muted-foreground italic'>diluted, imprecise</span>: Strong solvent refined from tar byproduct.
+- **Extinguishing Soaps** (6) <span className='text-muted-foreground italic'>messy, imprecise</span>: Quickly expanding foam effective at putting out fires.
+- **Liquid Courage** (6) <span className='text-muted-foreground italic'>addling, acrid</span>: Dulls fear and swells confidence for a short time.
+- **Chew** (3) <span className='text-muted-foreground italic'>jittery, withdrawal</span>: Ignore fatigue and hunger for a day.
+- **Runner's Rub** (4) <span className='text-muted-foreground italic'>light-blind, stains</span>: Apply to the eyes to see in the dark for some time.
+
+<TypographyH2 id="Flywheel">
+  <span className="text-indigo-500">Flywheel</span>
+  <span className="text-muted-foreground text-lg ml-8">
+    A daring scoundrel and acrobat
+  </span>
+</TypographyH2>
+
+The Steel Trap is part factory, part prison, part fortress. Many of its rooms and corridors were never desinged to be traversed by humans. Flywheels are one of the few nimble enough to navigate the parts of the factory made only for crows, wolves, and bears.
+
+_The Beast Lanes are dangerous places, and not everyone is as talented as you are. What tragedy has befallen someone who followed you there?_
+
+_Your abilities have allowed you to climb to the top of the factory and see the sky. How did seeing the wider world and starry cosmos affect you?_
+
+### Mission
+
+#### Actions
+
+- **Acrobatics <Activity className="inline-block mb-4" />:** Traverse the mechanical matrix of the factory with grace and speed.
+- **Spin <VenetianMask className="inline-block mb-1" />**: Twist the truth or redirect conversation to your advantage.
+
+#### Special Abilities
+
+<SkillsetAbilities skillsetName="Flywheel" />
+
+### Agendas
+
+During The Churn, Flywheels are scouting and exploring the inaccessible and secret pathways of the Steel Trap. Flywheels can discover secret routes from one area to the next, giving the crew access to new regions of the factory.
+
+Regions that are connected by pathways and passages (marked with a solid line) require a project clock of 5 to discover secret pathways between them. Regions not connected by conventional pathways require more time, marked individually on the map.
+
+Each region has a unique contact (**5-clock**), danger (**3-clock**), and special feature (**3-clock**). Once a region is ulocked, the Flywheel can explore it to uncover these details. The Flywheel can start project clocks to do so.
+
+#### Regions
+
+<div className="max-w-[calc(100vw-40px)] md:max-w-[calc(100vw-290px)] overflow-auto">
+  <FactoryMap />
+</div>
+
+<TypographyH2 id="Fume">
+  <span className="text-indigo-500">Fume</span>
+  <span className="text-muted-foreground text-lg ml-8">
+    A manipulative and intimidating schemer
+  </span>
+</TypographyH2>
+
+The Steel Trap is a place of isolation and loneliness amongst the masses. Fumes pierce people's veneers and glimpse the pain behind their eyes.
+
+_You've seen the worst of the Steel Trap's workers. What is the most desperate thing you've seen someone do?_
+
+_You got too close to one of your informats once. What happened?_
+
+### Mission
+
+#### Actions
+
+- **Organize <Flame className="inline-block mb-3" />:** Arrange meetings, get people on the same page, or create understanding from chaos.
+- **Manipulate <VenetianMask className="inline-block mb-1" />:** Deceive or coerce someone into doing what you want.
+
+#### Special Abilities
+
+<SkillsetAbilities skillsetName="Fume" />
+
+### Agendas
+
+During The Churn, Fumes are traversing the hierarchy of power in the Steel Trap. Or more accurately, they're coercing and manipulating the workers around them to do so. Fumes make a **[project roll](/game/actions-and-rolls#project-rolls)** and gain informants equal to the result. These are hapless or unwilling workers who have been manipulated into spying for the Fume.
+
+Fumes can sacrifice any number of informants to roll that many dice. They gain intel equal to the result: **1-3:** 0 (and one survives to seek revenge), **4-5:** 1, **6:** 2, **Critical:** 3.
+
+Fumes then spend **Intel** to blackmail or plant informants in the overseers' ranks. They select an upgrade from the hierarchy tree. An upgrade can only be selected if all of the prerequisite upgrades are also selected.
+
+#### Overseer Hierarchy Tree
+
+<div className="max-w-[calc(100vw-40px)] md:max-w-[calc(100vw-290px)] overflow-auto">
+  <HierarchyTree />
+</div>
+
+<TypographyH2 id="Grease">
+  <span className="text-indigo-500">Grease</span>
+  <span className="text-muted-foreground text-lg ml-8">
+    A canny and resourceful blusterer
+  </span>
+</TypographyH2>
+
+In the midst of the Steel Trap's isolation, tightly knit communities and factions form: often for protection from their fellow workers. Even the overseers have their own factions that don't take kindly to one another. Greases move between these groups, making deals and alliances to advance the crew's goals.
+
+_You've made a deal with one of the overseers that went wrong. What did you have to give up to them?_
+
+_A faction in your neighborhood still owes you a favor. Who are they and how did you earn it?_
+
+### Mission
+
+#### Actions
+
+- **Candor <Flame className="inline-block mb-3" />:** Get someone to view you favorably or reveal a secret.
+- **Obfuscate <VenetianMask className="inline-block mb-1" />:** Hide your true intentions or confound someone's understanding.
+
+#### Special Abilities
+
+<SkillsetAbilities skillsetName="Grease" />
+
+### Agendas
+
+During The Churn, Greases are making deals and promises to acquire **materials** and **goodwill** for the crew. These deals and promises are important to accomplish during Missions, or else the Grease is going to get put in a tough spot.
+
+**Factions** can be community leaders, worker clans, or overseer packs. Each **faction** has its own agenda and will be working to accomplish it with or without the crew's help. Each **faction** also has a scorn track. This will increase if the Grease fails to accomplish the task they promised to do. If the scorn track reaches 3, the Grease can no longer make deals with that faction.
+
+The Grease can only make deals with **factions** in regions of the factory that the crew has access to.
+
+Before the mission, the Grease chooses the faction they make a deal with. They gain the **faction's** payment up front in exchange for promising to accomplish a task related to the **faction's** agenda. If the crew doesn't accomplish the task, the **faction's** scorn track increases by 1 and the Grease rolls on the Scorn table during the Churn.
+
+#### Factions
+
+- **Scarbacks** (Fabrication) <span className='text-muted-foreground italic'>abuse-hardened workers</span>: Free comrades from the pits.
+- **Gorger's Sommeliers** (Fabrication) <span className='text-muted-foreground italic'>lackeys of a cannabalistic glutton</span>: Acquire the body of a beast, living or dead.
+- **Shrikes** (Fabrication+) <span className='text-muted-foreground italic'>aggressive crow-beast overseers</span>: Put a stop to the inventory discrepencies in Fabrication.
+- **The Youngers** (Fabrication) <span className='text-muted-foreground italic'>upstart thugs with something to prove</span>: Help them oust the Scarbacks and be the strongest gang in Fab.
+
+#### Scorn
+
+If the Grease fails to accomplish the task they promised to do, they roll 1d6 on the Scorn table during the Churn. The result is determined by the faction's scorn and the die roll.
+
+<ScornTable />
+
+<TypographyH2 id="Hammer">
+  <span className="text-indigo-500">Hammer</span>
+  <span className="text-muted-foreground text-lg ml-8">
+    A strong and fearless brawler
+  </span>
+</TypographyH2>
+
+The Steel Trap's overseers are brutal and cruel. They have no qualms rounding up stray workers and forcing them to fight in the pits in the factory's underbelly. Most don't last long. Hammers are one of the few who show potential to survive.
+
+_You were forced to fight a friend in the pits. Only one of you got to leave. What happened?_
+
+_Which one of the overseers is nervous around you?_
+
+### Mission
+
+#### Actions
+
+- **Persevere <Flame className="inline-block mb-3" />:** Endure pain or hardship to accomplish a task.
+- **Smash <Activity className="inline-block mb-4" />:** Hurt someone or damage something with brute force.
+
+#### Special Abilities
+
+<SkillsetAbilities skillsetName="Hammer" />
+
+### Agendas
+
+During The Churn, Hammers are surviving the pits. They can gamble for **food** or **materials** or they can fight. If they make a lasting impression on a champion, they could even be recruited as a fighting instructor for the crew.
+
+#### Fight
+
+Fighters in the pits are organized roughly into **rookies**, **veterans**, **champions**, and **beasts**. Hammers begin as a **rookie**. Whoever is tiered lower chooses the battlefield (player chooses on tie).
+
+ When they fight, they make an action roll modified by difference in tier: **1-3:** get hurt and lose the fight, **4-5:** get hurt but win the fight and gain rep equal to 1+ tier difference, **6:** win the fight and gain **rep** equal to 1+ tier difference, **Critical:** win and make a spectacle of it, gain **rep** equal to 2 + foe tier and get promoted to the next tier.
+
+The wounds from fights vary depending on the opponent. **Rookies**, **veterans**, and **champions** cause **harm** equal to their tier. **Beasts** cause a **3-harm** and **2-harm** wound.
+
+#### Gamble
+
+When Hammers gamble, they bet **1 food** or **1 material**, then make a **fighter tier roll**: **1-3:** lose the bet, **4-5:** break even, **6:** +2 food or materials.
+
+#### Instructors
+
+Hammers can spend the crew's **rep** to recruit a **champion** as a fighting instructor for themselves and the crew. Each **champion** has a unique fighting style, unlocking the option to pick the instructor's action or special abilities as advances.
+
+The Steel Trap has its own culture in a way. Some have developed fighting styles suited for it. These people are your oppressors, though you can turn their own tactics against them.
+
+- **Gelvir (Pipedancing, 3 rep)** <span className='text-muted-foreground italic'>maneuver through the machinery and use it to your advantage</span>
+- **Lareiks (Crowdbreaking, 3 rep)** <span className='text-muted-foreground italic'>maximize damage to groups of surrounding foes</span>
+
+Generations of fighters have come and gone in the pits. Their styles have been shaped by the dominance of beasts and their animalistic tactics. Some styles have adopted elements of these tactics into styles used by fighters who can't shapeshift.
+
+- **Chlodos (Throatgore, 4 rep)** <span className='text-muted-foreground italic'>pack tactics, go for the throat</span>
+- **Hunuil (Bleedout, 5 rep)** <span className='text-muted-foreground italic'>small, precise strikes in vital regions</span>
+- **Hermesind (Backsnap, 6 rep)** <span className='text-muted-foreground italic'>overwhelming aggression</span>
+
+Dozens, maybe hundreds more fighting styles have been lost to time and Fenrir's jaws. Rarely, a fighter has been taught the old ways in secret; tasked with nurturing it until the time is right. These styles, you won't find in the pits.
+
+<TypographyH2 id="Nail">
+  <span className="text-indigo-500">Nail</span>
+  <span className="text-muted-foreground text-lg ml-8">
+    An audacious and inspiring ringleader
+  </span>
+</TypographyH2>
+
+There is no hope in the Steel Trap. No one makes trouble and lives for long. But the PCs are different. They can succeed where others have failed. The Nail spreads the word of their success and inspires others to follow.
+
+_You've learned the source of many folks' hopelessness. What could change their minds?_
+
+_Someone you inspired to stand up to the overseers was caught. What happened to them?_
+
+### Mission
+
+#### Actions
+
+- **Rally <Flame className="inline-block mb-3" />:** Inspire others to come together and act as one.
+- **Challenge <Activity className="inline-block mb-4" />:** Confront someone in a way that demands a response.
+
+#### Special Abilities
+
+<SkillsetAbilities skillsetName="Nail" />
+
+### Agendas
+
+During The Churn, Nails are spreading the word of the crew's achievements to gain **rep**. Nails can spend **rep** to gain **gangs** and **cohorts** for the crew. Of course this all causes Heat if done recklessly.
+
+#### Bragging Rights
+
+Nails can choose to make claims of the crew's accomplishments to gain **rep**. First they add **raise the stakes**. Then they make roll and add rep according to the result: **1-3:** 0, **4-5:** 1, **6:** 2, **Critical:** 3.
+
+#### Cohorts
+
+First a Nail picks a gang or expert to recruit. They make a **[project roll](/game/actions-and-rolls#project-rolls)** to pursue it. Once the clock is filled, the gang or expert is available. They can be recruited by spending **1 rep**. Once recruited, the gang or expert can be used to aid the crew in missions and downtime activities. If a gang or expert is killed or disbanded, the Nail can't recruit them again. Each region of the factory has new gangs and experts to recruit.
+
+Instead of recruiting a new gang or expert, the Nail can start a new project to upgrade an existing gang. When an upgrade project is completed, the Nail can spend **1 rep** to remove a negative trait or add a positive trait to the gang.
+
+#### Gangs (Fabrication)
+
+- **Laborers (3)** <span className='text-muted-foreground italic'>skiddish, disorganized, loyal</span>
+- **Pit Fighters (4)** <span className='text-muted-foreground italic'>brutal, unreliable</span>
+
+#### Experts (Fabrication)
+
+- **Adwil the smuggler (4)** <span className='text-muted-foreground italic'>sneaky, secretive, greedy</span>
+- **Ciber the priest (4)** <span className='text-muted-foreground italic'>influential, outspoken, dogmatic</span>
+
+<TypographyH2 id="Spark">
+  <span className="text-indigo-500">Spark</span>
+  <span className="text-muted-foreground text-lg ml-8">
+    A quick-witted and charming protector
+  </span>
+</TypographyH2>
+
+Tension in the Steel Trap is palpable. Tension between overseer and worker. Tension between friends and family. Tension at the foot of fickle machines. Sparks dare to ignite that tension and deal with the consequences.
+
+_You incited an incident between workers and an overseer. It turned ugly. Who couldn't you protect?_
+
+_You convinced two factions with a grudge to settle the score. How well has it turned out?_
+
+### Mission
+
+#### Actions
+
+- **Ignite <Flame className="inline-block mb-3" />:** Incite action from an individual or group on the brink of conflict.
+- **Intercede <Activity className="inline-block mb-4" />:** Put yourself in harm's way to protect someone else.
+
+#### Special Abilities
+
+<SkillsetAbilities skillsetName="Spark" />
+
+### Agendas
+
+During The Churn, Sparks are consorting wtih community leaders and crew contacts to help protect the crew from notice... or _rats_. They can spend **goodwill** to upgrade the crew's security and increase the quality of living conditions in the community.
+
+First, the Spark picks a project to pursue. They make a **[project roll](/game/actions-and-rolls#project-rolls)** and once the clock is filled, the project is ready. The Spark can complete a project by spending **1 goodwill**. Once completed, the project is applied to the crew. Many projects have prerequisites that must be completed before they can be selected. Each time a project is completed, **raise the stakes**.
+
+#### Projects
+
+**Living Space (3)**
+1. **Rooms**: Crew clears the permanent **1 harm** "tired" from their sheet.
+2. **Locked doors**: Crew is no longer vulnerable while resting
+3. **Beds**: Crew reduces **1 stress** each downtime
+4. **Poultices**: gain **4 ticks** on your healing clock when you **recover**
+
+**Security (5)**
+1. **Stash**: 2 slots each for **food** and **materials**
+2. **Stoker Contact**: **+1d** to reduce **heat** after killing
+3. **Large Stash**: 4 slots each for **food** and **materials**
+4. **Lookouts**: **-2 heat** per mission
+
+**Lair (7)**
+1. **Training Room**: The crew gains an xp trigger: *You put your instructors' lessons into practice*.
+2. **Holding Chamber**: secure place to hold one prisoner.
+3. **Meeting Room**: creates a repeating 5-clock "outisde contact" representing new factions reaching out to the crew.
+4. **Common Room**: group rolls during downtime can treat multiple 6s as a critical.
+
+**Community (5)**
+1. **Meetings**: **+1d** to persuade or consort while in the community.
+2. **Pooled Resources**: Starvation clocks are 1 larger
+3. **Giving Back**: Members of the community perform a downtime action for the crew.
+4. **United Front**: **+1 max stress**
+
+<TypographyH2 id="Vapor">
+  <span className="text-indigo-500">Vapor</span>
+  <span className="text-muted-foreground text-lg ml-8">
+    An elusive infiltrator and thief
+  </span>
+</TypographyH2>
+
+The overseers of the Steel Trap frequently deputize workers to spy and beat down their fellows. Vapors use their own tactics against them, posing as an informant to gather information and resources for the crew.
+
+_You were caught in the act of stealing from the overseers. Who did you throw under the bus to get out of trouble?_
+
+_One of the overseers knows what you're up to, but instead of reporting you, they're using you. What do they want?_
+
+### Mission
+
+#### Actions
+
+- **Lift <Activity className="inline-block mb-4" />:** Take something from someone without them noticing.
+- **Impersonate <VenetianMask className="inline-block mb-1" />:** Pass yourself off as someone who you aren't.
+
+#### Special Abilities
+
+<SkillsetAbilities skillsetName="Vapor" />
+
+### Agendas
+
+During The Churn, Vapors are infiltrating the overseers' ranks and pursuing special operations. On completion, they grant the crew a powerufl effect or opportunity. First, the Vapor picks an operation to pursue, then makes a **[project roll](/game/actions-and-rolls#project-rolls)**. Once the clock is filled, the operation takes place and may choose a new operation to pursue.
+
+#### Operations
+
+- **Implicate (9)**: Plant evidence implicating someone else for the crew's crimes
+- **Scout (4)**: Learn the name, contact, or danger of an adjacent region
+- **Expand Network (5)**: Permanent **+1d** to gather information rolls in the chosen region
+- **Jailbreak (9)**: Gain access to a a character's prison cell and sneak them to freedom
+- **Lay Trap (9)**: **+2d** to the next engagement roll that involes ambushing or surprising the enemy
+- **Dreadful Rumors (7)**: Learn a region's special mission
+
+<Separator />
+<div className="w-full flex justify-between">
+  <Link href="/game/backgrounds">
+    <Button variant="outline">
+      <ChevronLeft className="inline-block" /> Backgrounds
+    </Button>
+  </Link>
+  <Link href="/game/archetypes">
+    <Button variant="outline">
+      Archetypes <ChevronRight className="inline-block" />
+    </Button>
+  </Link>
+</div>

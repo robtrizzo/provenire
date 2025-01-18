@@ -116,34 +116,34 @@ export default async function Page() {
       </TypographyP>
       <TypographyP>
         Assign{' '}
-        <div className="inline-block">
-          <div className="flex gap-2 mx-2">
-            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500" />
-            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
-          </div>
-        </div>{' '}
+        <span className="inline-block">
+          <span className="flex gap-2 mx-2">
+            <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500" />
+            <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
+          </span>
+        </span>{' '}
         to each <b>crew bond</b>. Then assign{' '}
-        <div className="inline-block">
-          <div className="flex gap-2 mx-2">
-            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500" />
-            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
-          </div>
-        </div>{' '}
+        <span className="inline-block">
+          <span className="flex gap-2 mx-2">
+            <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500" />
+            <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
+          </span>
+        </span>{' '}
         to any three of your <b>personal, familial,</b> and{' '}
         <b>professional bonds</b>. Finally, choose one <b>bond</b> to set to{' '}
-        <div className="inline-block">
-          <div className="flex gap-2 mx-2">
-            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500" />
-            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500" />
-          </div>
-        </div>{' '}
+        <span className="inline-block">
+          <span className="flex gap-2 mx-2">
+            <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500" />
+            <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500" />
+          </span>
+        </span>{' '}
         or{' '}
-        <div className="inline-block">
-          <div className="flex gap-2 mx-2">
-            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500" />
-            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
-          </div>
-        </div>
+        <span className="inline-block">
+          <span className="flex gap-2 mx-2">
+            <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500" />
+            <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
+          </span>
+        </span>
         .
       </TypographyP>
       <TypographyH3>Instructors</TypographyH3>
@@ -158,12 +158,12 @@ export default async function Page() {
       <TypographyH2 className="mt-4">Actions & Abilities</TypographyH2>
       <TypographyP>
         All of your actions begin at{' '}
-        <div className="inline-block">
-          <div className="flex gap-2 mx-2">
-            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
-            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
-          </div>
-        </div>
+        <span className="inline-block">
+          <span className="flex gap-2 mx-2">
+            <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
+            <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
+          </span>
+        </span>
         . You begin play with 12 points you can spend to enhance your actions
         and unlock abilities.
       </TypographyP>
@@ -239,7 +239,7 @@ export default async function Page() {
         Name your character, give them an alias, and finish the common questions
         in your character profile. Then you&apos;re ready to play!
       </TypographyP>
-      <Separator />
+      <Separator className="my-4" />
       <div className="w-full flex justify-between">
         <Link href="/game/the-churn">
           <Button variant="outline">

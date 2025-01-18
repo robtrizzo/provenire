@@ -125,7 +125,7 @@ export default async function Page() {
         rem voluptas excepturi, laborum eaque corporis recusandae possimus
         itaque, beatae maxime.
       </p>
-      <Separator />
+      <Separator className="my-4" />
       <div className="w-full flex justify-between">
         <Link href="/game">
           <Button variant="outline">
