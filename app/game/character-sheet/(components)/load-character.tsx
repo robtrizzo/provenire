@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/ui/popover';
+} from "@/components/ui/popover";
 import {
   Dialog,
   DialogContent,
@@ -12,12 +12,12 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog';
-import { TypographyH4 } from '@/components/ui/typography';
-import { CloudDownload, HardDriveUpload, X, FileUp } from 'lucide-react';
-import { Close } from '@radix-ui/react-popover';
-import { useQuery } from '@tanstack/react-query';
-import { Character } from '@/types/db';
+} from "@/components/ui/dialog";
+import { TypographyH4 } from "@/components/ui/typography";
+import { CloudDownload, HardDriveUpload, X, FileUp } from "lucide-react";
+import { Close } from "@radix-ui/react-popover";
+import { useQuery } from "@tanstack/react-query";
+// import { Character } from '@/types/db';
 
 export default function LoadCharacter({
   triggerCharacterLoaded,
@@ -31,11 +31,11 @@ export default function LoadCharacter({
   }
 
   function loadFromDevice() {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = '.json';
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = ".json";
     input.click();
-    input.addEventListener('change', (e) => {
+    input.addEventListener("change", (e) => {
       const file = (e.target as HTMLInputElement).files?.[0];
       if (!file) {
         return;
@@ -46,7 +46,7 @@ export default function LoadCharacter({
         if (!data) {
           return;
         }
-        localStorage.setItem('charsheet', data.toString());
+        localStorage.setItem("charsheet", data.toString());
         triggerCharacterLoaded();
         closePopover();
       };
@@ -103,9 +103,9 @@ function LoadFromCloud({
     setOpen(false);
   }
   const { data, isPending } = useQuery({
-    queryKey: ['character'],
+    queryKey: ["character"],
     queryFn: async () => {
-      const response = await fetch('/api/characters', { cache: 'no-cache' });
+      const response = await fetch("/api/characters", { cache: "no-cache" });
       return response.json();
     },
   });
@@ -128,7 +128,7 @@ function LoadFromCloud({
         {isPending && <div>Loading...</div>}
         {data?.error && <div>Error: {data.error}</div>}
         <div className="flex flex-col gap-2"></div>
-        {data?.characters?.map((char: Character) => (
+        {/* {data?.characters?.map((char: Character) => (
           <LoadCharacterButton
             key={char.id}
             char={char}
@@ -136,7 +136,7 @@ function LoadFromCloud({
             closeDialog={closeDialog}
             closePopover={closePopover}
           />
-        ))}
+        ))} */}
       </DialogContent>
     </Dialog>
   );
@@ -148,12 +148,13 @@ function LoadCharacterButton({
   closeDialog,
   closePopover,
 }: {
-  char: Character;
+  // char: Character;
+  char: any;
   triggerCharacterLoaded: () => void;
   closeDialog: () => void;
   closePopover: () => void;
 }) {
-  let formattedDate = '';
+  let formattedDate = "";
   if (char.createdAt) {
     const date = new Date(char.createdAt);
     formattedDate = `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
@@ -162,7 +163,7 @@ function LoadCharacterButton({
   async function loadCharacter() {
     const response = await fetch(char.path);
     const data = await response.json();
-    localStorage.setItem('charsheet', JSON.stringify(data));
+    localStorage.setItem("charsheet", JSON.stringify(data));
     triggerCharacterLoaded();
     closeDialog();
     closePopover();
