@@ -45,8 +45,7 @@ export default function ItemsTable({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedHandleChangeItemName = useCallback(
     debounce((index: number, name: string) => {
-      console.log("debouncedHandleChangeItemName"),
-        handleChangeItemName(index, name);
+      handleChangeItemName(index, name);
     }, 300),
     [handleChangeItemName]
   );

@@ -9,6 +9,8 @@ type DebouncedFunction<T extends (...args: unknown[]) => unknown> = (
   ...args: Parameters<T>
 ) => void;
 
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function debounce<T extends (...args: any[]) => unknown>(
   func: T,
   wait: number

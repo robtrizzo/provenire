@@ -1337,23 +1337,23 @@ export default function Charsheet() {
                       if (!rollLeft && !rollRight) return;
                       if (!rollLeft) {
                         const [attribute, action] = rollRight.split("-") as [
-                          "Heart" | "Instinct" | "Machina",
+                          Attribute | Attribute | Attribute,
                           string
                         ];
                         rollAction(attribute, action);
                       } else if (!rollRight) {
                         const [attribute, action] = rollLeft.split("-") as [
-                          "Heart" | "Instinct" | "Machina",
+                          Attribute | Attribute | Attribute,
                           string
                         ];
                         rollAction(attribute, action);
                       }
                       const [attributeLeft, actionLeft] = rollLeft.split(
                         "-"
-                      ) as ["Heart" | "Instinct" | "Machina", string];
+                      ) as [Attribute | Attribute | Attribute, string];
                       const [attributeRight, actionRight] = rollRight.split(
                         "-"
-                      ) as ["Heart" | "Instinct" | "Machina", string];
+                      ) as [Attribute | Attribute | Attribute, string];
                       rollComboMission(
                         attributeLeft,
                         actionLeft,
@@ -1375,23 +1375,23 @@ export default function Charsheet() {
                       if (!rollLeft && !rollRight) return;
                       if (!rollLeft) {
                         const [attribute, action] = rollRight.split("-") as [
-                          "Heart" | "Instinct" | "Machina",
+                          Attribute | Attribute | Attribute,
                           string
                         ];
                         rollAction(attribute, action);
                       } else if (!rollRight) {
                         const [attribute, action] = rollLeft.split("-") as [
-                          "Heart" | "Instinct" | "Machina",
+                          Attribute | Attribute | Attribute,
                           string
                         ];
                         rollAction(attribute, action);
                       }
                       const [attributeLeft, actionLeft] = rollLeft.split(
                         "-"
-                      ) as ["Heart" | "Instinct" | "Machina", string];
+                      ) as [Attribute | Attribute | Attribute, string];
                       const [attributeRight, actionRight] = rollRight.split(
                         "-"
-                      ) as ["Heart" | "Instinct" | "Machina", string];
+                      ) as [Attribute | Attribute | Attribute, string];
                       rollProject(
                         attributeLeft,
                         actionLeft,
@@ -1469,7 +1469,7 @@ export default function Charsheet() {
                       />
                       <Button
                         onClick={() => {
-                          let dice = [];
+                          const dice = [];
                           for (let i = 0; i < fortuneDice; i++) {
                             dice.push(2);
                           }
@@ -2883,23 +2883,23 @@ export default function Charsheet() {
                       if (!rollLeft && !rollRight) return;
                       if (!rollLeft) {
                         const [attribute, action] = rollRight.split("-") as [
-                          "Heart" | "Instinct" | "Machina",
+                          Attribute,
                           string
                         ];
                         rollAction(attribute, action);
                       } else if (!rollRight) {
                         const [attribute, action] = rollLeft.split("-") as [
-                          "Heart" | "Instinct" | "Machina",
+                          Attribute,
                           string
                         ];
                         rollAction(attribute, action);
                       }
                       const [attributeLeft, actionLeft] = rollLeft.split(
                         "-"
-                      ) as ["Heart" | "Instinct" | "Machina", string];
+                      ) as [Attribute, string];
                       const [attributeRight, actionRight] = rollRight.split(
                         "-"
-                      ) as ["Heart" | "Instinct" | "Machina", string];
+                      ) as [Attribute, string];
                       rollComboMission(
                         attributeLeft,
                         actionLeft,
@@ -2921,23 +2921,23 @@ export default function Charsheet() {
                       if (!rollLeft && !rollRight) return;
                       if (!rollLeft) {
                         const [attribute, action] = rollRight.split("-") as [
-                          "Heart" | "Instinct" | "Machina",
+                          Attribute | Attribute | Attribute,
                           string
                         ];
                         rollAction(attribute, action);
                       } else if (!rollRight) {
                         const [attribute, action] = rollLeft.split("-") as [
-                          "Heart" | "Instinct" | "Machina",
+                          Attribute | Attribute | Attribute,
                           string
                         ];
                         rollAction(attribute, action);
                       }
                       const [attributeLeft, actionLeft] = rollLeft.split(
                         "-"
-                      ) as ["Heart" | "Instinct" | "Machina", string];
+                      ) as [Attribute | Attribute | Attribute, string];
                       const [attributeRight, actionRight] = rollRight.split(
                         "-"
-                      ) as ["Heart" | "Instinct" | "Machina", string];
+                      ) as [Attribute | Attribute | Attribute, string];
                       rollProject(
                         attributeLeft,
                         actionLeft,
@@ -3015,7 +3015,7 @@ export default function Charsheet() {
                       />
                       <Button
                         onClick={() => {
-                          let dice = [];
+                          const dice = [];
                           for (let i = 0; i < fortuneDice; i++) {
                             dice.push(2);
                           }
