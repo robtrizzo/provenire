@@ -1,6 +1,8 @@
-// import { createUser, getUser } from '@/handlers/users';
+import { createUser, getUser } from '@/handlers/users';
 import NextAuth, { NextAuthConfig } from 'next-auth';
 import DiscordProvider from 'next-auth/providers/discord';
+import {UpstashRedisAdapter} from '@auth/upstash-redis-adapter'
+import db from '@/lib/redis'
 
 export const BASE_PATH = '/api/auth';
 
@@ -17,63 +19,69 @@ function getDiscordCredentials() {
 }
 
 const authOptions: NextAuthConfig = {
+  adapter: UpstashRedisAdapter(db),
   providers: [
     DiscordProvider({
       clientId: getDiscordCredentials().clientId,
       clientSecret: getDiscordCredentials().clientSecret,
-      //   async profile(profile) {
-      //     let avatar;
-      //     if (profile.avatar) {
-      //       const format = profile.avatar.startsWith('a_') ? 'gif' : 'png';
-      //       avatar = `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.${format}`;
-      //     }
-      //     const user = await createUser(profile.email, avatar, profile.username);
-      //     if (!user) {
-      //     }
-      //     if ('error' in user) {
-      //       console.error('Error creating user', user.error);
-      //       return {
-      //         id: 'not found',
-      //         name: profile.username,
-      //         email: profile.email,
-      //         image: avatar,
-      //         role: 'user',
-      //       };
-      //     }
+        // async profile(profile) {
+        //   let avatar;
+        //   if (profile.avatar) {
+        //     const format = profile.avatar.startsWith('a_') ? 'gif' : 'png';
+        //     avatar = `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.${format}`;
+        //   }
+        //   const user = await createUser({email: profile.email, avatar, username: profile.username});
+        //   if (!user) {
+        //   }
+        //   if ('error' in user) {
+        //     console.error('Error creating user', user.error);
+        //     return {
+        //       id: 'not found',
+        //       name: profile.username,
+        //       email: profile.email,
+        //       image: avatar,
+        //       role: 'user',
+        //     };
+        //   }
 
-      //     // this is available in the signIn callback as user
-      //     return {
-      //       id: user.id,
-      //       name: profile.username,
-      //       email: profile.email,
-      //       image: avatar,
-      //       role: user.role,
-      //     };
-      //   },
+        //   // this is available in the signIn callback as user
+        //   return {
+        //     id: user.id,
+        //     name: profile.username,
+        //     email: profile.email,
+        //     image: avatar,
+        //     role: user.role,
+        //   };
+        // },
     }),
   ],
   callbacks: {
-    // jwt: async ({ token, user }) => {
-    //   if (user === undefined || !user.role) {
-    //     let dbUser = await getUser(token.email!);
-    //     if (!dbUser) {
-    //       return { ...token, role: 'user' };
-    //     }
-    //     if ('role' in dbUser) {
-    //       return { ...token, role: dbUser.role, id: dbUser.id };
-    //     }
-    //   }
-    //   return { ...token, role: user.role as string, id: user.id as string };
-    // },
-    session: async ({ session, token }) => {
-      return {
-        ...session,
-        user: {
-          ...session.user,
-          role: token.role as string,
-          id: token.id as string,
-        },
-      };
+    async jwt({ token, user }) {
+      const dbUser = (await db.get(`user:${token.id}`)) as User | null;
+
+      if (!dbUser) {
+        token.id = user!.id!;
+        return token;
+      }
+
+      token.id = dbUser.id;
+      token.name = dbUser.name;
+      token.email = dbUser.email;
+      token.avatar = dbUser.avatar;
+      token.role = dbUser.role!;
+
+      return token;
+    },
+    async session({ session, token }) {
+      if (token) {
+        session.user.id = token.id;
+        session.user.name = token.name;
+        session.user.email = token.email;
+        session.user.image = token.avatar;
+        session.user.role = token.role;
+      }
+
+      return session;
     },
   },
   pages: {
