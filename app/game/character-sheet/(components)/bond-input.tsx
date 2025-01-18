@@ -1,17 +1,17 @@
-import { useState } from 'react';
+import { useState } from "react";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/ui/popover';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Close } from '@radix-ui/react-popover';
-import { X, SaveIcon, Bomb } from 'lucide-react';
-import { TypographyH4, TypographyP } from '@/components/ui/typography';
-import { Bond } from '@/types/game';
-import { ActionScore } from '@/components/ui/action-score';
+} from "@/components/ui/popover";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Close } from "@radix-ui/react-popover";
+import { X, SaveIcon, Bomb } from "lucide-react";
+import { TypographyH4, TypographyP } from "@/components/ui/typography";
+import { Bond } from "@/types/game";
+import { ActionScore } from "@/components/action-score";
 
 export default function BondInput({
   bond,
@@ -31,13 +31,13 @@ export default function BondInput({
       <PopoverTrigger asChild>
         <div className="hover:bg-secondary hover:cursor-pointer rounded-md box-border p-2 transition-all max-w-96">
           <div className="flex justify-between items-center">
-            <TypographyP>{bond.name || 'Bond Name'}</TypographyP>
+            <TypographyP>{bond.name || "Bond Name"}</TypographyP>
             <div onClick={(e) => e.stopPropagation()}>
               <ActionScore score={bond.score} onChange={handleChangeScore} />
             </div>
           </div>
           <TypographyP className="text-muted-foreground text-xs">
-            {bond.description || 'Bond Description'}
+            {bond.description || "Bond Description"}
           </TypographyP>
         </div>
       </PopoverTrigger>
@@ -71,11 +71,11 @@ export default function BondInput({
             className="text-sm"
             onClick={() => {
               const name =
-                (document.getElementById('bond-name') as HTMLInputElement)
-                  ?.value || '';
+                (document.getElementById("bond-name") as HTMLInputElement)
+                  ?.value || "";
               const description = (
                 document.getElementById(
-                  'bond-description'
+                  "bond-description"
                 ) as HTMLTextAreaElement
               ).value;
               handleSave(name, description);
