@@ -43,7 +43,7 @@ export default async function Page() {
         abilities, and ways to advance the crew during the{' '}
         <Link href="/game/the-churn#agendas">
           <span className="text-red-500 font-bold underline">Agendas</span>
-        </Link>
+        </Link>{' '}
         phase.
       </TypographyP>
       <TypographyH2 id="Chisel">

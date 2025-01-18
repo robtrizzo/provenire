@@ -103,5 +103,8 @@ export type Loadout = {
 
 export type Item = {
   name: string;
+  ticks: number;
   slots: number;
+  traits: string[];
+  description: string;
 };
