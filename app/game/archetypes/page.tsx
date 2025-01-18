@@ -2,31 +2,31 @@ import {
   TypographyH1,
   TypographyH3,
   TypographyP,
-} from '@/components/ui/typography';
-import { Separator } from '@/components/ui/separator';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import ArchetypeQuestions from '@/components/ui/archetype-questions';
-import archetypes from '@/public/archetypes.json';
-import Abilities from '@/components/ui/abilities/abilities';
-import type { Archetype } from '@/types/game';
-import ActionDescription from '@/components/ui/action-description';
+} from "@/components/ui/typography";
+import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import ArchetypeQuestions from "@/components/archetype-questions";
+import archetypes from "@/public/archetypes.json";
+import Abilities from "@/components/abilities/abilities";
+import type { Archetype } from "@/types/game";
+import ActionDescription from "@/components/action-description";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion';
-import Breadcrumbs from '@/components/ui/breadcrumbs';
+} from "@/components/ui/accordion";
+import Breadcrumbs from "@/components/ui/breadcrumbs";
 
 export default async function Page() {
   return (
     <div>
       <Breadcrumbs
         crumbs={[
-          { name: 'Character Creation', href: '/game/character-creation' },
-          { name: 'Archetypes', href: '#' },
+          { name: "Character Creation", href: "/game/character-creation" },
+          { name: "Archetypes", href: "#" },
         ]}
       />
       <TypographyH1>Archetypes</TypographyH1>

@@ -1,8 +1,8 @@
-'use client';
-import { useState, useEffect } from 'react';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
+"use client";
+import { useState, useEffect } from "react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
@@ -10,22 +10,22 @@ import {
   SelectSeparator,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { TabsContent } from '@radix-ui/react-tabs';
-import { Separator } from '@/components/ui/separator';
+} from "@/components/ui/select";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { TabsContent } from "@radix-ui/react-tabs";
+import { Separator } from "@/components/ui/separator";
 import {
   TypographyH2,
   TypographyH3,
   TypographyH4,
   TypographyP,
-} from '@/components/ui/typography';
-import heritages from '@/public/heritages.json';
-import backgrounds from '@/public/backgrounds.json';
-import archetypes from '@/public/archetypes.json';
-import skillsets from '@/public/skillsets.json';
-import universal_actions from '@/public/universal_actions.json';
-import loadouts from '@/public/loadouts.json';
+} from "@/components/ui/typography";
+import heritages from "@/public/heritages.json";
+import backgrounds from "@/public/backgrounds.json";
+import archetypes from "@/public/archetypes.json";
+import skillsets from "@/public/skillsets.json";
+import universal_actions from "@/public/universal_actions.json";
+import loadouts from "@/public/loadouts.json";
 import {
   type Archetype,
   type Skillset,
@@ -33,9 +33,9 @@ import {
   type Action,
   Item,
   Attribute,
-} from '@/types/game';
-import { Button } from '@/components/ui/button';
-import { ActionScore } from '@/components/ui/action-score';
+} from "@/types/game";
+import { Button } from "@/components/ui/button";
+import { ActionScore } from "@/components/action-score";
 import {
   VenetianMask,
   Flame,
@@ -46,39 +46,39 @@ import {
   Cog,
   ShieldAlert,
   DiamondPlus,
-} from 'lucide-react';
-import ActionDescription from '@/components/ui/action-description';
-import { Card } from '@/components/ui/card';
-import { Condition } from '@/components/ui/condition';
-import { Checkbox } from '@/components/ui/checkbox';
-import Link from 'next/link';
-import Abilities from '@/components/ui/abilities/abilities';
-import DowntimeActionsAccordion from '@/components/ui/downtime-actions-accordion';
-import Crit from '@/components/ui/subsistence/crit/subsistenceCrit';
-import Consequences from '@/components/ui/subsistence/consequences/subsistenceConsequences';
-import StressCheckboxes from '@/components/ui/stress-checkboxes';
-import Breadcrumbs from '@/components/ui/breadcrumbs';
-import SaveCharacter from './(components)/save-character';
-import LoadCharacter from './(components)/load-character';
-import ClearCharacter from './(components)/clear-character';
-import ItemsTable from '@/app/game/character-sheet/(components)/items-table';
-import BondInput from './(components)/bond-input';
-import Clock from '@/components/ui/clock';
-import XPClocks from './(components)/xp-clocks';
+} from "lucide-react";
+import ActionDescription from "@/components/action-description";
+import { Card } from "@/components/ui/card";
+import { Condition } from "@/components/condition";
+import { Checkbox } from "@/components/ui/checkbox";
+import Link from "next/link";
+import Abilities from "@/components/abilities/abilities";
+import DowntimeActionsAccordion from "@/components/downtime-actions-accordion";
+import Crit from "@/components/subsistence/crit/subsistenceCrit";
+import Consequences from "@/components/subsistence/consequences/subsistenceConsequences";
+import StressCheckboxes from "@/app/game/character-sheet/(components)/stress-checkboxes";
+import Breadcrumbs from "@/components/ui/breadcrumbs";
+import SaveCharacter from "./(components)/save-character";
+import LoadCharacter from "./(components)/load-character";
+import ClearCharacter from "./(components)/clear-character";
+import ItemsTable from "@/app/game/character-sheet/(components)/items-table";
+import BondInput from "./(components)/bond-input";
+import Clock from "@/components/clock";
+import XPClocks from "./(components)/xp-clocks";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/ui/popover';
-import { Close } from '@radix-ui/react-popover';
-import XPInfo from './(components)/xp-info';
-import ConditionsInfo from './(components)/conditions-info';
-import { useCharacterSheet } from '@/contexts/characterSheetContext';
-import { useRoll } from '@/contexts/rollContext';
-import Portrait from './(components)/portrait';
+} from "@/components/ui/popover";
+import { Close } from "@radix-ui/react-popover";
+import XPInfo from "./(components)/xp-info";
+import ConditionsInfo from "./(components)/conditions-info";
+import { useCharacterSheet } from "@/contexts/characterSheetContext";
+import { useRoll } from "@/contexts/rollContext";
+import Portrait from "./(components)/portrait";
 
 export default function Charsheet() {
-  const [tab, setTab] = useState('mission');
+  const [tab, setTab] = useState("mission");
 
   const [actionReferencePopopverOpen, setActionReferencePopopverOpen] =
     useState(false);
@@ -87,8 +87,8 @@ export default function Charsheet() {
   const [archetypeSelectKey, setArchetypeSelectKey] = useState(+new Date());
   const [backgroundSelectKey, setBackgroundSelectKey] = useState(+new Date());
   const [skillsetSelectKey, setSkillsetSelectKey] = useState(+new Date());
-  const [rollLeft, setRollLeft] = useState<string>('');
-  const [rollRight, setRollRight] = useState<string>('');
+  const [rollLeft, setRollLeft] = useState<string>("");
+  const [rollRight, setRollRight] = useState<string>("");
 
   const {
     name,
@@ -158,7 +158,7 @@ export default function Charsheet() {
     if (window === undefined) return;
     // read the hash and set the tab
     const hash = window.location.hash;
-    if (hash && ['mission', 'profile', 'churn'].includes(hash.substring(1))) {
+    if (hash && ["mission", "profile", "churn"].includes(hash.substring(1))) {
       setTab(hash.substring(1));
     }
   }, []);
@@ -182,8 +182,8 @@ export default function Charsheet() {
       <div className="flex justify-between">
         <Breadcrumbs
           crumbs={[
-            { name: 'Character Creation', href: '/game/character-creation' },
-            { name: 'Character Sheet', href: '#' },
+            { name: "Character Creation", href: "/game/character-creation" },
+            { name: "Character Sheet", href: "#" },
           ]}
         />
         <div className="flex gap-2 mt-5">
@@ -417,11 +417,11 @@ export default function Charsheet() {
           <TabsTrigger
             value="mission"
             onClick={() => {
-              setRollLeft('');
-              setRollRight('');
-              setTab('mission');
+              setRollLeft("");
+              setRollRight("");
+              setTab("mission");
               // save the tab to the hash
-              window.location.hash = 'mission';
+              window.location.hash = "mission";
             }}
           >
             Mission
@@ -429,9 +429,9 @@ export default function Charsheet() {
           <TabsTrigger
             value="profile"
             onClick={() => {
-              setTab('profile');
+              setTab("profile");
               // save the tab to the hash
-              window.location.hash = 'profile';
+              window.location.hash = "profile";
             }}
           >
             Profile
@@ -439,11 +439,11 @@ export default function Charsheet() {
           <TabsTrigger
             value="churn"
             onClick={() => {
-              setRollLeft('');
-              setRollRight('');
-              setTab('churn');
+              setRollLeft("");
+              setRollRight("");
+              setTab("churn");
               // save the tab to the hash
-              window.location.hash = 'churn';
+              window.location.hash = "churn";
             }}
           >
             The Churn
@@ -485,7 +485,7 @@ export default function Charsheet() {
                   </div>
                 </div>
                 <div className="flex gap-4 flex-wrap mt-2">
-                  {['Insecure', 'Afraid', 'Angry', 'Hopeless', 'Guilty'].map(
+                  {["Insecure", "Afraid", "Angry", "Hopeless", "Guilty"].map(
                     (c) => (
                       <Condition
                         key={`${c}${new Date().getTime()}`}
@@ -511,7 +511,7 @@ export default function Charsheet() {
                 </div>
               </div>
               <TypographyH2 className="text-md text-muted-foreground mt-8 flex items-end justify-between">
-                Actions{' '}
+                Actions{" "}
                 <Popover
                   open={actionReferencePopopverOpen}
                   onOpenChange={setActionReferencePopopverOpen}
@@ -522,7 +522,7 @@ export default function Charsheet() {
                       variant="ghost"
                       className="p-1 text-blue-600 hover:text-blue-600 h-10 w-10"
                     >
-                      <BookOpen style={{ height: '24px', width: '24px' }} />
+                      <BookOpen style={{ height: "24px", width: "24px" }} />
                     </Button>
                   </PopoverTrigger>
                   <PopoverContent className="w-full relative">
@@ -590,9 +590,9 @@ export default function Charsheet() {
                     className="h-10 flex items-center hover:cursor-pointer group"
                     onClick={(e) => {
                       if (e.shiftKey) {
-                        rollAction('Heart', 'Defy');
+                        rollAction("Heart", "Defy");
                       } else {
-                        setRollLeft('Heart-Defy');
+                        setRollLeft("Heart-Defy");
                       }
                     }}
                   >
@@ -605,9 +605,9 @@ export default function Charsheet() {
                     className="h-10 flex items-center hover:cursor-pointer group"
                     onClick={(e) => {
                       if (e.shiftKey) {
-                        rollAction('Heart', 'Persuade');
+                        rollAction("Heart", "Persuade");
                       } else {
-                        setRollLeft('Heart-Persuade');
+                        setRollLeft("Heart-Persuade");
                       }
                     }}
                   >
@@ -620,8 +620,8 @@ export default function Charsheet() {
                   <ActionScore
                     key={`defy${new Date().getTime()}`}
                     score={attributes.Heart.Defy}
-                    onChange={(s) => {
-                      handleUpdateActionScore('Heart', 'Defy', s);
+                    onChange={(s: any) => {
+                      handleUpdateActionScore("Heart", "Defy", s);
                     }}
                     className="h-10 justify-end mr-2"
                   />
@@ -630,7 +630,7 @@ export default function Charsheet() {
                     key={`persuade${new Date().getTime()}`}
                     score={attributes.Heart.Persuade}
                     onChange={(s) => {
-                      handleUpdateActionScore('Heart', 'Persuade', s);
+                      handleUpdateActionScore("Heart", "Persuade", s);
                     }}
                     className="h-10 justify-end mr-2"
                   />
@@ -643,7 +643,7 @@ export default function Charsheet() {
                         className="h-10 hover:cursor-pointer group"
                         onClick={(e) => {
                           if (e.shiftKey) {
-                            rollAction('Heart', a);
+                            rollAction("Heart", a);
                           } else {
                             setRollRight(`Heart-${a}`);
                           }
@@ -663,7 +663,7 @@ export default function Charsheet() {
                         className="h-10 hover:cursor-pointer group"
                         onClick={(e) => {
                           if (e.shiftKey) {
-                            rollAction('Heart', a);
+                            rollAction("Heart", a);
                           } else {
                             setRollRight(`Heart-${a}`);
                           }
@@ -682,7 +682,7 @@ export default function Charsheet() {
                       className="h-10 hover:cursor-pointer group"
                       onClick={(e) => {
                         if (e.shiftKey) {
-                          rollAction('Heart', a);
+                          rollAction("Heart", a);
                         } else {
                           setRollRight(`Heart-${a}`);
                         }
@@ -701,7 +701,7 @@ export default function Charsheet() {
                         key={`bh-${k}`}
                         score={attributes.Heart[k]}
                         onChange={(s) => {
-                          handleUpdateActionScore('Heart', k, s);
+                          handleUpdateActionScore("Heart", k, s);
                         }}
                         className="h-10 justify-end"
                       />
@@ -714,7 +714,7 @@ export default function Charsheet() {
                         key={`th-${k}`}
                         score={attributes.Heart[k]}
                         onChange={(s) => {
-                          handleUpdateActionScore('Heart', k, s);
+                          handleUpdateActionScore("Heart", k, s);
                         }}
                         className="h-10 justify-end"
                       />
@@ -726,7 +726,7 @@ export default function Charsheet() {
                       key={`arh-${k}`}
                       score={attributes.Heart[k]}
                       onChange={(s) => {
-                        handleUpdateActionScore('Heart', k, s);
+                        handleUpdateActionScore("Heart", k, s);
                       }}
                       className="h-10 justify-end"
                     />
@@ -746,9 +746,9 @@ export default function Charsheet() {
                     className="h-10 flex items-center hover:cursor-pointer group"
                     onClick={(e) => {
                       if (e.shiftKey) {
-                        rollAction('Instinct', 'Charge');
+                        rollAction("Instinct", "Charge");
                       } else {
-                        setRollLeft('Instinct-Charge');
+                        setRollLeft("Instinct-Charge");
                       }
                     }}
                   >
@@ -761,9 +761,9 @@ export default function Charsheet() {
                     className="h-10 flex items-center hover:cursor-pointer group"
                     onClick={(e) => {
                       if (e.shiftKey) {
-                        rollAction('Instinct', 'Prowl');
+                        rollAction("Instinct", "Prowl");
                       } else {
-                        setRollLeft('Instinct-Prowl');
+                        setRollLeft("Instinct-Prowl");
                       }
                     }}
                   >
@@ -777,7 +777,7 @@ export default function Charsheet() {
                     key={`charge${new Date().getTime()}`}
                     score={attributes.Instinct.Charge}
                     onChange={(s) => {
-                      handleUpdateActionScore('Instinct', 'Charge', s);
+                      handleUpdateActionScore("Instinct", "Charge", s);
                     }}
                     className="h-10 justify-end mr-2"
                   />
@@ -786,7 +786,7 @@ export default function Charsheet() {
                     key={`prowl${new Date().getTime()}`}
                     score={attributes.Instinct.Prowl}
                     onChange={(s) => {
-                      handleUpdateActionScore('Instinct', 'Prowl', s);
+                      handleUpdateActionScore("Instinct", "Prowl", s);
                     }}
                     className="h-10 justify-end mr-2"
                   />
@@ -799,7 +799,7 @@ export default function Charsheet() {
                         className="h-10 hover:cursor-pointer group"
                         onClick={(e) => {
                           if (e.shiftKey) {
-                            rollAction('Instinct', a);
+                            rollAction("Instinct", a);
                           } else {
                             setRollRight(`Instinct-${a}`);
                           }
@@ -819,7 +819,7 @@ export default function Charsheet() {
                         className="h-10 hover:cursor-pointer group"
                         onClick={(e) => {
                           if (e.shiftKey) {
-                            rollAction('Instinct', a);
+                            rollAction("Instinct", a);
                           } else {
                             setRollRight(`Instinct-${a}`);
                           }
@@ -838,7 +838,7 @@ export default function Charsheet() {
                       className="h-10 hover:cursor-pointer group"
                       onClick={(e) => {
                         if (e.shiftKey) {
-                          rollAction('Instinct', a);
+                          rollAction("Instinct", a);
                         } else {
                           setRollRight(`Instinct-${a}`);
                         }
@@ -857,7 +857,7 @@ export default function Charsheet() {
                         key={`bi-${k}`}
                         score={attributes.Instinct[k]}
                         onChange={(s) => {
-                          handleUpdateActionScore('Instinct', k, s);
+                          handleUpdateActionScore("Instinct", k, s);
                         }}
                         className="h-10 justify-end"
                       />
@@ -870,7 +870,7 @@ export default function Charsheet() {
                         key={`ti-${k}`}
                         score={attributes.Instinct[k]}
                         onChange={(s) => {
-                          handleUpdateActionScore('Instinct', k, s);
+                          handleUpdateActionScore("Instinct", k, s);
                         }}
                         className="h-10 justify-end"
                       />
@@ -882,7 +882,7 @@ export default function Charsheet() {
                       key={`ari-${k}`}
                       score={attributes.Instinct[k]}
                       onChange={(s) => {
-                        handleUpdateActionScore('Instinct', k, s);
+                        handleUpdateActionScore("Instinct", k, s);
                       }}
                       className="h-10 justify-end"
                     />
@@ -902,9 +902,9 @@ export default function Charsheet() {
                     className="h-10 flex items-center hover:cursor-pointer group"
                     onClick={(e) => {
                       if (e.shiftKey) {
-                        rollAction('Machina', 'Suggest');
+                        rollAction("Machina", "Suggest");
                       } else {
-                        setRollLeft('Machina-Suggest');
+                        setRollLeft("Machina-Suggest");
                       }
                     }}
                   >
@@ -917,9 +917,9 @@ export default function Charsheet() {
                     className="h-10 flex items-center hover:cursor-pointer group"
                     onClick={(e) => {
                       if (e.shiftKey) {
-                        rollAction('Machina', 'Survey');
+                        rollAction("Machina", "Survey");
                       } else {
-                        setRollLeft('Machina-Survey');
+                        setRollLeft("Machina-Survey");
                       }
                     }}
                   >
@@ -933,7 +933,7 @@ export default function Charsheet() {
                     key={`suggest${new Date().getTime()}`}
                     score={attributes.Machina.Suggest}
                     onChange={(s) => {
-                      handleUpdateActionScore('Machina', 'Suggest', s);
+                      handleUpdateActionScore("Machina", "Suggest", s);
                     }}
                     className="h-10 justify-end mr-2"
                   />
@@ -942,7 +942,7 @@ export default function Charsheet() {
                     key={`survey${new Date().getTime()}`}
                     score={attributes.Machina.Survey}
                     onChange={(s) => {
-                      handleUpdateActionScore('Machina', 'Survey', s);
+                      handleUpdateActionScore("Machina", "Survey", s);
                     }}
                     className="h-10 justify-end mr-2"
                   />
@@ -955,7 +955,7 @@ export default function Charsheet() {
                         className="h-10 hover:cursor-pointer group"
                         onClick={(e) => {
                           if (e.shiftKey) {
-                            rollAction('Machina', a);
+                            rollAction("Machina", a);
                           } else {
                             setRollRight(`Machina-${a}`);
                           }
@@ -975,7 +975,7 @@ export default function Charsheet() {
                         className="h-10 hover:cursor-pointer group"
                         onClick={(e) => {
                           if (e.shiftKey) {
-                            rollAction('Machina', a);
+                            rollAction("Machina", a);
                           } else {
                             setRollRight(`Machina-${a}`);
                           }
@@ -994,7 +994,7 @@ export default function Charsheet() {
                       className="h-10 hover:cursor-pointer group"
                       onClick={(e) => {
                         if (e.shiftKey) {
-                          rollAction('Machina', a);
+                          rollAction("Machina", a);
                         } else {
                           setRollRight(`Machina-${a}`);
                         }
@@ -1013,7 +1013,7 @@ export default function Charsheet() {
                         key={`bm-${k}`}
                         score={attributes.Machina[k]}
                         onChange={(s) => {
-                          handleUpdateActionScore('Machina', k, s);
+                          handleUpdateActionScore("Machina", k, s);
                         }}
                         className="h-10 justify-end"
                       />
@@ -1026,7 +1026,7 @@ export default function Charsheet() {
                         key={`tm-${k}`}
                         score={attributes.Machina[k]}
                         onChange={(s) => {
-                          handleUpdateActionScore('Machina', k, s);
+                          handleUpdateActionScore("Machina", k, s);
                         }}
                         className="h-10 justify-end"
                       />
@@ -1038,7 +1038,7 @@ export default function Charsheet() {
                       key={`arm-${k}`}
                       score={attributes.Machina[k]}
                       onChange={(s) => {
-                        handleUpdateActionScore('Machina', k, s);
+                        handleUpdateActionScore("Machina", k, s);
                       }}
                       className="h-10 justify-end"
                     />
@@ -1197,7 +1197,7 @@ export default function Charsheet() {
                       setHArmor(!hArmor);
                       setChanges(true);
                     }}
-                  />{' '}
+                  />{" "}
                   Heavy
                 </div>
                 <div className="flex items-center gap-2">
@@ -1207,7 +1207,7 @@ export default function Charsheet() {
                       setSArmor(!sArmor);
                       setChanges(true);
                     }}
-                  />{' '}
+                  />{" "}
                   Special
                 </div>
               </div>
@@ -1300,23 +1300,23 @@ export default function Charsheet() {
                     onClick={() => {
                       if (!rollLeft && !rollRight) return;
                       if (!rollLeft) {
-                        const [attribute, action] = rollRight.split('-') as [
+                        const [attribute, action] = rollRight.split("-") as [
                           Attribute,
                           string
                         ];
                         rollAction(attribute, action);
                       } else if (!rollRight) {
-                        const [attribute, action] = rollLeft.split('-') as [
+                        const [attribute, action] = rollLeft.split("-") as [
                           Attribute,
                           string
                         ];
                         rollAction(attribute, action);
                       }
                       const [attributeLeft, actionLeft] = rollLeft.split(
-                        '-'
+                        "-"
                       ) as [Attribute, string];
                       const [attributeRight, actionRight] = rollRight.split(
-                        '-'
+                        "-"
                       ) as [Attribute, string];
                       rollResistMission(
                         attributeLeft,
@@ -1324,8 +1324,8 @@ export default function Charsheet() {
                         attributeRight,
                         actionRight
                       );
-                      setRollLeft('');
-                      setRollRight('');
+                      setRollLeft("");
+                      setRollRight("");
                       setBonusDiceRed(0);
                       setBonusDiceBlue(0);
                     }}
@@ -1336,32 +1336,32 @@ export default function Charsheet() {
                     onClick={() => {
                       if (!rollLeft && !rollRight) return;
                       if (!rollLeft) {
-                        const [attribute, action] = rollRight.split('-') as [
-                          'Heart' | 'Instinct' | 'Machina',
+                        const [attribute, action] = rollRight.split("-") as [
+                          "Heart" | "Instinct" | "Machina",
                           string
                         ];
                         rollAction(attribute, action);
                       } else if (!rollRight) {
-                        const [attribute, action] = rollLeft.split('-') as [
-                          'Heart' | 'Instinct' | 'Machina',
+                        const [attribute, action] = rollLeft.split("-") as [
+                          "Heart" | "Instinct" | "Machina",
                           string
                         ];
                         rollAction(attribute, action);
                       }
                       const [attributeLeft, actionLeft] = rollLeft.split(
-                        '-'
-                      ) as ['Heart' | 'Instinct' | 'Machina', string];
+                        "-"
+                      ) as ["Heart" | "Instinct" | "Machina", string];
                       const [attributeRight, actionRight] = rollRight.split(
-                        '-'
-                      ) as ['Heart' | 'Instinct' | 'Machina', string];
+                        "-"
+                      ) as ["Heart" | "Instinct" | "Machina", string];
                       rollComboMission(
                         attributeLeft,
                         actionLeft,
                         attributeRight,
                         actionRight
                       );
-                      setRollLeft('');
-                      setRollRight('');
+                      setRollLeft("");
+                      setRollRight("");
                       setBonusDiceRed(0);
                       setBonusDiceBlue(0);
                     }}
@@ -1374,32 +1374,32 @@ export default function Charsheet() {
                     onClick={() => {
                       if (!rollLeft && !rollRight) return;
                       if (!rollLeft) {
-                        const [attribute, action] = rollRight.split('-') as [
-                          'Heart' | 'Instinct' | 'Machina',
+                        const [attribute, action] = rollRight.split("-") as [
+                          "Heart" | "Instinct" | "Machina",
                           string
                         ];
                         rollAction(attribute, action);
                       } else if (!rollRight) {
-                        const [attribute, action] = rollLeft.split('-') as [
-                          'Heart' | 'Instinct' | 'Machina',
+                        const [attribute, action] = rollLeft.split("-") as [
+                          "Heart" | "Instinct" | "Machina",
                           string
                         ];
                         rollAction(attribute, action);
                       }
                       const [attributeLeft, actionLeft] = rollLeft.split(
-                        '-'
-                      ) as ['Heart' | 'Instinct' | 'Machina', string];
+                        "-"
+                      ) as ["Heart" | "Instinct" | "Machina", string];
                       const [attributeRight, actionRight] = rollRight.split(
-                        '-'
-                      ) as ['Heart' | 'Instinct' | 'Machina', string];
+                        "-"
+                      ) as ["Heart" | "Instinct" | "Machina", string];
                       rollProject(
                         attributeLeft,
                         actionLeft,
                         attributeRight,
                         actionRight
                       );
-                      setRollLeft('');
-                      setRollRight('');
+                      setRollLeft("");
+                      setRollRight("");
                       setBonusDiceRed(0);
                       setBonusDiceBlue(0);
                     }}
@@ -1444,7 +1444,7 @@ export default function Charsheet() {
                     </div>
                     <div className="text-muted-foreground text-xs leading-3 mt-2">
                       <span>
-                        You can gain bonus dice through:{' '}
+                        You can gain bonus dice through:{" "}
                         <ul className="italic mx-2">
                           <li>teamwork</li>
                           <li>push yourself</li>
@@ -1473,7 +1473,7 @@ export default function Charsheet() {
                           for (let i = 0; i < fortuneDice; i++) {
                             dice.push(2);
                           }
-                          rollCombo('Fortune', '', dice);
+                          rollCombo("Fortune", "", dice);
                           setFortuneDice(0);
                         }}
                       >
@@ -1498,42 +1498,42 @@ export default function Charsheet() {
               <div className="flex align-end justify-between">
                 <div className="flex items-center gap-2">
                   <Checkbox
-                    checked={loadout?.name === 'Discreet'}
+                    checked={loadout?.name === "Discreet"}
                     onCheckedChange={() => {
                       setLoadout(loadouts[0]);
                       setChanges(true);
                     }}
-                  />{' '}
+                  />{" "}
                   Discreet
                 </div>
                 <div className="flex items-center gap-2">
                   <Checkbox
-                    checked={loadout?.name === 'Conspicuous'}
+                    checked={loadout?.name === "Conspicuous"}
                     onCheckedChange={() => {
                       setLoadout(loadouts[1]);
                       setChanges(true);
                     }}
-                  />{' '}
+                  />{" "}
                   Conspicuous
                 </div>
                 <div className="flex items-center gap-2">
                   <Checkbox
-                    checked={loadout?.name === 'Bulky'}
+                    checked={loadout?.name === "Bulky"}
                     onCheckedChange={() => {
                       setLoadout(loadouts[2]);
                       setChanges(true);
                     }}
-                  />{' '}
+                  />{" "}
                   Bulky
                 </div>
                 <div className="flex items-center gap-2">
                   <Checkbox
-                    checked={loadout?.name === 'Encumbered'}
+                    checked={loadout?.name === "Encumbered"}
                     onCheckedChange={() => {
                       setLoadout(loadouts[3]);
                       setChanges(true);
                     }}
-                  />{' '}
+                  />{" "}
                   Encumbered
                 </div>
               </div>
@@ -1547,7 +1547,7 @@ export default function Charsheet() {
                   if (!items || items.length === 0) {
                     setItems([
                       {
-                        name: '',
+                        name: "",
                         slots: 1,
                       },
                     ]);
@@ -1555,7 +1555,7 @@ export default function Charsheet() {
                     setItems([
                       ...items,
                       {
-                        name: '',
+                        name: "",
                         slots: 1,
                       },
                     ]);
@@ -1590,14 +1590,14 @@ export default function Charsheet() {
               <Label htmlFor="look">Look</Label>
               <Textarea
                 id="look"
-                value={univQuestions?.[0] || ''}
+                value={univQuestions?.[0] || ""}
                 onChange={(e) => {
                   setUnivQuestions([
                     e.target.value,
-                    univQuestions?.[1] || '',
-                    univQuestions?.[2] || '',
-                    univQuestions?.[3] || '',
-                    univQuestions?.[4] || '',
+                    univQuestions?.[1] || "",
+                    univQuestions?.[2] || "",
+                    univQuestions?.[3] || "",
+                    univQuestions?.[4] || "",
                   ]);
                   handleDebounceChange();
                 }}
@@ -1607,14 +1607,14 @@ export default function Charsheet() {
               <Label htmlFor="dream">What&apos;s your dream?</Label>
               <Textarea
                 id="dream"
-                value={univQuestions?.[1] || ''}
+                value={univQuestions?.[1] || ""}
                 onChange={(e) => {
                   setUnivQuestions([
-                    univQuestions?.[0] || '',
+                    univQuestions?.[0] || "",
                     e.target.value,
-                    univQuestions?.[2] || '',
-                    univQuestions?.[3] || '',
-                    univQuestions?.[4] || '',
+                    univQuestions?.[2] || "",
+                    univQuestions?.[3] || "",
+                    univQuestions?.[4] || "",
                   ]);
                   handleDebounceChange();
                 }}
@@ -1624,14 +1624,14 @@ export default function Charsheet() {
               <Label htmlFor="faith">What do you have faith in?</Label>
               <Textarea
                 id="faith"
-                value={univQuestions?.[2] || ''}
+                value={univQuestions?.[2] || ""}
                 onChange={(e) => {
                   setUnivQuestions([
-                    univQuestions?.[0] || '',
-                    univQuestions?.[1] || '',
+                    univQuestions?.[0] || "",
+                    univQuestions?.[1] || "",
                     e.target.value,
-                    univQuestions?.[3] || '',
-                    univQuestions?.[4] || '',
+                    univQuestions?.[3] || "",
+                    univQuestions?.[4] || "",
                   ]);
                   handleDebounceChange();
                 }}
@@ -1641,14 +1641,14 @@ export default function Charsheet() {
               <Label htmlFor="hurt">What&apos;s your hurt?</Label>
               <Textarea
                 id="hurt"
-                value={univQuestions?.[3] || ''}
+                value={univQuestions?.[3] || ""}
                 onChange={(e) => {
                   setUnivQuestions([
-                    univQuestions?.[0] || '',
-                    univQuestions?.[1] || '',
-                    univQuestions?.[2] || '',
+                    univQuestions?.[0] || "",
+                    univQuestions?.[1] || "",
+                    univQuestions?.[2] || "",
                     e.target.value,
-                    univQuestions?.[4] || '',
+                    univQuestions?.[4] || "",
                   ]);
                   handleDebounceChange();
                 }}
@@ -1660,13 +1660,13 @@ export default function Charsheet() {
               </Label>
               <Textarea
                 id="option"
-                value={univQuestions?.[4] || ''}
+                value={univQuestions?.[4] || ""}
                 onChange={(e) => {
                   setUnivQuestions([
-                    univQuestions?.[0] || '',
-                    univQuestions?.[1] || '',
-                    univQuestions?.[2] || '',
-                    univQuestions?.[3] || '',
+                    univQuestions?.[0] || "",
+                    univQuestions?.[1] || "",
+                    univQuestions?.[2] || "",
+                    univQuestions?.[3] || "",
                     e.target.value,
                   ]);
                   handleDebounceChange();
@@ -1727,7 +1727,7 @@ export default function Charsheet() {
                 </Label>
                 <Textarea
                   id={`q-${i}`}
-                  value={questions.get(`${selectedBackground.name}-${i}`) || ''}
+                  value={questions.get(`${selectedBackground.name}-${i}`) || ""}
                   onChange={(e) => {
                     handleUpdateQuestion(
                       `${selectedBackground.name}-${i}`,
@@ -1810,7 +1810,7 @@ export default function Charsheet() {
                   </div>
                 </div>
                 <div className="flex gap-4 flex-wrap mt-2">
-                  {['Insecure', 'Afraid', 'Angry', 'Hopeless', 'Guilty'].map(
+                  {["Insecure", "Afraid", "Angry", "Hopeless", "Guilty"].map(
                     (c) => (
                       <Condition
                         key={`${c}${new Date().getTime()}`}
@@ -1836,7 +1836,7 @@ export default function Charsheet() {
                 </div>
               </div>
               <TypographyH2 className="text-md text-muted-foreground mt-8 flex items-end justify-between">
-                Actions{' '}
+                Actions{" "}
                 <Popover
                   open={actionReferencePopopverOpen}
                   onOpenChange={setActionReferencePopopverOpen}
@@ -1847,7 +1847,7 @@ export default function Charsheet() {
                       variant="ghost"
                       className="p-1 text-blue-600 hover:text-blue-600 h-10 w-10"
                     >
-                      <BookOpen style={{ height: '24px', width: '24px' }} />
+                      <BookOpen style={{ height: "24px", width: "24px" }} />
                     </Button>
                   </PopoverTrigger>
                   <PopoverContent className="w-full relative">
@@ -1909,9 +1909,9 @@ export default function Charsheet() {
                     className="h-10 flex items-center hover:cursor-pointer group"
                     onClick={(e) => {
                       if (e.shiftKey) {
-                        rollAction('Heart', 'Defy');
+                        rollAction("Heart", "Defy");
                       } else {
-                        setRollLeft('Heart-Defy');
+                        setRollLeft("Heart-Defy");
                       }
                     }}
                   >
@@ -1924,9 +1924,9 @@ export default function Charsheet() {
                     className="h-10 flex items-center hover:cursor-pointer group"
                     onClick={(e) => {
                       if (e.shiftKey) {
-                        rollAction('Heart', 'Persuade');
+                        rollAction("Heart", "Persuade");
                       } else {
-                        setRollLeft('Heart-Persuade');
+                        setRollLeft("Heart-Persuade");
                       }
                     }}
                   >
@@ -1940,7 +1940,7 @@ export default function Charsheet() {
                     key={`defy${new Date().getTime()}`}
                     score={attributes.Heart.Defy}
                     onChange={(s) => {
-                      handleUpdateActionScore('Heart', 'Defy', s);
+                      handleUpdateActionScore("Heart", "Defy", s);
                     }}
                     className="h-10 justify-end mr-2"
                   />
@@ -1949,7 +1949,7 @@ export default function Charsheet() {
                     key={`persuade${new Date().getTime()}`}
                     score={attributes.Heart.Persuade}
                     onChange={(s) => {
-                      handleUpdateActionScore('Heart', 'Persuade', s);
+                      handleUpdateActionScore("Heart", "Persuade", s);
                     }}
                     className="h-10 justify-end mr-2"
                   />
@@ -1962,7 +1962,7 @@ export default function Charsheet() {
                         className="h-10 hover:cursor-pointer group"
                         onClick={(e) => {
                           if (e.shiftKey) {
-                            rollAction('Heart', a);
+                            rollAction("Heart", a);
                           } else {
                             setRollRight(`Heart-${a}`);
                           }
@@ -1982,7 +1982,7 @@ export default function Charsheet() {
                         className="h-10 hover:cursor-pointer group"
                         onClick={(e) => {
                           if (e.shiftKey) {
-                            rollAction('Heart', a);
+                            rollAction("Heart", a);
                           } else {
                             setRollRight(`Heart-${a}`);
                           }
@@ -2001,7 +2001,7 @@ export default function Charsheet() {
                       className="h-10 hover:cursor-pointer group"
                       onClick={(e) => {
                         if (e.shiftKey) {
-                          rollAction('Heart', a);
+                          rollAction("Heart", a);
                         } else {
                           setRollRight(`Heart-${a}`);
                         }
@@ -2020,7 +2020,7 @@ export default function Charsheet() {
                         key={`bh-${k}`}
                         score={attributes.Heart[k]}
                         onChange={(s) => {
-                          handleUpdateActionScore('Heart', k, s);
+                          handleUpdateActionScore("Heart", k, s);
                         }}
                         className="h-10 justify-end"
                       />
@@ -2033,7 +2033,7 @@ export default function Charsheet() {
                         key={`th-${k}`}
                         score={attributes.Heart[k]}
                         onChange={(s) => {
-                          handleUpdateActionScore('Heart', k, s);
+                          handleUpdateActionScore("Heart", k, s);
                         }}
                         className="h-10 justify-end"
                       />
@@ -2045,7 +2045,7 @@ export default function Charsheet() {
                       key={`arh-${k}`}
                       score={attributes.Heart[k]}
                       onChange={(s) => {
-                        handleUpdateActionScore('Heart', k, s);
+                        handleUpdateActionScore("Heart", k, s);
                       }}
                       className="h-10 justify-end"
                     />
@@ -2065,9 +2065,9 @@ export default function Charsheet() {
                     className="h-10 flex items-center hover:cursor-pointer group"
                     onClick={(e) => {
                       if (e.shiftKey) {
-                        rollAction('Instinct', 'Charge');
+                        rollAction("Instinct", "Charge");
                       } else {
-                        setRollLeft('Instinct-Charge');
+                        setRollLeft("Instinct-Charge");
                       }
                     }}
                   >
@@ -2080,9 +2080,9 @@ export default function Charsheet() {
                     className="h-10 flex items-center hover:cursor-pointer group"
                     onClick={(e) => {
                       if (e.shiftKey) {
-                        rollAction('Instinct', 'Prowl');
+                        rollAction("Instinct", "Prowl");
                       } else {
-                        setRollLeft('Instinct-Prowl');
+                        setRollLeft("Instinct-Prowl");
                       }
                     }}
                   >
@@ -2096,7 +2096,7 @@ export default function Charsheet() {
                     key={`charge${new Date().getTime()}`}
                     score={attributes.Instinct.Charge}
                     onChange={(s) => {
-                      handleUpdateActionScore('Instinct', 'Charge', s);
+                      handleUpdateActionScore("Instinct", "Charge", s);
                     }}
                     className="h-10 justify-end mr-2"
                   />
@@ -2105,7 +2105,7 @@ export default function Charsheet() {
                     key={`prowl${new Date().getTime()}`}
                     score={attributes.Instinct.Prowl}
                     onChange={(s) => {
-                      handleUpdateActionScore('Instinct', 'Prowl', s);
+                      handleUpdateActionScore("Instinct", "Prowl", s);
                     }}
                     className="h-10 justify-end mr-2"
                   />
@@ -2118,7 +2118,7 @@ export default function Charsheet() {
                         className="h-10 hover:cursor-pointer group"
                         onClick={(e) => {
                           if (e.shiftKey) {
-                            rollAction('Instinct', a);
+                            rollAction("Instinct", a);
                           } else {
                             setRollRight(`Instinct-${a}`);
                           }
@@ -2138,7 +2138,7 @@ export default function Charsheet() {
                         className="h-10 hover:cursor-pointer group"
                         onClick={(e) => {
                           if (e.shiftKey) {
-                            rollAction('Instinct', a);
+                            rollAction("Instinct", a);
                           } else {
                             setRollRight(`Instinct-${a}`);
                           }
@@ -2157,7 +2157,7 @@ export default function Charsheet() {
                       className="h-10 hover:cursor-pointer group"
                       onClick={(e) => {
                         if (e.shiftKey) {
-                          rollAction('Instinct', a);
+                          rollAction("Instinct", a);
                         } else {
                           setRollRight(`Instinct-${a}`);
                         }
@@ -2176,7 +2176,7 @@ export default function Charsheet() {
                         key={`bi-${k}`}
                         score={attributes.Instinct[k]}
                         onChange={(s) => {
-                          handleUpdateActionScore('Instinct', k, s);
+                          handleUpdateActionScore("Instinct", k, s);
                         }}
                         className="h-10 justify-end"
                       />
@@ -2189,7 +2189,7 @@ export default function Charsheet() {
                         key={`ti-${k}`}
                         score={attributes.Instinct[k]}
                         onChange={(s) => {
-                          handleUpdateActionScore('Instinct', k, s);
+                          handleUpdateActionScore("Instinct", k, s);
                         }}
                         className="h-10 justify-end"
                       />
@@ -2201,7 +2201,7 @@ export default function Charsheet() {
                       key={`ari-${k}`}
                       score={attributes.Instinct[k]}
                       onChange={(s) => {
-                        handleUpdateActionScore('Instinct', k, s);
+                        handleUpdateActionScore("Instinct", k, s);
                       }}
                       className="h-10 justify-end"
                     />
@@ -2221,9 +2221,9 @@ export default function Charsheet() {
                     className="h-10 flex items-center hover:cursor-pointer group"
                     onClick={(e) => {
                       if (e.shiftKey) {
-                        rollAction('Machina', 'Suggest');
+                        rollAction("Machina", "Suggest");
                       } else {
-                        setRollLeft('Machina-Suggest');
+                        setRollLeft("Machina-Suggest");
                       }
                     }}
                   >
@@ -2236,9 +2236,9 @@ export default function Charsheet() {
                     className="h-10 flex items-center hover:cursor-pointer group"
                     onClick={(e) => {
                       if (e.shiftKey) {
-                        rollAction('Machina', 'Survey');
+                        rollAction("Machina", "Survey");
                       } else {
-                        setRollLeft('Machina-Survey');
+                        setRollLeft("Machina-Survey");
                       }
                     }}
                   >
@@ -2252,7 +2252,7 @@ export default function Charsheet() {
                     key={`suggest${new Date().getTime()}`}
                     score={attributes.Machina.Suggest}
                     onChange={(s) => {
-                      handleUpdateActionScore('Machina', 'Suggest', s);
+                      handleUpdateActionScore("Machina", "Suggest", s);
                     }}
                     className="h-10 justify-end mr-2"
                   />
@@ -2261,7 +2261,7 @@ export default function Charsheet() {
                     key={`survey${new Date().getTime()}`}
                     score={attributes.Machina.Survey}
                     onChange={(s) => {
-                      handleUpdateActionScore('Machina', 'Survey', s);
+                      handleUpdateActionScore("Machina", "Survey", s);
                     }}
                     className="h-10 justify-end mr-2"
                   />
@@ -2274,7 +2274,7 @@ export default function Charsheet() {
                         className="h-10 hover:cursor-pointer group"
                         onClick={(e) => {
                           if (e.shiftKey) {
-                            rollAction('Machina', a);
+                            rollAction("Machina", a);
                           } else {
                             setRollRight(`Machina-${a}`);
                           }
@@ -2294,7 +2294,7 @@ export default function Charsheet() {
                         className="h-10 hover:cursor-pointer group"
                         onClick={(e) => {
                           if (e.shiftKey) {
-                            rollAction('Machina', a);
+                            rollAction("Machina", a);
                           } else {
                             setRollRight(`Machina-${a}`);
                           }
@@ -2313,7 +2313,7 @@ export default function Charsheet() {
                       className="h-10 hover:cursor-pointer group"
                       onClick={(e) => {
                         if (e.shiftKey) {
-                          rollAction('Machina', a);
+                          rollAction("Machina", a);
                         } else {
                           setRollRight(`Machina-${a}`);
                         }
@@ -2332,7 +2332,7 @@ export default function Charsheet() {
                         key={`bm-${k}`}
                         score={attributes.Machina[k]}
                         onChange={(s) => {
-                          handleUpdateActionScore('Machina', k, s);
+                          handleUpdateActionScore("Machina", k, s);
                         }}
                         className="h-10 justify-end"
                       />
@@ -2345,7 +2345,7 @@ export default function Charsheet() {
                         key={`tm-${k}`}
                         score={attributes.Machina[k]}
                         onChange={(s) => {
-                          handleUpdateActionScore('Machina', k, s);
+                          handleUpdateActionScore("Machina", k, s);
                         }}
                         className="h-10 justify-end"
                       />
@@ -2357,7 +2357,7 @@ export default function Charsheet() {
                       key={`arm-${k}`}
                       score={attributes.Machina[k]}
                       onChange={(s) => {
-                        handleUpdateActionScore('Machina', k, s);
+                        handleUpdateActionScore("Machina", k, s);
                       }}
                       className="h-10 justify-end"
                     />
@@ -2378,13 +2378,13 @@ export default function Charsheet() {
                       ...prevBonds,
                       Personal: [
                         ...prevBonds.Personal,
-                        { name: '', score: [0, 0], description: '' },
+                        { name: "", score: [0, 0], description: "" },
                       ],
                     }));
                     setChanges(true);
                   }}
                 >
-                  <DiamondPlus style={{ height: '24px', width: '24px' }} />
+                  <DiamondPlus style={{ height: "24px", width: "24px" }} />
                 </Button>
               </TypographyH3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -2445,13 +2445,13 @@ export default function Charsheet() {
                       ...prevBonds,
                       Familial: [
                         ...prevBonds.Familial,
-                        { name: '', score: [0, 0], description: '' },
+                        { name: "", score: [0, 0], description: "" },
                       ],
                     }));
                     setChanges(true);
                   }}
                 >
-                  <DiamondPlus style={{ height: '24px', width: '24px' }} />
+                  <DiamondPlus style={{ height: "24px", width: "24px" }} />
                 </Button>
               </TypographyH3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -2584,13 +2584,13 @@ export default function Charsheet() {
                       ...prevBonds,
                       Crew: [
                         ...prevBonds.Crew,
-                        { name: '', score: [1, 0], description: '' },
+                        { name: "", score: [1, 0], description: "" },
                       ],
                     }));
                     setChanges(true);
                   }}
                 >
-                  <DiamondPlus style={{ height: '24px', width: '24px' }} />
+                  <DiamondPlus style={{ height: "24px", width: "24px" }} />
                 </Button>
               </TypographyH3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -2744,7 +2744,7 @@ export default function Charsheet() {
                       setHArmor(!hArmor);
                       setChanges(true);
                     }}
-                  />{' '}
+                  />{" "}
                   Heavy
                 </div>
                 <div className="flex items-center gap-2">
@@ -2754,7 +2754,7 @@ export default function Charsheet() {
                       setSArmor(!sArmor);
                       setChanges(true);
                     }}
-                  />{' '}
+                  />{" "}
                   Special
                 </div>
               </div>
@@ -2846,23 +2846,23 @@ export default function Charsheet() {
                     onClick={() => {
                       if (!rollLeft && !rollRight) return;
                       if (!rollLeft) {
-                        const [attribute, action] = rollRight.split('-') as [
+                        const [attribute, action] = rollRight.split("-") as [
                           Attribute,
                           string
                         ];
                         rollAction(attribute, action);
                       } else if (!rollRight) {
-                        const [attribute, action] = rollLeft.split('-') as [
+                        const [attribute, action] = rollLeft.split("-") as [
                           Attribute,
                           string
                         ];
                         rollAction(attribute, action);
                       }
                       const [attributeLeft, actionLeft] = rollLeft.split(
-                        '-'
+                        "-"
                       ) as [Attribute, string];
                       const [attributeRight, actionRight] = rollRight.split(
-                        '-'
+                        "-"
                       ) as [Attribute, string];
                       rollResistMission(
                         attributeLeft,
@@ -2870,8 +2870,8 @@ export default function Charsheet() {
                         attributeRight,
                         actionRight
                       );
-                      setRollLeft('');
-                      setRollRight('');
+                      setRollLeft("");
+                      setRollRight("");
                       setBonusDiceRed(0);
                       setBonusDiceBlue(0);
                     }}
@@ -2882,32 +2882,32 @@ export default function Charsheet() {
                     onClick={() => {
                       if (!rollLeft && !rollRight) return;
                       if (!rollLeft) {
-                        const [attribute, action] = rollRight.split('-') as [
-                          'Heart' | 'Instinct' | 'Machina',
+                        const [attribute, action] = rollRight.split("-") as [
+                          "Heart" | "Instinct" | "Machina",
                           string
                         ];
                         rollAction(attribute, action);
                       } else if (!rollRight) {
-                        const [attribute, action] = rollLeft.split('-') as [
-                          'Heart' | 'Instinct' | 'Machina',
+                        const [attribute, action] = rollLeft.split("-") as [
+                          "Heart" | "Instinct" | "Machina",
                           string
                         ];
                         rollAction(attribute, action);
                       }
                       const [attributeLeft, actionLeft] = rollLeft.split(
-                        '-'
-                      ) as ['Heart' | 'Instinct' | 'Machina', string];
+                        "-"
+                      ) as ["Heart" | "Instinct" | "Machina", string];
                       const [attributeRight, actionRight] = rollRight.split(
-                        '-'
-                      ) as ['Heart' | 'Instinct' | 'Machina', string];
+                        "-"
+                      ) as ["Heart" | "Instinct" | "Machina", string];
                       rollComboMission(
                         attributeLeft,
                         actionLeft,
                         attributeRight,
                         actionRight
                       );
-                      setRollLeft('');
-                      setRollRight('');
+                      setRollLeft("");
+                      setRollRight("");
                       setBonusDiceRed(0);
                       setBonusDiceBlue(0);
                     }}
@@ -2920,32 +2920,32 @@ export default function Charsheet() {
                     onClick={() => {
                       if (!rollLeft && !rollRight) return;
                       if (!rollLeft) {
-                        const [attribute, action] = rollRight.split('-') as [
-                          'Heart' | 'Instinct' | 'Machina',
+                        const [attribute, action] = rollRight.split("-") as [
+                          "Heart" | "Instinct" | "Machina",
                           string
                         ];
                         rollAction(attribute, action);
                       } else if (!rollRight) {
-                        const [attribute, action] = rollLeft.split('-') as [
-                          'Heart' | 'Instinct' | 'Machina',
+                        const [attribute, action] = rollLeft.split("-") as [
+                          "Heart" | "Instinct" | "Machina",
                           string
                         ];
                         rollAction(attribute, action);
                       }
                       const [attributeLeft, actionLeft] = rollLeft.split(
-                        '-'
-                      ) as ['Heart' | 'Instinct' | 'Machina', string];
+                        "-"
+                      ) as ["Heart" | "Instinct" | "Machina", string];
                       const [attributeRight, actionRight] = rollRight.split(
-                        '-'
-                      ) as ['Heart' | 'Instinct' | 'Machina', string];
+                        "-"
+                      ) as ["Heart" | "Instinct" | "Machina", string];
                       rollProject(
                         attributeLeft,
                         actionLeft,
                         attributeRight,
                         actionRight
                       );
-                      setRollLeft('');
-                      setRollRight('');
+                      setRollLeft("");
+                      setRollRight("");
                       setBonusDiceRed(0);
                       setBonusDiceBlue(0);
                     }}
@@ -2990,7 +2990,7 @@ export default function Charsheet() {
                     </div>
                     <div className="text-muted-foreground text-xs leading-3 mt-2">
                       <span>
-                        You can gain bonus dice through:{' '}
+                        You can gain bonus dice through:{" "}
                         <ul className="italic mx-2">
                           <li>teamwork</li>
                           <li>push yourself</li>
@@ -3019,7 +3019,7 @@ export default function Charsheet() {
                           for (let i = 0; i < fortuneDice; i++) {
                             dice.push(2);
                           }
-                          rollCombo('Fortune', '', dice);
+                          rollCombo("Fortune", "", dice);
                           setFortuneDice(0);
                         }}
                       >
@@ -3030,7 +3030,7 @@ export default function Charsheet() {
                 </div>
               </Card>
               <TypographyH2 className="mt-4 flex items-end justify-between">
-                Subsistence{' '}
+                Subsistence{" "}
                 <div className="flex gap-4">
                   <div className="border-[1px] border-border rounded-md p-1 flex items-center gap-2 select-none basis-[120px]">
                     <div className="shrink-9">
@@ -3075,14 +3075,14 @@ export default function Charsheet() {
                 <span className="text-red-500">{selectedBackground?.name}</span>
                 )
               </TypographyH3>
-              <Crit background={selectedBackground?.name || ''} />
+              <Crit background={selectedBackground?.name || ""} />
               <TypographyH3 className="text-sm text-muted-foreground mt-4">
                 Failure Consequences (
                 <span className="text-red-500">{selectedBackground?.name}</span>
                 )
               </TypographyH3>
               <TypographyP>Choose one:</TypographyP>
-              <Consequences background={selectedBackground?.name || ''} />
+              <Consequences background={selectedBackground?.name || ""} />
               <TypographyH2 className="mt-4">Agendas</TypographyH2>
               {selectedSkillset && (
                 <TypographyP>
