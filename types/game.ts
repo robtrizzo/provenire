@@ -108,3 +108,11 @@ export type Item = {
   traits: string[];
   description: string;
 };
+
+export type Faction = {
+  name: string;
+  location: string;
+  description: string;
+  agenda: string;
+  scorn: number;
+}
