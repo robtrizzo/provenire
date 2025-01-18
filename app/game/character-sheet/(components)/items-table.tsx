@@ -1,5 +1,5 @@
-import { useCallback, useState } from 'react';
-import { Item, Loadout } from '@/types/game';
+import { useCallback, useState } from "react";
+import { Item, Loadout } from "@/types/game";
 import {
   Table,
   TableHead,
@@ -7,19 +7,19 @@ import {
   TableRow,
   TableCell,
   TableBody,
-} from '@/components/ui/table';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+} from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/ui/popover';
-import { DiamondPlus, X, BookOpen } from 'lucide-react';
-import { debounce } from '@/lib/utils';
-import { Close } from '@radix-ui/react-popover';
-import { TypographyH4 } from '@/components/ui/typography';
-import basic_items from '@/public/basic_items.json';
+} from "@/components/ui/popover";
+import { DiamondPlus, X, BookOpen } from "lucide-react";
+import { debounce } from "@/lib/utils";
+import { Close } from "@radix-ui/react-popover";
+import { TypographyH4 } from "@/components/ui/typography";
+import items from "@/public/items.json";
 
 export default function ItemsTable({
   className,
@@ -45,7 +45,7 @@ export default function ItemsTable({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedHandleChangeItemName = useCallback(
     debounce((index: number, name: string) => {
-      console.log('debouncedHandleChangeItemName'),
+      console.log("debouncedHandleChangeItemName"),
         handleChangeItemName(index, name);
     }, 300),
     [handleChangeItemName]
@@ -100,7 +100,7 @@ export default function ItemsTable({
                 handleAddItem();
               }}
             >
-              <DiamondPlus style={{ height: '24px', width: '24px' }} />
+              <DiamondPlus style={{ height: "24px", width: "24px" }} />
             </Button>
           </TableHead>
         </TableRow>
@@ -181,7 +181,7 @@ function ItemsList({ addBasicItem }: { addBasicItem: (item: Item) => void }) {
           variant="ghost"
           className="p-1 text-blue-600 hover:text-blue-600 h-10 w-10"
         >
-          <BookOpen style={{ height: '24px', width: '24px' }} />
+          <BookOpen style={{ height: "24px", width: "24px" }} />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-80 relative">
@@ -194,7 +194,7 @@ function ItemsList({ addBasicItem }: { addBasicItem: (item: Item) => void }) {
             List of items available to your character
           </span>
           <div className="flex flex-col gap-1 mt-2">
-            {basic_items.map((item, i) => (
+            {items.starting.map((item, i) => (
               <div
                 key={i}
                 className="flex items-center justify-between gap-2 box-border px-2 rounded-sm hover:bg-secondary hover:cursor-pointer"

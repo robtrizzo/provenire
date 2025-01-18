@@ -1,10 +1,5 @@
-import {
-  TypographyH1,
-  TypographyH3,
-  TypographyP,
-  TypographyUnorderedList,
-} from '@/components/ui/typography';
-import Breadcrumbs from '@/components/ui/breadcrumbs';
+import { TypographyH1, TypographyP } from "@/components/ui/typography";
+import Breadcrumbs from "@/components/ui/breadcrumbs";
 import {
   Brain,
   Handshake,
@@ -15,12 +10,12 @@ import {
   Droplet,
   Eye,
   Siren,
-} from 'lucide-react';
+} from "lucide-react";
 
 export default function Page() {
   return (
     <>
-      <Breadcrumbs crumbs={[{ name: 'Play', href: '#' }]} />
+      <Breadcrumbs crumbs={[{ name: "Play", href: "#" }]} />
       <TypographyH1>The Crew</TypographyH1>
       <div className="flex items-center gap-2 border-solid border-text-secondary border-2 box-border py-2 px-4 rounded-md">
         character portraits and names go here
@@ -30,14 +25,14 @@ export default function Page() {
           <Brain className="text-teal-500" /> <TypographyP>Intel</TypographyP>
         </ResourceBox>
         <ResourceBox>
-          <Handshake className="text-fuchsia-500" />{' '}
+          <Handshake className="text-fuchsia-500" />{" "}
           <TypographyP>Goodwill</TypographyP>
         </ResourceBox>
         <ResourceBox>
           <Wheat className="text-amber-500" /> <TypographyP>Food</TypographyP>
         </ResourceBox>
         <ResourceBox>
-          <Anvil className="text-violet-500" />{' '}
+          <Anvil className="text-violet-500" />{" "}
           <TypographyP>Materials</TypographyP>
         </ResourceBox>
         <ResourceBox>

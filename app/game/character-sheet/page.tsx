@@ -620,7 +620,7 @@ export default function Charsheet() {
                   <ActionScore
                     key={`defy${new Date().getTime()}`}
                     score={attributes.Heart.Defy}
-                    onChange={(s: any) => {
+                    onChange={(s) => {
                       handleUpdateActionScore("Heart", "Defy", s);
                     }}
                     className="h-10 justify-end mr-2"

@@ -54,7 +54,7 @@ export default function Clock({
         />
       );
     });
-  }, [max, dark]);
+  }, [max, dark, cx, cy, outerRadius]);
 
   return (
     theme && (

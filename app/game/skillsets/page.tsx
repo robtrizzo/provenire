@@ -657,8 +657,8 @@ export default async function Page() {
       </TypographyP>
       <TypographyOrderedList>
         <li>
-          <b>Rooms</b>: Crew clears the permanent <b>1 harm</b> "tired" from
-          their sheet.
+          <b>Rooms</b>: Crew clears the permanent <b>1 harm</b>{" "}
+          &quot;tired&quot; from their sheet.
         </li>
         <li>
           <b>Locked doors</b>: Crew is no longer vulnerable while resting
@@ -700,8 +700,8 @@ export default async function Page() {
           <b>Holding Chamber</b>: secure place to hold one prisoner.
         </li>
         <li>
-          <b>Meeting Room</b>: creates a repeating 5-clock "outisde contact"
-          representing new factions reaching out to the crew.
+          <b>Meeting Room</b>: creates a repeating 5-clock &quot;outisde
+          contact&quot; representing new factions reaching out to the crew.
         </li>
         <li>
           <b>Common Room</b>: group rolls during downtime can treat multiple 6s

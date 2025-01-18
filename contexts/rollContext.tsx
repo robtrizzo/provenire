@@ -394,7 +394,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   ) {
     const score1 = attributes?.[attribute1]?.[action1] || [0, 0];
     const score2 = attributes?.[attribute2]?.[action2] || [0, 0];
-    let dice = [...score1, ...score2];
+    const dice = [...score1, ...score2];
     for (let i = 0; i < bonusDiceRed; i++) {
       dice.push(1);
     }
