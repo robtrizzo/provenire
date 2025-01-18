@@ -20,7 +20,7 @@ const SubsistenceConsequences: React.FC<SubsistenceConsequencesProps> = ({
         components[background.toLocaleLowerCase() as keyof typeof components];
       if (loadComponentFn) {
         try {
-          const mod = await loadComponentFn();
+          const mod = (await loadComponentFn()) as { default: React.FC };
           if (mod && mod.default) {
             setDynamicComponent(() => mod.default);
           } else {
