@@ -4,7 +4,7 @@ import { checkUserAuthenticated, checkUserRole } from "@/lib/auth";
 import redis, { findKeysByPattern } from "@/lib/redis";
 
 async function getAllCharactersForUser(userId: string) {
-  const pattern = `user:${userId}:characters:*`;
+  const pattern = `user:${userId}:character:*`;
   const keys = await findKeysByPattern(pattern);
   const characters = await Promise.all(keys.map((key) => redis.get(key)));
   return characters;

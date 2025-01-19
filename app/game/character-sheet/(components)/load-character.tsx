@@ -155,28 +155,8 @@ function LoadCharacterButton({
   closeDialog: () => void;
   closePopover: () => void;
 }) {
-  const {
-    data,
-    isPending,
-    refetch: fetchCharacter,
-  } = useQuery({
-    queryKey: ["characters", char.name],
-    queryFn: async () => {
-      const response = await fetch(`/api/characters/${char.name}`, {
-        cache: "no-cache",
-      });
-      return response.json();
-    },
-    enabled: false,
-  });
-
-  async function loadCharacter() {
-    const characterData = await fetchCharacter();
-    if (!characterData) {
-      console.error("Error loading character ", char.name);
-      return;
-    }
-    localStorage.setItem("charsheet", JSON.stringify(characterData));
+  function loadCharacter() {
+    localStorage.setItem("charsheet", JSON.stringify(char));
     triggerCharacterLoaded();
     closeDialog();
     closePopover();
@@ -187,7 +167,7 @@ function LoadCharacterButton({
       key={char.id}
       variant="outline"
       className="flex justify-between"
-      onClick={async () => await loadCharacter()}
+      onClick={() => loadCharacter()}
     >
       {char.name}
       {/* {char.createdAt && (
