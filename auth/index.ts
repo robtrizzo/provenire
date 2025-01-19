@@ -19,6 +19,9 @@ function getDiscordCredentials() {
 
 const authOptions: NextAuthConfig = {
   adapter: UpstashRedisAdapter(db),
+  session: {
+    strategy: 'jwt'
+  },
   providers: [
     DiscordProvider({
       clientId: getDiscordCredentials().clientId,
@@ -33,21 +36,32 @@ const authOptions: NextAuthConfig = {
         token.id = user!.id!;
         return token;
       }
+      
+      if (!dbUser.role) {
+        token.role = 'user'
+        await db.set(`user:${token.id}`, {
+          id: token.id,
+          name: token.name,
+          email: token.email,
+          image: token.picture,
+          role: token.role
+        })
+      }
 
-      token.id = dbUser.id;
-      token.name = dbUser.name;
-      token.email = dbUser.email;
-      token.avatar = dbUser.avatar;
-      token.role = dbUser.role!;
-
-      return token;
+      return {
+        id: dbUser.id,
+        name: dbUser.name,
+        email: dbUser.email,
+        image: dbUser.image,
+        role: token.role,
+      };
     },
     async session({ session, token }) {
       if (token) {
         session.user.id = token.id;
         session.user.name = token.name;
         session.user.email = token.email;
-        session.user.image = token.avatar;
+        session.user.image = token.image;
         session.user.role = token.role;
       }
 

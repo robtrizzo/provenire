@@ -1,7 +1,7 @@
 interface User {
     name: string;
     email: string;
-    avatar: string;
+    image: string;
     id: string;
     role?: string;
 }

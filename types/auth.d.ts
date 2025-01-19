@@ -8,7 +8,7 @@ declare module 'next-auth/jwt' {
     id: UserId;
     name: string;
     email: string;
-    avatar: string;
+    image: string;
     role: string;
   }
 }
