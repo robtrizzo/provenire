@@ -9,9 +9,7 @@ export default function XPClocks({
   current: number;
   setVal: (n: number) => void;
 }) {
-  console.log("current", current);
   const [xp, setXp] = useState<number>(current);
-  console.log("xp", xp);
 
   const numClocks = 5;
 
