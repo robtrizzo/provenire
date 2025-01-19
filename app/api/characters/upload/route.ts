@@ -2,13 +2,14 @@ import { NextResponse } from "next/server";
 import { auth } from "@/auth/index";
 import { checkUserAuthenticated, checkUserRole } from "@/lib/auth";
 import redis from "@/lib/redis";
+import { Character } from "@/types/game";
 
 async function insertCharacter({
   userId,
   characterJSON,
 }: {
   userId: string;
-  characterJSON: any;
+  characterJSON: Character;
 }) {
   const characterName = characterJSON?.name;
   if (!characterName) {

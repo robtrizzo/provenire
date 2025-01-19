@@ -1,3 +1,7 @@
+export interface Character {
+  name: string;
+}
+
 export type Archetype = {
   name: string;
   questions: string[];
@@ -115,11 +119,11 @@ export type Faction = {
   description: string;
   agenda: string;
   scorn: number;
-}
+};
 
 export type Cohort = {
   name: string;
   location: string;
   ticks: number;
   traits: string[];
-}
+};
