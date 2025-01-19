@@ -3,7 +3,8 @@ import { auth } from "@/auth/index";
 import { checkUserAuthenticated, checkUserRole } from "@/lib/auth";
 import redis, { findKeysByPattern } from "@/lib/redis";
 
-async function getAllCharactersForUser(userId: string) {
+async function getAllCharactersForUser(userId: string | undefined) {
+  if (!userId) return [];
   const pattern = `user:${userId}:character:*`;
   const keys = await findKeysByPattern(pattern);
   const characters = await Promise.all(keys.map((key) => redis.get(key)));
@@ -24,7 +25,7 @@ export async function GET() {
   }
 
   try {
-    const characters = await getAllCharactersForUser(session?.user.id!);
+    const characters = await getAllCharactersForUser(session?.user.id);
     return NextResponse.json({ characters });
   } catch (error) {
     console.error("Error getting characters", error);
