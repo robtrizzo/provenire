@@ -20,6 +20,7 @@ import { TypographyH4 } from "@/components/ui/typography";
 import { CloudDownload, HardDriveUpload, X, FileUp } from "lucide-react";
 import { Close } from "@radix-ui/react-popover";
 import { useQuery } from "@tanstack/react-query";
+import Image from "next/image";
 
 export default function LoadCharacter({
   triggerCharacterLoaded,
@@ -129,16 +130,17 @@ function LoadFromCloud({
         </DialogHeader>
         {isPending && <div>Loading...</div>}
         {data?.error && <div>Error: {data.error}</div>}
-        <div className="flex flex-col gap-2"></div>
-        {data?.characters?.map((char: any, idx: number) => (
-          <LoadCharacterButton
-            key={idx}
-            char={char}
-            triggerCharacterLoaded={triggerCharacterLoaded}
-            closeDialog={closeDialog}
-            closePopover={closePopover}
-          />
-        ))}
+        <div className="flex flex-wrap gap-2">
+          {data?.characters?.map((char: any, idx: number) => (
+            <LoadCharacterButton
+              key={idx}
+              char={char}
+              triggerCharacterLoaded={triggerCharacterLoaded}
+              closeDialog={closeDialog}
+              closePopover={closePopover}
+            />
+          ))}
+        </div>
       </DialogContent>
     </Dialog>
   );
@@ -163,18 +165,25 @@ function LoadCharacterButton({
   }
 
   return (
-    <Button
-      key={char.id}
-      variant="outline"
-      className="flex justify-between"
+    <div
+      key={char.name}
+      className="relative w-56 h-24 rounded-md border-[1px] border-border"
       onClick={() => loadCharacter()}
     >
-      {char.name}
-      {/* {char.createdAt && (
-        <span className="text-muted-foreground">
-          (saved at {formattedDate})
-        </span>
-      )} */}
-    </Button>
+      {char.portrait && (
+        <Image
+          src={char.portrait}
+          alt="character portrait"
+          layout="fill"
+          objectFit="cover"
+          objectPosition="center"
+          sizes="(max-width: 224px) 100vw, 50vw"
+          className="z-0 rounded-md"
+        />
+      )}
+      <div className="absolute bottom-0 left-0 h-24 w-56 z-10 bg-black bg-opacity-50 rounded-md flex items-center justify-center hover:bg-opacity-30 hover:cursor-pointer transition-all duration-300">
+        <b className="text-lg">{char.name}</b>
+      </div>
+    </div>
   );
 }
