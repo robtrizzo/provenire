@@ -1,4 +1,3 @@
-import { createUser, getUser } from '@/handlers/users';
 import NextAuth, { NextAuthConfig } from 'next-auth';
 import DiscordProvider from 'next-auth/providers/discord';
 import {UpstashRedisAdapter} from '@auth/upstash-redis-adapter'
@@ -24,35 +23,6 @@ const authOptions: NextAuthConfig = {
     DiscordProvider({
       clientId: getDiscordCredentials().clientId,
       clientSecret: getDiscordCredentials().clientSecret,
-        // async profile(profile) {
-        //   let avatar;
-        //   if (profile.avatar) {
-        //     const format = profile.avatar.startsWith('a_') ? 'gif' : 'png';
-        //     avatar = `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.${format}`;
-        //   }
-        //   const user = await createUser({email: profile.email, avatar, username: profile.username});
-        //   if (!user) {
-        //   }
-        //   if ('error' in user) {
-        //     console.error('Error creating user', user.error);
-        //     return {
-        //       id: 'not found',
-        //       name: profile.username,
-        //       email: profile.email,
-        //       image: avatar,
-        //       role: 'user',
-        //     };
-        //   }
-
-        //   // this is available in the signIn callback as user
-        //   return {
-        //     id: user.id,
-        //     name: profile.username,
-        //     email: profile.email,
-        //     image: avatar,
-        //     role: user.role,
-        //   };
-        // },
     }),
   ],
   callbacks: {
