@@ -34,6 +34,7 @@ const authOptions: NextAuthConfig = {
 
       if (!dbUser) {
         token.id = user!.id!;
+        await redis.sadd("users", token.id);
         return token;
       }
 

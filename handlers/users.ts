@@ -1,8 +1,7 @@
-import redis, { findKeysByPattern } from "@/lib/redis";
+import redis from "@/lib/redis";
 
 export async function getAllUsers(): Promise<User[]> {
-  const userEmailKeys = await findKeysByPattern("user:email:*");
-  const userIds = await Promise.all(userEmailKeys.map((key) => redis.get(key)));
+  const userIds: string[] = await redis.smembers("users");
   const users: User[] = await Promise.all(
     userIds.map(async (id) => {
       const user = await redis.get(`user:${id}`);
