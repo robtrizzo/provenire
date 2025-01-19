@@ -1,59 +1,65 @@
-import { put } from '@vercel/blob';
-import { NextResponse } from 'next/server';
-import { auth } from '@/auth/index';
+import { put } from "@vercel/blob";
+import { NextResponse } from "next/server";
+import { auth } from "@/auth/index";
+import { checkUserAuthenticated, checkUserRole } from "@/lib/auth";
+import redis from "@/lib/redis";
 
-async function insertCharacter(character: unknown) {
-  // TODO create character type
-  // TODO insert character and return result
-  console.log(character);
+async function insertCharacter({
+  userId,
+  characterJSON,
+}: {
+  userId: string;
+  characterJSON: any;
+}) {
+  const characterName = characterJSON?.name;
+  if (!characterName) {
+    throw new Error("No character name provided. Aborting insert.");
+  }
+  const key = `user:${userId}:character:${characterName}`;
+  const res = await redis.set(key, characterJSON);
+  console.log(`Redis set ${key} result: ${res}`);
 }
 
 export async function POST(request: Request): Promise<NextResponse> {
   const session = await auth();
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
-  }
-  // TODO authorize based on role
-  const { searchParams } = new URL(request.url);
-  const filename = searchParams.get('filename');
 
-  if (!filename) {
-    return new NextResponse(null, { status: 400 });
+  const unauthenticatedResponse = checkUserAuthenticated(session);
+  if (unauthenticatedResponse) {
+    return unauthenticatedResponse;
+  }
+
+  const unauthorizedResponse = checkUserRole(session, ["admin", "player"]);
+  if (unauthorizedResponse) {
+    return unauthorizedResponse;
   }
 
   if (!request.body) {
-    return new NextResponse(null, { status: 400 });
+    return NextResponse.json({ error: "empty request body" }, { status: 400 });
   }
 
-  // TODO assign results to const blob
-  await put(filename, request.body, {
-    access: 'public',
-  });
+  const requestBody = await request.json();
+  if (!requestBody.character) {
+    return NextResponse.json(
+      { error: "could not find character in request body" },
+      { status: 400 }
+    );
+  }
 
   try {
-    /**
-     * TODO insert character.
-     * structure should look like:
-     * {
-     *  userId: session.user.id,
-     *  name: filename,
-     *  path: blob.downloadUrl,
-     *  createdAt: new Date(),
-     *  id: uuidv4(),
-     * }
-     */
-    const character = await insertCharacter('TODO');
-    console.log('Character created', character);
+    await insertCharacter({
+      userId: session!.user!.id!,
+      characterJSON: JSON.parse(requestBody.character),
+    });
   } catch (error) {
-    console.error('Error creating character', error);
+    console.error("Error creating character:", error);
     return NextResponse.json(
-      { error: 'Error saving character' },
+      { error: "Error saving character" },
       { status: 500 }
     );
   }
 
   return NextResponse.json(
-    { message: 'character saved successfully' },
+    { message: "character saved successfully" },
     { status: 201 }
   );
 }
