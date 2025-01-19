@@ -20,7 +20,6 @@ import { TypographyH4 } from "@/components/ui/typography";
 import { CloudDownload, HardDriveUpload, X, FileUp } from "lucide-react";
 import { Close } from "@radix-ui/react-popover";
 import { useQuery } from "@tanstack/react-query";
-// import { Character } from '@/types/db';
 
 export default function LoadCharacter({
   triggerCharacterLoaded,
@@ -106,9 +105,9 @@ function LoadFromCloud({
     setOpen(false);
   }
   const { data, isPending } = useQuery({
-    queryKey: ["character"],
+    queryKey: ["characters"],
     queryFn: async () => {
-      const response = await fetch("/api/characters", { cache: "no-cache" });
+      const response = await fetch("/api/characters/", { cache: "no-cache" });
       return response.json();
     },
   });
@@ -131,15 +130,15 @@ function LoadFromCloud({
         {isPending && <div>Loading...</div>}
         {data?.error && <div>Error: {data.error}</div>}
         <div className="flex flex-col gap-2"></div>
-        {/* {data?.characters?.map((char: Character) => (
+        {data?.characters?.map((char: any, idx: number) => (
           <LoadCharacterButton
-            key={char.id}
+            key={idx}
             char={char}
             triggerCharacterLoaded={triggerCharacterLoaded}
             closeDialog={closeDialog}
             closePopover={closePopover}
           />
-        ))} */}
+        ))}
       </DialogContent>
     </Dialog>
   );
@@ -151,22 +150,33 @@ function LoadCharacterButton({
   closeDialog,
   closePopover,
 }: {
-  // char: Character;
   char: any;
   triggerCharacterLoaded: () => void;
   closeDialog: () => void;
   closePopover: () => void;
 }) {
-  let formattedDate = "";
-  if (char.createdAt) {
-    const date = new Date(char.createdAt);
-    formattedDate = `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
-  }
+  const {
+    data,
+    isPending,
+    refetch: fetchCharacter,
+  } = useQuery({
+    queryKey: ["characters", char.name],
+    queryFn: async () => {
+      const response = await fetch(`/api/characters/${char.name}`, {
+        cache: "no-cache",
+      });
+      return response.json();
+    },
+    enabled: false,
+  });
 
   async function loadCharacter() {
-    const response = await fetch(char.path);
-    const data = await response.json();
-    localStorage.setItem("charsheet", JSON.stringify(data));
+    const characterData = await fetchCharacter();
+    if (!characterData) {
+      console.error("Error loading character ", char.name);
+      return;
+    }
+    localStorage.setItem("charsheet", JSON.stringify(characterData));
     triggerCharacterLoaded();
     closeDialog();
     closePopover();
@@ -180,11 +190,11 @@ function LoadCharacterButton({
       onClick={async () => await loadCharacter()}
     >
       {char.name}
-      {char.createdAt && (
+      {/* {char.createdAt && (
         <span className="text-muted-foreground">
           (saved at {formattedDate})
         </span>
-      )}
+      )} */}
     </Button>
   );
 }
