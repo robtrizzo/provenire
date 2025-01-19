@@ -6,11 +6,11 @@ import {
   TypographyH4,
   TypographyP,
   TypographyUnorderedList,
-} from '@/components/ui/typography';
-import { Separator } from '@/components/ui/separator';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+} from "@/components/ui/typography";
+import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -19,16 +19,16 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
-import Breadcrumbs from '@/components/ui/breadcrumbs';
+} from "@/components/ui/table";
+import Breadcrumbs from "@/components/ui/breadcrumbs";
 
 export default async function Page() {
   return (
     <>
       <Breadcrumbs
         crumbs={[
-          { name: 'Rules', href: '/game/core-system' },
-          { name: 'Churn', href: '#' },
+          { name: "Rules", href: "/game/core-system" },
+          { name: "Churn", href: "#" },
         ]}
       />
       <TypographyH1>The Churn</TypographyH1>
@@ -56,8 +56,8 @@ export default async function Page() {
       <TypographyP>
         The Steel Trap is a place of prying eyes, informants, and cunning
         overseers. Anything you do might be witnessed, and there&apos;s always
-        evidence left behind. To represent this, the crew accumulates{' '}
-        <b>heat</b> as they cause trouble. After a <b>mission</b> <i>or</i>{' '}
+        evidence left behind. To represent this, the crew accumulates{" "}
+        <b>heat</b> as they cause trouble. After a <b>mission</b> <i>or</i>{" "}
         conflict with an opponent, the crew takes <b>heat</b> according to the
         following:
       </TypographyP>
@@ -78,7 +78,7 @@ export default async function Page() {
       <TypographyP>
         <i>
           Did you keep your crew&apos;s involvement in the mission under wraps?
-        </i>{' '}
+        </i>{" "}
         <b>-4 heat</b>.
       </TypographyP>
       <TypographyP>
@@ -89,15 +89,15 @@ export default async function Page() {
         territory.
       </TypographyP>
       <TypographyP>
-        Add <b>+1 heat</b> if combat was involved; an additional **+1 heat** if
-        there were enemy survivors.
+        Add <b>+1 heat</b> if combat was involved; an additional <b>+1 heat</b>{" "}
+        if there were enemy survivors.
       </TypographyP>
       <TypographyP>
         Add <b>+2 heat</b> if anyone in the crew was identified.
       </TypographyP>
       <TypographyP>
         When your crew reaches <b>9 heat</b>, you gain a <b>wanted level</b> and
-        clear your <b>heat</b>.{' '}
+        clear your <b>heat</b>.{" "}
         <i>
           Excess <b>heat</b> rolls over
         </i>
@@ -123,7 +123,7 @@ export default async function Page() {
         <li>Did we kill an overseer for the first time?</li>
       </TypographyUnorderedList>
       <TypographyP>
-        If the answer to any of these is &quot;yes&quot;, it triggers a{' '}
+        If the answer to any of these is &quot;yes&quot;, it triggers a{" "}
         <b>Crackdown</b>. The overseers will come out in force to punish every
         worker in the wing of the factory suspected to house the crew. This is a
         special event that could be played out should the players choose.
@@ -143,7 +143,7 @@ export default async function Page() {
       </TypographyP>
       <TypographyH4 id="mission-xp">Mission XP</TypographyH4>
       <TypographyP>
-        At the end of each mission, for each item below that occurred, mark{' '}
+        At the end of each mission, for each item below that occurred, mark{" "}
         <b>1 xp</b>. Mark <b>2 xp</b> if that item occurred multiple times.
       </TypographyP>
       <TypographyUnorderedList>
@@ -168,7 +168,7 @@ export default async function Page() {
         </li>
         <li>
           <i>
-            You grew apart from someone in the crew... also{' '}
+            You grew apart from someone in the crew... also{" "}
             <b>strain your bond</b>
           </i>
         </li>
@@ -178,10 +178,10 @@ export default async function Page() {
         Just after the mission, you may choose to take some time for yourself.
         When you take a breather, you seek out comfort, peace, or vice. Whatever
         your character feels they need to reduce the stress of risking their
-        lives on missions. If you do, spend <b>1 food / material / goodwill</b>{' '}
+        lives on missions. If you do, spend <b>1 food / material / goodwill</b>{" "}
         and clear all of your <b>stress</b>. If your stress level was close to
         your max (within 2 ticks), you overindulge or neglect other parts of
-        your life that need attention. Make a <b>fortune roll</b> on the{' '}
+        your life that need attention. Make a <b>fortune roll</b> on the{" "}
         <b>overindulgence table</b> equal to your conditions (max 4).
       </TypographyP>
       <Table>
@@ -220,7 +220,7 @@ export default async function Page() {
             </TableCell>
             <TableCell className="w-20">
               You shut out the world; <b>strain your bond</b> with someone
-              depending on you{' '}
+              depending on you{" "}
             </TableCell>
           </TableRow>
           <TableRow>
@@ -228,7 +228,7 @@ export default async function Page() {
               4
             </TableCell>
             <TableCell className="w-20">
-              You indulge lavishly; spend <strong>1 food</strong> or{' '}
+              You indulge lavishly; spend <strong>1 food</strong> or{" "}
               <strong>1 material</strong>
             </TableCell>
           </TableRow>
@@ -245,7 +245,7 @@ export default async function Page() {
               6
             </TableCell>
             <TableCell className="w-20">
-              You forget something important to your loved ones; mark{' '}
+              You forget something important to your loved ones; mark{" "}
               <strong>2 stress</strong>
             </TableCell>
           </TableRow>
@@ -277,8 +277,8 @@ export default async function Page() {
         have a member with that <b>skillset</b>.
       </TypographyBlockquote>
       <TypographyP>
-        For each agenda, the players choose a <b>lead</b>. Then the <b>lead</b>{' '}
-        sets the scene:{' '}
+        For each agenda, the players choose a <b>lead</b>. Then the <b>lead</b>{" "}
+        sets the scene:{" "}
         <i>
           What&apos;s going through their head? What are they struggling with?
           How did the events of the mission impact their own personal journey?
@@ -293,7 +293,7 @@ export default async function Page() {
         what happens.
       </TypographyP>
       <TypographyP>
-        When you are rolling for an Agenda, you may choose to{' '}
+        When you are rolling for an Agenda, you may choose to{" "}
         <b>raise the stakes</b> in exchange for <b>+1d</b> on your action. This
         makes entanglements potentially more dramatic. Each time your character
         isn&apos;t the <b>lead</b>, gain <b>+1d</b> to your next agenda roll.
@@ -308,16 +308,16 @@ export default async function Page() {
         or even the strange workings of the Steel Trap&apos;s machinery.
       </TypographyP>
       <TypographyP>
-        Entanglements become more severe as your <b>heat</b> and{' '}
+        Entanglements become more severe as your <b>heat</b> and{" "}
         <b>wanted level</b> increase. They can also be made more intense when
-        players choose to <b>raise the stakes</b> during the{' '}
+        players choose to <b>raise the stakes</b> during the{" "}
         <b>agendas phase</b>.
       </TypographyP>
       <TypographyP>
         The <b>Narrator</b> rolls in secret. They may choose to introduce the
         entanglement immediately, or they may bide their time for a dramatic
         moment <i>before the next mission</i>. The <b>entanglement</b> manifests
-        fully before the PCs have a chance to avoid it - it cannot be{' '}
+        fully before the PCs have a chance to avoid it - it cannot be{" "}
         <b>resisted</b>. The players may choose to make it a quick resolution or
         to dive deep into the scene.
       </TypographyP>
@@ -335,7 +335,7 @@ export default async function Page() {
         members perishes from hunger.
       </TypographyP>
       <TypographyBlockquote>
-        At any time during the <b>Churn</b>, a character may choose to spend{' '}
+        At any time during the <b>Churn</b>, a character may choose to spend{" "}
         <b>1 food</b> to reduce the <b>Starvation</b> clock by <b>1</b>. This
         can be done even if the <b>Starvation</b> clock is full.
       </TypographyBlockquote>
@@ -355,14 +355,14 @@ export default async function Page() {
           yourself. Reduce the <b>Starvation</b> clock by 2.
         </li>
         <li>
-          <b>Critical Success:</b> You work yourself to the bone, but are given
+          <b>Partial Success:</b> You work yourself to the bone, but are given
           scraps nonetheless. Reduce the <b>Starvation</b> clock by 1. Suffer
           consequences according to your Background.
         </li>
         <li>
-          <b>Critical Success:</b> You&apos;ve earned nothing. Mark a level one
-          permanent harm: &quot;hungry&quot;. This cannot be healed until you
-          eat. Suffer consequences according to your Background.
+          <b>Failure:</b> You&apos;ve earned nothing. Mark a level one permanent
+          harm: &quot;hungry&quot;. This cannot be healed until you eat. Suffer
+          consequences according to your Background.
         </li>
       </TypographyUnorderedList>
       <Separator className="my-4" />
