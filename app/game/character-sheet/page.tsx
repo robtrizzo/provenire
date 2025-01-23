@@ -596,7 +596,7 @@ export default function Charsheet() {
                       }
                     }}
                   >
-                    <TypographyH4 className="group-hover:underline">
+                    <TypographyH4 className="group-hover:underline mt-0">
                       Defy
                     </TypographyH4>
                   </div>
@@ -611,7 +611,7 @@ export default function Charsheet() {
                       }
                     }}
                   >
-                    <TypographyH4 className="group-hover:underline">
+                    <TypographyH4 className="group-hover:underline mt-0">
                       Persuade
                     </TypographyH4>
                   </div>
@@ -649,7 +649,7 @@ export default function Charsheet() {
                           }
                         }}
                       >
-                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline mt-0">
                           {a}
                         </TypographyH4>
                       </div>
@@ -669,7 +669,7 @@ export default function Charsheet() {
                           }
                         }}
                       >
-                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline mt-0">
                           {a}
                         </TypographyH4>
                       </div>
@@ -688,7 +688,7 @@ export default function Charsheet() {
                         }
                       }}
                     >
-                      <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                      <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline mt-0">
                         {a}
                       </TypographyH4>
                     </div>
@@ -752,7 +752,7 @@ export default function Charsheet() {
                       }
                     }}
                   >
-                    <TypographyH4 className="group-hover:underline">
+                    <TypographyH4 className="group-hover:underline mt-0">
                       Charge
                     </TypographyH4>
                   </div>
@@ -767,7 +767,7 @@ export default function Charsheet() {
                       }
                     }}
                   >
-                    <TypographyH4 className="group-hover:underline">
+                    <TypographyH4 className="group-hover:underline mt-0">
                       Prowl
                     </TypographyH4>
                   </div>
@@ -805,7 +805,7 @@ export default function Charsheet() {
                           }
                         }}
                       >
-                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline mt-0">
                           {a}
                         </TypographyH4>
                       </div>
@@ -825,7 +825,7 @@ export default function Charsheet() {
                           }
                         }}
                       >
-                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline mt-0">
                           {a}
                         </TypographyH4>
                       </div>
@@ -844,7 +844,7 @@ export default function Charsheet() {
                         }
                       }}
                     >
-                      <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                      <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline mt-0">
                         {a}
                       </TypographyH4>
                     </div>
@@ -908,7 +908,7 @@ export default function Charsheet() {
                       }
                     }}
                   >
-                    <TypographyH4 className="group-hover:underline">
+                    <TypographyH4 className="group-hover:underline mt-0">
                       Suggest
                     </TypographyH4>
                   </div>
@@ -923,7 +923,7 @@ export default function Charsheet() {
                       }
                     }}
                   >
-                    <TypographyH4 className="group-hover:underline">
+                    <TypographyH4 className="group-hover:underline mt-0">
                       Survey
                     </TypographyH4>
                   </div>
@@ -961,7 +961,7 @@ export default function Charsheet() {
                           }
                         }}
                       >
-                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline mt-0">
                           {a}
                         </TypographyH4>
                       </div>
@@ -981,7 +981,7 @@ export default function Charsheet() {
                           }
                         }}
                       >
-                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline mt-0">
                           {a}
                         </TypographyH4>
                       </div>
@@ -1000,7 +1000,7 @@ export default function Charsheet() {
                         }
                       }}
                     >
-                      <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                      <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline mt-0">
                         {a}
                       </TypographyH4>
                     </div>
@@ -1117,7 +1117,7 @@ export default function Charsheet() {
                 </div>
                 <div className="flex flex-col items-center w-full">
                   <Input
-                    className="rounded-none"
+                    className="rounded-none h-10"
                     value={harm3}
                     onChange={(e) => {
                       setHarm3(e.target.value);
@@ -1126,7 +1126,7 @@ export default function Charsheet() {
                   />
                   <div className="flex w-full">
                     <Input
-                      className="rounded-none"
+                      className="rounded-none h-10"
                       value={harm2[0]}
                       onChange={(e) => {
                         setHarm2([e.target.value, harm2[1]]);
@@ -1134,7 +1134,7 @@ export default function Charsheet() {
                       }}
                     />
                     <Input
-                      className="rounded-none"
+                      className="rounded-none h-10"
                       value={harm2[1]}
                       onChange={(e) => {
                         setHarm2([harm2[0], e.target.value]);
@@ -1144,7 +1144,7 @@ export default function Charsheet() {
                   </div>
                   <div className="flex w-full">
                     <Input
-                      className="rounded-none"
+                      className="rounded-none h-10"
                       value={harm1[0]}
                       disabled={true}
                       onChange={(e) => {
@@ -1153,7 +1153,7 @@ export default function Charsheet() {
                       }}
                     />
                     <Input
-                      className="rounded-none"
+                      className="rounded-none h-10"
                       value={harm1[1]}
                       onChange={(e) => {
                         setHarm1([harm1[0], e.target.value]);
@@ -1915,7 +1915,7 @@ export default function Charsheet() {
                       }
                     }}
                   >
-                    <TypographyH4 className="group-hover:underline">
+                    <TypographyH4 className="group-hover:underline mt-0">
                       Defy
                     </TypographyH4>
                   </div>
@@ -1930,7 +1930,7 @@ export default function Charsheet() {
                       }
                     }}
                   >
-                    <TypographyH4 className="group-hover:underline">
+                    <TypographyH4 className="group-hover:underline mt-0">
                       Persuade
                     </TypographyH4>
                   </div>
@@ -1968,7 +1968,7 @@ export default function Charsheet() {
                           }
                         }}
                       >
-                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline mt-0">
                           {a}
                         </TypographyH4>
                       </div>
@@ -1988,7 +1988,7 @@ export default function Charsheet() {
                           }
                         }}
                       >
-                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline mt-0">
                           {a}
                         </TypographyH4>
                       </div>
@@ -2007,7 +2007,7 @@ export default function Charsheet() {
                         }
                       }}
                     >
-                      <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                      <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline mt-0">
                         {a}
                       </TypographyH4>
                     </div>
@@ -2071,7 +2071,7 @@ export default function Charsheet() {
                       }
                     }}
                   >
-                    <TypographyH4 className="group-hover:underline">
+                    <TypographyH4 className="group-hover:underline mt-0">
                       Charge
                     </TypographyH4>
                   </div>
@@ -2086,7 +2086,7 @@ export default function Charsheet() {
                       }
                     }}
                   >
-                    <TypographyH4 className="group-hover:underline">
+                    <TypographyH4 className="group-hover:underline mt-0">
                       Prowl
                     </TypographyH4>
                   </div>
@@ -2124,7 +2124,7 @@ export default function Charsheet() {
                           }
                         }}
                       >
-                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline mt-0">
                           {a}
                         </TypographyH4>
                       </div>
@@ -2144,7 +2144,7 @@ export default function Charsheet() {
                           }
                         }}
                       >
-                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline mt-0">
                           {a}
                         </TypographyH4>
                       </div>
@@ -2163,7 +2163,7 @@ export default function Charsheet() {
                         }
                       }}
                     >
-                      <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                      <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline mt-0">
                         {a}
                       </TypographyH4>
                     </div>
@@ -2227,7 +2227,7 @@ export default function Charsheet() {
                       }
                     }}
                   >
-                    <TypographyH4 className="group-hover:underline">
+                    <TypographyH4 className="group-hover:underline mt-0">
                       Suggest
                     </TypographyH4>
                   </div>
@@ -2242,7 +2242,7 @@ export default function Charsheet() {
                       }
                     }}
                   >
-                    <TypographyH4 className="group-hover:underline">
+                    <TypographyH4 className="group-hover:underline mt-0">
                       Survey
                     </TypographyH4>
                   </div>
@@ -2280,7 +2280,7 @@ export default function Charsheet() {
                           }
                         }}
                       >
-                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline mt-0">
                           {a}
                         </TypographyH4>
                       </div>
@@ -2300,7 +2300,7 @@ export default function Charsheet() {
                           }
                         }}
                       >
-                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                        <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline mt-0">
                           {a}
                         </TypographyH4>
                       </div>
@@ -2319,7 +2319,7 @@ export default function Charsheet() {
                         }
                       }}
                     >
-                      <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline">
+                      <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline mt-0">
                         {a}
                       </TypographyH4>
                     </div>
@@ -2664,7 +2664,7 @@ export default function Charsheet() {
                 </div>
                 <div className="flex flex-col items-center w-full">
                   <Input
-                    className="rounded-none"
+                    className="rounded-none h-10"
                     value={harm3}
                     onChange={(e) => {
                       setHarm3(e.target.value);
@@ -2673,7 +2673,7 @@ export default function Charsheet() {
                   />
                   <div className="flex w-full">
                     <Input
-                      className="rounded-none"
+                      className="rounded-none h-10"
                       value={harm2[0]}
                       onChange={(e) => {
                         setHarm2([e.target.value, harm2[1]]);
@@ -2681,7 +2681,7 @@ export default function Charsheet() {
                       }}
                     />
                     <Input
-                      className="rounded-none"
+                      className="rounded-none h-10"
                       value={harm2[1]}
                       onChange={(e) => {
                         setHarm2([harm2[0], e.target.value]);
@@ -2691,7 +2691,7 @@ export default function Charsheet() {
                   </div>
                   <div className="flex w-full">
                     <Input
-                      className="rounded-none"
+                      className="rounded-none h-10"
                       value={harm1[0]}
                       disabled={true}
                       onChange={(e) => {
@@ -2700,7 +2700,7 @@ export default function Charsheet() {
                       }}
                     />
                     <Input
-                      className="rounded-none"
+                      className="rounded-none h-10"
                       value={harm1[1]}
                       onChange={(e) => {
                         setHarm1([harm1[0], e.target.value]);

@@ -1,17 +1,17 @@
-'use client';
-import { useState, useRef, FormEvent } from 'react';
-import { useCharacterSheet } from '@/contexts/characterSheetContext';
-import { Button } from '@/components/ui/button';
+"use client";
+import { useState, useRef, FormEvent } from "react";
+import { useCharacterSheet } from "@/contexts/characterSheetContext";
+import { Button } from "@/components/ui/button";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/ui/popover';
-import { cn } from '@/lib/utils';
-import { ImageUp, CloudUpload, Bomb } from 'lucide-react';
-import { upload } from '@vercel/blob/client';
-import { Input } from '@/components/ui/input';
-import Image from 'next/image';
+} from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
+import { ImageUp, CloudUpload, Bomb } from "lucide-react";
+import { upload } from "@vercel/blob/client";
+import { Input } from "@/components/ui/input";
+import Image from "next/image";
 export default function Portrait({ className }: { className?: string }) {
   const { portrait, setPortrait, setChanges } = useCharacterSheet();
   const inputFileRef = useRef<HTMLInputElement>(null);
@@ -21,14 +21,14 @@ export default function Portrait({ className }: { className?: string }) {
     e.preventDefault();
 
     if (!inputFileRef.current?.files) {
-      throw new Error('No file selected');
+      throw new Error("No file selected");
     }
 
     const file = inputFileRef.current.files[0];
 
     const newBlob = await upload(file.name, file, {
-      access: 'public',
-      handleUploadUrl: '/api/avatar/upload',
+      access: "public",
+      handleUploadUrl: "/api/avatar/upload",
     });
 
     setPortrait(newBlob.url);
@@ -40,7 +40,7 @@ export default function Portrait({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        'flex-shrink-0 w-32 h-32 border-solid border-text-secondary border-[1px] box-border p-1 rounded-md flex items-center justify-center',
+        "flex-shrink-0 w-[116px] h-[116px] border-solid border-text-secondary border-[1px] box-border p-1 rounded-md flex items-center justify-center",
         className
       )}
     >
@@ -51,8 +51,8 @@ export default function Portrait({ className }: { className?: string }) {
               priority={true}
               src={portrait}
               alt="character portrait"
-              height={118}
-              width={118}
+              height={108}
+              width={108}
               className="rounded-md hover:cursor-pointer"
             />
           </PopoverTrigger>
@@ -75,7 +75,7 @@ export default function Portrait({ className }: { className?: string }) {
             <Button
               variant="destructive"
               onClick={() => {
-                setPortrait('');
+                setPortrait("");
                 setChanges(true);
                 setOpen(false);
               }}
