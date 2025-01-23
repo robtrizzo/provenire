@@ -12,7 +12,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { auth } from "@/auth";
-import { NextResponse } from "next/server";
+import { redirect } from "next/navigation";
 import { getAllUsers } from "@/handlers/users";
 import {
   Select,
@@ -25,7 +25,7 @@ import {
 export default async function Page() {
   const session = await auth();
   if (session?.user?.role !== "admin") {
-    return NextResponse.redirect("/signin");
+    redirect("/signin");
   }
 
   const users: User[] = await getAllUsers();
