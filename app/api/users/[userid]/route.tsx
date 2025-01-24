@@ -1,8 +1,11 @@
 import { auth } from "@/auth/index";
 import { checkUserAuthenticated, checkUserRole } from "@/lib/auth";
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function PUT(req: NextApiRequest, res: NextApiResponse) {
+export async function PUT(
+  request: NextRequest,
+  { params }: { params: Promise<{ slug: string }> }
+) {
   const session = await auth();
 
   const unauthenticatedResponse = checkUserAuthenticated(session);
@@ -14,9 +17,9 @@ export async function PUT(req: NextApiRequest, res: NextApiResponse) {
   if (unauthorizedResponse) {
     return unauthorizedResponse;
   }
-  const { userid } = req.query;
+  const userid = (await params).slug;
   if (!userid) {
-    res.json({ error: "must provide userid" });
+    return NextResponse.json({ error: "must provide userid" });
   }
-  res.json({ message: "todo", userid });
+  return NextResponse.json({ message: "todo", userid });
 }
