@@ -319,7 +319,7 @@ export default async function Page() {
           You&apos;re in a desperate position when the action starts.
         </span>
       </TypographyP>
-      <Separator />
+      <Separator className="my-4" />
       <div className="w-full flex justify-between">
         <Link href="/game/actions-and-rolls">
           <Button variant="outline">

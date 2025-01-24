@@ -7,8 +7,6 @@ export const config = {
   ],
 };
 
-const allowedBetaUsers = ['robtrizzo@gmail.com', 'robtrizzo+jerry@gmail.com'];
-
 export default auth((req) => {
   const reqUrl = new URL(req.url);
   if (!req.auth && !['/', '/signin', '/socket.io'].includes(reqUrl.pathname)) {
@@ -21,18 +19,5 @@ export default auth((req) => {
         req.url
       )
     );
-  }
-  if (req.auth) {
-    if (req.nextUrl.pathname.startsWith('/chat')) {
-      // limit this to the list of allowed beta users
-      if (
-        !req.auth.user?.email ||
-        !['admin', 'alpha-tester'].includes(req.auth.user.role)
-      ) {
-        const url = req.nextUrl.clone();
-        url.pathname = '/closed-alpha';
-        return NextResponse.redirect(url);
-      }
-    }
   }
 });

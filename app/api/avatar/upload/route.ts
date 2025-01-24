@@ -9,21 +9,18 @@ export async function POST(request: Request): Promise<NextResponse> {
     const jsonResponse = await handleUpload({
       body,
       request,
-      onBeforeGenerateToken: async (
-        pathname
-        /* clientPayload */
-      ) => {
+      onBeforeGenerateToken: async (/* clientPayload */) => {
         // Generate a client token for the browser to upload the file
 
         const session = await auth();
         if (!session) {
           throw new Error('Unauthenticated');
         }
-        if (
-          !['alpha-tester', 'admin'].includes(session?.user?.role as string)
-        ) {
-          throw new Error('Unauthorized');
-        }
+        // if (
+        //   !['alpha-tester', 'admin'].includes(session?.user?.role as string)
+        // ) {
+        //   throw new Error('Unauthorized');
+        // }
 
         return {
           allowedContentTypes: ['image/jpeg', 'image/png', 'image/gif'],
@@ -45,7 +42,7 @@ export async function POST(request: Request): Promise<NextResponse> {
           // const { userId } = JSON.parse(tokenPayload);
           // await db.update({ avatar: blob.url, userId });
         } catch (error) {
-          throw new Error('Could not update user');
+          throw new Error(`Could not update user: ${error}`);
         }
       },
     });

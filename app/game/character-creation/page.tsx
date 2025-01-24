@@ -1,23 +1,23 @@
-import { Separator } from '@/components/ui/separator';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import {
   TypographyH1,
   TypographyH2,
   TypographyH3,
   TypographyP,
   TypographyBlockquote,
-} from '@/components/ui/typography';
-import Breadcrumbs from '@/components/ui/breadcrumbs';
+} from "@/components/ui/typography";
+import Breadcrumbs from "@/components/ui/breadcrumbs";
 
 export default async function Page() {
   return (
     <>
-      <Breadcrumbs crumbs={[{ name: 'Character Creation', href: '#' }]} />
+      <Breadcrumbs crumbs={[{ name: "Character Creation", href: "#" }]} />
       <TypographyH1>Character Creation</TypographyH1>
       <TypographyP>
-        <strong>Kingwulf</strong> and his kingdom of Fenrir won long ago.{' '}
+        <strong>Kingwulf</strong> and his kingdom of Fenrir won long ago.{" "}
         <span className="italic">Won what?</span> Won the war for everything.
         Fenrir is all that is left. Other nations, histories, cultures -
         consumed by the beast. But they haven&apos;t taken everything. Muttered
@@ -25,7 +25,7 @@ export default async function Page() {
         supposed to be going to bed, glimpsed in fleeting dreams are the stories
         of the past. Memories of ways of life long lost. There are many
         heritages to choose from in <span className="italic">Provenire</span>.
-        You can find them here:{' '}
+        You can find them here:{" "}
         <Link href="/game/heritages">
           <strong className="text-sky-500 underline">Heritages</strong>
         </Link>
@@ -38,12 +38,12 @@ export default async function Page() {
         are in a slightly lower social caste.
       </TypographyP>
       <TypographyP>
-        Heritages grant a unique profile question. They{' '}
+        Heritages grant a unique profile question. They{" "}
         <span className="italic">do not</span> impart a mandatory look, outlook,
         or mechanical benefit. Rathi workers might inherit physical bestial
         traits (but they are always <span className="italic">thinbloods</span>).
       </TypographyP>
-      <Separator />
+      <Separator className="my-4" />
       <TypographyP>
         But to our characters, <strong>Kingwulf</strong> and the outside world
         are a faraway thought. They live in the Steel Trap: a weapons factory
@@ -53,7 +53,7 @@ export default async function Page() {
         everyone&apos;s bellies. But don&apos;t speak out. Don&apos;t question
         the status quo. The overseers are watching, and they don&apos;t take
         kindly to troublemakers. There are many tasks workers are forced to do
-        in the Steel Trap. You can find them here:{' '}
+        in the Steel Trap. You can find them here:{" "}
         <Link href="/game/backgrounds">
           <strong className="text-red-500 underline">Backgrounds</strong>
         </Link>
@@ -62,14 +62,14 @@ export default async function Page() {
         Backgrounds grant two unique mission actions, two profile questions, two
         professional bonds, and a subsistence activity.
       </TypographyP>
-      <Separator />
+      <Separator className="my-4" />
       <TypographyP>
-        Over the course of <span className="italic">Provenire&apos;s</span>{' '}
+        Over the course of <span className="italic">Provenire&apos;s</span>{" "}
         story, we follow a group of upstart troublemakers as they become a crew
         of competent revolutionaries. They do this by taking illegal jobs from
         clients, planning their own devious missions, making alliances,
         destroying their enemies, and trying to stay one step ahead of the
-        overseers. Some of the ways they go about this can be found here:{' '}
+        overseers. Some of the ways they go about this can be found here:{" "}
         <Link href="/game/skillsets">
           <strong className="text-indigo-500 underline">Skillsets</strong>
         </Link>
@@ -78,12 +78,12 @@ export default async function Page() {
         Skillsets grant two unique mission actions, three mission abilities, two
         profile questions, an agenda, and a downtime ability.
       </TypographyP>
-      <Separator />
+      <Separator className="my-4" />
       <TypographyP>
         But who are these characters when they aren&apos;t working and
         aren&apos;t fighting back? What kind of friends, family members,
         coworkers, and lovers are they? How do they care for the people around
-        them? Some of their personality types can be found here:{' '}
+        them? Some of their personality types can be found here:{" "}
         <Link href="/game/archetypes">
           <strong className="text-amber-500 underline">Archetypes</strong>
         </Link>
@@ -96,7 +96,7 @@ export default async function Page() {
       <TypographyP>
         First, fill out all of your profile questions. These are open-ended
         intentionally; you can be creative with your answers and even create
-        fiction to support them. Keep in mind that the <strong>Narrator</strong>{' '}
+        fiction to support them. Keep in mind that the <strong>Narrator</strong>{" "}
         will review your answers to help you stay within the bounds of the
         fiction.
       </TypographyP>
@@ -115,35 +115,35 @@ export default async function Page() {
         form or amount of history or preexisting relationships with one another.
       </TypographyP>
       <TypographyP>
-        Assign{' '}
-        <div className="inline-block">
-          <div className="flex gap-2 mx-2">
-            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500" />
-            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
-          </div>
-        </div>{' '}
-        to each <b>crew bond</b>. Then assign{' '}
-        <div className="inline-block">
-          <div className="flex gap-2 mx-2">
-            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500" />
-            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
-          </div>
-        </div>{' '}
-        to any three of your <b>personal, familial,</b> and{' '}
-        <b>professional bonds</b>. Finally, choose one <b>bond</b> to set to{' '}
-        <div className="inline-block">
-          <div className="flex gap-2 mx-2">
-            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500" />
-            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500" />
-          </div>
-        </div>{' '}
-        or{' '}
-        <div className="inline-block">
-          <div className="flex gap-2 mx-2">
-            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500" />
-            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
-          </div>
-        </div>
+        Assign{" "}
+        <span className="inline-block">
+          <span className="flex gap-2 mx-2">
+            <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500" />
+            <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
+          </span>
+        </span>{" "}
+        to each <b>crew bond</b>. Then assign{" "}
+        <span className="inline-block">
+          <span className="flex gap-2 mx-2">
+            <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500" />
+            <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
+          </span>
+        </span>{" "}
+        to any three of your <b>personal, familial,</b> and{" "}
+        <b>professional bonds</b>. Finally, choose one <b>bond</b> to set to{" "}
+        <span className="inline-block">
+          <span className="flex gap-2 mx-2">
+            <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500" />
+            <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500" />
+          </span>
+        </span>{" "}
+        or{" "}
+        <span className="inline-block">
+          <span className="flex gap-2 mx-2">
+            <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500" />
+            <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
+          </span>
+        </span>
         .
       </TypographyP>
       <TypographyH3>Instructors</TypographyH3>
@@ -157,13 +157,13 @@ export default async function Page() {
       </TypographyP>
       <TypographyH2 className="mt-4">Actions & Abilities</TypographyH2>
       <TypographyP>
-        All of your actions begin at{' '}
-        <div className="inline-block">
-          <div className="flex gap-2 mx-2">
-            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
-            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
-          </div>
-        </div>
+        All of your actions begin at{" "}
+        <span className="inline-block">
+          <span className="flex gap-2 mx-2">
+            <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
+            <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
+          </span>
+        </span>
         . You begin play with 12 points you can spend to enhance your actions
         and unlock abilities.
       </TypographyP>
@@ -230,7 +230,7 @@ export default async function Page() {
         </div>
       </div>
       <TypographyBlockquote>
-        You begin play with your{' '}
+        You begin play with your{" "}
         <b className="text-amber-500">archetype&apos;s key ability</b> unlocked
         - which will be checked by default on your character sheet.
       </TypographyBlockquote>
@@ -239,7 +239,7 @@ export default async function Page() {
         Name your character, give them an alias, and finish the common questions
         in your character profile. Then you&apos;re ready to play!
       </TypographyP>
-      <Separator />
+      <Separator className="my-4" />
       <div className="w-full flex justify-between">
         <Link href="/game/the-churn">
           <Button variant="outline">

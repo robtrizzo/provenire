@@ -9,8 +9,8 @@ import {
   TypographyH4,
   TypographyP,
 } from '@/components/ui/typography';
-import Blood from '@/components/stats/blood';
-import FactoryMap from '@/components/ui/factory-map';
+import Blood from '@/components/ui/blood';
+import FactoryMap from '@/components/factory-map';
 import Breadcrumbs from '@/components/ui/breadcrumbs';
 
 export default async function Page() {
@@ -25,7 +25,7 @@ export default async function Page() {
       <TypographyH1 className="">
         <span className="italic">Provenire</span>, Era 3
       </TypographyH1>
-      <TypographyH2>Rath</TypographyH2>
+      <TypographyH2 className="mt-4">Rath</TypographyH2>
       <TypographyP>
         The world of bygone ages, its lands, peoples, history: it&apos;s all
         gone. Cycle after cycle, slowly devoured by the ever-ravenous{' '}
@@ -37,7 +37,9 @@ export default async function Page() {
         </span>
         .
       </TypographyP>
-      <TypographyH2 id="kingwulf">Kingwulf</TypographyH2>
+      <TypographyH2 id="kingwulf" className="mt-4">
+        Kingwulf
+      </TypographyH2>
       <TypographyP>
         Immortal God King of the <strong>Rathi Empire</strong>. They{' '}
         <span className="italic">say</span> he has been King since the day the
@@ -50,7 +52,9 @@ export default async function Page() {
         <span className="italic">say</span> that one day, he will bless the
         world one final time when he devours it.
       </TypographyP>
-      <TypographyH2 id="liberty-city">Liberty City</TypographyH2>
+      <TypographyH2 id="liberty-city" className="mt-4">
+        Liberty City
+      </TypographyH2>
       <TypographyP>
         Our story begins in <strong>Vizgod</strong>, a territory of the{' '}
         <strong>Rathi Empire</strong> characterized by a forest of massive pines
@@ -87,7 +91,9 @@ export default async function Page() {
           shanty towns. They only know screeching pipes and roaring furnaces.
         </span>
       </TypographyP>
-      <TypographyH2 id="the-steel-trap">The Steel Trap</TypographyH2>
+      <TypographyH2 id="the-steel-trap" className="mt-4">
+        The Steel Trap
+      </TypographyH2>
       <TypographyP>
         A factory full of workers pushed to their breaking point. Unlovingly
         named <span className="italic">The Steel Trap</span>, it produces
@@ -129,8 +135,8 @@ export default async function Page() {
         more bearable for each other. Quietly, secretly, they dream of a better
         future.
       </TypographyP>
-      <TypographyH3>Lairs of the Steel Trap</TypographyH3>
-      <TypographyP>
+      <TypographyH3 className="mt-4">Lairs of the Steel Trap</TypographyH3>
+      <TypographyP className="mb-2">
         Within the factory-prison-fortress there are distinct{' '}
         <span className="italic">&quot;sectors&quot;</span>, though the workers
         call them lairs. Each is isolated from its neighbors, secured with vault
@@ -139,7 +145,9 @@ export default async function Page() {
         across the vault doors.
       </TypographyP>
       <FactoryMap />
-      <TypographyH4 id="fabrication">Fabrication</TypographyH4>
+      <TypographyH4 id="fabrication" className="mt-4">
+        Fabrication
+      </TypographyH4>
       <TypographyP>
         This is where our protagonists live. The background noise of their home
         is hissing, buzzing, sawing, grinding, clattering. The air is acrid with
@@ -182,14 +190,14 @@ export default async function Page() {
         Everyone works: most get fed. That&apos;s the way of things. No one
         slacks off on their watch. No one makes trouble for Fab. Or else.
       </TypographyP>
-      <TypographyH2>Culture</TypographyH2>
+      <TypographyH2 className="mt-4">Culture</TypographyH2>
       <TypographyP>
         <strong>Rath</strong> is vast. It stretches from the King&apos;s jungle
         doorstep to the northern Tarakon Bogs to Ilswinth&apos;s sandswept dunes
         in the West. The people of Rath are as varied as the land itself. But
         there are common threads that bind them all.
       </TypographyP>
-      <TypographyH3>Blood</TypographyH3>
+      <TypographyH3 className="mt-4">Blood</TypographyH3>
       <TypographyP>
         Kingwulf&apos;s holy bloodline reigns supreme. The three bestial
         bloodlines (wolves, bears, crows) beneath him: bloodline of the wolf
@@ -209,7 +217,7 @@ export default async function Page() {
         <i>good</i>, <i>powerful</i>, <i>pure</i>, higher in the hierarchy) and{' '}
         <strong>thinblood</strong> (meaning lower) to approximate.
       </TypographyP>
-      <TypographyH3>Marriage</TypographyH3>
+      <TypographyH3 className="mt-4">Marriage</TypographyH3>
       <TypographyP>
         The obsession with bloodline extends to marriage and children.{' '}
         <strong>Thickblooded</strong> Rathi view it as their societal duty to
@@ -256,14 +264,14 @@ export default async function Page() {
         desperate unmarried men is simply: <i>unworthy</i>. A population of men
         willing to resort to more and more extreme lengths to gain a wife.
       </TypographyP>
-      <Separator />
+      <Separator className="my-4" />
       <div className="w-full flex justify-between">
         <Link href="/game">
           <Button variant="outline">
             <ChevronLeft /> Introduction
           </Button>
         </Link>
-        <Link href="/game/strange-forces">
+        <Link href="/game/setting/strange-forces">
           <Button variant="outline">
             Strange Forces of the Steel Trap <ChevronRight />
           </Button>

@@ -1,18 +1,17 @@
-import { useState } from 'react';
+import { useState } from "react";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/ui/popover';
-import { Close } from '@radix-ui/react-popover';
-import { Button } from '@/components/ui/button';
+} from "@/components/ui/popover";
+import { Close } from "@radix-ui/react-popover";
+import { Button } from "@/components/ui/button";
 import {
   TypographyP,
   TypographyH3,
-  TypographyH4,
   TypographyUnorderedList,
-} from '@/components/ui/typography';
-import { X, BookOpen, ArrowRight } from 'lucide-react';
+} from "@/components/ui/typography";
+import { X, BookOpen, ArrowRight } from "lucide-react";
 
 export default function XPInfo() {
   const [open, setOpen] = useState(false);
@@ -24,7 +23,7 @@ export default function XPInfo() {
           variant="ghost"
           className="p-1 text-blue-600 hover:text-blue-600 h-10 w-10"
         >
-          <BookOpen style={{ height: '24px', width: '24px' }} />
+          <BookOpen style={{ height: "24px", width: "24px" }} />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="max-w-screen w-[450px] relative h-[500px] overflow-auto">
@@ -34,7 +33,7 @@ export default function XPInfo() {
         <TypographyH3 className="text-md">Experience</TypographyH3>
         <TypographyP className="text-sm">
           You can gain <b>xp</b> during, and in the <b>Aftermath</b> of a
-          mission. You can advance your character by taking the <b>train</b> or{' '}
+          mission. You can advance your character by taking the <b>train</b> or{" "}
           <b>consort</b> downtime action to clear <b>xp clocks</b>.
         </TypographyP>
         <TypographyH3 className="text-md mt-4 text-muted-foreground">
@@ -64,7 +63,7 @@ export default function XPInfo() {
           Mission Aftermath
         </TypographyH3>
         <TypographyP className="text-sm">
-          At the end of each mission, for each item below that occurred,{' '}
+          At the end of each mission, for each item below that occurred,{" "}
           <b>+1 xp</b>. <b>+2 xp</b> if that item occurred multiple times.
         </TypographyP>
         <TypographyUnorderedList className="text-sm">
@@ -78,9 +77,9 @@ export default function XPInfo() {
           <li>You struggled with your hurt or conditions</li>
           <li>You grew closer to someone in your crew</li>
           <li>
-            You grew apart from someone in the crew... also{' '}
+            You grew apart from someone in the crew... also{" "}
             <b>strain your bond</b>
-            <sup className="text-amber-500">*</sup>{' '}
+            <sup className="text-amber-500">*</sup>{" "}
           </li>
         </TypographyUnorderedList>
         <span className="text-muted-foreground text-sm mb-4">

@@ -1,15 +1,17 @@
-import { type ClassValue, clsx } from 'clsx';
+import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-type DebouncedFunction<T extends (...args: any[]) => any> = (
+type DebouncedFunction<T extends (...args: unknown[]) => unknown> = (
   ...args: Parameters<T>
 ) => void;
 
-export function debounce<T extends (...args: any[]) => any>(
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function debounce<T extends (...args: any[]) => unknown>(
   func: T,
   wait: number
 ): DebouncedFunction<T> {

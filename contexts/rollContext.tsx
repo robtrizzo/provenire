@@ -1,10 +1,10 @@
-'use client';
-import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { useToast } from '@/components/ui/use-toast';
-import { Die } from '@/components/ui/die';
-import { cn } from '@/lib/utils';
-import { useCharacterSheet } from './characterSheetContext';
-import { Attribute } from '@/types/game';
+"use client";
+import React, { createContext, useContext, useState, ReactNode } from "react";
+import { useToast } from "@/hooks/use-toast";
+import { Die } from "@/components/die";
+import { cn } from "@/lib/utils";
+import { useCharacterSheet } from "./characterSheetContext";
+import { Attribute } from "@/types/game";
 
 interface RollContextProps {
   rollAction: (attribute: Attribute, action: string) => void;
@@ -41,7 +41,7 @@ const RollContext = createContext<RollContextProps | undefined>(undefined);
 export const useRoll = () => {
   const context = useContext(RollContext);
   if (!context) {
-    throw new Error('useRoll must be used within a RollProvider');
+    throw new Error("useRoll must be used within a RollProvider");
   }
   return context;
 };
@@ -59,7 +59,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     const score = attributes[attribute][action];
     const [a, b] = score || [0, 0];
 
-    rollCombo(action, '', [a, b]);
+    rollCombo(action, "", [a, b]);
   }
 
   const rollCombo = (action1: string, action2: string, dice: number[]) => {
@@ -74,27 +74,27 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       let r1 = Math.floor(Math.random() * 6) + 1;
       let r2 = Math.floor(Math.random() * 6) + 1;
       const result = Math.min(r1, r2);
-      let resultText = '';
+      let resultText = "";
       switch (result) {
         case 1:
         case 2:
         case 3:
-          resultText = 'Miss. Suffer the consequences.';
+          resultText = "Miss. Suffer the consequences.";
           break;
         case 4:
         case 5:
           resultText =
-            'Partial hit. Succeed, but suffer the consequences and take reduced effect.';
+            "Partial hit. Succeed, but suffer the consequences and take reduced effect.";
           break;
         case 6:
-          resultText = 'Hit! Succeed, but take reduced effect.';
+          resultText = "Hit! Succeed, but take reduced effect.";
           break;
         default:
-          resultText = 'Unknown result';
+          resultText = "Unknown result";
           break;
       }
       toast({
-        variant: 'grid',
+        variant: "grid",
         // @ts-ignore
         title: (
           <div className="flex items-center gap-1">
@@ -126,7 +126,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     }
 
     let result: number;
-    let resultText = '';
+    let resultText = "";
     let highestRed = Math.max(...redRolls);
     let highestBlue = Math.max(...blueRolls);
     const blueHigher = highestBlue >= highestRed;
@@ -138,7 +138,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     if (redSixes + blueSixes >= 2) {
       crit = true;
       result = 6;
-      resultText = 'Critical! Succeed with improved effect.';
+      resultText = "Critical! Succeed with improved effect.";
     } else {
       result = Math.max(highestBlue, highestRed);
 
@@ -146,33 +146,33 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         case 1:
         case 2:
         case 3:
-          resultText = 'Miss. Suffer the consequences.';
+          resultText = "Miss. Suffer the consequences.";
           break;
         case 4:
         case 5:
           resultText = `Partial hit. Suceed, but suffer the consequences${
-            blueHigher ? '' : ' and take reduced effect'
+            blueHigher ? "" : " and take reduced effect"
           }.`;
           break;
         case 6:
           resultText = `Hit! Succeed${
-            blueHigher ? '' : ', but take reduced effect'
+            blueHigher ? "" : ", but take reduced effect"
           }.`;
           break;
         default:
-          resultText = 'Unknown result';
+          resultText = "Unknown result";
           break;
       }
     }
 
     toast({
-      variant: 'grid',
+      variant: "grid",
       // @ts-ignore
       title: (
         <div className="flex items-center flex-wrap gap-1">
           <span className="mt-1">
             Rolled {action1}
-            {action2 ? ` + ${action2}` : ''}
+            {action2 ? ` + ${action2}` : ""}
           </span>
           {redRolls.map((r, i) => (
             <Die key={i} roll={r} className="h-8 w-8 text-red-800" />
@@ -201,8 +201,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
             <Die
               roll={result}
               className={cn(
-                'h-10 w-10',
-                blueHigher ? 'text-blue-400' : 'text-red-400'
+                "h-10 w-10",
+                blueHigher ? "text-blue-400" : "text-red-400"
               )}
             />
           )}
@@ -243,7 +243,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
           break;
       }
       toast({
-        variant: 'grid',
+        variant: "grid",
         // @ts-ignore
         title: (
           <div className="flex items-center gap-1">
@@ -286,10 +286,10 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     const blueHigher = highestBlue >= highestRed;
     if (blueSixes >= 2) {
       bluecrit = true;
-      resultText = 'Crit! Clear 1 stress.';
+      resultText = "Crit! Clear 1 stress.";
     } else if (blueSixes + redSixes >= 2) {
       redcrit = true;
-      resultText = 'Crit! Take no stress.';
+      resultText = "Crit! Take no stress.";
     } else {
       result = blueHigher ? highestBlue : highestRed;
       let stress: number;
@@ -319,7 +319,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       resultText = `Take ${stress} stress.`;
     }
     toast({
-      variant: 'grid',
+      variant: "grid",
       // @ts-ignore
       title: (
         <div className="flex items-center gap-1">
@@ -353,8 +353,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
             <Die
               roll={blueHigher ? highestBlue : highestRed}
               className={cn(
-                'h-10 w-10',
-                blueHigher ? 'text-blue-400' : 'text-red-400'
+                "h-10 w-10",
+                blueHigher ? "text-blue-400" : "text-red-400"
               )}
             />
           )}
@@ -394,7 +394,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   ) {
     const score1 = attributes?.[attribute1]?.[action1] || [0, 0];
     const score2 = attributes?.[attribute2]?.[action2] || [0, 0];
-    let dice = [...score1, ...score2];
+    const dice = [...score1, ...score2];
     for (let i = 0; i < bonusDiceRed; i++) {
       dice.push(1);
     }
@@ -452,10 +452,10 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     let text;
     let ticks: number[] = [];
     if (bluecrit) {
-      text = 'Crit!';
+      text = "Crit!";
       ticks = [3, 5, 7];
     } else if (redcrit) {
-      text = 'Crit! (but take reduced effect)';
+      text = "Crit! (but take reduced effect)";
       ticks = [3, 5, 7];
     } else {
       switch (result) {
@@ -463,26 +463,26 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         case 2:
         case 3:
           if (blueHigher) {
-            text = 'Miss.';
+            text = "Miss.";
           } else {
-            text = 'Miss, and take reduced effect.';
+            text = "Miss, and take reduced effect.";
           }
           ticks = [0, 1, 1];
           break;
         case 4:
         case 5:
           if (blueHigher) {
-            text = 'Partial hit.';
+            text = "Partial hit.";
           } else {
-            text = 'Partial hit, and take reduced effect';
+            text = "Partial hit, and take reduced effect";
           }
           ticks = [1, 2, 3];
           break;
         case 6:
           if (blueHigher) {
-            text = 'Hit.';
+            text = "Hit.";
           } else {
-            text = 'Hit, and take reduced effect.';
+            text = "Hit, and take reduced effect.";
           }
           ticks = [2, 3, 5];
           break;
@@ -492,7 +492,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     }
 
     toast({
-      variant: 'grid',
+      variant: "grid",
       // @ts-ignore
       title: (
         <div className="flex items-center gap-1 flex-wrap">
@@ -510,8 +510,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
             <Die
               roll={result}
               className={cn(
-                'h-10 w-10',
-                blueHigher ? 'text-blue-400' : 'text-red-400'
+                "h-10 w-10",
+                blueHigher ? "text-blue-400" : "text-red-400"
               )}
             />
           )}

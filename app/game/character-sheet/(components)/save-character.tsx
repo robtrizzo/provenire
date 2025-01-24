@@ -1,21 +1,21 @@
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/ui/popover';
-import { TypographyH4 } from '@/components/ui/typography';
+} from "@/components/ui/popover";
+import { TypographyH4 } from "@/components/ui/typography";
 import {
   CloudUpload,
   HardDriveDownload,
   X,
   Loader,
   Save as SaveIcon,
-} from 'lucide-react';
-import { Close } from '@radix-ui/react-popover';
-import { useMutation } from '@tanstack/react-query';
+} from "lucide-react";
+import { Close } from "@radix-ui/react-popover";
+import { useMutation } from "@tanstack/react-query";
 
 export default function SaveCharacter({
   initialName,
@@ -30,13 +30,13 @@ export default function SaveCharacter({
   }
 
   function saveToDevice() {
-    const data = localStorage.getItem('charsheet');
+    const data = localStorage.getItem("charsheet");
     if (!data) {
       return;
     }
-    const blob = new Blob([data], { type: 'text/json' });
+    const blob = new Blob([data], { type: "text/json" });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
+    const a = document.createElement("a");
     a.href = url;
     a.download = `${name}.json`;
     a.click();
@@ -44,19 +44,20 @@ export default function SaveCharacter({
 
   const { mutateAsync: saveToCloud, isPending } = useMutation({
     mutationFn: async () => {
-      const data = localStorage.getItem('charsheet');
+      const data = localStorage.getItem("charsheet");
       if (!data) {
         return;
       }
-      const file = new File([data], `${name}.json`, { type: 'text/json' });
-      const response = await fetch(`/api/characters/upload?filename=${name}`, {
-        method: 'POST',
-        body: file,
+      const response = await fetch(`/api/characters/upload`, {
+        method: "POST",
+        body: JSON.stringify({
+          character: data,
+        }),
       });
       return response.json();
     },
     onError: (error) => {
-      console.error('Error saving character to cloud', error);
+      console.error("Error saving character to cloud", error);
     },
     onSuccess: () => {
       closePopover();

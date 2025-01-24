@@ -343,7 +343,7 @@ export default async function Page() {
         <strong>item slot</strong> (or multiple item slots) to have brought the
         armor.
       </TypographyP>
-      <Separator />
+      <Separator className="my-4" />
       <div className="w-full flex justify-between">
         <Link href="/game/prelude">
           <Button variant="outline">

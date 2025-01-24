@@ -1,10 +1,10 @@
-'use client';
-import * as React from 'react';
-import { usePathname } from 'next/navigation';
+"use client";
+import * as React from "react";
+import { usePathname } from "next/navigation";
 
-import AuthButton from '@/components/ui/AuthButton.client';
+import AuthButton from "@/components/ui/AuthButton.client";
 
-import { ModeToggle } from '@/components/ui/mode-toggle';
+import { ModeToggle } from "@/components/ui/mode-toggle";
 
 import {
   Sidebar,
@@ -17,116 +17,112 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
-} from '@/components/ui/sidebar';
-import { Button } from './ui/button';
-import Link from 'next/link';
+} from "@/components/ui/sidebar";
+import { Button } from "./ui/button";
+import Link from "next/link";
 
 const data = {
   navMain: [
     {
-      title: 'Introduction',
-      url: '/game',
+      title: "Introduction",
+      url: "/game",
     },
     {
-      title: 'Setting',
-      url: '#',
+      title: "Setting",
+      url: "#",
       items: [
         {
-          title: 'Era 3',
-          url: '/game/setting',
+          title: "Era 3",
+          url: "/game/setting",
         },
         {
-          title: 'Strange Forces',
-          url: '/game/setting/strange-forces',
+          title: "Strange Forces",
+          url: "/game/setting/strange-forces",
         },
       ],
     },
     {
-      title: 'Rules',
-      url: '#',
+      title: "Rules",
+      url: "#",
       items: [
         {
-          title: 'Core System',
-          url: '/game/core-system',
+          title: "Core System",
+          url: "/game/core-system",
         },
         {
-          title: 'Actions, Bonds, & Rolls',
-          url: '/game/actions-and-rolls',
+          title: "Actions, Bonds, & Rolls",
+          url: "/game/actions-and-rolls",
         },
         {
-          title: 'Prelude',
-          url: '/game/prelude',
+          title: "Prelude",
+          url: "/game/prelude",
         },
         {
-          title: 'Mission',
-          url: '/game/mission',
+          title: "Mission",
+          url: "/game/mission",
         },
         {
-          title: 'Churn',
-          url: '/game/the-churn',
+          title: "Churn",
+          url: "/game/the-churn",
         },
         {
-          title: 'Appendix',
-          url: '/game/appendix',
+          title: "Appendix",
+          url: "/game/appendix",
         },
       ],
     },
     {
-      title: 'Character Creation',
-      url: '#',
+      title: "Character Creation",
+      url: "#",
       items: [
         {
-          title: 'Overview',
-          url: '/game/character-creation',
+          title: "Overview",
+          url: "/game/character-creation",
         },
         {
-          title: 'Heritages',
-          url: '/game/heritages',
+          title: "Heritages",
+          url: "/game/heritages",
         },
         {
-          title: 'Backgrounds',
-          url: '/game/backgrounds',
+          title: "Backgrounds",
+          url: "/game/backgrounds",
         },
         {
-          title: 'Skillsets',
-          url: '/game/skillsets',
+          title: "Skillsets",
+          url: "/game/skillsets",
         },
         {
-          title: 'Archetypes',
-          url: '/game/archetypes',
+          title: "Archetypes",
+          url: "/game/archetypes",
         },
         {
-          title: 'Fighting Styles',
-          url: '/game/fighting-styles',
+          title: "Fighting Styles",
+          url: "/game/fighting-styles",
         },
         {
-          title: 'Character Sheet',
-          url: '/game/character-sheet',
+          title: "Character Sheet",
+          url: "/game/character-sheet",
         },
       ],
     },
     {
-      title: 'Playtests',
-      url: '#',
+      title: "Playtests",
+      url: "#",
       items: [
-        { title: 'Playtest One', url: '/game/playtest-one' },
-        { title: 'Playtest Two', url: '/game/playtest-two' },
-        { title: 'Playtest Three', url: '/game/playtest-three' },
-        { title: 'Playtest Four', url: '/game/playtest-four' },
-        { title: 'Playtest Five', url: '/game/playtest-five' },
+        { title: "Playtest One", url: "/game/playtest-one" },
+        { title: "Playtest Two", url: "/game/playtest-two" },
+        { title: "Playtest Three", url: "/game/playtest-three" },
+        { title: "Playtest Four", url: "/game/playtest-four" },
+        { title: "Playtest Five", url: "/game/playtest-five" },
       ],
     },
     {
-      title: 'Crucible',
-      url: '/game/crucible',
+      title: "Crucible",
+      url: "/game/crucible",
     },
     {
-      title: 'OSG: Twisted Scion',
-      url: '/game/osg',
-    },
-    {
-      title: 'Blog',
-      url: '/game/blog',
+      title: "Blog",
+      url: "/game/blog",
     },
   ],
 };
@@ -149,7 +145,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenu className="gap-3">
             {data.navMain.map((item) => (
               <SidebarMenuItem key={item.title}>
-                {item.url === '#' ? (
+                {item.url === "#" ? (
                   <span className="ml-2">{item.title}</span>
                 ) : (
                   <SidebarMenuButton asChild isActive={item.url === pathname}>
@@ -192,7 +188,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <SidebarMenuItem>
               <div className="relative flex justify-end">
                 <p className="absolute top-2 left-2 text-sm text-muted-foreground">
-                  Toggle sidebar with{' '}
+                  Toggle sidebar with{" "}
                   <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
                     <span className="text-xs">⌘</span>B
                   </kbd>

@@ -1,7 +1,7 @@
-'use client';
-import { useState } from 'react';
-import Clock from '@/components/ui/clock';
-import { Button } from '@/components/ui/button';
+"use client";
+import { useState } from "react";
+import Clock from "@/components/clock";
+import { Button } from "@/components/ui/button";
 export default function XPClocks({
   current,
   setVal,
@@ -9,9 +9,7 @@ export default function XPClocks({
   current: number;
   setVal: (n: number) => void;
 }) {
-  console.log('current', current);
   const [xp, setXp] = useState<number>(current);
-  console.log('xp', xp);
 
   const numClocks = 5;
 

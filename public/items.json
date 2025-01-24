@@ -1,0 +1,127 @@
+{
+  "starting": [
+    {
+      "name": "Hand Tool",
+      "ticks": 3,
+      "slots": 1,
+      "traits": ["unwieldy", "dull"],
+      "description": "Hammers, screwdrivers, prybars, and other odds and ends."
+    },
+    {
+      "name": "Tar Torch",
+      "ticks": 3,
+      "slots": 1,
+      "traits": ["unreliable", "dim", "fragile"],
+      "description": "Cloth soaked in tar and wrapped around a hafted object."
+    }
+  ],
+  "schematics": [
+    {
+      "name": "Subtle Weapons",
+      "ticks": 5,
+      "slots": 1,
+      "traits": ["fragile", "dull", "concealable"],
+      "description": "Shivs, knives, garottes, and other small weapons."
+    },
+    {
+      "name": "Heavy Weapons",
+      "ticks": 5,
+      "slots": 1,
+      "traits": ["fragile", "unwieldy"],
+      "description": "Clubs, axes, and other large weapons."
+    },
+    {
+      "name": "Armor",
+      "ticks": 5,
+      "slots": 2,
+      "traits": ["bulky", "heavy", "noisy"],
+      "description": "Padded, leather, or metal armor."
+    },
+    {
+      "name": "Climbing Gear",
+      "ticks": 3,
+      "slots": 2,
+      "traits": ["bulky", "tangled"],
+      "description": "Grappling hooks, ropes, and harnesses."
+    },
+    {
+      "name": "Lockpicks",
+      "ticks": 3,
+      "slots": 0,
+      "traits": ["fragile", "imprecise"],
+      "description": "Tools for picking locks."
+    },
+    {
+      "name": "Designs",
+      "ticks": 7,
+      "slots": 1,
+      "traits": ["convoluted", "unreliable"],
+      "description": "Blueprints for one of the factory's machines."
+    },
+    {
+      "name": "Hooded Lantern",
+      "ticks": 5,
+      "slots": 1,
+      "traits": ["heavy", "dim"],
+      "description": "A lantern that can be hooded to conceal its light."
+    },
+    {
+      "name": "Demolition Tools",
+      "ticks": 7,
+      "slots": 1,
+      "traits": ["volatile", "imprecise"],
+      "description": "Explosives and tools for setting them off."
+    },
+    {
+      "name": "Wrecking Tools",
+      "ticks": 5,
+      "slots": 2,
+      "traits": ["bulky", "noisy"],
+      "description": "Tools for breaking machines."
+    }
+  ],
+  "formulae": [
+    {
+      "name": "Sweet Dreams",
+      "ticks": 4,
+      "slots": 1,
+      "traits": ["groggy", "acrid"],
+      "description": "Have pleasurable dreams you remember the next day."
+    },
+    {
+      "name": "Tarric Acid",
+      "ticks": 6,
+      "slots": 1,
+      "traits": ["diluted", "imprecise"],
+      "description": "Strong solvent refined from tar byproduct."
+    },
+    {
+      "name": "Extinguishing Soaps",
+      "ticks": 6,
+      "slots": 1,
+      "traits": ["messy", "imprecise"],
+      "description": "Quickly expanding foam effective at putting out fires."
+    },
+    {
+      "name": "Liquid Courage",
+      "ticks": 6,
+      "slots": 1,
+      "traits": ["addling", "acrid"],
+      "description": "Dulls fear and swells confidence for a short time."
+    },
+    {
+      "name": "Chew",
+      "ticks": 3,
+      "slots": 1,
+      "traits": ["jittery", "withdrawal"],
+      "description": "Ignore fatigue and hunger for a day."
+    },
+    {
+      "name": "Runner's Rub",
+      "ticks": 4,
+      "slots": 1,
+      "traits": ["light-blind", "stains"],
+      "description": "Apply to the eyes to see in the dark for some time."
+    }
+  ]
+}

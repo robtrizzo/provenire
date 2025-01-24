@@ -32,30 +32,29 @@ export default function Page() {
       <TypographyH1>Actions, Bonds, & Rolls</TypographyH1>
       <TypographyH2>Action Ratings</TypographyH2>
       <TypographyP>
-        There are 6 <strong>universal actions</strong> and 46{' '}
-        <strong>unique actions</strong> in the game that the player characters
-        use to overcome obstacles. Every character has acces to the 6{' '}
-        <strong>universal actions</strong> as opposed to the 5 of 46{' '}
-        <strong>unique actions</strong> each player character gains access to as
-        a result of character creation choices.
+        There are 6 <b>universal actions</b> and 46 <b>unique actions</b> in the
+        game that the player characters use to overcome obstacles. Every
+        character has acces to the 6 <b>universal actions</b> as opposed to the
+        5 of 46 <b>unique actions</b> each player character gains access to as a
+        result of character creation choices.
       </TypographyP>
       <TypographyP>
-        Each <strong>action</strong> has a <strong>rating</strong> (from{' '}
-        <div className="inline-block">
-          <div className="flex gap-2 mx-2">
-            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
-            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
-          </div>
-        </div>{' '}
+        Each <b>action</b> has a <b>rating</b> (from{' '}
+        <span className="inline-block">
+          <span className="flex gap-2 mx-2">
+            <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
+            <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
+          </span>
+        </span>{' '}
         to{' '}
-        <div className="inline-block">
-          <div className="flex gap-2 mx-2">
-            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500" />
-            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500" />
-          </div>
-        </div>
+        <span className="inline-block">
+          <span className="flex gap-2 mx-2">
+            <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500" />
+            <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500" />
+          </span>
+        </span>
         ) that tells you how many dice to roll when you perform that action.
-        Action <strong>ratings</strong> don&apos;t just represent skill or
+        Action <b>ratings</b> don&apos;t just represent skill or
         training--you&apos;re free to describe{' '}
         <span className="italic">how</span> your character performs that type of
         action based on the type of person they are.
@@ -65,8 +64,7 @@ export default function Page() {
         describing what your character does. Actions that are poorly suited to
         the situation may be less effective and may put the character in more
         danger, but they can still be attempted. Usually, when you perform an
-        action, you&apos;ll make an <strong>action roll</strong> to see how it
-        turns out
+        action, you&apos;ll make an <b>action roll</b> to see how it turns out
       </TypographyP>
       <TypographyH2 id="bonds">Bonds</TypographyH2>
       <TypographyP>
@@ -79,19 +77,19 @@ export default function Page() {
       </TypographyP>
       <TypographyP>
         Each <b>bond</b> has a <b>rating</b> (from{' '}
-        <div className="inline-block">
-          <div className="flex gap-2 mx-2">
-            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
-            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
-          </div>
-        </div>{' '}
+        <span className="inline-block">
+          <span className="flex gap-2 mx-2">
+            <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
+            <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4" />
+          </span>
+        </span>{' '}
         to{' '}
-        <div className="inline-block">
-          <div className="flex gap-2 mx-2">
-            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500" />
-            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500" />
-          </div>
-        </div>
+        <span className="inline-block">
+          <span className="flex gap-2 mx-2">
+            <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500" />
+            <span className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500" />
+          </span>
+        </span>
         ) that tells you how many dice to roll when invoking this <b>bond</b>.
         Bond ratings don&apos;t just represent dedication or capability --
         you&apos;re free to describe the manner in which each <b>bond&apos;s</b>{' '}
@@ -146,36 +144,34 @@ export default function Page() {
       </TypographyBlockquote>
       <TypographyH2 id="action-roll">Action Roll</TypographyH2>
       <TypographyP>
-        You make an <strong>action roll</strong> when your character does
-        something potentially dangerous or troublesome. The possible results of
-        the <strong>action roll</strong> depend on your character&apos;s
-        position. There are three positions: <strong>controlled</strong>,{' '}
-        <strong>risky</strong>, and <strong>desperate</strong>. If you&apos;re
-        in a <strong>controlled</strong> position, the possible consequences are
-        less serious. If you’re in a <strong>desperate</strong> position, the
-        consequences can be severe. If you&apos;re somewhere in between,
-        it&apos;s <strong>risky</strong>—usually considered the
-        &quot;default&quot; position for most actions. If there&apos;s no danger
-        or trouble at hand, you don&apos;t make an <strong>action roll</strong>.
-        You might make a <strong>fortune</strong> roll or a{' '}
-        <strong>project</strong> roll or the Narrator will simply say yes—and
-        you accomplish your goal.
+        You make an <b>action roll</b> when your character does something
+        potentially dangerous or troublesome. The possible results of the{' '}
+        <b>action roll</b> depend on your character&apos;s position. There are
+        three positions: <b>controlled</b>, <b>risky</b>, and <b>desperate</b>.
+        If you&apos;re in a <b>controlled</b> position, the possible
+        consequences are less serious. If you’re in a <b>desperate</b> position,
+        the consequences can be severe. If you&apos;re somewhere in between,
+        it&apos;s <b>risky</b>—usually considered the &quot;default&quot;
+        position for most actions. If there&apos;s no danger or trouble at hand,
+        you don&apos;t make an <b>action roll</b>. You might make a{' '}
+        <b>fortune</b> roll or a <b>project</b> roll or the Narrator will simply
+        say yes—and you accomplish your goal.
       </TypographyP>
       <TypographyP>
-        When you build the dice pool for an <strong>action roll</strong>, the
-        player character may select up to two <strong>action ratings</strong> to
-        combine for the purpose of the roll. They can only select one{' '}
-        <strong>action rating</strong> from each of the left and right sides of
-        the <strong>mission actions</strong> on their character sheet.
+        When you build the dice pool for an <b>action roll</b>, the player
+        character may select up to two <b>action ratings</b> to combine for the
+        purpose of the roll. They can only select one <b>action rating</b> from
+        each of the left and right sides of the <b>mission actions</b> on their
+        character sheet.
       </TypographyP>
       <TypographyH2 id="resistance-roll">Resistance Rolls</TypographyH2>
       <TypographyP>
         When a consequence befalls the crew or your individual character, you
         may choose to instead make a <b>resistance roll</b>. Resistance rolls
         always succeed--you diminish or deflect the bad result--but the better
-        you roll, the less <strong>stress</strong> it costs to reduce or avoid
-        the danger (see the table below). Just like how you choose up to two
-        actions to make <b>action rolls</b>, you do the same thing here.
+        you roll, the less <b>stress</b> it costs to reduce or avoid the danger
+        (see the table below). Just like how you choose up to two actions to
+        make <b>action rolls</b>, you do the same thing here.
       </TypographyP>
       <Table>
         <TableCaption>resistance roll results</TableCaption>
@@ -295,7 +291,7 @@ export default function Page() {
           </TableRow>
         </TableBody>
       </Table>
-      <Separator />
+      <Separator className="my-4" />
       <div className="w-full flex justify-between">
         <Link href="/game/core-system">
           <Button variant="outline">

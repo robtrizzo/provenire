@@ -1,0 +1,30 @@
+[
+    {
+        "name": "Scarbacks",
+        "location": "Fabriction",
+        "description": "abuse-hardened workers",
+        "agenda": "Free comrades from the pits.",
+        "scorn": 0
+    },
+    {
+        "name": "Gorger's Sommeliers",
+        "location": "Fabriction",
+        "description": "lackeys of a cannabalistic glutton",
+        "agenda": "Acquire the body of a beast, living or dead.",
+        "scorn": 0
+    },
+    {
+        "name": "Shrikes",
+        "location": "Fabriction",
+        "description": "aggressive crow-beast overseers",
+        "agenda": "Put a stop to the inventory discrepencies in Fabrication.",
+        "scorn": 0
+    },
+    {
+        "name": "The Youngers",
+        "location": "Fabriction",
+        "description": "upstart thugs with something to prove",
+        "agenda": "Help them oust the Scarbacks and be the strongest gang in Fab.",
+        "scorn": 0
+    }
+]

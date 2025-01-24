@@ -1,38 +1,36 @@
-import { NextResponse } from 'next/server';
-import { auth } from '@/auth/index';
-import { db } from '@/drizzle/db';
-import { CharactersTable } from '@/drizzle/schema';
-import { eq } from 'drizzle-orm';
+import { NextResponse } from "next/server";
+import { auth } from "@/auth/index";
+import { checkUserAuthenticated, checkUserRole } from "@/lib/auth";
+import redis, { findKeysByPattern } from "@/lib/redis";
+
+async function getAllCharactersForUser(userId: string | undefined) {
+  if (!userId) return [];
+  const pattern = `user:${userId}:character:*`;
+  const keys = await findKeysByPattern(pattern);
+  const characters = await Promise.all(keys.map((key) => redis.get(key)));
+  return characters;
+}
 
 export async function GET() {
   const session = await auth();
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
+
+  const unauthenticatedResponse = checkUserAuthenticated(session);
+  if (unauthenticatedResponse) {
+    return unauthenticatedResponse;
   }
-  if (!['alpha-tester', 'admin'].includes(session?.user?.role as string)) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
+
+  const unauthorizedResponse = checkUserRole(session, ["admin", "player"]);
+  if (unauthorizedResponse) {
+    return unauthorizedResponse;
   }
+
   try {
-    const characters = await db.query.CharactersTable.findMany({
-      where: eq(CharactersTable.userId, session.user.id),
-    });
-    characters.sort((a, b) => {
-      if (!a.createdAt || !b.createdAt) {
-        return 0;
-      }
-      if (a.createdAt < b.createdAt) {
-        return 1;
-      }
-      if (a.createdAt > b.createdAt) {
-        return -1;
-      }
-      return 0;
-    });
+    const characters = await getAllCharactersForUser(session?.user.id);
     return NextResponse.json({ characters });
   } catch (error) {
-    console.error('Error getting characters', error);
+    console.error("Error getting characters", error);
     return NextResponse.json(
-      { error: 'Error getting characters' },
+      { error: "Error getting characters" },
       { status: 500 }
     );
   }

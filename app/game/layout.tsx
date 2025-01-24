@@ -1,4 +1,4 @@
-import CommandMenu from '@/components/ui/command-menu';
+import CommandMenu from '@/components/command-menu';
 import { Toaster } from '@/components/ui/toaster';
 import { AppSidebar } from '@/components/app-sidebar';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';

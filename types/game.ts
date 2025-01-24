@@ -1,3 +1,7 @@
+export interface Character {
+  name: string;
+}
+
 export type Archetype = {
   name: string;
   questions: string[];
@@ -103,5 +107,23 @@ export type Loadout = {
 
 export type Item = {
   name: string;
+  ticks: number;
   slots: number;
+  traits: string[];
+  description: string;
+};
+
+export type Faction = {
+  name: string;
+  location: string;
+  description: string;
+  agenda: string;
+  scorn: number;
+};
+
+export type Cohort = {
+  name: string;
+  location: string;
+  ticks: number;
+  traits: string[];
 };
