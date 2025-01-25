@@ -5,12 +5,9 @@ import { ChevronRight, ChevronLeft } from "lucide-react";
 import {
   TypographyH1,
   TypographyH2,
-  TypographyH3,
-  TypographyH4,
   TypographyP,
 } from "@/components/ui/typography";
 import Blood from "@/components/ui/blood";
-import FactoryMap from "@/components/factory-map";
 import Breadcrumbs from "@/components/ui/breadcrumbs";
 import Image from "next/image";
 
