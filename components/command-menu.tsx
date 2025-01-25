@@ -1,8 +1,8 @@
-'use client';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { Moon, Sun } from 'lucide-react';
-import { useTheme } from 'next-themes';
+"use client";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
 import {
   CommandDialog,
   CommandInput,
@@ -11,11 +11,11 @@ import {
   CommandGroup,
   CommandItem,
   CommandSeparator,
-} from '@/components/ui/command';
-import heritages from '@/public/heritages.json';
-import backgrounds from '@/public/backgrounds.json';
-import skillsets from '@/public/skillsets.json';
-import archetypes from '@/public/archetypes.json';
+} from "@/components/ui/command";
+import heritages from "@/public/heritages.json";
+import backgrounds from "@/public/backgrounds.json";
+import skillsets from "@/public/skillsets.json";
+import archetypes from "@/public/archetypes.json";
 
 export default function CommandMenu() {
   const router = useRouter();
@@ -24,13 +24,13 @@ export default function CommandMenu() {
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
-      if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
         setOpen((open) => !open);
       }
     };
-    document.addEventListener('keydown', down);
-    return () => document.removeEventListener('keydown', down);
+    document.addEventListener("keydown", down);
+    return () => document.removeEventListener("keydown", down);
   }, []);
 
   return (
@@ -41,7 +41,7 @@ export default function CommandMenu() {
         <CommandGroup heading="Character Sheet">
           <CommandItem
             onSelect={() => {
-              router.push('/game/character-sheet#mission');
+              router.push("/game/character-sheet#mission");
               setOpen(false);
             }}
           >
@@ -49,7 +49,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/character-sheet#profile');
+              router.push("/game/character-sheet#profile");
               setOpen(false);
             }}
           >
@@ -57,7 +57,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/character-sheet#churn');
+              router.push("/game/character-sheet#churn");
               setOpen(false);
             }}
           >
@@ -68,7 +68,7 @@ export default function CommandMenu() {
         <CommandGroup heading="Heritages">
           <CommandItem
             onSelect={() => {
-              router.push('/game/heritages');
+              router.push("/game/heritages");
               setOpen(false);
             }}
           >
@@ -89,7 +89,7 @@ export default function CommandMenu() {
         <CommandGroup heading="Backgrounds">
           <CommandItem
             onSelect={() => {
-              router.push('/game/backgrounds');
+              router.push("/game/backgrounds");
               setOpen(false);
             }}
           >
@@ -111,7 +111,7 @@ export default function CommandMenu() {
         <CommandGroup heading="Skillsets">
           <CommandItem
             onSelect={() => {
-              router.push('/game/skillsets');
+              router.push("/game/skillsets");
               setOpen(false);
             }}
           >
@@ -133,7 +133,7 @@ export default function CommandMenu() {
         <CommandGroup heading="Archetypes">
           <CommandItem
             onSelect={() => {
-              router.push('/game/archetypes');
+              router.push("/game/archetypes");
               setOpen(false);
             }}
           >
@@ -154,7 +154,7 @@ export default function CommandMenu() {
         <CommandGroup heading="Fighting Styles">
           <CommandItem
             onSelect={() => {
-              router.push('/game/fighting-styles#crowdbreaking');
+              router.push("/game/fighting-styles#crowdbreaking");
               setOpen(false);
             }}
           >
@@ -162,7 +162,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/fighting-styles#pipedancing');
+              router.push("/game/fighting-styles#pipedancing");
               setOpen(false);
             }}
           >
@@ -170,7 +170,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/fighting-styles#backsnap');
+              router.push("/game/fighting-styles#backsnap");
               setOpen(false);
             }}
           >
@@ -178,7 +178,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/fighting-styles#bleedout');
+              router.push("/game/fighting-styles#bleedout");
               setOpen(false);
             }}
           >
@@ -186,7 +186,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/fighting-styles#throatgore');
+              router.push("/game/fighting-styles#throatgore");
               setOpen(false);
             }}
           >
@@ -197,7 +197,7 @@ export default function CommandMenu() {
         <CommandGroup heading="Rules (Pages)">
           <CommandItem
             onSelect={() => {
-              router.push('/game');
+              router.push("/game");
               setOpen(false);
             }}
           >
@@ -205,7 +205,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/setting');
+              router.push("/game/setting");
               setOpen(false);
             }}
           >
@@ -213,7 +213,23 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/setting/strange-forces');
+              router.push("/game/setting/culture");
+              setOpen(false);
+            }}
+          >
+            Culture
+          </CommandItem>
+          <CommandItem
+            onSelect={() => {
+              router.push("/game/setting/steel-trap");
+              setOpen(false);
+            }}
+          >
+            The Steel Trap
+          </CommandItem>
+          <CommandItem
+            onSelect={() => {
+              router.push("/game/setting/strange-forces");
               setOpen(false);
             }}
           >
@@ -221,7 +237,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/core-system');
+              router.push("/game/core-system");
               setOpen(false);
             }}
           >
@@ -229,7 +245,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/actions-and-rolls');
+              router.push("/game/actions-and-rolls");
               setOpen(false);
             }}
           >
@@ -237,7 +253,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/prelude');
+              router.push("/game/prelude");
               setOpen(false);
             }}
           >
@@ -245,7 +261,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/mission');
+              router.push("/game/mission");
               setOpen(false);
             }}
           >
@@ -253,7 +269,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/the-churn');
+              router.push("/game/the-churn");
               setOpen(false);
             }}
           >
@@ -261,7 +277,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/appendix');
+              router.push("/game/appendix");
               setOpen(false);
             }}
           >
@@ -269,7 +285,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/character-creation');
+              router.push("/game/character-creation");
               setOpen(false);
             }}
           >
@@ -277,7 +293,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/fighting-styles');
+              router.push("/game/fighting-styles");
               setOpen(false);
             }}
           >
@@ -287,7 +303,7 @@ export default function CommandMenu() {
         <CommandGroup heading="Rules (Terms)">
           <CommandItem
             onSelect={() => {
-              router.push('/game/core-system#bonus-dice');
+              router.push("/game/core-system#bonus-dice");
               setOpen(false);
             }}
           >
@@ -295,7 +311,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/core-system#resistance-roll');
+              router.push("/game/core-system#resistance-roll");
               setOpen(false);
             }}
           >
@@ -303,7 +319,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/core-system#experience-and-advancement');
+              router.push("/game/core-system#experience-and-advancement");
               setOpen(false);
             }}
           >
@@ -311,7 +327,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/actions-and-rolls#bonds');
+              router.push("/game/actions-and-rolls#bonds");
               setOpen(false);
             }}
           >
@@ -319,7 +335,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/actions-and-rolls#action-roll');
+              router.push("/game/actions-and-rolls#action-roll");
               setOpen(false);
             }}
           >
@@ -327,7 +343,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/actions-and-rolls#resistance-roll');
+              router.push("/game/actions-and-rolls#resistance-roll");
               setOpen(false);
             }}
           >
@@ -335,7 +351,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/actions-and-rolls#project-rolls');
+              router.push("/game/actions-and-rolls#project-rolls");
               setOpen(false);
             }}
           >
@@ -343,7 +359,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/prelude#downtime');
+              router.push("/game/prelude#downtime");
               setOpen(false);
             }}
           >
@@ -351,7 +367,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/prelude#engagement-roll');
+              router.push("/game/prelude#engagement-roll");
               setOpen(false);
             }}
           >
@@ -359,7 +375,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/prelude#approach');
+              router.push("/game/prelude#approach");
               setOpen(false);
             }}
           >
@@ -367,7 +383,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/prelude#loadout');
+              router.push("/game/prelude#loadout");
               setOpen(false);
             }}
           >
@@ -375,7 +391,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/mission#flashbacks');
+              router.push("/game/mission#flashbacks");
               setOpen(false);
             }}
           >
@@ -383,7 +399,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/mission#combat');
+              router.push("/game/mission#combat");
               setOpen(false);
             }}
           >
@@ -391,7 +407,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/mission#stress');
+              router.push("/game/mission#stress");
               setOpen(false);
             }}
           >
@@ -399,7 +415,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/mission#conditions');
+              router.push("/game/mission#conditions");
               setOpen(false);
             }}
           >
@@ -407,7 +423,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/mission#harm');
+              router.push("/game/mission#harm");
               setOpen(false);
             }}
           >
@@ -415,7 +431,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/mission#armor');
+              router.push("/game/mission#armor");
               setOpen(false);
             }}
           >
@@ -423,7 +439,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/the-churn#aftermath');
+              router.push("/game/the-churn#aftermath");
               setOpen(false);
             }}
           >
@@ -431,7 +447,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/the-churn#rep');
+              router.push("/game/the-churn#rep");
               setOpen(false);
             }}
           >
@@ -439,7 +455,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/the-churn#mission-xp');
+              router.push("/game/the-churn#mission-xp");
               setOpen(false);
             }}
           >
@@ -447,7 +463,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/the-churn#heat');
+              router.push("/game/the-churn#heat");
               setOpen(false);
             }}
           >
@@ -455,7 +471,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/the-churn#crackdowns');
+              router.push("/game/the-churn#crackdowns");
               setOpen(false);
             }}
           >
@@ -463,7 +479,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/the-churn#subsistence');
+              router.push("/game/the-churn#subsistence");
               setOpen(false);
             }}
           >
@@ -471,7 +487,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/the-churn#agendas');
+              router.push("/game/the-churn#agendas");
               setOpen(false);
             }}
           >
@@ -479,7 +495,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/the-churn#entanglements');
+              router.push("/game/the-churn#entanglements");
               setOpen(false);
             }}
           >
@@ -487,7 +503,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/setting/strange-forces#kings-spell');
+              router.push("/game/setting/strange-forces#kings-spell");
               setOpen(false);
             }}
           >
@@ -495,7 +511,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/fighting-styles#strain');
+              router.push("/game/fighting-styles#strain");
               setOpen(false);
             }}
           >
@@ -503,7 +519,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/skillsets#schematics');
+              router.push("/game/skillsets#schematics");
               setOpen(false);
             }}
           >
@@ -511,7 +527,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/appendix#equipment-traits');
+              router.push("/game/appendix#equipment-traits");
               setOpen(false);
             }}
           >
@@ -519,7 +535,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/skillsets#formulae');
+              router.push("/game/skillsets#formulae");
               setOpen(false);
             }}
           >
@@ -527,7 +543,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/appendix#alchemical-traits');
+              router.push("/game/appendix#alchemical-traits");
               setOpen(false);
             }}
           >
@@ -535,7 +551,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/appendix#gang-traits');
+              router.push("/game/appendix#gang-traits");
               setOpen(false);
             }}
           >
@@ -546,7 +562,7 @@ export default function CommandMenu() {
         <CommandGroup heading="Setting">
           <CommandItem
             onSelect={() => {
-              router.push('/game/setting#kingwulf');
+              router.push("/game/setting#kingwulf");
               setOpen(false);
             }}
           >
@@ -554,7 +570,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/setting#liberty-city');
+              router.push("/game/setting#liberty-city");
               setOpen(false);
             }}
           >
@@ -562,7 +578,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/setting#the-steel-trap');
+              router.push("/game/setting#the-steel-trap");
               setOpen(false);
             }}
           >
@@ -570,7 +586,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/setting#fabrication');
+              router.push("/game/setting#fabrication");
               setOpen(false);
             }}
           >
@@ -581,7 +597,7 @@ export default function CommandMenu() {
         <CommandGroup heading="Character Creation">
           <CommandItem
             onSelect={() => {
-              router.push('/game/character-creation#heritage');
+              router.push("/game/character-creation#heritage");
               setOpen(false);
             }}
           >
@@ -589,7 +605,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/character-creation#background');
+              router.push("/game/character-creation#background");
               setOpen(false);
             }}
           >
@@ -597,7 +613,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/character-creation#skillset');
+              router.push("/game/character-creation#skillset");
               setOpen(false);
             }}
           >
@@ -605,7 +621,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push('/game/character-creation#archetype');
+              router.push("/game/character-creation#archetype");
               setOpen(false);
             }}
           >
@@ -616,7 +632,7 @@ export default function CommandMenu() {
         <CommandGroup heading="Commands">
           <CommandItem
             onSelect={() => {
-              setTheme('light');
+              setTheme("light");
               setOpen(false);
             }}
             className="flex items-center space-x-4"
@@ -626,7 +642,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              setTheme('dark');
+              setTheme("dark");
               setOpen(false);
             }}
             className="flex items-center space-x-4"

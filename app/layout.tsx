@@ -1,32 +1,32 @@
-import type { Metadata } from 'next';
-import Head from 'next/head';
+import type { Metadata } from "next";
+import Head from "next/head";
 import {
   Josefin_Sans as FontSans,
   Caudex as FontSerif,
-} from 'next/font/google';
-import Providers from '@/providers/providers';
-import { cn } from '@/lib/utils';
-import './globals.css';
+} from "next/font/google";
+import Providers from "@/providers/providers";
+import { cn } from "@/lib/utils";
+import "./globals.css";
 
 const fontSans = FontSans({
-  weight: ['400', '700'],
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-sans',
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-sans",
 });
 
 const fontSerif = FontSerif({
-  weight: ['400', '700'],
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-serif',
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-serif",
 });
 
 // Kotta One would be good for script
 
 export const metadata: Metadata = {
-  title: 'Provenire',
-  description: 'Dark mystery fantasy setting',
+  title: "Provenire",
+  description: "Dark mystery fantasy setting",
 };
 
 export default function RootLayout({
@@ -41,7 +41,7 @@ export default function RootLayout({
       </Head>
       <body
         className={cn(
-          'min-h-screen bg-background font-sans antialiased',
+          "min-h-screen bg-background font-sans antialiased",
           fontSans.variable,
           fontSerif.variable
         )}

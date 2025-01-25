@@ -36,6 +36,14 @@ const data = {
           url: "/game/setting",
         },
         {
+          title: "Culture",
+          url: "/game/setting/culture",
+        },
+        {
+          title: "The Steel Trap",
+          url: "/game/setting/steel-trap",
+        },
+        {
           title: "Strange Forces",
           url: "/game/setting/strange-forces",
         },
