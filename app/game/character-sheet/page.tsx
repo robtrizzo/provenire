@@ -196,7 +196,7 @@ export default function Charsheet() {
         <Portrait className="mb-1" />
         <div className="w-full">
           <div className="flex gap-1 w-full">
-            <div className="flex-grow">
+            <div className="grow">
               <Label htmlFor="name">Name</Label>
               <Input
                 id="name"
@@ -450,7 +450,7 @@ export default function Charsheet() {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="mission" className="w-full">
-          <div className="my-3 grid grid-cols-1 md:grid-cols-2 gap-6 focus-visible:outline-none">
+          <div className="my-3 grid grid-cols-1 md:grid-cols-2 gap-6 focus-visible:outline-hidden">
             <div className="mt-4">
               <div className="flex flex-col gap-2">
                 <TypographyH2 className="text-md text-muted-foreground flex items-end justify-between">
@@ -1775,7 +1775,7 @@ export default function Charsheet() {
         </TabsContent>
         {/* THE CHURN */}
         <TabsContent value="churn" className="w-full">
-          <div className="my-3 grid grid-cols-1 md:grid-cols-2 gap-6 focus-visible:outline-none">
+          <div className="my-3 grid grid-cols-1 md:grid-cols-2 gap-6 focus-visible:outline-hidden">
             <div className="my-4">
               <div className="flex flex-col gap-2">
                 <TypographyH2 className="text-md text-muted-foreground flex items-end justify-between">

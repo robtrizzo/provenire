@@ -79,7 +79,7 @@ export default function SaveCharacter({
             Your character is also saved to your browser&apos;s local storage
             every 0.5 seconds.
           </span>
-          <div className="flex-grow">
+          <div className="grow">
             <Input
               id="name"
               placeholder="Name"

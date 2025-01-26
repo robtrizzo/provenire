@@ -93,7 +93,7 @@ export function TypographyP({
     <p
       id={id}
       className={cn(
-        'font-serif leading-7 [&:not(:first-child)]:mt-2',
+        'font-serif leading-7 not-first:mt-2',
         className
       )}
     >
