@@ -55,6 +55,45 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   const [bonusDiceBlue, setBonusDiceBlue] = useState<number>(0);
   const [fortuneDice, setFortuneDice] = useState<number>(0);
 
+  async function saveDiceRoll(
+    redRolls: number[], 
+    blueRolls: number[], 
+    redDice: number,
+    blueDice: number,
+    type: string, 
+    effect: string, 
+    result: string,
+  ) {
+    try {
+      const response = await fetch('/api/roll', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          redRolls,
+          blueRolls,
+          redDice,
+          blueDice,
+          type,
+          effect,
+          result,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to save roll');
+      }
+    } catch (error) {
+      console.error('Error saving roll:', error);
+      toast({
+        title: "Error",
+        description: "Failed to save roll history",
+        variant: "destructive",
+      });
+    }
+  }
+
   function rollAction(attribute: Attribute, action: string) {
     const score = attributes[attribute][action];
     const [a, b] = score || [0, 0];
@@ -135,8 +174,10 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     let crit = false;
     const redSixes = redRolls.filter((r) => r === 6).length;
     const blueSixes = blueRolls.filter((r) => r === 6).length;
+    let resultStr = "";
     if (redSixes + blueSixes >= 2) {
       crit = true;
+      resultStr = "crit";
       result = 6;
       resultText = "Critical! Succeed with improved effect.";
     } else {
@@ -147,23 +188,27 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         case 2:
         case 3:
           resultText = "Miss. Suffer the consequences.";
+          resultStr = "failure";
           break;
         case 4:
         case 5:
           resultText = `Partial hit. Suceed, but suffer the consequences${
             blueHigher ? "" : " and take reduced effect"
           }.`;
+          resultStr = "partial";
           break;
         case 6:
           resultText = `Hit! Succeed${
             blueHigher ? "" : ", but take reduced effect"
           }.`;
+          resultStr = "success";
           break;
         default:
           resultText = "Unknown result";
           break;
       }
     }
+    saveDiceRoll(redRolls, blueRolls, redRolls.length, blueRolls.length, "", blueHigher ? 'normal' : 'reduced', resultStr);
 
     toast({
       variant: "grid",

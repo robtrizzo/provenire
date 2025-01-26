@@ -12,17 +12,18 @@ export type RollEffect = typeof RollEffect.type;
 export type Roll = {
     red: number[];
     blue: number[];
-    untyped: number[];
+    redDice: number;
+    blueDice: number;
     type: RollType;
     effect: RollEffect;
     result: RollResult;
+    timestamp?: string;
 }
 
 export function jsonToRoll(json: string): Roll {
     const roll = JSON.parse(json) as Roll;
     const valid = (roll.red && roll.red.length > 0) ||
-        (roll.blue && roll.blue.length > 0) ||
-        (roll.untyped && roll.untyped.length > 0);
+        (roll.blue && roll.blue.length > 0);
     if (!valid) {
         throw (new Error('Rolls require at least 1 die roll'));
     }
