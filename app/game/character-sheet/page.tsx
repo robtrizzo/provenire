@@ -588,9 +588,9 @@ export default function Charsheet() {
                 <div className="flex flex-col">
                   <div
                     className="h-10 flex items-center hover:cursor-pointer group"
-                    onClick={(e) => {
+                    onClick={async (e) => {
                       if (e.shiftKey) {
-                        rollAction("Heart", "Defy");
+                        await rollAction("Heart", "Defy");
                       } else {
                         setRollLeft("Heart-Defy");
                       }
@@ -603,9 +603,9 @@ export default function Charsheet() {
                   <Separator />
                   <div
                     className="h-10 flex items-center hover:cursor-pointer group"
-                    onClick={(e) => {
+                    onClick={async (e) => {
                       if (e.shiftKey) {
-                        rollAction("Heart", "Persuade");
+                        await rollAction("Heart", "Persuade");
                       } else {
                         setRollLeft("Heart-Persuade");
                       }
@@ -641,9 +641,9 @@ export default function Charsheet() {
                       <div
                         key={`ah-${i}`}
                         className="h-10 hover:cursor-pointer group"
-                        onClick={(e) => {
+                        onClick={async (e) => {
                           if (e.shiftKey) {
-                            rollAction("Heart", a);
+                            await rollAction("Heart", a);
                           } else {
                             setRollRight(`Heart-${a}`);
                           }
@@ -661,9 +661,9 @@ export default function Charsheet() {
                       <div
                         key={`ah-${i}`}
                         className="h-10 hover:cursor-pointer group"
-                        onClick={(e) => {
+                        onClick={async (e) => {
                           if (e.shiftKey) {
-                            rollAction("Heart", a);
+                            await rollAction("Heart", a);
                           } else {
                             setRollRight(`Heart-${a}`);
                           }
@@ -680,9 +680,9 @@ export default function Charsheet() {
                     <div
                       key={`ah-${i}`}
                       className="h-10 hover:cursor-pointer group"
-                      onClick={(e) => {
+                      onClick={async (e) => {
                         if (e.shiftKey) {
-                          rollAction("Heart", a);
+                          await rollAction("Heart", a);
                         } else {
                           setRollRight(`Heart-${a}`);
                         }
@@ -744,9 +744,9 @@ export default function Charsheet() {
                 <div className="flex flex-col">
                   <div
                     className="h-10 flex items-center hover:cursor-pointer group"
-                    onClick={(e) => {
+                    onClick={async (e) => {
                       if (e.shiftKey) {
-                        rollAction("Instinct", "Charge");
+                        await rollAction("Instinct", "Charge");
                       } else {
                         setRollLeft("Instinct-Charge");
                       }
@@ -759,9 +759,9 @@ export default function Charsheet() {
                   <Separator />
                   <div
                     className="h-10 flex items-center hover:cursor-pointer group"
-                    onClick={(e) => {
+                    onClick={async (e) => {
                       if (e.shiftKey) {
-                        rollAction("Instinct", "Prowl");
+                        await rollAction("Instinct", "Prowl");
                       } else {
                         setRollLeft("Instinct-Prowl");
                       }
@@ -797,9 +797,9 @@ export default function Charsheet() {
                       <div
                         key={`ai-${i}`}
                         className="h-10 hover:cursor-pointer group"
-                        onClick={(e) => {
+                        onClick={async (e) => {
                           if (e.shiftKey) {
-                            rollAction("Instinct", a);
+                            await rollAction("Instinct", a);
                           } else {
                             setRollRight(`Instinct-${a}`);
                           }
@@ -817,9 +817,9 @@ export default function Charsheet() {
                       <div
                         key={`ai-${i}`}
                         className="h-10 hover:cursor-pointer group"
-                        onClick={(e) => {
+                        onClick={async (e) => {
                           if (e.shiftKey) {
-                            rollAction("Instinct", a);
+                            await rollAction("Instinct", a);
                           } else {
                             setRollRight(`Instinct-${a}`);
                           }
@@ -836,9 +836,9 @@ export default function Charsheet() {
                     <div
                       key={`ai-${i}`}
                       className="h-10 hover:cursor-pointer group"
-                      onClick={(e) => {
+                      onClick={async (e) => {
                         if (e.shiftKey) {
-                          rollAction("Instinct", a);
+                          await rollAction("Instinct", a);
                         } else {
                           setRollRight(`Instinct-${a}`);
                         }
@@ -900,9 +900,9 @@ export default function Charsheet() {
                 <div className="flex flex-col">
                   <div
                     className="h-10 flex items-center hover:cursor-pointer group"
-                    onClick={(e) => {
+                    onClick={async (e) => {
                       if (e.shiftKey) {
-                        rollAction("Machina", "Suggest");
+                        await rollAction("Machina", "Suggest");
                       } else {
                         setRollLeft("Machina-Suggest");
                       }
@@ -915,9 +915,9 @@ export default function Charsheet() {
                   <Separator />
                   <div
                     className="h-10 flex items-center hover:cursor-pointer group"
-                    onClick={(e) => {
+                    onClick={async (e) => {
                       if (e.shiftKey) {
-                        rollAction("Machina", "Survey");
+                        await rollAction("Machina", "Survey");
                       } else {
                         setRollLeft("Machina-Survey");
                       }
@@ -953,9 +953,9 @@ export default function Charsheet() {
                       <div
                         key={`am-${i}`}
                         className="h-10 hover:cursor-pointer group"
-                        onClick={(e) => {
+                        onClick={async (e) => {
                           if (e.shiftKey) {
-                            rollAction("Machina", a);
+                            await rollAction("Machina", a);
                           } else {
                             setRollRight(`Machina-${a}`);
                           }
@@ -973,9 +973,9 @@ export default function Charsheet() {
                       <div
                         key={`am-${i}`}
                         className="h-10 hover:cursor-pointer group"
-                        onClick={(e) => {
+                        onClick={async (e) => {
                           if (e.shiftKey) {
-                            rollAction("Machina", a);
+                            await rollAction("Machina", a);
                           } else {
                             setRollRight(`Machina-${a}`);
                           }
@@ -992,9 +992,9 @@ export default function Charsheet() {
                     <div
                       key={`am-${i}`}
                       className="h-10 hover:cursor-pointer group"
-                      onClick={(e) => {
+                      onClick={async (e) => {
                         if (e.shiftKey) {
-                          rollAction("Machina", a);
+                          await rollAction("Machina", a);
                         } else {
                           setRollRight(`Machina-${a}`);
                         }
@@ -1297,20 +1297,20 @@ export default function Charsheet() {
                 <div className="flex gap-4 mx-auto">
                   <Button
                     variant="destructive"
-                    onClick={() => {
+                    onClick={async () => {
                       if (!rollLeft && !rollRight) return;
                       if (!rollLeft) {
                         const [attribute, action] = rollRight.split("-") as [
                           Attribute,
                           string
                         ];
-                        rollAction(attribute, action);
+                        await rollAction(attribute, action);
                       } else if (!rollRight) {
                         const [attribute, action] = rollLeft.split("-") as [
                           Attribute,
                           string
                         ];
-                        rollAction(attribute, action);
+                        await rollAction(attribute, action);
                       }
                       const [attributeLeft, actionLeft] = rollLeft.split(
                         "-"
@@ -1318,7 +1318,7 @@ export default function Charsheet() {
                       const [attributeRight, actionRight] = rollRight.split(
                         "-"
                       ) as [Attribute, string];
-                      rollResistMission(
+                      await rollResistMission(
                         attributeLeft,
                         actionLeft,
                         attributeRight,
@@ -1333,20 +1333,20 @@ export default function Charsheet() {
                     <ShieldAlert /> Resist
                   </Button>
                   <Button
-                    onClick={() => {
+                    onClick={async () => {
                       if (!rollLeft && !rollRight) return;
                       if (!rollLeft) {
                         const [attribute, action] = rollRight.split("-") as [
                           Attribute | Attribute | Attribute,
                           string
                         ];
-                        rollAction(attribute, action);
+                        await rollAction(attribute, action);
                       } else if (!rollRight) {
                         const [attribute, action] = rollLeft.split("-") as [
                           Attribute | Attribute | Attribute,
                           string
                         ];
-                        rollAction(attribute, action);
+                        await rollAction(attribute, action);
                       }
                       const [attributeLeft, actionLeft] = rollLeft.split(
                         "-"
@@ -1354,7 +1354,7 @@ export default function Charsheet() {
                       const [attributeRight, actionRight] = rollRight.split(
                         "-"
                       ) as [Attribute | Attribute | Attribute, string];
-                      rollComboMission(
+                      await rollComboMission(
                         attributeLeft,
                         actionLeft,
                         attributeRight,
@@ -1371,20 +1371,20 @@ export default function Charsheet() {
                   </Button>
                   <Button
                     variant="secondary"
-                    onClick={() => {
+                    onClick={async () => {
                       if (!rollLeft && !rollRight) return;
                       if (!rollLeft) {
                         const [attribute, action] = rollRight.split("-") as [
                           Attribute | Attribute | Attribute,
                           string
                         ];
-                        rollAction(attribute, action);
+                        await rollAction(attribute, action);
                       } else if (!rollRight) {
                         const [attribute, action] = rollLeft.split("-") as [
                           Attribute | Attribute | Attribute,
                           string
                         ];
-                        rollAction(attribute, action);
+                        await rollAction(attribute, action);
                       }
                       const [attributeLeft, actionLeft] = rollLeft.split(
                         "-"
@@ -1392,7 +1392,7 @@ export default function Charsheet() {
                       const [attributeRight, actionRight] = rollRight.split(
                         "-"
                       ) as [Attribute | Attribute | Attribute, string];
-                      rollProject(
+                      await rollProject(
                         attributeLeft,
                         actionLeft,
                         attributeRight,
@@ -1468,12 +1468,12 @@ export default function Charsheet() {
                         }}
                       />
                       <Button
-                        onClick={() => {
+                        onClick={async () => {
                           const dice = [];
                           for (let i = 0; i < fortuneDice; i++) {
                             dice.push(2);
                           }
-                          rollCombo("Fortune", "", dice);
+                          await rollCombo("Fortune", "", dice);
                           setFortuneDice(0);
                         }}
                       >
@@ -1907,9 +1907,9 @@ export default function Charsheet() {
                 <div className="flex flex-col">
                   <div
                     className="h-10 flex items-center hover:cursor-pointer group"
-                    onClick={(e) => {
+                    onClick={async (e) => {
                       if (e.shiftKey) {
-                        rollAction("Heart", "Defy");
+                        await rollAction("Heart", "Defy");
                       } else {
                         setRollLeft("Heart-Defy");
                       }
@@ -1922,9 +1922,9 @@ export default function Charsheet() {
                   <Separator />
                   <div
                     className="h-10 flex items-center hover:cursor-pointer group"
-                    onClick={(e) => {
+                    onClick={async (e) => {
                       if (e.shiftKey) {
-                        rollAction("Heart", "Persuade");
+                        await rollAction("Heart", "Persuade");
                       } else {
                         setRollLeft("Heart-Persuade");
                       }
@@ -1960,9 +1960,9 @@ export default function Charsheet() {
                       <div
                         key={`ah-${i}`}
                         className="h-10 hover:cursor-pointer group"
-                        onClick={(e) => {
+                        onClick={async (e) => {
                           if (e.shiftKey) {
-                            rollAction("Heart", a);
+                            await rollAction("Heart", a);
                           } else {
                             setRollRight(`Heart-${a}`);
                           }
@@ -1980,9 +1980,9 @@ export default function Charsheet() {
                       <div
                         key={`ah-${i}`}
                         className="h-10 hover:cursor-pointer group"
-                        onClick={(e) => {
+                        onClick={async (e) => {
                           if (e.shiftKey) {
-                            rollAction("Heart", a);
+                            await rollAction("Heart", a);
                           } else {
                             setRollRight(`Heart-${a}`);
                           }
@@ -1999,9 +1999,9 @@ export default function Charsheet() {
                     <div
                       key={`ah-${i}`}
                       className="h-10 hover:cursor-pointer group"
-                      onClick={(e) => {
+                      onClick={async (e) => {
                         if (e.shiftKey) {
-                          rollAction("Heart", a);
+                          await rollAction("Heart", a);
                         } else {
                           setRollRight(`Heart-${a}`);
                         }
@@ -2063,9 +2063,9 @@ export default function Charsheet() {
                 <div className="flex flex-col">
                   <div
                     className="h-10 flex items-center hover:cursor-pointer group"
-                    onClick={(e) => {
+                    onClick={async (e) => {
                       if (e.shiftKey) {
-                        rollAction("Instinct", "Charge");
+                        await rollAction("Instinct", "Charge");
                       } else {
                         setRollLeft("Instinct-Charge");
                       }
@@ -2078,9 +2078,9 @@ export default function Charsheet() {
                   <Separator />
                   <div
                     className="h-10 flex items-center hover:cursor-pointer group"
-                    onClick={(e) => {
+                    onClick={async (e) => {
                       if (e.shiftKey) {
-                        rollAction("Instinct", "Prowl");
+                        await rollAction("Instinct", "Prowl");
                       } else {
                         setRollLeft("Instinct-Prowl");
                       }
@@ -2136,9 +2136,9 @@ export default function Charsheet() {
                       <div
                         key={`ai-${i}`}
                         className="h-10 hover:cursor-pointer group"
-                        onClick={(e) => {
+                        onClick={async (e) => {
                           if (e.shiftKey) {
-                            rollAction("Instinct", a);
+                            await rollAction("Instinct", a);
                           } else {
                             setRollRight(`Instinct-${a}`);
                           }
@@ -2155,9 +2155,9 @@ export default function Charsheet() {
                     <div
                       key={`ai-${i}`}
                       className="h-10 hover:cursor-pointer group"
-                      onClick={(e) => {
+                      onClick={async (e) => {
                         if (e.shiftKey) {
-                          rollAction("Instinct", a);
+                          await rollAction("Instinct", a);
                         } else {
                           setRollRight(`Instinct-${a}`);
                         }
@@ -2219,9 +2219,9 @@ export default function Charsheet() {
                 <div className="flex flex-col">
                   <div
                     className="h-10 flex items-center hover:cursor-pointer group"
-                    onClick={(e) => {
+                    onClick={async (e) => {
                       if (e.shiftKey) {
-                        rollAction("Machina", "Suggest");
+                        await rollAction("Machina", "Suggest");
                       } else {
                         setRollLeft("Machina-Suggest");
                       }
@@ -2234,9 +2234,9 @@ export default function Charsheet() {
                   <Separator />
                   <div
                     className="h-10 flex items-center hover:cursor-pointer group"
-                    onClick={(e) => {
+                    onClick={async (e) => {
                       if (e.shiftKey) {
-                        rollAction("Machina", "Survey");
+                        await rollAction("Machina", "Survey");
                       } else {
                         setRollLeft("Machina-Survey");
                       }
@@ -2292,9 +2292,9 @@ export default function Charsheet() {
                       <div
                         key={`am-${i}`}
                         className="h-10 hover:cursor-pointer group"
-                        onClick={(e) => {
+                        onClick={async (e) => {
                           if (e.shiftKey) {
-                            rollAction("Machina", a);
+                            await rollAction("Machina", a);
                           } else {
                             setRollRight(`Machina-${a}`);
                           }
@@ -2311,9 +2311,9 @@ export default function Charsheet() {
                     <div
                       key={`am-${i}`}
                       className="h-10 hover:cursor-pointer group"
-                      onClick={(e) => {
+                      onClick={async (e) => {
                         if (e.shiftKey) {
-                          rollAction("Machina", a);
+                          await rollAction("Machina", a);
                         } else {
                           setRollRight(`Machina-${a}`);
                         }
@@ -2843,20 +2843,20 @@ export default function Charsheet() {
                 <div className="flex gap-4 mx-auto">
                   <Button
                     variant="destructive"
-                    onClick={() => {
+                    onClick={async () => {
                       if (!rollLeft && !rollRight) return;
                       if (!rollLeft) {
                         const [attribute, action] = rollRight.split("-") as [
                           Attribute,
                           string
                         ];
-                        rollAction(attribute, action);
+                        await rollAction(attribute, action);
                       } else if (!rollRight) {
                         const [attribute, action] = rollLeft.split("-") as [
                           Attribute,
                           string
                         ];
-                        rollAction(attribute, action);
+                        await rollAction(attribute, action);
                       }
                       const [attributeLeft, actionLeft] = rollLeft.split(
                         "-"
@@ -2864,7 +2864,7 @@ export default function Charsheet() {
                       const [attributeRight, actionRight] = rollRight.split(
                         "-"
                       ) as [Attribute, string];
-                      rollResistMission(
+                      await rollResistMission(
                         attributeLeft,
                         actionLeft,
                         attributeRight,
@@ -2879,20 +2879,20 @@ export default function Charsheet() {
                     <ShieldAlert /> Resist
                   </Button>
                   <Button
-                    onClick={() => {
+                    onClick={async () => {
                       if (!rollLeft && !rollRight) return;
                       if (!rollLeft) {
                         const [attribute, action] = rollRight.split("-") as [
                           Attribute,
                           string
                         ];
-                        rollAction(attribute, action);
+                        await rollAction(attribute, action);
                       } else if (!rollRight) {
                         const [attribute, action] = rollLeft.split("-") as [
                           Attribute,
                           string
                         ];
-                        rollAction(attribute, action);
+                        await rollAction(attribute, action);
                       }
                       const [attributeLeft, actionLeft] = rollLeft.split(
                         "-"
@@ -2900,7 +2900,7 @@ export default function Charsheet() {
                       const [attributeRight, actionRight] = rollRight.split(
                         "-"
                       ) as [Attribute, string];
-                      rollComboMission(
+                      await rollComboMission(
                         attributeLeft,
                         actionLeft,
                         attributeRight,
@@ -2917,20 +2917,20 @@ export default function Charsheet() {
                   </Button>
                   <Button
                     variant="secondary"
-                    onClick={() => {
+                    onClick={async () => {
                       if (!rollLeft && !rollRight) return;
                       if (!rollLeft) {
                         const [attribute, action] = rollRight.split("-") as [
                           Attribute | Attribute | Attribute,
                           string
                         ];
-                        rollAction(attribute, action);
+                        await rollAction(attribute, action);
                       } else if (!rollRight) {
                         const [attribute, action] = rollLeft.split("-") as [
                           Attribute | Attribute | Attribute,
                           string
                         ];
-                        rollAction(attribute, action);
+                        await rollAction(attribute, action);
                       }
                       const [attributeLeft, actionLeft] = rollLeft.split(
                         "-"
@@ -2938,7 +2938,7 @@ export default function Charsheet() {
                       const [attributeRight, actionRight] = rollRight.split(
                         "-"
                       ) as [Attribute | Attribute | Attribute, string];
-                      rollProject(
+                      await rollProject(
                         attributeLeft,
                         actionLeft,
                         attributeRight,
@@ -3014,12 +3014,12 @@ export default function Charsheet() {
                         }}
                       />
                       <Button
-                        onClick={() => {
+                        onClick={async () => {
                           const dice = [];
                           for (let i = 0; i < fortuneDice; i++) {
                             dice.push(2);
                           }
-                          rollCombo("Fortune", "", dice);
+                          await rollCombo("Fortune", "", dice);
                           setFortuneDice(0);
                         }}
                       >

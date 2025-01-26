@@ -5,29 +5,39 @@ import { Die } from "@/components/die";
 import { cn } from "@/lib/utils";
 import { useCharacterSheet } from "./characterSheetContext";
 import { Attribute } from "@/types/game";
+import { useMutation } from "@tanstack/react-query";
+import { Roll, RollResult } from "@/types/roll";
 
 interface RollContextProps {
-  rollAction: (attribute: Attribute, action: string) => void;
-  rollCombo: (action1: string, action2: string, dice: number[]) => void;
-  rollResist: (action1: string, action2: string, dice: number[]) => void;
+  rollAction: (attribute: Attribute, action: string) => Promise<void>;
+  rollCombo: (
+    action1: string,
+    action2: string,
+    dice: number[]
+  ) => Promise<void>;
+  rollResist: (
+    action1: string,
+    action2: string,
+    dice: number[]
+  ) => Promise<void>;
   rollComboMission: (
     attribute1: Attribute,
     action1: string,
     attribute2: Attribute,
     action2: string
-  ) => void;
+  ) => Promise<void>;
   rollResistMission: (
     attribute1: Attribute,
     action1: string,
     attribute2: Attribute,
     action2: string
-  ) => void;
+  ) => Promise<void>;
   rollProject: (
     attribute1: Attribute,
     action1: string,
     attribute2: Attribute,
     action2: string
-  ) => void;
+  ) => Promise<void>;
   bonusDiceRed: number;
   bonusDiceBlue: number;
   fortuneDice: number;
@@ -55,53 +65,39 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   const [bonusDiceBlue, setBonusDiceBlue] = useState<number>(0);
   const [fortuneDice, setFortuneDice] = useState<number>(0);
 
-  async function saveDiceRoll(
-    redRolls: number[], 
-    blueRolls: number[], 
-    redDice: number,
-    blueDice: number,
-    type: string, 
-    effect: string, 
-    result: string,
-  ) {
-    try {
-      const response = await fetch('/api/roll', {
-        method: 'POST',
+  const { mutateAsync: saveDiceRoll, isPending } = useMutation({
+    mutationFn: async (roll: Roll) => {
+      const response = await fetch("/api/roll", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          redRolls,
-          blueRolls,
-          redDice,
-          blueDice,
-          type,
-          effect,
-          result,
-        }),
+        body: JSON.stringify(roll),
       });
-
-      if (!response.ok) {
-        throw new Error('Failed to save roll');
-      }
-    } catch (error) {
-      console.error('Error saving roll:', error);
+      return response.json();
+    },
+    onError: (error) => {
+      console.error("Failed to save roll", error);
       toast({
         title: "Error",
         description: "Failed to save roll history",
         variant: "destructive",
       });
-    }
-  }
+    },
+  });
 
-  function rollAction(attribute: Attribute, action: string) {
+  async function rollAction(attribute: Attribute, action: string) {
     const score = attributes[attribute][action];
     const [a, b] = score || [0, 0];
 
-    rollCombo(action, "", [a, b]);
+    await rollCombo(action, "", [a, b]);
   }
 
-  const rollCombo = (action1: string, action2: string, dice: number[]) => {
+  const rollCombo = async (
+    action1: string,
+    action2: string,
+    dice: number[]
+  ) => {
     for (let i = 0; i < bonusDiceRed; i++) {
       dice.push(1);
     }
@@ -110,8 +106,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     }
     if (dice.reduce((acc, s) => acc + s, 0) === 0) {
       // roll 2d6 and take the lowest
-      let r1 = Math.floor(Math.random() * 6) + 1;
-      let r2 = Math.floor(Math.random() * 6) + 1;
+      const r1 = Math.floor(Math.random() * 6) + 1;
+      const r2 = Math.floor(Math.random() * 6) + 1;
       const result = Math.min(r1, r2);
       let resultText = "";
       switch (result) {
@@ -153,10 +149,10 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       });
       return;
     }
-    let red = dice.reduce((acc, s) => (s === 1 ? acc + 1 : acc), 0);
-    let blue = dice.reduce((acc, s) => (s === 2 ? acc + 1 : acc), 0);
-    let redRolls = [];
-    let blueRolls = [];
+    const red = dice.reduce((acc, s) => (s === 1 ? acc + 1 : acc), 0);
+    const blue = dice.reduce((acc, s) => (s === 2 ? acc + 1 : acc), 0);
+    const redRolls = [];
+    const blueRolls = [];
     for (let i = 0; i < red; i++) {
       redRolls.push(Math.floor(Math.random() * 6) + 1);
     }
@@ -166,15 +162,15 @@ export default function RollProvider({ children }: { children: ReactNode }) {
 
     let result: number;
     let resultText = "";
-    let highestRed = Math.max(...redRolls);
-    let highestBlue = Math.max(...blueRolls);
+    const highestRed = Math.max(...redRolls);
+    const highestBlue = Math.max(...blueRolls);
     const blueHigher = highestBlue >= highestRed;
 
     // detect if there are 2 or more 6s
     let crit = false;
     const redSixes = redRolls.filter((r) => r === 6).length;
     const blueSixes = blueRolls.filter((r) => r === 6).length;
-    let resultStr = "";
+    let resultStr: RollResult = "failure";
     if (redSixes + blueSixes >= 2) {
       crit = true;
       resultStr = "crit";
@@ -208,7 +204,16 @@ export default function RollProvider({ children }: { children: ReactNode }) {
           break;
       }
     }
-    saveDiceRoll(redRolls, blueRolls, redRolls.length, blueRolls.length, "", blueHigher ? 'normal' : 'reduced', resultStr);
+
+    await saveDiceRoll({
+      red: redRolls,
+      blue: blueRolls,
+      redDice: redRolls.length,
+      blueDice: blueRolls.length,
+      type: "action",
+      effect: blueHigher ? "normal" : "reduced",
+      result: resultStr,
+    });
 
     toast({
       variant: "grid",
@@ -266,8 +271,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     }
     if (dice.reduce((acc, s) => acc + s, 0) === 0) {
       // roll 2d6 and take the lowest
-      let r1 = Math.floor(Math.random() * 6) + 1;
-      let r2 = Math.floor(Math.random() * 6) + 1;
+      const r1 = Math.floor(Math.random() * 6) + 1;
+      const r2 = Math.floor(Math.random() * 6) + 1;
       const result = Math.min(r1, r2);
       let stress: number;
       switch (result) {
@@ -308,10 +313,10 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       });
       return;
     }
-    let red = dice.reduce((acc, s) => (s === 1 ? acc + 1 : acc), 0);
-    let blue = dice.reduce((acc, s) => (s === 2 ? acc + 1 : acc), 0);
-    let redRolls = [];
-    let blueRolls = [];
+    const red = dice.reduce((acc, s) => (s === 1 ? acc + 1 : acc), 0);
+    const blue = dice.reduce((acc, s) => (s === 2 ? acc + 1 : acc), 0);
+    const redRolls = [];
+    const blueRolls = [];
     for (let i = 0; i < red; i++) {
       redRolls.push(Math.floor(Math.random() * 6) + 1);
     }
@@ -326,8 +331,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     let bluecrit = false;
     const redSixes = redRolls.filter((r) => r === 6).length;
     const blueSixes = blueRolls.filter((r) => r === 6).length;
-    let highestRed = Math.max(...redRolls);
-    let highestBlue = Math.max(...blueRolls);
+    const highestRed = Math.max(...redRolls);
+    const highestBlue = Math.max(...blueRolls);
     const blueHigher = highestBlue >= highestRed;
     if (blueSixes >= 2) {
       bluecrit = true;
@@ -365,7 +370,6 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     }
     toast({
       variant: "grid",
-      // @ts-ignore
       title: (
         <div className="flex items-center gap-1">
           <span className="mt-1">
@@ -409,7 +413,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     });
   };
 
-  function rollComboMission(
+  async function rollComboMission(
     attribute1: Attribute,
     action1: string,
     attribute2: Attribute,
@@ -417,7 +421,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   ) {
     const score1 = attributes?.[attribute1]?.[action1] || [0, 0];
     const score2 = attributes?.[attribute2]?.[action2] || [0, 0];
-    rollCombo(action1, action2, [...score1, ...score2]);
+    await rollCombo(action1, action2, [...score1, ...score2]);
   }
 
   function rollResistMission(
@@ -446,23 +450,23 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     for (let i = 0; i < bonusDiceBlue; i++) {
       dice.push(2);
     }
-    let rolls = [];
+    const rolls = [];
     let result: number;
     let redcrit = false;
     let bluecrit = false;
     let blueHigher = false;
     if (dice.reduce((acc, s) => acc + s, 0) === 0) {
       // roll 2d6 and take the lowest
-      let r1 = Math.floor(Math.random() * 6) + 1;
+      const r1 = Math.floor(Math.random() * 6) + 1;
       rolls.push({ val: r1, element: <Die roll={r1} className="h-10 w-10" /> });
-      let r2 = Math.floor(Math.random() * 6) + 1;
+      const r2 = Math.floor(Math.random() * 6) + 1;
       rolls.push({ val: r2, element: <Die roll={r2} className="h-10 w-10" /> });
       result = Math.min(r1, r2);
     } else {
-      let red = dice.reduce((acc, s) => (s === 1 ? acc + 1 : acc), 0);
-      let blue = dice.reduce((acc, s) => (s === 2 ? acc + 1 : acc), 0);
-      let redRolls = [];
-      let blueRolls = [];
+      const red = dice.reduce((acc, s) => (s === 1 ? acc + 1 : acc), 0);
+      const blue = dice.reduce((acc, s) => (s === 2 ? acc + 1 : acc), 0);
+      const redRolls = [];
+      const blueRolls = [];
       for (let i = 0; i < red; i++) {
         let r = Math.floor(Math.random() * 6) + 1;
         redRolls.push(r);
@@ -472,7 +476,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         });
       }
       for (let i = 0; i < blue; i++) {
-        let r = Math.floor(Math.random() * 6) + 1;
+        const r = Math.floor(Math.random() * 6) + 1;
         blueRolls.push(r);
         rolls.push({
           val: r,
@@ -487,8 +491,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       } else if (blueSixes + redSixes >= 2) {
         redcrit = true;
       }
-      let highestRed = Math.max(...redRolls);
-      let highestBlue = Math.max(...blueRolls);
+      const highestRed = Math.max(...redRolls);
+      const highestBlue = Math.max(...blueRolls);
       blueHigher = highestBlue >= highestRed;
       result = blueHigher ? highestBlue : highestRed;
     }
