@@ -6,14 +6,14 @@ export type RollType = typeof RollType.type;
 const RollResult = StringUnion('failure', 'partial', 'success', 'crit');
 export type RollResult = typeof RollResult.type;
 
-const RollEffect = StringUnion('reduced', 'normal');
+const RollEffect = StringUnion('reduced', 'normal', 'improved');
 export type RollEffect = typeof RollEffect.type;
 
 export type Roll = {
-    red: number[];
-    blue: number[];
-    redDice: number;
-    blueDice: number;
+    redDice: number[];
+    blueDice: number[];
+    numRed: number;
+    numBlue: number;
     type: RollType;
     effect: RollEffect;
     result: RollResult;
@@ -21,8 +21,8 @@ export type Roll = {
 }
 
 export function validateRoll(roll: Roll) {
-    const valid = (roll.red && roll.red.length > 0) ||
-        (roll.blue && roll.blue.length > 0);
+    const valid = (roll.redDice && roll.redDice.length > 0) ||
+        (roll.blueDice && roll.blueDice.length > 0);
     if (!valid) {
         throw (new Error('Rolls require at least 1 die roll'));
     }
@@ -30,4 +30,8 @@ export function validateRoll(roll: Roll) {
     RollResult.assert(roll.result);
     RollEffect.assert(roll.effect);
     return roll;
+}
+
+export function blueHigher(red: number[], blue: number[]): boolean {
+    return Math.max(...blue) >= Math.max(...red);
 }
