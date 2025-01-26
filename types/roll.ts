@@ -20,8 +20,7 @@ export type Roll = {
     timestamp?: string;
 }
 
-export function jsonToRoll(json: string): Roll {
-    const roll = JSON.parse(json) as Roll;
+export function validateRoll(roll: Roll) {
     const valid = (roll.red && roll.red.length > 0) ||
         (roll.blue && roll.blue.length > 0);
     if (!valid) {

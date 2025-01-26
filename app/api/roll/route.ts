@@ -1,6 +1,6 @@
 import {NextResponse} from "next/server";
 import {auth} from "@/auth";
-import {Roll, jsonToRoll} from "@/types/roll";
+import {Roll, validateRoll} from "@/types/roll";
 import redis from "@/lib/redis";
 import {checkUserAuthenticated, checkUserRole} from "@/lib/auth";
 
@@ -25,7 +25,7 @@ export async function POST(request: Request): Promise<NextResponse> {
         return unauthenticatedResponse;
     }
 
-    const unauthorizedResponse = checkUserRole(session, ["admin", "player"]);
+    const unauthorizedResponse = checkUserRole(session, ["player"]);
     if (unauthorizedResponse) {
         return unauthorizedResponse;
     }
@@ -34,14 +34,13 @@ export async function POST(request: Request): Promise<NextResponse> {
         return new NextResponse(null, {status: 400});
     }
 
-    const json = await request.json()
-    if (!json) {
+    const roll = await request.json() as Roll;
+    if (!roll) {
         return new NextResponse(null, {status: 400});
     }
 
-    let roll: Roll;
     try {
-        roll = jsonToRoll(json);
+        validateRoll(roll);
     } catch (e) {
         console.error('Error parsing roll', e);
         return NextResponse.json(
