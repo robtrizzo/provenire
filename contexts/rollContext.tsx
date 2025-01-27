@@ -97,7 +97,6 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     for (let i = 0; i < numBlue; i++) {
       roll.blueDice.push(Math.floor(Math.random() * 6) + 1);
     }
-    console.log(roll);
 
     const redSixes = roll.redDice.filter((r) => r === 6).length;
     const blueSixes = roll.blueDice.filter((r) => r === 6).length;
@@ -134,7 +133,6 @@ export default function RollProvider({ children }: { children: ReactNode }) {
           break;
       }
     }
-    console.log(roll);
 
     await saveDiceRoll(roll);
     return roll;
@@ -292,8 +290,6 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     if (roll.type === 'fortune') {
       action1 = 'Fortune';
     }
-
-    console.log(roll.redDice, roll.blueDice);
 
     toast({
       variant: "grid",
