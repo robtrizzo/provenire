@@ -2,7 +2,7 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Attribute } from "@/types/game";
-import { blueHigher, Roll, RollResult, RollType } from "@/types/roll";
+import { blueHigher, Roll, RollType } from "@/types/roll";
 import { useMutation } from "@tanstack/react-query";
 import { useCharacterSheet } from "./characterSheetContext";
 import { Die } from "@/components/die";
@@ -45,7 +45,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   const [bonusDiceBlue, setBonusDiceBlue] = useState<number>(0);
   const [fortuneDice, setFortuneDice] = useState<number>(0);
 
-  const { mutateAsync: saveDiceRoll, isPending } = useMutation({
+  const { mutateAsync: saveDiceRoll } = useMutation({
     mutationFn: async (roll: Roll) => {
       const response = await fetch("/api/roll", {
         method: "POST",
@@ -82,10 +82,10 @@ export default function RollProvider({ children }: { children: ReactNode }) {
 
     roll.redDice = [];
     roll.blueDice = [];
-    
+
     const takeLower = numRed + numBlue == 0;
     if (takeLower) {
-      if (type === 'fortune') {
+      if (type === "fortune") {
         numBlue = 2;
       } else {
         numRed = 2;
@@ -106,7 +106,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       roll.resultDie = 6;
     } else {
       if (takeLower) {
-        if (type == 'fortune') {
+        if (type == "fortune") {
           roll.resultDie = Math.min(...roll.blueDice);
         } else {
           roll.resultDie = Math.min(...roll.redDice);
@@ -114,7 +114,9 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         roll.effect = "reduced";
       } else {
         const bh = blueHigher(roll);
-        roll.resultDie = bh ? Math.max(...roll.blueDice) : Math.max(...roll.redDice);
+        roll.resultDie = bh
+          ? Math.max(...roll.blueDice)
+          : Math.max(...roll.redDice);
         roll.effect = bh ? "normal" : "reduced";
       }
 
@@ -208,7 +210,9 @@ export default function RollProvider({ children }: { children: ReactNode }) {
             resultText = "Crit! Clear 1 stress.";
             break;
           case 0:
-            resultText = `${roll.result === "crit" ? "Crit! " : ""}Take no stress.`;
+            resultText = `${
+              roll.result === "crit" ? "Crit! " : ""
+            }Take no stress.`;
             break;
           default:
             resultText = `Take ${stress} stress.`;
@@ -218,16 +222,24 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       case "project":
         switch (roll.result) {
           case "crit":
-            resultText = `Crit! ${blueHigher(roll) ? "": "(but take reduced effect)"}`;
+            resultText = `Crit! ${
+              blueIsHigher ? "" : "(but take reduced effect)"
+            }`;
             break;
-          case 'success':
-            resultText = `Hit${blueHigher(roll) ? ".": ", and take reduced effect"}`;
+          case "success":
+            resultText = `Hit${
+              blueIsHigher ? "." : ", and take reduced effect"
+            }`;
             break;
           case "partial":
-            resultText = `Partial hit${blueHigher(roll) ? ".": ", and take reduced effect"}`;
+            resultText = `Partial hit${
+              blueIsHigher ? "." : ", and take reduced effect"
+            }`;
             break;
           case "failure":
-            resultText = `Miss${blueHigher(roll) ? ".": ", and take reduced effect"}`;
+            resultText = `Miss${
+              blueIsHigher ? "." : ", and take reduced effect"
+            }`;
             break;
         }
         break;
@@ -262,38 +274,40 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     const resultText = resultsMessage(roll);
 
     let descNode: ReactNode;
-    if (roll.type === 'project') {
+    if (roll.type === "project") {
       const ticks = ticksFromProject(roll);
-      descNode = 
-      <div className="mt-1">
-        <span>{resultText}</span>
-        <div className="flex items-center justify-center gap-2">
-          <span className="text-center">
-            <b>Limited:</b> {ticks[0]}
-          </span>
-          <span className="text-center">
-            <b>Standard:</b> {ticks[1]}
-          </span>
-          <span className="text-center">
-            <b>Great:</b> {ticks[2]}
-          </span>
+      descNode = (
+        <div className="mt-1">
+          <span>{resultText}</span>
+          <div className="flex items-center justify-center gap-2">
+            <span className="text-center">
+              <b>Limited:</b> {ticks[0]}
+            </span>
+            <span className="text-center">
+              <b>Standard:</b> {ticks[1]}
+            </span>
+            <span className="text-center">
+              <b>Great:</b> {ticks[2]}
+            </span>
+          </div>
         </div>
-      </div>
+      );
     } else {
-      descNode = 
-      <div className="mt-1">
-        <span>{resultText}</span>
-      </div>
+      descNode = (
+        <div className="mt-1">
+          <span>{resultText}</span>
+        </div>
+      );
     }
 
     // fortune doesn't have an action. Set the action to "Fortune" to make it simpler
-    if (roll.type === 'fortune') {
-      action1 = 'Fortune';
+    if (roll.type === "fortune") {
+      action1 = "Fortune";
     }
 
     toast({
       variant: "grid",
-      // @ts-ignore
+      // @ts-expect-error todo
       title: (
         <div className="flex items-center flex-wrap gap-1">
           <span className="mt-1">
