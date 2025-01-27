@@ -17,10 +17,12 @@ export type Roll = {
     type: RollType;
     effect: RollEffect;
     result: RollResult;
+    resultDie: number;
     timestamp?: string;
 }
 
 export function validateRoll(roll: Roll) {
+    console.log(roll);
     const valid = (roll.redDice && roll.redDice.length > 0) ||
         (roll.blueDice && roll.blueDice.length > 0);
     if (!valid) {
@@ -32,6 +34,7 @@ export function validateRoll(roll: Roll) {
     return roll;
 }
 
-export function blueHigher(red: number[], blue: number[]): boolean {
-    return Math.max(...blue) >= Math.max(...red);
+export function blueHigher(roll: Roll): boolean {
+    // crits are intersting and blueHigher refers to 2+ 6s on blues
+    return roll.result === 'crit' ? roll.blueDice.filter(d => d === 6).length >= 2 : Math.max(...roll.blueDice) >= Math.max(...roll.redDice);
 }
