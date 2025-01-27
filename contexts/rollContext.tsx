@@ -142,14 +142,12 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       attribute2 && action2
         ? attributes?.[attribute2]?.[action2] || [0, 0]
         : [0, 0];
-    console.log(score1, score2);
     const redRolls =
       score1.filter((r) => r === 1).length +
       score2.filter((r) => r === 1).length;
     const blueRolls =
       score1.filter((r) => r === 2).length +
       score2.filter((r) => r === 2).length;
-    console.log(redRolls, blueRolls);
     return await rollDice(type, redRolls, blueRolls);
   }
 
@@ -202,7 +200,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
             resultText = "Crit! Clear 1 stress.";
             break;
           case 0:
-            resultText = "Crit! Take no stress.";
+            resultText = `${roll.result === "crit" ? "Crit! " : ""}Take no stress.`;
             break;
           default:
             resultText = `Take ${stress} stress.`;

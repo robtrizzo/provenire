@@ -22,7 +22,6 @@ export type Roll = {
 }
 
 export function validateRoll(roll: Roll) {
-    console.log(roll);
     const valid = (roll.redDice && roll.redDice.length > 0) ||
         (roll.blueDice && roll.blueDice.length > 0);
     if (!valid) {
