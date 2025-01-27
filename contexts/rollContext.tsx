@@ -85,7 +85,11 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     
     const takeLower = numRed + numBlue == 0;
     if (takeLower) {
-      numRed = 2;
+      if (type === 'fortune') {
+        numBlue = 2;
+      } else {
+        numRed = 2;
+      }
     }
     for (let i = 0; i < numRed; i++) {
       roll.redDice.push(Math.floor(Math.random() * 6) + 1);
@@ -93,6 +97,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     for (let i = 0; i < numBlue; i++) {
       roll.blueDice.push(Math.floor(Math.random() * 6) + 1);
     }
+    console.log(roll);
 
     const redSixes = roll.redDice.filter((r) => r === 6).length;
     const blueSixes = roll.blueDice.filter((r) => r === 6).length;
@@ -102,7 +107,11 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       roll.resultDie = 6;
     } else {
       if (takeLower) {
-        roll.resultDie = Math.min(...roll.redDice);
+        if (type == 'fortune') {
+          roll.resultDie = Math.min(...roll.blueDice);
+        } else {
+          roll.resultDie = Math.min(...roll.redDice);
+        }
         roll.effect = "reduced";
       } else {
         const bh = blueHigher(roll);
@@ -125,6 +134,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
           break;
       }
     }
+    console.log(roll);
 
     await saveDiceRoll(roll);
     return roll;
@@ -282,6 +292,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     if (roll.type === 'fortune') {
       action1 = 'Fortune';
     }
+
+    console.log(roll.redDice, roll.blueDice);
 
     toast({
       variant: "grid",
