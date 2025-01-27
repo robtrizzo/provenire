@@ -7,8 +7,7 @@ import {checkUserAuthenticated, checkUserRole} from "@/lib/auth";
 async function addRoll(userId: string, roll: Roll): Promise<void> {
     const key = `user:${userId}:rolls`;
     roll.timestamp = new Date().toISOString();
-    const res = await redis.lpush(key, JSON.stringify(roll));
-    console.log(`Redis set ${key} result: ${res}`);
+    await redis.lpush(key, JSON.stringify(roll));
 }
 
 async function getRolls(userId: string, cursor = 0, pageSize = 20): Promise<Roll[]> {
@@ -50,7 +49,6 @@ export async function POST(request: Request): Promise<NextResponse> {
 
     try {
         await addRoll(session!.user!.id, roll);
-        console.log('Roll added', roll);
     } catch (error) {
         console.error('Error adding roll', error);
         return NextResponse.json(

@@ -73,40 +73,40 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   ): Promise<Roll> => {
     numRed += bonusDiceRed;
     numBlue += bonusDiceBlue;
-    const takeLower = numRed + numBlue == 0;
-    if (takeLower) {
-      numRed = 2;
-    }
-    const redRolls = [];
-    const blueRolls = [];
-    for (let i = 0; i < numRed; i++) {
-      redRolls.push(Math.floor(Math.random() * 6) + 1);
-    }
-    for (let i = 0; i < numBlue; i++) {
-      blueRolls.push(Math.floor(Math.random() * 6) + 1);
-    }
 
     const roll: Roll = {
       type: type,
-      redDice: redRolls,
-      blueDice: blueRolls,
       numRed: numRed,
       numBlue: numBlue,
     } as Roll;
 
-    const redSixes = redRolls.filter((r) => r === 6).length;
-    const blueSixes = blueRolls.filter((r) => r === 6).length;
+    roll.redDice = [];
+    roll.blueDice = [];
+    
+    const takeLower = numRed + numBlue == 0;
+    if (takeLower) {
+      numRed = 2;
+    }
+    for (let i = 0; i < numRed; i++) {
+      roll.redDice.push(Math.floor(Math.random() * 6) + 1);
+    }
+    for (let i = 0; i < numBlue; i++) {
+      roll.blueDice.push(Math.floor(Math.random() * 6) + 1);
+    }
+
+    const redSixes = roll.redDice.filter((r) => r === 6).length;
+    const blueSixes = roll.blueDice.filter((r) => r === 6).length;
     if (redSixes + blueSixes >= 2) {
       roll.result = "crit";
       roll.effect = "improved";
       roll.resultDie = 6;
     } else {
       if (takeLower) {
-        roll.resultDie = Math.min(...redRolls);
+        roll.resultDie = Math.min(...roll.redDice);
         roll.effect = "reduced";
       } else {
         const bh = blueHigher(roll);
-        roll.resultDie = bh ? Math.max(...blueRolls) : Math.max(...redRolls);
+        roll.resultDie = bh ? Math.max(...roll.blueDice) : Math.max(...roll.redDice);
         roll.effect = bh ? "normal" : "reduced";
       }
 
@@ -142,13 +142,14 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       attribute2 && action2
         ? attributes?.[attribute2]?.[action2] || [0, 0]
         : [0, 0];
+    console.log(score1, score2);
     const redRolls =
       score1.filter((r) => r === 1).length +
       score2.filter((r) => r === 1).length;
     const blueRolls =
       score1.filter((r) => r === 2).length +
       score2.filter((r) => r === 2).length;
-
+    console.log(redRolls, blueRolls);
     return await rollDice(type, redRolls, blueRolls);
   }
 

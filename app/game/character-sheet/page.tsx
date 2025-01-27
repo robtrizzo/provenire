@@ -169,7 +169,6 @@ export default function Charsheet() {
     rollLeft: string,
     rollRight: string
   ) {
-    console.log(rollLeft, rollRight);
     if (!rollLeft && !rollRight) return;
     if (!rollLeft) {
       const [attribute, action] = rollRight.split("-") as [Attribute, string];
@@ -179,24 +178,24 @@ export default function Charsheet() {
       const [attribute, action] = rollLeft.split("-") as [Attribute, string];
       const roll = await rollActions(type, attribute, action);
       diceToast(roll, action);
+    } else {
+      const [attributeLeft, actionLeft] = rollLeft.split("-") as [
+        Attribute,
+        string
+      ];
+      const [attributeRight, actionRight] = rollRight.split("-") as [
+        Attribute,
+        string
+      ];
+      const roll = await rollActions(
+        type,
+        attributeLeft,
+        actionLeft,
+        attributeRight,
+        actionRight
+      );
+      diceToast(roll, actionLeft, actionRight);
     }
-    const [attributeLeft, actionLeft] = rollLeft.split("-") as [
-      Attribute,
-      string
-    ];
-    const [attributeRight, actionRight] = rollRight.split("-") as [
-      Attribute,
-      string
-    ];
-    const roll = await rollActions(
-      type,
-      attributeLeft,
-      actionLeft,
-      attributeRight,
-      actionRight
-    );
-    console.log(roll);
-    diceToast(roll, actionLeft, actionRight);
     setRollLeft("");
     setRollRight("");
     setBonusDiceRed(0);
