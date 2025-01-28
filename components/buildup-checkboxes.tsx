@@ -10,12 +10,14 @@ export function BuildupCheckboxes({
   numDisabled,
   current,
   onChange,
+  clearPosition = "start",
   className,
 }: {
   max: number;
   numDisabled?: number;
   current: number;
   onChange: (n: number) => void;
+  clearPosition?: "start" | "end";
   className?: string;
 }) {
   const numToDisable = numDisabled || 0;
@@ -25,17 +27,19 @@ export function BuildupCheckboxes({
     onChange(n);
   };
   return (
-    <div className={cn("flex justify-end items-center gap-1", className)}>
-      <Button
-        size="icon"
-        variant="ghost"
-        className="p-1 text-red-400 hover:text-red-400 h-6 w-6"
-        onClick={() => {
-          handleOnChange(0);
-        }}
-      >
-        <X className="h-3 w-3" />
-      </Button>
+    <div className={cn("flex items-center gap-1", className)}>
+      {clearPosition === "start" && (
+        <Button
+          size="icon"
+          variant="ghost"
+          className="p-1 text-red-400 hover:text-red-400 h-6 w-6"
+          onClick={() => {
+            handleOnChange(0);
+          }}
+        >
+          <X className="h-3 w-3" />
+        </Button>
+      )}
       {Array.from({ length: Math.min(localCurrent, max - numToDisable) }).map(
         (_, i) => (
           <Checkbox
@@ -66,6 +70,18 @@ export function BuildupCheckboxes({
           className="rounded-none data-[state=checked]:bg-red-800 data-[state=checked]:text-red-800"
         />
       ))}
+      {clearPosition === "end" && (
+        <Button
+          size="icon"
+          variant="ghost"
+          className="p-1 text-red-400 hover:text-red-400 h-6 w-6"
+          onClick={() => {
+            handleOnChange(0);
+          }}
+        >
+          <X className="h-3 w-3" />
+        </Button>
+      )}
     </div>
   );
 }

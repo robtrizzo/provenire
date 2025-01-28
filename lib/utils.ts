@@ -1,5 +1,5 @@
-import { clsx, type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -8,7 +8,6 @@ export function cn(...inputs: ClassValue[]) {
 type DebouncedFunction<T extends (...args: unknown[]) => unknown> = (
   ...args: Parameters<T>
 ) => void;
-
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function debounce<T extends (...args: any[]) => unknown>(
@@ -26,7 +25,9 @@ export function debounce<T extends (...args: any[]) => unknown>(
   };
 }
 
-export const StringUnion = <UnionType extends string>(...values: UnionType[]) => {
+export const StringUnion = <UnionType extends string>(
+  ...values: UnionType[]
+) => {
   Object.freeze(values);
   const valueSet: Set<string> = new Set(values);
 
@@ -37,12 +38,16 @@ export const StringUnion = <UnionType extends string>(...values: UnionType[]) =>
   const assert = (value: string): UnionType => {
     if (!check(value)) {
       const actual = JSON.stringify(value);
-      const expected = values.map(s => JSON.stringify(s)).join(' | ');
-      throw new TypeError(`Value '${actual}' is not assignable to type '${expected}'.`);
+      const expected = values.map((s) => JSON.stringify(s)).join(" | ");
+      throw new TypeError(
+        `Value '${actual}' is not assignable to type '${expected}'.`
+      );
     }
     return value;
   };
 
-  const unionNamespace = {assert, check, values};
-  return Object.freeze(unionNamespace as typeof unionNamespace & {type: UnionType});
+  const unionNamespace = { assert, check, values };
+  return Object.freeze(
+    unionNamespace as typeof unionNamespace & { type: UnionType }
+  );
 };
