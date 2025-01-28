@@ -12,8 +12,10 @@ async function addRoll(userId: string, roll: Roll): Promise<void> {
 
 async function getRolls(userId: string, cursor = 0, pageSize = 20): Promise<Roll[]> {
     const key = `user:${userId}:rolls`;
-    const rolls = await redis.lrange(key, cursor, pageSize-1);
-    return rolls.map((roll) => JSON.parse(roll));
+    console.log(cursor, pageSize);
+    const rolls = await redis.lrange(key, cursor, cursor + pageSize - 1);
+    // @ts-expect-error this shit dumb
+    return rolls;
 }
 
 export async function POST(request: Request): Promise<NextResponse> {
