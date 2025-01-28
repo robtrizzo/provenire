@@ -125,38 +125,206 @@ export default async function Page() {
                 near right angle at some point in the past. Some elders still
                 debate wheter it was an overseer or manufacturing defect that
                 caused it. Regardless of the truth, it&apos;s now a community
-                landmark.{" "}
-                <span className="italic">Rub the bend for good luck.</span>.{" "}
-                <b>Gorger</b> and his gang of enforcers rule here. Anyone out of
-                line goes missing.
+                landmark. <i>Rub the bend for good luck.</i>.
+              </TypographyP>
+              <TypographyP>
+                <u>
+                  <b>Landmarks</b>
+                </u>
+              </TypographyP>
+              <TypographyP>
+                <b>Kent&apos;s Watering Hole.</b> A social house older than
+                grime and set up around a machine that makes miscelanous
+                beverages. If that&apos;s what you can call the sludge it pumps
+                out some days.
+              </TypographyP>
+              <TypographyP>
+                <b>Tarpit.</b> A generation back it was a thriving neighborhood
+                full of life. Some kind of incident burnt the residents alive
+                and now it&apos;s encased in still-smoldering tar.
+              </TypographyP>
+              <TypographyP>
+                <u>
+                  <b>Notables</b>
+                </u>
+              </TypographyP>
+              <TypographyP>
+                <b>Lio.</b> He never talks to anyone, never works, just sulks at
+                Kent&apos;s. Rumor is he&apos;s an ex-overseer banished here for
+                some kind of capital offense.
+              </TypographyP>
+              <TypographyP>
+                <u>
+                  <b>Factions</b>
+                </u>
+              </TypographyP>
+              <TypographyP>
+                <b>Gorger&apos;s Sommoliers.</b> A gang of enforcers led by
+                Gorger himself. They rule in this neighborhood. Anyone out of
+                line goes missing, but anyone Gorger calls friend goes well fed.
               </TypographyP>
               <TypographyH4>Stairwell</TypographyH4>
               <TypographyP>
                 Seventy two flights of stairs from Fab to the Pits. Every corner
                 you turn on the stairs has you passing through someone&apos;s
                 home. Chains, ladders, and ramshackle platforms decorate the
-                vertical neighborhood. This is where the <b>Youngers</b> stake
-                their claim: bullying and extorting the most vulnerable for food
-                and materials.
+                vertical neighborhood. Dozens of side-entrances and labyrinthine
+                pipeways lead from Stairwell to all sorts of places.
+              </TypographyP>
+              <TypographyP>
+                <u>
+                  <b>Landmarks</b>
+                </u>
+              </TypographyP>
+              <TypographyP>
+                <b>Sevenway.</b> A seven way intersection of pipeways large
+                enough to house the closest thing Fabrication has to a market.
+                If anything has gone missing, odds are it ends up here.
+              </TypographyP>
+              <TypographyP>
+                <b>The Proving Chamber.</b> A colloseum made of twisted pipes
+                and small viewports from all directions. The terrain is uneven
+                with a variety of scorching hot and freezing cold pipes creating
+                an interesting battlefield that changes a bit every time the
+                machines decide to shift.
+              </TypographyP>
+              <TypographyP>
+                <u>
+                  <b>Notables</b>
+                </u>
+              </TypographyP>
+              <TypographyP>
+                <b>Hichem.</b> A talented and well sourced smith; one of the
+                wealthiest men in all of Fabrication. He puts on a humble
+                facade, but his eight wives and high prices tell a different
+                story.
+              </TypographyP>
+              <TypographyP>
+                <b>Adwil.</b> An unassuming guy at first glance. But word is
+                he&apos;s actually a runner - and a smuggler on top of that. Is
+                he double-timing or triple-timing or he in such deep shit that
+                he should simply be avoided?
+              </TypographyP>
+              <TypographyP>
+                <u>
+                  <b>Factions</b>
+                </u>
+              </TypographyP>
+              <TypographyP>
+                <b>The Youngers.</b> They stake their claim to Stairwell. They
+                bully and extort the most vulnerable for food and materials.
+                Their leader, Warner, is a callous - no - psychopathic bastard.
+                He&apos;s ambitious and actively making waves in Fabrication.
               </TypographyP>
               <TypographyH4>Lofts</TypographyH4>
               <TypographyP>
                 Thousands of homes arranged on catwalks and platforms above the
                 main factory floor. Difficult to tell what was original
-                construction and what has been added over the generations.
-                It&apos;s warm there, but <b>Amalina</b> and her <b>Shrikes</b>{" "}
-                have a habit of dropping from the darkness above and terrorizing
-                the community.
+                construction and what has been added over the generations. There
+                are warm patches and a level of security, but the proximity to
+                the upper beast lanes is worth wondering about.
+              </TypographyP>
+              <TypographyP>
+                <u>
+                  <b>Landmarks</b>
+                </u>
+              </TypographyP>
+              <TypographyP>
+                <b>Southside.</b> An area more sheltered from the <b>Shrikes</b>
+                , and right above the furnace vents, so it&apos;s a bit warmer.
+                Protected by metal gates and a consistent patrol.
+              </TypographyP>
+              <TypographyP>
+                <b>Bell&apos;s Chute.</b> An expansive cyllindrical opening in
+                the rafters that extends far past where the eye can see.
+                Presumably where Amalina and her flock lives.
+              </TypographyP>
+              <TypographyP>
+                <u>
+                  <b>Notables</b>
+                </u>
+              </TypographyP>
+              <TypographyP>
+                <b>Sire Cyber.</b> A priest to the <b>Well God</b>. He often
+                stands on the precipice of the Lofts and preaches to the workers
+                below. His words have even swayed the enforcers from time to
+                time.
+              </TypographyP>
+              <TypographyP>
+                <u>
+                  <b>Factions</b>
+                </u>
+              </TypographyP>
+              <TypographyP>
+                <b>Moore&apos;s Gang.</b> Also called Moore&apos;s Clan. Or
+                family. Whatever. They don&apos;t really have a name and Moore
+                likes it that way. It&apos;s just a group of people who live in
+                the Southside. Moore has a simple set of rules: pay your dues,
+                receive your protection.
+              </TypographyP>
+              <TypographyP>
+                <b>Shrikes.</b> Hardly anyone knows the members by name, but
+                they know not to run when they hear the calls. Anyone who does
+                gets pounced on and interrogated, or worse. The Shrikes will
+                even tear someone&apos;s home to shreds if they spot them
+                running inside.
               </TypographyP>
               <TypographyH4>Fab Floor</TypographyH4>
               <TypographyP>
                 Houses stacked on each other between the machines. Always a
                 risky proposition because of the factory&apos;s fickleness. This
                 is where the work gets done. Where hands get stained with oil
-                and blood. <b>The Scarbacks</b> patrol these streets. Everyone
-                works: most get fed. That&apos;s the way of things. No one
-                slacks off on their watch. No one makes trouble for Fab. Or
-                else.
+                and blood.
+              </TypographyP>
+              <TypographyP>
+                <u>
+                  <b>Landmarks</b>
+                </u>
+              </TypographyP>
+              <TypographyP>
+                <b>Loading Bay</b>. The destination for everything produced in
+                Fabrication. A confusing tangle of shelves, compartments, and
+                vats. On delivery days, the workers anxiously crowd the closed
+                blast doors. When they open again, all the materials are gone
+                and a palatte of food is in its place.
+              </TypographyP>
+              <TypographyP>
+                <b>Tara</b>. An immense machine at the center of Fabrication
+                which is also the floor itself for a decent swath of the area.
+                Tara is notoriously tempermental and requires offerings to keep
+                her happy.
+              </TypographyP>
+              <TypographyP>
+                <u>
+                  <b>Notables</b>
+                </u>
+              </TypographyP>
+              <TypographyP>
+                <b>Lester Aurus</b>. An operator who has garnered a &quot;tough
+                but fair&quot; reputation. More days than not, she&apos;s
+                adjudicating personal and familial disputes while she works. For
+                a fee, of course.
+              </TypographyP>
+              <TypographyP>
+                <b>Minamo</b>. An elderly woman and most famous dire wife in
+                Fabrication. No one has dared try claim her hand in marriage
+                since she made quite the example out of her eighth husband.
+                She&apos;s an icon of the community and tends to her massive
+                family, which is nearly a gang unto itself.
+              </TypographyP>
+              <TypographyP>
+                <u>
+                  <b>Factions</b>
+                </u>
+              </TypographyP>
+              <TypographyP>
+                <b>The Scarbacks</b> They patrol the Floor&apos;s streets.
+                Everyone works: most get fed. That&apos;s the way of things. No
+                one slacks off on their watch. No one makes trouble for Fab. Or
+                else. Their leader Enzo thinks of himself as a peacemaker in
+                Fabrication. He&apos;s as likely to order his thugs to protect a
+                worker as he is to order them to hand them over to the
+                overseers.
               </TypographyP>
               <TypographyH2>Weather</TypographyH2>
               <TypographyP>
