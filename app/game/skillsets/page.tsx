@@ -114,7 +114,8 @@ export default async function Page() {
         trait to the design. A full list of equipment traits is{" "}
         <Link href="/game/appendix#equipment-traits">
           <b className="underline text-red-500">here</b>
-        </Link>{" "}
+        </Link>
+        .
       </TypographyP>
       <TypographyH4>Starting equipment</TypographyH4>
       <TypographyUnorderedList>
@@ -573,7 +574,11 @@ export default async function Page() {
         Instead of recruiting a new gang or expert, the Nail can start a new
         project to upgrade an existing gang. When an upgrade project is
         completed, the Nail can spend <b>1 rep</b> to remove a negative trait or
-        add a positive trait to the gang.
+        add a positive trait to the gang. A full list of gang traits is{" "}
+        <Link href="/game/appendix#gang-traits">
+          <b className="underline text-red-500">here</b>
+        </Link>
+        .
       </TypographyP>
       <TypographyH4>Gangs (Fabrication)</TypographyH4>
       <TypographyUnorderedList>

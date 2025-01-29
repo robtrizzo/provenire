@@ -11,6 +11,13 @@ async function getAllCharactersForUser(userId: string | undefined) {
   return characters;
 }
 
+async function getAllCharacters() {
+  const pattern = `user:*:character:*`;
+  const keys = await findKeysByPattern(pattern);
+  const characters = await Promise.all(keys.map((key) => redis.get(key)));
+  return characters;
+}
+
 export async function GET() {
   const session = await auth();
 
@@ -25,7 +32,10 @@ export async function GET() {
   }
 
   try {
-    const characters = await getAllCharactersForUser(session?.user.id);
+    const characters =
+      session?.user.role === "admin"
+        ? await getAllCharacters()
+        : await getAllCharactersForUser(session?.user.id);
     return NextResponse.json({ characters });
   } catch (error) {
     console.error("Error getting characters", error);

@@ -25,3 +25,24 @@ export function debounce<T extends (...args: any[]) => unknown>(
     timeout = setTimeout(later, wait);
   };
 }
+
+export const StringUnion = <UnionType extends string>(...values: UnionType[]) => {
+  Object.freeze(values);
+  const valueSet: Set<string> = new Set(values);
+
+  const check = (value: string): value is UnionType => {
+    return valueSet.has(value);
+  };
+
+  const assert = (value: string): UnionType => {
+    if (!check(value)) {
+      const actual = JSON.stringify(value);
+      const expected = values.map(s => JSON.stringify(s)).join(' | ');
+      throw new TypeError(`Value '${actual}' is not assignable to type '${expected}'.`);
+    }
+    return value;
+  };
+
+  const unionNamespace = {assert, check, values};
+  return Object.freeze(unionNamespace as typeof unionNamespace & {type: UnionType});
+};

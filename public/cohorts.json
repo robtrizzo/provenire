@@ -1,30 +1,60 @@
 {
-    "gangs": [
-        {
-            "name": "Laborers",
-            "location": "Fabrication",
-            "ticks": 3,
-            "traits": ["skiddish", "disorganized", "loyal"]
-        },
-        {
-            "name": "Pit Fighters",
-            "location": "Fabrication",
-            "ticks": 4,
-            "traits": ["brutal", "unreliable"]
-        }
-    ],
-    "experts": [
-        {
-            "name": "Adwil the smuggler",
-            "location": "Fabrication",
-            "ticks": 4,
-            "traits": ["sneaky", "secretive", "greedy"]
-        },
-        {
-            "name": "Ciber the priest",
-            "location": "Fabrication",
-            "ticks": 4,
-            "traits": ["influential", "outspoken", "dogmatic"]
-        }
-    ]
+  "gangs": [
+    {
+      "name": "Laborers",
+      "location": "Fabrication",
+      "ticks": 3,
+      "traits": ["skiddish", "disorganized", "loyal"]
+    },
+    {
+      "name": "Pit Fighters",
+      "location": "Fabrication",
+      "ticks": 4,
+      "traits": ["brutal", "braggarts"]
+    },
+    {
+      "name": "Well Worshippers",
+      "location": "Fabrication",
+      "ticks": 5,
+      "traits": ["principled", "tenacious", "unreliable"]
+    }
+  ],
+  "experts": [
+    {
+      "name": "Adwil the smuggler",
+      "location": "Fabrication",
+      "ticks": 4,
+      "traits": ["sneaky", "secretive", "greedy"]
+    },
+    {
+      "name": "Ciber the priest",
+      "location": "Fabrication",
+      "ticks": 4,
+      "traits": ["influential", "outspoken", "dogmatic"]
+    },
+    {
+      "name": "Lio the exile",
+      "location": "Fabrication",
+      "ticks": 6,
+      "traits": ["antisocial", "short tempered", "dangerous"]
+    },
+    {
+      "name": "Hitchen the smith",
+      "location": "Fabrication",
+      "ticks": 3,
+      "traits": ["enterprising", "egoist", "connected"]
+    },
+    {
+      "name": "Lester Aurus the judge",
+      "location": "Fabrication",
+      "ticks": 5,
+      "traits": ["transactional", "fair", "private"]
+    },
+    {
+      "name": "Minamo the dire wife",
+      "location": "Fabrication",
+      "ticks": 5,
+      "traits": ["shrewd", "murderous", "compassionate"]
+    }
+  ]
 }
