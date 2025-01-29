@@ -16,7 +16,7 @@ interface RollContextProps {
     attribute2?: Attribute | undefined,
     action2?: string | undefined
   ) => Promise<Roll>;
-  rollDice: (type: RollType, numRed: number, numBlue: number) => Promise<Roll>;
+  rollDice: (type: RollType, numRed: number, numBlue: number, tag?: string) => Promise<Roll>;
   diceToast: (roll: Roll, action1?: string, action2?: string) => void;
   bonusDiceRed: number;
   bonusDiceBlue: number;
@@ -69,7 +69,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   const rollDice = async (
     type: RollType,
     numRed: number,
-    numBlue: number
+    numBlue: number,
+    tag?: string,
   ): Promise<Roll> => {
     numRed += bonusDiceRed;
     numBlue += bonusDiceBlue;
@@ -78,6 +79,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       type: type,
       numRed: numRed,
       numBlue: numBlue,
+      tag: tag,
     } as Roll;
 
     roll.redDice = [];
@@ -158,7 +160,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     const blueRolls =
       score1.filter((r) => r === 2).length +
       score2.filter((r) => r === 2).length;
-    return await rollDice(type, redRolls, blueRolls);
+    return await rollDice(type, redRolls, blueRolls, `${action1}${action2 ? ` | ${action2}` : ""}`);
   }
 
   function stressFromResist(roll: Roll): number {

@@ -7,8 +7,9 @@ import {
 } from "@/components/ui/popover";
 import { TypographyH4 } from "@/components/ui/typography";
 import { useInfiniteQuery } from "@tanstack/react-query";
+import { DieDetails } from "./die-details";
+import DieAccordian from "./die-accordian";
 import { Roll } from "@/types/roll";
-import { Die } from "@/components/die";
 
 export default function DiceHistory() {
   const PAGE_SIZE = 20;
@@ -61,14 +62,12 @@ export default function DiceHistory() {
   }, [fetchNextPage, hasNextPage]);
 
   const shouldBeRef = (index: number) => {
-    console.log(rolls.length, index);
     if (rolls.length < 5) return false;
     if (index === rolls.length - 5) {
-        console.log("Setting ref");
-        return true;
+      return true;
     }
     return false;
-  }
+  };
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -79,31 +78,13 @@ export default function DiceHistory() {
         <TypographyH4>Recent Rolls</TypographyH4>
         <div className="space-y-4 mt-4">
           {rolls?.map((roll, index) => (
-            <div key={shouldBeRef(index) ? "ref" : index} className="border rounded-lg p-2" ref={shouldBeRef(index) ? observerTarget : null}>
-              <div className="flex gap-1 flex-wrap">
-                {roll?.redDice?.map((r, i) => (
-                  <Die key={i} roll={r} className="h-8 w-8 text-red-800" />
-                ))}
-                {roll?.blueDice?.map((r, i) => (
-                  <Die
-                    key={i}
-                    roll={r}
-                    className={`h-8 w-8 ${
-                      roll.type === "fortune" ? "" : "text-blue-800"
-                    }`}
-                  />
-                ))}
-              </div>
-              <div className="mt-2 text-sm">
-                <span className="font-semibold capitalize">{roll.type}</span>
-                {" - "}
-                <span className="capitalize">{roll.result}</span>
-                {roll.timestamp && (
-                  <span className="text-muted-foreground text-xs block">
-                    {new Date(roll.timestamp).toLocaleString()}
-                  </span>
-                )}
-              </div>
+            <div
+              key={shouldBeRef(index) ? "ref" : index}
+              className="border rounded-lg p-2"
+              ref={shouldBeRef(index) ? observerTarget : null}
+            >
+              <DieDetails roll={roll} />
+              <DieAccordian roll={roll} />
             </div>
           ))}
         </div>
