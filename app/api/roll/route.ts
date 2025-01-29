@@ -12,7 +12,6 @@ async function addRoll(userId: string, roll: Roll): Promise<void> {
 
 async function getRolls(userId: string, cursor = 0, pageSize = 20): Promise<Roll[]> {
     const key = `user:${userId}:rolls`;
-    console.log(cursor, pageSize);
     const rolls = await redis.lrange(key, cursor, cursor + pageSize - 1);
     // @ts-expect-error this shit dumb
     return rolls;
