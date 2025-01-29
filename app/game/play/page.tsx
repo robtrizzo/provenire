@@ -26,6 +26,9 @@ export default function Page() {
 
   const [food, setFood] = useState(0);
   const [materials, setMaterials] = useState(0);
+  const [rep, setRep] = useState(0);
+  const [goodwill, setGoodwill] = useState(0);
+  const [intel, setIntel] = useState(0);
 
   useEffect(() => {
     if (window === undefined) return;
@@ -85,8 +88,10 @@ export default function Page() {
             </div>
             <div className="col-span-2 px-2">
               <TypographyH4 className="text-center">CREW NAME</TypographyH4>
-              <Separator className="mt-2 mb-4" />
-
+              <Separator className="mt-2 mb-1" />
+              <div className=" mb-2 flex justify-center items-center bg-rose-900 rounded-lg">
+                <span className="mt-1">HEAT</span>
+              </div>
               <div className="flex justify-between items-center flex-wrap">
                 <div className="flex items-center gap-2">
                   <Eye className="text-orange-500" />
@@ -128,6 +133,20 @@ export default function Page() {
                   />
                 </div>
                 <div className="flex items-center gap-2">
+                  <Speech className="text-lime-500" />
+                  <BuildupCheckboxes
+                    max={4}
+                    current={rep}
+                    numDisabled={3}
+                    onChange={(n) => {
+                      setRep(n);
+                    }}
+                    clearPosition="end"
+                  />
+                </div>
+              </div>
+              <div className="flex justify-between items-center">
+                <div className="flex items-center gap-2">
                   <Anvil className="text-violet-500" />
                   <BuildupCheckboxes
                     max={4}
@@ -135,6 +154,33 @@ export default function Page() {
                     numDisabled={3}
                     onChange={(n) => {
                       setMaterials(n);
+                    }}
+                    clearPosition="end"
+                  />
+                </div>
+                <div className="flex items-center gap-2">
+                  <Handshake className="text-fuchsia-500" />
+                  <BuildupCheckboxes
+                    max={4}
+                    current={goodwill}
+                    numDisabled={3}
+                    onChange={(n) => {
+                      setGoodwill(n);
+                    }}
+                    clearPosition="end"
+                  />
+                </div>
+              </div>
+              <div className="flex justify-between items-center">
+                <div className="flex items-center gap-2"></div>
+                <div className="flex items-center gap-2">
+                  <Brain className="text-teal-500" />
+                  <BuildupCheckboxes
+                    max={4}
+                    current={intel}
+                    numDisabled={3}
+                    onChange={(n) => {
+                      setIntel(n);
                     }}
                     clearPosition="end"
                   />
