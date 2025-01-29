@@ -10,6 +10,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { DieDetails } from "./die-details";
 import DieAccordian from "./die-accordian";
 import { Roll } from "@/types/roll";
+import { DiceClear } from "./dice-clear";
 
 export default function DiceHistory() {
   const PAGE_SIZE = 20;
@@ -75,7 +76,10 @@ export default function DiceHistory() {
         <Button variant="outline">Dice History</Button>
       </PopoverTrigger>
       <PopoverContent className="w-96 max-h-96 overflow-y-auto">
-        <TypographyH4>Recent Rolls</TypographyH4>
+        <div className="flex justify-between items-center">
+          <TypographyH4>Recent Rolls</TypographyH4>
+          <DiceClear />
+        </div>
         <div className="space-y-4 mt-4">
           {rolls?.map((roll, index) => (
             <div

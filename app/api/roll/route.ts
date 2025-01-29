@@ -17,6 +17,11 @@ async function getRolls(userId: string, cursor = 0, pageSize = 20): Promise<Roll
     return rolls;
 }
 
+async function clearRolls(userId: string): Promise<void> {
+    const key = `user:${userId}:rolls`;
+    await redis.del(key);
+}
+
 export async function POST(request: Request): Promise<NextResponse> {
     const session = await auth();
 
@@ -72,7 +77,7 @@ export async function GET(request: Request) {
         return unauthenticatedResponse;
     }
 
-    const unauthorizedResponse = checkUserRole(session, ["admin", "player"]);
+    const unauthorizedResponse = checkUserRole(session, ["player"]);
     if (unauthorizedResponse) {
         return unauthorizedResponse;
     }
@@ -91,4 +96,21 @@ export async function GET(request: Request) {
             {status: 500}
         );
     }
+}
+
+export async function DELETE(request: Request) {
+    const session = await auth();
+
+    const unauthenticatedResponse = checkUserAuthenticated(session);
+    if (unauthenticatedResponse) {
+        return unauthenticatedResponse;
+    }
+
+    const unauthorizedResponse = checkUserRole(session, ["player"]);
+    if (unauthorizedResponse) {
+        return unauthorizedResponse;
+    }
+
+    await clearRolls(session!.user!.id);
+    return NextResponse.json({message: 'Rolls cleared successfully'}, {status: 200});
 }
