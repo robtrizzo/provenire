@@ -40,7 +40,7 @@ export default function Portrait({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "flex-shrink-0 w-[116px] h-[116px] border-solid border-text-secondary border-[1px] box-border p-1 rounded-md flex items-center justify-center",
+        "shrink-0 w-[116px] h-[116px] border-solid border-text-secondary border-[1px] box-border p-1 rounded-md flex items-center justify-center",
         className
       )}
     >
