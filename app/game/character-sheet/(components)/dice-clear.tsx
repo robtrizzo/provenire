@@ -1,7 +1,11 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { TypographyH4 } from "@/components/ui/typography";
 import { toast } from "@/hooks/use-toast";
 import { Roll } from "@/types/roll";
@@ -9,8 +13,6 @@ import { Close } from "@radix-ui/react-popover";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Bomb, X } from "lucide-react";
 import { useState } from "react";
-
-
 
 export function DiceClear() {
   const [open, setOpen] = useState(false);
@@ -24,23 +26,23 @@ export function DiceClear() {
       return response.json();
     },
     onSuccess: () => {
-        // Invalidate and refetch the rolls query
-        queryClient.invalidateQueries({ queryKey: ["rolls"] });
-        toast({
-            title: "Success",
-            description: "Dice history cleared",
-        });
-        setOpen(false);
+      // Invalidate and refetch the rolls query
+      queryClient.invalidateQueries({ queryKey: ["rolls"] });
+      toast({
+        title: "Success",
+        description: "Dice history cleared",
+      });
+      setOpen(false);
     },
     onError: (error) => {
-        console.error("Failed to clear roll history", error);
-        toast({
-            title: "Error",
-            description: "Failed to clear roll history",
-            variant: "destructive",
-        });
+      console.error("Failed to clear roll history", error);
+      toast({
+        title: "Error",
+        description: "Failed to clear roll history",
+        variant: "destructive",
+      });
     },
-    });
+  });
 
   return (
     <Popover open={open} onOpenChange={setOpen}>

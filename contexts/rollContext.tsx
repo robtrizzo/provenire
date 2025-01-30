@@ -63,7 +63,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       return response.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["rolls"] })
+      queryClient.invalidateQueries({ queryKey: ["rolls"] });
     },
     onError: (error) => {
       console.error("Failed to save roll", error);
