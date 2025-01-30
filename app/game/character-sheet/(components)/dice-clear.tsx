@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/popover";
 import { TypographyH4 } from "@/components/ui/typography";
 import { toast } from "@/hooks/use-toast";
-import { Roll } from "@/types/roll";
 import { Close } from "@radix-ui/react-popover";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Bomb, X } from "lucide-react";

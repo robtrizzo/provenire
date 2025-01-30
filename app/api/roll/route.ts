@@ -94,7 +94,7 @@ export async function GET(request: Request) {
   }
 }
 
-export async function DELETE(request: Request) {
+export async function DELETE() {
   const session = await auth();
 
   const unauthenticatedResponse = checkUserAuthenticated(session);

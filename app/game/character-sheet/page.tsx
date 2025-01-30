@@ -2505,10 +2505,10 @@ export default function Charsheet() {
                         Personal: prevBonds.Personal.map((bond, index) =>
                           index === i
                             ? {
-                                name: bond.name,
-                                score: s,
-                                description: bond.description,
-                              }
+                              name: bond.name,
+                              score: s,
+                              description: bond.description,
+                            }
                             : bond
                         ),
                         Familial: prevBonds.Familial,
@@ -2573,10 +2573,10 @@ export default function Charsheet() {
                         Familial: prevBonds.Familial.map((bond, index) =>
                           index === i
                             ? {
-                                name: bond.name,
-                                score: s,
-                                description: bond.description,
-                              }
+                              name: bond.name,
+                              score: s,
+                              description: bond.description,
+                            }
                             : bond
                         ),
                         Professional: prevBonds.Professional,
@@ -2714,10 +2714,10 @@ export default function Charsheet() {
                         Crew: prevBonds.Crew.map((bond, index) =>
                           index === i
                             ? {
-                                name: bond.name,
-                                score: s,
-                                description: bond.description,
-                              }
+                              name: bond.name,
+                              score: s,
+                              description: bond.description,
+                            }
                             : bond
                         ),
                       }));
