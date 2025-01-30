@@ -127,5 +127,6 @@ export type Cohort = {
   name: string;
   location: string;
   ticks: number;
+  clock: number;
   traits: string[];
 };

@@ -1,15 +1,15 @@
-import { Item } from "@/types/game";
+import { Cohort } from "@/types/game";
 import { cn } from "@/lib/utils";
 import Clock from "@/components/clock";
 
-export default function ItemSummary({
-  item,
+export default function GangSummary({
+  gang,
   className,
 }: {
-  item: Item;
+  gang: Cohort;
   className?: string;
 }) {
-  const { name, clock, ticks, slots, traits } = item;
+  const { name, location, clock, ticks, traits } = gang;
   return (
     <div className={cn("grid grid-cols-12", className)}>
       <span className="min-w-22 col-span-4">{name}</span>
@@ -25,9 +25,7 @@ export default function ItemSummary({
       <span className="ml-2 text-muted-foreground text-sm col-span-5">
         {traits.join(", ")}
       </span>
-      <span className="ml-auto col-span-2">
-        {slots} {slots > 1 ? "slots" : "slot"}
-      </span>
+      <span className="ml-auto col-span-2 text-sm text-wrap">{location}</span>
     </div>
   );
 }

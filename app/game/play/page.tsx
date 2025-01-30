@@ -16,9 +16,13 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { BuildupCheckboxes } from "@/components/buildup-checkboxes";
 import itemsData from "@/public/items.json";
-import type { Item } from "@/types/game";
+import type { Cohort, Item } from "@/types/game";
 import ItemInput from "./(components)/item-input";
 import AddEquipment from "./(components)/add-equipment";
+import AlchemyInput from "./(components)/alchemy-input";
+import AddAlchemy from "./(components)/add-alchemy";
+import AddGang from "./(components)/add-gang";
+import GangInput from "./(components)/gang-input";
 
 export default function Page() {
   const [tab, setTab] = useState("crew");
@@ -34,6 +38,7 @@ export default function Page() {
 
   const [items, setItems] = useState<Item[]>(itemsData.starting);
   const [alchemy, setAlchemy] = useState<Item[]>([]);
+  const [gangs, setGangs] = useState<Cohort[]>([]);
 
   const handleUpdateItem =
     (itemName: string) => (traits: string[], ticks: number) => {
@@ -53,6 +58,49 @@ export default function Page() {
       return;
     }
     setItems([...items, item]);
+  }
+
+  const handleUpdateAlchemy =
+    (alchemyName: string) =>
+    (traits: string[], ticks: number, uses: number) => {
+      setAlchemy((prevAlchemy) =>
+        prevAlchemy.map((alchemy) =>
+          alchemy.name === alchemyName
+            ? { ...alchemy, traits, ticks, uses }
+            : alchemy
+        )
+      );
+    };
+
+  function handleAddAlchemy(al: Item) {
+    const alchemyExists = alchemy.some(
+      (existingItem) => existingItem.name === al.name
+    );
+    if (alchemyExists) {
+      console.log(`Alchemy with name ${al.name} already exists`);
+      return;
+    }
+    setAlchemy([...alchemy, al]);
+  }
+
+  const handleUpdateGang =
+    (gangName: string) => (traits: string[], ticks: number) => {
+      setGangs((prevGangs) =>
+        prevGangs.map((gang) =>
+          gang.name === gangName ? { ...gang, traits, ticks } : gang
+        )
+      );
+    };
+
+  function handleAddGang(gang: Cohort) {
+    const gangExists = gangs.some(
+      (existingGang) => existingGang.name === gang.name
+    );
+    if (gangExists) {
+      console.log(`Gang with name ${gang.name} already exists`);
+      return;
+    }
+    setGangs([...gangs, gang]);
   }
 
   useEffect(() => {
@@ -209,12 +257,24 @@ export default function Page() {
                 <span className="mt-1 text-sm text-white">ALCHEMY</span>
               </div>
               {alchemy.map((al, idx) => (
-                <div key={`${al.name}${idx}`}>{al.name}</div>
+                <AlchemyInput
+                  key={`${al.name}${idx}`}
+                  updateAlchemy={handleUpdateAlchemy(al.name)}
+                  alchemy={al}
+                />
               ))}
-              {/* <AddAlchemy addAlchemy={handleAddAlchemy} /> */}
+              <AddAlchemy addAlchemy={handleAddAlchemy} />
               <div className="mt-4 mb-2 flex justify-center items-center bg-linear-to-r/oklch from-emerald-950 to-gray-950 rounded-lg border-[1px] border-border">
                 <span className="mt-1 text-sm text-white">GANGS</span>
               </div>
+              {gangs.map((g, idx) => (
+                <GangInput
+                  key={`${g.name}${idx}`}
+                  updateGang={handleUpdateGang(g.name)}
+                  gang={g}
+                />
+              ))}
+              <AddGang addGang={handleAddGang} />
             </div>
             <div>
               <div className="">

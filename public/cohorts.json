@@ -3,19 +3,22 @@
     {
       "name": "Laborers",
       "location": "Fabrication",
-      "ticks": 3,
+      "clock": 3,
+      "ticks": 0,
       "traits": ["skiddish", "disorganized", "loyal"]
     },
     {
       "name": "Pit Fighters",
       "location": "Fabrication",
-      "ticks": 4,
+      "clock": 4,
+      "ticks": 0,
       "traits": ["brutal", "braggarts"]
     },
     {
       "name": "Well Worshippers",
       "location": "Fabrication",
-      "ticks": 5,
+      "clock": 5,
+      "ticks": 0,
       "traits": ["principled", "tenacious", "unreliable"]
     }
   ],
@@ -23,37 +26,43 @@
     {
       "name": "Adwil the smuggler",
       "location": "Fabrication",
-      "ticks": 4,
+      "clock": 4,
+      "ticks": 0,
       "traits": ["sneaky", "secretive", "greedy"]
     },
     {
       "name": "Ciber the priest",
       "location": "Fabrication",
-      "ticks": 4,
+      "clock": 4,
+      "ticks": 0,
       "traits": ["influential", "outspoken", "dogmatic"]
     },
     {
       "name": "Lio the exile",
       "location": "Fabrication",
-      "ticks": 6,
+      "clock": 6,
+      "ticks": 0,
       "traits": ["antisocial", "short tempered", "dangerous"]
     },
     {
       "name": "Hitchen the smith",
       "location": "Fabrication",
-      "ticks": 3,
+      "clock": 3,
+      "ticks": 0,
       "traits": ["enterprising", "egoist", "connected"]
     },
     {
       "name": "Lester Aurus the judge",
       "location": "Fabrication",
-      "ticks": 5,
+      "clock": 5,
+      "ticks": 0,
       "traits": ["transactional", "fair", "private"]
     },
     {
       "name": "Minamo the dire wife",
       "location": "Fabrication",
-      "ticks": 5,
+      "clock": 5,
+      "ticks": 0,
       "traits": ["shrewd", "murderous", "compassionate"]
     }
   ]
