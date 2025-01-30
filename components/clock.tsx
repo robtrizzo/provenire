@@ -1,5 +1,5 @@
 "use client";
-import { useState, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 export default function Clock({
   width = 50,
@@ -20,6 +20,13 @@ export default function Clock({
 
   const [time, setTime] = useState<number>(current);
 
+  useEffect(() => {
+    setTime(current);
+  }, [current]);
+
+  console.log("current", current);
+  console.log("time", time);
+
   const dark = theme === "dark";
 
   const conicGradient = `conic-gradient(red ${time / max}turn, ${
@@ -37,24 +44,22 @@ export default function Clock({
   const cy = adjustedHeight / 2;
   const outerRadius = Math.min(adjustedWidth, adjustedHeight) / 2;
 
-  const spokes = useMemo(() => {
-    return Array.from({ length: max }, (_, i) => {
-      const angle = (360 / max) * i - 90;
-      const x = cx + outerRadius * Math.cos((angle * Math.PI) / 180);
-      const y = cy + outerRadius * Math.sin((angle * Math.PI) / 180);
-      return (
-        <line
-          key={i}
-          x1={cx}
-          y1={cy}
-          x2={x}
-          y2={y}
-          stroke={dark ? "hsl(215 20.2% 65.1%)" : "hsl(215.4 16.3% 46.9%)"}
-          strokeWidth={1}
-        />
-      );
-    });
-  }, [max, dark, cx, cy, outerRadius]);
+  const spokes = Array.from({ length: max }, (_, i) => {
+    const angle = (360 / max) * i - 90;
+    const x = cx + outerRadius * Math.cos((angle * Math.PI) / 180);
+    const y = cy + outerRadius * Math.sin((angle * Math.PI) / 180);
+    return (
+      <line
+        key={i}
+        x1={cx}
+        y1={cy}
+        x2={x}
+        y2={y}
+        stroke={dark ? "hsl(215 20.2% 65.1%)" : "hsl(215.4 16.3% 46.9%)"}
+        strokeWidth={1}
+      />
+    );
+  });
 
   return (
     theme && (

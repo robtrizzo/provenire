@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TabsContent } from "@radix-ui/react-tabs";
-import { TypographyH4, TypographyP } from "@/components/ui/typography";
+import { TypographyH4 } from "@/components/ui/typography";
 import Breadcrumbs from "@/components/ui/breadcrumbs";
 import {
   Brain,
@@ -10,16 +10,18 @@ import {
   Wheat,
   Anvil,
   Speech,
-  Droplets,
-  Droplet,
   Eye,
   Siren,
 } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { BuildupCheckboxes } from "@/components/buildup-checkboxes";
+import itemsData from "@/public/items.json";
+import type { Item } from "@/types/game";
+import ItemInput from "./(components)/item-input";
+import AddEquipment from "./(components)/add-equipment";
 
 export default function Page() {
-  const [tab, setTab] = useState("character");
+  const [tab, setTab] = useState("crew");
 
   const [heat, setHeat] = useState(0);
   const [wanted, setWanted] = useState(0);
@@ -30,6 +32,29 @@ export default function Page() {
   const [goodwill, setGoodwill] = useState(0);
   const [intel, setIntel] = useState(0);
 
+  const [items, setItems] = useState<Item[]>(itemsData.starting);
+  const [alchemy, setAlchemy] = useState<Item[]>([]);
+
+  const handleUpdateItem =
+    (itemName: string) => (traits: string[], ticks: number) => {
+      setItems((prevItems) =>
+        prevItems.map((item) =>
+          item.name === itemName ? { ...item, traits, ticks } : item
+        )
+      );
+    };
+
+  function handleAddItem(item: Item) {
+    const itemExists = items.some(
+      (existingItem) => existingItem.name === item.name
+    );
+    if (itemExists) {
+      console.log(`Item with name ${item.name} already exists`);
+      return;
+    }
+    setItems([...items, item]);
+  }
+
   useEffect(() => {
     if (window === undefined) return;
     // read the hash and set the tab
@@ -38,14 +63,11 @@ export default function Page() {
       setTab(hash.substring(1));
     }
   }, []);
+
   return (
     <>
       <Breadcrumbs crumbs={[{ name: "Play", href: "#" }]} />
-      <Tabs
-        defaultValue="character"
-        value={tab}
-        className="w-full my-3 mx-auto"
-      >
+      <Tabs defaultValue="crew" value={tab} className="w-full my-3 mx-auto">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger
             value="character"
@@ -71,26 +93,10 @@ export default function Page() {
         <TabsContent value="character" className="w-full"></TabsContent>
         <TabsContent value="crew" className="w-full">
           <div className="grid w-full grid-cols-1 md:grid-cols-4">
-            <div>
-              <div className="">
-                <TypographyH4 className="text-orange-700 text-center">
-                  Dayshift
-                </TypographyH4>
-                <Separator className="mt-2 mb-4 bg-orange-700" />
-                <div className="flex items-center justify-center gap-2 flex-wrap">
-                  <div className="relative w-56 h-24 rounded-md border-[1px] border-border"></div>
-                  <div className="relative w-56 h-24 rounded-md border-[1px] border-border"></div>
-                  <div className="relative w-56 h-24 rounded-md border-[1px] border-border"></div>
-                  <div className="relative w-56 h-24 rounded-md border-[1px] border-border"></div>
-                  <div className="relative w-56 h-24 rounded-md border-[1px] border-border"></div>
-                </div>
-              </div>
-            </div>
-            <div className="col-span-2 px-2">
+            <div className="md:col-span-2 px-2">
               <TypographyH4 className="text-center">CREW NAME</TypographyH4>
-              <Separator className="mt-2 mb-1" />
-              <div className=" mb-2 flex justify-center items-center bg-rose-900 rounded-lg">
-                <span className="mt-1">HEAT</span>
+              <div className="my-2 flex justify-center items-center bg-linear-to-r/oklch from-orange-900 to-rose-900 rounded-lg border-[1px] border-border">
+                <span className="mt-1 text-sm text-white">HEAT</span>
               </div>
               <div className="flex justify-between items-center flex-wrap">
                 <div className="flex items-center gap-2">
@@ -118,7 +124,9 @@ export default function Page() {
                   />
                 </div>
               </div>
-              <Separator className="my-4" />
+              <div className="mt-4 mb-2 flex justify-center items-center bg-linear-to-r/oklch from-amber-900 to-teal-900 rounded-lg border-[1px] border-border">
+                <span className="mt-1 text-sm text-white">RESOURCES</span>
+              </div>
               <div className="flex justify-between items-center">
                 <div className="flex items-center gap-2">
                   <Wheat className="text-amber-500" />
@@ -186,45 +194,41 @@ export default function Page() {
                   />
                 </div>
               </div>
-              <Separator className="my-4" />
-
-              <div className="flex items-center flex-wrap gap-2 my-2">
-                <ResourceBox>
-                  <Brain className="text-teal-500" />{" "}
-                  <TypographyP>Intel</TypographyP>
-                </ResourceBox>
-                <ResourceBox>
-                  <Handshake className="text-fuchsia-500" />{" "}
-                  <TypographyP>Goodwill</TypographyP>
-                </ResourceBox>
-                <ResourceBox>
-                  <Wheat className="text-amber-500" />{" "}
-                  <TypographyP>Food</TypographyP>
-                </ResourceBox>
-                <ResourceBox>
-                  <Anvil className="text-violet-500" />{" "}
-                  <TypographyP>Materials</TypographyP>
-                </ResourceBox>
-                <ResourceBox>
-                  <Speech className="text-lime-500" />{" "}
-                  <TypographyP>Rep</TypographyP>
-                </ResourceBox>
-                <ResourceBox>
-                  <Droplets className="text-red-500" />{" "}
-                  <TypographyP>Blood</TypographyP>
-                </ResourceBox>
-                <ResourceBox>
-                  <Droplet className="text-blue-500" />{" "}
-                  <TypographyP>Water</TypographyP>
-                </ResourceBox>
-                <ResourceBox>
-                  <Eye className="text-orange-500" />{" "}
-                  <TypographyP>Heat</TypographyP>
-                </ResourceBox>
-                <ResourceBox>
-                  <Siren className="text-rose-500" />{" "}
-                  <TypographyP>Wanted</TypographyP>
-                </ResourceBox>
+              <div className="mt-4 mb-2 flex justify-center items-center bg-linear-to-r/oklch from-neutral-800 to-stone-950 rounded-lg border-[1px] border-border">
+                <span className="mt-1 text-sm text-white">EQUIPMENT</span>
+              </div>
+              {items.map((it, idx) => (
+                <ItemInput
+                  item={it}
+                  updateItem={handleUpdateItem(it.name)}
+                  key={idx}
+                />
+              ))}
+              <AddEquipment addItem={handleAddItem} />
+              <div className="mt-4 mb-2 flex justify-center items-center bg-linear-to-r/oklch from-violet-950 to-slate-950 rounded-lg border-[1px] border-border">
+                <span className="mt-1 text-sm text-white">ALCHEMY</span>
+              </div>
+              {alchemy.map((al, idx) => (
+                <div key={`${al.name}${idx}`}>{al.name}</div>
+              ))}
+              {/* <AddAlchemy addAlchemy={handleAddAlchemy} /> */}
+              <div className="mt-4 mb-2 flex justify-center items-center bg-linear-to-r/oklch from-emerald-950 to-gray-950 rounded-lg border-[1px] border-border">
+                <span className="mt-1 text-sm text-white">GANGS</span>
+              </div>
+            </div>
+            <div>
+              <div className="">
+                <TypographyH4 className="text-orange-700 text-center">
+                  Dayshift
+                </TypographyH4>
+                <Separator className="mt-2 mb-4 bg-orange-700" />
+                <div className="flex items-center justify-center gap-2 flex-wrap">
+                  <div className="relative w-56 h-24 rounded-md border-[1px] border-border"></div>
+                  <div className="relative w-56 h-24 rounded-md border-[1px] border-border"></div>
+                  <div className="relative w-56 h-24 rounded-md border-[1px] border-border"></div>
+                  <div className="relative w-56 h-24 rounded-md border-[1px] border-border"></div>
+                  <div className="relative w-56 h-24 rounded-md border-[1px] border-border"></div>
+                </div>
               </div>
             </div>
             <div>
@@ -243,13 +247,5 @@ export default function Page() {
         </TabsContent>
       </Tabs>
     </>
-  );
-}
-
-function ResourceBox({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="flex items-center gap-2 border-solid border-text-secondary border-2 box-border py-2 px-4 rounded-md">
-      {children}
-    </div>
   );
 }

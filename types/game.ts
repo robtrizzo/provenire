@@ -20,7 +20,7 @@ export interface Ability {
   slug: string;
 }
 
-export type Attribute = 'Heart' | 'Instinct' | 'Machina';
+export type Attribute = "Heart" | "Instinct" | "Machina";
 
 interface Attributes {
   Heart: string[];
@@ -107,8 +107,10 @@ export type Loadout = {
 
 export type Item = {
   name: string;
+  clock: number;
   ticks: number;
   slots: number;
+  uses?: number;
   traits: string[];
   description: string;
 };
