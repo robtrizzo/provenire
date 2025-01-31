@@ -1,20 +1,10 @@
 import { NextResponse } from "next/server";
-import { auth } from "@/auth";
-import { checkUserAuthenticated, checkUserRole } from "@/lib/auth";
 import { getAllRolls } from "@/handlers/rolls";
+import { checkAuth } from "@/lib/auth";
 
 export async function GET(request: Request) {
-  const session = await auth();
-
-  const unauthenticatedResponse = checkUserAuthenticated(session);
-  if (unauthenticatedResponse) {
-    return unauthenticatedResponse;
-  }
-
-  const unauthorizedResponse = checkUserRole(session, ["admin", "player"]);
-  if (unauthorizedResponse) {
-    return unauthorizedResponse;
-  }
+  const { session, error } = await checkAuth("player");
+  if (error) return error;
 
   const { searchParams } = new URL(request.url);
   const cursor = parseInt(searchParams.get("cursor") || "0", 10);

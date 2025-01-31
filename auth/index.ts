@@ -2,6 +2,7 @@ import NextAuth, { NextAuthConfig } from "next-auth";
 import DiscordProvider from "next-auth/providers/discord";
 import { UpstashRedisAdapter } from "@auth/upstash-redis-adapter";
 import redis from "@/lib/redis";
+import { Role } from "@/lib/auth";
 
 export const BASE_PATH = "/api/auth";
 
@@ -63,7 +64,7 @@ const authOptions: NextAuthConfig = {
         session.user.name = token.name;
         session.user.email = token.email;
         session.user.image = token.image;
-        session.user.role = token.role;
+        session.user.role = token.role as Role;
       }
 
       return session;
