@@ -23,6 +23,9 @@ import AlchemyInput from "./(components)/alchemy-input";
 import AddAlchemy from "./(components)/add-alchemy";
 import AddGang from "./(components)/add-gang";
 import GangInput from "./(components)/gang-input";
+import Image from "next/image";
+import ExpertInput from "./(components)/expert-input";
+import AddExpert from "./(components)/add-expert";
 
 export default function Page() {
   const [tab, setTab] = useState("crew");
@@ -39,6 +42,12 @@ export default function Page() {
   const [items, setItems] = useState<Item[]>(itemsData.starting);
   const [alchemy, setAlchemy] = useState<Item[]>([]);
   const [gangs, setGangs] = useState<Cohort[]>([]);
+  const [experts, setExperts] = useState<Cohort[]>([]);
+
+  const [schematics, setSchematics] = useState<Item[]>([]);
+  const [formulae, setFormulae] = useState<Item[]>([]);
+  const [rGangs, setRGangs] = useState<Cohort[]>([]);
+  const [rExperts, setRExperts] = useState<Cohort[]>([]);
 
   const handleUpdateItem =
     (itemName: string) => (traits: string[], ticks: number) => {
@@ -62,7 +71,7 @@ export default function Page() {
 
   const handleUpdateAlchemy =
     (alchemyName: string) =>
-    (traits: string[], ticks: number, uses: number) => {
+    (traits: string[], uses: number, ticks: number) => {
       setAlchemy((prevAlchemy) =>
         prevAlchemy.map((alchemy) =>
           alchemy.name === alchemyName
@@ -103,11 +112,82 @@ export default function Page() {
     setGangs([...gangs, gang]);
   }
 
+  const handleUpdateExpert = (expertName: string) => (ticks: number) => {
+    setExperts((prevExperts) =>
+      prevExperts?.map((expert) =>
+        expert.name === expertName ? { ...expert, ticks } : expert
+      )
+    );
+  };
+
+  function handleAddExpert(expert: Cohort) {
+    const expertExists = experts?.some(
+      (existingExpert) => existingExpert.name === expert.name
+    );
+    if (expertExists) {
+      console.log(`Expert with name ${expert.name} already exists`);
+      return;
+    }
+    setExperts([...experts, expert]);
+  }
+
+  const handleUpdateSchematic =
+    (schematicName: string) => (traits: string[], ticks: number) => {
+      setSchematics((prevSchematics) =>
+        prevSchematics.map((schematic) =>
+          schematic.name === schematicName ? { ...schematic, ticks } : schematic
+        )
+      );
+    };
+
+  const handleRemoveSchematic = (schematicName: string) => () => {
+    setSchematics(schematics.filter((s) => s.name !== schematicName));
+  };
+
+  function handleAddSchematic(schematic: Item) {
+    const schematicExists = schematics.some(
+      (existingItem) => existingItem.name === schematic.name
+    );
+    if (schematicExists) {
+      console.log(`Schematic with name ${schematic.name} already exists`);
+      return;
+    }
+    setSchematics([...schematics, schematic]);
+  }
+
+  const handleUpdateFormulae =
+    (formulaeName: string) =>
+    (traits: string[], uses: number, ticks: number) => {
+      setFormulae((prevFormulae) =>
+        prevFormulae.map((formulae) =>
+          formulae.name === formulaeName ? { ...formulae, ticks } : formulae
+        )
+      );
+    };
+
+  function handleAddFormula(f: Item) {
+    const formulaExists = formulae.some(
+      (existingFormula) => existingFormula.name === f.name
+    );
+    if (formulaExists) {
+      console.log(`Formula with name ${f.name} already exists`);
+      return;
+    }
+    setFormulae([...formulae, f]);
+  }
+
+  const handleRemoveFormula = (formulaName: string) => () => {
+    setFormulae(formulae.filter((f) => f.name !== formulaName));
+  };
+
   useEffect(() => {
     if (window === undefined) return;
     // read the hash and set the tab
     const hash = window.location.hash;
-    if (hash && ["crew", "character"].includes(hash.substring(1))) {
+    if (
+      hash &&
+      ["crew", "character", "dramatis-personae"].includes(hash.substring(1))
+    ) {
       setTab(hash.substring(1));
     }
   }, []);
@@ -116,7 +196,7 @@ export default function Page() {
     <>
       <Breadcrumbs crumbs={[{ name: "Play", href: "#" }]} />
       <Tabs defaultValue="crew" value={tab} className="w-full my-3 mx-auto">
-        <TabsList className="grid w-full grid-cols-2">
+        <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger
             value="character"
             onClick={() => {
@@ -137,12 +217,22 @@ export default function Page() {
           >
             Crew
           </TabsTrigger>
+          <TabsTrigger
+            value="dramatis-personae"
+            onClick={() => {
+              setTab("dramatis-personae");
+              // save the tab to the hash
+              window.location.hash = "dramatis-personae";
+            }}
+          >
+            Dramatis Personae
+          </TabsTrigger>
         </TabsList>
         <TabsContent value="character" className="w-full"></TabsContent>
         <TabsContent value="crew" className="w-full">
-          <div className="grid w-full grid-cols-1 md:grid-cols-4">
-            <div className="md:col-span-2 px-2">
-              <TypographyH4 className="text-center">CREW NAME</TypographyH4>
+          <TypographyH4 className="text-center">CREW NAME</TypographyH4>
+          <div className="grid w-full grid-cols-1 md:grid-cols-2">
+            <div className="px-2">
               <div className="my-2 flex justify-center items-center bg-linear-to-r/oklch from-orange-900 to-rose-900 rounded-lg border-[1px] border-border">
                 <span className="mt-1 text-sm text-white">HEAT</span>
               </div>
@@ -242,8 +332,12 @@ export default function Page() {
                   />
                 </div>
               </div>
-              <div className="mt-4 mb-2 flex justify-center items-center bg-linear-to-r/oklch from-neutral-800 to-stone-950 rounded-lg border-[1px] border-border">
-                <span className="mt-1 text-sm text-white">EQUIPMENT</span>
+              <div className="mt-4 mb-2 flex justify-center items-center bg-linear-to-r/oklch from-pink-950 to-blue-950 rounded-lg border-[1px] border-border">
+                <span className="mt-1 text-sm text-white">ASSETS</span>
+              </div>
+              <div className="mt-4 mb-2 mx-2">
+                <b className="mt-1 text-white">Equipment</b>
+                <Separator />
               </div>
               {items.map((it, idx) => (
                 <ItemInput
@@ -252,9 +346,12 @@ export default function Page() {
                   key={idx}
                 />
               ))}
-              <AddEquipment addItem={handleAddItem} />
-              <div className="mt-4 mb-2 flex justify-center items-center bg-linear-to-r/oklch from-violet-950 to-slate-950 rounded-lg border-[1px] border-border">
-                <span className="mt-1 text-sm text-white">ALCHEMY</span>
+              <div className="flex justify-center mt-1">
+                <AddEquipment addItem={handleAddItem} />
+              </div>
+              <div className="mt-4 mb-2 mx-2">
+                <b className="mt-1 text-white">Alchemy</b>
+                <Separator />
               </div>
               {alchemy.map((al, idx) => (
                 <AlchemyInput
@@ -263,9 +360,12 @@ export default function Page() {
                   alchemy={al}
                 />
               ))}
-              <AddAlchemy addAlchemy={handleAddAlchemy} />
-              <div className="mt-4 mb-2 flex justify-center items-center bg-linear-to-r/oklch from-emerald-950 to-gray-950 rounded-lg border-[1px] border-border">
-                <span className="mt-1 text-sm text-white">GANGS</span>
+              <div className="flex justify-center mt-1">
+                <AddAlchemy addAlchemy={handleAddAlchemy} />
+              </div>
+              <div className="mt-4 mb-2 mx-2">
+                <b className="mt-1 text-white">Gangs</b>
+                <Separator />
               </div>
               {gangs.map((g, idx) => (
                 <GangInput
@@ -274,33 +374,244 @@ export default function Page() {
                   gang={g}
                 />
               ))}
-              <AddGang addGang={handleAddGang} />
+              <div className="flex justify-center mt-1">
+                <AddGang addGang={handleAddGang} />
+              </div>
+              <div className="mt-4 mb-2 mx-2">
+                <b className="mt-1 text-white">Experts</b>
+                <Separator />
+              </div>
+              {experts.map((e, idx) => (
+                <ExpertInput
+                  key={`${e.name}${idx}`}
+                  updateExpert={handleUpdateExpert(e.name)}
+                  expert={e}
+                />
+              ))}
+              <div className="flex justify-center mt-1">
+                <AddExpert addExpert={handleAddExpert} />
+              </div>
             </div>
-            <div>
-              <div className="">
-                <TypographyH4 className="text-orange-700 text-center">
-                  Dayshift
-                </TypographyH4>
-                <Separator className="mt-2 mb-4 bg-orange-700" />
-                <div className="flex items-center justify-center gap-2 flex-wrap">
-                  <div className="relative w-56 h-24 rounded-md border-[1px] border-border"></div>
-                  <div className="relative w-56 h-24 rounded-md border-[1px] border-border"></div>
-                  <div className="relative w-56 h-24 rounded-md border-[1px] border-border"></div>
-                  <div className="relative w-56 h-24 rounded-md border-[1px] border-border"></div>
-                  <div className="relative w-56 h-24 rounded-md border-[1px] border-border"></div>
+            <div className="px-2">
+              <div className="my-2 flex justify-center items-center bg-linear-to-r/oklch from-teal-900 to-blue-900 rounded-lg border-[1px] border-border">
+                <span className="mt-1 text-sm text-white">AGENDAS</span>
+              </div>
+              <div className="mt-4 mb-2 mx-2">
+                <b className="mt-1 text-white">Craft the tools of rebellion</b>
+                <Separator />
+              </div>
+              {schematics.map((s, idx) => (
+                <ItemInput
+                  key={`${s.name}${idx}`}
+                  updateItem={handleUpdateSchematic(s.name)}
+                  item={s}
+                  variant="schematic"
+                  removeItem={handleRemoveSchematic(s.name)}
+                />
+              ))}
+              {formulae.map((f, idx) => (
+                <AlchemyInput
+                  key={`${f.name}${idx}`}
+                  updateAlchemy={handleUpdateFormulae(f.name)}
+                  alchemy={f}
+                  variant="formula"
+                  removeAlchemy={handleRemoveFormula(f.name)}
+                />
+              ))}
+              <div className="flex justify-center gap-2 mt-2">
+                <AddEquipment
+                  addItem={handleAddSchematic}
+                  variant="schematic"
+                />
+                <AddAlchemy addAlchemy={handleAddFormula} variant="formula" />
+              </div>
+              <div className="mt-4 mb-2 mx-2">
+                <b className="mt-1 text-white">
+                  Explore the factory&apos;s heights and depths
+                </b>
+                <Separator />
+              </div>
+              <div className="mt-4 mb-2 mx-2">
+                <b className="mt-1 text-white">
+                  Pit the oppressors against each other
+                </b>
+                <Separator />
+              </div>
+              <div className="mt-4 mb-2 mx-2">
+                <b className="mt-1 text-white">
+                  Forge a path of connection and conversation
+                </b>
+                <Separator />
+              </div>
+              <div className="mt-4 mb-2 mx-2">
+                <b className="mt-1 text-white">Gamble and fight for glory</b>
+                <Separator />
+              </div>
+              <div className="mt-4 mb-2 mx-2">
+                <b className="mt-1 text-white">
+                  Make them know you&apos;re not afraid
+                </b>
+                <Separator />
+              </div>
+              <div className="mt-4 mb-2 mx-2">
+                <b className="mt-1 text-white">Make the pain worth it</b>
+                <Separator />
+              </div>
+              <div className="mt-4 mb-2 mx-2">
+                <b className="mt-1 text-white">
+                  Walk among the oppressors and learn their secrets
+                </b>
+                <Separator />
+              </div>
+            </div>
+          </div>
+        </TabsContent>
+        <TabsContent value="dramatis-personae" className="w-full">
+          <div>
+            <div className="">
+              <TypographyH4 className="text-orange-700 text-center">
+                Dayshift
+              </TypographyH4>
+              <Separator className="mt-2 mb-4 bg-orange-700" />
+              <div className="flex items-center justify-center gap-2 flex-wrap">
+                <div className="relative w-56 h-24 rounded-md border-[1px] border-border">
+                  <Image
+                    src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/Untitled-TGGV8Lx7llaXWqeiUW9TdeDdJop6QL.png"
+                    alt="character portrait"
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="center"
+                    sizes="(max-width: 224px) 100vw, 50vw"
+                    className="z-0 rounded-md"
+                  />
+                  <div className="absolute group bottom-0 left-0 h-24 w-56 z-10 bg-black/50 rounded-md flex items-center justify-center hover:bg-black/10 transition-all duration-300">
+                    <b className="text-lg group-hover:opacity-0 transition-all duration-300">
+                      Drusa
+                    </b>
+                  </div>
+                </div>
+                <div className="relative w-56 h-24 rounded-md border-[1px] border-border">
+                  {/* <Image
+                  src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/wolfboy-8GbIppsoksWV3DEN87HWHXqcowr4EP.png"
+                  alt="character portrait"
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="center"
+                  sizes="(max-width: 224px) 100vw, 50vw"
+                  className="z-0 rounded-md"
+                /> */}
+                  <div className="absolute bottom-0 left-0 h-24 w-56 z-10 bg-black/50 rounded-md flex items-center justify-center hover:bg-black/20 transition-all duration-300">
+                    <b className="text-lg">Nail</b>
+                  </div>
+                </div>
+                <div className="relative w-56 h-24 rounded-md border-[1px] border-border">
+                  {/* <Image
+                  src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/wolfboy-8GbIppsoksWV3DEN87HWHXqcowr4EP.png"
+                  alt="character portrait"
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="center"
+                  sizes="(max-width: 224px) 100vw, 50vw"
+                  className="z-0 rounded-md"
+                /> */}
+                  <div className="absolute bottom-0 left-0 h-24 w-56 z-10 bg-black/50 rounded-md flex items-center justify-center hover:bg-black/20 transition-all duration-300">
+                    <b className="text-lg">???</b>
+                  </div>
+                </div>
+                <div className="relative w-56 h-24 rounded-md border-[1px] border-border">
+                  {/* <Image
+                  src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/wolfboy-8GbIppsoksWV3DEN87HWHXqcowr4EP.png"
+                  alt="character portrait"
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="center"
+                  sizes="(max-width: 224px) 100vw, 50vw"
+                  className="z-0 rounded-md"
+                /> */}
+                  <div className="absolute bottom-0 left-0 h-24 w-56 z-10 bg-black/50 rounded-md flex items-center justify-center hover:bg-black/20 transition-all duration-300">
+                    <b className="text-lg">???</b>
+                  </div>
                 </div>
               </div>
             </div>
-            <div>
-              <TypographyH4 className="text-indigo-700 text-center">
-                Nightshift
-              </TypographyH4>
-              <Separator className="mt-2 mb-4 bg-indigo-700" />
-              <div className="flex items-center justify-center gap-2 flex-wrap">
-                <div className="relative w-56 h-24 rounded-md border-[1px] border-border"></div>
-                <div className="relative w-56 h-24 rounded-md border-[1px] border-border"></div>
-                <div className="relative w-56 h-24 rounded-md border-[1px] border-border"></div>
-                <div className="relative w-56 h-24 rounded-md border-[1px] border-border"></div>
+          </div>
+          <div>
+            <TypographyH4 className="text-indigo-700 text-center">
+              Nightshift
+            </TypographyH4>
+            <Separator className="mt-2 mb-4 bg-indigo-700" />
+            <div className="flex items-center justify-center gap-2 flex-wrap">
+              <div className="relative w-56 h-24 rounded-md border-[1px] border-border">
+                <Image
+                  src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/wolfboy-8GbIppsoksWV3DEN87HWHXqcowr4EP.png"
+                  alt="character portrait"
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="center"
+                  sizes="(max-width: 224px) 100vw, 50vw"
+                  className="z-0 rounded-md"
+                />
+                <div className="absolute group bottom-0 left-0 h-24 w-56 z-10 bg-black/50 rounded-md flex items-center justify-center hover:bg-black/20 transition-all duration-300">
+                  <b className="text-lg group-hover:opacity-0 transition-all duration-300">
+                    21
+                  </b>
+                </div>
+              </div>
+              <div className="relative w-56 h-24 rounded-md border-[1px] border-border">
+                {/* <Image
+                  src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/wolfboy-8GbIppsoksWV3DEN87HWHXqcowr4EP.png"
+                  alt="character portrait"
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="center"
+                  sizes="(max-width: 224px) 100vw, 50vw"
+                  className="z-0 rounded-md"
+                /> */}
+                <div className="absolute bottom-0 left-0 h-24 w-56 z-10 bg-black/50 rounded-md flex items-center justify-center hover:bg-black/20 transition-all duration-300">
+                  <b className="text-lg">Aika</b>
+                </div>
+              </div>
+              <div className="relative w-56 h-24 rounded-md border-[1px] border-border">
+                {/* <Image
+                  src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/wolfboy-8GbIppsoksWV3DEN87HWHXqcowr4EP.png"
+                  alt="character portrait"
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="center"
+                  sizes="(max-width: 224px) 100vw, 50vw"
+                  className="z-0 rounded-md"
+                /> */}
+                <div className="absolute bottom-0 left-0 h-24 w-56 z-10 bg-black/50 rounded-md flex items-center justify-center hover:bg-black/20 transition-all duration-300">
+                  <b className="text-lg">Bessemer</b>
+                </div>
+              </div>
+              <div className="relative w-56 h-24 rounded-md border-[1px] border-border">
+                {/* <Image
+                  src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/wolfboy-8GbIppsoksWV3DEN87HWHXqcowr4EP.png"
+                  alt="character portrait"
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="center"
+                  sizes="(max-width: 224px) 100vw, 50vw"
+                  className="z-0 rounded-md"
+                /> */}
+                <div className="absolute bottom-0 left-0 h-24 w-56 z-10 bg-black/50 rounded-md flex items-center justify-center hover:bg-black/20 transition-all duration-300">
+                  <b className="text-lg">Lilya</b>
+                </div>
+              </div>
+              <div className="relative w-56 h-24 rounded-md border-[1px] border-border">
+                {/* <Image
+                  src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/wolfboy-8GbIppsoksWV3DEN87HWHXqcowr4EP.png"
+                  alt="character portrait"
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="center"
+                  sizes="(max-width: 224px) 100vw, 50vw"
+                  className="z-0 rounded-md"
+                /> */}
+                <div className="absolute bottom-0 left-0 h-24 w-56 z-10 bg-black/50 rounded-md flex items-center justify-center hover:bg-black/20 transition-all duration-300">
+                  <b className="text-lg">Von</b>
+                </div>
               </div>
             </div>
           </div>

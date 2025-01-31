@@ -17,9 +17,13 @@ import AlchemySummary from "./alchemy-summary";
 export default function AlchemyInput({
   alchemy,
   updateAlchemy,
+  variant = "alchemy",
+  removeAlchemy,
 }: {
   alchemy: Item;
-  updateAlchemy: (traits: string[], ticks: number, uses: number) => void;
+  updateAlchemy: (traits: string[], uses: number, ticks: number) => void;
+  variant?: string;
+  removeAlchemy?: () => void;
 }) {
   const [open, setOpen] = useState(false);
   const [traits, setTraits] = useState(alchemy.traits);
@@ -43,7 +47,7 @@ export default function AlchemyInput({
         .map((_, idx) => formData.get(`trait-${idx}`) as string)
         .filter((trait) => trait !== null || trait !== undefined);
       setTraits(newTraits);
-      updateAlchemy(newTraits, ticks, uses);
+      updateAlchemy(newTraits, uses, ticks);
       setOpen(false);
     }
   };
@@ -74,67 +78,107 @@ export default function AlchemyInput({
         <form ref={formRef} onSubmit={handleSubmit}>
           <div className="flex justify-between items-center">
             <TypographyH4 className="mt-0">{name}</TypographyH4>
-            <div className="flex gap-2">
-              <div className="flex flex-col items-center">
-                <Clock
-                  max={clock}
-                  current={ticks}
-                  setVal={(n) => {
-                    setTicks(n);
-                  }}
-                  width={35}
-                  height={35}
-                />
-                <span className="text-xs">project</span>
+            {variant === "alchemy" ? (
+              <div className="flex gap-2">
+                <div className="flex flex-col items-center">
+                  <Clock
+                    max={clock}
+                    current={ticks}
+                    setVal={(n) => {
+                      setTicks(n);
+                    }}
+                    width={35}
+                    height={35}
+                  />
+                  <span className="text-xs">project</span>
+                </div>
+                <div className="flex flex-col items-center">
+                  <Clock
+                    max={3}
+                    current={uses}
+                    setVal={(n) => {
+                      setUses(n);
+                    }}
+                    width={35}
+                    height={35}
+                  />
+                  <span className="text-xs">uses</span>
+                </div>
               </div>
-              <div className="flex flex-col items-center">
-                <Clock
-                  max={3}
-                  current={uses}
-                  setVal={(n) => {
-                    setUses(n);
-                  }}
-                  width={35}
-                  height={35}
-                />
-                <span className="text-xs">uses</span>
-              </div>
-            </div>
+            ) : (
+              <Clock
+                max={clock}
+                current={ticks}
+                setVal={(n) => {
+                  setTicks(n);
+                }}
+                width={35}
+                height={35}
+              />
+            )}
           </div>
           <TypographyP className="mb-2">{description}</TypographyP>
           <b>Slots: {slots}</b>
           <br />
-          <div className="flex items-center justify-between">
-            <b>Traits</b>
-            <Link href="/game/appendix">
-              <span className="text-sm text-muted-foreground">
-                (<u className="text-red-500">list of traits</u>)
-              </span>
-            </Link>
-          </div>
-          {traits.map((t, idx) => (
-            <div key={`${t}${idx}`} className="flex gap-2 items-center mb-1">
-              <Input defaultValue={t} size={10} name={`trait-${idx}`} />
+          {variant === "alchemy" ? (
+            <>
+              <div className="flex items-center justify-between">
+                <b>Traits</b>
+                <Link href="/game/appendix">
+                  <span className="text-sm text-muted-foreground">
+                    (<u className="text-red-500">list of traits</u>)
+                  </span>
+                </Link>
+              </div>
+              {traits.map((t, idx) => (
+                <div
+                  key={`${t}${idx}`}
+                  className="flex gap-2 items-center mb-1"
+                >
+                  <Input defaultValue={t} size={10} name={`trait-${idx}`} />
+                  <Button
+                    type="button"
+                    size="icon"
+                    variant="ghost"
+                    className="text-red-400"
+                    onClick={() => handleRemoveTrait(idx)}
+                  >
+                    <Bomb />
+                  </Button>
+                </div>
+              ))}
               <Button
+                variant="outline"
+                size="sm"
                 type="button"
-                size="icon"
-                variant="ghost"
-                className="text-red-400"
-                onClick={() => handleRemoveTrait(idx)}
+                onClick={() => handleAddTrait()}
+              >
+                <Plus /> new trait
+              </Button>
+            </>
+          ) : (
+            <span>
+              <b>Traits:</b>
+              <span className="ml-2 text-muted-foreground">
+                {traits.join(", ")}
+              </span>
+            </span>
+          )}
+          <div className="flex mt-2">
+            {variant === "formula" && (
+              <Button
+                variant="destructive"
+                type="button"
+                onClick={() => {
+                  if (removeAlchemy) {
+                    removeAlchemy();
+                  }
+                }}
               >
                 <Bomb />
+                Remove
               </Button>
-            </div>
-          ))}
-          <Button
-            variant="outline"
-            size="sm"
-            type="button"
-            onClick={() => handleAddTrait()}
-          >
-            <Plus /> new trait
-          </Button>
-          <div className="flex mt-2">
+            )}
             <Button
               variant="secondary"
               className="text-sm ml-auto"

@@ -181,7 +181,7 @@ function LoadCharacterButton({
           className="z-0 rounded-md"
         />
       )}
-      <div className="absolute bottom-0 left-0 h-24 w-56 z-10 bg-black bg-opacity-50 rounded-md flex items-center justify-center hover:bg-opacity-30 hover:cursor-pointer transition-all duration-300">
+      <div className="absolute bottom-0 left-0 h-24 w-56 z-10 bg-black/50 rounded-md flex items-center justify-center hover:bg-opacity-30 hover:cursor-pointer transition-all duration-300">
         <b className="text-lg">{char.name}</b>
       </div>
     </div>

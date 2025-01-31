@@ -17,9 +17,13 @@ import ItemSummary from "./item-summary";
 export default function ItemInput({
   item,
   updateItem,
+  variant = "equipment",
+  removeItem,
 }: {
   item: Item;
   updateItem: (traits: string[], ticks: number) => void;
+  variant?: string;
+  removeItem?: () => void;
 }) {
   const [open, setOpen] = useState(false);
   const [traits, setTraits] = useState(item.traits);
@@ -86,37 +90,65 @@ export default function ItemInput({
           <TypographyP className="mb-2">{description}</TypographyP>
           <b>Slots: {slots}</b>
           <br />
-          <div className="flex items-center justify-between">
-            <b>Traits</b>
-            <Link href="/game/appendix">
-              <span className="text-sm text-muted-foreground">
-                (<u className="text-red-500">list of traits</u>)
-              </span>
-            </Link>
-          </div>
-          {traits.map((t, idx) => (
-            <div key={`${t}${idx}`} className="flex gap-2 items-center mb-1">
-              <Input defaultValue={t} size={10} name={`trait-${idx}`} />
+          {variant === "equipment" ? (
+            <>
+              <div className="flex items-center justify-between">
+                <b>Traits</b>
+                <Link href="/game/appendix">
+                  <span className="text-sm text-muted-foreground">
+                    (<u className="text-red-500">list of traits</u>)
+                  </span>
+                </Link>
+              </div>
+              {traits.map((t, idx) => (
+                <div
+                  key={`${t}${idx}`}
+                  className="flex gap-2 items-center mb-1"
+                >
+                  <Input defaultValue={t} size={10} name={`trait-${idx}`} />
+                  <Button
+                    type="button"
+                    size="icon"
+                    variant="ghost"
+                    className="text-red-400"
+                    onClick={() => handleRemoveTrait(idx)}
+                  >
+                    <Bomb />
+                  </Button>
+                </div>
+              ))}
               <Button
+                variant="outline"
+                size="sm"
                 type="button"
-                size="icon"
-                variant="ghost"
-                className="text-red-400"
-                onClick={() => handleRemoveTrait(idx)}
+                onClick={() => handleAddTrait()}
+              >
+                <Plus /> new trait
+              </Button>
+            </>
+          ) : (
+            <span>
+              <b>Traits:</b>
+              <span className="ml-2 text-muted-foreground">
+                {traits.join(", ")}
+              </span>
+            </span>
+          )}
+          <div className="flex mt-2">
+            {variant === "schematic" && (
+              <Button
+                variant="destructive"
+                type="button"
+                onClick={() => {
+                  if (removeItem) {
+                    removeItem();
+                  }
+                }}
               >
                 <Bomb />
+                Remove
               </Button>
-            </div>
-          ))}
-          <Button
-            variant="outline"
-            size="sm"
-            type="button"
-            onClick={() => handleAddTrait()}
-          >
-            <Plus /> new trait
-          </Button>
-          <div className="flex mt-2">
+            )}
             <Button
               variant="secondary"
               className="text-sm ml-auto"
