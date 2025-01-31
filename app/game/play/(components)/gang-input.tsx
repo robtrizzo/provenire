@@ -18,9 +18,13 @@ import { Input } from "@/components/ui/input";
 export default function GangInput({
   gang,
   updateGang,
+  variant,
+  removeGang,
 }: {
   gang: Cohort;
   updateGang: (traits: string[], ticks: number) => void;
+  variant?: string;
+  removeGang?: () => void;
 }) {
   const { name, clock, location } = gang;
 
@@ -86,37 +90,65 @@ export default function GangInput({
           </div>
           <b>Location: {location}</b>
           <br />
-          <div className="flex items-center justify-between">
-            <b>Traits</b>
-            <Link href="/game/appendix">
-              <span className="text-sm text-muted-foreground">
-                (<u className="text-red-500">list of traits</u>)
+          {variant === "recruit" ? (
+            <span>
+              <b>Traits:</b>
+              <span className="ml-2 text-muted-foreground">
+                {traits.join(", ")}
               </span>
-            </Link>
-          </div>
-          {traits.map((t, idx) => (
-            <div key={`${t}${idx}`} className="flex gap-2 items-center mb-1">
-              <Input defaultValue={t} size={10} name={`trait-${idx}`} />
+            </span>
+          ) : (
+            <>
+              <div className="flex items-center justify-between">
+                <b>Traits</b>
+                <Link href="/game/appendix">
+                  <span className="text-sm text-muted-foreground">
+                    (<u className="text-red-500">list of traits</u>)
+                  </span>
+                </Link>
+              </div>
+              {traits.map((t, idx) => (
+                <div
+                  key={`${t}${idx}`}
+                  className="flex gap-2 items-center mb-1"
+                >
+                  <Input defaultValue={t} size={10} name={`trait-${idx}`} />
+                  <Button
+                    type="button"
+                    size="icon"
+                    variant="ghost"
+                    className="text-red-400"
+                    onClick={() => handleRemoveTrait(idx)}
+                  >
+                    <Bomb />
+                  </Button>
+                </div>
+              ))}
               <Button
+                variant="outline"
+                size="sm"
                 type="button"
-                size="icon"
-                variant="ghost"
-                className="text-red-400"
-                onClick={() => handleRemoveTrait(idx)}
+                onClick={() => handleAddTrait()}
+              >
+                <Plus /> new trait
+              </Button>
+            </>
+          )}
+          <div className="flex mt-2">
+            {variant === "recruit" && (
+              <Button
+                variant="destructive"
+                type="button"
+                onClick={() => {
+                  if (removeGang) {
+                    removeGang();
+                  }
+                }}
               >
                 <Bomb />
+                Remove
               </Button>
-            </div>
-          ))}
-          <Button
-            variant="outline"
-            size="sm"
-            type="button"
-            onClick={() => handleAddTrait()}
-          >
-            <Plus /> new trait
-          </Button>
-          <div className="flex mt-2">
+            )}
             <Button
               variant="secondary"
               className="text-sm ml-auto"

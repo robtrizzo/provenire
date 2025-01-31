@@ -180,6 +180,53 @@ export default function Page() {
     setFormulae(formulae.filter((f) => f.name !== formulaName));
   };
 
+  const handleUpdateRGang =
+    (rGangName: string) => (traits: string[], ticks: number) => {
+      setRGangs((prevRGangs) =>
+        prevRGangs.map((rGang) =>
+          rGang.name === rGangName ? { ...rGang, ticks } : rGang
+        )
+      );
+    };
+
+  function handleAddRGang(rg: Cohort) {
+    const rGangExists = rGangs.some(
+      (existingRGang) => existingRGang.name === rg.name
+    );
+    if (rGangExists) {
+      console.log(`Recruit-gang with name ${rg.name} already exists`);
+      return;
+    }
+    setRGangs([...rGangs, rg]);
+  }
+
+  const handleRemoveRGang = (rGangName: string) => () => {
+    setRGangs(rGangs.filter((rg) => rg.name !== rGangName));
+  };
+
+  const handleUpdateRExpert = (rExpertName: string) => (ticks: number) => {
+    setRExperts((prevRExperts) =>
+      prevRExperts.map((rExpert) =>
+        rExpert.name === rExpertName ? { ...rExpert, ticks } : rExpert
+      )
+    );
+  };
+
+  function handleAddRExpert(re: Cohort) {
+    const rExpertExists = rExperts.some(
+      (existingRExpert) => existingRExpert.name === re.name
+    );
+    if (rExpertExists) {
+      console.log(`Recruit-expert with name ${re.name} already exists`);
+      return;
+    }
+    setRExperts([...rExperts, re]);
+  }
+
+  const handleRemoveRExpert = (rExpertName: string) => () => {
+    setRExperts(rExperts.filter((re) => re.name !== rExpertName));
+  };
+
   useEffect(() => {
     if (window === undefined) return;
     // read the hash and set the tab
@@ -452,6 +499,28 @@ export default function Page() {
                   Make them know you&apos;re not afraid
                 </b>
                 <Separator />
+              </div>
+              {rGangs.map((rg, idx) => (
+                <GangInput
+                  key={`${rg.name}${idx}`}
+                  updateGang={handleUpdateRGang(rg.name)}
+                  gang={rg}
+                  variant="recruit"
+                  removeGang={handleRemoveRGang(rg.name)}
+                />
+              ))}
+              {rExperts.map((re, idx) => (
+                <ExpertInput
+                  key={`${re.name}${idx}`}
+                  updateExpert={handleUpdateRExpert(re.name)}
+                  expert={re}
+                  variant="recruit"
+                  removeExpert={handleRemoveRExpert(re.name)}
+                />
+              ))}
+              <div className="flex justify-center gap-2 mt-2">
+                <AddGang addGang={handleAddRGang} />
+                <AddExpert addExpert={handleAddRExpert} />
               </div>
               <div className="mt-4 mb-2 mx-2">
                 <b className="mt-1 text-white">Make the pain worth it</b>

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Clock from "@/components/clock";
 import { Button } from "@/components/ui/button";
-import { SaveIcon } from "lucide-react";
+import { SaveIcon, Bomb } from "lucide-react";
 import {
   Popover,
   PopoverContent,
@@ -16,9 +16,13 @@ import { TypographyH4 } from "@/components/ui/typography";
 export default function ExpertInput({
   expert,
   updateExpert,
+  removeExpert,
+  variant,
 }: {
   expert: Cohort;
   updateExpert: (ticks: number) => void;
+  removeExpert?: () => void;
+  variant?: string;
 }) {
   const { name, clock, location, traits } = expert;
 
@@ -64,6 +68,20 @@ export default function ExpertInput({
           </span>
         </span>
         <div className="flex mt-2">
+          {variant === "recruit" && (
+            <Button
+              variant="destructive"
+              type="button"
+              onClick={() => {
+                if (removeExpert) {
+                  removeExpert();
+                }
+              }}
+            >
+              <Bomb />
+              Remove
+            </Button>
+          )}
           <Button
             variant="secondary"
             className="text-sm ml-auto"
