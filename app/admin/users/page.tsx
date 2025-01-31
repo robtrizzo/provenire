@@ -21,6 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { PermissionsDialog } from "./(components)/permissions-dialog";
 
 export default async function Page() {
   const session = await auth();
@@ -49,6 +50,9 @@ export default async function Page() {
             <TableHead className="border-l-slate-800 border-l-[1px]">
               role
             </TableHead>
+            <TableHead className="border-l-slate-800 border-l-[1px]">
+              permissions
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -64,9 +68,13 @@ export default async function Page() {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="admin">admin</SelectItem>
+                      <SelectItem value="player">player</SelectItem>
                       <SelectItem value="user">user</SelectItem>
                     </SelectContent>
                   </Select>
+                </TableCell>
+                <TableCell>
+                  <PermissionsDialog username={user.name} />
                 </TableCell>
               </TableRow>
             ))

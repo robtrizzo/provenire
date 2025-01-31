@@ -1,24 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/auth";
 import { Roll, validateRoll } from "@/types/roll";
-import { checkUserAuthenticated, checkUserRole } from "@/lib/auth";
+import { checkAuth } from "@/lib/auth";
 import { addRoll, getRolls, clearRolls } from "@/handlers/rolls";
 
 export async function POST(
     request: NextRequest,
     { params }: { params: Promise<{ userid: string }> }
   ) {
-  const session = await auth();
-
-  const unauthenticatedResponse = checkUserAuthenticated(session);
-  if (unauthenticatedResponse) {
-    return unauthenticatedResponse;
-  }
-
-  const unauthorizedResponse = checkUserRole(session, ["player", "admin"]);
-  if (unauthorizedResponse) {
-    return unauthorizedResponse;
-  }
+  const { session, error } = await checkAuth("player");
+  if (error) return error;
 
   const userid = (await params).userid;
   if (!userid) {
@@ -64,17 +54,8 @@ export async function GET(
     request: NextRequest,
     { params }: { params: Promise<{ userid: string }> }
   ) {
-  const session = await auth();
-
-  const unauthenticatedResponse = checkUserAuthenticated(session);
-  if (unauthenticatedResponse) {
-    return unauthenticatedResponse;
-  }
-
-  const unauthorizedResponse = checkUserRole(session, ["player", "admin"]);
-  if (unauthorizedResponse) {
-    return unauthorizedResponse;
-  }
+  const { session, error } = await checkAuth("player");
+  if (error) return error;
   
   const userid = (await params).userid;
   if (!userid) {
@@ -101,17 +82,8 @@ export async function DELETE(
     request: NextRequest,
     { params }: { params: Promise<{ userid: string }> }
   ) {
-  const session = await auth();
-
-  const unauthenticatedResponse = checkUserAuthenticated(session);
-  if (unauthenticatedResponse) {
-    return unauthenticatedResponse;
-  }
-
-  const unauthorizedResponse = checkUserRole(session, ["player", "admin"]);
-  if (unauthorizedResponse) {
-    return unauthorizedResponse;
-  }
+  const { session, error } = await checkAuth("player", ["rolls:delete"]);
+  if (error) return error;
   
   const userid = (await params).userid;
   if (!userid) {
