@@ -28,7 +28,6 @@ export default function DieAccordian({ roll }: { roll: Roll }) {
 
   const handleAccordionChange = async (value: string) => {
     if (value === "roll-details" && !expandedUserName) {
-      console.log("fetching user data");
       const user = await queryClient.fetchQuery({
         queryKey: ["user", roll.userId],
         queryFn: fetchUserData
