@@ -4,34 +4,39 @@
     "location": "Fabriction",
     "description": "abuse-hardened workers",
     "agenda": "Free their comrades from the pits.",
-    "scorn": 0
+    "ticks": 0,
+    "clock": 3
   },
   {
     "name": "Gorger's Sommeliers",
     "location": "Fabriction",
     "description": "lackeys of a cannabalistic glutton",
     "agenda": "Acquire the body of a beast, living or dead.",
-    "scorn": 0
+    "ticks": 1,
+    "clock": 3
   },
   {
     "name": "Shrikes",
     "location": "Fabriction",
     "description": "aggressive crow-beast overseers",
     "agenda": "Put a stop to the inventory discrepencies in Fabrication.",
-    "scorn": 0
+    "ticks": 2,
+    "clock": 3
   },
   {
     "name": "The Youngers",
     "location": "Fabriction",
     "description": "upstart thugs with something to prove",
     "agenda": "Help them oust the Scarbacks and be the strongest gang in Fab.",
-    "scorn": 0
+    "ticks": 0,
+    "clock": 3
   },
   {
     "name": "Moore's",
     "location": "Fabriction",
     "description": "families bound together by oaths",
     "agenda": "Help them collect overdue debts and deliver overdue promises.",
-    "scorn": 0
+    "ticks": 0,
+    "clock": 3
   }
 ]

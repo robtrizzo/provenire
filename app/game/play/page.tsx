@@ -16,7 +16,15 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { BuildupCheckboxes } from "@/components/buildup-checkboxes";
 import itemsData from "@/public/items.json";
-import { Clock, type Cohort, type Item } from "@/types/game";
+import {
+  Blackmail,
+  Clock,
+  Faction,
+  FightingInstructor,
+  Gladiator,
+  type Cohort,
+  type Item,
+} from "@/types/game";
 import ItemInput from "./(components)/item-input";
 import AddEquipment from "./(components)/add-equipment";
 import AlchemyInput from "./(components)/alchemy-input";
@@ -28,6 +36,14 @@ import ExpertInput from "./(components)/expert-input";
 import AddExpert from "./(components)/add-expert";
 import AddScouting from "./(components)/add-scouting";
 import ScoutingInput from "./(components)/scouting-input";
+import AddBlackmail from "./(components)/add-blackmail";
+import BlackmailInput from "./(components)/blackmail-input";
+import faction_data from "@/public/factions.json";
+import FactionInput from "./(components)/faction-input";
+import AddGladiator from "./(components)/add-gladiator";
+import GladitorInput from "./(components)/gladiator-input";
+import AddFightingInstructor from "./(components)/add-fighting-instructor";
+import FightingInstructorInput from "./(components)/fighting-instructor-input";
 
 export default function Page() {
   const [tab, setTab] = useState("crew");
@@ -51,6 +67,10 @@ export default function Page() {
   const [rGangs, setRGangs] = useState<Cohort[]>([]);
   const [rExperts, setRExperts] = useState<Cohort[]>([]);
   const [scouting, setScouting] = useState<Clock[]>([]);
+  const [blackmail, setBlackmail] = useState<Blackmail[]>([]);
+  const [factions, setFactions] = useState<Faction[]>(faction_data);
+  const [pcGladiators, setPCGladiators] = useState<Gladiator[]>([]);
+  const [fInstructors, setFInstructors] = useState<FightingInstructor[]>([]);
 
   const handleUpdateItem =
     (itemName: string) => (traits: string[], ticks: number) => {
@@ -252,6 +272,86 @@ export default function Page() {
   const handleRemoveScouting = (scoutingName: string) => () => {
     setScouting(scouting.filter((s) => s.name !== scoutingName));
   };
+
+  function handleAddBlackmail(b: Blackmail) {
+    const blackmailExists = blackmail.some(
+      (existingBlackmail) => existingBlackmail.name === b.name
+    );
+    if (blackmailExists) {
+      console.log(`Blackmail with name ${b.name} already exists`);
+      return;
+    }
+    setBlackmail([...blackmail, b]);
+  }
+
+  const handleRemoveBlackmail = (blackmailName: string) => () => {
+    setBlackmail(blackmail.filter((b) => b.name !== blackmailName));
+  };
+
+  const handleUpdateFaction = (factionName: string) => (ticks: number) => {
+    setFactions((prevFactions) =>
+      prevFactions.map((faction) =>
+        faction.name === factionName ? { ...faction, ticks } : faction
+      )
+    );
+  };
+
+  const handleUpdatePCGladiator =
+    (pcGladiatorName: string) => (rank: number) => {
+      setPCGladiators((prevPCGladiators) =>
+        prevPCGladiators.map((gladiator) =>
+          gladiator.name === pcGladiatorName
+            ? { ...gladiator, rank }
+            : gladiator
+        )
+      );
+    };
+
+  function handleAddPCGladiator(gladiator: Gladiator) {
+    const gladiatorExists = pcGladiators.some(
+      (existingGladiator) => existingGladiator.name === gladiator.name
+    );
+    if (gladiatorExists) {
+      console.log(`PC Gladiator with name ${gladiator.name} already exists`);
+      return;
+    }
+    setPCGladiators([...pcGladiators, gladiator]);
+  }
+
+  const handleRemovePCGladiator = (pcGladiatorName: string) => () => {
+    setPCGladiators(pcGladiators.filter((g) => g.name !== pcGladiatorName));
+  };
+
+  const handleUpdateFightingInstructor =
+    (fightingInstructorName: string) => (ticks: number) => {
+      setFInstructors((prevFInstructors) =>
+        prevFInstructors.map((instructor) =>
+          instructor.name === fightingInstructorName
+            ? { ...instructor, ticks }
+            : instructor
+        )
+      );
+    };
+
+  function handleAddFightingInstructor(instructor: FightingInstructor) {
+    const instructorExists = fInstructors.some(
+      (existingIntructor) => existingIntructor.name === instructor.name
+    );
+    if (instructorExists) {
+      console.log(
+        `Fighting instructor with name ${instructor.name} already exists`
+      );
+      return;
+    }
+    setFInstructors([...fInstructors, instructor]);
+  }
+
+  const handleRemoveFightingInstructor =
+    (fightingInstructorName: string) => () => {
+      setFInstructors(
+        fInstructors.filter((i) => i.name !== fightingInstructorName)
+      );
+    };
 
   useEffect(() => {
     if (window === undefined) return;
@@ -531,15 +631,68 @@ export default function Page() {
                 </b>
                 <Separator />
               </div>
+              {blackmail.map((b, idx) => (
+                <BlackmailInput
+                  key={`${b.name}${idx}`}
+                  blackmail={b}
+                  removeBlackmail={handleRemoveBlackmail(b.name)}
+                />
+              ))}
+              <div className="flex justify-center">
+                <AddBlackmail addBlackmail={handleAddBlackmail} />
+              </div>
               <div className="mt-4 mb-2 mx-2">
                 <b className="mt-1 text-white">
                   Carve a path of connection and conversation
                 </b>
                 <Separator />
               </div>
+              {factions.map((f, idx) => (
+                <FactionInput
+                  key={`${f.name}${idx}`}
+                  faction={f}
+                  updateFaction={handleUpdateFaction(f.name)}
+                />
+              ))}
               <div className="mt-4 mb-2 mx-2">
                 <b className="mt-1 text-white">Gamble and fight for glory</b>
                 <Separator />
+              </div>
+              {pcGladiators.length > 0 && (
+                <div className="flex justify-center my-1">
+                  <span className="text-xs">CREW GLADIATORS</span>
+                </div>
+              )}
+              {pcGladiators.map((g, idx) => (
+                <GladitorInput
+                  key={`${g.name}${idx}`}
+                  gladiator={g}
+                  updateGladiator={handleUpdatePCGladiator(g.name)}
+                  removeGladiator={handleRemovePCGladiator(g.name)}
+                />
+              ))}
+              {fInstructors.length > 0 && (
+                <div className="flex justify-center my-1">
+                  <span className="text-xs">FIGHTING INSTRUCTORS</span>
+                </div>
+              )}
+              {fInstructors.map((i, idx) => (
+                <FightingInstructorInput
+                  key={`${i.name}${idx}`}
+                  fightingInstructor={i}
+                  updateFightingInstructor={handleUpdateFightingInstructor(
+                    i.name
+                  )}
+                  removeFightingInstructor={handleRemoveFightingInstructor(
+                    i.name
+                  )}
+                />
+              ))}
+              <div className="flex justify-center gap-1">
+                <AddGladiator addGladiator={handleAddPCGladiator} />
+                <AddFightingInstructor
+                  addFightingInstructor={handleAddFightingInstructor}
+                />
               </div>
               <div className="mt-4 mb-2 mx-2">
                 <b className="mt-1 text-white">

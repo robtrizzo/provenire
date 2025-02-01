@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Kuni the Rover",
+    "effect": "+1d to avoid first overseer encountered per mission"
+  },
+  {
+    "name": "Svintha the Crumber",
+    "effect": "+1 food per successful mission"
+  },
+  {
+    "name": "Audo the Gorger",
+    "effect": "may trade 1 food for +1d to engagement roll"
+  },
+  {
+    "name": "Riks the Rat",
+    "effect": "+1d when gahering info on fellow workers"
+  },
+  {
+    "name": "Radegond the Stalker",
+    "effect": "+1d to engagement roll when heat is 4 or less"
+  },
+  {
+    "name": "Naric the Swindler",
+    "effect": "+1d to engagement roll when deceiving worker faction"
+  },
+  {
+    "name": "Gisava the Bully",
+    "effect": "may trade 1 goodwill for 1 rep each agendas phase"
+  },
+  {
+    "name": "Gaila the Daft",
+    "effect": "may trade 1 goodwill for 1 intel each agendas phase"
+  },
+  {
+    "name": "Marngil the Bear",
+    "effect": "whenever you gain rep, gain +1 rep"
+  },
+  {
+    "name": "Amalina the Crow",
+    "effect": "+1d when gathering info on overseers"
+  },
+  {
+    "name": "Ulf the Wolf",
+    "effect": "+1d to engagement roll when using stealth to commit murder"
+  },
+  {
+    "name": "Duara the Thinblood",
+    "effect": "+1 materials on successful espionage or sabotage"
+  },
+  {
+    "name": "Ridora the Ravenous",
+    "effect": "may trade a crew contact to eliminate an enforcer; 2 contacts for a prowler."
+  },
+  {
+    "name": "Theodoric the Torturer",
+    "effect": "may trade 1 goodwill for 2 blood each agendas phase"
+  },
+  {
+    "name": "Frida the Cruel",
+    "effect": "when you roll entanglements, roll twice and take better result"
+  }
+]

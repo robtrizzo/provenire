@@ -1,0 +1,50 @@
+{
+  "crew": [
+    { "name": "21", "rank": 1 },
+    { "name": "Aika", "rank": 1 },
+    { "name": "Bessemer", "rank": 1 },
+    { "name": "Drusa", "rank": 1 },
+    { "name": "Lilya", "rank": 1 },
+    { "name": "Nail", "rank": 1 },
+    { "name": "Von", "rank": 1 },
+    { "name": "??", "rank": 1 },
+    { "name": "???", "rank": 1 }
+  ],
+  "instructors": [
+    {
+      "name": "Gelvir",
+      "fightingStyle": "Pipedancing",
+      "clock": 3,
+      "ticks": 0,
+      "description": "maneuver through the machinery and use it to your advantage"
+    },
+    {
+      "name": "Lareiks",
+      "fightingStyle": "Crowdbreaking",
+      "clock": 4,
+      "ticks": 0,
+      "description": "maximize damage to groups of surrounding foes"
+    },
+    {
+      "name": "Chlodos",
+      "fightingStyle": "Throatgore",
+      "clock": 4,
+      "ticks": 0,
+      "description": "pack tactics, go for the throat"
+    },
+    {
+      "name": "Hunuil",
+      "fightingStyle": "Bleedout",
+      "clock": 5,
+      "ticks": 0,
+      "description": "small, precise strikes in vital regions"
+    },
+    {
+      "name": "Hermesind",
+      "fightingStyle": "Backsnap",
+      "clock": 6,
+      "ticks": 0,
+      "description": "overwhelming aggression"
+    }
+  ]
+}

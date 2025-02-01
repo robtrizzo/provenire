@@ -112,12 +112,10 @@ export type Item = Clock & {
   description: string;
 };
 
-export type Faction = {
-  name: string;
+export type Faction = Clock & {
   location: string;
   description: string;
   agenda: string;
-  scorn: number;
 };
 
 export type Cohort = Clock & {
@@ -140,4 +138,19 @@ export type Region = {
     description: string;
   };
   pathways: Clock[];
+};
+
+export type Blackmail = {
+  name: string;
+  effect: string;
+};
+
+export type Gladiator = {
+  name: string;
+  rank: number;
+};
+
+export type FightingInstructor = Clock & {
+  fightingStyle: string;
+  description: string;
 };
