@@ -68,6 +68,7 @@ export default function ItemInput({
           {isMounted && (
             <ItemSummary
               item={item}
+              variant={variant}
               className="mt-1 py-1 px-2 rounded-md hover:bg-secondary"
             />
           )}

@@ -69,6 +69,7 @@ export default function GangInput({
           {isMounted && (
             <GangSummary
               gang={gang}
+              variant={variant}
               className="mt-1 py-1 px-2 rounded-md hover:bg-secondary"
             />
           )}

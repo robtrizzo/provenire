@@ -105,10 +105,7 @@ export type Loadout = {
   desc: string;
 };
 
-export type Item = {
-  name: string;
-  clock: number;
-  ticks: number;
+export type Item = Clock & {
   slots: number;
   uses?: number;
   traits: string[];
@@ -123,10 +120,24 @@ export type Faction = {
   scorn: number;
 };
 
-export type Cohort = {
-  name: string;
+export type Cohort = Clock & {
   location: string;
+  traits: string[];
+};
+
+export interface Clock {
+  name: string;
   ticks: number;
   clock: number;
-  traits: string[];
+}
+
+export type Region = {
+  name: string;
+  contact: Clock & {
+    description: string;
+  };
+  danger: Clock & {
+    description: string;
+  };
+  pathways: Clock[];
 };

@@ -1,0 +1,40 @@
+[
+  {
+    "name": "Fabrication",
+    "contact": {
+      "name": "Jamaiah",
+      "description": "A scared young revolutionary (from the outside world) searching for his sister",
+      "clock": 5,
+      "ticks": 0
+    },
+    "danger": {
+      "name": "Tagis",
+      "description": "An overseer who infiltrated the common people of Fabrication more than a decade ago",
+      "clock": 3,
+      "ticks": 0
+    },
+    "feature": {
+      "name": "Bathing Chamber",
+      "description": "Dusty and cracked, but functional. Water flows from an inverted well in the ceiling.",
+      "clock": 3,
+      "ticks": 0
+    },
+    "pathways": [
+      {
+        "name": "Foundry",
+        "clock": 5,
+        "ticks": 0
+      },
+      {
+        "name": "Forge",
+        "clock": 5,
+        "ticks": 0
+      },
+      {
+        "name": "Penal Pen",
+        "clock": 7,
+        "ticks": 0
+      }
+    ]
+  }
+]

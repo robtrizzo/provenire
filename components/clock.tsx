@@ -24,9 +24,6 @@ export default function Clock({
     setTime(current);
   }, [current]);
 
-  console.log("current", current);
-  console.log("time", time);
-
   const dark = theme === "dark";
 
   const conicGradient = `conic-gradient(red ${time / max}turn, ${

@@ -16,7 +16,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { BuildupCheckboxes } from "@/components/buildup-checkboxes";
 import itemsData from "@/public/items.json";
-import type { Cohort, Item } from "@/types/game";
+import { Clock, type Cohort, type Item } from "@/types/game";
 import ItemInput from "./(components)/item-input";
 import AddEquipment from "./(components)/add-equipment";
 import AlchemyInput from "./(components)/alchemy-input";
@@ -26,6 +26,8 @@ import GangInput from "./(components)/gang-input";
 import Image from "next/image";
 import ExpertInput from "./(components)/expert-input";
 import AddExpert from "./(components)/add-expert";
+import AddScouting from "./(components)/add-scouting";
+import ScoutingInput from "./(components)/scouting-input";
 
 export default function Page() {
   const [tab, setTab] = useState("crew");
@@ -48,6 +50,7 @@ export default function Page() {
   const [formulae, setFormulae] = useState<Item[]>([]);
   const [rGangs, setRGangs] = useState<Cohort[]>([]);
   const [rExperts, setRExperts] = useState<Cohort[]>([]);
+  const [scouting, setScouting] = useState<Clock[]>([]);
 
   const handleUpdateItem =
     (itemName: string) => (traits: string[], ticks: number) => {
@@ -227,6 +230,29 @@ export default function Page() {
     setRExperts(rExperts.filter((re) => re.name !== rExpertName));
   };
 
+  function handleAddScouting(c: Clock) {
+    const scoutingExists = scouting.some(
+      (existingScouting) => existingScouting.name === c.name
+    );
+    if (scoutingExists) {
+      console.log(`Scouting mission with name ${c.name} already exists`);
+      return;
+    }
+    setScouting([...scouting, c]);
+  }
+
+  const handleUpdateScouting = (scoutingName: string) => (ticks: number) => {
+    setScouting((prevScouting) =>
+      prevScouting.map((scouting) =>
+        scouting.name === scoutingName ? { ...scouting, ticks } : scouting
+      )
+    );
+  };
+
+  const handleRemoveScouting = (scoutingName: string) => () => {
+    setScouting(scouting.filter((s) => s.name !== scoutingName));
+  };
+
   useEffect(() => {
     if (window === undefined) return;
     // read the hash and set the tab
@@ -379,7 +405,7 @@ export default function Page() {
                   />
                 </div>
               </div>
-              <div className="mt-4 mb-2 flex justify-center items-center bg-linear-to-r/oklch from-pink-950 to-blue-950 rounded-lg border-[1px] border-border">
+              <div className="mt-4 mb-2 flex justify-center items-center bg-linear-to-r/oklch from-teal-900 to-blue-900 rounded-lg border-[1px] border-border">
                 <span className="mt-1 text-sm text-white">ASSETS</span>
               </div>
               <div className="mt-4 mb-2 mx-2">
@@ -440,13 +466,18 @@ export default function Page() {
               </div>
             </div>
             <div className="px-2">
-              <div className="my-2 flex justify-center items-center bg-linear-to-r/oklch from-teal-900 to-blue-900 rounded-lg border-[1px] border-border">
+              <div className="my-2 flex justify-center items-center bg-linear-to-r/oklch from-pink-950 to-blue-950 rounded-lg border-[1px] border-border">
                 <span className="mt-1 text-sm text-white">AGENDAS</span>
               </div>
               <div className="mt-4 mb-2 mx-2">
-                <b className="mt-1 text-white">Craft the tools of rebellion</b>
+                <b className="mt-1 text-white">Forge the tools of rebellion</b>
                 <Separator />
               </div>
+              {schematics.length > 0 && (
+                <div className="flex justify-center my-1">
+                  <span className="text-xs">SCHEMATICS</span>
+                </div>
+              )}
               {schematics.map((s, idx) => (
                 <ItemInput
                   key={`${s.name}${idx}`}
@@ -456,6 +487,11 @@ export default function Page() {
                   removeItem={handleRemoveSchematic(s.name)}
                 />
               ))}
+              {formulae.length > 0 && (
+                <div className="flex justify-center my-1">
+                  <span className="text-xs">FORMULAE</span>
+                </div>
+              )}
               {formulae.map((f, idx) => (
                 <AlchemyInput
                   key={`${f.name}${idx}`}
@@ -478,6 +514,17 @@ export default function Page() {
                 </b>
                 <Separator />
               </div>
+              {scouting.map((s, idx) => (
+                <ScoutingInput
+                  key={`${s.name}${idx}`}
+                  scouting={s}
+                  updateScouting={handleUpdateScouting(s.name)}
+                  removeScouting={handleRemoveScouting(s.name)}
+                />
+              ))}
+              <div className="flex justify-center">
+                <AddScouting addScouting={handleAddScouting} />
+              </div>
               <div className="mt-4 mb-2 mx-2">
                 <b className="mt-1 text-white">
                   Pit the oppressors against each other
@@ -486,7 +533,7 @@ export default function Page() {
               </div>
               <div className="mt-4 mb-2 mx-2">
                 <b className="mt-1 text-white">
-                  Forge a path of connection and conversation
+                  Carve a path of connection and conversation
                 </b>
                 <Separator />
               </div>
@@ -500,6 +547,11 @@ export default function Page() {
                 </b>
                 <Separator />
               </div>
+              {rGangs.length > 0 && (
+                <div className="flex justify-center my-1">
+                  <span className="text-xs">GANGS</span>
+                </div>
+              )}
               {rGangs.map((rg, idx) => (
                 <GangInput
                   key={`${rg.name}${idx}`}
@@ -509,6 +561,11 @@ export default function Page() {
                   removeGang={handleRemoveRGang(rg.name)}
                 />
               ))}
+              {rExperts.length > 0 && (
+                <div className="flex justify-center my-1">
+                  <span className="text-xs">EXPERTS</span>
+                </div>
+              )}
               {rExperts.map((re, idx) => (
                 <ExpertInput
                   key={`${re.name}${idx}`}

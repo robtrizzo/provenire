@@ -13,6 +13,7 @@ import type { Item } from "@/types/game";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import AlchemySummary from "./alchemy-summary";
+import FormulaSummary from "./formula-summary";
 
 export default function AlchemyInput({
   alchemy,
@@ -66,8 +67,13 @@ export default function AlchemyInput({
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <div>
-          {isMounted && (
+          {!isMounted ? null : variant === "alchemy" ? (
             <AlchemySummary
+              item={alchemy}
+              className="mt-1 py-1 px-2 rounded-md hover:bg-secondary"
+            />
+          ) : (
+            <FormulaSummary
               item={alchemy}
               className="mt-1 py-1 px-2 rounded-md hover:bg-secondary"
             />

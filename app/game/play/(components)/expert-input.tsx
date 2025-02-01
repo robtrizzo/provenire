@@ -41,6 +41,7 @@ export default function ExpertInput({
           {isMounted && (
             <GangSummary
               gang={expert}
+              variant={variant}
               className="mt-1 py-1 px-2 rounded-md hover:bg-secondary"
             />
           )}
