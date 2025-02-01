@@ -5,7 +5,10 @@ import redis from "@/lib/redis";
 import { checkUserAuthenticated, checkUserRole } from "@/lib/auth";
 
 async function addRoll(userId: string, roll: Roll): Promise<void> {
+  // Get the last roll index so we can increment it
   const key = `user:${userId}:rolls`;
+  const lastRoll = await redis.lindex(key, 0) as Roll;
+  roll.index = lastRoll ? (lastRoll.index !== undefined ? lastRoll.index + 1 : 0) : 0;
   roll.timestamp = new Date().toISOString();
   await redis.lpush(key, JSON.stringify(roll));
 }
@@ -17,7 +20,7 @@ async function getRolls(
 ): Promise<Roll[]> {
   const key = `user:${userId}:rolls`;
   const rolls = await redis.lrange(key, cursor, cursor + pageSize - 1);
-  // @ts-expect-error this shit dumb
+  // @ts-expect-error We get a Roll but ts thinks it's a string
   return rolls;
 }
 
@@ -47,6 +50,8 @@ export async function POST(request: Request): Promise<NextResponse> {
   if (!roll) {
     return new NextResponse(null, { status: 400 });
   }
+
+  roll.userId = session!.user!.id;
 
   try {
     validateRoll(roll);

@@ -10,6 +10,9 @@ const RollEffect = StringUnion('reduced', 'normal', 'improved');
 export type RollEffect = typeof RollEffect.type;
 
 export type Roll = {
+    charName: string;
+    userId: string;
+    index: number; // Used to mark rolls with a unique number if we need to remove rolls here and in the overall list
     redDice: number[];
     blueDice: number[];
     numRed: number;
@@ -18,13 +21,15 @@ export type Roll = {
     effect: RollEffect;
     result: RollResult;
     resultDie: number;
+    private: boolean;
     timestamp?: string;
     tag?: string;       // tag is effectively a description of the roll
 }
 
 export function validateRoll(roll: Roll) {
-    const valid = (roll.redDice && roll.redDice.length > 0) ||
+    let valid = (roll.redDice && roll.redDice.length > 0) ||
         (roll.blueDice && roll.blueDice.length > 0);
+    valid = valid && roll.userId !== "" && roll.userId !== undefined;
     if (!valid) {
         throw (new Error('Rolls require at least 1 die roll'));
     }

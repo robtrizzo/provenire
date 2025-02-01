@@ -29,6 +29,7 @@ interface RollContextProps {
   setBonusDiceRed: React.Dispatch<React.SetStateAction<number>>;
   setBonusDiceBlue: React.Dispatch<React.SetStateAction<number>>;
   setFortuneDice: React.Dispatch<React.SetStateAction<number>>;
+  setCharacterName: (name: string) => void;
 }
 
 const RollContext = createContext<RollContextProps | undefined>(undefined);
@@ -45,6 +46,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   const { toast } = useToast();
 
   const { attributes } = useCharacterSheet();
+  const [characterName, setCharacterName] = useState<string>("");
 
   const [bonusDiceRed, setBonusDiceRed] = useState<number>(0);
   const [bonusDiceBlue, setBonusDiceBlue] = useState<number>(0);
@@ -58,7 +60,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(roll),
+        body: JSON.stringify({ ...roll, charName:characterName }),
       });
       return response.json();
     },
@@ -396,6 +398,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         setBonusDiceRed,
         setBonusDiceBlue,
         setFortuneDice,
+        setCharacterName,
       }}
     >
       {children}
