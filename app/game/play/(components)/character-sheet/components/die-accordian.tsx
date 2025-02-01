@@ -6,8 +6,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Roll } from "@/types/roll";
-import {} from "@radix-ui/react-accordion";
-import { QueryClient, useQuery } from "@tanstack/react-query";
+import { QueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
 
 export default function DieAccordian({ roll }: { roll: Roll }) {
@@ -57,9 +56,8 @@ export default function DieAccordian({ roll }: { roll: Roll }) {
                 </span>
               )}
               <span className="text-muted-foreground text-xs block">
-                {`${roll.charName}${
-                  expandedUserName ? ` (${expandedUserName})` : ""
-                }`}
+                {`${roll.charName}${expandedUserName ? ` (${expandedUserName})` : ""
+                  }`}
               </span>
               <div className="flex flex-wrap gap-2">
                 {roll?.redDice?.map((r, i) => (
@@ -69,9 +67,8 @@ export default function DieAccordian({ roll }: { roll: Roll }) {
                   <Die
                     key={i}
                     roll={r}
-                    className={`h-8 w-8 ${
-                      roll.type === "fortune" ? "" : "text-blue-800"
-                    }`}
+                    className={`h-8 w-8 ${roll.type === "fortune" ? "" : "text-blue-800"
+                      }`}
                   />
                 ))}
               </div>
