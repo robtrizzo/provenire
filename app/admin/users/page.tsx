@@ -25,7 +25,7 @@ import { PermissionsDialog } from "./(components)/permissions-dialog";
 
 export default async function Page() {
   const session = await auth();
-  if (session?.user?.role !== "player") {
+  if (session?.user?.role !== "admin") {
     redirect("/signin");
   }
 

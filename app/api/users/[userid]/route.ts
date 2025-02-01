@@ -1,19 +1,31 @@
 import { checkAuth } from "@/lib/auth";
 import {NextRequest, NextResponse} from "next/server";
 import {getUser} from "@/handlers/users";
+import redis from "@/lib/redis";
 
 export async function PUT(
-  request: NextRequest,
-  { params }: { params: Promise<{ userid: string }> }
+    request: NextRequest,
+    { params }: { params: Promise<{ userid: string }> }
 ) {
   const { error } = await checkAuth("admin");
   if (error) return error;
 
-  const userid = (await params).userid;
-  if (!userid) {
-    return NextResponse.json({ error: "must provide userid" });
+  try {
+    const userid = (await params).userid;
+    const user = await request.json() as User;
+    if (userid !== user.id) {
+        return NextResponse.json({ error: "userid in URL must match userid in body" }, { status: 400 });
+    }
+    await redis.set(`user:${user.id}`, user);
+
+    return NextResponse.json({ message: "User updated successfully", user });
+  } catch (err) {
+    console.error("Error fetching user", err);
+    return NextResponse.json(
+        { error: "Failed to update user" },
+        { status: 500 }
+    );
   }
-  return NextResponse.json({ message: "todo", userid });
 }
 
 export async function GET(
