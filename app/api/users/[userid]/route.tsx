@@ -3,7 +3,7 @@ import { checkUserAuthenticated, checkUserRole } from "@/lib/auth";
 import { NextRequest, NextResponse } from "next/server";
 import redis from "@/lib/redis";
 
-async function getUser(userid: string) {  
+async function getUser(userid: string) {
   const user = await redis.get(`user:${userid}`);
   return user as User;
 }
@@ -40,12 +40,12 @@ export async function GET(
   if (unauthenticatedResponse) {
     return unauthenticatedResponse;
   }
-  
+
   const unauthorizedResponse = checkUserRole(session, ["admin", "player"]);
   if (unauthorizedResponse) {
     return unauthorizedResponse;
   }
-  
+
   const userid = (await params).userid;
   if (!userid) {
     return NextResponse.json({ error: "must provide userid" });
