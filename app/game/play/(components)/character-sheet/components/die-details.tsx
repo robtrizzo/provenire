@@ -9,11 +9,6 @@ export function DieDetails({ roll }: { roll: Roll }) {
         <span className="text-sm font-semibold capitalize">{`${roll.type}${
           roll.tag ? ` - ${roll.tag}` : ""
         }`}</span>
-        {roll.timestamp && (
-          <span className="text-muted-foreground text-xs block">
-            {new Date(roll.timestamp).toLocaleString()}
-          </span>
-        )}
       </div>
       <div className="flex flex-1 justify-end">
         {roll.result === "crit" ? (
