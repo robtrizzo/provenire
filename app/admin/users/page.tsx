@@ -25,11 +25,12 @@ import { PermissionsDialog } from "./(components)/permissions-dialog";
 
 export default async function Page() {
   const session = await auth();
-  if (session?.user?.role !== "admin") {
+  if (session?.user?.role !== "player") {
     redirect("/signin");
   }
 
   const users: User[] = await getAllUsers();
+  users.sort((a, b) => a.name.localeCompare(b.name));
 
   return (
     <div className="p-6">
@@ -74,7 +75,10 @@ export default async function Page() {
                   </Select>
                 </TableCell>
                 <TableCell>
-                  <PermissionsDialog username={user.name} />
+                  <PermissionsDialog
+                    userid={user.id}
+                    username={user.name}
+                  />
                 </TableCell>
               </TableRow>
             ))
