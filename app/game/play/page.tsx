@@ -50,6 +50,8 @@ import AddCommunityProject from "./(components)/add-community-project";
 import CommunityProjectInput from "./(components)/community-project-input";
 import AddOperation from "./(components)/add-operation";
 import OperationInput from "./(components)/operation-input";
+import AddClock from "./(components)/add-clock";
+import ClockInput from "./(components)/clock-input";
 
 export default function Page() {
   const [tab, setTab] = useState("crew");
@@ -82,6 +84,7 @@ export default function Page() {
   const [lair, setLair] = useState<CommunityProject[]>([]);
   const [community, setCommunity] = useState<CommunityProject[]>([]);
   const [operations, setOperations] = useState<Operation[]>([]);
+  const [clocks, setClocks] = useState<Clock[]>([]);
 
   const handleUpdateItem =
     (itemName: string) => (traits: string[], ticks: number) => {
@@ -453,6 +456,39 @@ export default function Page() {
     setOperations(operations.filter((o) => o.name !== operationName));
   };
 
+  function handleAddClock(clock: Clock) {
+    const clockExists = clocks.some(
+      (existingClock) => existingClock.name === clock.name
+    );
+    if (clockExists) {
+      console.log(`Clock with name ${clock.name} already exists`);
+      return;
+    }
+    setClocks([...clocks, clock]);
+  }
+
+  const handleUpdateClock =
+    (clockName: string) => (name: string, ticks: number) => {
+      if (name !== clockName) {
+        const clockExists = clocks.some(
+          (existingClock) => existingClock.name === name
+        );
+        if (clockExists) {
+          console.log(`Clock with name ${name} already exists`);
+          return;
+        }
+      }
+      setClocks((prevClocks) =>
+        prevClocks.map((clock) =>
+          clock.name === clockName ? { ...clock, name, ticks } : clock
+        )
+      );
+    };
+
+  const handleRemoveClock = (clockName: string) => () => {
+    setClocks(clocks.filter((c) => c.name !== clockName));
+  };
+
   useEffect(() => {
     if (window === undefined) return;
     // read the hash and set the tab
@@ -503,7 +539,6 @@ export default function Page() {
         </TabsList>
         <TabsContent value="character" className="w-full"></TabsContent>
         <TabsContent value="crew" className="w-full">
-          <TypographyH4 className="text-center">CREW NAME</TypographyH4>
           <div className="grid w-full grid-cols-1 md:grid-cols-2">
             <div className="px-2">
               <div className="my-2 flex justify-center items-center bg-linear-to-r/oklch from-orange-900 to-rose-900 rounded-lg border-[1px] border-border">
@@ -701,7 +736,7 @@ export default function Page() {
                   removeAlchemy={handleRemoveFormula(f.name)}
                 />
               ))}
-              <div className="flex justify-center gap-2 mt-2">
+              <div className="flex justify-center gap-1 mt-2">
                 <AddEquipment
                   addItem={handleAddSchematic}
                   variant="schematic"
@@ -828,7 +863,7 @@ export default function Page() {
                   removeExpert={handleRemoveRExpert(re.name)}
                 />
               ))}
-              <div className="flex justify-center gap-2 mt-2">
+              <div className="flex justify-center gap-1 mt-2">
                 <AddGang addGang={handleAddRGang} />
                 <AddExpert addExpert={handleAddRExpert} />
               </div>
@@ -935,6 +970,20 @@ export default function Page() {
                 <AddOperation addOperation={handleAddOperation} />
               </div>
             </div>
+          </div>
+          <div className="mb-2 mt-4 flex justify-center items-center bg-linear-to-r/oklch from-slate-900 to-stone-900 rounded-lg border-[1px] border-border">
+            <span className="mt-1 text-sm text-white">PROJECTS & CLOCKS</span>
+          </div>
+          {clocks.map((c, idx) => (
+            <ClockInput
+              key={`${c.name}${idx}`}
+              clock={c}
+              updateClock={handleUpdateClock(c.name)}
+              removeClock={handleRemoveClock(c.name)}
+            />
+          ))}
+          <div className="flex justify-center mt-2">
+            <AddClock addClock={handleAddClock} />
           </div>
         </TabsContent>
         <TabsContent value="dramatis-personae" className="w-full">

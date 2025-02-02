@@ -579,7 +579,7 @@ export default function Charsheet() {
                     </div>
                     {selectedBackground && (
                       <div>
-                        <TypographyH3 className="text-sm text-muted-foreground text-red-500">
+                        <TypographyH3 className="text-sm text-red-500">
                           {selectedBackground?.name}&apos;s Actions
                         </TypographyH3>
                         <div className="ml-2">
@@ -591,7 +591,7 @@ export default function Charsheet() {
                     )}
                     {selectedSkillset && (
                       <div>
-                        <TypographyH3 className="text-sm text-muted-foreground text-indigo-500">
+                        <TypographyH3 className="text-sm text-indigo-500">
                           {selectedSkillset?.name}&apos;s Actions
                         </TypographyH3>
                         <div className="ml-2">
@@ -603,7 +603,7 @@ export default function Charsheet() {
                     )}
                     {selectedArchetype && (
                       <div>
-                        <TypographyH3 className="text-sm text-muted-foreground text-amber-500">
+                        <TypographyH3 className="text-sm text-amber-500">
                           {selectedArchetype?.name}&apos;s Action
                         </TypographyH3>
                         <div className="ml-2">

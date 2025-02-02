@@ -1,4 +1,5 @@
-import { useState } from "react";
+"use client";
+import { useState, useEffect } from "react";
 import {
   Popover,
   PopoverContent,
@@ -26,19 +27,32 @@ export default function BondInput({
 }) {
   const [open, setOpen] = useState(false);
 
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <div className="hover:bg-secondary hover:cursor-pointer rounded-md box-border p-2 transition-all max-w-96">
-          <div className="flex justify-between items-center">
-            <TypographyP>{bond.name || "Bond Name"}</TypographyP>
-            <div onClick={(e) => e.stopPropagation()}>
-              <ActionScore score={bond.score} onChange={handleChangeScore} />
-            </div>
-          </div>
-          <TypographyP className="text-muted-foreground text-xs">
-            {bond.description || "Bond Description"}
-          </TypographyP>
+          {isMounted && [
+            <div
+              className="flex justify-between items-center"
+              key={`${bond.name}-score`}
+            >
+              <TypographyP>{bond.name || "Bond Name"}</TypographyP>
+              <div onClick={(e) => e.stopPropagation()}>
+                <ActionScore score={bond.score} onChange={handleChangeScore} />
+              </div>
+            </div>,
+            <TypographyP
+              className="text-muted-foreground text-xs"
+              key={`${bond.description}-desc`}
+            >
+              {bond.description || "Bond Description"}
+            </TypographyP>,
+          ]}
         </div>
       </PopoverTrigger>
       <PopoverContent className="w-80 relative">
