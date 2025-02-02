@@ -23,6 +23,7 @@ import {
   Faction,
   FightingInstructor,
   Gladiator,
+  Operation,
   type Cohort,
   type Item,
 } from "@/types/game";
