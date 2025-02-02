@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Dispatch, SetStateAction } from "react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TabsContent } from "@radix-ui/react-tabs";
 import { TypographyH4 } from "@/components/ui/typography";
@@ -19,6 +19,7 @@ import itemsData from "@/public/items.json";
 import {
   Blackmail,
   Clock,
+  CommunityProject,
   Faction,
   FightingInstructor,
   Gladiator,
@@ -44,6 +45,8 @@ import AddGladiator from "./(components)/add-gladiator";
 import GladitorInput from "./(components)/gladiator-input";
 import AddFightingInstructor from "./(components)/add-fighting-instructor";
 import FightingInstructorInput from "./(components)/fighting-instructor-input";
+import AddCommunityProject from "./(components)/add-community-project";
+import CommunityProjectInput from "./(components)/community-project-input";
 
 export default function Page() {
   const [tab, setTab] = useState("crew");
@@ -71,6 +74,10 @@ export default function Page() {
   const [factions, setFactions] = useState<Faction[]>(faction_data);
   const [pcGladiators, setPCGladiators] = useState<Gladiator[]>([]);
   const [fInstructors, setFInstructors] = useState<FightingInstructor[]>([]);
+  const [livingSpace, setLivingSpace] = useState<CommunityProject[]>([]);
+  const [security, setSecurity] = useState<CommunityProject[]>([]);
+  const [lair, setLair] = useState<CommunityProject[]>([]);
+  const [community, setCommunity] = useState<CommunityProject[]>([]);
 
   const handleUpdateItem =
     (itemName: string) => (traits: string[], ticks: number) => {
@@ -351,6 +358,72 @@ export default function Page() {
       setFInstructors(
         fInstructors.filter((i) => i.name !== fightingInstructorName)
       );
+    };
+
+  function getCommunityProjectState(category: string) {
+    let val: CommunityProject[] = [];
+    let setter: Dispatch<SetStateAction<CommunityProject[]>> = () => {};
+
+    switch (category) {
+      case "Living Space":
+        val = livingSpace;
+        setter = setLivingSpace;
+        break;
+      case "Security":
+        val = security;
+        setter = setSecurity;
+        break;
+      case "Lair":
+        val = lair;
+        setter = setLair;
+        break;
+      case "Community":
+        val = community;
+        setter = setCommunity;
+        break;
+      default:
+        console.error("Invalid community project category: ", category);
+        break;
+    }
+
+    return { val, setter };
+  }
+
+  function handleAddCommunityProject(
+    category: string,
+    project: CommunityProject
+  ) {
+    const { val, setter } = getCommunityProjectState(category);
+
+    const valExists = val.some(
+      (existingVal) => existingVal.name === project.name
+    );
+    if (valExists) {
+      console.log(
+        `${category} community project with name ${project.name} already exists`
+      );
+      return;
+    }
+
+    setter([...val, project]);
+  }
+
+  const handleUpdateCommunityProject =
+    (category: string, communityProjectName: string) => (ticks: number) => {
+      const { setter } = getCommunityProjectState(category);
+      setter((prevCommunityProjects) =>
+        prevCommunityProjects.map((project) =>
+          project.name === communityProjectName
+            ? { ...project, ticks }
+            : project
+        )
+      );
+    };
+
+  const handleRemoveCommunityProject =
+    (category: string, communityProjectName: string) => () => {
+      const { val, setter } = getCommunityProjectState(category);
+      setter(val.filter((p) => p.name !== communityProjectName));
     };
 
   useEffect(() => {
@@ -735,6 +808,87 @@ export default function Page() {
               <div className="mt-4 mb-2 mx-2">
                 <b className="mt-1 text-white">Make the pain worth it</b>
                 <Separator />
+              </div>
+              {livingSpace.length > 0 && (
+                <div className="flex justify-center my-1">
+                  <span className="text-xs">LIVING SPACE</span>
+                </div>
+              )}
+              {livingSpace.map((p, idx) => (
+                <CommunityProjectInput
+                  key={`${p.name}${idx}`}
+                  communityProject={p}
+                  updateCommunityProject={handleUpdateCommunityProject(
+                    "Living Space",
+                    p.name
+                  )}
+                  removeCommunityProject={handleRemoveCommunityProject(
+                    "Living Space",
+                    p.name
+                  )}
+                />
+              ))}
+              {security.length > 0 && (
+                <div className="flex justify-center my-1">
+                  <span className="text-xs">SECURITY</span>
+                </div>
+              )}
+              {security.map((p, idx) => (
+                <CommunityProjectInput
+                  key={`${p.name}${idx}`}
+                  communityProject={p}
+                  updateCommunityProject={handleUpdateCommunityProject(
+                    "Security",
+                    p.name
+                  )}
+                  removeCommunityProject={handleRemoveCommunityProject(
+                    "Security",
+                    p.name
+                  )}
+                />
+              ))}
+              {lair.length > 0 && (
+                <div className="flex justify-center my-1">
+                  <span className="text-xs">LAIR</span>
+                </div>
+              )}
+              {lair.map((p, idx) => (
+                <CommunityProjectInput
+                  key={`${p.name}${idx}`}
+                  communityProject={p}
+                  updateCommunityProject={handleUpdateCommunityProject(
+                    "Lair",
+                    p.name
+                  )}
+                  removeCommunityProject={handleRemoveCommunityProject(
+                    "Lair",
+                    p.name
+                  )}
+                />
+              ))}
+              {community.length > 0 && (
+                <div className="flex justify-center my-1">
+                  <span className="text-xs">COMMUNITY</span>
+                </div>
+              )}
+              {community.map((p, idx) => (
+                <CommunityProjectInput
+                  key={`${p.name}${idx}`}
+                  communityProject={p}
+                  updateCommunityProject={handleUpdateCommunityProject(
+                    "Community",
+                    p.name
+                  )}
+                  removeCommunityProject={handleRemoveCommunityProject(
+                    "Community",
+                    p.name
+                  )}
+                />
+              ))}
+              <div className="flex justify-center gap-2 mt-2">
+                <AddCommunityProject
+                  addCommunityProject={handleAddCommunityProject}
+                />
               </div>
               <div className="mt-4 mb-2 mx-2">
                 <b className="mt-1 text-white">
