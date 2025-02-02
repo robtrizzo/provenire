@@ -2505,10 +2505,10 @@ export default function Charsheet() {
                         Personal: prevBonds.Personal.map((bond, index) =>
                           index === i
                             ? {
-                              name: bond.name,
-                              score: s,
-                              description: bond.description,
-                            }
+                                name: bond.name,
+                                score: s,
+                                description: bond.description,
+                              }
                             : bond
                         ),
                         Familial: prevBonds.Familial,
@@ -2573,10 +2573,10 @@ export default function Charsheet() {
                         Familial: prevBonds.Familial.map((bond, index) =>
                           index === i
                             ? {
-                              name: bond.name,
-                              score: s,
-                              description: bond.description,
-                            }
+                                name: bond.name,
+                                score: s,
+                                description: bond.description,
+                              }
                             : bond
                         ),
                         Professional: prevBonds.Professional,
@@ -2675,13 +2675,21 @@ export default function Charsheet() {
                   variant="ghost"
                   className="p-1 text-green-600 hover:text-green-600 h-10 w-10"
                   onClick={() => {
-                    setBonds((prevBonds) => ({
-                      ...prevBonds,
-                      Crew: [
-                        ...prevBonds.Crew,
-                        { name: "", score: [1, 0], description: "" },
-                      ],
-                    }));
+                    console.log(bonds);
+                    if (bonds.Crew?.length > 0) {
+                      setBonds((prevBonds) => ({
+                        ...prevBonds,
+                        Crew: [
+                          ...prevBonds.Crew,
+                          { name: "", score: [1, 0], description: "" },
+                        ],
+                      }));
+                    } else {
+                      setBonds((prevBonds) => ({
+                        ...prevBonds,
+                        Crew: [{ name: "", score: [1, 0], description: "" }],
+                      }));
+                    }
                     setChanges(true);
                   }}
                 >
@@ -2714,10 +2722,10 @@ export default function Charsheet() {
                         Crew: prevBonds.Crew.map((bond, index) =>
                           index === i
                             ? {
-                              name: bond.name,
-                              score: s,
-                              description: bond.description,
-                            }
+                                name: bond.name,
+                                score: s,
+                                description: bond.description,
+                              }
                             : bond
                         ),
                       }));
