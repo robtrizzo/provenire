@@ -41,6 +41,7 @@ import AddClock from "./(components)/add-clock";
 import ClockInput from "./(components)/clock-input";
 import { useCrewSheet } from "@/contexts/crewSheetContext";
 import { useSession } from "next-auth/react";
+import Charsheet from "./(components)/character-sheet/character-sheet";
 
 export default function Page() {
   const session = useSession();
@@ -174,7 +175,9 @@ export default function Page() {
             Dramatis Personae
           </TabsTrigger>
         </TabsList>
-        <TabsContent value="character" className="w-full"></TabsContent>
+        <TabsContent value="character" className="w-full">
+          <Charsheet />
+        </TabsContent>
         <TabsContent value="crew" className="w-full">
           <div className="grid w-full grid-cols-1 md:grid-cols-2">
             <div className="px-2">

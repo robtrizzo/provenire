@@ -38,30 +38,22 @@ export default function CommandMenu() {
       <CommandInput placeholder="Type a command or search..." />
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
-        <CommandGroup heading="Character Sheet">
+        <CommandGroup heading="Play">
           <CommandItem
             onSelect={() => {
-              router.push("/game/character-sheet#mission");
+              router.push("/game/play#character");
               setOpen(false);
             }}
           >
-            Character Sheet (Mission)
+            Character Sheet
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/character-sheet#profile");
+              router.push("/game/play#crew");
               setOpen(false);
             }}
           >
-            Character Sheet (Profile)
-          </CommandItem>
-          <CommandItem
-            onSelect={() => {
-              router.push("/game/character-sheet#churn");
-              setOpen(false);
-            }}
-          >
-            Character Sheet (Churn)
+            Crew Sheet
           </CommandItem>
         </CommandGroup>
         <CommandSeparator />

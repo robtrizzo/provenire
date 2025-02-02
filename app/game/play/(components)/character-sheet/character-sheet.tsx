@@ -56,28 +56,27 @@ import Abilities from "@/components/abilities/abilities";
 import DowntimeActionsAccordion from "@/components/downtime-actions-accordion";
 import Crit from "@/components/subsistence/crit/subsistenceCrit";
 import Consequences from "@/components/subsistence/consequences/subsistenceConsequences";
-import StressCheckboxes from "@/app/game/character-sheet/(components)/stress-checkboxes";
-import Breadcrumbs from "@/components/ui/breadcrumbs";
-import SaveCharacter from "./(components)/save-character";
-import LoadCharacter from "./(components)/load-character";
-import ClearCharacter from "./(components)/clear-character";
-import ItemsTable from "@/app/game/character-sheet/(components)/items-table";
-import BondInput from "./(components)/bond-input";
+import StressCheckboxes from "@/app/game/play/(components)/character-sheet/components/stress-checkboxes";
+import SaveCharacter from "./components/save-character";
+import LoadCharacter from "./components/load-character";
+import ClearCharacter from "./components/clear-character";
+import ItemsTable from "@/app/game/play/(components)/character-sheet/components/items-table";
+import BondInput from "./components/bond-input";
 import Clock from "@/components/clock";
-import XPClocks from "./(components)/xp-clocks";
+import XPClocks from "./components/xp-clocks";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Close } from "@radix-ui/react-popover";
-import XPInfo from "./(components)/xp-info";
-import ConditionsInfo from "./(components)/conditions-info";
+import XPInfo from "./components/xp-info";
+import ConditionsInfo from "./components/conditions-info";
 import { useCharacterSheet } from "@/contexts/characterSheetContext";
 import { useRoll } from "@/contexts/rollContext";
-import Portrait from "./(components)/portrait";
+import Portrait from "./components/portrait";
 import { RollType } from "@/types/roll";
-import DiceHistory from "./(components)/dice-history";
+import DiceHistory from "./components/dice-history";
 
 export default function Charsheet() {
   const [tab, setTab] = useState("mission");
@@ -218,13 +217,7 @@ export default function Charsheet() {
   return (
     <div>
       <div className="flex justify-between">
-        <Breadcrumbs
-          crumbs={[
-            { name: "Character Creation", href: "/game/character-creation" },
-            { name: "Character Sheet", href: "#" },
-          ]}
-        />
-        <div className="flex gap-2 mt-5">
+        <div className="flex gap-2 mt-5 ml-auto">
           <DiceHistory />
           <SaveCharacter initialName={name} />
           <LoadCharacter triggerCharacterLoaded={triggerCharacterLoaded} />
@@ -1883,7 +1876,7 @@ export default function Charsheet() {
                     </TypographyH2>
                     {selectedBackground && (
                       <div>
-                        <TypographyH3 className="text-sm text-muted-foreground text-red-500">
+                        <TypographyH3 className="text-sm text-red-500">
                           {selectedBackground?.name}&apos;s Actions
                         </TypographyH3>
                         <div className="ml-2">
@@ -1895,7 +1888,7 @@ export default function Charsheet() {
                     )}
                     {selectedSkillset && (
                       <div>
-                        <TypographyH3 className="text-sm text-muted-foreground text-indigo-500">
+                        <TypographyH3 className="text-sm text-indigo-500">
                           {selectedSkillset?.name}&apos;s Actions
                         </TypographyH3>
                         <div className="ml-2">
@@ -1907,7 +1900,7 @@ export default function Charsheet() {
                     )}
                     {selectedArchetype && (
                       <div>
-                        <TypographyH3 className="text-sm text-muted-foreground text-amber-500">
+                        <TypographyH3 className="text-sm text-amber-500">
                           {selectedArchetype?.name}&apos;s Action
                         </TypographyH3>
                         <div className="ml-2">
