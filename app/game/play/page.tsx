@@ -721,7 +721,7 @@ export default function Page() {
             <div className="flex items-center justify-center gap-2 flex-wrap">
               <NamePortrait
                 name="21"
-                src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/wolfboy-8GbIppsoksWV3DEN87HWHXqcowr4EP.png"
+                src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/21-c9CAB4fwfsIieihTnWV1SBAPMfoTLN.png"
               />
               <NamePortrait name="Aika" />
               <NamePortrait name="Bessemer" />
@@ -878,7 +878,7 @@ export default function Page() {
             <div className="flex items-center justify-center gap-2 flex-wrap">
               <NamePortrait
                 name="21"
-                src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/wolfboy-8GbIppsoksWV3DEN87HWHXqcowr4EP.png"
+                src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/21-c9CAB4fwfsIieihTnWV1SBAPMfoTLN.png"
               />
               <NamePortrait
                 name="Drusa"
@@ -1249,7 +1249,7 @@ export default function Page() {
             <div className="flex items-center justify-center gap-2 flex-wrap">
               <NamePortrait
                 name="21"
-                src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/wolfboy-8GbIppsoksWV3DEN87HWHXqcowr4EP.png"
+                src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/21-c9CAB4fwfsIieihTnWV1SBAPMfoTLN.png"
               />
               <NamePortrait
                 name="Wilgefort"
