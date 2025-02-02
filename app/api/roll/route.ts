@@ -34,7 +34,7 @@ export async function POST(request: Request): Promise<NextResponse> {
     return unauthenticatedResponse;
   }
 
-  const unauthorizedResponse = checkUserRole(session, ["player"]);
+  const unauthorizedResponse = checkUserRole(session, ["admin", "player"]);
   if (unauthorizedResponse) {
     return unauthorizedResponse;
   }
@@ -76,7 +76,7 @@ export async function GET(request: Request) {
     return unauthenticatedResponse;
   }
 
-  const unauthorizedResponse = checkUserRole(session, ["player"]);
+  const unauthorizedResponse = checkUserRole(session, ["admin", "player"]);
   if (unauthorizedResponse) {
     return unauthorizedResponse;
   }
@@ -102,7 +102,7 @@ export async function DELETE() {
     return unauthenticatedResponse;
   }
 
-  const unauthorizedResponse = checkUserRole(session, ["player"]);
+  const unauthorizedResponse = checkUserRole(session, ["admin", "player"]);
   if (unauthorizedResponse) {
     return unauthorizedResponse;
   }
