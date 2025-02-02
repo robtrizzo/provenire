@@ -7,6 +7,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useCharacterSheet } from "./characterSheetContext";
 import { Die } from "@/components/die";
 import { cn } from "@/lib/utils";
+import {useSession} from "next-auth/react";
 
 interface RollContextProps {
   rollActions: (
@@ -52,10 +53,15 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   const [bonusDiceBlue, setBonusDiceBlue] = useState<number>(0);
   const [fortuneDice, setFortuneDice] = useState<number>(0);
   const queryClient = useQueryClient();
+  const session = useSession();
 
   const { mutateAsync: saveDiceRoll } = useMutation({
     mutationFn: async (roll: Roll) => {
-      const response = await fetch("/api/roll", {
+      const userId = session?.data?.user?.id;
+      if (!userId) {
+        return [];
+      }
+      const response = await fetch(`/api/roll/${userId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

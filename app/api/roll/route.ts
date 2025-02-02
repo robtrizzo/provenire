@@ -21,7 +21,10 @@ export async function GET(request: Request) {
   const pageSize = parseInt(searchParams.get("page_size") || "20", 10);
 
   try {
-    const rolls = await getAllRolls(cursor, pageSize);
+    let rolls = await getAllRolls(cursor, pageSize);
+    if (!session?.user?.role.includes("admin")) {
+      rolls = rolls.filter((roll) => !roll.private || roll.userid === session?.user?.id);
+    }
     return NextResponse.json(rolls);
   } catch (error) {
     console.error("Error getting rolls", error);

@@ -38,7 +38,7 @@ export async function POST(
     return new NextResponse(null, { status: 400 });
   }
 
-  roll.userId = userid;
+  roll.userid = userid;
 
   try {
     validateRoll(roll);
@@ -86,7 +86,11 @@ export async function GET(
   const pageSize = parseInt(searchParams.get("page_size") || "20", 10);
 
   try {
-    const rolls = await getRolls(userid, cursor, pageSize);
+    let rolls = await getRolls(userid, cursor, pageSize);
+    if (!session?.user?.role.includes("admin")) {
+      console.log("filtering")
+      rolls = rolls.filter((roll) => !roll.private || roll.userid === session?.user?.id);
+    }
     return NextResponse.json(rolls);
   } catch (error) {
     console.error("Error getting rolls", error);

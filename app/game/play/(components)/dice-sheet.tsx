@@ -23,12 +23,16 @@ import { useSession } from "next-auth/react";
 export default function DiceSheet() {
     const PAGE_SIZE = 40;
     const [open, setOpen] = useState(false);
-    const [selectedValue, setSelectedValue] = useState("all");
+    const [selectedValue, setSelectedValue] = useState(() => {
+        const savedValue = localStorage.getItem("dicehistory.selectedfilter");
+        return savedValue ? savedValue : "all";
+    });
     const session = useSession();
 
-    const fetchRollData = async ({ pageParam = 0 }) => {
+    const fetchRollData = async ({ pageParam = 0, queryKey}) => {
+        const val = queryKey[1];
         let rolls: Roll[] = [];
-        if (selectedValue === "own") {
+        if (val === "own") {
             const userId = session?.data?.user?.id;
             if (!userId) {
                 return [];
@@ -53,7 +57,7 @@ export default function DiceSheet() {
         fetchNextPage,
         hasNextPage,
     } = useInfiniteQuery({
-        queryKey: ["rolls"],
+        queryKey: ["rolls", selectedValue],
         queryFn: fetchRollData,
         initialPageParam: 0,
         enabled: open,
@@ -65,6 +69,19 @@ export default function DiceSheet() {
 
     const rolls: Roll[] = rollPages?.pages.flat() ?? [];
 
+    function handleValueChange(value: string) {
+        setSelectedValue(value);
+        localStorage.setItem("dicehistory.selectedfilter", value);
+    }
+
+    function getPlaceholderText() {
+        if (selectedValue && selectedValue === "own") {
+            return "Yours";
+        } else {
+            return "Everybody's";
+        }
+    }
+
     return (
         <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
@@ -72,25 +89,27 @@ export default function DiceSheet() {
                     View Dice History
                 </Button>
             </SheetTrigger>
-            <SheetContent>
+            <SheetContent className="max-h-screen overflow-y-scroll">
                 <SheetHeader>
                     <SheetTitle>Dice History</SheetTitle>
-                    <SheetDescription>Viewing everybody's rolls.</SheetDescription>
+                    <SheetDescription></SheetDescription>
                 </SheetHeader>
-                <Select onValueChange={handleValueChange}>
+                <Select onValueChange={(value) => {handleValueChange(value)}}>
                     <SelectTrigger className="w-[180px]">
-                        <SelectValue placeholder="Everybody's" />
+                        <SelectValue placeholder={getPlaceholderText()} />
                     </SelectTrigger>
                     <SelectContent>
                         <SelectItem value="all">Everybody's</SelectItem>
                         <SelectItem value="own">Yours</SelectItem>
                     </SelectContent>
                 </Select>
-                <DiceHistory
-                    rolls={rolls}
-                    rollsUntilNearEnd={5}
-                    onNearEnd={() => hasNextPage && fetchNextPage()}
-                />
+                <div className="overflow-auto">
+                    <DiceHistory
+                        rolls={rolls}
+                        rollsUntilNearEnd={5}
+                        onNearEnd={() => hasNextPage && fetchNextPage()}
+                    />
+                </div>
             </SheetContent>
         </Sheet>
     );
