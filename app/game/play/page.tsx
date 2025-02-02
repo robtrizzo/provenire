@@ -123,6 +123,7 @@ export default function Page() {
     handleAddClock,
     handleUpdateClock,
     handleRemoveClock,
+    setChanges,
   } = useCrewSheet();
 
   useEffect(() => {
@@ -188,7 +189,10 @@ export default function Page() {
                     current={heat}
                     numDisabled={0}
                     onChange={(n) => {
-                      setHeat(n);
+                      if (isAdmin) {
+                        setHeat(n);
+                        setChanges(true);
+                      }
                     }}
                     clearPosition="end"
                   />
@@ -200,7 +204,10 @@ export default function Page() {
                     current={wanted}
                     numDisabled={0}
                     onChange={(n) => {
-                      setWanted(n);
+                      if (isAdmin) {
+                        setWanted(n);
+                        setChanges(true);
+                      }
                     }}
                     clearPosition="end"
                   />
@@ -219,6 +226,7 @@ export default function Page() {
                     onChange={(n) => {
                       if (isAdmin) {
                         setFood(n);
+                        setChanges(true);
                       }
                     }}
                     clearPosition="end"
@@ -233,6 +241,7 @@ export default function Page() {
                     onChange={(n) => {
                       if (isAdmin) {
                         setRep(n);
+                        setChanges(true);
                       }
                     }}
                     clearPosition="end"
@@ -249,6 +258,7 @@ export default function Page() {
                     onChange={(n) => {
                       if (isAdmin) {
                         setMaterials(n);
+                        setChanges(true);
                       }
                     }}
                     clearPosition="end"
@@ -263,6 +273,7 @@ export default function Page() {
                     onChange={(n) => {
                       if (isAdmin) {
                         setGoodwill(n);
+                        setChanges(true);
                       }
                     }}
                     clearPosition="end"
@@ -280,6 +291,7 @@ export default function Page() {
                     onChange={(n) => {
                       if (isAdmin) {
                         setIntel(n);
+                        setChanges(true);
                       }
                     }}
                     clearPosition="end"

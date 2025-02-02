@@ -6,6 +6,7 @@ import {
   SetStateAction,
   useContext,
   useState,
+  useEffect,
 } from "react";
 import itemsData from "@/public/items.json";
 import faction_data from "@/public/factions.json";
@@ -123,6 +124,7 @@ interface CrewSheetContextProps {
     clockName: string
   ) => (name: string, ticks: number) => void;
   handleRemoveClock: (clockName: string) => () => void;
+  setChanges: Dispatch<SetStateAction<boolean>>;
 }
 
 const CrewSheetContext = createContext<CrewSheetContextProps | undefined>(
@@ -172,6 +174,135 @@ export default function CrewSheetProvider({
   const [operations, setOperations] = useState<Operation[]>([]);
   const [clocks, setClocks] = useState<Clock[]>([]);
 
+  const [crewLoaded] = useState<Date>(new Date());
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const data = localStorage.getItem("crewsheet");
+    if (data) {
+      const {
+        heat,
+        wanted,
+        food,
+        materials,
+        rep,
+        goodwill,
+        intel,
+        items,
+        alchemy,
+        gangs,
+        experts,
+        schematics,
+        formulae,
+        rGangs,
+        rExperts,
+        scouting,
+        blackmail,
+        factions,
+        pcGladiators,
+        fInstructors,
+        livingSpace,
+        security,
+        lair,
+        community,
+        operations,
+        clocks,
+      } = JSON.parse(data);
+      setHeat(heat);
+      setWanted(wanted);
+      setFood(food);
+      setMaterials(materials);
+      setRep(rep);
+      setGoodwill(goodwill);
+      setIntel(intel);
+      setItems(items);
+      setAlchemy(alchemy);
+      setGangs(gangs);
+      setExperts(experts);
+      setSchematics(schematics);
+      setFormulae(formulae);
+      setRGangs(rGangs);
+      setRExperts(rExperts);
+      setScouting(scouting);
+      setBlackmail(blackmail);
+      setFactions(factions);
+      setPCGladiators(pcGladiators);
+      setFInstructors(fInstructors);
+      setLivingSpace(livingSpace);
+      setSecurity(security);
+      setLair(lair);
+      setCommunity(community);
+      setOperations(operations);
+      setClocks(clocks);
+    } else {
+      setHeat(0);
+      setWanted(0);
+      setFood(0);
+      setMaterials(0);
+      setRep(0);
+      setGoodwill(0);
+      setIntel(0);
+      setItems(itemsData.starting);
+      setAlchemy([]);
+      setGangs([]);
+      setExperts([]);
+      setSchematics([]);
+      setFormulae([]);
+      setRGangs([]);
+      setRExperts([]);
+      setScouting([]);
+      setBlackmail([]);
+      setFactions(faction_data);
+      setPCGladiators([]);
+      setFInstructors([]);
+      setLivingSpace([]);
+      setSecurity([]);
+      setLair([]);
+      setCommunity([]);
+      setOperations([]);
+      setClocks([]);
+    }
+  }, [crewLoaded]);
+
+  const [changes, setChanges] = useState<boolean>(false);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (changes) {
+        const data = {
+          heat,
+          wanted,
+          food,
+          materials,
+          rep,
+          goodwill,
+          intel,
+          items,
+          alchemy,
+          gangs,
+          experts,
+          schematics,
+          formulae,
+          rGangs,
+          rExperts,
+          scouting,
+          blackmail,
+          factions,
+          pcGladiators,
+          fInstructors,
+          livingSpace,
+          security,
+          lair,
+          community,
+          operations,
+          clocks,
+        };
+        localStorage.setItem("crewsheet", JSON.stringify(data));
+        setChanges(false);
+      }
+    }, 100);
+    return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [changes]);
+
   const handleUpdateItem =
     (itemName: string) => (traits: string[], ticks: number) => {
       setItems((prevItems) =>
@@ -179,6 +310,7 @@ export default function CrewSheetProvider({
           item.name === itemName ? { ...item, traits, ticks } : item
         )
       );
+      setChanges(true);
     };
 
   function handleAddItem(item: Item) {
@@ -190,6 +322,7 @@ export default function CrewSheetProvider({
       return;
     }
     setItems([...items, item]);
+    setChanges(true);
   }
 
   const handleUpdateAlchemy =
@@ -202,6 +335,7 @@ export default function CrewSheetProvider({
             : alchemy
         )
       );
+      setChanges(true);
     };
 
   function handleAddAlchemy(al: Item) {
@@ -213,6 +347,7 @@ export default function CrewSheetProvider({
       return;
     }
     setAlchemy([...alchemy, al]);
+    setChanges(true);
   }
 
   const handleUpdateGang =
@@ -222,6 +357,7 @@ export default function CrewSheetProvider({
           gang.name === gangName ? { ...gang, traits, ticks } : gang
         )
       );
+      setChanges(true);
     };
 
   function handleAddGang(gang: Cohort) {
@@ -233,6 +369,7 @@ export default function CrewSheetProvider({
       return;
     }
     setGangs([...gangs, gang]);
+    setChanges(true);
   }
 
   const handleUpdateExpert = (expertName: string) => (ticks: number) => {
@@ -241,6 +378,7 @@ export default function CrewSheetProvider({
         expert.name === expertName ? { ...expert, ticks } : expert
       )
     );
+    setChanges(true);
   };
 
   function handleAddExpert(expert: Cohort) {
@@ -252,6 +390,7 @@ export default function CrewSheetProvider({
       return;
     }
     setExperts([...experts, expert]);
+    setChanges(true);
   }
 
   const handleUpdateSchematic =
@@ -261,10 +400,12 @@ export default function CrewSheetProvider({
           schematic.name === schematicName ? { ...schematic, ticks } : schematic
         )
       );
+      setChanges(true);
     };
 
   const handleRemoveSchematic = (schematicName: string) => () => {
     setSchematics(schematics.filter((s) => s.name !== schematicName));
+    setChanges(true);
   };
 
   function handleAddSchematic(schematic: Item) {
@@ -276,6 +417,7 @@ export default function CrewSheetProvider({
       return;
     }
     setSchematics([...schematics, schematic]);
+    setChanges(true);
   }
 
   const handleUpdateFormulae =
@@ -286,6 +428,7 @@ export default function CrewSheetProvider({
           formulae.name === formulaeName ? { ...formulae, ticks } : formulae
         )
       );
+      setChanges(true);
     };
 
   function handleAddFormula(f: Item) {
@@ -297,10 +440,12 @@ export default function CrewSheetProvider({
       return;
     }
     setFormulae([...formulae, f]);
+    setChanges(true);
   }
 
   const handleRemoveFormula = (formulaName: string) => () => {
     setFormulae(formulae.filter((f) => f.name !== formulaName));
+    setChanges(true);
   };
 
   const handleUpdateRGang =
@@ -310,6 +455,7 @@ export default function CrewSheetProvider({
           rGang.name === rGangName ? { ...rGang, ticks } : rGang
         )
       );
+      setChanges(true);
     };
 
   function handleAddRGang(rg: Cohort) {
@@ -321,10 +467,12 @@ export default function CrewSheetProvider({
       return;
     }
     setRGangs([...rGangs, rg]);
+    setChanges(true);
   }
 
   const handleRemoveRGang = (rGangName: string) => () => {
     setRGangs(rGangs.filter((rg) => rg.name !== rGangName));
+    setChanges(true);
   };
 
   const handleUpdateRExpert = (rExpertName: string) => (ticks: number) => {
@@ -333,6 +481,7 @@ export default function CrewSheetProvider({
         rExpert.name === rExpertName ? { ...rExpert, ticks } : rExpert
       )
     );
+    setChanges(true);
   };
 
   function handleAddRExpert(re: Cohort) {
@@ -344,10 +493,12 @@ export default function CrewSheetProvider({
       return;
     }
     setRExperts([...rExperts, re]);
+    setChanges(true);
   }
 
   const handleRemoveRExpert = (rExpertName: string) => () => {
     setRExperts(rExperts.filter((re) => re.name !== rExpertName));
+    setChanges(true);
   };
 
   function handleAddScouting(c: Clock) {
@@ -359,6 +510,7 @@ export default function CrewSheetProvider({
       return;
     }
     setScouting([...scouting, c]);
+    setChanges(true);
   }
 
   const handleUpdateScouting = (scoutingName: string) => (ticks: number) => {
@@ -367,10 +519,12 @@ export default function CrewSheetProvider({
         scouting.name === scoutingName ? { ...scouting, ticks } : scouting
       )
     );
+    setChanges(true);
   };
 
   const handleRemoveScouting = (scoutingName: string) => () => {
     setScouting(scouting.filter((s) => s.name !== scoutingName));
+    setChanges(true);
   };
 
   function handleAddBlackmail(b: Blackmail) {
@@ -382,10 +536,12 @@ export default function CrewSheetProvider({
       return;
     }
     setBlackmail([...blackmail, b]);
+    setChanges(true);
   }
 
   const handleRemoveBlackmail = (blackmailName: string) => () => {
     setBlackmail(blackmail.filter((b) => b.name !== blackmailName));
+    setChanges(true);
   };
 
   const handleUpdateFaction = (factionName: string) => (ticks: number) => {
@@ -394,6 +550,7 @@ export default function CrewSheetProvider({
         faction.name === factionName ? { ...faction, ticks } : faction
       )
     );
+    setChanges(true);
   };
 
   const handleUpdatePCGladiator =
@@ -405,6 +562,7 @@ export default function CrewSheetProvider({
             : gladiator
         )
       );
+      setChanges(true);
     };
 
   function handleAddPCGladiator(gladiator: Gladiator) {
@@ -416,10 +574,12 @@ export default function CrewSheetProvider({
       return;
     }
     setPCGladiators([...pcGladiators, gladiator]);
+    setChanges(true);
   }
 
   const handleRemovePCGladiator = (pcGladiatorName: string) => () => {
     setPCGladiators(pcGladiators.filter((g) => g.name !== pcGladiatorName));
+    setChanges(true);
   };
 
   const handleUpdateFightingInstructor =
@@ -431,6 +591,7 @@ export default function CrewSheetProvider({
             : instructor
         )
       );
+      setChanges(true);
     };
 
   function handleAddFightingInstructor(instructor: FightingInstructor) {
@@ -444,6 +605,7 @@ export default function CrewSheetProvider({
       return;
     }
     setFInstructors([...fInstructors, instructor]);
+    setChanges(true);
   }
 
   const handleRemoveFightingInstructor =
@@ -451,6 +613,7 @@ export default function CrewSheetProvider({
       setFInstructors(
         fInstructors.filter((i) => i.name !== fightingInstructorName)
       );
+      setChanges(true);
     };
 
   function getCommunityProjectState(category: string) {
@@ -499,6 +662,7 @@ export default function CrewSheetProvider({
     }
 
     setter([...val, project]);
+    setChanges(true);
   }
 
   const handleUpdateCommunityProject =
@@ -511,12 +675,14 @@ export default function CrewSheetProvider({
             : project
         )
       );
+      setChanges(true);
     };
 
   const handleRemoveCommunityProject =
     (category: string, communityProjectName: string) => () => {
       const { val, setter } = getCommunityProjectState(category);
       setter(val.filter((p) => p.name !== communityProjectName));
+      setChanges(true);
     };
 
   function handleAddOperation(operation: Operation) {
@@ -528,6 +694,7 @@ export default function CrewSheetProvider({
       return;
     }
     setOperations([...operations, operation]);
+    setChanges(true);
   }
 
   const handleUpdateOperation = (operationName: string) => (ticks: number) => {
@@ -536,10 +703,12 @@ export default function CrewSheetProvider({
         operation.name === operationName ? { ...operation, ticks } : operation
       )
     );
+    setChanges(true);
   };
 
   const handleRemoveOperation = (operationName: string) => () => {
     setOperations(operations.filter((o) => o.name !== operationName));
+    setChanges(true);
   };
 
   function handleAddClock(clock: Clock) {
@@ -551,6 +720,7 @@ export default function CrewSheetProvider({
       return;
     }
     setClocks([...clocks, clock]);
+    setChanges(true);
   }
 
   const handleUpdateClock =
@@ -569,10 +739,12 @@ export default function CrewSheetProvider({
           clock.name === clockName ? { ...clock, name, ticks } : clock
         )
       );
+      setChanges(true);
     };
 
   const handleRemoveClock = (clockName: string) => () => {
     setClocks(clocks.filter((c) => c.name !== clockName));
+    setChanges(true);
   };
 
   return (
@@ -652,6 +824,7 @@ export default function CrewSheetProvider({
         handleAddClock,
         handleUpdateClock,
         handleRemoveClock,
+        setChanges,
       }}
     >
       {children}
