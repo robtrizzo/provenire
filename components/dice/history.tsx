@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { DieDetails } from "./details";
+import DieDetails from "./details";
 import DieAccordian from "./accordian";
 import { Roll } from "@/types/roll";
 

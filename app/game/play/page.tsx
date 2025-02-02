@@ -38,6 +38,7 @@ import AddOperation from "./(components)/add-operation";
 import OperationInput from "./(components)/operation-input";
 import AddClock from "./(components)/add-clock";
 import ClockInput from "./(components)/clock-input";
+import DiceSheet from "./(components)/dice-sheet";
 import { useCrewSheet } from "@/contexts/crewSheetContext";
 import { useSession } from "next-auth/react";
 import Charsheet from "./(components)/character-sheet/character-sheet";
@@ -141,7 +142,12 @@ export default function Page() {
 
   return (
     <>
-      <Breadcrumbs crumbs={[{ name: "Play", href: "#" }]} />
+      <div className="flex justify-between">
+        <Breadcrumbs crumbs={[{ name: "Play", href: "#" }]} />
+        <div className="flex gap-2 mt-5">
+          <DiceSheet />
+        </div>
+      </div>
       <Tabs defaultValue="crew" value={tab} className="w-full my-3 mx-auto">
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger
