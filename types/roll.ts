@@ -12,7 +12,6 @@ export type RollEffect = typeof RollEffect.type;
 export type Roll = {
     charName: string;
     userId: string;
-    index: number; // Used to mark rolls with a unique number if we need to remove rolls here and in the overall list
     redDice: number[];
     blueDice: number[];
     numRed: number;
