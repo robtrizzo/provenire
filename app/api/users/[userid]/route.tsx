@@ -1,7 +1,7 @@
 import { auth } from "@/auth/index";
 import { checkUserAuthenticated, checkUserRole } from "@/lib/auth";
 import { NextRequest, NextResponse } from "next/server";
-import {getUser} from "@/handlers/users";
+import { getUser } from "@/handlers/users";
 
 export async function PUT(
   request: NextRequest,

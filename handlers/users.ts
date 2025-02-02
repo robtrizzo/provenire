@@ -12,6 +12,6 @@ export async function getAllUsers(): Promise<User[]> {
 }
 
 export async function getUser(userid: string) {
-    const user = await redis.get(`user:${userid}`);
-    return user as User;
+  const user = await redis.get(`user:${userid}`);
+  return user as User;
 }

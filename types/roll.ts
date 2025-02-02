@@ -1,4 +1,4 @@
-import {StringUnion} from "@/lib/utils";
+import { StringUnion } from "@/lib/utils";
 
 const RollType = StringUnion('action', 'fortune', 'resist', 'project');
 export type RollType = typeof RollType.type;

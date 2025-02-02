@@ -161,10 +161,13 @@ export default function Charsheet() {
     if (hash && ["mission", "profile", "churn"].includes(hash.substring(1))) {
       setTab(hash.substring(1));
     }
+  }, []);
+
+  useEffect(() => {
     if (name) {
       setCharacterName(name);
     }
-  }, []);
+  }, [name]);
 
   async function handleRollButton(
     type: RollType,
@@ -237,8 +240,7 @@ export default function Charsheet() {
                 placeholder="Name"
                 value={name}
                 onChange={(e) => {
-                  setName(name);
-                  setCharacterName(name); // for rolls
+                  setName(e.target.value);
                   handleDebounceChange();
                 }}
               />

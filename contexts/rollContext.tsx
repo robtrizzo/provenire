@@ -7,7 +7,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useCharacterSheet } from "./characterSheetContext";
 import { Die } from "@/components/die";
 import { cn } from "@/lib/utils";
-import {useSession} from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 interface RollContextProps {
   rollActions: (
@@ -66,7 +66,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ...roll, charName:characterName }),
+        body: JSON.stringify({ ...roll, charName: characterName }),
       });
       return response.json();
     },
@@ -234,9 +234,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
             resultText = "Crit! Clear 1 stress.";
             break;
           case 0:
-            resultText = `${
-              roll.result === "crit" ? "Crit! " : ""
-            }Take no stress.`;
+            resultText = `${roll.result === "crit" ? "Crit! " : ""
+              }Take no stress.`;
             break;
           default:
             resultText = `Take ${stress} stress.`;
@@ -246,24 +245,20 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       case "project":
         switch (roll.result) {
           case "crit":
-            resultText = `Crit! ${
-              blueIsHigher ? "" : "(but take reduced effect)"
-            }`;
+            resultText = `Crit! ${blueIsHigher ? "" : "(but take reduced effect)"
+              }`;
             break;
           case "success":
-            resultText = `Hit${
-              blueIsHigher ? "." : ", and take reduced effect"
-            }`;
+            resultText = `Hit${blueIsHigher ? "." : ", and take reduced effect"
+              }`;
             break;
           case "partial":
-            resultText = `Partial hit${
-              blueIsHigher ? "." : ", and take reduced effect"
-            }`;
+            resultText = `Partial hit${blueIsHigher ? "." : ", and take reduced effect"
+              }`;
             break;
           case "failure":
-            resultText = `Miss${
-              blueIsHigher ? "." : ", and take reduced effect"
-            }`;
+            resultText = `Miss${blueIsHigher ? "." : ", and take reduced effect"
+              }`;
             break;
         }
         break;
@@ -276,14 +271,12 @@ export default function RollProvider({ children }: { children: ReactNode }) {
             resultText = "Miss. Suffer the consequences.";
             break;
           case "partial":
-            resultText = `Partial hit. Succeed, but suffer the consequences${
-              roll.effect ? "" : " and take reduced effect"
-            }.`;
+            resultText = `Partial hit. Succeed, but suffer the consequences${roll.effect ? "" : " and take reduced effect"
+              }.`;
             break;
           case "success":
-            resultText = `Hit! Succeed${
-              roll.effect ? "" : ", but take reduced effect"
-            }.`;
+            resultText = `Hit! Succeed${roll.effect ? "" : ", but take reduced effect"
+              }.`;
             break;
         }
     }
@@ -345,9 +338,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
             <Die
               key={i}
               roll={r}
-              className={`h-10 w-10 ${
-                roll.type === "fortune" ? "" : "text-blue-800"
-              }`}
+              className={`h-10 w-10 ${roll.type === "fortune" ? "" : "text-blue-800"
+                }`}
             />
           ))}
         </div>
@@ -367,9 +359,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
                   <Die
                     key={i}
                     roll={r}
-                    className={`h-10 w-10 ${
-                      roll.type === "fortune" ? "" : "text-blue-800"
-                    }`}
+                    className={`h-10 w-10 ${roll.type === "fortune" ? "" : "text-blue-800"
+                      }`}
                   />
                 )),
             ]
@@ -379,9 +370,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
               className={cn(
                 "h-10 w-10",
                 blueHigher(roll)
-                  ? `h-10 w-10 ${
-                      roll.type === "fortune" ? "" : "text-blue-800"
-                    }`
+                  ? `h-10 w-10 ${roll.type === "fortune" ? "" : "text-blue-800"
+                  }`
                   : "text-red-400"
               )}
             />

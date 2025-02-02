@@ -12,7 +12,7 @@ import { Close } from "@radix-ui/react-popover";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Bomb, X } from "lucide-react";
 import { useState } from "react";
-import {useSession} from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 export function DiceClear() {
   const [open, setOpen] = useState(false);
