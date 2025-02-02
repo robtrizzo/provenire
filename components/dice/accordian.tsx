@@ -21,7 +21,7 @@ export default function DieAccordian({ roll }: { roll: Roll }) {
   })
 
   const fetchUserData = async () => {
-    const response = await fetch(`/api/users/${roll.userId}`);
+    const response = await fetch(`/api/users/${roll.userid}`);
     const user = await response.json();
     return user as User;
   };
@@ -29,7 +29,7 @@ export default function DieAccordian({ roll }: { roll: Roll }) {
   const handleAccordionChange = async (value: string) => {
     if (value === "roll-details" && !expandedUserName) {
       const user = await queryClient.fetchQuery({
-        queryKey: ["user", roll.userId],
+        queryKey: ["user", roll.userid],
         queryFn: fetchUserData
       });
       if (user) {
@@ -55,10 +55,12 @@ export default function DieAccordian({ roll }: { roll: Roll }) {
                   {new Date(roll.timestamp).toLocaleString()}
                 </span>
               )}
-              <span className="text-muted-foreground text-xs block">
-                {`${roll.charName}${expandedUserName ? ` (${expandedUserName})` : ""
-                  }`}
-              </span>
+              {roll.charName && (
+                <span className="text-muted-foreground text-xs block">
+                  {`${roll.charName}${expandedUserName ? ` (${expandedUserName})` : ""
+                    }`}
+                </span>
+              )}
               <div className="flex flex-wrap gap-2">
                 {roll?.redDice?.map((r, i) => (
                   <Die key={i} roll={r} className="h-8 w-8 text-red-800" />

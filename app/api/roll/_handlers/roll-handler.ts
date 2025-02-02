@@ -2,7 +2,6 @@ import redis from "@/lib/redis";
 import { Roll } from "@/types/roll";
 
 export async function addRoll(userId: string, roll: Roll): Promise<void> {
-  // Get the last roll index so we can increment it
   const key = `user:${userId}:rolls`;
   roll.timestamp = new Date().toISOString();
   await redis.lpush(key, JSON.stringify(roll));
@@ -26,5 +25,6 @@ export async function clearRolls(userId: string): Promise<void> {
 }
 
 export async function getAllRolls(cursor: number, pageSize: number): Promise<Roll[]> {
+  console.log("getting all rolls");
   return await redis.lrange("rolls", cursor, cursor + pageSize - 1);
 }

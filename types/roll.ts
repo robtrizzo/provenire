@@ -11,7 +11,7 @@ export type RollEffect = typeof RollEffect.type;
 
 export type Roll = {
     charName: string;
-    userId: string;
+    userid: string;
     redDice: number[];
     blueDice: number[];
     numRed: number;
@@ -28,7 +28,7 @@ export type Roll = {
 export function validateRoll(roll: Roll) {
     let valid = (roll.redDice && roll.redDice.length > 0) ||
         (roll.blueDice && roll.blueDice.length > 0);
-    valid = valid && roll.userId !== "" && roll.userId !== undefined;
+    valid = valid && roll.userid !== "" && roll.userid !== undefined;
     if (!valid) {
         throw (new Error('Rolls require at least 1 die roll'));
     }
