@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, Dispatch, SetStateAction } from "react";
+import { useState, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TabsContent } from "@radix-ui/react-tabs";
 import { TypographyH4 } from "@/components/ui/typography";
@@ -15,18 +15,6 @@ import {
 } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { BuildupCheckboxes } from "@/components/buildup-checkboxes";
-import itemsData from "@/public/items.json";
-import {
-  Blackmail,
-  Clock,
-  CommunityProject,
-  Faction,
-  FightingInstructor,
-  Gladiator,
-  Operation,
-  type Cohort,
-  type Item,
-} from "@/types/game";
 import ItemInput from "./(components)/item-input";
 import AddEquipment from "./(components)/add-equipment";
 import AlchemyInput from "./(components)/alchemy-input";
@@ -40,7 +28,6 @@ import AddScouting from "./(components)/add-scouting";
 import ScoutingInput from "./(components)/scouting-input";
 import AddBlackmail from "./(components)/add-blackmail";
 import BlackmailInput from "./(components)/blackmail-input";
-import faction_data from "@/public/factions.json";
 import FactionInput from "./(components)/faction-input";
 import AddGladiator from "./(components)/add-gladiator";
 import GladitorInput from "./(components)/gladiator-input";
@@ -52,442 +39,91 @@ import AddOperation from "./(components)/add-operation";
 import OperationInput from "./(components)/operation-input";
 import AddClock from "./(components)/add-clock";
 import ClockInput from "./(components)/clock-input";
+import { useCrewSheet } from "@/contexts/crewSheetContext";
+import { useSession } from "next-auth/react";
 
 export default function Page() {
+  const session = useSession();
+  const isAdmin = session?.data?.user.role === "admin";
+
   const [tab, setTab] = useState("crew");
 
-  const [heat, setHeat] = useState(0);
-  const [wanted, setWanted] = useState(0);
-
-  const [food, setFood] = useState(0);
-  const [materials, setMaterials] = useState(0);
-  const [rep, setRep] = useState(0);
-  const [goodwill, setGoodwill] = useState(0);
-  const [intel, setIntel] = useState(0);
-
-  const [items, setItems] = useState<Item[]>(itemsData.starting);
-  const [alchemy, setAlchemy] = useState<Item[]>([]);
-  const [gangs, setGangs] = useState<Cohort[]>([]);
-  const [experts, setExperts] = useState<Cohort[]>([]);
-
-  const [schematics, setSchematics] = useState<Item[]>([]);
-  const [formulae, setFormulae] = useState<Item[]>([]);
-  const [rGangs, setRGangs] = useState<Cohort[]>([]);
-  const [rExperts, setRExperts] = useState<Cohort[]>([]);
-  const [scouting, setScouting] = useState<Clock[]>([]);
-  const [blackmail, setBlackmail] = useState<Blackmail[]>([]);
-  const [factions, setFactions] = useState<Faction[]>(faction_data);
-  const [pcGladiators, setPCGladiators] = useState<Gladiator[]>([]);
-  const [fInstructors, setFInstructors] = useState<FightingInstructor[]>([]);
-  const [livingSpace, setLivingSpace] = useState<CommunityProject[]>([]);
-  const [security, setSecurity] = useState<CommunityProject[]>([]);
-  const [lair, setLair] = useState<CommunityProject[]>([]);
-  const [community, setCommunity] = useState<CommunityProject[]>([]);
-  const [operations, setOperations] = useState<Operation[]>([]);
-  const [clocks, setClocks] = useState<Clock[]>([]);
-
-  const handleUpdateItem =
-    (itemName: string) => (traits: string[], ticks: number) => {
-      setItems((prevItems) =>
-        prevItems.map((item) =>
-          item.name === itemName ? { ...item, traits, ticks } : item
-        )
-      );
-    };
-
-  function handleAddItem(item: Item) {
-    const itemExists = items.some(
-      (existingItem) => existingItem.name === item.name
-    );
-    if (itemExists) {
-      console.log(`Item with name ${item.name} already exists`);
-      return;
-    }
-    setItems([...items, item]);
-  }
-
-  const handleUpdateAlchemy =
-    (alchemyName: string) =>
-    (traits: string[], uses: number, ticks: number) => {
-      setAlchemy((prevAlchemy) =>
-        prevAlchemy.map((alchemy) =>
-          alchemy.name === alchemyName
-            ? { ...alchemy, traits, ticks, uses }
-            : alchemy
-        )
-      );
-    };
-
-  function handleAddAlchemy(al: Item) {
-    const alchemyExists = alchemy.some(
-      (existingItem) => existingItem.name === al.name
-    );
-    if (alchemyExists) {
-      console.log(`Alchemy with name ${al.name} already exists`);
-      return;
-    }
-    setAlchemy([...alchemy, al]);
-  }
-
-  const handleUpdateGang =
-    (gangName: string) => (traits: string[], ticks: number) => {
-      setGangs((prevGangs) =>
-        prevGangs.map((gang) =>
-          gang.name === gangName ? { ...gang, traits, ticks } : gang
-        )
-      );
-    };
-
-  function handleAddGang(gang: Cohort) {
-    const gangExists = gangs.some(
-      (existingGang) => existingGang.name === gang.name
-    );
-    if (gangExists) {
-      console.log(`Gang with name ${gang.name} already exists`);
-      return;
-    }
-    setGangs([...gangs, gang]);
-  }
-
-  const handleUpdateExpert = (expertName: string) => (ticks: number) => {
-    setExperts((prevExperts) =>
-      prevExperts?.map((expert) =>
-        expert.name === expertName ? { ...expert, ticks } : expert
-      )
-    );
-  };
-
-  function handleAddExpert(expert: Cohort) {
-    const expertExists = experts?.some(
-      (existingExpert) => existingExpert.name === expert.name
-    );
-    if (expertExists) {
-      console.log(`Expert with name ${expert.name} already exists`);
-      return;
-    }
-    setExperts([...experts, expert]);
-  }
-
-  const handleUpdateSchematic =
-    (schematicName: string) => (traits: string[], ticks: number) => {
-      setSchematics((prevSchematics) =>
-        prevSchematics.map((schematic) =>
-          schematic.name === schematicName ? { ...schematic, ticks } : schematic
-        )
-      );
-    };
-
-  const handleRemoveSchematic = (schematicName: string) => () => {
-    setSchematics(schematics.filter((s) => s.name !== schematicName));
-  };
-
-  function handleAddSchematic(schematic: Item) {
-    const schematicExists = schematics.some(
-      (existingItem) => existingItem.name === schematic.name
-    );
-    if (schematicExists) {
-      console.log(`Schematic with name ${schematic.name} already exists`);
-      return;
-    }
-    setSchematics([...schematics, schematic]);
-  }
-
-  const handleUpdateFormulae =
-    (formulaeName: string) =>
-    (traits: string[], uses: number, ticks: number) => {
-      setFormulae((prevFormulae) =>
-        prevFormulae.map((formulae) =>
-          formulae.name === formulaeName ? { ...formulae, ticks } : formulae
-        )
-      );
-    };
-
-  function handleAddFormula(f: Item) {
-    const formulaExists = formulae.some(
-      (existingFormula) => existingFormula.name === f.name
-    );
-    if (formulaExists) {
-      console.log(`Formula with name ${f.name} already exists`);
-      return;
-    }
-    setFormulae([...formulae, f]);
-  }
-
-  const handleRemoveFormula = (formulaName: string) => () => {
-    setFormulae(formulae.filter((f) => f.name !== formulaName));
-  };
-
-  const handleUpdateRGang =
-    (rGangName: string) => (traits: string[], ticks: number) => {
-      setRGangs((prevRGangs) =>
-        prevRGangs.map((rGang) =>
-          rGang.name === rGangName ? { ...rGang, ticks } : rGang
-        )
-      );
-    };
-
-  function handleAddRGang(rg: Cohort) {
-    const rGangExists = rGangs.some(
-      (existingRGang) => existingRGang.name === rg.name
-    );
-    if (rGangExists) {
-      console.log(`Recruit-gang with name ${rg.name} already exists`);
-      return;
-    }
-    setRGangs([...rGangs, rg]);
-  }
-
-  const handleRemoveRGang = (rGangName: string) => () => {
-    setRGangs(rGangs.filter((rg) => rg.name !== rGangName));
-  };
-
-  const handleUpdateRExpert = (rExpertName: string) => (ticks: number) => {
-    setRExperts((prevRExperts) =>
-      prevRExperts.map((rExpert) =>
-        rExpert.name === rExpertName ? { ...rExpert, ticks } : rExpert
-      )
-    );
-  };
-
-  function handleAddRExpert(re: Cohort) {
-    const rExpertExists = rExperts.some(
-      (existingRExpert) => existingRExpert.name === re.name
-    );
-    if (rExpertExists) {
-      console.log(`Recruit-expert with name ${re.name} already exists`);
-      return;
-    }
-    setRExperts([...rExperts, re]);
-  }
-
-  const handleRemoveRExpert = (rExpertName: string) => () => {
-    setRExperts(rExperts.filter((re) => re.name !== rExpertName));
-  };
-
-  function handleAddScouting(c: Clock) {
-    const scoutingExists = scouting.some(
-      (existingScouting) => existingScouting.name === c.name
-    );
-    if (scoutingExists) {
-      console.log(`Scouting mission with name ${c.name} already exists`);
-      return;
-    }
-    setScouting([...scouting, c]);
-  }
-
-  const handleUpdateScouting = (scoutingName: string) => (ticks: number) => {
-    setScouting((prevScouting) =>
-      prevScouting.map((scouting) =>
-        scouting.name === scoutingName ? { ...scouting, ticks } : scouting
-      )
-    );
-  };
-
-  const handleRemoveScouting = (scoutingName: string) => () => {
-    setScouting(scouting.filter((s) => s.name !== scoutingName));
-  };
-
-  function handleAddBlackmail(b: Blackmail) {
-    const blackmailExists = blackmail.some(
-      (existingBlackmail) => existingBlackmail.name === b.name
-    );
-    if (blackmailExists) {
-      console.log(`Blackmail with name ${b.name} already exists`);
-      return;
-    }
-    setBlackmail([...blackmail, b]);
-  }
-
-  const handleRemoveBlackmail = (blackmailName: string) => () => {
-    setBlackmail(blackmail.filter((b) => b.name !== blackmailName));
-  };
-
-  const handleUpdateFaction = (factionName: string) => (ticks: number) => {
-    setFactions((prevFactions) =>
-      prevFactions.map((faction) =>
-        faction.name === factionName ? { ...faction, ticks } : faction
-      )
-    );
-  };
-
-  const handleUpdatePCGladiator =
-    (pcGladiatorName: string) => (rank: number) => {
-      setPCGladiators((prevPCGladiators) =>
-        prevPCGladiators.map((gladiator) =>
-          gladiator.name === pcGladiatorName
-            ? { ...gladiator, rank }
-            : gladiator
-        )
-      );
-    };
-
-  function handleAddPCGladiator(gladiator: Gladiator) {
-    const gladiatorExists = pcGladiators.some(
-      (existingGladiator) => existingGladiator.name === gladiator.name
-    );
-    if (gladiatorExists) {
-      console.log(`PC Gladiator with name ${gladiator.name} already exists`);
-      return;
-    }
-    setPCGladiators([...pcGladiators, gladiator]);
-  }
-
-  const handleRemovePCGladiator = (pcGladiatorName: string) => () => {
-    setPCGladiators(pcGladiators.filter((g) => g.name !== pcGladiatorName));
-  };
-
-  const handleUpdateFightingInstructor =
-    (fightingInstructorName: string) => (ticks: number) => {
-      setFInstructors((prevFInstructors) =>
-        prevFInstructors.map((instructor) =>
-          instructor.name === fightingInstructorName
-            ? { ...instructor, ticks }
-            : instructor
-        )
-      );
-    };
-
-  function handleAddFightingInstructor(instructor: FightingInstructor) {
-    const instructorExists = fInstructors.some(
-      (existingIntructor) => existingIntructor.name === instructor.name
-    );
-    if (instructorExists) {
-      console.log(
-        `Fighting instructor with name ${instructor.name} already exists`
-      );
-      return;
-    }
-    setFInstructors([...fInstructors, instructor]);
-  }
-
-  const handleRemoveFightingInstructor =
-    (fightingInstructorName: string) => () => {
-      setFInstructors(
-        fInstructors.filter((i) => i.name !== fightingInstructorName)
-      );
-    };
-
-  function getCommunityProjectState(category: string) {
-    let val: CommunityProject[] = [];
-    let setter: Dispatch<SetStateAction<CommunityProject[]>> = () => {};
-
-    switch (category) {
-      case "Living Space":
-        val = livingSpace;
-        setter = setLivingSpace;
-        break;
-      case "Security":
-        val = security;
-        setter = setSecurity;
-        break;
-      case "Lair":
-        val = lair;
-        setter = setLair;
-        break;
-      case "Community":
-        val = community;
-        setter = setCommunity;
-        break;
-      default:
-        console.error("Invalid community project category: ", category);
-        break;
-    }
-
-    return { val, setter };
-  }
-
-  function handleAddCommunityProject(
-    category: string,
-    project: CommunityProject
-  ) {
-    const { val, setter } = getCommunityProjectState(category);
-
-    const valExists = val.some(
-      (existingVal) => existingVal.name === project.name
-    );
-    if (valExists) {
-      console.log(
-        `${category} community project with name ${project.name} already exists`
-      );
-      return;
-    }
-
-    setter([...val, project]);
-  }
-
-  const handleUpdateCommunityProject =
-    (category: string, communityProjectName: string) => (ticks: number) => {
-      const { setter } = getCommunityProjectState(category);
-      setter((prevCommunityProjects) =>
-        prevCommunityProjects.map((project) =>
-          project.name === communityProjectName
-            ? { ...project, ticks }
-            : project
-        )
-      );
-    };
-
-  const handleRemoveCommunityProject =
-    (category: string, communityProjectName: string) => () => {
-      const { val, setter } = getCommunityProjectState(category);
-      setter(val.filter((p) => p.name !== communityProjectName));
-    };
-
-  function handleAddOperation(operation: Operation) {
-    const operationExists = operations.some(
-      (existingOperation) => existingOperation.name === operation.name
-    );
-    if (operationExists) {
-      console.log(`Operation with name ${operation.name} already exists`);
-      return;
-    }
-    setOperations([...operations, operation]);
-  }
-
-  const handleUpdateOperation = (operationName: string) => (ticks: number) => {
-    setOperations((prevOperations) =>
-      prevOperations.map((operation) =>
-        operation.name === operationName ? { ...operation, ticks } : operation
-      )
-    );
-  };
-
-  const handleRemoveOperation = (operationName: string) => () => {
-    setOperations(operations.filter((o) => o.name !== operationName));
-  };
-
-  function handleAddClock(clock: Clock) {
-    const clockExists = clocks.some(
-      (existingClock) => existingClock.name === clock.name
-    );
-    if (clockExists) {
-      console.log(`Clock with name ${clock.name} already exists`);
-      return;
-    }
-    setClocks([...clocks, clock]);
-  }
-
-  const handleUpdateClock =
-    (clockName: string) => (name: string, ticks: number) => {
-      if (name !== clockName) {
-        const clockExists = clocks.some(
-          (existingClock) => existingClock.name === name
-        );
-        if (clockExists) {
-          console.log(`Clock with name ${name} already exists`);
-          return;
-        }
-      }
-      setClocks((prevClocks) =>
-        prevClocks.map((clock) =>
-          clock.name === clockName ? { ...clock, name, ticks } : clock
-        )
-      );
-    };
-
-  const handleRemoveClock = (clockName: string) => () => {
-    setClocks(clocks.filter((c) => c.name !== clockName));
-  };
+  const {
+    heat,
+    wanted,
+    food,
+    materials,
+    rep,
+    goodwill,
+    intel,
+    items,
+    alchemy,
+    gangs,
+    experts,
+    schematics,
+    formulae,
+    rGangs,
+    rExperts,
+    scouting,
+    blackmail,
+    factions,
+    pcGladiators,
+    fInstructors,
+    livingSpace,
+    security,
+    lair,
+    community,
+    operations,
+    clocks,
+    setHeat,
+    setWanted,
+    setFood,
+    setMaterials,
+    setRep,
+    setGoodwill,
+    setIntel,
+    handleUpdateItem,
+    handleAddItem,
+    handleUpdateAlchemy,
+    handleAddAlchemy,
+    handleUpdateGang,
+    handleAddGang,
+    handleUpdateExpert,
+    handleAddExpert,
+    handleUpdateSchematic,
+    handleAddSchematic,
+    handleRemoveSchematic,
+    handleUpdateFormulae,
+    handleAddFormula,
+    handleRemoveFormula,
+    handleAddRGang,
+    handleUpdateRGang,
+    handleRemoveRGang,
+    handleAddRExpert,
+    handleUpdateRExpert,
+    handleRemoveRExpert,
+    handleAddScouting,
+    handleUpdateScouting,
+    handleRemoveScouting,
+    handleAddBlackmail,
+    handleRemoveBlackmail,
+    handleUpdateFaction,
+    handleAddPCGladiator,
+    handleUpdatePCGladiator,
+    handleRemovePCGladiator,
+    handleAddFightingInstructor,
+    handleUpdateFightingInstructor,
+    handleRemoveFightingInstructor,
+    handleAddCommunityProject,
+    handleUpdateCommunityProject,
+    handleRemoveCommunityProject,
+    handleAddOperation,
+    handleUpdateOperation,
+    handleRemoveOperation,
+    handleAddClock,
+    handleUpdateClock,
+    handleRemoveClock,
+  } = useCrewSheet();
 
   useEffect(() => {
     if (window === undefined) return;
@@ -581,7 +217,9 @@ export default function Page() {
                     current={food}
                     numDisabled={3}
                     onChange={(n) => {
-                      setFood(n);
+                      if (isAdmin) {
+                        setFood(n);
+                      }
                     }}
                     clearPosition="end"
                   />
@@ -593,7 +231,9 @@ export default function Page() {
                     current={rep}
                     numDisabled={3}
                     onChange={(n) => {
-                      setRep(n);
+                      if (isAdmin) {
+                        setRep(n);
+                      }
                     }}
                     clearPosition="end"
                   />
@@ -607,7 +247,9 @@ export default function Page() {
                     current={materials}
                     numDisabled={3}
                     onChange={(n) => {
-                      setMaterials(n);
+                      if (isAdmin) {
+                        setMaterials(n);
+                      }
                     }}
                     clearPosition="end"
                   />
@@ -619,7 +261,9 @@ export default function Page() {
                     current={goodwill}
                     numDisabled={3}
                     onChange={(n) => {
-                      setGoodwill(n);
+                      if (isAdmin) {
+                        setGoodwill(n);
+                      }
                     }}
                     clearPosition="end"
                   />
@@ -634,7 +278,9 @@ export default function Page() {
                     current={intel}
                     numDisabled={3}
                     onChange={(n) => {
-                      setIntel(n);
+                      if (isAdmin) {
+                        setIntel(n);
+                      }
                     }}
                     clearPosition="end"
                   />
@@ -652,11 +298,14 @@ export default function Page() {
                   item={it}
                   updateItem={handleUpdateItem(it.name)}
                   key={idx}
+                  enable={isAdmin}
                 />
               ))}
-              <div className="flex justify-center mt-1">
-                <AddEquipment addItem={handleAddItem} />
-              </div>
+              {isAdmin && (
+                <div className="flex justify-center mt-1">
+                  <AddEquipment addItem={handleAddItem} />
+                </div>
+              )}
               <div className="mt-4 mb-2 mx-2">
                 <b className="mt-1 text-white">Alchemy</b>
                 <Separator />
@@ -666,11 +315,14 @@ export default function Page() {
                   key={`${al.name}${idx}`}
                   updateAlchemy={handleUpdateAlchemy(al.name)}
                   alchemy={al}
+                  enable={isAdmin}
                 />
               ))}
-              <div className="flex justify-center mt-1">
-                <AddAlchemy addAlchemy={handleAddAlchemy} />
-              </div>
+              {isAdmin && (
+                <div className="flex justify-center mt-1">
+                  <AddAlchemy addAlchemy={handleAddAlchemy} />
+                </div>
+              )}
               <div className="mt-4 mb-2 mx-2">
                 <b className="mt-1 text-white">Gangs</b>
                 <Separator />
@@ -680,6 +332,7 @@ export default function Page() {
                   key={`${g.name}${idx}`}
                   updateGang={handleUpdateGang(g.name)}
                   gang={g}
+                  enable={isAdmin}
                 />
               ))}
               <div className="flex justify-center mt-1">
@@ -694,6 +347,7 @@ export default function Page() {
                   key={`${e.name}${idx}`}
                   updateExpert={handleUpdateExpert(e.name)}
                   expert={e}
+                  enable={isAdmin}
                 />
               ))}
               <div className="flex justify-center mt-1">
@@ -720,6 +374,7 @@ export default function Page() {
                   item={s}
                   variant="schematic"
                   removeItem={handleRemoveSchematic(s.name)}
+                  enable={isAdmin}
                 />
               ))}
               {formulae.length > 0 && (
@@ -734,15 +389,18 @@ export default function Page() {
                   alchemy={f}
                   variant="formula"
                   removeAlchemy={handleRemoveFormula(f.name)}
+                  enable={isAdmin}
                 />
               ))}
-              <div className="flex justify-center gap-1 mt-2">
-                <AddEquipment
-                  addItem={handleAddSchematic}
-                  variant="schematic"
-                />
-                <AddAlchemy addAlchemy={handleAddFormula} variant="formula" />
-              </div>
+              {isAdmin && (
+                <div className="flex justify-center gap-1 mt-2">
+                  <AddEquipment
+                    addItem={handleAddSchematic}
+                    variant="schematic"
+                  />
+                  <AddAlchemy addAlchemy={handleAddFormula} variant="formula" />
+                </div>
+              )}
               <div className="mt-4 mb-2 mx-2">
                 <b className="mt-1 text-white">
                   Explore the factory&apos;s heights and depths
@@ -755,11 +413,14 @@ export default function Page() {
                   scouting={s}
                   updateScouting={handleUpdateScouting(s.name)}
                   removeScouting={handleRemoveScouting(s.name)}
+                  enable={isAdmin}
                 />
               ))}
-              <div className="flex justify-center">
-                <AddScouting addScouting={handleAddScouting} />
-              </div>
+              {isAdmin && (
+                <div className="flex justify-center">
+                  <AddScouting addScouting={handleAddScouting} />
+                </div>
+              )}
               <div className="mt-4 mb-2 mx-2">
                 <b className="mt-1 text-white">
                   Pit the oppressors against each other
@@ -771,11 +432,14 @@ export default function Page() {
                   key={`${b.name}${idx}`}
                   blackmail={b}
                   removeBlackmail={handleRemoveBlackmail(b.name)}
+                  enable={isAdmin}
                 />
               ))}
-              <div className="flex justify-center">
-                <AddBlackmail addBlackmail={handleAddBlackmail} />
-              </div>
+              {isAdmin && (
+                <div className="flex justify-center">
+                  <AddBlackmail addBlackmail={handleAddBlackmail} />
+                </div>
+              )}
               <div className="mt-4 mb-2 mx-2">
                 <b className="mt-1 text-white">
                   Carve a path of connection and conversation
@@ -787,6 +451,7 @@ export default function Page() {
                   key={`${f.name}${idx}`}
                   faction={f}
                   updateFaction={handleUpdateFaction(f.name)}
+                  enable={isAdmin}
                 />
               ))}
               <div className="mt-4 mb-2 mx-2">
@@ -804,6 +469,7 @@ export default function Page() {
                   gladiator={g}
                   updateGladiator={handleUpdatePCGladiator(g.name)}
                   removeGladiator={handleRemovePCGladiator(g.name)}
+                  enable={isAdmin}
                 />
               ))}
               {fInstructors.length > 0 && (
@@ -821,14 +487,17 @@ export default function Page() {
                   removeFightingInstructor={handleRemoveFightingInstructor(
                     i.name
                   )}
+                  enable={isAdmin}
                 />
               ))}
-              <div className="flex justify-center gap-1">
-                <AddGladiator addGladiator={handleAddPCGladiator} />
-                <AddFightingInstructor
-                  addFightingInstructor={handleAddFightingInstructor}
-                />
-              </div>
+              {isAdmin && (
+                <div className="flex justify-center gap-1">
+                  <AddGladiator addGladiator={handleAddPCGladiator} />
+                  <AddFightingInstructor
+                    addFightingInstructor={handleAddFightingInstructor}
+                  />
+                </div>
+              )}
               <div className="mt-4 mb-2 mx-2">
                 <b className="mt-1 text-white">
                   Make them know you&apos;re not afraid
@@ -847,6 +516,7 @@ export default function Page() {
                   gang={rg}
                   variant="recruit"
                   removeGang={handleRemoveRGang(rg.name)}
+                  enable={isAdmin}
                 />
               ))}
               {rExperts.length > 0 && (
@@ -861,12 +531,15 @@ export default function Page() {
                   expert={re}
                   variant="recruit"
                   removeExpert={handleRemoveRExpert(re.name)}
+                  enable={isAdmin}
                 />
               ))}
-              <div className="flex justify-center gap-1 mt-2">
-                <AddGang addGang={handleAddRGang} />
-                <AddExpert addExpert={handleAddRExpert} />
-              </div>
+              {isAdmin && (
+                <div className="flex justify-center gap-1 mt-2">
+                  <AddGang addGang={handleAddRGang} />
+                  <AddExpert addExpert={handleAddRExpert} />
+                </div>
+              )}
               <div className="mt-4 mb-2 mx-2">
                 <b className="mt-1 text-white">Make the pain worth it</b>
                 <Separator />
@@ -888,6 +561,7 @@ export default function Page() {
                     "Living Space",
                     p.name
                   )}
+                  enable={isAdmin}
                 />
               ))}
               {security.length > 0 && (
@@ -907,6 +581,7 @@ export default function Page() {
                     "Security",
                     p.name
                   )}
+                  enable={isAdmin}
                 />
               ))}
               {lair.length > 0 && (
@@ -926,6 +601,7 @@ export default function Page() {
                     "Lair",
                     p.name
                   )}
+                  enable={isAdmin}
                 />
               ))}
               {community.length > 0 && (
@@ -945,13 +621,16 @@ export default function Page() {
                     "Community",
                     p.name
                   )}
+                  enable={isAdmin}
                 />
               ))}
-              <div className="flex justify-center gap-2 mt-2">
-                <AddCommunityProject
-                  addCommunityProject={handleAddCommunityProject}
-                />
-              </div>
+              {isAdmin && (
+                <div className="flex justify-center gap-2 mt-2">
+                  <AddCommunityProject
+                    addCommunityProject={handleAddCommunityProject}
+                  />
+                </div>
+              )}
               <div className="mt-4 mb-2 mx-2">
                 <b className="mt-1 text-white">
                   Walk among the oppressors and learn their secrets
@@ -964,11 +643,14 @@ export default function Page() {
                   operation={o}
                   updateOperation={handleUpdateOperation(o.name)}
                   removeOperation={handleRemoveOperation(o.name)}
+                  enable={isAdmin}
                 />
               ))}
-              <div className="flex justify-center gap-2 mt-2">
-                <AddOperation addOperation={handleAddOperation} />
-              </div>
+              {isAdmin && (
+                <div className="flex justify-center gap-2 mt-2">
+                  <AddOperation addOperation={handleAddOperation} />
+                </div>
+              )}
             </div>
           </div>
           <div className="mb-2 mt-4 flex justify-center items-center bg-linear-to-r/oklch from-slate-900 to-stone-900 rounded-lg border-[1px] border-border">
@@ -980,11 +662,14 @@ export default function Page() {
               clock={c}
               updateClock={handleUpdateClock(c.name)}
               removeClock={handleRemoveClock(c.name)}
+              enable={isAdmin}
             />
           ))}
-          <div className="flex justify-center mt-2">
-            <AddClock addClock={handleAddClock} />
-          </div>
+          {isAdmin && (
+            <div className="flex justify-center mt-2">
+              <AddClock addClock={handleAddClock} />
+            </div>
+          )}
         </TabsContent>
         <TabsContent value="dramatis-personae" className="w-full">
           <div>
@@ -1035,7 +720,7 @@ export default function Page() {
                   className="z-0 rounded-md"
                 /> */}
                   <div className="absolute bottom-0 left-0 h-24 w-56 z-10 bg-black/50 rounded-md flex items-center justify-center hover:bg-black/20 transition-all duration-300">
-                    <b className="text-lg">???</b>
+                    <b className="text-lg">Malgus Veradun</b>
                   </div>
                 </div>
                 <div className="relative w-56 h-24 rounded-md border-[1px] border-border">

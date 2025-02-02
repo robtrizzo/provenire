@@ -17,10 +17,12 @@ export default function CommunityProjectInput({
   communityProject,
   updateCommunityProject,
   removeCommunityProject,
+  enable,
 }: {
   communityProject: CommunityProject;
   updateCommunityProject: (ticks: number) => void;
   removeCommunityProject: () => void;
+  enable: boolean;
 }) {
   const { name, description, clock } = communityProject;
 
@@ -29,14 +31,23 @@ export default function CommunityProjectInput({
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
+      {enable ? (
+        <PopoverTrigger asChild>
+          <div>
+            <CommunityProjectSummary
+              communityProject={communityProject}
+              className="mt-1 py-1 px-2 rounded-md hover:bg-secondary"
+            />
+          </div>
+        </PopoverTrigger>
+      ) : (
         <div>
           <CommunityProjectSummary
             communityProject={communityProject}
             className="mt-1 py-1 px-2 rounded-md hover:bg-secondary"
           />
         </div>
-      </PopoverTrigger>
+      )}
       <PopoverContent>
         <div className="flex justify-between items-center">
           <TypographyH4 className="mt-0">{name}</TypographyH4>

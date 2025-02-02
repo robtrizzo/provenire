@@ -17,10 +17,12 @@ export default function OperationInput({
   operation,
   updateOperation,
   removeOperation,
+  enable,
 }: {
   operation: Operation;
   updateOperation: (ticks: number) => void;
   removeOperation: () => void;
+  enable: boolean;
 }) {
   const { name, clock, effect } = operation;
 
@@ -29,14 +31,23 @@ export default function OperationInput({
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
+      {enable ? (
+        <PopoverTrigger asChild>
+          <div>
+            <OperationSummary
+              operation={operation}
+              className="mt-1 py-1 px-2 rounded-md hover:bg-secondary"
+            />
+          </div>
+        </PopoverTrigger>
+      ) : (
         <div>
           <OperationSummary
             operation={operation}
             className="mt-1 py-1 px-2 rounded-md hover:bg-secondary"
           />
         </div>
-      </PopoverTrigger>
+      )}
       <PopoverContent>
         <div className="flex justify-between items-center">
           <TypographyH4 className="mt-0">{name}</TypographyH4>

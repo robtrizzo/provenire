@@ -16,10 +16,12 @@ export default function GladitorInput({
   gladiator,
   updateGladiator,
   removeGladiator,
+  enable,
 }: {
   gladiator: Gladiator;
   updateGladiator: (rank: number) => void;
   removeGladiator: () => void;
+  enable: boolean;
 }) {
   const { name } = gladiator;
 
@@ -28,14 +30,23 @@ export default function GladitorInput({
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
+      {enable ? (
+        <PopoverTrigger asChild>
+          <div>
+            <GladiatorSummary
+              gladiator={gladiator}
+              className="mt-1 py-1 px-2 rounded-md hover:bg-secondary"
+            />
+          </div>
+        </PopoverTrigger>
+      ) : (
         <div>
           <GladiatorSummary
             gladiator={gladiator}
             className="mt-1 py-1 px-2 rounded-md hover:bg-secondary"
           />
         </div>
-      </PopoverTrigger>
+      )}
       <PopoverContent>
         <TypographyH4 className="mt-0">{name}</TypographyH4>
         <div className="flex justify-center">

@@ -20,11 +20,13 @@ export default function GangInput({
   updateGang,
   variant,
   removeGang,
+  enable,
 }: {
   gang: Cohort;
   updateGang: (traits: string[], ticks: number) => void;
   variant?: string;
   removeGang?: () => void;
+  enable: boolean;
 }) {
   const { name, clock, location } = gang;
 
@@ -64,7 +66,19 @@ export default function GangInput({
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
+      {enable ? (
+        <PopoverTrigger asChild>
+          <div>
+            {isMounted && (
+              <GangSummary
+                gang={gang}
+                variant={variant}
+                className="mt-1 py-1 px-2 rounded-md hover:bg-secondary"
+              />
+            )}
+          </div>
+        </PopoverTrigger>
+      ) : (
         <div>
           {isMounted && (
             <GangSummary
@@ -74,7 +88,7 @@ export default function GangInput({
             />
           )}
         </div>
-      </PopoverTrigger>
+      )}
       <PopoverContent>
         <form ref={formRef} onSubmit={handleSubmit}>
           <div className="flex justify-between items-center">

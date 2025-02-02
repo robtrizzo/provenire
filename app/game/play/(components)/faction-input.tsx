@@ -15,9 +15,11 @@ import FactionSummary from "./faction-summary";
 export default function FactionInput({
   faction,
   updateFaction,
+  enable,
 }: {
   faction: Faction;
   updateFaction: (ticks: number) => void;
+  enable: boolean;
 }) {
   const { name, location, description, agenda, clock } = faction;
   const [ticks, setTicks] = useState(faction.ticks);
@@ -30,7 +32,18 @@ export default function FactionInput({
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
+      {enable ? (
+        <PopoverTrigger asChild>
+          <div>
+            {isMounted && (
+              <FactionSummary
+                faction={faction}
+                className="mt-1 py-1 px-2 rounded-md hover:bg-secondary"
+              />
+            )}
+          </div>
+        </PopoverTrigger>
+      ) : (
         <div>
           {isMounted && (
             <FactionSummary
@@ -39,7 +52,7 @@ export default function FactionInput({
             />
           )}
         </div>
-      </PopoverTrigger>
+      )}
       <PopoverContent>
         <div className="flex justify-between items-center">
           <TypographyH4 className="mt-0">{name}</TypographyH4>

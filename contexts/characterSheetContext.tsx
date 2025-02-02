@@ -30,11 +30,11 @@ interface CharacterSheetContextProps {
   selectedBackground: Background | undefined;
   selectedHeritage: Heritage | undefined;
   questions: Map<string, any>;
-  xpRef: React.MutableRefObject<number>;
+  xpRef: React.RefObject<number>;
   attributes: CharacterAttributes;
   stress: number;
   conditions: string[];
-  conditionRecoveryRef: React.MutableRefObject<number>;
+  conditionRecoveryRef: React.RefObject<number>;
   healing: number;
   harm3: string;
   harm2: string[];

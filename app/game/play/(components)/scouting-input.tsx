@@ -16,10 +16,12 @@ export default function ScoutingInput({
   scouting,
   updateScouting,
   removeScouting,
+  enable,
 }: {
   scouting: ClockType;
   updateScouting: (ticks: number) => void;
   removeScouting: () => void;
+  enable: boolean;
 }) {
   const { name, clock } = scouting;
 
@@ -28,14 +30,23 @@ export default function ScoutingInput({
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
+      {enable ? (
+        <PopoverTrigger asChild>
+          <div>
+            <ScoutingSummary
+              scoutingClock={scouting}
+              className="mt-1 py-1 px-2 rounded-md hover:bg-secondary"
+            />
+          </div>
+        </PopoverTrigger>
+      ) : (
         <div>
           <ScoutingSummary
             scoutingClock={scouting}
             className="mt-1 py-1 px-2 rounded-md hover:bg-secondary"
           />
         </div>
-      </PopoverTrigger>
+      )}
       <PopoverContent>
         <TypographyH4 className="mt-0">{name}</TypographyH4>
         <div className="flex justify-center">

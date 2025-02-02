@@ -19,11 +19,13 @@ export default function ItemInput({
   updateItem,
   variant = "equipment",
   removeItem,
+  enable,
 }: {
   item: Item;
   updateItem: (traits: string[], ticks: number) => void;
   variant?: string;
   removeItem?: () => void;
+  enable: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const [traits, setTraits] = useState(item.traits);
@@ -63,7 +65,19 @@ export default function ItemInput({
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
+      {enable ? (
+        <PopoverTrigger asChild>
+          <div>
+            {isMounted && (
+              <ItemSummary
+                item={item}
+                variant={variant}
+                className="mt-1 py-1 px-2 rounded-md hover:bg-secondary"
+              />
+            )}
+          </div>
+        </PopoverTrigger>
+      ) : (
         <div>
           {isMounted && (
             <ItemSummary
@@ -73,7 +87,7 @@ export default function ItemInput({
             />
           )}
         </div>
-      </PopoverTrigger>
+      )}
       <PopoverContent>
         <form ref={formRef} onSubmit={handleSubmit}>
           <div className="flex justify-between items-center">

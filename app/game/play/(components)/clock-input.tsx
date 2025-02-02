@@ -16,10 +16,12 @@ export default function ClockInput({
   clock,
   updateClock,
   removeClock,
+  enable,
 }: {
   clock: ClockType;
   updateClock: (name: string, ticks: number) => void;
   removeClock: () => void;
+  enable: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const [ticks, setTicks] = useState(clock.ticks);
@@ -38,14 +40,23 @@ export default function ClockInput({
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
+      {enable ? (
+        <PopoverTrigger asChild>
+          <div>
+            <ClockSummary
+              clock={clock}
+              className="mt-1 py-1 px-2 rounded-md hover:bg-secondary"
+            />
+          </div>
+        </PopoverTrigger>
+      ) : (
         <div>
           <ClockSummary
             clock={clock}
             className="mt-1 py-1 px-2 rounded-md hover:bg-secondary"
           />
         </div>
-      </PopoverTrigger>
+      )}
       <PopoverContent>
         <form ref={formRef} onSubmit={handleSubmit}>
           <Input defaultValue={clock.name} size={10} name="name" />

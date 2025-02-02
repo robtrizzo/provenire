@@ -14,22 +14,33 @@ import BlackmailSummary from "./blackmail-summary";
 export default function BlackmailInput({
   blackmail,
   removeBlackmail,
+  enable,
 }: {
   blackmail: Blackmail;
   removeBlackmail: () => void;
+  enable: boolean;
 }) {
   const { name, effect } = blackmail;
   const [open, setOpen] = useState(false);
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
+      {enable ? (
+        <PopoverTrigger asChild>
+          <div>
+            <BlackmailSummary
+              blackmail={blackmail}
+              className="mt-1 py-1 px-2 rounded-md hover:bg-secondary"
+            />
+          </div>
+        </PopoverTrigger>
+      ) : (
         <div>
           <BlackmailSummary
             blackmail={blackmail}
             className="mt-1 py-1 px-2 rounded-md hover:bg-secondary"
           />
         </div>
-      </PopoverTrigger>
+      )}
       <PopoverContent>
         <TypographyH4 className="mt-0">{name}</TypographyH4>
         <TypographyP>{effect}</TypographyP>

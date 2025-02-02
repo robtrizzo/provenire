@@ -16,10 +16,12 @@ export default function FightingInstructorInput({
   fightingInstructor,
   updateFightingInstructor,
   removeFightingInstructor,
+  enable,
 }: {
   fightingInstructor: FightingInstructor;
   updateFightingInstructor: (ticks: number) => void;
   removeFightingInstructor: () => void;
+  enable: boolean;
 }) {
   const { name, clock, fightingStyle, description } = fightingInstructor;
 
@@ -28,14 +30,23 @@ export default function FightingInstructorInput({
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
+      {enable ? (
+        <PopoverTrigger asChild>
+          <div>
+            <FightingInstructorSummary
+              fightingInstructor={fightingInstructor}
+              className="mt-1 py-1 px-2 rounded-md hover:bg-secondary"
+            />
+          </div>
+        </PopoverTrigger>
+      ) : (
         <div>
           <FightingInstructorSummary
             fightingInstructor={fightingInstructor}
             className="mt-1 py-1 px-2 rounded-md hover:bg-secondary"
           />
         </div>
-      </PopoverTrigger>
+      )}
       <PopoverContent>
         <div className="flex justify-between items-center">
           <TypographyH4 className="mt-0">{name}</TypographyH4>

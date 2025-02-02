@@ -20,11 +20,13 @@ export default function AlchemyInput({
   updateAlchemy,
   variant = "alchemy",
   removeAlchemy,
+  enable,
 }: {
   alchemy: Item;
   updateAlchemy: (traits: string[], uses: number, ticks: number) => void;
   variant?: string;
   removeAlchemy?: () => void;
+  enable: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const [traits, setTraits] = useState(alchemy.traits);
@@ -65,7 +67,23 @@ export default function AlchemyInput({
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
+      {enable ? (
+        <PopoverTrigger asChild>
+          <div>
+            {!isMounted ? null : variant === "alchemy" ? (
+              <AlchemySummary
+                item={alchemy}
+                className="mt-1 py-1 px-2 rounded-md hover:bg-secondary"
+              />
+            ) : (
+              <FormulaSummary
+                item={alchemy}
+                className="mt-1 py-1 px-2 rounded-md hover:bg-secondary"
+              />
+            )}
+          </div>
+        </PopoverTrigger>
+      ) : (
         <div>
           {!isMounted ? null : variant === "alchemy" ? (
             <AlchemySummary
@@ -79,7 +97,7 @@ export default function AlchemyInput({
             />
           )}
         </div>
-      </PopoverTrigger>
+      )}
       <PopoverContent>
         <form ref={formRef} onSubmit={handleSubmit}>
           <div className="flex justify-between items-center">
