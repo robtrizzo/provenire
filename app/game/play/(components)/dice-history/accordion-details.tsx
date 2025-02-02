@@ -21,6 +21,9 @@ export default function DieAccordian({ roll }: { roll: Roll }) {
   })
 
   const fetchUserData = async () => {
+    if (!roll.userid) {
+      return null;
+    }
     const response = await fetch(`/api/users/${roll.userid}`);
     const user = await response.json();
     return user as User;

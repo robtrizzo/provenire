@@ -88,7 +88,6 @@ export async function GET(
   try {
     let rolls = await getRolls(userid, cursor, pageSize);
     if (!session?.user?.role.includes("admin")) {
-      console.log("filtering")
       rolls = rolls.filter((roll) => !roll.private || roll.userid === session?.user?.id);
     }
     return NextResponse.json(rolls);

@@ -76,7 +76,6 @@ import { useCharacterSheet } from "@/contexts/characterSheetContext";
 import { useRoll } from "@/contexts/rollContext";
 import Portrait from "./components/portrait";
 import { RollType } from "@/types/roll";
-import DiceHistory from "./components/dice-history";
 
 export default function Charsheet() {
   const [tab, setTab] = useState("mission");
@@ -162,6 +161,9 @@ export default function Charsheet() {
     if (hash && ["mission", "profile", "churn"].includes(hash.substring(1))) {
       setTab(hash.substring(1));
     }
+    if (name) {
+      setCharacterName(name);
+    }
   }, []);
 
   async function handleRollButton(
@@ -212,13 +214,13 @@ export default function Charsheet() {
     setBonusDiceRed,
     setBonusDiceBlue,
     setFortuneDice,
+    setCharacterName,
   } = useRoll();
 
   return (
     <div>
       <div className="flex justify-between">
         <div className="flex gap-2 mt-5 ml-auto">
-          <DiceHistory />
           <SaveCharacter initialName={name} />
           <LoadCharacter triggerCharacterLoaded={triggerCharacterLoaded} />
           <ClearCharacter triggerCharacterLoaded={triggerCharacterLoaded} />
@@ -235,7 +237,8 @@ export default function Charsheet() {
                 placeholder="Name"
                 value={name}
                 onChange={(e) => {
-                  setName(e.target.value);
+                  setName(name);
+                  setCharacterName(name); // for rolls
                   handleDebounceChange();
                 }}
               />

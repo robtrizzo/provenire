@@ -38,7 +38,7 @@ import AddOperation from "./(components)/add-operation";
 import OperationInput from "./(components)/operation-input";
 import AddClock from "./(components)/add-clock";
 import ClockInput from "./(components)/clock-input";
-import DiceSheet from "./(components)/dice-sheet";
+import DiceSheet from "@/app/game/play/(components)/dice-history/sheet";
 import { useCrewSheet } from "@/contexts/crewSheetContext";
 import { useSession } from "next-auth/react";
 import Charsheet from "./(components)/character-sheet/character-sheet";
