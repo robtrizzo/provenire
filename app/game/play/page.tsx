@@ -725,31 +725,31 @@ export default function Page() {
                   </div>
                 </div>
                 <div className="relative w-56 h-24 rounded-md border-[1px] border-border">
-                  {/* <Image
-                  src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/wolfboy-8GbIppsoksWV3DEN87HWHXqcowr4EP.png"
-                  alt="character portrait"
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="center"
-                  sizes="(max-width: 224px) 100vw, 50vw"
-                  className="z-0 rounded-md"
-                /> */}
+                  <Image
+                    src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/malgus%20zoom-ddkzKNoA2HM3SVVuSyFTXSoJanLlQO.png"
+                    alt="character portrait"
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="center"
+                    sizes="(max-width: 224px) 100vw, 50vw"
+                    className="z-0 rounded-md"
+                  />
                   <div className="absolute bottom-0 left-0 h-24 w-56 z-10 bg-black/50 rounded-md flex items-center justify-center hover:bg-black/20 transition-all duration-300">
                     <b className="text-lg">Malgus Veradun</b>
                   </div>
                 </div>
                 <div className="relative w-56 h-24 rounded-md border-[1px] border-border">
-                  {/* <Image
-                  src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/wolfboy-8GbIppsoksWV3DEN87HWHXqcowr4EP.png"
-                  alt="character portrait"
-                  layout="fill"
-                  objectFit="cover"
-                  objectPosition="center"
-                  sizes="(max-width: 224px) 100vw, 50vw"
-                  className="z-0 rounded-md"
-                /> */}
+                  <Image
+                    src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/Merit-ONhjE1e3VgsiiaXtUJ9Kc26jA2gxkA.png"
+                    alt="character portrait"
+                    layout="fill"
+                    objectFit="cover"
+                    objectPosition="center"
+                    sizes="(max-width: 224px) 100vw, 50vw"
+                    className="z-0 rounded-md"
+                  />
                   <div className="absolute bottom-0 left-0 h-24 w-56 z-10 bg-black/50 rounded-md flex items-center justify-center hover:bg-black/20 transition-all duration-300">
-                    <b className="text-lg">???</b>
+                    <b className="text-lg">Merit</b>
                   </div>
                 </div>
               </div>
@@ -816,7 +816,7 @@ export default function Page() {
                   className="z-0 rounded-md"
                 /> */}
                 <div className="absolute bottom-0 left-0 h-24 w-56 z-10 bg-black/50 rounded-md flex items-center justify-center hover:bg-black/20 transition-all duration-300">
-                  <b className="text-lg">Lilya</b>
+                  <b className="text-lg">Lilya Amati</b>
                 </div>
               </div>
               <div className="relative w-56 h-24 rounded-md border-[1px] border-border">

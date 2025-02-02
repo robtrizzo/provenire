@@ -312,10 +312,14 @@ export default function Charsheet() {
                       Professional: [
                         {
                           name: foundBackground.professionalBonds[0].name,
+                          description:
+                            foundBackground.professionalBonds[0].description,
                           score: bonds.Professional[0].score,
                         },
                         {
                           name: foundBackground.professionalBonds[1].name,
+                          description:
+                            foundBackground.professionalBonds[1].description,
                           score: bonds.Professional[1].score,
                         },
                       ],
@@ -2594,66 +2598,53 @@ export default function Charsheet() {
               </TypographyH3>
               {selectedBackground ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2 ">
-                  <div className="m-2 max-w-96">
-                    <div className="flex justify-between items-center">
-                      <TypographyP>
-                        {selectedBackground.professionalBonds?.[0].name}
-                      </TypographyP>
-                      <ActionScore
-                        score={bonds.Professional[0].score}
-                        onChange={(s: number[]) => {
-                          setBonds((prevBonds) => ({
-                            Personal: prevBonds.Personal,
-                            Familial: prevBonds.Familial,
-                            Professional: [
-                              {
-                                name: prevBonds.Professional[0].name,
-                                description:
-                                  prevBonds.Professional[0].description,
-                                score: s,
-                              },
-                              prevBonds.Professional[1],
-                            ],
-                            Crew: prevBonds.Crew,
-                          }));
-                          setChanges(true);
-                        }}
-                      />
-                    </div>
-                    <TypographyP className="text-muted-foreground text-xs">
-                      {selectedBackground?.professionalBonds?.[0].description}
-                    </TypographyP>
-                  </div>
-                  <div className="m-2 max-w-96">
-                    <div className="flex justify-between items-center">
-                      <TypographyP>
-                        {selectedBackground.professionalBonds?.[1].name}
-                      </TypographyP>
-                      <ActionScore
-                        score={bonds.Professional[1].score}
-                        onChange={(s: number[]) => {
-                          setBonds((prevBonds) => ({
-                            Personal: prevBonds.Personal,
-                            Familial: prevBonds.Familial,
-                            Professional: [
-                              prevBonds.Professional[0],
-                              {
-                                name: prevBonds.Professional[1].name,
-                                description:
-                                  prevBonds.Professional[1].description,
-                                score: s,
-                              },
-                            ],
-                            Crew: prevBonds.Crew,
-                          }));
-                          setChanges(true);
-                        }}
-                      />
-                    </div>
-                    <TypographyP className="text-muted-foreground text-xs">
-                      {selectedBackground?.professionalBonds?.[0].description}
-                    </TypographyP>
-                  </div>
+                  {bonds.Professional.map((b, i) => (
+                    <BondInput
+                      key={`bond-professional-${i}`}
+                      bond={b}
+                      handleSave={(name: string, description: string) => {
+                        setBonds((prevBonds) => ({
+                          Personal: prevBonds.Personal,
+                          Familial: prevBonds.Familial,
+                          Professional: prevBonds.Professional.map(
+                            (bond, index) =>
+                              index === i
+                                ? { name, score: bond.score, description }
+                                : bond
+                          ),
+                          Crew: prevBonds.Crew,
+                        }));
+                        setChanges(true);
+                      }}
+                      handleChangeScore={(s: number[]) => {
+                        setBonds((prevBonds) => ({
+                          Personal: prevBonds.Personal,
+                          Familial: prevBonds.Familial,
+                          Professional: prevBonds.Professional.map(
+                            (bond, index) =>
+                              index === i
+                                ? {
+                                    name: bond.name,
+                                    score: s,
+                                    description: bond.description,
+                                  }
+                                : bond
+                          ),
+                          Crew: prevBonds.Crew,
+                        }));
+                        setChanges(true);
+                      }}
+                      handleDeleteBond={() => {
+                        setBonds((prevBonds) => ({
+                          ...prevBonds,
+                          Professional: prevBonds.Professional.filter(
+                            (_, index) => i !== index
+                          ),
+                        }));
+                        setChanges(true);
+                      }}
+                    />
+                  ))}
                 </div>
               ) : (
                 <TypographyP className="text-center">

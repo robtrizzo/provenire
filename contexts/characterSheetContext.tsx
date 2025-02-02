@@ -146,10 +146,14 @@ export default function CharacterSheetProvider({
     Professional: [
       {
         name: selectedBackground?.professionalBonds?.[0]?.name || "",
+        description:
+          selectedBackground?.professionalBonds?.[0].description || "",
         score: [0, 0],
       },
       {
-        name: selectedBackground?.professionalBonds?.[0]?.name || "",
+        name: selectedBackground?.professionalBonds?.[1]?.name || "",
+        description:
+          selectedBackground?.professionalBonds?.[1].description || "",
         score: [0, 0],
       },
     ],
