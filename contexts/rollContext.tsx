@@ -2,12 +2,12 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Attribute } from "@/types/game";
-import { blueHigher, Roll, RollType } from "@/types/roll";
+import {blueHigher, resultsMessage, Roll, RollType, ticksFromProject} from "@/types/roll";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useCharacterSheet } from "./characterSheetContext";
 import { Die } from "@/components/die";
 import { cn } from "@/lib/utils";
-import {useSession} from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 interface RollContextProps {
   rollActions: (
@@ -66,7 +66,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ...roll, charName:characterName }),
+        body: JSON.stringify({ ...roll, charName: characterName }),
       });
       return response.json();
     },
@@ -185,111 +185,6 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     );
   }
 
-  function stressFromResist(roll: Roll): number {
-    let stress: number;
-    switch (roll.result) {
-      case "failure":
-        stress = blueHigher(roll) ? 2 : 3;
-        break;
-      case "partial":
-        stress = blueHigher(roll) ? 1 : 2;
-        break;
-      case "success":
-        stress = blueHigher(roll) ? 0 : 1;
-        break;
-      case "crit":
-        stress = blueHigher(roll) ? -1 : 0;
-        break;
-    }
-    return stress;
-  }
-
-  function ticksFromProject(roll: Roll): number[] {
-    const ticks = [];
-    switch (roll.result) {
-      case "failure":
-        ticks.push(0, 1, 1);
-        break;
-      case "partial":
-        ticks.push(1, 2, 3);
-        break;
-      case "success":
-        ticks.push(2, 3, 5);
-        break;
-      case "crit":
-        ticks.push(3, 5, 7);
-        break;
-    }
-    return ticks;
-  }
-
-  function resultsMessage(roll: Roll): string {
-    const blueIsHigher = blueHigher(roll);
-    let resultText = "";
-    switch (roll.type) {
-      case "resist":
-        const stress = stressFromResist(roll);
-        switch (stress) {
-          case -1:
-            resultText = "Crit! Clear 1 stress.";
-            break;
-          case 0:
-            resultText = `${
-              roll.result === "crit" ? "Crit! " : ""
-            }Take no stress.`;
-            break;
-          default:
-            resultText = `Take ${stress} stress.`;
-            break;
-        }
-        break;
-      case "project":
-        switch (roll.result) {
-          case "crit":
-            resultText = `Crit! ${
-              blueIsHigher ? "" : "(but take reduced effect)"
-            }`;
-            break;
-          case "success":
-            resultText = `Hit${
-              blueIsHigher ? "." : ", and take reduced effect"
-            }`;
-            break;
-          case "partial":
-            resultText = `Partial hit${
-              blueIsHigher ? "." : ", and take reduced effect"
-            }`;
-            break;
-          case "failure":
-            resultText = `Miss${
-              blueIsHigher ? "." : ", and take reduced effect"
-            }`;
-            break;
-        }
-        break;
-      default:
-        switch (roll.result) {
-          case "crit":
-            resultText = "Crit! Succeed with improved effect.";
-            break;
-          case "failure":
-            resultText = "Miss. Suffer the consequences.";
-            break;
-          case "partial":
-            resultText = `Partial hit. Succeed, but suffer the consequences${
-              roll.effect ? "" : " and take reduced effect"
-            }.`;
-            break;
-          case "success":
-            resultText = `Hit! Succeed${
-              roll.effect ? "" : ", but take reduced effect"
-            }.`;
-            break;
-        }
-    }
-    return resultText;
-  }
-
   async function diceToast(
     roll: Roll,
     action1: string | undefined = undefined,
@@ -345,9 +240,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
             <Die
               key={i}
               roll={r}
-              className={`h-10 w-10 ${
-                roll.type === "fortune" ? "" : "text-blue-800"
-              }`}
+              className={`h-10 w-10 ${roll.type === "fortune" ? "" : "text-blue-800"
+                }`}
             />
           ))}
         </div>
@@ -367,9 +261,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
                   <Die
                     key={i}
                     roll={r}
-                    className={`h-10 w-10 ${
-                      roll.type === "fortune" ? "" : "text-blue-800"
-                    }`}
+                    className={`h-10 w-10 ${roll.type === "fortune" ? "" : "text-blue-800"
+                      }`}
                   />
                 )),
             ]
@@ -379,9 +272,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
               className={cn(
                 "h-10 w-10",
                 blueHigher(roll)
-                  ? `h-10 w-10 ${
-                      roll.type === "fortune" ? "" : "text-blue-800"
-                    }`
+                  ? `h-10 w-10 ${roll.type === "fortune" ? "" : "text-blue-800"
+                  }`
                   : "text-red-400"
               )}
             />
