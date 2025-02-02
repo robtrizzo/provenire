@@ -1,12 +1,7 @@
 import { auth } from "@/auth/index";
 import { checkUserAuthenticated, checkUserRole } from "@/lib/auth";
 import { NextRequest, NextResponse } from "next/server";
-import redis from "@/lib/redis";
-
-async function getUser(userid: string) {
-  const user = await redis.get(`user:${userid}`);
-  return user as User;
-}
+import {getUser} from "@/handlers/users";
 
 export async function PUT(
   request: NextRequest,
@@ -52,6 +47,10 @@ export async function GET(
   }
 
   const user = await getUser(userid);
+  if (!user) {
+    return NextResponse.json({ error: "user not found" }, { status: 404 });
+  }
+
   return NextResponse.json(user);
 }
 

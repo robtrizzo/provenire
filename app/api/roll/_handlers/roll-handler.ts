@@ -22,9 +22,20 @@ export async function getRolls(
 export async function clearRolls(userId: string): Promise<void> {
   const key = `user:${userId}:rolls`;
   await redis.del(key);
+
+  // also remove from the global rolls list. This is done in lua so it can be passed off to redis and done all at once
+  const delScript = `
+    local rolls = redis.call('lrange', KEYS[1], 0, -1)
+    for i, roll in ipairs(rolls) do
+      local parsedRoll = cjson.decode(roll)
+      if parsedRoll.userid == ARGV[1] then
+        redis.call('lrem', KEYS[1], 0, roll)
+      end
+    end
+  `;
+  await redis.eval(delScript, ["rolls"], [userId]);
 }
 
 export async function getAllRolls(cursor: number, pageSize: number): Promise<Roll[]> {
-  console.log("getting all rolls");
   return await redis.lrange("rolls", cursor, cursor + pageSize - 1);
 }

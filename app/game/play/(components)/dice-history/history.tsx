@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
-import DieDetails from "./details";
-import DieAccordian from "./accordian";
+import DieTopDetails from "./top-details";
+import DieAccordionDetails from "./accordion-details";
 import { Roll } from "@/types/roll";
 
 export default function DiceHistory({
@@ -44,8 +44,8 @@ export default function DiceHistory({
           className="border rounded-lg p-2"
           ref={refIsObserverTarget(index) ? observerTarget : null}
         >
-          <DieDetails roll={roll} />
-          <DieAccordian roll={roll} />
+          <DieTopDetails roll={roll} />
+          <DieAccordionDetails roll={roll} />
         </div>
       ))}
     </div>

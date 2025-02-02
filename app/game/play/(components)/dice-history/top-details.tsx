@@ -1,7 +1,7 @@
 import { Die } from "@/components/die";
 import { blueHigher, Roll } from "@/types/roll";
 
-export default function DieDetails({ roll }: { roll: Roll }) {
+export default function DieTopDetails({ roll }: { roll: Roll }) {
   return (
     <div className="flex gap-1 items-center">
       <div className="mt-2 text-md flex flex-col">
