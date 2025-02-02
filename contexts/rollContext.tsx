@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, ReactNode } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Attribute } from "@/types/game";
 import { blueHigher, Roll, RollType } from "@/types/roll";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useCharacterSheet } from "./characterSheetContext";
 import { Die } from "@/components/die";
 import { cn } from "@/lib/utils";
@@ -16,7 +16,12 @@ interface RollContextProps {
     attribute2?: Attribute | undefined,
     action2?: string | undefined
   ) => Promise<Roll>;
-  rollDice: (type: RollType, numRed: number, numBlue: number) => Promise<Roll>;
+  rollDice: (
+    type: RollType,
+    numRed: number,
+    numBlue: number,
+    tag?: string
+  ) => Promise<Roll>;
   diceToast: (roll: Roll, action1?: string, action2?: string) => void;
   bonusDiceRed: number;
   bonusDiceBlue: number;
@@ -44,6 +49,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   const [bonusDiceRed, setBonusDiceRed] = useState<number>(0);
   const [bonusDiceBlue, setBonusDiceBlue] = useState<number>(0);
   const [fortuneDice, setFortuneDice] = useState<number>(0);
+  const queryClient = useQueryClient();
 
   const { mutateAsync: saveDiceRoll } = useMutation({
     mutationFn: async (roll: Roll) => {
@@ -55,6 +61,9 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         body: JSON.stringify(roll),
       });
       return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["rolls"] });
     },
     onError: (error) => {
       console.error("Failed to save roll", error);
@@ -69,7 +78,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   const rollDice = async (
     type: RollType,
     numRed: number,
-    numBlue: number
+    numBlue: number,
+    tag?: string
   ): Promise<Roll> => {
     numRed += bonusDiceRed;
     numBlue += bonusDiceBlue;
@@ -78,6 +88,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       type: type,
       numRed: numRed,
       numBlue: numBlue,
+      tag: tag,
     } as Roll;
 
     roll.redDice = [];
@@ -158,7 +169,12 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     const blueRolls =
       score1.filter((r) => r === 2).length +
       score2.filter((r) => r === 2).length;
-    return await rollDice(type, redRolls, blueRolls);
+    return await rollDice(
+      type,
+      redRolls,
+      blueRolls,
+      `${action1}${action2 ? ` | ${action2}` : ""}`
+    );
   }
 
   function stressFromResist(roll: Roll): number {

@@ -77,6 +77,7 @@ import { useCharacterSheet } from "@/contexts/characterSheetContext";
 import { useRoll } from "@/contexts/rollContext";
 import Portrait from "./(components)/portrait";
 import { RollType } from "@/types/roll";
+import DiceHistory from "./(components)/dice-history";
 
 export default function Charsheet() {
   const [tab, setTab] = useState("mission");
@@ -214,7 +215,6 @@ export default function Charsheet() {
     setFortuneDice,
   } = useRoll();
 
-
   return (
     <div>
       <div className="flex justify-between">
@@ -225,6 +225,7 @@ export default function Charsheet() {
           ]}
         />
         <div className="flex gap-2 mt-5">
+          <DiceHistory />
           <SaveCharacter initialName={name} />
           <LoadCharacter triggerCharacterLoaded={triggerCharacterLoaded} />
           <ClearCharacter triggerCharacterLoaded={triggerCharacterLoaded} />
@@ -2044,11 +2045,7 @@ export default function Charsheet() {
                       className="h-10 hover:cursor-pointer group"
                       onClick={async (e) => {
                         if (e.shiftKey) {
-                          const roll = await rollActions(
-                            "action",
-                            "Heart",
-                            a
-                          );
+                          const roll = await rollActions("action", "Heart", a);
                           diceToast(roll, a);
                         } else {
                           setRollRight(`Heart-${a}`);
@@ -2297,7 +2294,7 @@ export default function Charsheet() {
                         const roll = await rollActions(
                           "action",
                           "Machina",
-                          "Suggest",
+                          "Suggest"
                         );
                         diceToast(roll, "Suggest");
                       } else {
@@ -2317,7 +2314,7 @@ export default function Charsheet() {
                         const roll = await rollActions(
                           "action",
                           "Machina",
-                          "Survey",
+                          "Survey"
                         );
                         diceToast(roll, "Survey");
                       } else {
@@ -2360,7 +2357,7 @@ export default function Charsheet() {
                             const roll = await rollActions(
                               "action",
                               "Machina",
-                              a,
+                              a
                             );
                             diceToast(roll, a);
                           } else {
@@ -2385,7 +2382,7 @@ export default function Charsheet() {
                             const roll = await rollActions(
                               "action",
                               "Machina",
-                              a,
+                              a
                             );
                             diceToast(roll, a);
                           } else {
@@ -2409,7 +2406,7 @@ export default function Charsheet() {
                           const roll = await rollActions(
                             "action",
                             "Machina",
-                            a,
+                            a
                           );
                           diceToast(roll, a);
                         } else {
@@ -2508,10 +2505,10 @@ export default function Charsheet() {
                         Personal: prevBonds.Personal.map((bond, index) =>
                           index === i
                             ? {
-                                name: bond.name,
-                                score: s,
-                                description: bond.description,
-                              }
+                              name: bond.name,
+                              score: s,
+                              description: bond.description,
+                            }
                             : bond
                         ),
                         Familial: prevBonds.Familial,
@@ -2576,10 +2573,10 @@ export default function Charsheet() {
                         Familial: prevBonds.Familial.map((bond, index) =>
                           index === i
                             ? {
-                                name: bond.name,
-                                score: s,
-                                description: bond.description,
-                              }
+                              name: bond.name,
+                              score: s,
+                              description: bond.description,
+                            }
                             : bond
                         ),
                         Professional: prevBonds.Professional,
@@ -2717,10 +2714,10 @@ export default function Charsheet() {
                         Crew: prevBonds.Crew.map((bond, index) =>
                           index === i
                             ? {
-                                name: bond.name,
-                                score: s,
-                                description: bond.description,
-                              }
+                              name: bond.name,
+                              score: s,
+                              description: bond.description,
+                            }
                             : bond
                         ),
                       }));

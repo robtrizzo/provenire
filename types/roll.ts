@@ -19,6 +19,7 @@ export type Roll = {
     result: RollResult;
     resultDie: number;
     timestamp?: string;
+    tag?: string;       // tag is effectively a description of the roll
 }
 
 export function validateRoll(roll: Roll) {
