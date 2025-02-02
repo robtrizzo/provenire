@@ -1,0 +1,118 @@
+[
+  {
+    "name": "Living Space",
+    "projects": [
+      {
+        "name": "Rooms",
+        "ticks": 0,
+        "clock": 3,
+        "description": "Crew clears the permanent 1 harm \"tired\" from their sheet."
+      },
+      {
+        "name": "Locked doors",
+        "ticks": 0,
+        "clock": 3,
+        "description": "Crew is no longer vulnerable while resting"
+      },
+      {
+        "name": "Beds",
+        "ticks": 0,
+        "clock": 3,
+        "description": "Crew reduces 1 stress each downtime"
+      },
+      {
+        "name": "Poultices",
+        "ticks": 0,
+        "clock": 3,
+        "description": "gain 4 ticks on your healing clock when you recover"
+      }
+    ]
+  },
+  {
+    "name": "Security",
+    "projects": [
+      {
+        "name": "Stash",
+        "ticks": 0,
+        "clock": 5,
+        "description": "2 slots each for food and materials"
+      },
+      {
+        "name": "Stoker contact",
+        "ticks": 0,
+        "clock": 5,
+        "description": "+1d to reduce heat after killing"
+      },
+      {
+        "name": "Large stash",
+        "ticks": 0,
+        "clock": 5,
+        "description": "4 slots each for food and materials"
+      },
+      {
+        "name": "Lookouts",
+        "ticks": 0,
+        "clock": 5,
+        "description": "-2 heat per mission"
+      }
+    ]
+  },
+  {
+    "name": "Lair",
+    "projects": [
+      {
+        "name": "Training room",
+        "ticks": 0,
+        "clock": 7,
+        "description": "The crew gains an xp trigger: You put your instructors' lessons into practice."
+      },
+      {
+        "name": "Holding chamber",
+        "ticks": 0,
+        "clock": 7,
+        "description": "secure place to hold one prisoner."
+      },
+      {
+        "name": "Meeting room",
+        "ticks": 0,
+        "clock": 7,
+        "description": "creates a repeating 5-clock \"outisde contact\" representing new factions reaching out to the crew."
+      },
+      {
+        "name": "Common room",
+        "ticks": 0,
+        "clock": 7,
+        "description": "group rolls during downtime can treat multiple 6s as a critical."
+      }
+    ]
+  },
+  {
+    "name": "Community",
+    "projects": [
+      {
+        "name": "Meetings",
+        "ticks": 0,
+        "clock": 5,
+        "description": "+1d to persuade or consort while in the community."
+      },
+      {
+        "name": "Pooled resources",
+        "ticks": 0,
+        "clock": 5,
+        "description": "Starvation clocks are 1 larger"
+      },
+      {
+        "name": "Giving back",
+        "ticks": 0,
+        "clock": 5,
+        "description": "Members of the community perform a downtime action for the crew."
+      },
+      {
+        "name": "United front",
+        "ticks": 0,
+        "clock": 5,
+        "description": "+1 max stress"
+      }
+    ]
+  }
+]
