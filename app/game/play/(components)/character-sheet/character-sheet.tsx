@@ -1253,7 +1253,7 @@ export default function Charsheet() {
                     <Input
                       className="rounded-none h-10"
                       value={harm1[0]}
-                      disabled={true}
+                      disabled={!abilities.includes("Vigorous")}
                       onChange={(e) => {
                         setHarm1([e.target.value, harm1[1]]);
                         handleDebounceChange();
@@ -1272,7 +1272,7 @@ export default function Charsheet() {
                 <div className="flex flex-col items-center justify-center w-16 gap-4 border-[1px] border-border h-[120px]">
                   <Clock
                     key={`healing${new Date().getTime()}`}
-                    max={4}
+                    max={abilities.includes("Vigorous") ? 3 : 4}
                     current={healing}
                     height={35}
                     width={35}

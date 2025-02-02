@@ -214,7 +214,19 @@ export default function CharacterSheetProvider({
       setHealing(parsed.healing || 0);
       setHarm3(parsed.harm3 || "");
       setHarm2(parsed.harm2 || ["", ""]);
-      setHarm1(parsed.harm1 || ["tired", ""]);
+      if (parsed.abilities.includes("Vigorous")) {
+        let h1 = parsed.harm1[0];
+        let h2 = parsed.harm1[1];
+        if (h1 === "tired") {
+          h1 = "";
+        }
+        if (h2 === "tired") {
+          h2 = "";
+        }
+        setHarm1([h1, h2]);
+      } else {
+        setHarm1(parsed.harm1 || ["tired", ""]);
+      }
       setArmor(parsed.armor || false);
       setHArmor(parsed.hArmor || false);
       setSArmor(parsed.sArmor || false);
