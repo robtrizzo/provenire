@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Implicate",
+    "clock": 9,
+    "ticks": 0,
+    "effect": "Plant evidence implicating someone else for the crew's crimes"
+  },
+  {
+    "name": "Scout",
+    "clock": 5,
+    "ticks": 0,
+    "effect": "Learn the name, contact, or danger of an adjacent region"
+  },
+  {
+    "name": "Expand Network",
+    "clock": 5,
+    "ticks": 0,
+    "effect": "Permanent +1d to gather information rolls in the chosen region"
+  },
+  {
+    "name": "Jailbreak",
+    "clock": 9,
+    "ticks": 0,
+    "effect": "Gain access to a character's prison cell and sneak them to freedom"
+  },
+  {
+    "name": "Lay Trap",
+    "clock": 9,
+    "ticks": 0,
+    "effect": "+2d to the next engagement roll that involes ambushing or surprising the enemy"
+  },
+  {
+    "name": "Dreadful Rumors",
+    "clock": 7,
+    "ticks": 0,
+    "effect": "Learn a region's special mission"
+  }
+]

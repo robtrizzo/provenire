@@ -47,6 +47,8 @@ import AddFightingInstructor from "./(components)/add-fighting-instructor";
 import FightingInstructorInput from "./(components)/fighting-instructor-input";
 import AddCommunityProject from "./(components)/add-community-project";
 import CommunityProjectInput from "./(components)/community-project-input";
+import AddOperation from "./(components)/add-operation";
+import OperationInput from "./(components)/operation-input";
 
 export default function Page() {
   const [tab, setTab] = useState("crew");
@@ -78,6 +80,7 @@ export default function Page() {
   const [security, setSecurity] = useState<CommunityProject[]>([]);
   const [lair, setLair] = useState<CommunityProject[]>([]);
   const [community, setCommunity] = useState<CommunityProject[]>([]);
+  const [operations, setOperations] = useState<Operation[]>([]);
 
   const handleUpdateItem =
     (itemName: string) => (traits: string[], ticks: number) => {
@@ -425,6 +428,29 @@ export default function Page() {
       const { val, setter } = getCommunityProjectState(category);
       setter(val.filter((p) => p.name !== communityProjectName));
     };
+
+  function handleAddOperation(operation: Operation) {
+    const operationExists = operations.some(
+      (existingOperation) => existingOperation.name === operation.name
+    );
+    if (operationExists) {
+      console.log(`Operation with name ${operation.name} already exists`);
+      return;
+    }
+    setOperations([...operations, operation]);
+  }
+
+  const handleUpdateOperation = (operationName: string) => (ticks: number) => {
+    setOperations((prevOperations) =>
+      prevOperations.map((operation) =>
+        operation.name === operationName ? { ...operation, ticks } : operation
+      )
+    );
+  };
+
+  const handleRemoveOperation = (operationName: string) => () => {
+    setOperations(operations.filter((o) => o.name !== operationName));
+  };
 
   useEffect(() => {
     if (window === undefined) return;
@@ -895,6 +921,17 @@ export default function Page() {
                   Walk among the oppressors and learn their secrets
                 </b>
                 <Separator />
+              </div>
+              {operations.map((o, idx) => (
+                <OperationInput
+                  key={`${o.name}${idx}`}
+                  operation={o}
+                  updateOperation={handleUpdateOperation(o.name)}
+                  removeOperation={handleRemoveOperation(o.name)}
+                />
+              ))}
+              <div className="flex justify-center gap-2 mt-2">
+                <AddOperation addOperation={handleAddOperation} />
               </div>
             </div>
           </div>

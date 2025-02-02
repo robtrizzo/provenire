@@ -158,3 +158,7 @@ export type FightingInstructor = Clock & {
 export type CommunityProject = Clock & {
   description: string;
 };
+
+export type Operation = Clock & {
+  effect: string;
+};
