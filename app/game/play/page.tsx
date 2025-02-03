@@ -188,6 +188,7 @@ export default function Page() {
                 <div className="flex items-center gap-2">
                   <Eye className="text-orange-500" />
                   <BuildupCheckboxes
+                    key={`heat-${Date.now()}`}
                     max={9}
                     current={heat}
                     numDisabled={0}
@@ -203,6 +204,7 @@ export default function Page() {
                 <div className="flex items-center gap-2">
                   <Siren className="text-rose-500" />
                   <BuildupCheckboxes
+                    key={`wanted-${Date.now()}`}
                     max={4}
                     current={wanted}
                     numDisabled={0}
@@ -223,6 +225,7 @@ export default function Page() {
                 <div className="flex items-center gap-2">
                   <Wheat className="text-amber-500" />
                   <BuildupCheckboxes
+                    key={`food-${Date.now()}`}
                     max={4}
                     current={food}
                     numDisabled={3}
@@ -238,6 +241,7 @@ export default function Page() {
                 <div className="flex items-center gap-2">
                   <Speech className="text-lime-500" />
                   <BuildupCheckboxes
+                    key={`rep-${Date.now()}`}
                     max={4}
                     current={rep}
                     numDisabled={3}
@@ -255,6 +259,7 @@ export default function Page() {
                 <div className="flex items-center gap-2">
                   <Anvil className="text-violet-500" />
                   <BuildupCheckboxes
+                    key={`materials-${Date.now()}`}
                     max={4}
                     current={materials}
                     numDisabled={3}
@@ -270,6 +275,7 @@ export default function Page() {
                 <div className="flex items-center gap-2">
                   <Handshake className="text-fuchsia-500" />
                   <BuildupCheckboxes
+                    key={`goodwill-${Date.now()}`}
                     max={4}
                     current={goodwill}
                     numDisabled={3}
@@ -288,6 +294,7 @@ export default function Page() {
                 <div className="flex items-center gap-2">
                   <Brain className="text-teal-500" />
                   <BuildupCheckboxes
+                    key={`intel-${Date.now()}`}
                     max={4}
                     current={intel}
                     numDisabled={3}
