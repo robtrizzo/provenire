@@ -856,6 +856,7 @@ export default function Page() {
               <NamePortrait name="Cassian" />
               <NamePortrait
                 name="Kuni the Rover"
+                dead={true}
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/kuni_the_rover-6W58DYOqk9tTF02FKmYUjJPHnOifLU.png"
               />
               <NamePortrait
@@ -1077,6 +1078,7 @@ export default function Page() {
             <div className="flex items-center justify-center gap-2 flex-wrap">
               <NamePortrait
                 name="Kuni the Rover"
+                dead={true}
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/kuni_the_rover-6W58DYOqk9tTF02FKmYUjJPHnOifLU.png"
               />
               <NamePortrait
