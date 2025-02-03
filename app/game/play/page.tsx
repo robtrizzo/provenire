@@ -838,7 +838,10 @@ export default function Page() {
                 name="Borani"
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/borani-gAyIKjm2hYkRL0U43WI4CX779JtbSh.png"
               />
-              <NamePortrait name="Inga" />
+              <NamePortrait
+                name="Inga"
+                src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/inga-VkSI5ifqVNbZ3Cyod1ekwfCB6dgCaF.jpg"
+              />
               <NamePortrait
                 name="Tovarus"
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/tovarus-QUmbIXcq1YEsNaWS6Fcq0G7ej8HHCX.png"
@@ -933,8 +936,14 @@ export default function Page() {
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/Kerrac-yMdl8VAj4keAinv3Iy571WVOg0KxC7.png"
               />
               <NamePortrait name="Riks the Rat" />
-              <NamePortrait name="Gnaeus" />
-              <NamePortrait name="Hamlin" />
+              <NamePortrait
+                name="Gnaeus"
+                src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/gnaeus-ovrlgdcikCCeg14D6HZM1w6GKdk8Ra.jpg"
+              />
+              <NamePortrait
+                name="Hamlin"
+                src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/hamlin-sEMswDBl8cGOn1DLeq5koaLRLDcRos.jpg"
+              />
               <NamePortrait
                 name="Wilgefort"
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/wilgefort-UJGTrnLq52Zif0PQVTau5YczGN8yTh.png"
@@ -1032,6 +1041,7 @@ export default function Page() {
                 name="Oza Kriche"
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/oza-PpDlP3aecTXM6yj6bdgPkclFo78u7M.png"
               />
+              <NamePortrait name="Sara" />
             </div>
           </div>
           <div>
@@ -1214,6 +1224,7 @@ export default function Page() {
                 name="Seperi"
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/seperi-S8xjBpK4qD2N6tPkUl06mYyGeagqm2.png"
               />
+              <NamePortrait name="Sara" />
             </div>
           </div>
           <div>
@@ -1234,7 +1245,10 @@ export default function Page() {
                 name="Oza Kriche"
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/oza-PpDlP3aecTXM6yj6bdgPkclFo78u7M.png"
               />
-              <NamePortrait name="Inga" />
+              <NamePortrait
+                name="Inga"
+                src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/inga-VkSI5ifqVNbZ3Cyod1ekwfCB6dgCaF.jpg"
+              />
               <NamePortrait
                 name="Lorel"
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/lorel-QxW0yIfTGWnOwdAkuXII2HqPFtExCL.png"
