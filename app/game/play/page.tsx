@@ -1012,7 +1012,10 @@ export default function Page() {
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/enzo-MJm7deywDtMBXPd0GWUWsUr6pnWFMH.png"
               />
               <NamePortrait name="Seb" />
-              <NamePortrait name="Nadia" />
+              <NamePortrait
+                name="Nadia"
+                src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/Nadia-2duB0lW8p4Gcl3MJxVLHdg0MZzzWoV.png"
+              />
               <NamePortrait name="Veria" />
               <NamePortrait name="Malix" />
               <NamePortrait name="Gisava the Bully" />
@@ -1219,7 +1222,10 @@ export default function Page() {
             </TypographyH4>
             <Separator className="mt-2 mb-4 bg-cyan-700" />
             <div className="flex items-center justify-center gap-2 flex-wrap">
-              <NamePortrait name="Nadia" />
+              <NamePortrait
+                name="Nadia"
+                src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/Nadia-2duB0lW8p4Gcl3MJxVLHdg0MZzzWoV.png"
+              />
               <NamePortrait
                 name="Tovarus"
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/tovarus-QUmbIXcq1YEsNaWS6Fcq0G7ej8HHCX.png"
