@@ -15,7 +15,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import {useState, useEffect, useMemo} from "react";
+import { useState, useMemo } from "react";
 import { Roll } from "@/types/roll";
 import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
 import DiceHistory from "@/app/game/play/(components)/dice-history/history";
@@ -25,16 +25,48 @@ import { DiceClear } from "./clear-button";
 
 export default function DiceSheet() {
   const PAGE_SIZE = 40;
+  const LOCAL_STORAGE_KEY = "dicehistory.selectedfilter";
   const [open, setOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState("all");
   const session = useSession();
 
-  useEffect(() => {
-    const savedValue = localStorage.getItem("dicehistory.selectedfilter");
-    if (savedValue) {
-      setSelectedValue(savedValue);
+  const useLocalStorage = (key: string, initialValue: string) => {
+    const [value, setValue] = useState(() => {
+      if (typeof window === 'undefined') return initialValue;
+      return localStorage.getItem(key) ?? initialValue;
+    });
+
+    const setStoredValue = (newValue: string) => {
+      setValue(newValue);
+      localStorage.setItem(key, newValue);
+    };
+
+    return [value, setStoredValue] as const;
+  };
+  const [selectedValue, setSelectedValue] = useLocalStorage(
+    LOCAL_STORAGE_KEY,
+    "all"
+  );
+
+  const buildUrl = (val: string, cursor: number) => {
+    const baseUrl = '/api/roll';
+    const params = new URLSearchParams({
+      cursor: cursor.toString(),
+      page_size: PAGE_SIZE.toString()
+    });
+
+    switch (val) {
+      case 'all':
+        return `${baseUrl}?${params}`;
+      case 'own':
+        const userid = session?.data?.user?.id ?? "";
+        if (!userid) {
+          throw new Error("current user has no id provided");
+        }
+        return `${baseUrl}/${session?.data?.user?.id}?${params}`;
+      default:
+        return `${baseUrl}/${val}?${params}`;
     }
-  }, []);
+  };
 
   const fetchRollData = async ({
     pageParam = 0,
@@ -43,31 +75,17 @@ export default function DiceSheet() {
     pageParam: number | undefined;
     queryKey: string[];
   }) => {
-    const val = queryKey[1];
-    const cursor = pageParam?.toString() ?? "0";
-
-    let response;
-    if (val === "all") {
-      response = await fetch(
-        `/api/roll?cursor=${cursor}&page_size=${PAGE_SIZE}`
-      );
-    } else {
-      let userid = val;
-      if (val === "own") {
-        userid = session?.data?.user?.id ?? "";
-        if (!userid) {
-          return [];
-        }
+    try {
+      const response = await fetch(buildUrl(queryKey[1], pageParam));
+      if (!response.ok) {
+        console.error(`Failed to fetch roll data. status: ${response.status}`);
+        return [];
       }
-      response = await fetch(
-        `/api/roll/${userid}?cursor=${cursor}&page_size=${PAGE_SIZE}`
-      );
+      return await response.json();
+    } catch (error) {
+      console.error('Error fetching roll data:', error);
+      throw error;
     }
-    if (!response.ok) {
-      console.error(`Failed to fetch roll data. status: ${response.status}`);
-      return [];
-    }
-    return await response.json();
   };
 
   const {
@@ -108,11 +126,11 @@ export default function DiceSheet() {
     const users = Array.isArray(userData) ? userData : [];
 
     return users
-        .sort((a: User, b: User) => a.name.localeCompare(b.name))
-        .filter((user: User) => user.id !== session?.data?.user?.id);
+      .sort((a: User, b: User) => a.name.localeCompare(b.name))
+      .filter((user: User) => user.id !== session?.data?.user?.id);
   }, [userData, session?.data?.user?.id]);
 
-// Update the select options creation to include a null check
+  // Update the select options creation to include a null check
   const selectOptions = useMemo(() => [
     { value: "all", label: "Everybody's" },
     { value: "own", label: "Yours" },
@@ -161,9 +179,9 @@ export default function DiceSheet() {
               </SelectTrigger>
               <SelectContent>
                 {selectOptions.map(option => (
-                    <SelectItem key={option.value} value={option.value}>
-                      {option.label}
-                    </SelectItem>
+                  <SelectItem key={option.value} value={option.value}>
+                    {option.label}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>
