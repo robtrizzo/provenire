@@ -787,6 +787,11 @@ export default function Page() {
                 name="Theo"
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/theo-K3Jaq5FjwQMd7KvSMDZ2agtGRHZZUR.png"
               />
+              <NamePortrait name="Hrodulfr" />
+              <NamePortrait name="Adosinda" />
+              <NamePortrait name="Tan" />
+              <NamePortrait name="Shiro" />
+              <NamePortrait name="Suba" />
             </div>
           </div>
           <div>
@@ -853,7 +858,10 @@ export default function Page() {
                 name="Tovarus"
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/tovarus-QUmbIXcq1YEsNaWS6Fcq0G7ej8HHCX.png"
               />
-              <NamePortrait name="Cassian" />
+              <NamePortrait
+                name="Cassian"
+                src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/Cassian-AwYwlLgy2q5uojS5E9wLTPNnYprM2T.png"
+              />
               <NamePortrait
                 name="Kuni the Rover"
                 dead={true}
@@ -863,6 +871,12 @@ export default function Page() {
                 name="Lorya"
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/lorya-KiUIZNkyVm6ZYI1zvVjSTUFvHH2eac.png"
               />
+              <NamePortrait name="Mori" />
+              <NamePortrait name="Kaethe" />
+              <NamePortrait name="Buffy" />
+              <NamePortrait name="Melisande" />
+              <NamePortrait name="Ivid" />
+              <NamePortrait name="Rodulf" />
             </div>
           </div>
           <div>
@@ -956,11 +970,15 @@ export default function Page() {
                 name="Wilgefort"
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/wilgefort-UJGTrnLq52Zif0PQVTau5YczGN8yTh.png"
               />
-              <NamePortrait name="Adaric" />
               <NamePortrait
                 name="Seperi"
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/seperi-S8xjBpK4qD2N6tPkUl06mYyGeagqm2.png"
               />
+              <NamePortrait name="Ardaric" />
+              <NamePortrait name="Theodora" />
+              <NamePortrait name="Elisaweta" />
+              <NamePortrait name="Jeanne" />
+              <NamePortrait name="Melle" />
             </div>
           </div>
           <div>
@@ -1011,7 +1029,10 @@ export default function Page() {
                 name="Enzo"
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/enzo-MJm7deywDtMBXPd0GWUWsUr6pnWFMH.png"
               />
-              <NamePortrait name="Seb" />
+              <NamePortrait
+                name="Seb"
+                src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/Seb-9SRgLYcSvnrVkO4J1KVAVGw7m9GXub.png"
+              />
               <NamePortrait
                 name="Nadia"
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/Nadia-2duB0lW8p4Gcl3MJxVLHdg0MZzzWoV.png"
@@ -1020,7 +1041,7 @@ export default function Page() {
               <NamePortrait name="Malix" />
               <NamePortrait name="Gisava the Bully" />
               <NamePortrait
-                name="Felix"
+                name="Felix the Facetious"
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/felix-svkBibbDF74FlII5MXY0DAmoK2ZBGw.png"
               />
               <NamePortrait name="Lorin" />
@@ -1034,7 +1055,7 @@ export default function Page() {
                 name="Utthas"
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/utthas-nXjFoOBfkv24dZgUyZQR35CbMcqBln.png"
               />
-              <NamePortrait name="Rasha" />
+              <NamePortrait name="Rasha of the machines" />
               <NamePortrait
                 name="Geleswin"
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/gleleswin-Z8FabIkq6njDsVtaEDMSOFIDxcE6hw.png"
@@ -1052,7 +1073,15 @@ export default function Page() {
                 name="Oza Kriche"
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/oza-PpDlP3aecTXM6yj6bdgPkclFo78u7M.png"
               />
-              <NamePortrait name="Sara" />
+              <NamePortrait
+                name="Sara"
+                src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/Sara-jB7uf7ozPyOEC4H4fBijQkzt0q7egz.png"
+              />
+              <NamePortrait name="Rasha" />
+              <NamePortrait name="Naoko" />
+              <NamePortrait name="Tsuji" />
+              <NamePortrait name="Conrad" />
+              <NamePortrait name="Nibel" />
             </div>
           </div>
           <div>
@@ -1116,14 +1145,15 @@ export default function Page() {
               />
               <NamePortrait name="Noirax Veradun" />
               <NamePortrait
-                name="Felix"
+                name="Felix the Facetious"
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/felix-svkBibbDF74FlII5MXY0DAmoK2ZBGw.png"
               />
               <NamePortrait
                 name="Cyrus"
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/cyrus_enforcer-ryB6WlN1COzjTUGeO8EQ3AN8CviSdi.png"
               />
-              <NamePortrait name="Adaric" />
+              <NamePortrait name="Ardaric" />
+              <NamePortrait name="Kaethe" />
               <NamePortrait
                 name="Lorya"
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/lorya-KiUIZNkyVm6ZYI1zvVjSTUFvHH2eac.png"
@@ -1162,6 +1192,8 @@ export default function Page() {
                 name="Enzo"
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/enzo-MJm7deywDtMBXPd0GWUWsUr6pnWFMH.png"
               />
+              <NamePortrait name="Theodora" />
+              <NamePortrait name="Elisaweta" />
             </div>
           </div>
           <div>
@@ -1184,6 +1216,10 @@ export default function Page() {
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/venee-CYx0NW9EiswyGwm4BOfbaarF2T8AIV.png"
               />
               <NamePortrait name="Kasr" />
+              <NamePortrait name="Nibel" />
+              <NamePortrait name="Rodulf" />
+              <NamePortrait name="Buffy" />
+              <NamePortrait name="Tan" />
             </div>
           </div>
           <div>
@@ -1205,7 +1241,10 @@ export default function Page() {
                 name="Nimund"
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/nimund-eflJ1s1CuzGyZfSt4RKI65GwEL1vBe.png"
               />
-              <NamePortrait name="Cassian" />
+              <NamePortrait
+                name="Cassian"
+                src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/Cassian-AwYwlLgy2q5uojS5E9wLTPNnYprM2T.png"
+              />
               <NamePortrait
                 name="Yewin"
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/yewin-pYKST6JA3xUAdSl9iC4Ttnk3CgSlUE.png"
@@ -1214,6 +1253,10 @@ export default function Page() {
                 name="Utthas"
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/utthas-nXjFoOBfkv24dZgUyZQR35CbMcqBln.png"
               />
+              <NamePortrait name="Conrad" />
+              <NamePortrait name="Adosinda" />
+              <NamePortrait name="Mori" />
+              <NamePortrait name="Shiro" />
             </div>
           </div>
           <div>
@@ -1239,7 +1282,12 @@ export default function Page() {
                 name="Seperi"
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/seperi-S8xjBpK4qD2N6tPkUl06mYyGeagqm2.png"
               />
-              <NamePortrait name="Sara" />
+              <NamePortrait
+                name="Sara"
+                src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/Sara-jB7uf7ozPyOEC4H4fBijQkzt0q7egz.png"
+              />
+              <NamePortrait name="Rasha" />
+              <NamePortrait name="Melisande" />
             </div>
           </div>
           <div>
@@ -1268,6 +1316,9 @@ export default function Page() {
                 name="Lorel"
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/lorel-QxW0yIfTGWnOwdAkuXII2HqPFtExCL.png"
               />
+              <NamePortrait name="Naoko" />
+              <NamePortrait name="Suba" />
+              <NamePortrait name="Tsuji" />
             </div>
           </div>
           <div>
@@ -1288,11 +1339,16 @@ export default function Page() {
                 name="Gisa"
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/gisa-OpJYsx6LwVCBHKIpmLRtAl9bgmvqvl.png"
               />
-              <NamePortrait name="Seb" />
+              <NamePortrait
+                name="Seb"
+                src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/Seb-9SRgLYcSvnrVkO4J1KVAVGw7m9GXub.png"
+              />
               <NamePortrait
                 name="Gideon"
                 src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/gideon-g2OPARDZWXAXUKSOLILDxaP9boctc4.png"
               />
+              <NamePortrait name="Melle" />
+              <NamePortrait name="Ivid" />
             </div>
           </div>
         </TabsContent>
