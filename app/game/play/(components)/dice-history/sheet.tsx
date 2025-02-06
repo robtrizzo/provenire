@@ -16,18 +16,23 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { useState, useMemo } from "react";
-import { Roll } from "@/types/roll";
 import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
 import DiceHistory from "@/app/game/play/(components)/dice-history/history";
 import { useSession } from "next-auth/react";
 import { Loader } from "lucide-react";
 import { DiceClear } from "./clear-button";
+import { useRoll } from "@/contexts/rollContext";
+import { useEffect } from "react";
 
 export default function DiceSheet() {
   const PAGE_SIZE = 40;
   const LOCAL_STORAGE_KEY = "dicehistory.selectedfilter";
   const [open, setOpen] = useState(false);
   const session = useSession();
+  const {
+    rolls,
+    setRolls,
+  } = useRoll();
 
   const useLocalStorage = (key: string, initialValue: string) => {
     const [value, setValue] = useState(() => {
@@ -97,14 +102,20 @@ export default function DiceSheet() {
     queryKey: ["rolls", selectedValue],
     queryFn: fetchRollData,
     initialPageParam: 0,
-    enabled: open,
+    enabled: open && session.status === "authenticated",
     getNextPageParam: (lastPage, allPages) => {
       // If we got a full page of results, there might be more
       return lastPage.length === PAGE_SIZE ? allPages.flat().length : undefined;
     },
   });
 
-  const rolls: Roll[] = rollPages?.pages.flat() ?? [];
+  useEffect(() => {
+    if (rollPages?.pages) {
+      // Flatten all pages into a single array of rolls
+      const allRolls = rollPages.pages.flat();
+      setRolls(allRolls);
+    }
+  }, [rollPages, setRolls]);
 
   function handleValueChange(value: string) {
     setSelectedValue(value);

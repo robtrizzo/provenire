@@ -73,7 +73,7 @@ export default function DieAccordian({ roll }: { roll: Roll }) {
           <div className="flex items-center gap-4 pt-2">
             <div className="flex-grow">
               {roll.charName && (
-                <span className="text-muted-foreground text-xs block flex items-center gap-2">
+                <span className="text-muted-foreground text-xs block items-center gap-2">
                   {roll.charName}
                   {expandedUserName ?
                     ` (${expandedUserName})` :

@@ -2,8 +2,8 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Attribute } from "@/types/game";
-import {blueHigher, resultsMessage, Roll, RollType, ticksFromProject} from "@/types/roll";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { blueHigher, resultsMessage, Roll, RollType, ticksFromProject } from "@/types/roll";
+import { useMutation } from "@tanstack/react-query";
 import { useCharacterSheet } from "./characterSheetContext";
 import { Die } from "@/components/die";
 import { cn } from "@/lib/utils";
@@ -27,10 +27,12 @@ interface RollContextProps {
   bonusDiceRed: number;
   bonusDiceBlue: number;
   fortuneDice: number;
+  rolls: Roll[];
   setBonusDiceRed: React.Dispatch<React.SetStateAction<number>>;
   setBonusDiceBlue: React.Dispatch<React.SetStateAction<number>>;
   setFortuneDice: React.Dispatch<React.SetStateAction<number>>;
   setCharacterName: (name: string) => void;
+  setRolls: React.Dispatch<React.SetStateAction<Roll[]>>;
 }
 
 const RollContext = createContext<RollContextProps | undefined>(undefined);
@@ -52,8 +54,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   const [bonusDiceRed, setBonusDiceRed] = useState<number>(0);
   const [bonusDiceBlue, setBonusDiceBlue] = useState<number>(0);
   const [fortuneDice, setFortuneDice] = useState<number>(0);
-  const queryClient = useQueryClient();
   const session = useSession();
+  const [rolls, setRolls] = useState<Roll[]>([]);
 
   const { mutateAsync: saveDiceRoll } = useMutation({
     mutationFn: async (roll: Roll) => {
@@ -68,10 +70,13 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         },
         body: JSON.stringify({ ...roll, charName: characterName }),
       });
+      if (!response.ok) {
+        console.error(`Failed to save roll. status: ${response.status}`);
+        return response.json();
+      }
+      rolls.unshift(roll);
+      setRolls(rolls);
       return response.json();
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["rolls"] });
     },
     onError: (error) => {
       console.error("Failed to save roll", error);
@@ -293,10 +298,12 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         fortuneDice,
         rollActions,
         rollDice,
+        rolls,
         setBonusDiceRed,
         setBonusDiceBlue,
         setFortuneDice,
         setCharacterName,
+        setRolls,
       }}
     >
       {children}
