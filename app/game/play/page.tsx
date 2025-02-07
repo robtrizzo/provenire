@@ -6,7 +6,7 @@ import Breadcrumbs from "@/components/ui/breadcrumbs";
 import Charsheet from "./(components)/character-sheet/character-sheet";
 import DramatisPersonae from "./(components)/dramatis-personae";
 import CrewSheet from "./(components)/crew-sheet/crew-sheet";
-import DiceSheet from "@/app/game/play/(components)/dice-sheet";
+import DiceSheet from "@/app/game/play/(components)/dice-history/sheet";
 
 export default function Page() {
   const [tab, setTab] = useState("crew");
