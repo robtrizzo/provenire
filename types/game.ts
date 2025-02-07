@@ -162,3 +162,7 @@ export type CommunityProject = Clock & {
 export type Operation = Clock & {
   effect: string;
 };
+
+export interface Crew {
+  name: string;
+}
