@@ -33,6 +33,7 @@ interface RollContextProps {
   setFortuneDice: React.Dispatch<React.SetStateAction<number>>;
   setCharacterName: (name: string) => void;
   setRolls: React.Dispatch<React.SetStateAction<Roll[]>>;
+  setCurrentDiceFilter: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const RollContext = createContext<RollContextProps | undefined>(undefined);
@@ -56,6 +57,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   const [fortuneDice, setFortuneDice] = useState<number>(0);
   const session = useSession();
   const [rolls, setRolls] = useState<Roll[]>([]);
+  const [currentDiceFilter, setCurrentDiceFilter] = useState<string>("");
 
   const { mutateAsync: saveDiceRoll } = useMutation({
     mutationFn: async (roll: Roll) => {
@@ -74,8 +76,10 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         console.error(`Failed to save roll. status: ${response.status}`);
         return response.json();
       }
-      rolls.unshift(roll);
-      setRolls(rolls);
+      if (currentDiceFilter === "own" || currentDiceFilter === "all") {
+        rolls.unshift(roll);
+        setRolls(rolls);
+      }
       return response.json();
     },
     onError: (error) => {
@@ -304,6 +308,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         setFortuneDice,
         setCharacterName,
         setRolls,
+        setCurrentDiceFilter,
       }}
     >
       {children}

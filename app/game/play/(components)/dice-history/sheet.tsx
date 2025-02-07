@@ -32,22 +32,26 @@ export default function DiceSheet() {
   const {
     rolls,
     setRolls,
+    setCurrentDiceFilter
   } = useRoll();
 
   const useLocalStorage = (key: string, initialValue: string) => {
     const [value, setValue] = useState(() => {
       if (typeof window === 'undefined') return initialValue;
-      return localStorage.getItem(key) ?? initialValue;
+      const val = localStorage.getItem(key) ?? initialValue;
+      setCurrentDiceFilter(val);
+      return val;
     });
 
     const setStoredValue = (newValue: string) => {
       setValue(newValue);
       localStorage.setItem(key, newValue);
+      setCurrentDiceFilter(newValue);
     };
 
     return [value, setStoredValue] as const;
   };
-  const [selectedValue, setSelectedValue] = useLocalStorage(
+  const [selectedUser, setSelectedUser] = useLocalStorage(
     LOCAL_STORAGE_KEY,
     "all"
   );
@@ -99,7 +103,7 @@ export default function DiceSheet() {
     hasNextPage,
     isPending: rollsArePending,
   } = useInfiniteQuery({
-    queryKey: ["rolls", selectedValue],
+    queryKey: ["rolls", selectedUser],
     queryFn: fetchRollData,
     initialPageParam: 0,
     enabled: open && session.status === "authenticated",
@@ -117,10 +121,10 @@ export default function DiceSheet() {
     }
   }, [rollPages, setRolls]);
 
-  function handleValueChange(value: string) {
-    setSelectedValue(value);
+  const handleUserChange = (value: string)=>  {
+    setSelectedUser(value);
     localStorage.setItem("dicehistory.selectedfilter", value);
-  }
+  };
 
   const { data: userData, isPending: usersArePending } = useQuery({
     queryKey: ["users"],
@@ -152,15 +156,15 @@ export default function DiceSheet() {
   ], [filteredUsers]);
 
   const getPlaceholderText = useMemo(() => {
-    if (selectedValue === "own") {
+    if (selectedUser === "own") {
       return "Yours";
-    } else if (selectedValue === "all") {
+    } else if (selectedUser === "all") {
       return "Everybody's";
     } else {
-      const curUser = filteredUsers.find((user: User) => user.id === selectedValue);
+      const curUser = filteredUsers.find((user: User) => user.id === selectedUser);
       return curUser?.name;
     }
-  }, [selectedValue, filteredUsers]);
+  }, [selectedUser, filteredUsers]);
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -182,7 +186,7 @@ export default function DiceSheet() {
           <div className="flex items-center space-x-4">
             <Select
               onValueChange={(value) => {
-                handleValueChange(value);
+                handleUserChange(value);
               }}
             >
               <SelectTrigger className="w-[180px]" aria-label="Filter dice history">
@@ -196,12 +200,12 @@ export default function DiceSheet() {
                 ))}
               </SelectContent>
             </Select>
-            {selectedValue === "own" && <DiceClear />}
+            {selectedUser === "own" && <DiceClear />}
           </div>
         )}
 
         <div className="overflow-auto">
-          {rollsArePending || !selectedValue ? (
+          {rollsArePending || !selectedUser ? (
             <div className="flex items-center justify-center h-screen">
               <Loader className="animate-spin" />
             </div>
