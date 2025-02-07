@@ -16,11 +16,10 @@ export default function NamePortrait({
         <Image
           src={src}
           alt="character portrait"
-          layout="fill"
-          objectFit="cover"
+          fill
           objectPosition="center"
           sizes="(max-width: 224px) 100vw, 50vw"
-          className="z-0 rounded-md"
+          className="z-0 rounded-md object-cover"
         />
       )}
       {dead ? (
