@@ -10,7 +10,7 @@ async function getCrewById(crewid: string) {
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ slug: string }> }
+  { params }: { params: Promise<{ crewid: string }> }
 ) {
   const session = await auth();
 
@@ -24,11 +24,12 @@ export async function GET(
     return unauthorizedResponse;
   }
 
-  const crewid = (await params).slug;
+  const crewid = (await params).crewid;
+  const sanitizedCrewId = crewid.replaceAll(/%20/g, " ");
 
   try {
-    const crew = await getCrewById(crewid);
-    return NextResponse.json({ crew });
+    const crew = await getCrewById(sanitizedCrewId);
+    return NextResponse.json(crew);
   } catch (error) {
     console.error("Error getting crew", error);
     return NextResponse.json({ error: "Error getting crew" }, { status: 500 });

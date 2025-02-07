@@ -21,6 +21,8 @@ import {
   Item,
   Operation,
 } from "@/types/game";
+import { useSession } from "next-auth/react";
+import { useQuery } from "@tanstack/react-query";
 
 interface CrewSheetContextProps {
   name: string;
@@ -147,6 +149,9 @@ export default function CrewSheetProvider({
 }: {
   children: ReactNode;
 }) {
+  const session = useSession();
+  const isAdmin = session?.data?.user.role === "admin";
+
   const [name, setName] = useState("");
 
   const [heat, setHeat] = useState(0);
@@ -179,6 +184,26 @@ export default function CrewSheetProvider({
   const [clocks, setClocks] = useState<Clock[]>([]);
 
   const [crewLoaded, setCrewLoaded] = useState<Date>(new Date());
+
+  useQuery({
+    queryKey: ["crew", "Arc One"],
+    enabled: session?.status === "authenticated" && !isAdmin,
+    queryFn: async () => {
+      if (session?.status === "authenticated" && isAdmin) {
+        console.log("detected admin user. skipping crew query...");
+        return;
+      }
+      const response = await fetch("/api/crews/Arc One", { cache: "no-cache" });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const res = await response.json();
+      localStorage.setItem("crewsheet", JSON.stringify(res));
+      setCrewLoaded(new Date());
+      return res;
+    },
+  });
+
   useEffect(() => {
     if (typeof window === "undefined") return;
     const data = localStorage.getItem("crewsheet");

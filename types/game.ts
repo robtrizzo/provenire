@@ -165,4 +165,30 @@ export type Operation = Clock & {
 
 export interface Crew {
   name: string;
+  heat: number;
+  wanted: number;
+  food: number;
+  materials: number;
+  rep: number;
+  goodwill: number;
+  intel: number;
+  items: Item[];
+  alchemy: Item[];
+  gangs: Cohort[];
+  experts: Cohort[];
+  schematics: Item[];
+  formulae: Item[];
+  rGangs: Cohort[];
+  rExperts: Cohort[];
+  scouting: Clock[];
+  blackmail: Blackmail[];
+  factions: Faction[];
+  pcGladiators: Gladiator[];
+  fInstructors: FightingInstructor[];
+  livingSpace: CommunityProject[];
+  security: CommunityProject[];
+  lair: CommunityProject[];
+  community: CommunityProject[];
+  operations: Operation[];
+  clocks: Clock[];
 }
