@@ -1,36 +1,28 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { TypographyH4 } from "@/components/ui/typography";
+import { Save, HardDriveDownload, X, Loader, CloudUpload } from "lucide-react";
+import { Close } from "@radix-ui/react-popover";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { TypographyH4 } from "@/components/ui/typography";
-import {
-  CloudUpload,
-  HardDriveDownload,
-  X,
-  Loader,
-  Save as SaveIcon,
-} from "lucide-react";
-import { Close } from "@radix-ui/react-popover";
 import { useMutation } from "@tanstack/react-query";
+import { useCrewSheet } from "@/contexts/crewSheetContext";
 
-export default function SaveCharacter({
-  initialName,
-}: {
-  initialName: string;
-}) {
-  const [name, setName] = useState(initialName);
+export default function SaveCrewButton() {
+  const { name, setName, setChanges } = useCrewSheet();
   const [open, setOpen] = useState(false);
+  const nameInputRef = useRef<HTMLInputElement>(null);
 
   function closePopover() {
     setOpen(false);
   }
 
   function saveToDevice() {
-    const data = localStorage.getItem("charsheet");
+    const data = localStorage.getItem("crewsheet");
     if (!data) {
       return;
     }
@@ -38,23 +30,28 @@ export default function SaveCharacter({
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `${name}.json`;
+    a.download = `${nameInputRef.current?.value}.json`;
     a.click();
   }
 
   const { mutateAsync: saveToCloud, isPending } = useMutation({
     mutationFn: async () => {
-      const data = localStorage.getItem("charsheet");
+      const data = localStorage.getItem("crewsheet");
       if (!data) {
         return;
       }
-      const response = await fetch(`/api/characters/upload`, {
+      if (nameInputRef.current) {
+        handleSetName(nameInputRef.current.value);
+      }
+      const dataObject = JSON.parse(data);
+      const crew = { ...dataObject, name: nameInputRef.current?.value };
+      const response = await fetch("/api/crews", {
         method: "POST",
-        body: JSON.stringify({ character: data }),
+        body: JSON.stringify(crew),
       });
-      return response.json();
+      return response.json() as Promise<{ success: boolean }>;
     },
-    onError: (error) => {
+    onError: (error: unknown) => {
       console.error("Error saving character to cloud", error);
     },
     onSuccess: () => {
@@ -62,30 +59,43 @@ export default function SaveCharacter({
     },
   });
 
+  function handleSetName(newName: string) {
+    setName(newName);
+    setChanges(true);
+  }
+
+  function handleSaveToDevice() {
+    if (nameInputRef.current) {
+      handleSetName(nameInputRef.current.value);
+    }
+    saveToDevice();
+  }
+
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button variant="secondary" className="text-sm">
-          <SaveIcon />
+          <Save />
           Save
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-80 bg-secondary relative">
         <div className="flex flex-col gap-2">
-          <TypographyH4 className="text-md">Save Character</TypographyH4>
+          <TypographyH4 className="text-md mt-0">Save Crew</TypographyH4>
           <span className="font-serif text-sm text-muted-foreground mt-0">
-            Your character is also saved to your browser&apos;s local storage
-            every 0.5 seconds.
+            The crew is also saved to your browser&apos;s local storage every
+            0.5 seconds.
           </span>
-          <div className="grow">
+          <form className="grow">
             <Input
+              ref={nameInputRef}
+              name="name"
               id="name"
               placeholder="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              defaultValue={name}
             />
-          </div>
-          <Button variant="outline" onClick={() => saveToDevice()}>
+          </form>
+          <Button variant="outline" onClick={() => handleSaveToDevice()}>
             <HardDriveDownload />
             Save to Device
           </Button>

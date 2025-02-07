@@ -23,6 +23,7 @@ import {
 } from "@/types/game";
 
 interface CrewSheetContextProps {
+  name: string;
   heat: number;
   wanted: number;
   food: number;
@@ -49,6 +50,7 @@ interface CrewSheetContextProps {
   community: CommunityProject[];
   operations: Operation[];
   clocks: Clock[];
+  setName: Dispatch<SetStateAction<string>>;
   setHeat: Dispatch<SetStateAction<number>>;
   setWanted: Dispatch<SetStateAction<number>>;
   setFood: Dispatch<SetStateAction<number>>;
@@ -125,6 +127,7 @@ interface CrewSheetContextProps {
   ) => (name: string, ticks: number) => void;
   handleRemoveClock: (clockName: string) => () => void;
   setChanges: Dispatch<SetStateAction<boolean>>;
+  setCrewLoaded: Dispatch<SetStateAction<Date>>;
 }
 
 const CrewSheetContext = createContext<CrewSheetContextProps | undefined>(
@@ -144,9 +147,10 @@ export default function CrewSheetProvider({
 }: {
   children: ReactNode;
 }) {
+  const [name, setName] = useState("");
+
   const [heat, setHeat] = useState(0);
   const [wanted, setWanted] = useState(0);
-
   const [food, setFood] = useState(0);
   const [materials, setMaterials] = useState(0);
   const [rep, setRep] = useState(0);
@@ -174,12 +178,13 @@ export default function CrewSheetProvider({
   const [operations, setOperations] = useState<Operation[]>([]);
   const [clocks, setClocks] = useState<Clock[]>([]);
 
-  const [crewLoaded] = useState<Date>(new Date());
+  const [crewLoaded, setCrewLoaded] = useState<Date>(new Date());
   useEffect(() => {
     if (typeof window === "undefined") return;
     const data = localStorage.getItem("crewsheet");
     if (data) {
       const {
+        name,
         heat,
         wanted,
         food,
@@ -207,6 +212,7 @@ export default function CrewSheetProvider({
         operations,
         clocks,
       } = JSON.parse(data);
+      setName(name);
       setHeat(heat);
       setWanted(wanted);
       setFood(food);
@@ -234,6 +240,7 @@ export default function CrewSheetProvider({
       setOperations(operations);
       setClocks(clocks);
     } else {
+      setName("");
       setHeat(0);
       setWanted(0);
       setFood(0);
@@ -268,6 +275,7 @@ export default function CrewSheetProvider({
     const interval = setInterval(() => {
       if (changes) {
         const data = {
+          name,
           heat,
           wanted,
           food,
@@ -750,6 +758,7 @@ export default function CrewSheetProvider({
   return (
     <CrewSheetContext.Provider
       value={{
+        name,
         heat,
         wanted,
         food,
@@ -776,6 +785,7 @@ export default function CrewSheetProvider({
         community,
         operations,
         clocks,
+        setName,
         setHeat,
         setWanted,
         setFood,
@@ -825,6 +835,7 @@ export default function CrewSheetProvider({
         handleUpdateClock,
         handleRemoveClock,
         setChanges,
+        setCrewLoaded,
       }}
     >
       {children}

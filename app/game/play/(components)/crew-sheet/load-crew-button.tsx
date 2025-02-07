@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -19,17 +17,18 @@ import { TypographyH4 } from "@/components/ui/typography";
 import { CloudDownload, HardDriveUpload, X, FileUp } from "lucide-react";
 import { Close } from "@radix-ui/react-popover";
 import { useQuery } from "@tanstack/react-query";
-import Image from "next/image";
+import { Crew } from "@/types/game";
+import { useCrewSheet } from "@/contexts/crewSheetContext";
 
-export default function LoadCharacter({
-  triggerCharacterLoaded,
-}: {
-  triggerCharacterLoaded: () => void;
-}) {
+export default function LoadCrewButton() {
   const [open, setOpen] = useState(false);
-
   function closePopover() {
     setOpen(false);
+  }
+
+  const { setCrewLoaded } = useCrewSheet();
+  function triggerCrewLoaded() {
+    setCrewLoaded(new Date());
   }
 
   function loadFromDevice() {
@@ -48,8 +47,8 @@ export default function LoadCharacter({
         if (!data) {
           return;
         }
-        localStorage.setItem("charsheet", data.toString());
-        triggerCharacterLoaded();
+        localStorage.setItem("crewsheet", data.toString());
+        triggerCrewLoaded();
         closePopover();
       };
       reader.readAsText(file);
@@ -59,23 +58,22 @@ export default function LoadCharacter({
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <Button variant="secondary" className="text-sm">
-          <FileUp />
-          Load
+        <Button variant="secondary">
+          <FileUp /> Load
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-80 bg-secondary">
         <div className="flex flex-col gap-2">
-          <TypographyH4 className="text-md">Load Character</TypographyH4>
+          <TypographyH4 className="text-md mt-0">Load Crew</TypographyH4>
           <span className="font-serif text-sm text-red-600 font-bold mt-0">
-            This will overwrite your current character!
+            This will overwrite the current crew!
           </span>
           <Button variant="outline" onClick={() => loadFromDevice()}>
             <HardDriveUpload />
             Load from Device
           </Button>
           <LoadFromCloud
-            triggerCharacterLoaded={triggerCharacterLoaded}
+            triggerCrewLoaded={triggerCrewLoaded}
             closePopover={closePopover}
           />
           <Close asChild>
@@ -94,10 +92,10 @@ export default function LoadCharacter({
 }
 
 function LoadFromCloud({
-  triggerCharacterLoaded,
+  triggerCrewLoaded,
   closePopover,
 }: {
-  triggerCharacterLoaded: () => void;
+  triggerCrewLoaded: () => void;
   closePopover: () => void;
 }) {
   const [open, setOpen] = useState(false);
@@ -105,9 +103,9 @@ function LoadFromCloud({
     setOpen(false);
   }
   const { data, isPending } = useQuery({
-    queryKey: ["characters"],
+    queryKey: ["crews"],
     queryFn: async () => {
-      const response = await fetch("/api/characters/", { cache: "no-cache" });
+      const response = await fetch("/api/crews", { cache: "no-cache" });
       return response.json();
     },
   });
@@ -122,19 +120,19 @@ function LoadFromCloud({
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Select a character</DialogTitle>
+          <DialogTitle>Select a crew</DialogTitle>
           <DialogDescription>
-            This will overwrite your current character!
+            This will overwrite your current crew!
           </DialogDescription>
         </DialogHeader>
         {isPending && <div>Loading...</div>}
         {data?.error && <div>Error: {data.error}</div>}
         <div className="flex flex-wrap gap-2">
-          {data?.characters?.map((char: any, idx: number) => (
-            <LoadCharacterButton
+          {data?.crews?.map((crew: Crew, idx: number) => (
+            <CrewEntry
               key={idx}
-              char={char}
-              triggerCharacterLoaded={triggerCharacterLoaded}
+              crew={crew}
+              triggerCrewLoaded={triggerCrewLoaded}
               closeDialog={closeDialog}
               closePopover={closePopover}
             />
@@ -145,43 +143,32 @@ function LoadFromCloud({
   );
 }
 
-function LoadCharacterButton({
-  char,
-  triggerCharacterLoaded,
+function CrewEntry({
+  crew,
+  triggerCrewLoaded,
   closeDialog,
   closePopover,
 }: {
-  char: any;
-  triggerCharacterLoaded: () => void;
+  crew: Crew;
+  triggerCrewLoaded: () => void;
   closeDialog: () => void;
   closePopover: () => void;
 }) {
-  function loadCharacter() {
-    localStorage.setItem("charsheet", JSON.stringify(char));
-    triggerCharacterLoaded();
+  function loadCrew() {
+    localStorage.setItem("crewsheet", JSON.stringify(crew));
+    triggerCrewLoaded();
     closeDialog();
     closePopover();
   }
 
   return (
     <div
-      key={char.name}
+      key={crew.name}
       className="relative w-56 h-24 rounded-md border-[1px] border-border"
-      onClick={() => loadCharacter()}
+      onClick={() => loadCrew()}
     >
-      {char.portrait && (
-        <Image
-          src={char.portrait}
-          alt="character portrait"
-          layout="fill"
-          objectFit="cover"
-          objectPosition="center"
-          sizes="(max-width: 224px) 100vw, 50vw"
-          className="z-0 rounded-md"
-        />
-      )}
       <div className="absolute bottom-0 left-0 h-24 w-56 z-10 bg-black/50 rounded-md flex items-center justify-center hover:bg-opacity-30 hover:cursor-pointer transition-all duration-300">
-        <b className="text-lg">{char.name}</b>
+        <b className="text-lg">{crew.name}</b>
       </div>
     </div>
   );
