@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, ReactNode } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Attribute } from "@/types/game";
 import { blueHigher, resultsMessage, Roll, RollType, ticksFromProject } from "@/types/roll";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient  } from "@tanstack/react-query";
 import { useCharacterSheet } from "./characterSheetContext";
 import { Die } from "@/components/die";
 import { cn } from "@/lib/utils";
@@ -55,6 +55,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   const [bonusDiceRed, setBonusDiceRed] = useState<number>(0);
   const [bonusDiceBlue, setBonusDiceBlue] = useState<number>(0);
   const [fortuneDice, setFortuneDice] = useState<number>(0);
+  const queryClient = useQueryClient();
   const session = useSession();
   const [rolls, setRolls] = useState<Roll[]>([]);
   const [currentDiceFilter, setCurrentDiceFilter] = useState<string>("");
@@ -81,6 +82,19 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         setRolls(rolls);
       }
       return response.json();
+    },
+    onSuccess: async () => {
+      // If the current user makes a roll, we need to invalidate their filter for what the one not currently loaded.
+      // That is, if they're looking at "own", invalidate "all" and vice versa. If they're looking at someone else's,
+      // invalidate both
+      if (currentDiceFilter === "own") {
+        await queryClient.invalidateQueries({ queryKey: ["rolls", "all"] });
+      } else if (currentDiceFilter === "all") {
+        await queryClient.invalidateQueries({ queryKey: ["rolls", "own"] });
+      } else {
+        await queryClient.invalidateQueries({ queryKey: ["rolls", "all"] });
+        await queryClient.invalidateQueries({ queryKey: ["rolls", "own"] });
+      }
     },
     onError: (error) => {
       console.error("Failed to save roll", error);
