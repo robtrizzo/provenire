@@ -15,7 +15,7 @@ export async function POST(
     return unauthenticatedResponse;
   }
 
-  const unauthorizedResponse = checkUserRole(session, ["player"]);
+  const unauthorizedResponse = checkUserRole(session, ["player", "admin"]);
   if (unauthorizedResponse) {
     return unauthorizedResponse;
   }
@@ -71,7 +71,7 @@ export async function GET(
     return unauthenticatedResponse;
   }
 
-  const unauthorizedResponse = checkUserRole(session, ["player"]);
+  const unauthorizedResponse = checkUserRole(session, ["player", "admin"]);
   if (unauthorizedResponse) {
     return unauthorizedResponse;
   }
@@ -108,7 +108,7 @@ export async function DELETE(
     return unauthenticatedResponse;
   }
 
-  const unauthorizedResponse = checkUserRole(session, ["player"]);
+  const unauthorizedResponse = checkUserRole(session, ["player", "admin"]);
   if (unauthorizedResponse) {
     return unauthorizedResponse;
   }
