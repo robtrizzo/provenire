@@ -1,9 +1,9 @@
 "use client";
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useState, ReactNode, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Attribute } from "@/types/game";
 import { blueHigher, resultsMessage, Roll, RollType, ticksFromProject } from "@/types/roll";
-import { useMutation, useQueryClient  } from "@tanstack/react-query";
+import { useInfiniteQuery, useMutation, useQueryClient  } from "@tanstack/react-query";
 import { useCharacterSheet } from "./characterSheetContext";
 import { Die } from "@/components/die";
 import { cn } from "@/lib/utils";
@@ -26,17 +26,24 @@ interface RollContextProps {
   diceToast: (roll: Roll, action1?: string, action2?: string) => void;
   bonusDiceRed: number;
   bonusDiceBlue: number;
+  currentDiceFilter: string;
+  fetchNextPage: () => void;
+  handleCurrentDiceFilterChange: (val: string) => void;
+  hasNextPage: boolean;
   fortuneDice: number;
   rolls: Roll[];
+  rollsArePending: boolean;
   setBonusDiceRed: React.Dispatch<React.SetStateAction<number>>;
   setBonusDiceBlue: React.Dispatch<React.SetStateAction<number>>;
   setFortuneDice: React.Dispatch<React.SetStateAction<number>>;
   setCharacterName: (name: string) => void;
   setRolls: React.Dispatch<React.SetStateAction<Roll[]>>;
-  setCurrentDiceFilter: React.Dispatch<React.SetStateAction<string>>;
+  refetchRolls: () => void;
 }
 
 const RollContext = createContext<RollContextProps | undefined>(undefined);
+const PAGE_SIZE = 40;
+const DICE_FILTER_LOCAL_STORAGE_KEY = "dicehistory.selectedfilter";
 
 export const useRoll = () => {
   const context = useContext(RollContext);
@@ -58,7 +65,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   const queryClient = useQueryClient();
   const session = useSession();
   const [rolls, setRolls] = useState<Roll[]>([]);
-  const [currentDiceFilter, setCurrentDiceFilter] = useState<string>("");
+  const [currentDiceFilter, setCurrentDiceFilter] = useState<string>("all");
 
   const { mutateAsync: saveDiceRoll } = useMutation({
     mutationFn: async (roll: Roll) => {
@@ -66,17 +73,20 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       if (!userId) {
         return [];
       }
+      roll.charName = characterName;
       const response = await fetch(`/api/roll/${userId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ...roll, charName: characterName }),
+        body: JSON.stringify(roll),
       });
       if (!response.ok) {
         console.error(`Failed to save roll. status: ${response.status}`);
         return response.json();
       }
+      roll.userid = userId;
+      roll.timestamp = new Date().toISOString();
       if (currentDiceFilter === "own" || currentDiceFilter === "all") {
         rolls.unshift(roll);
         setRolls(rolls);
@@ -307,22 +317,113 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     });
   }
 
+
+  const buildUrl = (val: string, cursor: number) => {
+    const baseUrl = '/api/roll';
+    const params = new URLSearchParams({
+      cursor: cursor.toString(),
+      page_size: PAGE_SIZE.toString()
+    });
+
+    switch (val) {
+      case 'all':
+        return `${baseUrl}?${params}`;
+      case 'own':
+        const userid = session?.data?.user?.id ?? "";
+        if (!userid) {
+          throw new Error("current user has no id provided");
+        }
+        return `${baseUrl}/${session?.data?.user?.id}?${params}`;
+      default:
+        return `${baseUrl}/${val}?${params}`;
+    }
+  };
+
+  const fetchRollData = async ({
+    pageParam = 0,
+    queryKey,
+  }: {
+    pageParam: number | undefined;
+    queryKey: string[];
+  }) => {
+    if (queryKey[2] !== "true") {
+      return [];
+    }
+    try {
+      const response = await fetch(buildUrl(queryKey[1], pageParam));
+      if (!response.ok) {
+        console.error(`Failed to fetch roll data. status: ${response.status}`);
+        return [];
+      }
+      return await response.json();
+    } catch (error) {
+      console.error('Error fetching roll data:', error);
+      throw error;
+    }
+  };
+
+  const isAuthenticated = !!session?.data?.user?.id;
+
+  const {
+    data: rollPages,
+    fetchNextPage,
+    hasNextPage,
+    isPending: rollsArePending,
+    refetch: refetchRolls,
+  } = useInfiniteQuery({
+    queryKey: ["rolls", currentDiceFilter, isAuthenticated.toString()],
+    queryFn: fetchRollData,
+    initialPageParam: 0,
+    getNextPageParam: (lastPage, allPages) => {
+      // If we got a full page of results, there might be more
+      return lastPage.length === PAGE_SIZE ? allPages.flat().length : undefined;
+    },
+  });
+
+  useEffect(() => {
+    if (rollPages?.pages) {
+      // Flatten all pages into a single array of rolls
+      const allRolls = rollPages.pages.flat();
+      setRolls(allRolls);
+    }
+  }, [rollPages, setRolls]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const df = localStorage.getItem(DICE_FILTER_LOCAL_STORAGE_KEY);
+      if (!!df) {
+        setCurrentDiceFilter(df);
+      }
+    }
+  }, []);
+
+  const handleCurrentDiceFilterChange = (val: string) => {
+    setCurrentDiceFilter(val);
+    localStorage.setItem(DICE_FILTER_LOCAL_STORAGE_KEY, val);
+  }
+
+
   return (
     <RollContext.Provider
       value={{
         diceToast,
         bonusDiceRed,
         bonusDiceBlue,
+        currentDiceFilter,
         fortuneDice,
+        fetchNextPage,
+        handleCurrentDiceFilterChange,
+        hasNextPage,
         rollActions,
         rollDice,
         rolls,
+        rollsArePending,
         setBonusDiceRed,
         setBonusDiceBlue,
         setFortuneDice,
         setCharacterName,
         setRolls,
-        setCurrentDiceFilter,
+        refetchRolls,
       }}
     >
       {children}
