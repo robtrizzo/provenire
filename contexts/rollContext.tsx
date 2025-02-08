@@ -36,7 +36,6 @@ interface RollContextProps {
   setBonusDiceRed: React.Dispatch<React.SetStateAction<number>>;
   setBonusDiceBlue: React.Dispatch<React.SetStateAction<number>>;
   setFortuneDice: React.Dispatch<React.SetStateAction<number>>;
-  setCharacterName: (name: string) => void;
   setRolls: React.Dispatch<React.SetStateAction<Roll[]>>;
   refetchRolls: () => void;
 }
@@ -56,8 +55,7 @@ export const useRoll = () => {
 export default function RollProvider({ children }: { children: ReactNode }) {
   const { toast } = useToast();
 
-  const { attributes } = useCharacterSheet();
-  const [characterName, setCharacterName] = useState<string>("");
+  const { attributes, name } = useCharacterSheet();
 
   const [bonusDiceRed, setBonusDiceRed] = useState<number>(0);
   const [bonusDiceBlue, setBonusDiceBlue] = useState<number>(0);
@@ -67,13 +65,15 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   const [rolls, setRolls] = useState<Roll[]>([]);
   const [currentDiceFilter, setCurrentDiceFilter] = useState<string>("all");
 
+
+
   const { mutateAsync: saveDiceRoll } = useMutation({
     mutationFn: async (roll: Roll) => {
       const userId = session?.data?.user?.id;
       if (!userId) {
         return [];
       }
-      roll.charName = characterName;
+      roll.charName = name;
       const response = await fetch(`/api/roll/${userId}`, {
         method: "POST",
         headers: {
@@ -421,7 +421,6 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         setBonusDiceRed,
         setBonusDiceBlue,
         setFortuneDice,
-        setCharacterName,
         setRolls,
         refetchRolls,
       }}

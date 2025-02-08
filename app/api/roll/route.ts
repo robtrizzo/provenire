@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { checkUserAuthenticated, checkUserRole } from "@/lib/auth";
-import { getAllRolls } from "./_handlers/roll-handler";
+import { getAllRolls } from "@/handlers/rolls";
 
 export async function GET(request: Request) {
   const session = await auth();

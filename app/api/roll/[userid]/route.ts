@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { Roll, validateRoll } from "@/types/roll";
 import { checkUserAuthenticated, checkUserRole } from "@/lib/auth";
-import { addRoll, getRolls, clearRolls } from "../_handlers/roll-handler";
+import { addRoll, getRolls, clearRolls } from "@/handlers/rolls";
 
 export async function POST(
     request: NextRequest,
