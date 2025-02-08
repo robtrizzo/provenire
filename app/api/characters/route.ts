@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import { auth } from "@/auth/index";
-import { checkUserAuthenticated, checkUserRole } from "@/lib/auth";
+import { checkAuth } from "@/lib/auth";
 import redis, { findKeysByPattern } from "@/lib/redis";
 
 async function getAllCharactersForUser(userId: string | undefined) {
@@ -19,23 +18,14 @@ async function getAllCharacters() {
 }
 
 export async function GET() {
-  const session = await auth();
-
-  const unauthenticatedResponse = checkUserAuthenticated(session);
-  if (unauthenticatedResponse) {
-    return unauthenticatedResponse;
-  }
-
-  const unauthorizedResponse = checkUserRole(session, ["admin", "player"]);
-  if (unauthorizedResponse) {
-    return unauthorizedResponse;
-  }
+  const { session, error } = await checkAuth("player");
+  if (error) return error;
 
   try {
     const characters =
-      session?.user.role === "admin"
+      session.user.role === "admin"
         ? await getAllCharacters()
-        : await getAllCharactersForUser(session?.user.id);
+        : await getAllCharactersForUser(session.user.id);
     return NextResponse.json({ characters });
   } catch (error) {
     console.error("Error getting characters", error);

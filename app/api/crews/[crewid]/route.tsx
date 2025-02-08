@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { auth } from "@/auth/index";
-import { checkUserAuthenticated, checkUserRole } from "@/lib/auth";
+import { checkAuth } from "@/lib/auth";
 import redis from "@/lib/redis";
 
 async function getCrewById(crewid: string) {
@@ -12,17 +11,8 @@ export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ crewid: string }> }
 ) {
-  const session = await auth();
-
-  const unauthenticatedResponse = checkUserAuthenticated(session);
-  if (unauthenticatedResponse) {
-    return unauthenticatedResponse;
-  }
-
-  const unauthorizedResponse = checkUserRole(session, ["admin", "player"]);
-  if (unauthorizedResponse) {
-    return unauthorizedResponse;
-  }
+  const { error } = await checkAuth("player");
+  if (error) return error;
 
   const crewid = (await params).crewid;
   const sanitizedCrewId = crewid.replaceAll(/%20/g, " ");
