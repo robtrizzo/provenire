@@ -1,12 +1,13 @@
 "use client";
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useState, ReactNode, useEffect } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Attribute } from "@/types/game";
-import { blueHigher, Roll, RollType } from "@/types/roll";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { blueHigher, resultsMessage, Roll, RollType, ticksFromProject } from "@/types/roll";
+import { useInfiniteQuery, useMutation, useQueryClient  } from "@tanstack/react-query";
 import { useCharacterSheet } from "./characterSheetContext";
 import { Die } from "@/components/die";
 import { cn } from "@/lib/utils";
+import { useSession } from "next-auth/react";
 
 interface RollContextProps {
   rollActions: (
@@ -25,13 +26,23 @@ interface RollContextProps {
   diceToast: (roll: Roll, action1?: string, action2?: string) => void;
   bonusDiceRed: number;
   bonusDiceBlue: number;
+  currentDiceFilter: string;
+  fetchNextPage: () => void;
+  handleCurrentDiceFilterChange: (val: string) => void;
+  hasNextPage: boolean;
   fortuneDice: number;
+  rolls: Roll[];
+  rollsArePending: boolean;
   setBonusDiceRed: React.Dispatch<React.SetStateAction<number>>;
   setBonusDiceBlue: React.Dispatch<React.SetStateAction<number>>;
   setFortuneDice: React.Dispatch<React.SetStateAction<number>>;
+  setRolls: React.Dispatch<React.SetStateAction<Roll[]>>;
+  refetchRolls: () => void;
 }
 
 const RollContext = createContext<RollContextProps | undefined>(undefined);
+const PAGE_SIZE = 40;
+const DICE_FILTER_LOCAL_STORAGE_KEY = "dicehistory.selectedfilter";
 
 export const useRoll = () => {
   const context = useContext(RollContext);
@@ -44,26 +55,56 @@ export const useRoll = () => {
 export default function RollProvider({ children }: { children: ReactNode }) {
   const { toast } = useToast();
 
-  const { attributes } = useCharacterSheet();
+  const { attributes, name } = useCharacterSheet();
 
   const [bonusDiceRed, setBonusDiceRed] = useState<number>(0);
   const [bonusDiceBlue, setBonusDiceBlue] = useState<number>(0);
   const [fortuneDice, setFortuneDice] = useState<number>(0);
   const queryClient = useQueryClient();
+  const session = useSession();
+  const [rolls, setRolls] = useState<Roll[]>([]);
+  const [currentDiceFilter, setCurrentDiceFilter] = useState<string>("all");
+
+
 
   const { mutateAsync: saveDiceRoll } = useMutation({
     mutationFn: async (roll: Roll) => {
-      const response = await fetch("/api/roll", {
+      const userId = session?.data?.user?.id;
+      if (!userId) {
+        return [];
+      }
+      roll.charName = name;
+      const response = await fetch(`/api/roll/${userId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(roll),
       });
+      if (!response.ok) {
+        console.error(`Failed to save roll. status: ${response.status}`);
+        return response.json();
+      }
+      roll.userid = userId;
+      roll.timestamp = new Date().toISOString();
+      if (currentDiceFilter === "own" || currentDiceFilter === "all") {
+        rolls.unshift(roll);
+        setRolls(rolls);
+      }
       return response.json();
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["rolls"] });
+    onSuccess: async () => {
+      // If the current user makes a roll, we need to invalidate their filter for what the one not currently loaded.
+      // That is, if they're looking at "own", invalidate "all" and vice versa. If they're looking at someone else's,
+      // invalidate both
+      if (currentDiceFilter === "own") {
+        await queryClient.invalidateQueries({ queryKey: ["rolls", "all"] });
+      } else if (currentDiceFilter === "all") {
+        await queryClient.invalidateQueries({ queryKey: ["rolls", "own"] });
+      } else {
+        await queryClient.invalidateQueries({ queryKey: ["rolls", "all"] });
+        await queryClient.invalidateQueries({ queryKey: ["rolls", "own"] });
+      }
     },
     onError: (error) => {
       console.error("Failed to save roll", error);
@@ -177,111 +218,6 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     );
   }
 
-  function stressFromResist(roll: Roll): number {
-    let stress: number;
-    switch (roll.result) {
-      case "failure":
-        stress = blueHigher(roll) ? 2 : 3;
-        break;
-      case "partial":
-        stress = blueHigher(roll) ? 1 : 2;
-        break;
-      case "success":
-        stress = blueHigher(roll) ? 0 : 1;
-        break;
-      case "crit":
-        stress = blueHigher(roll) ? -1 : 0;
-        break;
-    }
-    return stress;
-  }
-
-  function ticksFromProject(roll: Roll): number[] {
-    const ticks = [];
-    switch (roll.result) {
-      case "failure":
-        ticks.push(0, 1, 1);
-        break;
-      case "partial":
-        ticks.push(1, 2, 3);
-        break;
-      case "success":
-        ticks.push(2, 3, 5);
-        break;
-      case "crit":
-        ticks.push(3, 5, 7);
-        break;
-    }
-    return ticks;
-  }
-
-  function resultsMessage(roll: Roll): string {
-    const blueIsHigher = blueHigher(roll);
-    let resultText = "";
-    switch (roll.type) {
-      case "resist":
-        const stress = stressFromResist(roll);
-        switch (stress) {
-          case -1:
-            resultText = "Crit! Clear 1 stress.";
-            break;
-          case 0:
-            resultText = `${
-              roll.result === "crit" ? "Crit! " : ""
-            }Take no stress.`;
-            break;
-          default:
-            resultText = `Take ${stress} stress.`;
-            break;
-        }
-        break;
-      case "project":
-        switch (roll.result) {
-          case "crit":
-            resultText = `Crit! ${
-              blueIsHigher ? "" : "(but take reduced effect)"
-            }`;
-            break;
-          case "success":
-            resultText = `Hit${
-              blueIsHigher ? "." : ", and take reduced effect"
-            }`;
-            break;
-          case "partial":
-            resultText = `Partial hit${
-              blueIsHigher ? "." : ", and take reduced effect"
-            }`;
-            break;
-          case "failure":
-            resultText = `Miss${
-              blueIsHigher ? "." : ", and take reduced effect"
-            }`;
-            break;
-        }
-        break;
-      default:
-        switch (roll.result) {
-          case "crit":
-            resultText = "Crit! Succeed with improved effect.";
-            break;
-          case "failure":
-            resultText = "Miss. Suffer the consequences.";
-            break;
-          case "partial":
-            resultText = `Partial hit. Succeed, but suffer the consequences${
-              roll.effect ? "" : " and take reduced effect"
-            }.`;
-            break;
-          case "success":
-            resultText = `Hit! Succeed${
-              roll.effect ? "" : ", but take reduced effect"
-            }.`;
-            break;
-        }
-    }
-    return resultText;
-  }
-
   async function diceToast(
     roll: Roll,
     action1: string | undefined = undefined,
@@ -337,9 +273,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
             <Die
               key={i}
               roll={r}
-              className={`h-10 w-10 ${
-                roll.type === "fortune" ? "" : "text-blue-800"
-              }`}
+              className={`h-10 w-10 ${roll.type === "fortune" ? "" : "text-blue-800"
+                }`}
             />
           ))}
         </div>
@@ -359,9 +294,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
                   <Die
                     key={i}
                     roll={r}
-                    className={`h-10 w-10 ${
-                      roll.type === "fortune" ? "" : "text-blue-800"
-                    }`}
+                    className={`h-10 w-10 ${roll.type === "fortune" ? "" : "text-blue-800"
+                      }`}
                   />
                 )),
             ]
@@ -371,9 +305,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
               className={cn(
                 "h-10 w-10",
                 blueHigher(roll)
-                  ? `h-10 w-10 ${
-                      roll.type === "fortune" ? "" : "text-blue-800"
-                    }`
+                  ? `h-10 w-10 ${roll.type === "fortune" ? "" : "text-blue-800"
+                  }`
                   : "text-red-400"
               )}
             />
@@ -384,18 +317,112 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     });
   }
 
+
+  const buildUrl = (val: string, cursor: number) => {
+    const baseUrl = '/api/roll';
+    const params = new URLSearchParams({
+      cursor: cursor.toString(),
+      page_size: PAGE_SIZE.toString()
+    });
+
+    switch (val) {
+      case 'all':
+        return `${baseUrl}?${params}`;
+      case 'own':
+        const userid = session?.data?.user?.id ?? "";
+        if (!userid) {
+          throw new Error("current user has no id provided");
+        }
+        return `${baseUrl}/${session?.data?.user?.id}?${params}`;
+      default:
+        return `${baseUrl}/${val}?${params}`;
+    }
+  };
+
+  const fetchRollData = async ({
+    pageParam = 0,
+    queryKey,
+  }: {
+    pageParam: number | undefined;
+    queryKey: string[];
+  }) => {
+    if (queryKey[2] !== "true") {
+      return [];
+    }
+    try {
+      const response = await fetch(buildUrl(queryKey[1], pageParam));
+      if (!response.ok) {
+        console.error(`Failed to fetch roll data. status: ${response.status}`);
+        return [];
+      }
+      return await response.json();
+    } catch (error) {
+      console.error('Error fetching roll data:', error);
+      throw error;
+    }
+  };
+
+  const isAuthenticated = !!session?.data?.user?.id;
+
+  const {
+    data: rollPages,
+    fetchNextPage,
+    hasNextPage,
+    isPending: rollsArePending,
+    refetch: refetchRolls,
+  } = useInfiniteQuery({
+    queryKey: ["rolls", currentDiceFilter, isAuthenticated.toString()],
+    queryFn: fetchRollData,
+    initialPageParam: 0,
+    getNextPageParam: (lastPage, allPages) => {
+      // If we got a full page of results, there might be more
+      return lastPage.length === PAGE_SIZE ? allPages.flat().length : undefined;
+    },
+  });
+
+  useEffect(() => {
+    if (rollPages?.pages) {
+      // Flatten all pages into a single array of rolls
+      const allRolls = rollPages.pages.flat();
+      setRolls(allRolls);
+    }
+  }, [rollPages, setRolls]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const df = localStorage.getItem(DICE_FILTER_LOCAL_STORAGE_KEY);
+      if (!!df) {
+        setCurrentDiceFilter(df);
+      }
+    }
+  }, []);
+
+  const handleCurrentDiceFilterChange = (val: string) => {
+    setCurrentDiceFilter(val);
+    localStorage.setItem(DICE_FILTER_LOCAL_STORAGE_KEY, val);
+  }
+
+
   return (
     <RollContext.Provider
       value={{
         diceToast,
         bonusDiceRed,
         bonusDiceBlue,
+        currentDiceFilter,
         fortuneDice,
+        fetchNextPage,
+        handleCurrentDiceFilterChange,
+        hasNextPage,
         rollActions,
         rollDice,
+        rolls,
+        rollsArePending,
         setBonusDiceRed,
         setBonusDiceBlue,
         setFortuneDice,
+        setRolls,
+        refetchRolls,
       }}
     >
       {children}

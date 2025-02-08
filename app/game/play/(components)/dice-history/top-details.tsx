@@ -1,7 +1,7 @@
 import { Die } from "@/components/die";
 import { blueHigher, Roll } from "@/types/roll";
 
-export function DieDetails({ roll }: { roll: Roll }) {
+export default function DieTopDetails({ roll }: { roll: Roll }) {
   return (
     <div className="flex gap-1 items-center">
       <div className="mt-2 text-md flex flex-col">
@@ -9,11 +9,6 @@ export function DieDetails({ roll }: { roll: Roll }) {
         <span className="text-sm font-semibold capitalize">{`${roll.type}${
           roll.tag ? ` - ${roll.tag}` : ""
         }`}</span>
-        {roll.timestamp && (
-          <span className="text-muted-foreground text-xs block">
-            {new Date(roll.timestamp).toLocaleString()}
-          </span>
-        )}
       </div>
       <div className="flex flex-1 justify-end">
         {roll.result === "crit" ? (

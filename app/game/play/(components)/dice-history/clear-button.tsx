@@ -12,14 +12,20 @@ import { Close } from "@radix-ui/react-popover";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Bomb, X } from "lucide-react";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 
 export function DiceClear() {
   const [open, setOpen] = useState(false);
   const queryClient = useQueryClient();
+  const session = useSession()
 
   const { mutateAsync: clearHistory } = useMutation({
     mutationFn: async () => {
-      const response = await fetch("/api/roll", {
+      const userid = session?.data?.user?.id
+      if (!userid) {
+        return []
+      }
+      const response = await fetch(`/api/roll/${userid}`, {
         method: "DELETE",
       });
       return response.json();

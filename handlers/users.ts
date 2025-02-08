@@ -10,3 +10,8 @@ export async function getAllUsers(): Promise<User[]> {
   );
   return users;
 }
+
+export async function getUser(userid: string) {
+  const user = await redis.get(`user:${userid}`);
+  return user as User;
+}

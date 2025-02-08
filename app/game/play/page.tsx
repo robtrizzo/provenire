@@ -6,6 +6,7 @@ import Breadcrumbs from "@/components/ui/breadcrumbs";
 import Charsheet from "./(components)/character-sheet/character-sheet";
 import DramatisPersonae from "./(components)/dramatis-personae";
 import CrewSheet from "./(components)/crew-sheet/crew-sheet";
+import DiceSheet from "@/app/game/play/(components)/dice-history/sheet";
 
 export default function Page() {
   const [tab, setTab] = useState("crew");
@@ -24,7 +25,12 @@ export default function Page() {
 
   return (
     <>
-      <Breadcrumbs crumbs={[{ name: "Play", href: "#" }]} />
+      <div className="flex justify-between">
+        <Breadcrumbs crumbs={[{ name: "Play", href: "#" }]} />
+        <div className="flex gap-2 mt-5">
+          <DiceSheet />
+        </div>
+      </div>
       <Tabs defaultValue="crew" value={tab} className="w-full my-3 mx-auto">
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger
