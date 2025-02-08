@@ -2,11 +2,14 @@ import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 
 export const RoleLevel = {
+  banned: -1,
   user:0,
   player: 1,
   admin: 2,
 } as const;
 export type Role = keyof typeof RoleLevel;
+
+const MAX_ROLE = Math.max(...Object.values(RoleLevel));
 
 export async function checkAuth(
   allowedRole: Role,
@@ -28,6 +31,10 @@ export async function checkAuth(
         { status: 500 }
       ),
     };
+  }
+
+  if (RoleLevel[userRole] === MAX_ROLE){
+    return { session: session, error: null };
   }
 
   if (RoleLevel[userRole] < RoleLevel[allowedRole]) {

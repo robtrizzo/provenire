@@ -15,7 +15,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import DiceHistory from "@/app/game/play/(components)/dice-history/history";
 import { useSession } from "next-auth/react";
@@ -26,6 +26,7 @@ import { useRoll } from "@/contexts/rollContext";
 export default function DiceSheet() {
   const [open, setOpen] = useState(false);
   const session = useSession();
+
   const {
     rolls,
     currentDiceFilter,
@@ -46,7 +47,7 @@ export default function DiceSheet() {
       return response.json();
     },
   });
-  const filteredUsers = useMemo(() => {
+  const getFilteredUsers = () : User[] => {
     // If userData is not yet loaded, return an empty array
     if (!userData) return [];
 
@@ -56,7 +57,9 @@ export default function DiceSheet() {
     return users
       .sort((a: User, b: User) => a.name.localeCompare(b.name))
       .filter((user: User) => user.id !== session?.data?.user?.id);
-  }, [userData, session?.data?.user?.id]);
+  };
+
+  const filteredUsers = getFilteredUsers();
 
   // Update the select options creation to include a null check
   const selectOptions = () => [

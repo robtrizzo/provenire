@@ -89,7 +89,7 @@ export function PermissionsDialog({
 
   const handleSavePermissions = async () => {
     try {
-      const response = await fetch(`/api/users`, {
+      const response = await fetch(`/api/users/${user!.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -111,7 +111,7 @@ export function PermissionsDialog({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="outline" size="sm">
-          Manage Permissions
+          Manage Permissions <span className="text-xs text-muted-foreground">({permissions.length})</span>
         </Button>
       </DialogTrigger>
       <DialogContent>
