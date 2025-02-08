@@ -25,7 +25,7 @@ import { PermissionsDialog } from "./(components)/permissions-dialog";
 
 export default async function Page() {
   const session = await auth();
-  if (session?.user?.role !== "player") {
+  if (session?.user?.role !== "admin") {
     redirect("/signin");
   }
 
@@ -71,6 +71,7 @@ export default async function Page() {
                       <SelectItem value="admin">admin</SelectItem>
                       <SelectItem value="player">player</SelectItem>
                       <SelectItem value="user">user</SelectItem>
+                      <SelectItem value="banned">banned</SelectItem>
                     </SelectContent>
                   </Select>
                 </TableCell>

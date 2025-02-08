@@ -7,7 +7,7 @@ export async function PUT(
     request: NextRequest,
     { params }: { params: Promise<{ userid: string }> }
 ) {
-  const { error } = await checkAuth("player");
+  const { error } = await checkAuth("admin");
   if (error) return error;
 
   try {

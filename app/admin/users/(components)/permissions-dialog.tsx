@@ -13,15 +13,6 @@ import { Input } from "@/components/ui/input";
 import { useState, useEffect } from "react";
 import { X } from "lucide-react";
 
-interface User {
-  id: string;
-  name: string;
-  email: string;
-  permissions: string[];
-  role?: string;
-  image?: string;
-}
-
 interface PermissionsDialogProps {
   username: string;
   userid: string;
