@@ -47,14 +47,16 @@ export default function Portrait({ className }: { className?: string }) {
       <Popover open={open} onOpenChange={setOpen}>
         {portrait ? (
           <PopoverTrigger asChild>
-            <Image
-              priority={true}
-              src={portrait}
-              alt="character portrait"
-              height={108}
-              width={108}
-              className="rounded-md hover:cursor-pointer"
-            />
+            <div className="relative w-28 h-28">
+              <Image
+                src={portrait}
+                alt="character portrait"
+                fill
+                objectPosition="center"
+                sizes="(max-width: 112px) 100vw, 50vw"
+                className="object-cover rounded-md hover:cursor-pointer"
+              />
+            </div>
           </PopoverTrigger>
         ) : (
           <PopoverTrigger asChild>
