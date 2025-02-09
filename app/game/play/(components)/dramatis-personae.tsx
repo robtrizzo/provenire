@@ -194,6 +194,10 @@ export default function DramatisPersonae() {
           <NamePortrait name="Melisande" />
           <NamePortrait name="Ivid" />
           <NamePortrait name="Rodulf" />
+          <NamePortrait
+            name="Sidar"
+            src="https://provenire.s3.us-east-1.amazonaws.com/npc-art/sidar.png"
+          />
         </div>
       </div>
       <div>
@@ -209,6 +213,10 @@ export default function DramatisPersonae() {
           <NamePortrait
             name="Cyrus"
             src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/cyrus-wTDQRYWiqIZkJPGhjnLYbTLT4f9rk5.png"
+          />
+          <NamePortrait
+            name="Sidar"
+            src="https://provenire.s3.us-east-1.amazonaws.com/npc-art/sidar.png"
           />
         </div>
       </div>
@@ -490,15 +498,49 @@ export default function DramatisPersonae() {
         </TypographyH4>
         <Separator className="mt-2 mb-4 bg-red-700" />
         <div className="flex items-center justify-center gap-2 flex-wrap">
-          <NamePortrait name="Marngil the Bear" />
+          <NamePortrait
+            name="Marngil the Bear"
+            src="https://provenire.s3.us-east-1.amazonaws.com/npc-art/marngil_the_bear.png"
+          />
           <NamePortrait
             name="Amalina the Crow"
             src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/amalina-63ucDPz86bPMLiccVP3EwOXZQABSCP.png"
           />
-          <NamePortrait name="Ulf the Wolf" />
+          <NamePortrait
+            name="Ulf the Wolf"
+            src="https://provenire.s3.us-east-1.amazonaws.com/npc-art/ulf_the_wolf.png"
+          />
           <NamePortrait
             name="Duara the Thinblood"
             src="https://provenire.s3.us-east-1.amazonaws.com/npc-art/duara_the_thinblood.png"
+          />
+        </div>
+      </div>
+      <div>
+        <TypographyH4 className="text-red-700 text-center">
+          Marshalls
+        </TypographyH4>
+        <Separator className="mt-2 mb-4 bg-red-700" />
+        <div className="flex items-center justify-center gap-2 flex-wrap">
+          <NamePortrait
+            name="Ridora the Ravenous"
+            src="https://provenire.s3.us-east-1.amazonaws.com/npc-art/ridora_the_ravenous.png"
+          />
+          <NamePortrait
+            name="Theodoric the Torturer"
+            src="https://provenire.s3.us-east-1.amazonaws.com/npc-art/theodoric_the_torturer.png"
+          />
+        </div>
+      </div>
+      <div>
+        <TypographyH4 className="text-red-700 text-center">
+          Commander
+        </TypographyH4>
+        <Separator className="mt-2 mb-4 bg-red-700" />
+        <div className="flex items-center justify-center gap-2 flex-wrap">
+          <NamePortrait
+            name="Frida the Cruel"
+            src="https://provenire.s3.us-east-1.amazonaws.com/npc-art/frida_the_cruel.png"
           />
         </div>
       </div>
@@ -595,6 +637,10 @@ export default function DramatisPersonae() {
           <NamePortrait name="Adosinda" />
           <NamePortrait name="Mori" />
           <NamePortrait name="Shiro" />
+          <NamePortrait
+            name="Sidar"
+            src="https://provenire.s3.us-east-1.amazonaws.com/npc-art/sidar.png"
+          />
         </div>
       </div>
       <div>
