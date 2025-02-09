@@ -41,10 +41,16 @@ export default function DramatisPersonae() {
             name="21"
             src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/21-c9CAB4fwfsIieihTnWV1SBAPMfoTLN.png"
           />
-          <NamePortrait name="Aika" />
+          <NamePortrait
+            name="Aika Drak"
+            src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/Aika%20Drak%20portrait-RamjZLKopMfYVYAP14MFg6pcwxUur0.jpg"
+          />
           <NamePortrait name="Bessemer" />
           <NamePortrait name="Lilya Amati" />
-          <NamePortrait name="Von" />
+          <NamePortrait
+            name="Von"
+            src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/Von-DqxnWGN3lpMKuoZqD0ASv9ch9x7PxO.jpg"
+          />
         </div>
       </div>
       <div>
@@ -397,6 +403,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Conrad" />
           <NamePortrait name="Nibel" />
           <NamePortrait name="Jyothi" />
+          <NamePortrait name="Bardolph" />
         </div>
       </div>
       <div>
@@ -474,6 +481,7 @@ export default function DramatisPersonae() {
             src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/lorya-KiUIZNkyVm6ZYI1zvVjSTUFvHH2eac.png"
           />
           <NamePortrait name="Jyothi" />
+          <NamePortrait name="Bardolph" />
         </div>
       </div>
       <div>
@@ -505,6 +513,10 @@ export default function DramatisPersonae() {
             src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/Untitled-TGGV8Lx7llaXWqeiUW9TdeDdJop6QL.png"
           />
           <NamePortrait
+            name="Von"
+            src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/Von-DqxnWGN3lpMKuoZqD0ASv9ch9x7PxO.jpg"
+          />
+          <NamePortrait
             name="Alma"
             src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/alma-7U53x1yaJA7FAfcM68Rh8wXYvpOOxO.png"
           />
@@ -523,6 +535,10 @@ export default function DramatisPersonae() {
         </TypographyH4>
         <Separator className="mt-2 mb-4 bg-cyan-700" />
         <div className="flex items-center justify-center gap-2 flex-wrap">
+          <NamePortrait
+            name="Aika Drak"
+            src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/Aika%20Drak%20portrait-RamjZLKopMfYVYAP14MFg6pcwxUur0.jpg"
+          />
           <NamePortrait
             name="Geleswin"
             src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/gleleswin-Z8FabIkq6njDsVtaEDMSOFIDxcE6hw.png"
