@@ -308,9 +308,11 @@ export default function CrewSheet() {
               enable={isAdmin}
             />
           ))}
-          <div className="flex justify-center mt-1">
-            <AddGang addGang={handleAddGang} />
-          </div>
+          {isAdmin && (
+            <div className="flex justify-center mt-1">
+              <AddGang addGang={handleAddGang} />
+            </div>
+          )}
           <div className="mt-4 mb-2 mx-2">
             <b className="mt-1 text-white">Experts</b>
             <Separator />
@@ -323,9 +325,11 @@ export default function CrewSheet() {
               enable={isAdmin}
             />
           ))}
-          <div className="flex justify-center mt-1">
-            <AddExpert addExpert={handleAddExpert} />
-          </div>
+          {isAdmin && (
+            <div className="flex justify-center mt-1">
+              <AddExpert addExpert={handleAddExpert} />
+            </div>
+          )}
         </div>
         <div className="px-2">
           <div className="my-2 flex justify-center items-center bg-linear-to-r/oklch from-pink-950 to-blue-950 rounded-lg border-[1px] border-border">
