@@ -69,7 +69,10 @@ export default function DramatisPersonae() {
             src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/kent-yJg3Bx1cEpAehnuwlvyYpuVUczIxEM.png"
           />
           <NamePortrait name="Gaila the Daft" />
-          <NamePortrait name="Audo the Gorger" />
+          <NamePortrait
+            name="Audo the Gorger"
+            src="https://provenire.s3.us-east-1.amazonaws.com/npc-art/audo_the_gorger.png"
+          />
           <NamePortrait
             name="Hellet"
             src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/hellet-7mEQLBRZhZ0TYFRgzYtJajxf2NtiER.png"
@@ -117,7 +120,10 @@ export default function DramatisPersonae() {
         </TypographyH4>
         <Separator className="mt-2 mb-4 bg-red-700" />
         <div className="flex items-center justify-center gap-2 flex-wrap">
-          <NamePortrait name="Audo the Gorger" />
+          <NamePortrait
+            name="Audo the Gorger"
+            src="https://provenire.s3.us-east-1.amazonaws.com/npc-art/audo_the_gorger.png"
+          />
           <NamePortrait
             name="Hellet"
             src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/hellet-7mEQLBRZhZ0TYFRgzYtJajxf2NtiER.png"
@@ -447,7 +453,10 @@ export default function DramatisPersonae() {
             name="Svintha the Cumber"
             src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/svintha_the_crumber-8EUn3dzeyavRkJbsIkCie0jRjJxg4s.png"
           />
-          <NamePortrait name="Audo the Gorger" />
+          <NamePortrait
+            name="Audo the Gorger"
+            src="https://provenire.s3.us-east-1.amazonaws.com/npc-art/audo_the_gorger.png"
+          />
           <NamePortrait name="Riks the Rat" />
           <NamePortrait name="Radegond the Stalker" />
           <NamePortrait name="Naric the Swindler" />
