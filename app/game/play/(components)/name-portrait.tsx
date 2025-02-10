@@ -4,12 +4,19 @@ import Image from "next/image";
 export default function NamePortrait({
   name,
   src,
+  s3,
   dead,
 }: {
   name?: string;
   src?: string;
+  s3?: boolean;
   dead?: boolean;
 }) {
+  if (!src && s3 && name) {
+    src = `${process.env.NEXT_PUBLIC_S3_BUCKET}/npc-art/${name
+      .toLocaleLowerCase()
+      .replaceAll(" ", "_")}.png`;
+  }
   return (
     <div className="relative w-56 h-56 rounded-md border-[1px] border-border">
       {src && (
