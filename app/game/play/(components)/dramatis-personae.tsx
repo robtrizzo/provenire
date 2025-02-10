@@ -79,6 +79,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Tan" />
           <NamePortrait name="Shiro" />
           <NamePortrait name="Suba" />
+          <NamePortrait name="Isaac" />
         </div>
       </div>
       <div>
@@ -122,6 +123,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Ivid" />
           <NamePortrait name="Rodulf" />
           <NamePortrait name="Sidar" s3 />
+          <NamePortrait name="Dunny" />
         </div>
       </div>
       <div>
@@ -133,6 +135,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Warner" s3 />
           <NamePortrait name="Cyrus" s3 />
           <NamePortrait name="Sidar" s3 />
+          <NamePortrait name="Gabe" />
         </div>
       </div>
       <div>
@@ -146,6 +149,10 @@ export default function DramatisPersonae() {
             src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/21-c9CAB4fwfsIieihTnWV1SBAPMfoTLN.png"
           />
           <NamePortrait
+            name="Aika Drak"
+            src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/Aika%20Drak%20portrait-RamjZLKopMfYVYAP14MFg6pcwxUur0.jpg"
+          />
+          <NamePortrait
             name="Drusa"
             src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/Untitled-TGGV8Lx7llaXWqeiUW9TdeDdJop6QL.png"
           />
@@ -156,6 +163,10 @@ export default function DramatisPersonae() {
           <NamePortrait
             name="Malgus Veradun"
             src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/malgus%20zoom-ddkzKNoA2HM3SVVuSyFTXSoJanLlQO.png"
+          />
+          <NamePortrait
+            name="Von"
+            src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/Von-DqxnWGN3lpMKuoZqD0ASv9ch9x7PxO.jpg"
           />
           <NamePortrait name="Sire Ciber" s3 />
           <NamePortrait name="Moore" s3 />
@@ -186,6 +197,11 @@ export default function DramatisPersonae() {
           <NamePortrait name="Elisaweta" />
           <NamePortrait name="Jeanne" />
           <NamePortrait name="Melle" />
+          <NamePortrait name="Hana" />
+          <NamePortrait name="Gran" />
+          <NamePortrait name="Alexi" />
+          <NamePortrait name="Rodric" />
+          <NamePortrait name="Flynn" />
         </div>
       </div>
       <div>
@@ -215,6 +231,7 @@ export default function DramatisPersonae() {
             name="Merit"
             src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/Merit-ONhjE1e3VgsiiaXtUJ9Kc26jA2gxkA.png"
           />
+          <NamePortrait name="Bessemer" />
           <NamePortrait name="Lester Aurus" />
           <NamePortrait name="Minamo" s3 />
           <NamePortrait name="Enzo" s3 />
@@ -246,6 +263,10 @@ export default function DramatisPersonae() {
           <NamePortrait name="Nibel" />
           <NamePortrait name="Jyothi" />
           <NamePortrait name="Bardolph" />
+          <NamePortrait name="Seth" />
+          <NamePortrait name="Corrella" />
+          <NamePortrait name="Gabe" />
+          <NamePortrait name="Orin" />
         </div>
       </div>
       <div>
@@ -266,6 +287,7 @@ export default function DramatisPersonae() {
         </TypographyH4>
         <Separator className="mt-2 mb-4 bg-red-700" />
         <div className="flex items-center justify-center gap-2 flex-wrap">
+          <NamePortrait name="Bessemer" />
           <NamePortrait name="Kuni the Rover" dead s3 />
           <NamePortrait name="Svintha the Crumber" s3 />
           <NamePortrait name="Audo the Gorger" s3 />
@@ -290,6 +312,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Lorya" s3 />
           <NamePortrait name="Jyothi" />
           <NamePortrait name="Bardolph" />
+          <NamePortrait name="Rodric" />
         </div>
       </div>
       <div>
@@ -369,6 +392,8 @@ export default function DramatisPersonae() {
           <NamePortrait name="Rodulf" />
           <NamePortrait name="Buffy" />
           <NamePortrait name="Tan" />
+          <NamePortrait name="Alexi" />
+          <NamePortrait name="Flynn" />
         </div>
       </div>
       <div>
@@ -396,6 +421,8 @@ export default function DramatisPersonae() {
             name="Sidar"
             src="https://provenire.s3.us-east-1.amazonaws.com/npc-art/sidar.png"
           />
+          <NamePortrait name="Corrella" />
+          <NamePortrait name="Orin" />
         </div>
       </div>
       <div>
@@ -412,6 +439,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Sara" s3 />
           <NamePortrait name="Rasha" />
           <NamePortrait name="Melisande" />
+          <NamePortrait name="Dunny" />
         </div>
       </div>
       <div>
@@ -452,6 +480,8 @@ export default function DramatisPersonae() {
           <NamePortrait name="Gideon" s3 />
           <NamePortrait name="Melle" />
           <NamePortrait name="Ivid" />
+          <NamePortrait name="Seth" />
+          <NamePortrait name="Isaac" />
         </div>
       </div>
     </>
