@@ -329,10 +329,10 @@ export default async function Page() {
       <SkillsetAbilities skillsetName="Grease" />
       <TypographyH3>Agendas</TypographyH3>
       <TypographyP>
-        During The Churn, Greases are making deals and promises to acquire
-        <b>materials</b> and <b>goodwill</b> for the crew. These deals and
-        promises are important to accomplish during Missions, or else the Grease
-        is going to get put in a tough spot.
+        During The Churn, Greases are making deals and promises to acquire{" "}
+        resources for the crew. These deals and promises are important to
+        accomplish during Missions, or else the Grease is going to get put in a
+        tough spot.
       </TypographyP>
       <TypographyP>
         <b>Factions</b> can be community leaders, worker clans, or overseer
@@ -415,6 +415,13 @@ export default async function Page() {
         lasting impression on a champion, they could even be recruited as a
         fighting instructor for the crew.
       </TypographyP>
+      <TypographyH4>Gamble</TypographyH4>
+      <TypographyP>
+        When Hammers gamble, they bet <b>1 food</b> or <b>1 material</b>, then
+        make a <b>fighter tier roll</b>: <b>1-3:</b> lose the bet, <b>4-5:</b>{" "}
+        break even,
+        <b>6:</b> +2 food or materials.
+      </TypographyP>
       <TypographyH4>Fight</TypographyH4>
       <TypographyP>
         Fighters in the pits are organized roughly into <b>rookies</b>,
@@ -435,13 +442,6 @@ export default async function Page() {
         <b>veterans</b>, and <b>champions</b> cause <b>harm</b> equal to their
         tier.
         <b>Beasts</b> cause a <b>3-harm</b> and <b>2-harm</b> wound.
-      </TypographyP>
-      <TypographyH4>Gamble</TypographyH4>
-      <TypographyP>
-        When Hammers gamble, they bet <b>1 food</b> or <b>1 material</b>, then
-        make a <b>fighter tier roll</b>: <b>1-3:</b> lose the bet, <b>4-5:</b>{" "}
-        break even,
-        <b>6:</b> +2 food or materials.
       </TypographyP>
       <TypographyH4>Instructors</TypographyH4>
       <TypographyP>
@@ -551,10 +551,9 @@ export default async function Page() {
       </TypographyP>
       <TypographyH4>Bragging Rights</TypographyH4>
       <TypographyP>
-        Nails can choose to make claims of the crew&apos;s accomplishments to
-        gain
-        <b>rep</b>. First they add <b>raise the stakes</b>. Then they make roll
-        and add rep according to the result: <b>1-3:</b> 0, <b>4-5:</b> 1,{" "}
+        Nails can choose to make claims of the crew&apos;s accomplishments to{" "}
+        gain <b>rep</b>. First they <b>raise the stakes</b>. Then they make a
+        roll and add rep according to the result: <b>1-3:</b> 0, <b>4-5:</b> 1,{" "}
         <b>6:</b> 2, <b>Critical:</b> 3.
       </TypographyP>
       <TypographyH4>Cohorts</TypographyH4>
