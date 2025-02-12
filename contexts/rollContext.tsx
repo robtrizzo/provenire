@@ -1,9 +1,25 @@
 "use client";
-import React, { createContext, useContext, useState, ReactNode, useEffect } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Attribute } from "@/types/game";
-import { blueHigher, resultsMessage, Roll, RollType, ticksFromProject } from "@/types/roll";
-import { useInfiniteQuery, useMutation, useQueryClient  } from "@tanstack/react-query";
+import {
+  blueHigher,
+  resultsMessage,
+  Roll,
+  RollType,
+  ticksFromProject,
+} from "@/types/roll";
+import {
+  useInfiniteQuery,
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { useCharacterSheet } from "./characterSheetContext";
 import { Die } from "@/components/die";
 import { cn } from "@/lib/utils";
@@ -38,6 +54,15 @@ interface RollContextProps {
   setFortuneDice: React.Dispatch<React.SetStateAction<number>>;
   setRolls: React.Dispatch<React.SetStateAction<Roll[]>>;
   refetchRolls: () => void;
+  rollLeft: string;
+  rollRight: string;
+  setRollLeft: React.Dispatch<React.SetStateAction<string>>;
+  setRollRight: React.Dispatch<React.SetStateAction<string>>;
+  handleRollButton: (
+    type: RollType,
+    rollLeft: string,
+    rollRight: string
+  ) => void;
 }
 
 const RollContext = createContext<RollContextProps | undefined>(undefined);
@@ -64,8 +89,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   const session = useSession();
   const [rolls, setRolls] = useState<Roll[]>([]);
   const [currentDiceFilter, setCurrentDiceFilter] = useState<string>("all");
-
-
+  const [rollLeft, setRollLeft] = useState<string>("");
+  const [rollRight, setRollRight] = useState<string>("");
 
   const { mutateAsync: saveDiceRoll } = useMutation({
     mutationFn: async (roll: Roll) => {
@@ -273,8 +298,9 @@ export default function RollProvider({ children }: { children: ReactNode }) {
             <Die
               key={i}
               roll={r}
-              className={`h-10 w-10 ${roll.type === "fortune" ? "" : "text-blue-800"
-                }`}
+              className={`h-10 w-10 ${
+                roll.type === "fortune" ? "" : "text-blue-800"
+              }`}
             />
           ))}
         </div>
@@ -294,8 +320,9 @@ export default function RollProvider({ children }: { children: ReactNode }) {
                   <Die
                     key={i}
                     roll={r}
-                    className={`h-10 w-10 ${roll.type === "fortune" ? "" : "text-blue-800"
-                      }`}
+                    className={`h-10 w-10 ${
+                      roll.type === "fortune" ? "" : "text-blue-800"
+                    }`}
                   />
                 )),
             ]
@@ -305,8 +332,9 @@ export default function RollProvider({ children }: { children: ReactNode }) {
               className={cn(
                 "h-10 w-10",
                 blueHigher(roll)
-                  ? `h-10 w-10 ${roll.type === "fortune" ? "" : "text-blue-800"
-                  }`
+                  ? `h-10 w-10 ${
+                      roll.type === "fortune" ? "" : "text-blue-800"
+                    }`
                   : "text-red-400"
               )}
             />
@@ -317,18 +345,17 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     });
   }
 
-
   const buildUrl = (val: string, cursor: number) => {
-    const baseUrl = '/api/roll';
+    const baseUrl = "/api/roll";
     const params = new URLSearchParams({
       cursor: cursor.toString(),
-      page_size: PAGE_SIZE.toString()
+      page_size: PAGE_SIZE.toString(),
     });
 
     switch (val) {
-      case 'all':
+      case "all":
         return `${baseUrl}?${params}`;
-      case 'own':
+      case "own":
         const userid = session?.data?.user?.id ?? "";
         if (!userid) {
           throw new Error("current user has no id provided");
@@ -357,7 +384,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       }
       return await response.json();
     } catch (error) {
-      console.error('Error fetching roll data:', error);
+      console.error("Error fetching roll data:", error);
       throw error;
     }
   };
@@ -389,7 +416,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   }, [rollPages, setRolls]);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       const df = localStorage.getItem(DICE_FILTER_LOCAL_STORAGE_KEY);
       if (!!df) {
         setCurrentDiceFilter(df);
@@ -400,8 +427,45 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   const handleCurrentDiceFilterChange = (val: string) => {
     setCurrentDiceFilter(val);
     localStorage.setItem(DICE_FILTER_LOCAL_STORAGE_KEY, val);
-  }
+  };
 
+  async function handleRollButton(
+    type: RollType,
+    rollLeft: string,
+    rollRight: string
+  ) {
+    if (!rollLeft && !rollRight) return;
+    if (!rollLeft) {
+      const [attribute, action] = rollRight.split("-") as [Attribute, string];
+      const roll = await rollActions(type, attribute, action);
+      diceToast(roll, action);
+    } else if (!rollRight) {
+      const [attribute, action] = rollLeft.split("-") as [Attribute, string];
+      const roll = await rollActions(type, attribute, action);
+      diceToast(roll, action);
+    } else {
+      const [attributeLeft, actionLeft] = rollLeft.split("-") as [
+        Attribute,
+        string
+      ];
+      const [attributeRight, actionRight] = rollRight.split("-") as [
+        Attribute,
+        string
+      ];
+      const roll = await rollActions(
+        type,
+        attributeLeft,
+        actionLeft,
+        attributeRight,
+        actionRight
+      );
+      diceToast(roll, actionLeft, actionRight);
+    }
+    setRollLeft("");
+    setRollRight("");
+    setBonusDiceRed(0);
+    setBonusDiceBlue(0);
+  }
 
   return (
     <RollContext.Provider
@@ -423,6 +487,11 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         setFortuneDice,
         setRolls,
         refetchRolls,
+        rollLeft,
+        rollRight,
+        setRollLeft,
+        setRollRight,
+        handleRollButton,
       }}
     >
       {children}
