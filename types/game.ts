@@ -23,6 +23,12 @@ export type FightingStyle = {
   abilities: Ability[];
 };
 
+export type Donum = {
+  name: string;
+  translation: string;
+  description: string;
+};
+
 export interface Ability {
   name: string;
   keystone?: boolean;

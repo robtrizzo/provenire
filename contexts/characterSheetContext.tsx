@@ -17,6 +17,7 @@ import {
   Loadout,
   Item,
   FightingStyle,
+  Donum,
 } from "@/types/game";
 import { debounce } from "@/lib/utils";
 
@@ -31,6 +32,7 @@ interface CharacterSheetContextProps {
   selectedBackground: Background | undefined;
   selectedHeritage: Heritage | undefined;
   selectedFightingStyle: FightingStyle | undefined;
+  selectedDonum: Donum | undefined;
   questions: Map<string, string>;
   xpRef: React.RefObject<number>;
   attributes: CharacterAttributes;
@@ -70,6 +72,7 @@ interface CharacterSheetContextProps {
   setSelectedFightingStyle: React.Dispatch<
     React.SetStateAction<FightingStyle | undefined>
   >;
+  setSelectedDonum: React.Dispatch<React.SetStateAction<Donum | undefined>>;
   setQuestions: React.Dispatch<React.SetStateAction<Map<string, string>>>;
   setAttributes: React.Dispatch<React.SetStateAction<CharacterAttributes>>;
   setStress: React.Dispatch<React.SetStateAction<number>>;
@@ -125,6 +128,7 @@ export default function CharacterSheetProvider({
   const [selectedHeritage, setSelectedHeritage] = useState<Heritage>();
   const [selectedFightingStyle, setSelectedFightingStyle] =
     useState<FightingStyle>();
+  const [selectedDonum, setSelectedDonum] = useState<Donum>();
 
   const [portrait, setPortrait] = useState("");
   const [name, setName] = useState("");
@@ -217,6 +221,7 @@ export default function CharacterSheetProvider({
       setSelectedBackground(parsed.selectedBackground);
       setSelectedHeritage(parsed.selectedHeritage);
       setSelectedFightingStyle(parsed.selectedFightingStyle);
+      setSelectedDonum(parsed.selectedDonum);
       setQuestions(new Map(parsed.questions));
       xpRef.current = parsed.xp || 0;
       if (parsed.attributes) {
@@ -266,6 +271,7 @@ export default function CharacterSheetProvider({
       setSelectedBackground(undefined);
       setSelectedHeritage(undefined);
       setSelectedFightingStyle(undefined);
+      setSelectedDonum(undefined);
       setQuestions(new Map());
       xpRef.current = 0;
       setAttributes({
@@ -307,7 +313,6 @@ export default function CharacterSheetProvider({
       setLoadout(undefined);
       setItems([]);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [characterLoaded]);
 
   useEffect(() => {
@@ -324,6 +329,7 @@ export default function CharacterSheetProvider({
           selectedBackground,
           selectedHeritage,
           selectedFightingStyle,
+          selectedDonum,
           questions: Array.from(questions),
           xp: xpRef.current,
           attributes,
@@ -409,6 +415,7 @@ export default function CharacterSheetProvider({
         selectedBackground,
         selectedHeritage,
         selectedFightingStyle,
+        selectedDonum,
         questions,
         xpRef,
         attributes,
@@ -438,6 +445,7 @@ export default function CharacterSheetProvider({
         setSelectedBackground,
         setSelectedHeritage,
         setSelectedFightingStyle,
+        setSelectedDonum,
         setQuestions,
         setAttributes,
         setStress,

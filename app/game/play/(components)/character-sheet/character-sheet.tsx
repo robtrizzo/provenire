@@ -17,11 +17,13 @@ import backgrounds from "@/public/backgrounds.json";
 import archetypes from "@/public/archetypes.json";
 import skillsets from "@/public/skillsets.json";
 import fightingStyles from "@/public/fighting_styles.json";
+import donums from "@/public/donums.json";
 import {
   type Archetype,
   type Skillset,
   type Background,
   type FightingStyle,
+  Donum,
 } from "@/types/game";
 import { Button } from "@/components/ui/button";
 import SaveCharacter from "./components/save-character";
@@ -44,6 +46,7 @@ export default function Charsheet() {
   const [fightingStyleSelectKey, setFightingStyleSelectKey] = useState(
     +new Date()
   );
+  const [donumSelectKey, setDonumSelectKey] = useState(+new Date());
 
   const {
     name,
@@ -53,6 +56,7 @@ export default function Charsheet() {
     selectedBackground,
     selectedHeritage,
     selectedFightingStyle,
+    selectedDonum,
     bonds,
     setName,
     setAlias,
@@ -61,6 +65,7 @@ export default function Charsheet() {
     setSelectedBackground,
     setSelectedHeritage,
     setSelectedFightingStyle,
+    setSelectedDonum,
     setBonds,
     setChanges,
     setCharacterLoaded,
@@ -357,7 +362,61 @@ export default function Charsheet() {
                 </SelectContent>
               </Select>
             </div>
-            <div></div>
+            <div>
+              <Select
+                key={donumSelectKey}
+                value={selectedDonum?.name}
+                onValueChange={(value) => {
+                  const foundDonum = donums.find((fs) => fs.name === value) as
+                    | Donum
+                    | undefined;
+                  if (foundDonum) {
+                    setSelectedDonum(foundDonum);
+                    setChanges(true);
+                  }
+                }}
+              >
+                <SelectTrigger className="font-bold text-fuchsia-500 group">
+                  <SelectValue
+                    placeholder={
+                      <span>
+                        Select a{" "}
+                        <i className="blur-[1px] animate-ping hidden group-hover:inline">
+                          ? ? D O N U M ? ..
+                        </i>
+                        <span className="group-hover:hidden">
+                          transformation
+                        </span>
+                      </span>
+                    }
+                  />
+                </SelectTrigger>
+                <SelectContent>
+                  {donums.map((d) => (
+                    <SelectItem key={d.name} value={d.name}>
+                      {d.name}
+                      <span className="text-muted-foreground ml-4">
+                        ({d.translation})
+                      </span>
+                    </SelectItem>
+                  ))}
+                  <SelectSeparator />
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    className="w-full px-2"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedDonum(undefined);
+                      setChanges(true);
+                      setDonumSelectKey(+new Date());
+                    }}
+                  >
+                    Clear
+                  </Button>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
         </div>
       </div>
