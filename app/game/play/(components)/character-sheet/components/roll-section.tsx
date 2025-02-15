@@ -16,8 +16,12 @@ import { useCharacterSheet } from "@/contexts/characterSheetContext";
 import { useRoll } from "@/contexts/rollContext";
 
 export default function RollSection() {
-  const { selectedArchetype, selectedBackground, selectedSkillset } =
-    useCharacterSheet();
+  const {
+    selectedArchetype,
+    selectedBackground,
+    selectedSkillset,
+    selectedFightingStyle,
+  } = useCharacterSheet();
 
   const {
     diceToast,
@@ -83,47 +87,62 @@ export default function RollSection() {
           </SelectTrigger>
           <SelectContent>
             {selectedBackground?.attributes.Heart.map((a, i) => (
-              <SelectItem key={i} value={`Heart-${a}`}>
+              <SelectItem key={a + i} value={`Heart-${a}`}>
                 {a}
               </SelectItem>
             ))}
             {selectedSkillset?.attributes.Heart.map((a, i) => (
-              <SelectItem key={i} value={`Heart-${a}`}>
+              <SelectItem key={a + i} value={`Heart-${a}`}>
                 {a}
               </SelectItem>
             ))}
             {selectedArchetype?.attributes.Heart.map((a, i) => (
-              <SelectItem key={i} value={`Heart-${a}`}>
+              <SelectItem key={a + i} value={`Heart-${a}`}>
+                {a}
+              </SelectItem>
+            ))}
+            {selectedFightingStyle?.attributes.Heart.map((a, i) => (
+              <SelectItem key={a + i} value={`Heart-${a}`}>
                 {a}
               </SelectItem>
             ))}
             {selectedBackground?.attributes.Instinct.map((a, i) => (
-              <SelectItem key={i} value={`Instinct-${a}`}>
+              <SelectItem key={a + i} value={`Instinct-${a}`}>
                 {a}
               </SelectItem>
             ))}
             {selectedSkillset?.attributes.Instinct.map((a, i) => (
-              <SelectItem key={i} value={`Instinct-${a}`}>
+              <SelectItem key={a + i} value={`Instinct-${a}`}>
                 {a}
               </SelectItem>
             ))}
             {selectedArchetype?.attributes.Instinct.map((a, i) => (
-              <SelectItem key={i} value={`Instinct-${a}`}>
+              <SelectItem key={a + i} value={`Instinct-${a}`}>
+                {a}
+              </SelectItem>
+            ))}
+            {selectedFightingStyle?.attributes.Instinct.map((a, i) => (
+              <SelectItem key={a + i} value={`Instinct-${a}`}>
                 {a}
               </SelectItem>
             ))}
             {selectedBackground?.attributes.Machina.map((a, i) => (
-              <SelectItem key={i} value={`Machina-${a}`}>
+              <SelectItem key={a + i} value={`Machina-${a}`}>
                 {a}
               </SelectItem>
             ))}
             {selectedSkillset?.attributes.Machina.map((a, i) => (
-              <SelectItem key={i} value={`Machina-${a}`}>
+              <SelectItem key={a + i} value={`Machina-${a}`}>
                 {a}
               </SelectItem>
             ))}
             {selectedArchetype?.attributes.Machina.map((a, i) => (
-              <SelectItem key={i} value={`Machina-${a}`}>
+              <SelectItem key={a + i} value={`Machina-${a}`}>
+                {a}
+              </SelectItem>
+            ))}
+            {selectedFightingStyle?.attributes.Machina.map((a, i) => (
+              <SelectItem key={a + i} value={`Machina-${a}`}>
                 {a}
               </SelectItem>
             ))}
