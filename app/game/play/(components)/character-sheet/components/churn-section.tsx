@@ -19,6 +19,7 @@ export default function ChurnSection() {
     selectedArchetype,
     selectedSkillset,
     selectedBackground,
+    selectedFightingStyle,
     abilities,
     starvation,
     subsist,
@@ -74,6 +75,22 @@ export default function ChurnSection() {
               />
               <Abilities
                 abilities={selectedArchetype?.abilities?.downtime}
+                characterAbilities={abilities}
+                setCharacterAbilities={setAbilities}
+                setChanges={setChanges}
+                variant="advancement"
+              />
+            </div>
+          </div>
+        )}
+        {selectedFightingStyle && (
+          <div className="mt-4">
+            <TypographyH3 className="text-sm text-emerald-500 mt-4">
+              {selectedFightingStyle?.name}&apos;s Abilities
+            </TypographyH3>
+            <div className="ml-2">
+              <Abilities
+                abilities={selectedFightingStyle?.abilities}
                 characterAbilities={abilities}
                 setCharacterAbilities={setAbilities}
                 setChanges={setChanges}

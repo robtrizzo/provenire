@@ -26,7 +26,7 @@ export default function ActionDescription({
   return (
     <TypographyH4 className={cn(className)}>
       {action.name} <AttributeIcon attribute={action.attribute} />:{" "}
-      <span className="text-sm">{action.description}</span>
+      <span className="text-sm font-medium">{action.description}</span>
     </TypographyH4>
   );
 }

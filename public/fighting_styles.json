@@ -1,0 +1,197 @@
+[
+  {
+    "instructor": "Lareiks",
+    "name": "Crowdbreaking",
+    "description": "Maximize damage to groups of surrounding foes",
+    "attributes": {
+      "Heart": ["Crowdbreaking"],
+      "Instinct": [],
+      "Machina": []
+    },
+    "actions": [
+      {
+        "name": "Crowdbreaking",
+        "attribute": "Heart",
+        "description": "Maximize damage to groups of surrounding foes"
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Basic Weapons Training",
+        "slug": "basic-weapons-training"
+      },
+      {
+        "name": "Cascade",
+        "slug": "cascade"
+      },
+      {
+        "name": "Follow Through",
+        "slug": "follow-through"
+      },
+      {
+        "name": "Clear a Path",
+        "slug": "clear-a-path"
+      },
+      {
+        "name": "Muscular Surge",
+        "slug": "muscular-surge"
+      }
+    ]
+  },
+  {
+    "instructor": "Gelvir",
+    "name": "Pipedancing",
+    "description": "maneuver through the machinery and use it to your advantage",
+    "attributes": {
+      "Heart": [],
+      "Instinct": [],
+      "Machina": ["Pipedancing"]
+    },
+    "actions": [
+      {
+        "name": "Pipedancing",
+        "attribute": "Machina",
+        "description": "Maneuver through the machinery and use it to your advantage"
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Basic Movements",
+        "slug": "basic-movements"
+      },
+      {
+        "name": "Improvised Weaponry",
+        "slug": "improvised-weaponry"
+      },
+      {
+        "name": "Opportunist",
+        "slug": "opportunist"
+      },
+      {
+        "name": "The Dance",
+        "slug": "the-dance"
+      },
+      {
+        "name": "Acrobatic Surge",
+        "slug": "acrobatic-surge"
+      }
+    ]
+  },
+  {
+    "instructor": "Chlodos",
+    "name": "Throatgore",
+    "description": "Pack tactics, go for the throat",
+    "attributes": {
+      "Heart": [],
+      "Instinct": ["Throatgore"],
+      "Machina": []
+    },
+    "actions": [
+      {
+        "name": "Throatgore",
+        "attribute": "Instinct",
+        "description": "Pack tactics, go for the throat"
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Pack Tactics",
+        "slug": "pack-tactics"
+      },
+      {
+        "name": "Coordinated Assault",
+        "slug": "coordinated-assault"
+      },
+      {
+        "name": "Fatal Opening",
+        "slug": "fatal-opening"
+      },
+      {
+        "name": "Isolating Counter",
+        "slug": "isolating-counter"
+      },
+      {
+        "name": "Fatal Finisher",
+        "slug": "fatal-finisher"
+      }
+    ]
+  },
+  {
+    "instructor": "Hunuil",
+    "name": "Bleedout",
+    "description": "Small, precise strikes in vital regions",
+    "attributes": {
+      "Heart": [],
+      "Instinct": [],
+      "Machina": ["Bleedout"]
+    },
+    "actions": [
+      {
+        "name": "Bleedout",
+        "attribute": "Machina",
+        "description": "Small, precise strikes in vital regions"
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Skirmish",
+        "slug": "skirmish"
+      },
+      {
+        "name": "Debilitating Strikes",
+        "slug": "debilitating-strikes"
+      },
+      {
+        "name": "Predatory Focus",
+        "slug": "predatory-focus"
+      },
+      {
+        "name": "Combat Canny",
+        "slug": "combat-canny"
+      },
+      {
+        "name": "Deceiver's Surge",
+        "slug": "deceivers-surge"
+      }
+    ]
+  },
+  {
+    "instructor": "Hermesind",
+    "name": "Backsnap",
+    "description": "Overwhelming aggression",
+    "attributes": {
+      "Heart": [],
+      "Instinct": ["Backsnap"],
+      "Machina": []
+    },
+    "actions": [
+      {
+        "name": "Backsnap",
+        "attribute": "Instinct",
+        "description": "Overwhelming aggression"
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Reckless Mindset",
+        "slug": "reckless-mindset"
+      },
+      {
+        "name": "Immediate Brutality",
+        "slug": "immediate-brutality"
+      },
+      {
+        "name": "Bloody Counter",
+        "slug": "bloody-counter"
+      },
+      {
+        "name": "Reaper's Surge",
+        "slug": "reapers-surge"
+      },
+      {
+        "name": "Unstoppable",
+        "slug": "unstoppable"
+      }
+    ]
+  }
+]

@@ -63,7 +63,7 @@ const Abilities = ({
         return null;
       }
       return (
-        <div className="flex gap-2">
+        <div className="flex gap-2" key={`${ability.slug}-${i}`}>
           {variant === "advancement" && (
             <Checkbox
               checked={

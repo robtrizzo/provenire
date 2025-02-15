@@ -16,7 +16,13 @@ import heritages from "@/public/heritages.json";
 import backgrounds from "@/public/backgrounds.json";
 import archetypes from "@/public/archetypes.json";
 import skillsets from "@/public/skillsets.json";
-import { type Archetype, type Skillset, type Background } from "@/types/game";
+import fightingStyles from "@/public/fighting_styles.json";
+import {
+  type Archetype,
+  type Skillset,
+  type Background,
+  type FightingStyle,
+} from "@/types/game";
 import { Button } from "@/components/ui/button";
 import SaveCharacter from "./components/save-character";
 import LoadCharacter from "./components/load-character";
@@ -35,6 +41,9 @@ export default function Charsheet() {
   const [archetypeSelectKey, setArchetypeSelectKey] = useState(+new Date());
   const [backgroundSelectKey, setBackgroundSelectKey] = useState(+new Date());
   const [skillsetSelectKey, setSkillsetSelectKey] = useState(+new Date());
+  const [fightingStyleSelectKey, setFightingStyleSelectKey] = useState(
+    +new Date()
+  );
 
   const {
     name,
@@ -43,6 +52,7 @@ export default function Charsheet() {
     selectedSkillset,
     selectedBackground,
     selectedHeritage,
+    selectedFightingStyle,
     bonds,
     setName,
     setAlias,
@@ -50,6 +60,7 @@ export default function Charsheet() {
     setSelectedSkillset,
     setSelectedBackground,
     setSelectedHeritage,
+    setSelectedFightingStyle,
     setBonds,
     setChanges,
     setCharacterLoaded,
@@ -80,8 +91,8 @@ export default function Charsheet() {
           <ClearCharacter triggerCharacterLoaded={triggerCharacterLoaded} />
         </div>
       </div>
-      <div className="flex flex-col md:flex-row mt-1 items-end gap-1">
-        <Portrait className="mb-1" />
+      <div className="flex flex-col md:flex-row mt-1 items-start gap-1">
+        <Portrait className="mb-1 mt-6" />
         <div className="w-full">
           <div className="flex gap-1 w-full">
             <div className="grow">
@@ -301,6 +312,52 @@ export default function Charsheet() {
                 </SelectContent>
               </Select>
             </div>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 w-full my-1">
+            <div>
+              <Select
+                key={fightingStyleSelectKey}
+                value={selectedFightingStyle?.name}
+                onValueChange={(value) => {
+                  const foundFightingStyle = fightingStyles.find(
+                    (fs) => fs.name === value
+                  ) as FightingStyle | undefined;
+                  if (foundFightingStyle) {
+                    setSelectedFightingStyle(foundFightingStyle);
+                    setChanges(true);
+                  }
+                }}
+              >
+                <SelectTrigger className="font-bold text-emerald-500">
+                  <SelectValue placeholder="Select a fighting style" />
+                </SelectTrigger>
+                <SelectContent>
+                  {fightingStyles.map((fs) => (
+                    <SelectItem key={fs.name} value={fs.name}>
+                      {fs.name}
+                      <span className="text-muted-foreground ml-4">
+                        {fs.description}
+                      </span>
+                    </SelectItem>
+                  ))}
+                  <SelectSeparator />
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    className="w-full px-2"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedFightingStyle(undefined);
+                      setChanges(true);
+                      setFightingStyleSelectKey(+new Date());
+                    }}
+                  >
+                    Clear
+                  </Button>
+                </SelectContent>
+              </Select>
+            </div>
+            <div></div>
           </div>
         </div>
       </div>

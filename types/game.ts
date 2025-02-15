@@ -14,6 +14,15 @@ export type Archetype = {
   };
 };
 
+export type FightingStyle = {
+  name: string;
+  instructor: string;
+  description: string;
+  attributes: Attributes;
+  actions: Action[];
+  abilities: Ability[];
+};
+
 export interface Ability {
   name: string;
   keystone?: boolean;

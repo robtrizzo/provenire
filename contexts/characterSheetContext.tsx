@@ -16,6 +16,7 @@ import {
   Bonds,
   Loadout,
   Item,
+  FightingStyle,
 } from "@/types/game";
 import { debounce } from "@/lib/utils";
 
@@ -29,7 +30,8 @@ interface CharacterSheetContextProps {
   selectedSkillset: Skillset | undefined;
   selectedBackground: Background | undefined;
   selectedHeritage: Heritage | undefined;
-  questions: Map<string, any>;
+  selectedFightingStyle: FightingStyle | undefined;
+  questions: Map<string, string>;
   xpRef: React.RefObject<number>;
   attributes: CharacterAttributes;
   stress: number;
@@ -46,21 +48,32 @@ interface CharacterSheetContextProps {
   bonds: Bonds;
   starvation: number;
   subsist: number;
-  loadout: any;
+  loadout: Loadout | undefined;
   items: Item[];
   setPortrait: React.Dispatch<React.SetStateAction<string>>;
   setName: React.Dispatch<React.SetStateAction<string>>;
   setAlias: React.Dispatch<React.SetStateAction<string>>;
   setUnivQuestions: React.Dispatch<React.SetStateAction<string[]>>;
   setBloodshedQ: React.Dispatch<React.SetStateAction<string>>;
-  setSelectedArchetype: React.Dispatch<React.SetStateAction<any>>;
-  setSelectedSkillset: React.Dispatch<React.SetStateAction<any>>;
-  setSelectedBackground: React.Dispatch<React.SetStateAction<any>>;
-  setSelectedHeritage: React.Dispatch<React.SetStateAction<any>>;
-  setQuestions: React.Dispatch<React.SetStateAction<Map<string, any>>>;
-  setAttributes: React.Dispatch<React.SetStateAction<any>>;
+  setSelectedArchetype: React.Dispatch<
+    React.SetStateAction<Archetype | undefined>
+  >;
+  setSelectedSkillset: React.Dispatch<
+    React.SetStateAction<Skillset | undefined>
+  >;
+  setSelectedBackground: React.Dispatch<
+    React.SetStateAction<Background | undefined>
+  >;
+  setSelectedHeritage: React.Dispatch<
+    React.SetStateAction<Heritage | undefined>
+  >;
+  setSelectedFightingStyle: React.Dispatch<
+    React.SetStateAction<FightingStyle | undefined>
+  >;
+  setQuestions: React.Dispatch<React.SetStateAction<Map<string, string>>>;
+  setAttributes: React.Dispatch<React.SetStateAction<CharacterAttributes>>;
   setStress: React.Dispatch<React.SetStateAction<number>>;
-  setConditions: React.Dispatch<React.SetStateAction<any[]>>;
+  setConditions: React.Dispatch<React.SetStateAction<string[]>>;
   setHealing: React.Dispatch<React.SetStateAction<number>>;
   setHarm3: React.Dispatch<React.SetStateAction<string>>;
   setHarm2: React.Dispatch<React.SetStateAction<string[]>>;
@@ -68,12 +81,12 @@ interface CharacterSheetContextProps {
   setArmor: React.Dispatch<React.SetStateAction<boolean>>;
   setHArmor: React.Dispatch<React.SetStateAction<boolean>>;
   setSArmor: React.Dispatch<React.SetStateAction<boolean>>;
-  setAbilities: React.Dispatch<React.SetStateAction<any[]>>;
+  setAbilities: React.Dispatch<React.SetStateAction<string[]>>;
   setBonds: React.Dispatch<React.SetStateAction<Bonds>>;
   setStarvation: React.Dispatch<React.SetStateAction<number>>;
   setSubsist: React.Dispatch<React.SetStateAction<number>>;
-  setLoadout: React.Dispatch<React.SetStateAction<any>>;
-  setItems: React.Dispatch<React.SetStateAction<any[]>>;
+  setLoadout: React.Dispatch<React.SetStateAction<Loadout | undefined>>;
+  setItems: React.Dispatch<React.SetStateAction<Item[]>>;
   setChanges: React.Dispatch<React.SetStateAction<boolean>>;
   setCharacterLoaded: React.Dispatch<React.SetStateAction<Date>>;
   handleDebounceChange: () => void;
@@ -110,6 +123,8 @@ export default function CharacterSheetProvider({
   const [selectedSkillset, setSelectedSkillset] = useState<Skillset>();
   const [selectedBackground, setSelectedBackground] = useState<Background>();
   const [selectedHeritage, setSelectedHeritage] = useState<Heritage>();
+  const [selectedFightingStyle, setSelectedFightingStyle] =
+    useState<FightingStyle>();
 
   const [portrait, setPortrait] = useState("");
   const [name, setName] = useState("");
@@ -201,6 +216,7 @@ export default function CharacterSheetProvider({
       setSelectedSkillset(parsed.selectedSkillset);
       setSelectedBackground(parsed.selectedBackground);
       setSelectedHeritage(parsed.selectedHeritage);
+      setSelectedFightingStyle(parsed.selectedFightingStyle);
       setQuestions(new Map(parsed.questions));
       xpRef.current = parsed.xp || 0;
       if (parsed.attributes) {
@@ -249,6 +265,7 @@ export default function CharacterSheetProvider({
       setSelectedSkillset(undefined);
       setSelectedBackground(undefined);
       setSelectedHeritage(undefined);
+      setSelectedFightingStyle(undefined);
       setQuestions(new Map());
       xpRef.current = 0;
       setAttributes({
@@ -306,6 +323,7 @@ export default function CharacterSheetProvider({
           selectedSkillset,
           selectedBackground,
           selectedHeritage,
+          selectedFightingStyle,
           questions: Array.from(questions),
           xp: xpRef.current,
           attributes,
@@ -390,6 +408,7 @@ export default function CharacterSheetProvider({
         selectedSkillset,
         selectedBackground,
         selectedHeritage,
+        selectedFightingStyle,
         questions,
         xpRef,
         attributes,
@@ -418,6 +437,7 @@ export default function CharacterSheetProvider({
         setSelectedSkillset,
         setSelectedBackground,
         setSelectedHeritage,
+        setSelectedFightingStyle,
         setQuestions,
         setAttributes,
         setStress,

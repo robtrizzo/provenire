@@ -1,30 +1,30 @@
-import Breadcrumbs from '@/components/ui/breadcrumbs';
+import Breadcrumbs from "@/components/ui/breadcrumbs";
 import {
   TypographyH1,
   TypographyH2,
   TypographyH3,
   TypographyH4,
   TypographyP,
-} from '@/components/ui/typography';
+} from "@/components/ui/typography";
 
-import { Separator } from '@/components/ui/separator';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
+import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import {
   ChevronLeft,
   ChevronRight,
   VenetianMask,
   Flame,
   Activity,
-} from 'lucide-react';
+} from "lucide-react";
 
 export default async function Page() {
   return (
     <div>
       <Breadcrumbs
         crumbs={[
-          { name: 'Character Creation', href: '/game/character-creation' },
-          { name: 'Fighting Styles', href: '#' },
+          { name: "Character Creation", href: "/game/character-creation" },
+          { name: "Fighting Styles", href: "#" },
         ]}
       />
       <TypographyH1>Fighting Styles</TypographyH1>
@@ -38,7 +38,7 @@ export default async function Page() {
         Each <b>fighting style</b> grants an action as well as a series of
         abilities to unlock. To become trained in a <b>fighting style</b>, you
         need tutilage from someone already trained in that style. This allows
-        you to spend <b>xp clocks</b> during the <b>train downtime activity</b>{' '}
+        you to spend <b>xp clocks</b> during the <b>train downtime activity</b>{" "}
         to unlock abilities from that style. Many abilities require
         prerequisites to unlock. This is indicated by the ability tree in each
         style.
@@ -83,10 +83,10 @@ export default async function Page() {
       </TypographyP>
       <TypographyH4 className="mt-6">Muscular Surge</TypographyH4>
       <TypographyP>
-        You may{' '}
-        <Link href="#">
+        You may{" "}
+        <Link href="#strain">
           <span className="text-red-500 underline font-bold">strain</span>
-        </Link>{' '}
+        </Link>{" "}
         yourself to fight a gang of surrounding foes on equal footing.
       </TypographyP>
       <TypographyH3 id="pipedancing" className="mt-6 flex gap-2">
@@ -105,7 +105,7 @@ export default async function Page() {
       </TypographyP>
       <TypographyH4 className="mt-6">Improvised Weaponry</TypographyH4>
       <TypographyP>
-        When you scrounge for weapons, it will have a random trait from{' '}
+        When you scrounge for weapons, it will have a random trait from{" "}
         <i>
           blocking, brace, deadly, disarm, distracting, nonlethal, reach, trip
         </i>
@@ -126,10 +126,10 @@ export default async function Page() {
       </TypographyP>
       <TypographyH4 className="mt-6">Acrobatic Surge</TypographyH4>
       <TypographyP>
-        You may{' '}
-        <Link href="#">
+        You may{" "}
+        <Link href="#strain">
           <span className="text-red-500 underline font-bold">strain</span>
-        </Link>{' '}
+        </Link>{" "}
         yourself to perform an incredible feat of repositioning.
       </TypographyP>
       <TypographyH2 className="mt-8">Beastial Styles</TypographyH2>
@@ -165,10 +165,10 @@ export default async function Page() {
       </TypographyP>
       <TypographyH4 className="mt-6">Reaper&apos;s Surge</TypographyH4>
       <TypographyP>
-        You may{' '}
-        <Link href="#">
+        You may{" "}
+        <Link href="#strain">
           <span className="text-red-500 underline font-bold">strain</span>
-        </Link>{' '}
+        </Link>{" "}
         yourself to perform a feat of terrible strength on an opponent
         vulnerable to you.
       </TypographyP>
@@ -210,10 +210,10 @@ export default async function Page() {
       </TypographyP>
       <TypographyH4 className="mt-6">Deceiver&apos;s Surge</TypographyH4>
       <TypographyP>
-        You may{' '}
-        <Link href="#">
+        You may{" "}
+        <Link href="#strain">
           <span className="text-red-500 underline font-bold">strain</span>
-        </Link>{' '}
+        </Link>{" "}
         yourself to gain an opportunity to strike a foe and retreat, even if
         their full focus is on you.
       </TypographyP>
@@ -247,10 +247,10 @@ export default async function Page() {
       </TypographyP>
       <TypographyH4 className="mt-6">Fatal Finisher</TypographyH4>
       <TypographyP>
-        You may{' '}
-        <Link href="#">
+        You may{" "}
+        <Link href="#strain">
           <span className="text-red-500 underline font-bold">strain</span>
-        </Link>{' '}
+        </Link>{" "}
         yourself to make a devastating blow against an overwhelmed, cornered, or
         prone foe.
       </TypographyP>
@@ -262,7 +262,7 @@ export default async function Page() {
         they do this, they draw upon an inner reserve of energy to accomplish a
         normally impossible feat of strength, speed, or cunning. As the name
         suggests, afterwards the character feels a deep fatigue different from
-        the norm. Mark a{' '}
+        the norm. Mark a{" "}
         <b>
           permanent level one harm: <i>strained</i>.
         </b>

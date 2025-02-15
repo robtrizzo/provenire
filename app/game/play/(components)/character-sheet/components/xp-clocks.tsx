@@ -14,7 +14,7 @@ export default function XPClocks({
   const numClocks = 5;
 
   return (
-    <div className="p-1 flex items-center gap-2 justify-between select-none">
+    <div className="p-1 flex items-center gap-2 justify-between select-none flex-wrap">
       <div className="p-1 flex items-center gap-2 select-none">
         {Array.from({ length: numClocks }, (_, i) => {
           const clockVal = Math.min(Math.max(xp - i * 6, 0), 6);

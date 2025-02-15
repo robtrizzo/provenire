@@ -1,5 +1,6 @@
-import archetypes from '@/public/archetypes.json';
-import skillsets from '@/public/skillsets.json';
+import archetypes from "@/public/archetypes.json";
+import skillsets from "@/public/skillsets.json";
+import fightingStyles from "@/public/fighting_styles.json";
 
 const allSlugs = [];
 
@@ -11,6 +12,10 @@ for (const archetype of archetypes) {
 for (const skillset of skillsets) {
   allSlugs.push(skillset.abilities.mission.map((a) => a.slug));
   allSlugs.push(skillset.abilities.downtime.map((a) => a.slug));
+}
+
+for (const fightingStyle of fightingStyles) {
+  allSlugs.push(fightingStyle.abilities.map((a) => a.slug));
 }
 
 const dynamicComponents = allSlugs
