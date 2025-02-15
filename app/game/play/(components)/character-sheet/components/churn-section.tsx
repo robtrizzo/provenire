@@ -170,7 +170,6 @@ export default function ChurnSection() {
             )
           </TypographyP>
         )}
-        <TypographyH2 className="mt-8">Fighting Style</TypographyH2>
       </div>
     </div>
   );

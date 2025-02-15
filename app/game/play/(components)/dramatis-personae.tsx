@@ -283,6 +283,31 @@ export default function DramatisPersonae() {
       </div>
       <div>
         <TypographyH4 className="text-red-700 text-center">
+          Fighting Pits
+        </TypographyH4>
+        <Separator className="mt-2 mb-4 bg-red-700" />
+        <div className="flex items-center justify-center gap-2 flex-wrap">
+          <NamePortrait name="Hermesind" s3 />
+        </div>
+      </div>
+      <div>
+        <TypographyH4 className="text-red-700 text-center">
+          Penal Pens
+        </TypographyH4>
+        <Separator className="mt-2 mb-4 bg-red-700" />
+        <div className="flex items-center justify-center gap-2 flex-wrap">
+          <NamePortrait
+            name="Malgus Veradun"
+            src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/malgus%20zoom-ddkzKNoA2HM3SVVuSyFTXSoJanLlQO.png"
+          />
+          <NamePortrait name="Lanorella" s3 />
+          <NamePortrait name="Hesperos" s3 />
+          <NamePortrait name="Donios" s3 />
+          <NamePortrait name="Deritus" s3 />
+        </div>
+      </div>
+      <div>
+        <TypographyH4 className="text-red-700 text-center">
           Enforcers
         </TypographyH4>
         <Separator className="mt-2 mb-4 bg-red-700" />
@@ -313,6 +338,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Jyothi" />
           <NamePortrait name="Bardolph" />
           <NamePortrait name="Rodric" />
+          <NamePortrait name="Deritus" s3 />
         </div>
       </div>
       <div>
