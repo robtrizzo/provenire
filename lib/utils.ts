@@ -51,3 +51,12 @@ export const StringUnion = <UnionType extends string>(
     unionNamespace as typeof unionNamespace & { type: UnionType }
   );
 };
+
+export function getQSParamFromURL(key: string, url: string | undefined) {
+  if (!url) {
+    return "";
+  }
+  const search = new URL(url).search;
+  const urlParams = new URLSearchParams(search);
+  return urlParams.get(key);
+}

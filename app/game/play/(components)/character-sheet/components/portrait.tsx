@@ -8,34 +8,58 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { ImageUp, CloudUpload, Bomb } from "lucide-react";
-import { upload } from "@vercel/blob/client";
+import { ImageUp, CloudUpload, Bomb, Loader } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
+import { useMutation } from "@tanstack/react-query";
+
 export default function Portrait({ className }: { className?: string }) {
-  const { portrait, setPortrait, setChanges } = useCharacterSheet();
+  const { portrait, setPortrait, name, setChanges } = useCharacterSheet();
   const inputFileRef = useRef<HTMLInputElement>(null);
   const [open, setOpen] = useState(false);
+  const [fetchTime, setFetchTime] = useState<Date>(new Date());
 
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  const { mutateAsync: savePortrait, isPending } = useMutation({
+    mutationFn: async (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
 
-    if (!inputFileRef.current?.files) {
-      throw new Error("No file selected");
-    }
+      if (!inputFileRef.current?.files) {
+        throw new Error("No file selected");
+      }
 
-    const file = inputFileRef.current.files[0];
+      const presigned_response = await fetch(
+        `/api/avatar/sign_post?name=${name}`,
+        { cache: "no-cache" }
+      );
+      if (!presigned_response.ok) {
+        throw new Error("Presigned link network response was not ok");
+      }
+      const presigned_data = await presigned_response.json();
 
-    const newBlob = await upload(file.name, file, {
-      access: "public",
-      handleUploadUrl: "/api/avatar/upload",
-    });
+      const file = inputFileRef.current.files[0];
 
-    setPortrait(newBlob.url);
-    setChanges(true);
-    setOpen(false);
-    // possibly send an async update to save a portrait entry & delete past portraits for this character
-  }
+      const formData = new FormData();
+      formData.append("Content-Type", file.type);
+      Object.entries(presigned_data.fields).forEach(([k, v]) => {
+        formData.append(k, v as string);
+      });
+      formData.append("file", file);
+
+      await fetch(presigned_data.url, {
+        method: "POST",
+        body: formData,
+      });
+    },
+    onError: (error) => {
+      console.error("Error saving character portrait to cloud", error);
+    },
+    onSuccess: () => {
+      setPortrait(`${process.env.NEXT_PUBLIC_S3_BUCKET}/pc-art/${name}`);
+      setFetchTime(new Date());
+      setChanges(true);
+      setOpen(false);
+    },
+  });
 
   return (
     <div
@@ -49,12 +73,12 @@ export default function Portrait({ className }: { className?: string }) {
           <PopoverTrigger asChild>
             <div className="relative w-28 h-28">
               <Image
-                src={portrait}
+                src={`${portrait}?rf=${fetchTime}`}
                 alt="character portrait"
                 fill
-                objectPosition="center"
+                priority
                 sizes="(max-width: 112px) 100vw, 50vw"
-                className="object-cover rounded-md hover:cursor-pointer"
+                className="object-cover object-center rounded-md hover:cursor-pointer"
               />
             </div>
           </PopoverTrigger>
@@ -68,11 +92,16 @@ export default function Portrait({ className }: { className?: string }) {
         <PopoverContent className="w-80 bg-secondary">
           <form
             className="flex flex-col max-w-80 gap-1"
-            onSubmit={handleSubmit}
+            onSubmit={savePortrait}
           >
             <Input name="file" ref={inputFileRef} type="file" required />
             <Button variant="outline" type="submit">
-              Upload <CloudUpload />
+              Upload{" "}
+              {isPending ? (
+                <Loader className="animate-spin" />
+              ) : (
+                <CloudUpload />
+              )}
             </Button>
             <Button
               variant="destructive"
