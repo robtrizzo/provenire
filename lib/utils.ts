@@ -1,4 +1,5 @@
 import { clsx, type ClassValue } from "clsx";
+import { NextRequest } from "next/server";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -51,3 +52,8 @@ export const StringUnion = <UnionType extends string>(
     unionNamespace as typeof unionNamespace & { type: UnionType }
   );
 };
+
+export function getQSParamFromURL(key: string, request: NextRequest) {
+  const searchParams = request.nextUrl.searchParams;
+  return searchParams.get(key);
+}
