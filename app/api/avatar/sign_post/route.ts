@@ -1,13 +1,12 @@
 import { auth } from "@/auth";
 import { checkUserAuthenticated, checkUserRole } from "@/lib/auth";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { createPresignedPost } from "@aws-sdk/s3-presigned-post";
 import { S3Client } from "@aws-sdk/client-s3";
-import { NextApiRequest } from "next";
 import { getQSParamFromURL } from "@/lib/utils";
 import { Conditions } from "@aws-sdk/s3-presigned-post/dist-types/types";
 
-export async function GET(request: NextApiRequest) {
+export async function GET(request: NextRequest) {
   const session = await auth();
 
   const unauthenticatedResponse = checkUserAuthenticated(session);
@@ -39,7 +38,7 @@ export async function GET(request: NextApiRequest) {
     );
   }
 
-  const characterName = getQSParamFromURL("name", request.url);
+  const characterName = getQSParamFromURL("name", request);
   if (!characterName) {
     return NextResponse.json(
       { error: "missing character name" },
