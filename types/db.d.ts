@@ -4,4 +4,5 @@ interface User {
   image: string;
   id: string;
   role?: string;
+  permissions?: string[];
 }
