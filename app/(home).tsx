@@ -1,6 +1,6 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default async function Home() {
   return (
@@ -16,7 +16,7 @@ export default async function Home() {
           />
         </div>
         <Link href="/game">
-          <Button className="z-10 mt-8 bg-transparent text-white hover:text-white hover:bg-blue-200 hover:bg-opacity-5 w-32">
+          <Button className="z-10 mt-8 hover:cursor-pointer bg-transparent text-white hover:text-white hover:border-[1px] hover:border-border hover:bg-transparent w-32">
             explore
           </Button>
         </Link>
