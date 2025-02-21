@@ -124,6 +124,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Rodulf" />
           <NamePortrait name="Sidar" s3 />
           <NamePortrait name="Dunny" />
+          <NamePortrait name="Darius Azad" s3 />
         </div>
       </div>
       <div>
@@ -136,6 +137,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Cyrus" s3 />
           <NamePortrait name="Sidar" s3 />
           <NamePortrait name="Gabe" />
+          <NamePortrait name="Darius Azad" s3 />
         </div>
       </div>
       <div>
@@ -202,6 +204,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Alexi" />
           <NamePortrait name="Rodric" />
           <NamePortrait name="Flynn" />
+          <NamePortrait name="Luys" />
         </div>
       </div>
       <div>
@@ -339,6 +342,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Bardolph" />
           <NamePortrait name="Rodric" />
           <NamePortrait name="Deritus" s3 />
+          <NamePortrait name="Luys" />
         </div>
       </div>
       <div>
@@ -466,6 +470,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Rasha" />
           <NamePortrait name="Melisande" />
           <NamePortrait name="Dunny" />
+          <NamePortrait name="Darius Azad" s3 />
         </div>
       </div>
       <div>
