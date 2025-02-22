@@ -37,6 +37,7 @@ import { useCrewSheet } from "@/contexts/crewSheetContext";
 import { useSession } from "next-auth/react";
 import SaveCrewButton from "./save-crew-button";
 import LoadCrewButton from "./load-crew-button";
+import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip";
 
 export default function CrewSheet() {
   const session = useSession();
@@ -137,7 +138,16 @@ export default function CrewSheet() {
           </div>
           <div className="flex justify-between items-center flex-wrap">
             <div className="flex items-center gap-2">
-              <Eye className="text-orange-500" />
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Eye className="text-orange-500" />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Heat</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
               <BuildupCheckboxes
                 key={`heat-${Date.now()}`}
                 max={9}
@@ -153,7 +163,16 @@ export default function CrewSheet() {
               />
             </div>
             <div className="flex items-center gap-2">
-              <Siren className="text-rose-500" />
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Siren className="text-rose-500" />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Escalation</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
               <BuildupCheckboxes
                 key={`wanted-${Date.now()}`}
                 max={4}
@@ -174,7 +193,16 @@ export default function CrewSheet() {
           </div>
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-2">
-              <Wheat className="text-amber-500" />
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Wheat className="text-amber-500" />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Food</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
               <BuildupCheckboxes
                 key={`food-${Date.now()}`}
                 max={4}
@@ -190,7 +218,16 @@ export default function CrewSheet() {
               />
             </div>
             <div className="flex items-center gap-2">
-              <Speech className="text-lime-500" />
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Speech className="text-lime-500" />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Reputation</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
               <BuildupCheckboxes
                 key={`rep-${Date.now()}`}
                 max={4}
@@ -208,7 +245,16 @@ export default function CrewSheet() {
           </div>
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-2">
-              <Anvil className="text-violet-500" />
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Anvil className="text-violet-500" />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Materials</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
               <BuildupCheckboxes
                 key={`materials-${Date.now()}`}
                 max={4}
@@ -224,7 +270,16 @@ export default function CrewSheet() {
               />
             </div>
             <div className="flex items-center gap-2">
-              <Handshake className="text-fuchsia-500" />
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Handshake className="text-fuchsia-500" />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Goodwill</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
               <BuildupCheckboxes
                 key={`goodwill-${Date.now()}`}
                 max={4}
@@ -243,7 +298,16 @@ export default function CrewSheet() {
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-2"></div>
             <div className="flex items-center gap-2">
-              <Brain className="text-teal-500" />
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Brain className="text-teal-500" />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Intel</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
               <BuildupCheckboxes
                 key={`intel-${Date.now()}`}
                 max={4}
