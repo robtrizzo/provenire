@@ -1,5 +1,4 @@
-import { auth } from "@/auth";
-import { checkUserAuthenticated, checkUserRole } from "@/lib/auth";
+import { checkAuth } from "@/lib/auth";
 import { NextRequest, NextResponse } from "next/server";
 import { createPresignedPost } from "@aws-sdk/s3-presigned-post";
 import { S3Client } from "@aws-sdk/client-s3";
@@ -7,17 +6,8 @@ import { getQSParamFromURL } from "@/lib/utils";
 import { Conditions } from "@aws-sdk/s3-presigned-post/dist-types/types";
 
 export async function GET(request: NextRequest) {
-  const session = await auth();
-
-  const unauthenticatedResponse = checkUserAuthenticated(session);
-  if (unauthenticatedResponse) {
-    return unauthenticatedResponse;
-  }
-
-  const unauthorizedResponse = checkUserRole(session, ["admin", "player"]);
-  if (unauthorizedResponse) {
-    return unauthorizedResponse;
-  }
+  const { error } = await checkAuth("player");
+  if (error) return error;
 
   const region = process.env.AWS_REGION;
   if (!region) {
