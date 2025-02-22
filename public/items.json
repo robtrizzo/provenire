@@ -89,6 +89,14 @@
       "slots": 2,
       "traits": ["bulky", "noisy"],
       "description": "Tools for breaking machines."
+    },
+    {
+      "name": "The Can Can",
+      "clock": 3,
+      "ticks": 0,
+      "slots": 4,
+      "traits": ["bulky", "heavy"],
+      "description": "An unwieldy makeshift backpack for liquids"
     }
   ],
   "formulae": [
