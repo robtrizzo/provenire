@@ -19,8 +19,10 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import DiceHistory from "@/app/game/play/(components)/dice-history/history";
 import { useSession } from "next-auth/react";
-import { Loader } from "lucide-react";
+import { Loader, Menu } from "lucide-react";
 import { useRoll } from "@/contexts/rollContext";
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent } from "@/components/ui/dropdown-menu";
+import { ExportMenuItem } from "@/app/game/play/(components)/dice-history/export";
 // import { DiceClear } from "./clear-button";
 
 export default function DiceSheet() {
@@ -99,7 +101,7 @@ export default function DiceSheet() {
             <Loader className="animate-spin" />
           </div>
         ) : (
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center justify-between space-x-4">
             <Select
               onValueChange={(value) => {
                 handleUserChange(value);
@@ -116,6 +118,17 @@ export default function DiceSheet() {
                 ))}
               </SelectContent>
             </Select>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="icon">
+                  <Menu className="h-[1.2rem] w-[1.2rem]" />
+                  <span className="sr-only">Toggle menu</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <ExportMenuItem selectedFilter={currentDiceFilter} />
+              </DropdownMenuContent>
+            </DropdownMenu>
             {/*{currentDiceFilter === "own" && <DiceClear />}*/}
           </div>
         )}
