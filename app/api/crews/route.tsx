@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import { auth } from "@/auth/index";
-import { checkUserAuthenticated, checkUserRole } from "@/lib/auth";
+import { checkAuth } from "@/lib/auth";
 import redis, { findKeysByPattern } from "@/lib/redis";
 import { Crew } from "@/types/game";
 
@@ -17,17 +16,8 @@ async function getAllCrews() {
 }
 
 export async function POST(request: Request) {
-  const session = await auth();
-
-  const unauthenticatedResponse = checkUserAuthenticated(session);
-  if (unauthenticatedResponse) {
-    return unauthenticatedResponse;
-  }
-
-  const unauthorizedResponse = checkUserRole(session, ["admin"]);
-  if (unauthorizedResponse) {
-    return unauthorizedResponse;
-  }
+  const { error } = await checkAuth("admin");
+  if (error) return error;
 
   if (!request.body) {
     return new NextResponse(null, { status: 400 });
@@ -48,17 +38,8 @@ export async function POST(request: Request) {
 }
 
 export async function GET() {
-  const session = await auth();
-
-  const unauthenticatedResponse = checkUserAuthenticated(session);
-  if (unauthenticatedResponse) {
-    return unauthenticatedResponse;
-  }
-
-  const unauthorizedResponse = checkUserRole(session, ["admin"]);
-  if (unauthorizedResponse) {
-    return unauthorizedResponse;
-  }
+  const { error } = await checkAuth("admin");
+  if (error) return error;
 
   try {
     const crews = await getAllCrews();

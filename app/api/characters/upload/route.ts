@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import { auth } from "@/auth/index";
-import { checkUserAuthenticated, checkUserRole } from "@/lib/auth";
+import { checkAuth } from "@/lib/auth";
 import redis from "@/lib/redis";
 import { Character } from "@/types/game";
 
@@ -21,17 +20,8 @@ async function insertCharacter({
 }
 
 export async function POST(request: Request): Promise<NextResponse> {
-  const session = await auth();
-
-  const unauthenticatedResponse = checkUserAuthenticated(session);
-  if (unauthenticatedResponse) {
-    return unauthenticatedResponse;
-  }
-
-  const unauthorizedResponse = checkUserRole(session, ["admin", "player"]);
-  if (unauthorizedResponse) {
-    return unauthorizedResponse;
-  }
+  const { session, error } = await checkAuth("player");
+  if (error) return error;
 
   if (!request.body) {
     return NextResponse.json({ error: "empty request body" }, { status: 400 });
@@ -47,7 +37,7 @@ export async function POST(request: Request): Promise<NextResponse> {
 
   try {
     await insertCharacter({
-      userId: session!.user!.id!,
+      userId: session.user.id!,
       characterJSON: JSON.parse(requestBody.character),
     });
   } catch (error) {

@@ -1,20 +1,10 @@
-import { checkUserAuthenticated, checkUserRole} from "@/lib/auth";
+import { checkAuth} from "@/lib/auth";
 import { NextResponse } from "next/server";
-import {auth} from "@/auth";
 import {getAllUsers} from "@/handlers/users";
 
 export async function GET() {
-    const session = await auth();
-
-    const unauthenticatedResponse = checkUserAuthenticated(session);
-    if (unauthenticatedResponse) {
-        return unauthenticatedResponse;
-    }
-
-    const unauthorizedResponse = checkUserRole(session, ["admin", "player"]);
-    if (unauthorizedResponse) {
-        return unauthorizedResponse;
-    }
+    const { error } = await checkAuth("player");
+    if (error) return error;
 
     try {
         const users = await getAllUsers();
