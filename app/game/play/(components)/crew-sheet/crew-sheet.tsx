@@ -7,6 +7,8 @@ import {
   Speech,
   Eye,
   Siren,
+  Droplet,
+  Droplets,
 } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { BuildupCheckboxes } from "@/components/buildup-checkboxes";
@@ -37,7 +39,12 @@ import { useCrewSheet } from "@/contexts/crewSheetContext";
 import { useSession } from "next-auth/react";
 import SaveCrewButton from "./save-crew-button";
 import LoadCrewButton from "./load-crew-button";
-import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export default function CrewSheet() {
   const session = useSession();
@@ -48,6 +55,8 @@ export default function CrewSheet() {
     wanted,
     food,
     materials,
+    water,
+    blood,
     rep,
     goodwill,
     intel,
@@ -74,6 +83,8 @@ export default function CrewSheet() {
     setWanted,
     setFood,
     setMaterials,
+    setWater,
+    setBlood,
     setRep,
     setGoodwill,
     setIntel,
@@ -296,7 +307,31 @@ export default function CrewSheet() {
             </div>
           </div>
           <div className="flex justify-between items-center">
-            <div className="flex items-center gap-2"></div>
+            <div className="flex items-center gap-2">
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Droplet className="text-blue-500" />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Water</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+              <BuildupCheckboxes
+                key={`water-${Date.now()}`}
+                max={4}
+                current={water}
+                numDisabled={2}
+                onChange={(n) => {
+                  if (isAdmin) {
+                    setWater(n);
+                    setChanges(true);
+                  }
+                }}
+                clearPosition="end"
+              />
+            </div>
             <div className="flex items-center gap-2">
               <TooltipProvider>
                 <Tooltip>
@@ -322,6 +357,34 @@ export default function CrewSheet() {
                 clearPosition="end"
               />
             </div>
+          </div>
+          <div className="flex justify-between items-center">
+            <div className="flex items-center gap-2">
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Droplets className="text-red-500" />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Blood</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+              <BuildupCheckboxes
+                key={`blood-${Date.now()}`}
+                max={4}
+                current={blood}
+                numDisabled={3}
+                onChange={(n) => {
+                  if (isAdmin) {
+                    setBlood(n);
+                    setChanges(true);
+                  }
+                }}
+                clearPosition="end"
+              />
+            </div>
+            <div className="flex items-center gap-2"></div>
           </div>
           <div className="mt-4 mb-2 flex justify-center items-center bg-linear-to-r/oklch from-teal-900 to-blue-900 rounded-lg border-[1px] border-border">
             <span className="mt-1 text-sm text-white">ASSETS</span>

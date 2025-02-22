@@ -30,6 +30,8 @@ interface CrewSheetContextProps {
   wanted: number;
   food: number;
   materials: number;
+  water: number;
+  blood: number;
   rep: number;
   goodwill: number;
   intel: number;
@@ -57,6 +59,8 @@ interface CrewSheetContextProps {
   setWanted: Dispatch<SetStateAction<number>>;
   setFood: Dispatch<SetStateAction<number>>;
   setMaterials: Dispatch<SetStateAction<number>>;
+  setWater: Dispatch<SetStateAction<number>>;
+  setBlood: Dispatch<SetStateAction<number>>;
   setRep: Dispatch<SetStateAction<number>>;
   setGoodwill: Dispatch<SetStateAction<number>>;
   setIntel: Dispatch<SetStateAction<number>>;
@@ -157,6 +161,8 @@ export default function CrewSheetProvider({
   const [heat, setHeat] = useState(0);
   const [wanted, setWanted] = useState(0);
   const [food, setFood] = useState(0);
+  const [water, setWater] = useState(0);
+  const [blood, setBlood] = useState(0);
   const [materials, setMaterials] = useState(0);
   const [rep, setRep] = useState(0);
   const [goodwill, setGoodwill] = useState(0);
@@ -214,6 +220,8 @@ export default function CrewSheetProvider({
         wanted,
         food,
         materials,
+        water,
+        blood,
         rep,
         goodwill,
         intel,
@@ -242,6 +250,8 @@ export default function CrewSheetProvider({
       setWanted(wanted);
       setFood(food);
       setMaterials(materials);
+      setWater(water);
+      setBlood(blood);
       setRep(rep);
       setGoodwill(goodwill);
       setIntel(intel);
@@ -270,6 +280,8 @@ export default function CrewSheetProvider({
       setWanted(0);
       setFood(0);
       setMaterials(0);
+      setWater(0);
+      setBlood(0);
       setRep(0);
       setGoodwill(0);
       setIntel(0);
@@ -305,6 +317,8 @@ export default function CrewSheetProvider({
           wanted,
           food,
           materials,
+          water,
+          blood,
           rep,
           goodwill,
           intel,
@@ -788,6 +802,8 @@ export default function CrewSheetProvider({
         wanted,
         food,
         materials,
+        water,
+        blood,
         rep,
         goodwill,
         intel,
@@ -815,6 +831,8 @@ export default function CrewSheetProvider({
         setWanted,
         setFood,
         setMaterials,
+        setWater,
+        setBlood,
         setRep,
         setGoodwill,
         setIntel,
