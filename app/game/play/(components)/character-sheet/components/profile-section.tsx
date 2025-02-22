@@ -19,9 +19,11 @@ export default function ProfileSection() {
     selectedBackground,
     selectedHeritage,
     questions,
+    notes,
     setUnivQuestions,
     setBloodshedQ,
     setChanges,
+    setNotes,
     handleDebounceChange,
     handleUpdateQuestion,
   } = useCharacterSheet();
@@ -211,6 +213,19 @@ export default function ProfileSection() {
             />
           </div>
         ))}
+      </div>
+      <div className="w-full mt-4">
+        <Label htmlFor="notes">Notes</Label>
+        <Textarea
+          className="min-h-[20vh]"
+          id="notes"
+
+          value={notes}
+          onChange={(e) => {
+            setNotes(e.target.value);
+            handleDebounceChange();
+          }}
+        />
       </div>
     </>
   );
