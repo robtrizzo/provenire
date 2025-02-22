@@ -20,6 +20,7 @@ import {
   Donum,
 } from "@/types/game";
 import { debounce } from "@/lib/utils";
+import { useQuery } from "@tanstack/react-query";
 
 interface CharacterSheetContextProps {
   portrait: string;
@@ -203,8 +204,55 @@ export default function CharacterSheetProvider({
 
   const [abilities, setAbilities] = useState<string[]>([]);
 
+  const [lastModified, setLastModified] = useState<Date>(new Date());
   const [changes, setChanges] = useState(false);
   const [characterLoaded, setCharacterLoaded] = useState<Date>(new Date());
+
+  const [initialPageLoad, setInitialPageLoad] = useState<boolean>(false);
+
+  useEffect(() => {
+    setInitialPageLoad(true);
+  }, []);
+
+  const { data, isPending } = useQuery({
+    queryKey: ["character"],
+    queryFn: async () => {
+      console.log("fetching...");
+      if (initialPageLoad) {
+        return "page already loaded, no need to fetch character data";
+      }
+      const data = localStorage.getItem("charsheet");
+      if (!data) {
+        return "no character data in character sheet";
+      }
+      let parsed;
+      try {
+        parsed = JSON.parse(data);
+      } catch (error) {
+        console.error(error);
+        return "error while reading from local storage";
+      }
+      try {
+        const name = parsed.name;
+        const userId = parsed.userId;
+        if (!name) {
+          return "no character name. aborting fetch";
+        }
+        if (!userId) {
+          return "no userId. aborting fetch";
+        }
+
+        // TODO fetch
+      } catch (error) {
+        console.error(error);
+        return "error while fetching data";
+      }
+      return "loaded";
+      // const response = await fetch("/api/characters/", { cache: "no-cache" });
+      // return response.json();
+    },
+  });
+  console.log(data);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -259,6 +307,7 @@ export default function CharacterSheetProvider({
       setSubsist(parsed.subsist || 0);
       setLoadout(parsed.loadout);
       setItems(parsed.items);
+      setLastModified(parsed.lastModified);
     } else {
       // if there is no data, set the default values
       setPortrait("");
@@ -312,12 +361,15 @@ export default function CharacterSheetProvider({
       setSubsist(0);
       setLoadout(undefined);
       setItems([]);
+      setLastModified(new Date());
     }
   }, [characterLoaded]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       if (changes) {
+        const modifyTime = new Date();
+        setLastModified(modifyTime);
         const data = {
           portrait,
           name,
@@ -349,6 +401,7 @@ export default function CharacterSheetProvider({
           subsist,
           loadout,
           items,
+          lastModified: modifyTime,
         };
         localStorage.setItem("charsheet", JSON.stringify(data));
         setChanges(false);
