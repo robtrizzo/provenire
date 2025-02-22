@@ -25,7 +25,7 @@ export default function GangInput({
   gang: Cohort;
   updateGang: (traits: string[], ticks: number) => void;
   variant?: string;
-  removeGang?: () => void;
+  removeGang?: (gangName: string) => void;
   enable: boolean;
 }) {
   const { name, clock, location } = gang;
@@ -150,20 +150,19 @@ export default function GangInput({
             </>
           )}
           <div className="flex mt-2">
-            {variant === "recruit" && (
-              <Button
-                variant="destructive"
-                type="button"
-                onClick={() => {
-                  if (removeGang) {
-                    removeGang();
-                  }
-                }}
-              >
-                <Bomb />
-                Remove
-              </Button>
-            )}
+            <Button
+              variant="destructive"
+              type="button"
+              onClick={() => {
+                if (removeGang) {
+                  removeGang(gang.name);
+                }
+              }}
+            >
+              <Bomb />
+              Remove
+            </Button>
+
             <Button
               variant="secondary"
               className="text-sm ml-auto"

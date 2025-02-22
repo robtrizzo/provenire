@@ -76,6 +76,7 @@ interface CrewSheetContextProps {
     gangName: string
   ) => (traits: string[], ticks: number) => void;
   handleAddGang: (gang: Cohort) => void;
+  handleRemoveGang: (gangName: string) => void;
   handleUpdateExpert: (expertName: string) => (ticks: number) => void;
   handleAddExpert: (expert: Cohort) => void;
   handleUpdateSchematic: (
@@ -416,6 +417,11 @@ export default function CrewSheetProvider({
       return;
     }
     setGangs([...gangs, gang]);
+    setChanges(true);
+  }
+
+  function handleRemoveGang(gangName: string) {
+    setGangs(gangs.filter((g) => g.name !== gangName));
     setChanges(true);
   }
 
@@ -842,6 +848,7 @@ export default function CrewSheetProvider({
         handleAddAlchemy,
         handleUpdateGang,
         handleAddGang,
+        handleRemoveGang,
         handleUpdateExpert,
         handleAddExpert,
         handleUpdateSchematic,

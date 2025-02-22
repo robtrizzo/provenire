@@ -94,6 +94,7 @@ export default function CrewSheet() {
     handleAddAlchemy,
     handleUpdateGang,
     handleAddGang,
+    handleRemoveGang,
     handleUpdateExpert,
     handleAddExpert,
     handleUpdateSchematic,
@@ -433,6 +434,7 @@ export default function CrewSheet() {
               updateGang={handleUpdateGang(g.name)}
               gang={g}
               enable={isAdmin}
+              removeGang={handleRemoveGang}
             />
           ))}
           {isAdmin && (
