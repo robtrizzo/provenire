@@ -213,19 +213,19 @@ export default function ProfileSection() {
             />
           </div>
         ))}
-        <div className="w-full col-span-2 gap-1.5">
-          <Label htmlFor="notes">Notes</Label>
-          <Textarea
-            className="min-h-[20vh]"
-            id="notes"
+      </div>
+      <div className="w-full mt-4">
+        <Label htmlFor="notes">Notes</Label>
+        <Textarea
+          className="min-h-[20vh]"
+          id="notes"
 
-            value={notes}
-            onChange={(e) => {
-              setNotes(e.target.value);
-              handleDebounceChange();
-            }}
-          />
-        </div>
+          value={notes}
+          onChange={(e) => {
+            setNotes(e.target.value);
+            handleDebounceChange();
+          }}
+        />
       </div>
     </>
   );
