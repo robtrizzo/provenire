@@ -144,7 +144,7 @@ export default function CrewSheet() {
                     <Eye className="text-orange-500" />
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>Goodwill</p>
+                    <p>Heat</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
@@ -169,7 +169,7 @@ export default function CrewSheet() {
                     <Siren className="text-rose-500" />
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>Heat</p>
+                    <p>Escalation</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
