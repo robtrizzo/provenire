@@ -19,7 +19,7 @@ import { DiamondPlus, X, BookOpen } from "lucide-react";
 import { debounce } from "@/lib/utils";
 import { Close } from "@radix-ui/react-popover";
 import { TypographyH4 } from "@/components/ui/typography";
-import items from "@/public/items.json";
+import { useCrewSheet } from "@/contexts/crewSheetContext";
 
 export default function ItemsTable({
   className,
@@ -172,6 +172,7 @@ function ItemRow({
 
 function ItemsList({ addBasicItem }: { addBasicItem: (item: Item) => void }) {
   const [open, setOpen] = useState(false);
+  const { items: crew_items } = useCrewSheet();
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -193,7 +194,7 @@ function ItemsList({ addBasicItem }: { addBasicItem: (item: Item) => void }) {
             List of items available to your character
           </span>
           <div className="flex flex-col gap-1 mt-2">
-            {items.starting.map((item, i) => (
+            {crew_items.map((item, i) => (
               <div
                 key={i}
                 className="flex items-center justify-between gap-2 box-border px-2 rounded-sm hover:bg-secondary hover:cursor-pointer"
