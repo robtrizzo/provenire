@@ -34,6 +34,7 @@ interface CharacterSheetContextProps {
   selectedFightingStyle: FightingStyle | undefined;
   selectedDonum: Donum | undefined;
   questions: Map<string, string>;
+  notes: string;
   xpRef: React.RefObject<number>;
   attributes: CharacterAttributes;
   stress: number;
@@ -74,6 +75,7 @@ interface CharacterSheetContextProps {
   >;
   setSelectedDonum: React.Dispatch<React.SetStateAction<Donum | undefined>>;
   setQuestions: React.Dispatch<React.SetStateAction<Map<string, string>>>;
+  setNotes: React.Dispatch<React.SetStateAction<string>>;
   setAttributes: React.Dispatch<React.SetStateAction<CharacterAttributes>>;
   setStress: React.Dispatch<React.SetStateAction<number>>;
   setConditions: React.Dispatch<React.SetStateAction<string[]>>;
@@ -144,6 +146,7 @@ export default function CharacterSheetProvider({
 
   // where this is convenient, the performance is mid
   const [questions, setQuestions] = useState<Map<string, string>>(new Map());
+  const [notes, setNotes] = useState<string>("");
 
   const xpRef = useRef(0);
 
@@ -223,6 +226,7 @@ export default function CharacterSheetProvider({
       setSelectedFightingStyle(parsed.selectedFightingStyle);
       setSelectedDonum(parsed.selectedDonum);
       setQuestions(new Map(parsed.questions));
+      setNotes(parsed.notes || "");
       xpRef.current = parsed.xp || 0;
       if (parsed.attributes) {
         setAttributes(parsed.attributes);
@@ -273,6 +277,7 @@ export default function CharacterSheetProvider({
       setSelectedFightingStyle(undefined);
       setSelectedDonum(undefined);
       setQuestions(new Map());
+      setNotes("");
       xpRef.current = 0;
       setAttributes({
         Heart: { Defy: [0, 0], Persuade: [0, 0] },
@@ -331,6 +336,7 @@ export default function CharacterSheetProvider({
           selectedFightingStyle,
           selectedDonum,
           questions: Array.from(questions),
+          notes,
           xp: xpRef.current,
           attributes,
           stress,
@@ -417,6 +423,7 @@ export default function CharacterSheetProvider({
         selectedFightingStyle,
         selectedDonum,
         questions,
+        notes,
         xpRef,
         attributes,
         stress,
@@ -447,6 +454,7 @@ export default function CharacterSheetProvider({
         setSelectedFightingStyle,
         setSelectedDonum,
         setQuestions,
+        setNotes,
         setAttributes,
         setStress,
         setConditions,
