@@ -1,6 +1,5 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "ui": "tui",
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
@@ -39,6 +38,10 @@
       "dependsOn": ["^check-types"]
     },
     "dev": {
+      "persistent": true,
+      "cache": false
+    },
+    "websocket_deno#dev": {
       "persistent": true,
       "cache": false
     }
