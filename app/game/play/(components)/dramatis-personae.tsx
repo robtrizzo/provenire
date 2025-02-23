@@ -215,8 +215,8 @@ export default function DramatisPersonae() {
           <NamePortrait name="Enzo" s3 />
           <NamePortrait name="Seb" s3 />
           <NamePortrait name="Nadia" s3 />
-          <NamePortrait name="Veria" />
-          <NamePortrait name="Malix" />
+          <NamePortrait name="Veria" s3 />
+          <NamePortrait name="Malix" s3 />
           <NamePortrait name="Gisava the Bully" />
           <NamePortrait name="Felix the Facetious" s3 />
           <NamePortrait name="Lorin" />
@@ -255,8 +255,8 @@ export default function DramatisPersonae() {
         <Separator className="mt-2 mb-4 bg-red-700" />
         <div className="flex items-center justify-center gap-2 flex-wrap">
           <NamePortrait name="Enzo" s3 />
-          <NamePortrait name="Veria" />
-          <NamePortrait name="Malix" />
+          <NamePortrait name="Veria" s3 />
+          <NamePortrait name="Malix" s3 />
           <NamePortrait name="Oza Kriche" s3 />
         </div>
       </div>
@@ -373,7 +373,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Aika Drak" s3 pc />
           <NamePortrait name="Geleswin" s3 />
           <NamePortrait name="Bran" s3 />
-          <NamePortrait name="Malix" />
+          <NamePortrait name="Malix" s3 />
           <NamePortrait name="Venee Palen" s3 />
           <NamePortrait name="Kasr" />
           <NamePortrait name="Nibel" />
@@ -391,7 +391,7 @@ export default function DramatisPersonae() {
         <Separator className="mt-2 mb-4 bg-cyan-700" />
         <div className="flex items-center justify-center gap-2 flex-wrap">
           <NamePortrait name="Nail" s3 pc />
-          <NamePortrait name="Veria" />
+          <NamePortrait name="Veria" s3 />
           <NamePortrait name="Theo" s3 />
           <NamePortrait name="Nimund" s3 />
           <NamePortrait name="Cassian" s3 />
