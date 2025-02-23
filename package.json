@@ -1,17 +1,14 @@
 {
   "name": "provenire",
-  "version": "0.0.1",
   "private": true,
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "lint": "turbo run lint"
+    "lint": "turbo run lint",
+    "check-types": "turbo run check-types"
   },
   "devDependencies": {
     "turbo": "^2.4.2"
   },
-  "packageManager": "npm@10.0.0",
-  "workspaces": [
-    "apps/*"
-  ]
+  "packageManager": "npm@10.0.0"
 }
