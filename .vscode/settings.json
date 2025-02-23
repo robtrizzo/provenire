@@ -1,0 +1,6 @@
+{
+    "deno.enable": true,
+    "deno.enablePaths": [
+        "./apps/websocket_deno"
+    ]
+}
