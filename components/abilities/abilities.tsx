@@ -58,6 +58,7 @@ const Abilities = ({
       const DynamicComponent = dynamicComponents[ability.slug];
       if (
         variant === "unlocked" &&
+        !ability.keystone &&
         !characterAbilities?.includes(ability.name)
       ) {
         return null;
