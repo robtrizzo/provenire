@@ -12,22 +12,10 @@ export default function DramatisPersonae() {
           </TypographyH4>
           <Separator className="mt-2 mb-4 bg-orange-700" />
           <div className="flex items-center justify-center gap-2 flex-wrap">
-            <NamePortrait
-              name="Drusa"
-              src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/Untitled-TGGV8Lx7llaXWqeiUW9TdeDdJop6QL.png"
-            />
-            <NamePortrait
-              name="Nail"
-              src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/hammer-T3LcbIfLfh8D9dl5dUbIUvLjw5hitK.png"
-            />
-            <NamePortrait
-              name="Malgus Veradun"
-              src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/malgus%20zoom-ddkzKNoA2HM3SVVuSyFTXSoJanLlQO.png"
-            />
-            <NamePortrait
-              name="Merit"
-              src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/Merit-ONhjE1e3VgsiiaXtUJ9Kc26jA2gxkA.png"
-            />
+            <NamePortrait name="Drusa" s3 pc />
+            <NamePortrait name="Nail" s3 pc />
+            <NamePortrait name="Malgus Veradun" s3 pc />
+            <NamePortrait name="Merit" s3 pc />
           </div>
         </div>
       </div>
@@ -146,18 +134,9 @@ export default function DramatisPersonae() {
         <div className="flex items-center justify-center gap-2 flex-wrap">
           <NamePortrait name="Twenty-One" s3 pc />
           <NamePortrait name="Aika Drak" s3 pc />
-          <NamePortrait
-            name="Drusa"
-            src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/Untitled-TGGV8Lx7llaXWqeiUW9TdeDdJop6QL.png"
-          />
-          <NamePortrait
-            name="Nail"
-            src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/hammer-T3LcbIfLfh8D9dl5dUbIUvLjw5hitK.png"
-          />
-          <NamePortrait
-            name="Malgus Veradun"
-            src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/malgus%20zoom-ddkzKNoA2HM3SVVuSyFTXSoJanLlQO.png"
-          />
+          <NamePortrait name="Drusa" s3 pc />
+          <NamePortrait name="Nail" s3 pc />
+          <NamePortrait name="Malgus Veradun" s3 pc />
           <NamePortrait name="Von" s3 pc />
           <NamePortrait name="Sire Ciber" s3 />
           <NamePortrait name="Moore" s3 />
@@ -203,10 +182,7 @@ export default function DramatisPersonae() {
         <Separator className="mt-2 mb-4 bg-red-700" />
         <div className="flex items-center justify-center gap-2 flex-wrap">
           <NamePortrait name="Moore" s3 />
-          <NamePortrait
-            name="Malgus Veradun"
-            src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/malgus%20zoom-ddkzKNoA2HM3SVVuSyFTXSoJanLlQO.png"
-          />
+          <NamePortrait name="Malgus Veradun" s3 pc />
           <NamePortrait name="Nichros Perydark" s3 />
           <NamePortrait name="Laramie Black" s3 />
           <NamePortrait name="Yewin" s3 />
@@ -219,10 +195,7 @@ export default function DramatisPersonae() {
         </TypographyH4>
         <Separator className="mt-2 mb-4 bg-amber-700" />
         <div className="flex items-center justify-center gap-2 flex-wrap">
-          <NamePortrait
-            name="Merit"
-            src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/Merit-ONhjE1e3VgsiiaXtUJ9Kc26jA2gxkA.png"
-          />
+          <NamePortrait name="Merit" s3 pc />
           <NamePortrait name="Bessemer" />
           <NamePortrait name="Lester Aurus" />
           <NamePortrait name="Minamo" s3 />
@@ -288,10 +261,7 @@ export default function DramatisPersonae() {
         </TypographyH4>
         <Separator className="mt-2 mb-4 bg-red-700" />
         <div className="flex items-center justify-center gap-2 flex-wrap">
-          <NamePortrait
-            name="Malgus Veradun"
-            src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/malgus%20zoom-ddkzKNoA2HM3SVVuSyFTXSoJanLlQO.png"
-          />
+          <NamePortrait name="Malgus Veradun" s3 pc />
           <NamePortrait name="Lanorella" s3 />
           <NamePortrait name="Hesperos" s3 />
           <NamePortrait name="Donios" s3 />
@@ -371,10 +341,7 @@ export default function DramatisPersonae() {
         </TypographyH4>
         <Separator className="mt-2 mb-4 bg-cyan-700" />
         <div className="flex items-center justify-center gap-2 flex-wrap">
-          <NamePortrait
-            name="Drusa"
-            src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/Untitled-TGGV8Lx7llaXWqeiUW9TdeDdJop6QL.png"
-          />
+          <NamePortrait name="Drusa" s3 pc />
           <NamePortrait name="Von" s3 pc />
           <NamePortrait name="Alma" s3 />
           <NamePortrait name="Quarrel" />
@@ -409,10 +376,7 @@ export default function DramatisPersonae() {
         </TypographyH4>
         <Separator className="mt-2 mb-4 bg-cyan-700" />
         <div className="flex items-center justify-center gap-2 flex-wrap">
-          <NamePortrait
-            name="Nail"
-            src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/hammer-T3LcbIfLfh8D9dl5dUbIUvLjw5hitK.png"
-          />
+          <NamePortrait name="Nail" s3 pc />
           <NamePortrait name="Veria" />
           <NamePortrait name="Theo" s3 />
           <NamePortrait name="Nimund" s3 />
@@ -460,10 +424,7 @@ export default function DramatisPersonae() {
         </TypographyH4>
         <Separator className="mt-2 mb-4 bg-cyan-700" />
         <div className="flex items-center justify-center gap-2 flex-wrap">
-          <NamePortrait
-            name="Merit"
-            src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/Merit-ONhjE1e3VgsiiaXtUJ9Kc26jA2gxkA.png"
-          />
+          <NamePortrait name="Merit" s3 pc />
           <NamePortrait name="Finn" s3 />
           <NamePortrait name="Oza Kriche" s3 />
           <NamePortrait
