@@ -37,20 +37,14 @@ export default function DramatisPersonae() {
         </TypographyH4>
         <Separator className="mt-2 mb-4 bg-indigo-700" />
         <div className="flex items-center justify-center gap-2 flex-wrap">
-          <NamePortrait
-            name="21"
-            src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/21-c9CAB4fwfsIieihTnWV1SBAPMfoTLN.png"
-          />
-          <NamePortrait
-            name="Aika Drak"
-            src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/Aika%20Drak%20portrait-RamjZLKopMfYVYAP14MFg6pcwxUur0.jpg"
-          />
+          <NamePortrait name="Twenty-One" s3 pc />
+          <NamePortrait name="Aika Drak" s3 pc />
           <NamePortrait name="Bessemer" />
-          <NamePortrait name="Lilya Amati" />
           <NamePortrait
-            name="Von"
-            src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/Von-DqxnWGN3lpMKuoZqD0ASv9ch9x7PxO.jpg"
+            name="Lilya Amati"
+            src="https://provenire.s3.us-east-1.amazonaws.com/pc-art/Lilya Shirin Prisca Amati"
           />
+          <NamePortrait name="Von" s3 pc />
         </div>
       </div>
       <div>
@@ -59,6 +53,10 @@ export default function DramatisPersonae() {
         </TypographyH4>
         <Separator className="mt-2 mb-4 bg-amber-700" />
         <div className="flex items-center justify-center gap-2 flex-wrap">
+          <NamePortrait
+            name="Lilya Amati"
+            src="https://provenire.s3.us-east-1.amazonaws.com/pc-art/Lilya Shirin Prisca Amati"
+          />
           <NamePortrait name="Quarrel" />
           <NamePortrait name="Lio" s3 />
           <NamePortrait name="Kent" s3 />
@@ -146,14 +144,8 @@ export default function DramatisPersonae() {
         </TypographyH4>
         <Separator className="mt-2 mb-4 bg-amber-700" />
         <div className="flex items-center justify-center gap-2 flex-wrap">
-          <NamePortrait
-            name="21"
-            src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/21-c9CAB4fwfsIieihTnWV1SBAPMfoTLN.png"
-          />
-          <NamePortrait
-            name="Aika Drak"
-            src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/Aika%20Drak%20portrait-RamjZLKopMfYVYAP14MFg6pcwxUur0.jpg"
-          />
+          <NamePortrait name="Twenty-One" s3 pc />
+          <NamePortrait name="Aika Drak" s3 pc />
           <NamePortrait
             name="Drusa"
             src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/Untitled-TGGV8Lx7llaXWqeiUW9TdeDdJop6QL.png"
@@ -166,10 +158,7 @@ export default function DramatisPersonae() {
             name="Malgus Veradun"
             src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/malgus%20zoom-ddkzKNoA2HM3SVVuSyFTXSoJanLlQO.png"
           />
-          <NamePortrait
-            name="Von"
-            src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/Von-DqxnWGN3lpMKuoZqD0ASv9ch9x7PxO.jpg"
-          />
+          <NamePortrait name="Von" s3 pc />
           <NamePortrait name="Sire Ciber" s3 />
           <NamePortrait name="Moore" s3 />
           <NamePortrait name="Nichros Perydark" s3 />
@@ -386,19 +375,10 @@ export default function DramatisPersonae() {
             name="Drusa"
             src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/Untitled-TGGV8Lx7llaXWqeiUW9TdeDdJop6QL.png"
           />
-          <NamePortrait
-            name="Von"
-            src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/Von-DqxnWGN3lpMKuoZqD0ASv9ch9x7PxO.jpg"
-          />
-          <NamePortrait
-            name="Alma"
-            src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/alma-7U53x1yaJA7FAfcM68Rh8wXYvpOOxO.png"
-          />
+          <NamePortrait name="Von" s3 pc />
+          <NamePortrait name="Alma" s3 />
           <NamePortrait name="Quarrel" />
-          <NamePortrait
-            name="Enzo"
-            src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/npc-art/enzo-MJm7deywDtMBXPd0GWUWsUr6pnWFMH.png"
-          />
+          <NamePortrait name="Enzo" s3 />
           <NamePortrait name="Theodora" />
           <NamePortrait name="Elisaweta" />
         </div>
@@ -409,10 +389,7 @@ export default function DramatisPersonae() {
         </TypographyH4>
         <Separator className="mt-2 mb-4 bg-cyan-700" />
         <div className="flex items-center justify-center gap-2 flex-wrap">
-          <NamePortrait
-            name="Aika Drak"
-            src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/Aika%20Drak%20portrait-RamjZLKopMfYVYAP14MFg6pcwxUur0.jpg"
-          />
+          <NamePortrait name="Aika Drak" s3 pc />
           <NamePortrait name="Geleswin" s3 />
           <NamePortrait name="Bran" s3 />
           <NamePortrait name="Malix" />
@@ -461,6 +438,10 @@ export default function DramatisPersonae() {
         </TypographyH4>
         <Separator className="mt-2 mb-4 bg-cyan-700" />
         <div className="flex items-center justify-center gap-2 flex-wrap">
+          <NamePortrait
+            name="Lilya Amati"
+            src="https://provenire.s3.us-east-1.amazonaws.com/pc-art/Lilya Shirin Prisca Amati"
+          />
           <NamePortrait name="Nadia" s3 />
           <NamePortrait name="Tovarus" s3 />
           <NamePortrait name="Adwil" s3 />
@@ -501,10 +482,7 @@ export default function DramatisPersonae() {
         </TypographyH4>
         <Separator className="mt-2 mb-4 bg-cyan-700" />
         <div className="flex items-center justify-center gap-2 flex-wrap">
-          <NamePortrait
-            name="21"
-            src="https://mz3l6y8ywafu109t.public.blob.vercel-storage.com/21-c9CAB4fwfsIieihTnWV1SBAPMfoTLN.png"
-          />
+          <NamePortrait name="Twenty-One" s3 pc />
           <NamePortrait name="Wilgefort" s3 />
           <NamePortrait name="Gisa" s3 />
           <NamePortrait name="Seb" s3 />
