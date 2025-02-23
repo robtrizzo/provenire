@@ -3,6 +3,7 @@ import { TypographyH3 } from "@/components/ui/typography";
 import { Checkbox } from "@/components/ui/checkbox";
 import Clock from "@/components/clock";
 import { useCharacterSheet } from "@/contexts/characterSheetContext";
+import { useCrewSheet } from "@/contexts/crewSheetContext";
 
 export default function HarmSection() {
   const {
@@ -24,6 +25,11 @@ export default function HarmSection() {
     setChanges,
     handleDebounceChange,
   } = useCharacterSheet();
+
+  const { livingSpace } = useCrewSheet();
+  const roomsUnlocked = livingSpace.find(
+    (p) => p.name === "Rooms" && p.ticks === 3
+  );
 
   return (
     <>
@@ -67,7 +73,7 @@ export default function HarmSection() {
             <Input
               className="rounded-none h-10"
               value={harm1[0]}
-              disabled={!abilities.includes("Vigorous")}
+              disabled={!abilities.includes("Vigorous") && !roomsUnlocked}
               onChange={(e) => {
                 setHarm1([e.target.value, harm1[1]]);
                 handleDebounceChange();
