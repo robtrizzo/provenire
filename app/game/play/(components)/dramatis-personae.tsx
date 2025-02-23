@@ -36,6 +36,17 @@ export default function DramatisPersonae() {
         </div>
       </div>
       <div>
+        <TypographyH4 className="text-emerald-700 text-center">
+          Laborers
+        </TypographyH4>
+        <Separator className="mt-2 mb-4 bg-emerald-700" />
+        <div className="flex items-center justify-center gap-2 flex-wrap">
+          <NamePortrait name="Rhima" s3 />
+          <NamePortrait name="Galin" s3 />
+          <NamePortrait name="Frax" s3 />
+        </div>
+      </div>
+      <div>
         <TypographyH4 className="text-amber-700 text-center">
           The Bends
         </TypographyH4>
@@ -66,6 +77,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Shiro" />
           <NamePortrait name="Suba" />
           <NamePortrait name="Isaac" />
+          <NamePortrait name="Rhima" s3 />
         </div>
       </div>
       <div>
@@ -173,6 +185,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Rodric" />
           <NamePortrait name="Flynn" />
           <NamePortrait name="Luys" />
+          <NamePortrait name="Frax" s3 />
         </div>
       </div>
       <div>
@@ -232,6 +245,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Corrella" />
           <NamePortrait name="Gabe" />
           <NamePortrait name="Orin" />
+          <NamePortrait name="Galin" s3 />
         </div>
       </div>
       <div>
@@ -394,6 +408,7 @@ export default function DramatisPersonae() {
           />
           <NamePortrait name="Corrella" />
           <NamePortrait name="Orin" />
+          <NamePortrait name="Galin" s3 />
         </div>
       </div>
       <div>
@@ -435,6 +450,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Naoko" />
           <NamePortrait name="Suba" />
           <NamePortrait name="Tsuji" />
+          <NamePortrait name="Rhima" s3 />
         </div>
       </div>
       <div>
@@ -452,6 +468,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Ivid" />
           <NamePortrait name="Seth" />
           <NamePortrait name="Isaac" />
+          <NamePortrait name="Frax" s3 />
         </div>
       </div>
     </>
