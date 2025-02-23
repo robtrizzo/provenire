@@ -1,4 +1,3 @@
 {
-  "buildCommand": "cd ../.. && turbo run build --filter=site",
-  "rootDirectory": "apps/site"
+  "buildCommand": "cd ../.. && turbo run build --filter=site"
 }
