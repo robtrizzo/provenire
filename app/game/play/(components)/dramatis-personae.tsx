@@ -121,7 +121,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Melisande" />
           <NamePortrait name="Ivid" />
           <NamePortrait name="Rodulf" />
-          <NamePortrait name="Sidar" s3 />
+          <NamePortrait name="Sidar" s3 dead />
           <NamePortrait name="Dunny" />
           <NamePortrait name="Darius Azad" s3 />
         </div>
@@ -134,7 +134,7 @@ export default function DramatisPersonae() {
         <div className="flex items-center justify-center gap-2 flex-wrap">
           <NamePortrait name="Warner" s3 />
           <NamePortrait name="Cyrus" s3 />
-          <NamePortrait name="Sidar" s3 />
+          <NamePortrait name="Sidar" s3 dead />
           <NamePortrait name="Gabe" />
           <NamePortrait name="Darius Azad" s3 />
         </div>
@@ -402,10 +402,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Adosinda" />
           <NamePortrait name="Mori" />
           <NamePortrait name="Shiro" />
-          <NamePortrait
-            name="Sidar"
-            src="https://provenire.s3.us-east-1.amazonaws.com/npc-art/sidar.png"
-          />
+          <NamePortrait name="Sidar" s3 dead />
           <NamePortrait name="Corrella" />
           <NamePortrait name="Orin" />
           <NamePortrait name="Galin" s3 />

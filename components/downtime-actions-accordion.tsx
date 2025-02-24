@@ -47,11 +47,10 @@ export default function DowntimeActionsAccordion({
         <AccordionTrigger>Gather Information</AccordionTrigger>
         <AccordionContent>
           <TypographyP>
-            Seek out information that isn&apos;t trivial to come by. The{" "}
-            <b>Narrator</b> will offer a <b>devil&apos;s bargain</b>. Often this
-            will take the form of: &quot;Pay a <b>cost</b> or face the threat of{" "}
-            <i>bad information</i>&quot;. In this situation, characters roll to
-            avoid consequences rather than to see if they succeed.
+            Seek out information that isn&apos;t trivial to come by. Explain
+            your approach to exploring the topic, then the <b>Narrator</b> will
+            set position and effect. After this, make an <b>action roll</b>.
+            Consequences may be <b>resisted</b> as normal.
           </TypographyP>
           <TypographyP>
             Some information is too obscure or has too complex a barrier to

@@ -1,7 +1,7 @@
-import { Separator } from '@/components/ui/separator';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import {
   TypographyBlockquote,
   TypographyH1,
@@ -10,16 +10,16 @@ import {
   TypographyH4,
   TypographyP,
   TypographyUnorderedList,
-} from '@/components/ui/typography';
-import Breadcrumbs from '@/components/ui/breadcrumbs';
+} from "@/components/ui/typography";
+import Breadcrumbs from "@/components/ui/breadcrumbs";
 
 export default async function Page() {
   return (
     <>
       <Breadcrumbs
         crumbs={[
-          { name: 'Rules', href: '/game/core-system' },
-          { name: 'Prelude', href: '#' },
+          { name: "Rules", href: "/game/core-system" },
+          { name: "Prelude", href: "#" },
         ]}
       />
       <TypographyH1>Prelude</TypographyH1>
@@ -43,8 +43,8 @@ export default async function Page() {
       </TypographyP>
       <TypographyH3>Choose the Mission</TypographyH3>
       <TypographyP>
-        As opposed to more classic RPG structures where the <b>Narrator</b>{' '}
-        preps and then runs their prepared session for the players, in{' '}
+        As opposed to more classic RPG structures where the <b>Narrator</b>{" "}
+        preps and then runs their prepared session for the players, in{" "}
         <span className="italic">Provenire</span>, the players choose what they
         do next. The <b>Narrator</b> will have the setting, characters,
         factions, and threats of the Steel Trap already prepared. They may even
@@ -55,7 +55,7 @@ export default async function Page() {
       <TypographyP>
         Once the mission is agreed on by the players, the <b>Narrator</b> tells
         them what kinds of rewards they can expect from accomplishing the
-        mission. This can take the form of <b>rep</b>, <b>goodwill</b>,{' '}
+        mission. This can take the form of <b>rep</b>, <b>goodwill</b>,{" "}
         <b>intel</b>, <b>materials</b>, <b>food</b>, or other special rewards
         (which the <b>Narrator</b> may choose to not give specifics on).
       </TypographyP>
@@ -68,7 +68,7 @@ export default async function Page() {
       </TypographyP>
       <TypographyH2 id="downtime">Downtime</TypographyH2>
       <TypographyP>
-        In the short time left between <b>subsistence</b>, <b>agendas</b>, and{' '}
+        In the short time left between <b>subsistence</b>, <b>agendas</b>, and{" "}
         <b>missions</b>, your character can tend to their friends, family,
         community, and themselves.
       </TypographyP>
@@ -82,9 +82,9 @@ export default async function Page() {
         ear, or a source of tough love. When you comfort someone, name a piece
         of actionable advice and <b>ante</b> up a number from 1 to 8. The
         character you comfort can choose to take the advice or reject it. If
-        they take the advice, they mark a number of ticks on their{' '}
+        they take the advice, they mark a number of ticks on their{" "}
         <b>recovery clock</b> according to the <b>ante</b>. If they reject the
-        advice, you mark an amount of stress equal to the <b>ante</b> or{' '}
+        advice, you mark an amount of stress equal to the <b>ante</b> or{" "}
         <b>strain your bond</b>.
       </TypographyP>
       <TypographyH4>Consort</TypographyH4>
@@ -97,11 +97,10 @@ export default async function Page() {
       </TypographyP>
       <TypographyH4>Gather Information</TypographyH4>
       <TypographyP>
-        Seek out information that isn&apos;t trivial to come by. The{' '}
-        <b>Narrator</b> will offer a <b>devil&apos;s bargain</b>. Often this
-        will take the form of: &quot;Pay a <b>cost</b> or face the threat of{' '}
-        <i>bad information</i>&quot;. In this situation, characters roll to
-        avoid consequences rather than to see if they succeed.
+        Seek out information that isn&apos;t trivial to come by. Explain your
+        approach to exploring the topic, then the <b>Narrator</b> will set
+        position and effect. After this, make an <b>action roll</b>.
+        Consequences may be <b>resisted</b> as normal.
       </TypographyP>
       <TypographyP>
         Some information is too obscure or has too complex a barrier to answer
@@ -120,10 +119,10 @@ export default async function Page() {
           activities like puzzling out a mystery, gaining someone&apos;s trust,
           or building a unique item. Based on the goal of the project, the GM
           will tell you the clock(s) to create and suggest a method by which you
-          might make progress. To advance a <b>long term project</b>, make a{' '}
+          might make progress. To advance a <b>long term project</b>, make a{" "}
           <Link href="/game/actions-and-rolls#project-rolls">
             <span className="text-red-500 underline">project roll</span>
-          </Link>{' '}
+          </Link>{" "}
           as normal.
         </TypographyP>
       </div>
@@ -143,7 +142,7 @@ export default async function Page() {
         <TypographyP>
           Receive as good a treatment as you can in the Steel Trap. Remove one
           instance of harm from your sheet. Pay them <b>2 food/materials</b> and
-          take <b>+2 heat</b>, or pay for their discretion with{' '}
+          take <b>+2 heat</b>, or pay for their discretion with{" "}
           <b>4 food/materials</b>.
         </TypographyP>
       </div>
@@ -157,7 +156,7 @@ export default async function Page() {
         When you shift blame, you&apos;re trying to reduce the crew&apos;s heat
         generated in missions. You might be spreading rumors, bribing officials,
         or framing someone else for your crimes. Whatever your approach, you
-        need a scapegoat. Name them and make a{' '}
+        need a scapegoat. Name them and make a{" "}
         <Link href="/game/prelude#project-rolls">
           <span className="text-red-500 underline">project roll</span>
         </Link>
@@ -167,8 +166,8 @@ export default async function Page() {
       <TypographyP>
         When you spend time training, <b>spend xp</b> to get an advance for your
         character. Describe the training montage with an appropriate instructor
-        or mentor. You can choose this activity to act as an <b>instructor</b>{' '}
-        in an area of your expertise. When you&apos;re an instructor, you may{' '}
+        or mentor. You can choose this activity to act as an <b>instructor</b>{" "}
+        in an area of your expertise. When you&apos;re an instructor, you may{" "}
         <b>spend xp</b> to advance.
       </TypographyP>
       <TypographyBlockquote>
@@ -192,27 +191,27 @@ export default async function Page() {
       </TypographyP>
       <TypographyUnorderedList>
         <li>
-          <b>Assault</b>: Do violence to a target.{' '}
+          <b>Assault</b>: Do violence to a target.{" "}
           <span className="italic">Detail: the point of attack.</span>
         </li>
         <li>
-          <b>Deception</b>: Lure, trick, or manipulate.{' '}
+          <b>Deception</b>: Lure, trick, or manipulate.{" "}
           <span className="italic">Detail: the method of deception.</span>
         </li>
         <li>
-          <b>Stealth</b>: Trespass unseen.{' '}
+          <b>Stealth</b>: Trespass unseen.{" "}
           <span className="italic">Detail: the point of infiltration.</span>
         </li>
         <li>
-          <b>Machine</b>: Engage in the strange workings of the factory.{' '}
+          <b>Machine</b>: Engage in the strange workings of the factory.{" "}
           <span className="italic">Detail: the mechanical method.</span>
         </li>
         <li>
-          <b>Social</b>: Negotiate, bargain, or persuade.{' '}
+          <b>Social</b>: Negotiate, bargain, or persuade.{" "}
           <span className="italic">Detail: the social connection.</span>
         </li>
         <li>
-          <b>Transport</b>: Carry cargo or people through danger.{' '}
+          <b>Transport</b>: Carry cargo or people through danger.{" "}
           <span className="italic">Detail: the route and means.</span>
         </li>
       </TypographyUnorderedList>
@@ -254,14 +253,14 @@ export default async function Page() {
       </TypographyUnorderedList>
       <TypographyH3>Major Advantages / Disadvantages</TypographyH3>
       <TypographyP>
-        The engagement roll is a <b>fortune roll</b>, starting with <b>0d</b>{' '}
+        The engagement roll is a <b>fortune roll</b>, starting with <b>0d</b>{" "}
         because there is no luck in the Steel Trap. The dice pool gets modified
         by any major advantages or disadvantages the party has.
       </TypographyP>
       <TypographyUnorderedList>
         <li>
           Is this operation particularly bold or daring? Take <b>+1d</b>. Is
-          this operation overly complex or contingent on many factors? Take{' '}
+          this operation overly complex or contingent on many factors? Take{" "}
           <b>-1d</b>.
         </li>
         <li>
@@ -276,12 +275,12 @@ export default async function Page() {
         </li>
         <li>
           Are any of your <b>friends or contacts</b> providing aid for this
-          operation (at risk of their safety)? Take <b>+1d</b>. Are any{' '}
+          operation (at risk of their safety)? Take <b>+1d</b>. Are any{" "}
           <b>enemies or rivals</b> interfering in the operation? Take <b>-1d</b>
           . Anyone who volunteers an <b>enemy or rival</b> takes <b>+1xp</b>.
         </li>
         <li>
-          Is the target of this operation a worker or faction of workers? Take{' '}
+          Is the target of this operation a worker or faction of workers? Take{" "}
           <b>+1d</b>. Is the target an overseer or is an overseer the member of
           the target group? Take <b>-2d</b>.
         </li>
@@ -295,26 +294,26 @@ export default async function Page() {
         the mission.
       </TypographyP>
       <TypographyP>
-        <b>Critical</b>: Exceptional result.{' '}
+        <b>Critical</b>: Exceptional result.{" "}
         <span className="italic">
           You&apos;ve already overcome the first obstacle and you&apos;re in a
           controlled position for what&apos;s next.
         </span>
       </TypographyP>
       <TypographyP>
-        <b>6</b>: Good result.{' '}
+        <b>6</b>: Good result.{" "}
         <span className="italic">
           You&apos;re in a controlled position when the action starts.
         </span>
       </TypographyP>
       <TypographyP>
-        <b>4/5</b>: Mixed result.{' '}
+        <b>4/5</b>: Mixed result.{" "}
         <span className="italic">
           You&apos;re in a risky position when the action starts.
         </span>
       </TypographyP>
       <TypographyP>
-        <b>1-3</b>: Bad result.{' '}
+        <b>1-3</b>: Bad result.{" "}
         <span className="italic">
           You&apos;re in a desperate position when the action starts.
         </span>
