@@ -44,6 +44,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Rhima" s3 />
           <NamePortrait name="Galin" s3 />
           <NamePortrait name="Frax" s3 />
+          <NamePortrait name="Donios" s3 />
         </div>
       </div>
       <div>
@@ -186,6 +187,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Flynn" />
           <NamePortrait name="Luys" />
           <NamePortrait name="Frax" s3 />
+          <NamePortrait name="Donios" s3 />
         </div>
       </div>
       <div>
@@ -275,10 +277,8 @@ export default function DramatisPersonae() {
         </TypographyH4>
         <Separator className="mt-2 mb-4 bg-red-700" />
         <div className="flex items-center justify-center gap-2 flex-wrap">
-          <NamePortrait name="Malgus Veradun" s3 pc />
           <NamePortrait name="Lanorella" s3 />
           <NamePortrait name="Hesperos" s3 />
-          <NamePortrait name="Donios" s3 />
           <NamePortrait name="Deritus" s3 />
         </div>
       </div>
