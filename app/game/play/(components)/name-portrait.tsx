@@ -42,10 +42,14 @@ export default function NamePortrait({
           </div>
         </div>
       ) : (
-        <div className="absolute group bottom-0 left-0 h-56 w-56 z-10 bg-black/50 rounded-md flex items-center justify-center hover:bg-black/0 transition-all duration-300">
-          <b className="text-lg group-hover:opacity-0 transition-all duration-300">
-            {name || "???"}
-          </b>
+        <div className="absolute group bottom-0 left-0 h-56 w-56 z-10 bg-white/20 dark:bg-black/10 rounded-md flex items-center justify-center hover:bg-black/0 transition-all duration-300">
+          {src ? (
+            <b className="text-lg text-white group-hover:opacity-0 transition-all duration-300">
+              {name || "???"}
+            </b>
+          ) : (
+            <b className="text-lg">{name || "???"}</b>
+          )}
         </div>
       )}
     </div>
