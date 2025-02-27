@@ -118,20 +118,54 @@ export default async function Page() {
         incidunt, voluptatibus est!
       </p>
       <TypographyH2>Bestial Transformations</TypographyH2>
+      <TypographyP>
+        They range from minor bodily changes to full bestial shapeshifting. For{" "}
+        <i>thinbloods,</i> this process wracks them with pain and can leave them
+        partially warped in a way which they can&apos;t reverse. As for the{" "}
+        <i>thickblooded</i> beasts, the mastery of their form is limited only by
+        the purity of their bloodline and the volume of their appetite.
+      </TypographyP>
+      <TypographyP>
+        Most children, even the <i>thinblooded</i> ones, begin manifesting signs
+        before their teenage years. Many will be wracked with{" "}
+        <i>surge sickness</i>: uncontrollable and sudden transformations which
+        can leave the child severely wounded. Overcoming this is part of coming
+        of age in Rathi society.
+      </TypographyP>
+      <TypographyP>
+        For some though, (especially for those with particularly thin Rathi
+        heritage), they may not see signs of transformation until well into
+        their adulthood. Moments of extreme duress can coax the transformation
+        out. Rathi scholars speculate that this is a defense mechanism of the{" "}
+        <i>thinblooded</i>: a last ditch effort to become predator even as they
+        are the prey.
+      </TypographyP>
+      <TypographyBlockquote>
+        In the Steel Trap, anyone could have traces of Rathi blood. If you
+        choose, you may select a <b>bestial transformation</b> as your
+        character&apos;s <b>Donum</b>. This does not lock you to <i>only</i>{" "}
+        this <b>Donum</b> permanently, but this is a permanent choice and will
+        affect character options throughout the game.
+      </TypographyBlockquote>
+      <TypographyP>
+        Bestial transformations have an <b>Emergence clock</b>. Each time your
+        character marks a condition or a level 3 harm, they mark the{" "}
+        <i>Emergence clock</i>. Once full, your character unlocks their{" "}
+        <i>Donum Provenire</i>: a moment of your choosing where the
+        transformation fully manifests and provides your character with dramatic
+        power in that scene.
+      </TypographyP>
+      <TypographyP>
+        After the <i>Donum Provenire</i>, the transformation enters a new phase.
+      </TypographyP>
       <p style={distortedStyle} className="select-none">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis porro
-        dicta, itaque qui ea error perferendis excepturi perspiciatis sapiente
-        aspernatur. Molestiae quisquam commodi consequatur labore quo, sit
-        recusandae excepturi fuga.
-      </p>
-      <p style={distortedStyle}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos,
-        aspernatur perferendis fugiat ab porro ratione natus vitae quos veniam
-        quam cupiditate iure corrupti necessitatibus obcaecati tenetur nihil.
-        Expedita, consequuntur eius. Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Blanditiis harum ullam dignissimos reprehenderit
-        libero expedita fugiat quam, quis odit quo omnis dolorem cupiditate
-        sequi tempora minima suscipit voluptate itaque doloribus!
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat ut
+        explicabo autem in provident deserunt ipsa pariatur excepturi maxime,
+        omnis, id officia blanditiis minima repellendus esse necessitatibus,
+        obcaecati qui! Itaque. Lorem ipsum dolor sit amet consectetur
+        adipisicing elit. Vero quia error voluptatem aperiam, architecto
+        reiciendis aliquam? Dolorum, odio voluptas dolores ab esse veniam autem,
+        reiciendis, incidunt nemo ad perspiciatis voluptatem?
       </p>
       <TypographyH2>The Machines</TypographyH2>
       <p style={distortedStyle} className="select-none">

@@ -17,6 +17,7 @@ import XPSection from "./xp-section";
 import StressSection from "./stress-section";
 import HarmSection from "./harm-section";
 import ActionsSection from "./actions-section";
+import DonumSection from "./donum-section";
 
 export default function MissionSection() {
   const {
@@ -38,6 +39,7 @@ export default function MissionSection() {
     <div className="my-3 grid grid-cols-1 md:grid-cols-2 gap-6 focus-visible:outline-hidden">
       <div className="mt-4">
         <ActionsSection />
+        <DonumSection />
         <TypographyH2 className="text-md text-muted-foreground mt-4">
           Bonds
         </TypographyH2>

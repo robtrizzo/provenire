@@ -18,6 +18,7 @@ import {
   Item,
   FightingStyle,
   Donum,
+  DonumPhase,
 } from "@/types/game";
 import { debounce } from "@/lib/utils";
 
@@ -33,6 +34,8 @@ interface CharacterSheetContextProps {
   selectedHeritage: Heritage | undefined;
   selectedFightingStyle: FightingStyle | undefined;
   selectedDonum: Donum | undefined;
+  donumProgress: number;
+  donumPhase: DonumPhase;
   questions: Map<string, string>;
   notes: string;
   xpRef: React.RefObject<number>;
@@ -74,6 +77,8 @@ interface CharacterSheetContextProps {
     React.SetStateAction<FightingStyle | undefined>
   >;
   setSelectedDonum: React.Dispatch<React.SetStateAction<Donum | undefined>>;
+  setDonumProgress: React.Dispatch<React.SetStateAction<number>>;
+  setDonumPhase: React.Dispatch<React.SetStateAction<DonumPhase>>;
   setQuestions: React.Dispatch<React.SetStateAction<Map<string, string>>>;
   setNotes: React.Dispatch<React.SetStateAction<string>>;
   setAttributes: React.Dispatch<React.SetStateAction<CharacterAttributes>>;
@@ -156,6 +161,9 @@ export default function CharacterSheetProvider({
     Machina: { Suggest: [0, 0], Survey: [0, 0] },
   });
 
+  const [donumProgress, setDonumProgress] = useState<number>(0);
+  const [donumPhase, setDonumPhase] = useState<DonumPhase>("Emergence");
+
   const [bonds, setBonds] = useState<Bonds>({
     Personal: [
       { name: "", score: [0, 0] },
@@ -225,6 +233,8 @@ export default function CharacterSheetProvider({
       setSelectedHeritage(parsed.selectedHeritage);
       setSelectedFightingStyle(parsed.selectedFightingStyle);
       setSelectedDonum(parsed.selectedDonum);
+      setDonumProgress(parsed.donumProgress);
+      setDonumPhase(parsed.donumPhase);
       setQuestions(new Map(parsed.questions));
       setNotes(parsed.notes || "");
       xpRef.current = parsed.xp || 0;
@@ -276,6 +286,8 @@ export default function CharacterSheetProvider({
       setSelectedHeritage(undefined);
       setSelectedFightingStyle(undefined);
       setSelectedDonum(undefined);
+      setDonumProgress(0);
+      setDonumPhase("Emergence");
       setQuestions(new Map());
       setNotes("");
       xpRef.current = 0;
@@ -335,6 +347,8 @@ export default function CharacterSheetProvider({
           selectedHeritage,
           selectedFightingStyle,
           selectedDonum,
+          donumProgress,
+          donumPhase,
           questions: Array.from(questions),
           notes,
           xp: xpRef.current,
@@ -422,6 +436,8 @@ export default function CharacterSheetProvider({
         selectedHeritage,
         selectedFightingStyle,
         selectedDonum,
+        donumProgress,
+        donumPhase,
         questions,
         notes,
         xpRef,
@@ -453,6 +469,8 @@ export default function CharacterSheetProvider({
         setSelectedHeritage,
         setSelectedFightingStyle,
         setSelectedDonum,
+        setDonumProgress,
+        setDonumPhase,
         setQuestions,
         setNotes,
         setAttributes,

@@ -2,21 +2,25 @@
   {
     "name": "Donum Corvus",
     "translation": "Gift of the Crow",
-    "description": ""
+    "description": "",
+    "provenire": "Cunning of the first crow sharpens your mind and dulls the emotions of prey. Your body twists and contracts and hollows itself out to make it possible for air to lift you up into the heights where you belong."
   },
   {
     "name": "Donum Rex",
     "translation": "Gift of the King",
-    "description": ""
+    "description": "",
+    "provenire": "Power as ancient as Kingwulf himself warps your body in his visage. A second pulse thumps in your chest. You are his bloodline. You have been blessed with his might which suffuses your limbs and repairs your wounds."
   },
   {
     "name": "Donum Ursa",
     "translation": "Gift of the Bear",
-    "description": ""
+    "description": "",
+    "provenire": "Strength, sturdiness, and the tickling of the call to sleep wrap around you like a warm blanket. Your body grows heavy and large. Your belly rumbles with a fathomless hunger."
   },
   {
     "name": "Exsecratus Portentum",
     "translation": "Accursed Monster",
-    "description": ""
+    "description": "",
+    "provenire": "The curse of the monster. An ancient blight of the bloodline that has haunted Rath since time immemorium. Your body contorts and writhes with horrid power. You will be an outcast. You will be hunted."
   }
 ]
