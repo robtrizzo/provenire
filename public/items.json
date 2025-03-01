@@ -15,6 +15,14 @@
       "slots": 1,
       "traits": ["unreliable", "dim", "fragile"],
       "description": "Cloth soaked in tar and wrapped around a hafted object."
+    },
+    {
+      "name": "Rigging",
+      "clock": 4,
+      "ticks": 0,
+      "slots": 2,
+      "traits": ["bulky", "tangled", "unwieldy"],
+      "description": "Tangles of cords and chain links approximating a net"
     }
   ],
   "schematics": [
