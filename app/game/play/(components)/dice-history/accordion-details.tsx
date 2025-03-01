@@ -9,6 +9,7 @@ import { resultsMessage, Roll, ticksFromProject } from "@/types/roll";
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import {TypographyP} from "@/components/ui/typography";
 
 export default function DieAccordian({ roll }: { roll: Roll }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -85,6 +86,11 @@ export default function DieAccordian({ roll }: { roll: Roll }) {
                 <span className="text-muted-foreground text-xs block">
                   {new Date(roll.timestamp).toLocaleString()}
                 </span>
+              )}
+              {roll.private && (
+                <TypographyP className="text-muted-foreground text-xs text-red-400">
+                  private
+                </TypographyP>
               )}
             </div>
             <div className="flex flex-wrap gap-2 items-center">
