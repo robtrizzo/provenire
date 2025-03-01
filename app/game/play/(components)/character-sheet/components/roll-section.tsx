@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { ShieldAlert, Dices, Cog } from "lucide-react";
 import { useCharacterSheet } from "@/contexts/characterSheetContext";
 import { useRoll } from "@/contexts/rollContext";
+import { Switch } from "@/components/ui/switch"
 
 export default function RollSection() {
   const {
@@ -29,9 +30,11 @@ export default function RollSection() {
     bonusDiceBlue,
     fortuneDice,
     rollDice,
+    isPrivate,
     setBonusDiceRed,
     setBonusDiceBlue,
     setFortuneDice,
+    setIsPrivate,
     rollLeft,
     rollRight,
     setRollLeft,
@@ -41,9 +44,15 @@ export default function RollSection() {
 
   return (
     <Card className="mt-4 p-4 flex flex-col gap-4">
+    <div className="flex justify-between items-center">
       <TypographyP className="text-muted-foreground text-xs">
         select two skills to roll or shift+click a skill to roll it
       </TypographyP>
+      <div className="flex items-center space-x-2">
+        <Label htmlFor="private-rolls">Private</Label>
+        <Switch id="private-rolls" checked={isPrivate} onCheckedChange={setIsPrivate}/>
+      </div>
+    </div>
       <div className="flex gap-4">
         <Select
           value={rollLeft}

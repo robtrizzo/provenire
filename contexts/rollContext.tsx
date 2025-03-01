@@ -49,6 +49,7 @@ interface RollContextProps {
   fortuneDice: number;
   rolls: Roll[];
   rollsArePending: boolean;
+  isPrivate: boolean;
   setBonusDiceRed: React.Dispatch<React.SetStateAction<number>>;
   setBonusDiceBlue: React.Dispatch<React.SetStateAction<number>>;
   setFortuneDice: React.Dispatch<React.SetStateAction<number>>;
@@ -58,6 +59,7 @@ interface RollContextProps {
   rollRight: string;
   setRollLeft: React.Dispatch<React.SetStateAction<string>>;
   setRollRight: React.Dispatch<React.SetStateAction<string>>;
+  setIsPrivate: React.Dispatch<React.SetStateAction<boolean>>;
   handleRollButton: (
     type: RollType,
     rollLeft: string,
@@ -91,6 +93,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   const [currentDiceFilter, setCurrentDiceFilter] = useState<string>("all");
   const [rollLeft, setRollLeft] = useState<string>("");
   const [rollRight, setRollRight] = useState<string>("");
+  const [isPrivate, setIsPrivate] = useState<boolean>(false);
 
   const { mutateAsync: saveDiceRoll } = useMutation({
     mutationFn: async (roll: Roll) => {
@@ -99,6 +102,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         return [];
       }
       roll.charName = name;
+      roll.private = isPrivate;
       const response = await fetch(`/api/roll/${userId}`, {
         method: "POST",
         headers: {
@@ -482,10 +486,12 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         rollDice,
         rolls,
         rollsArePending,
+        isPrivate,
         setBonusDiceRed,
         setBonusDiceBlue,
         setFortuneDice,
         setRolls,
+        setIsPrivate,
         refetchRolls,
         rollLeft,
         rollRight,
