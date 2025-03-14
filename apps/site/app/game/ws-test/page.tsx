@@ -1,4 +1,5 @@
 "use client";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import useWs from "@/hooks/use-ws";
 import { useSession } from "next-auth/react";
 export default function Page() {
@@ -25,9 +26,16 @@ export default function Page() {
       <p>
         Status: <code>{!!isReady ? "connected" : "disconnected"}</code>
       </p>
-      <p>
-        Message: <code>{JSON.stringify(connected)}</code>
-      </p>
+      <h2>Users Connected</h2>
+      {connected.map((userInfo, idx) => (
+        <div className="flex gap-2 items-center" key={`uesr-${idx}`}>
+          <Avatar>
+            <AvatarImage src={userInfo.avatar} />
+            <AvatarFallback>{userInfo.username}</AvatarFallback>
+          </Avatar>
+          <p>{userInfo.username}</p>
+        </div>
+      ))}
     </>
   );
 }
