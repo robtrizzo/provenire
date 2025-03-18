@@ -275,10 +275,10 @@ export default async function Page() {
         seek revenge), <b>4,5:</b> 1, <b>6:</b> 2, <b>Critical:</b> 3.
       </TypographyP>
       <TypographyP>
-        Fumes then spend <b>intel</b> to blackmail or plant informants in the
-        overseers&apos; ranks. They select an upgrade from the hierarchy tree.
-        An upgrade can only be selected if all of the prerequisite upgrades are
-        also selected.
+        Fumes then spend <b>intel (1/2/4/6)</b> to blackmail or plant informants
+        in the overseers&apos; ranks. They select an upgrade from the hierarchy
+        tree. An upgrade can only be selected if all of the prerequisite
+        upgrades are also selected.
       </TypographyP>
       <TypographyH4>Overseer Hierarchy Tree</TypographyH4>
       <div className="max-w-[calc(100vw-40px)] md:max-w-[calc(100vw-290px)] overflow-auto">

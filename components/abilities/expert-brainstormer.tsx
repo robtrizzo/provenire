@@ -1,12 +1,11 @@
-import { TypographyP } from '@/components/ui/typography';
+import { TypographyP } from "@/components/ui/typography";
 export default function ExpertBrainstormer() {
   return (
     <div>
       <TypographyP>
-        Visionaries get <strong>+1d</strong> to the first roll of a{' '}
-        <strong>long term project</strong>. They take
-        <strong>-1d</strong> to <strong>long term projects</strong> that are
-        over halway done.
+        Visionaries get <b>+1d</b> to the first roll of a{" "}
+        <b>long term project</b>. They take <b>-1d</b> to{" "}
+        <b>long term projects</b> that are over halway done.
       </TypographyP>
     </div>
   );

@@ -1,7 +1,7 @@
 import {
   TypographyP,
   TypographyUnorderedList,
-} from '@/components/ui/typography';
+} from "@/components/ui/typography";
 export default function InSearchOfACalling() {
   return (
     <div>
@@ -17,11 +17,10 @@ export default function InSearchOfACalling() {
         <li>Detainees hanging from crow&apos;s cages</li>
       </TypographyUnorderedList>
       <TypographyP>
-        While in direct pursuit of helping your community, take{' '}
-        <strong>-1 stress</strong> to push yourself or assist a teammate. If you
-        betray your community, mark a<strong>condition.</strong> When you
-        complete your community&apos;s goal, mark <strong>1 xp</strong> and
-        choose a new community.
+        While in direct pursuit of helping your community, take <b>-1 stress</b>{" "}
+        to push yourself or assist a teammate. If you betray your community,
+        mark a <b>condition.</b> When you complete your community&apos;s goal,
+        mark <b>1 xp</b> and choose a new community.
       </TypographyP>
     </div>
   );

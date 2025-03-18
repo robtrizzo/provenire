@@ -9,16 +9,16 @@ export default async function HierarchyTree() {
     <div className="border-[1px] border-border rounded-md p-6 w-[830px]">
       <div className="flex items-center mb-8 gap-16">
         <div className="w-36">
-          <TypographyH3 className="text-center">Enforcers</TypographyH3>
+          <TypographyH3 className="text-center">Enforcers (1)</TypographyH3>
         </div>
         <div className="w-36">
-          <TypographyH3 className="text-center">Prowlers</TypographyH3>
+          <TypographyH3 className="text-center">Prowlers (2)</TypographyH3>
         </div>
         <div className="w-36">
-          <TypographyH3 className="text-center">Marshalls</TypographyH3>
+          <TypographyH3 className="text-center">Marshalls (4)</TypographyH3>
         </div>
         <div className="w-36">
-          <TypographyH3 className="text-center">Commander</TypographyH3>
+          <TypographyH3 className="text-center">Commander (6)</TypographyH3>
         </div>
       </div>
       <div className="flex items-center">

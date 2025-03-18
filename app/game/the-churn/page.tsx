@@ -302,10 +302,11 @@ export default async function Page() {
       <TypographyP>
         Your crew didn&apos;t just spring into existence tonight. You have a
         complex history of favors, commitments, debts, and promises that got you
-        where you are today. To reflect this, after each **agendas phas** you
-        roll dice to find out which **entanglement** comes calling. An
-        entanglement might be a rival, opposing faction, an enforcer, overseer,
-        or even the strange workings of the Steel Trap&apos;s machinery.
+        where you are today. To reflect this, after each <b>agendas phase</b>{" "}
+        you roll dice to find out which <b>entanglement</b> comes calling. An
+        <b>entanglement</b> might be a rival, opposing faction, an enforcer,
+        overseer, or even the strange workings of the Steel Trap&apos;s
+        machinery.
       </TypographyP>
       <TypographyP>
         Entanglements become more severe as your <b>heat</b> and{" "}
@@ -330,9 +331,10 @@ export default async function Page() {
       </TypographyP>
       <TypographyP>
         During the Churn, there is a <b>Subsistence</b> phase. First, each
-        character advances the <b>Starvation</b> clock by <b>2 ticks</b>. If the
-        <b>Starvation</b> clock fills, one of the character&apos;s family
-        members perishes from hunger.
+        character advances the <b>Starvation</b> clock by <b>2 ticks</b>. If the{" "}
+        <b>Starvation</b> clock is full at the end of the{" "}
+        <b>Subsistence phase</b>, one of the character&apos;s family members
+        perishes from hunger.
       </TypographyP>
       <TypographyBlockquote>
         At any time during the <b>Churn</b>, a character may choose to spend{" "}
