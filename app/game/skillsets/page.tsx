@@ -2,8 +2,6 @@ import {
   TypographyH1,
   TypographyH2,
   TypographyH3,
-  TypographyH4,
-  TypographyOrderedList,
   TypographyP,
   TypographyUnorderedList,
 } from "@/components/ui/typography";
@@ -17,17 +15,8 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import FactoryMap from "@/components/factory-map";
-import HierarchyTree from "@/components/hierarchy-tree";
-import ScornTable from "@/components/scorn-table";
 import SkillsetAbilities from "@/components/skillsetAbilities";
 import Breadcrumbs from "@/components/ui/breadcrumbs";
-import items from "@/public/items.json";
-import ItemEntry from "@/components/item-entry";
-import factions from "@/public/factions.json";
-import FactionEntry from "@/components/faction-entry";
-import cohorts from "@/public/cohorts.json";
-import CohortEntry from "@/components/cohort-entry";
 
 export default async function Page() {
   return (
