@@ -56,6 +56,8 @@ interface CharacterSheetContextProps {
   subsist: number;
   loadout: Loadout | undefined;
   items: Item[];
+  localUpdatedAt: Date | null;
+  cloudUpdatedAt: Date | null;
   setPortrait: React.Dispatch<React.SetStateAction<string>>;
   setName: React.Dispatch<React.SetStateAction<string>>;
   setAlias: React.Dispatch<React.SetStateAction<string>>;
@@ -108,6 +110,7 @@ interface CharacterSheetContextProps {
     action: string,
     score: number[]
   ) => void;
+  setCloudUpdatedAt: React.Dispatch<React.SetStateAction<Date | null>>;
 }
 
 const CharacterSheetContext = createContext<
@@ -216,6 +219,8 @@ export default function CharacterSheetProvider({
 
   const [changes, setChanges] = useState(false);
   const [characterLoaded, setCharacterLoaded] = useState<Date>(new Date());
+  const [localUpdatedAt, setLocalUpdatedAt] = useState<Date | null>(null);
+  const [cloudUpdatedAt, setCloudUpdatedAt] = useState<Date | null>(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -273,6 +278,8 @@ export default function CharacterSheetProvider({
       setSubsist(parsed.subsist || 0);
       setLoadout(parsed.loadout);
       setItems(parsed.items);
+      setLocalUpdatedAt(parsed.updatedAt);
+      setCloudUpdatedAt(parsed.updatedAt);
     } else {
       // if there is no data, set the default values
       setPortrait("");
@@ -329,12 +336,15 @@ export default function CharacterSheetProvider({
       setSubsist(0);
       setLoadout(undefined);
       setItems([]);
+      setLocalUpdatedAt(null);
+      setCloudUpdatedAt(null);
     }
   }, [characterLoaded]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       if (changes) {
+        const savedDate = new Date();
         const data = {
           portrait,
           name,
@@ -369,8 +379,10 @@ export default function CharacterSheetProvider({
           subsist,
           loadout,
           items,
+          updatedAt: savedDate,
         };
         localStorage.setItem("charsheet", JSON.stringify(data));
+        setLocalUpdatedAt(savedDate);
         setChanges(false);
       }
     }, 100);
@@ -458,6 +470,8 @@ export default function CharacterSheetProvider({
         subsist,
         loadout,
         items,
+        localUpdatedAt,
+        cloudUpdatedAt,
         setPortrait,
         setName,
         setAlias,
@@ -496,6 +510,7 @@ export default function CharacterSheetProvider({
         handleUpdateItemName,
         handleUpdateItemSlots,
         handleUpdateActionScore,
+        setCloudUpdatedAt,
       }}
     >
       {children}

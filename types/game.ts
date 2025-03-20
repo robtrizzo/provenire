@@ -1,5 +1,6 @@
 export interface Character {
   name: string;
+  updatedAt: Date;
 }
 
 export type Archetype = {

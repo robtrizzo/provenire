@@ -1,27 +1,25 @@
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/ui/popover';
-import { TypographyH4 } from '@/components/ui/typography';
-import { X, Bomb } from 'lucide-react';
-import { Close } from '@radix-ui/react-popover';
+} from "@/components/ui/popover";
+import { TypographyH4 } from "@/components/ui/typography";
+import { X, Bomb } from "lucide-react";
+import { Close } from "@radix-ui/react-popover";
+import { useCharacterSheet } from "@/contexts/characterSheetContext";
 
-export default function ClearCharacter({
-  triggerCharacterLoaded,
-}: {
-  triggerCharacterLoaded: () => void;
-}) {
+export default function ClearCharacter() {
   const [open, setOpen] = useState(false);
+  const { setCharacterLoaded } = useCharacterSheet();
   function closePopover() {
     setOpen(false);
   }
 
   function clearCharacter() {
-    localStorage.removeItem('charsheet');
-    triggerCharacterLoaded();
+    localStorage.removeItem("charsheet");
+    setCharacterLoaded(new Date());
     closePopover();
   }
 

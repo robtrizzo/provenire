@@ -35,6 +35,7 @@ import Portrait from "./components/portrait";
 import MissionSection from "./components/mission-section";
 import ProfileSection from "./components/profile-section";
 import ChurnSection from "./components/churn-section";
+import { useQuery } from "@tanstack/react-query";
 
 export default function Charsheet() {
   const [tab, setTab] = useState("mission");
@@ -58,6 +59,8 @@ export default function Charsheet() {
     selectedFightingStyle,
     selectedDonum,
     bonds,
+    localUpdatedAt,
+    cloudUpdatedAt,
     setName,
     setAlias,
     setSelectedArchetype,
@@ -69,15 +72,62 @@ export default function Charsheet() {
     setBonds,
     setChanges,
     setCharacterLoaded,
+    setCloudUpdatedAt,
     handleDebounceChange,
   } = useCharacterSheet();
 
-  function triggerCharacterLoaded() {
-    setCharacterLoaded(new Date());
-  }
+  const { data, isFetching, refetch } = useQuery({
+    queryKey: ["characters", name],
+    queryFn: async () => {
+      const response = await fetch(`/api/characters/${name}`, {
+        cache: "no-cache",
+      });
+      const character = await response.json();
+
+      /**
+       * if the fetched character sheet is newer than the character data
+       * in local storage, set the character sheet to that
+       */
+      try {
+        if (
+          !localUpdatedAt ||
+          new Date(character.updatedAt) > new Date(localUpdatedAt)
+        ) {
+          console.log("loading character from db");
+          localStorage.setItem("charsheet", JSON.stringify(character));
+          setCharacterLoaded(new Date());
+          return { message: "character loaded" };
+        }
+        console.log("ignoring old character save");
+        // still set the cloudUpdatedAt to the fetched value
+        setCloudUpdatedAt(character.updatedAt);
+        return { message: "ignoring old character save" };
+      } catch (error) {
+        console.error(error);
+        return {
+          message: "there was an error while loading character",
+          error,
+        };
+      }
+    },
+  });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (
+        !!localUpdatedAt &&
+        !!cloudUpdatedAt &&
+        new Date(localUpdatedAt) <= new Date(cloudUpdatedAt)
+      ) {
+        refetch();
+      }
+    }, 5 * 60 * 1000 /** 5 minutes */);
+    return () => clearInterval(interval);
+  }, [localUpdatedAt, cloudUpdatedAt, refetch]);
 
   useEffect(() => {
     if (window === undefined) return;
+
     // read the hash and set the tab
     const hash = window.location.hash;
     if (hash && ["mission", "profile", "churn"].includes(hash.substring(1))) {
@@ -90,10 +140,26 @@ export default function Charsheet() {
   return (
     <div>
       <div className="flex justify-between">
-        <div className="flex gap-2 mt-5 ml-auto">
+        <div className="flex items-center gap-2 mt-5 ml-auto">
+          <div className="flex flex-col">
+            <code className="text-xs text-muted-foreground">
+              last <span className="text-amber-800">local</span> save:{" "}
+              {localUpdatedAt
+                ? new Date(localUpdatedAt).toLocaleString()
+                : "N/A"}
+            </code>
+            <code className="text-xs text-muted-foreground">
+              last <span className="text-sky-800">cloud</span> save:{" "}
+              {isFetching
+                ? "fetching..."
+                : cloudUpdatedAt
+                ? new Date(cloudUpdatedAt).toLocaleString()
+                : "N/A"}
+            </code>
+          </div>
           <SaveCharacter initialName={name} />
-          <LoadCharacter triggerCharacterLoaded={triggerCharacterLoaded} />
-          <ClearCharacter triggerCharacterLoaded={triggerCharacterLoaded} />
+          <LoadCharacter />
+          <ClearCharacter />
         </div>
       </div>
       <div className="flex flex-col md:flex-row mt-1 items-start gap-1">

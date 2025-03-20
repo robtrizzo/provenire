@@ -20,13 +20,11 @@ import { CloudDownload, HardDriveUpload, X, FileUp } from "lucide-react";
 import { Close } from "@radix-ui/react-popover";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
+import { useCharacterSheet } from "@/contexts/characterSheetContext";
 
-export default function LoadCharacter({
-  triggerCharacterLoaded,
-}: {
-  triggerCharacterLoaded: () => void;
-}) {
+export default function LoadCharacter() {
   const [open, setOpen] = useState(false);
+  const { setCharacterLoaded } = useCharacterSheet();
 
   function closePopover() {
     setOpen(false);
@@ -49,7 +47,7 @@ export default function LoadCharacter({
           return;
         }
         localStorage.setItem("charsheet", data.toString());
-        triggerCharacterLoaded();
+        setCharacterLoaded(new Date());
         closePopover();
       };
       reader.readAsText(file);
@@ -74,10 +72,7 @@ export default function LoadCharacter({
             <HardDriveUpload />
             Load from Device
           </Button>
-          <LoadFromCloud
-            triggerCharacterLoaded={triggerCharacterLoaded}
-            closePopover={closePopover}
-          />
+          <LoadFromCloud closePopover={closePopover} />
           <Close asChild>
             <Button variant="destructive" className="text-sm">
               <X />
@@ -93,13 +88,7 @@ export default function LoadCharacter({
   );
 }
 
-function LoadFromCloud({
-  triggerCharacterLoaded,
-  closePopover,
-}: {
-  triggerCharacterLoaded: () => void;
-  closePopover: () => void;
-}) {
+function LoadFromCloud({ closePopover }: { closePopover: () => void }) {
   const [open, setOpen] = useState(false);
   function closeDialog() {
     setOpen(false);
@@ -134,7 +123,6 @@ function LoadFromCloud({
             <LoadCharacterButton
               key={idx}
               char={char}
-              triggerCharacterLoaded={triggerCharacterLoaded}
               closeDialog={closeDialog}
               closePopover={closePopover}
             />
@@ -147,18 +135,18 @@ function LoadFromCloud({
 
 function LoadCharacterButton({
   char,
-  triggerCharacterLoaded,
   closeDialog,
   closePopover,
 }: {
   char: any;
-  triggerCharacterLoaded: () => void;
   closeDialog: () => void;
   closePopover: () => void;
 }) {
+  const { setCharacterLoaded } = useCharacterSheet();
+
   function loadCharacter() {
     localStorage.setItem("charsheet", JSON.stringify(char));
-    triggerCharacterLoaded();
+    setCharacterLoaded(new Date());
     closeDialog();
     closePopover();
   }
