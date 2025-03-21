@@ -23,6 +23,7 @@ import {
 } from "@/types/game";
 import { useSession } from "next-auth/react";
 import { useQuery } from "@tanstack/react-query";
+import { useToast } from "@/hooks/use-toast";
 
 interface CrewSheetContextProps {
   name: string;
@@ -191,8 +192,11 @@ export default function CrewSheetProvider({
   const [clocks, setClocks] = useState<Clock[]>([]);
 
   const [crewLoaded, setCrewLoaded] = useState<Date>(new Date());
+  const [updatedAt, setUpdatedAt] = useState<Date | null>(null);
 
-  useQuery({
+  const { toast } = useToast();
+
+  const { refetch } = useQuery({
     queryKey: ["crew", "Arc One"],
     enabled: session?.status === "authenticated" && !isAdmin,
     queryFn: async () => {
@@ -206,10 +210,29 @@ export default function CrewSheetProvider({
       }
       const res = await response.json();
       localStorage.setItem("crewsheet", JSON.stringify(res));
-      setCrewLoaded(new Date());
+      const oldUpdatedAt = updatedAt;
+      if (
+        oldUpdatedAt === null ||
+        new Date(oldUpdatedAt) < new Date(res.updatedAt)
+      ) {
+        toast({
+          title: "Synced crew sheet with cloud",
+        });
+      }
+      setUpdatedAt(res.updatedAt);
+      setCrewLoaded(res.updatedAt);
       return res;
     },
   });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (session?.status === "authenticated" && !isAdmin) {
+        refetch();
+      }
+    }, 15 * 60 * 1000 /** 15 minutes */);
+    return () => clearInterval(interval);
+  }, [session.status, isAdmin, refetch]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;

@@ -27,6 +27,7 @@ export async function POST(request: Request) {
   if (!crew) {
     return new NextResponse(null, { status: 400 });
   }
+  crew.updatedAt = new Date();
 
   try {
     await createCrew(crew);

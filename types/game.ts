@@ -210,4 +210,5 @@ export interface Crew {
   community: CommunityProject[];
   operations: Operation[];
   clocks: Clock[];
+  updatedAt: Date;
 }
