@@ -16,19 +16,17 @@ export default function Providers({
 }>) {
   return (
     <AblyProvider client={ablyClient}>
-      <CharacterSheetProvider>
-        <ChannelProvider channelName="character-sheet">
-          <RollProvider>
-            <ChannelProvider channelName="rolls">
-              <CrewSheetProvider>
-                <ChannelProvider channelName="crew-sheet">
-                  {children}
-                </ChannelProvider>
-              </CrewSheetProvider>
-            </ChannelProvider>
-          </RollProvider>
-        </ChannelProvider>
-      </CharacterSheetProvider>
+      <ChannelProvider channelName="character-sheet">
+        <CharacterSheetProvider>
+          <ChannelProvider channelName="rolls">
+            <RollProvider>
+              <ChannelProvider channelName="crew-sheet">
+                <CrewSheetProvider>{children}</CrewSheetProvider>
+              </ChannelProvider>
+            </RollProvider>
+          </ChannelProvider>
+        </CharacterSheetProvider>
+      </ChannelProvider>
     </AblyProvider>
   );
 }

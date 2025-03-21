@@ -31,7 +31,7 @@ export async function POST(request: Request) {
 
   try {
     await createCrew(crew);
-    return NextResponse.json({ message: "success" });
+    return NextResponse.json({ success: true, updatedAt: crew.updatedAt });
   } catch (error) {
     console.error("Error creating crew", error);
     return NextResponse.json({ error: "Error getting crew" }, { status: 500 });

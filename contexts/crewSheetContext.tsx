@@ -15,6 +15,7 @@ import {
   Clock,
   Cohort,
   CommunityProject,
+  Crew,
   Faction,
   FightingInstructor,
   Gladiator,
@@ -24,6 +25,8 @@ import {
 import { useSession } from "next-auth/react";
 import { useQuery } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
+import { useChannel, useConnectionStateListener } from "ably/react";
+import { RealtimeChannel } from "ably";
 
 interface CrewSheetContextProps {
   name: string;
@@ -55,6 +58,7 @@ interface CrewSheetContextProps {
   community: CommunityProject[];
   operations: Operation[];
   clocks: Clock[];
+  updateChannel: RealtimeChannel;
   setName: Dispatch<SetStateAction<string>>;
   setHeat: Dispatch<SetStateAction<number>>;
   setWanted: Dispatch<SetStateAction<number>>;
@@ -192,6 +196,7 @@ export default function CrewSheetProvider({
   const [clocks, setClocks] = useState<Clock[]>([]);
 
   const [crewLoaded, setCrewLoaded] = useState<Date>(new Date());
+  const [pollEnabled, setPollEnabled] = useState<boolean>(true);
   const [updatedAt, setUpdatedAt] = useState<Date | null>(null);
 
   const { toast } = useToast();
@@ -225,14 +230,33 @@ export default function CrewSheetProvider({
     },
   });
 
+  useConnectionStateListener("connected", () => {
+    setPollEnabled(false);
+  });
+
+  useConnectionStateListener("disconnected", () => {
+    setPollEnabled(true);
+  });
+
+  const { channel } = useChannel("crew-sheet", "update", (message) => {
+    if (session?.status !== "authenticated" || isAdmin) {
+      return;
+    }
+    const crew = message.data as Crew;
+    localStorage.setItem("crewsheet", JSON.stringify(crew));
+    setUpdatedAt(crew.updatedAt);
+    setCrewLoaded(crew.updatedAt);
+    toast({ title: "Crew sheet updated" });
+  });
+
   useEffect(() => {
     const interval = setInterval(() => {
-      if (session?.status === "authenticated" && !isAdmin) {
+      if (pollEnabled && session?.status === "authenticated" && !isAdmin) {
         refetch();
       }
     }, 15 * 60 * 1000 /** 15 minutes */);
     return () => clearInterval(interval);
-  }, [session.status, isAdmin, refetch]);
+  }, [session.status, isAdmin, pollEnabled, refetch]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -268,6 +292,7 @@ export default function CrewSheetProvider({
         community,
         operations,
         clocks,
+        updatedAt,
       } = JSON.parse(data);
       setName(name);
       setHeat(heat);
@@ -298,6 +323,7 @@ export default function CrewSheetProvider({
       setCommunity(community);
       setOperations(operations);
       setClocks(clocks);
+      setUpdatedAt(updatedAt);
     } else {
       setName("");
       setHeat(0);
@@ -328,6 +354,7 @@ export default function CrewSheetProvider({
       setCommunity([]);
       setOperations([]);
       setClocks([]);
+      setUpdatedAt(null);
     }
   }, [crewLoaded]);
 
@@ -365,6 +392,7 @@ export default function CrewSheetProvider({
           community,
           operations,
           clocks,
+          updatedAt,
         };
         localStorage.setItem("crewsheet", JSON.stringify(data));
         setChanges(false);
@@ -855,6 +883,7 @@ export default function CrewSheetProvider({
         community,
         operations,
         clocks,
+        updateChannel: channel,
         setName,
         setHeat,
         setWanted,
