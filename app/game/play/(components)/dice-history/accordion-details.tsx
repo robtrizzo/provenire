@@ -9,7 +9,7 @@ import { resultsMessage, Roll, ticksFromProject } from "@/types/roll";
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
-import {TypographyP} from "@/components/ui/typography";
+import { TypographyP } from "@/components/ui/typography";
 
 export default function DieAccordian({ roll }: { roll: Roll }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -38,7 +38,9 @@ export default function DieAccordian({ roll }: { roll: Roll }) {
     const ticks = ticksFromProject(roll);
     descNode = (
       <div className="flex flex-col border-t pt-2 mt-1">
-        <span className="text-foreground text-xs mb-1">{resultsMessage(roll)}</span>
+        <span className="text-foreground text-xs mb-1">
+          {resultsMessage(roll)}
+        </span>
         <div className="flex gap-2 text-foreground text-xs">
           <span className="text-center">
             <b>Limited:</b> {ticks[0]}
@@ -73,22 +75,20 @@ export default function DieAccordian({ roll }: { roll: Roll }) {
           {descNode}
           <div className="flex items-center gap-4 pt-2">
             <div className="flex-grow">
-              {roll.charName && (
-                <span className="text-muted-foreground text-xs block items-center gap-2">
-                  {roll.charName}
-                  {expandedUserName ?
-                    ` (${expandedUserName})` :
-                    <Skeleton className="w-[80px] h-[20px] rounded-full" />
-                  }
-                </span>
-              )}
+              <span className="text-muted-foreground text-xs block items-center gap-2">
+                {expandedUserName ? (
+                  ` ${expandedUserName}`
+                ) : (
+                  <Skeleton className="w-[80px] h-[20px] rounded-full" />
+                )}
+              </span>
               {roll.timestamp && (
                 <span className="text-muted-foreground text-xs block">
                   {new Date(roll.timestamp).toLocaleString()}
                 </span>
               )}
               {roll.private && (
-                <TypographyP className="text-muted-foreground text-xs text-red-400">
+                <TypographyP className="text-xs text-red-400">
                   private
                 </TypographyP>
               )}
@@ -101,7 +101,9 @@ export default function DieAccordian({ roll }: { roll: Roll }) {
                 <Die
                   key={i}
                   roll={r}
-                  className={`h-8 w-8 ${roll.type === "fortune" ? "" : "text-blue-800"}`}
+                  className={`h-8 w-8 ${
+                    roll.type === "fortune" ? "" : "text-blue-800"
+                  }`}
                 />
               ))}
             </div>
