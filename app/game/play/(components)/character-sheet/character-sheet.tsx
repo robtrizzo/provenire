@@ -36,6 +36,7 @@ import MissionSection from "./components/mission-section";
 import ProfileSection from "./components/profile-section";
 import ChurnSection from "./components/churn-section";
 import { useQuery } from "@tanstack/react-query";
+import { useToast } from "@/hooks/use-toast";
 
 export default function Charsheet() {
   const [tab, setTab] = useState("mission");
@@ -61,6 +62,7 @@ export default function Charsheet() {
     bonds,
     localUpdatedAt,
     cloudUpdatedAt,
+    isSaving,
     setName,
     setAlias,
     setSelectedArchetype,
@@ -76,9 +78,14 @@ export default function Charsheet() {
     handleDebounceChange,
   } = useCharacterSheet();
 
-  const { data, isFetching, refetch } = useQuery({
+  const { toast } = useToast();
+
+  const { isFetching, refetch } = useQuery({
     queryKey: ["characters", name],
     queryFn: async () => {
+      if (!name) {
+        return { message: "no character to fetch" };
+      }
       const response = await fetch(`/api/characters/${name}`, {
         cache: "no-cache",
       });
@@ -96,6 +103,9 @@ export default function Charsheet() {
           console.log("loading character from db");
           localStorage.setItem("charsheet", JSON.stringify(character));
           setCharacterLoaded(new Date());
+          toast({
+            title: "Newer version of character synced from cloud.",
+          });
           return { message: "character loaded" };
         }
         console.log("ignoring old character save");
@@ -104,6 +114,11 @@ export default function Charsheet() {
         return { message: "ignoring old character save" };
       } catch (error) {
         console.error(error);
+        toast({
+          title: "Error",
+          description: `There was an error syncing character with cloud: ${error}`,
+          variant: "destructive",
+        });
         return {
           message: "there was an error while loading character",
           error,
@@ -150,7 +165,9 @@ export default function Charsheet() {
             </code>
             <code className="text-xs text-muted-foreground">
               last <span className="text-sky-800">cloud</span> save:{" "}
-              {isFetching
+              {isSaving
+                ? "saving..."
+                : isFetching
                 ? "fetching..."
                 : cloudUpdatedAt
                 ? new Date(cloudUpdatedAt).toLocaleString()

@@ -21,6 +21,8 @@ import {
   DonumPhase,
 } from "@/types/game";
 import { debounce } from "@/lib/utils";
+import { useMutation } from "@tanstack/react-query";
+import { useToast } from "@/hooks/use-toast";
 
 interface CharacterSheetContextProps {
   portrait: string;
@@ -58,6 +60,7 @@ interface CharacterSheetContextProps {
   items: Item[];
   localUpdatedAt: Date | null;
   cloudUpdatedAt: Date | null;
+  isSaving: boolean;
   setPortrait: React.Dispatch<React.SetStateAction<string>>;
   setName: React.Dispatch<React.SetStateAction<string>>;
   setAlias: React.Dispatch<React.SetStateAction<string>>;
@@ -218,126 +221,136 @@ export default function CharacterSheetProvider({
   const [abilities, setAbilities] = useState<string[]>([]);
 
   const [changes, setChanges] = useState(false);
+  const [dbChanges, setDbChanges] = useState(false);
   const [characterLoaded, setCharacterLoaded] = useState<Date>(new Date());
   const [localUpdatedAt, setLocalUpdatedAt] = useState<Date | null>(null);
   const [cloudUpdatedAt, setCloudUpdatedAt] = useState<Date | null>(null);
+
+  const { toast } = useToast();
+
+  function setToDefaults() {
+    setPortrait("");
+    setName("");
+    setAlias("");
+    setUnivQuestions(["", "", "", "", ""]);
+    setBloodshedQ("");
+    setSelectedArchetype(undefined);
+    setSelectedSkillset(undefined);
+    setSelectedBackground(undefined);
+    setSelectedHeritage(undefined);
+    setSelectedFightingStyle(undefined);
+    setSelectedDonum(undefined);
+    setDonumProgress(0);
+    setDonumPhase("Emergence");
+    setQuestions(new Map());
+    setNotes("");
+    xpRef.current = 0;
+    setAttributes({
+      Heart: { Defy: [0, 0], Persuade: [0, 0] },
+      Instinct: { Charge: [0, 0], Prowl: [0, 0] },
+      Machina: { Suggest: [0, 0], Survey: [0, 0] },
+    });
+    setConditions([]);
+    setStress(0);
+    conditionRecoveryRef.current = 0;
+    setHealing(0);
+    setHarm3("");
+    setHarm2(["", ""]);
+    setHarm1(["tired", ""]);
+    setArmor(false);
+    setHArmor(false);
+    setSArmor(false);
+    setAbilities([]);
+    setBonds({
+      Personal: [
+        { name: "", score: [0, 0] },
+        { name: "", score: [0, 0] },
+      ],
+      Familial: [
+        { name: "", score: [0, 0] },
+        { name: "", score: [0, 0] },
+      ],
+      Professional: [
+        { name: "", score: [0, 0] },
+        { name: "", score: [0, 0] },
+      ],
+      Crew: [
+        { name: "", score: [1, 0] },
+        { name: "", score: [1, 0] },
+      ],
+    });
+    setStarvation(0);
+    setSubsist(0);
+    setLoadout(undefined);
+    setItems([]);
+    setLocalUpdatedAt(null);
+    setCloudUpdatedAt(null);
+  }
 
   useEffect(() => {
     if (typeof window === "undefined") return;
     const data = localStorage.getItem("charsheet");
     if (data) {
       const parsed = JSON.parse(data);
-      setPortrait(parsed.portrait);
-      setName(parsed.name);
-      setAlias(parsed.alias);
-      setUnivQuestions(parsed.univQuestions);
-      setBloodshedQ(parsed.bloodshedQ);
-      setSelectedArchetype(parsed.selectedArchetype);
-      setSelectedSkillset(parsed.selectedSkillset);
-      setSelectedBackground(parsed.selectedBackground);
-      setSelectedHeritage(parsed.selectedHeritage);
-      setSelectedFightingStyle(parsed.selectedFightingStyle);
-      setSelectedDonum(parsed.selectedDonum);
-      setDonumProgress(parsed.donumProgress);
-      setDonumPhase(parsed.donumPhase);
-      setQuestions(new Map(parsed.questions));
-      setNotes(parsed.notes || "");
-      xpRef.current = parsed.xp || 0;
-      if (parsed.attributes) {
-        setAttributes(parsed.attributes);
-      }
-      if (parsed.conditions) {
-        setConditions(parsed.conditions);
-      }
-      setStress(parsed.stress || 0);
-      conditionRecoveryRef.current = parsed.conditionRecovery || 0;
-      setHealing(parsed.healing || 0);
-      setHarm3(parsed.harm3 || "");
-      setHarm2(parsed.harm2 || ["", ""]);
-      if (parsed.abilities.includes("Vigorous")) {
-        let h1 = parsed.harm1[0];
-        let h2 = parsed.harm1[1];
-        if (h1 === "tired") {
-          h1 = "";
-        }
-        if (h2 === "tired") {
-          h2 = "";
-        }
-        setHarm1([h1, h2]);
+      if (!parsed) {
+        setToDefaults();
       } else {
-        setHarm1(parsed.harm1 || ["tired", ""]);
+        setPortrait(parsed.portrait);
+        setName(parsed.name);
+        setAlias(parsed.alias);
+        setUnivQuestions(parsed.univQuestions);
+        setBloodshedQ(parsed.bloodshedQ);
+        setSelectedArchetype(parsed.selectedArchetype);
+        setSelectedSkillset(parsed.selectedSkillset);
+        setSelectedBackground(parsed.selectedBackground);
+        setSelectedHeritage(parsed.selectedHeritage);
+        setSelectedFightingStyle(parsed.selectedFightingStyle);
+        setSelectedDonum(parsed.selectedDonum);
+        setDonumProgress(parsed.donumProgress);
+        setDonumPhase(parsed.donumPhase);
+        setQuestions(new Map(parsed.questions));
+        setNotes(parsed.notes || "");
+        xpRef.current = parsed.xp || 0;
+        if (parsed.attributes) {
+          setAttributes(parsed.attributes);
+        }
+        if (parsed.conditions) {
+          setConditions(parsed.conditions);
+        }
+        setStress(parsed.stress || 0);
+        conditionRecoveryRef.current = parsed.conditionRecovery || 0;
+        setHealing(parsed.healing || 0);
+        setHarm3(parsed.harm3 || "");
+        setHarm2(parsed.harm2 || ["", ""]);
+        if (parsed.abilities?.includes("Vigorous")) {
+          let h1 = parsed.harm1[0];
+          let h2 = parsed.harm1[1];
+          if (h1 === "tired") {
+            h1 = "";
+          }
+          if (h2 === "tired") {
+            h2 = "";
+          }
+          setHarm1([h1, h2]);
+        } else {
+          setHarm1(parsed.harm1 || ["tired", ""]);
+        }
+        setArmor(parsed.armor || false);
+        setHArmor(parsed.hArmor || false);
+        setSArmor(parsed.sArmor || false);
+        setAbilities(parsed.abilities || []);
+        if (parsed.bonds) {
+          setBonds(parsed.bonds);
+        }
+        setStarvation(parsed.starvation || 0);
+        setSubsist(parsed.subsist || 0);
+        setLoadout(parsed.loadout);
+        setItems(parsed.items);
+        setLocalUpdatedAt(parsed.updatedAt);
+        setCloudUpdatedAt(parsed.updatedAt);
       }
-      setArmor(parsed.armor || false);
-      setHArmor(parsed.hArmor || false);
-      setSArmor(parsed.sArmor || false);
-      setAbilities(parsed.abilities || []);
-      if (parsed.bonds) {
-        setBonds(parsed.bonds);
-      }
-      setStarvation(parsed.starvation || 0);
-      setSubsist(parsed.subsist || 0);
-      setLoadout(parsed.loadout);
-      setItems(parsed.items);
-      setLocalUpdatedAt(parsed.updatedAt);
-      setCloudUpdatedAt(parsed.updatedAt);
     } else {
-      // if there is no data, set the default values
-      setPortrait("");
-      setName("");
-      setAlias("");
-      setUnivQuestions(["", "", "", "", ""]);
-      setBloodshedQ("");
-      setSelectedArchetype(undefined);
-      setSelectedSkillset(undefined);
-      setSelectedBackground(undefined);
-      setSelectedHeritage(undefined);
-      setSelectedFightingStyle(undefined);
-      setSelectedDonum(undefined);
-      setDonumProgress(0);
-      setDonumPhase("Emergence");
-      setQuestions(new Map());
-      setNotes("");
-      xpRef.current = 0;
-      setAttributes({
-        Heart: { Defy: [0, 0], Persuade: [0, 0] },
-        Instinct: { Charge: [0, 0], Prowl: [0, 0] },
-        Machina: { Suggest: [0, 0], Survey: [0, 0] },
-      });
-      setConditions([]);
-      setStress(0);
-      conditionRecoveryRef.current = 0;
-      setHealing(0);
-      setHarm3("");
-      setHarm2(["", ""]);
-      setHarm1(["tired", ""]);
-      setArmor(false);
-      setHArmor(false);
-      setSArmor(false);
-      setAbilities([]);
-      setBonds({
-        Personal: [
-          { name: "", score: [0, 0] },
-          { name: "", score: [0, 0] },
-        ],
-        Familial: [
-          { name: "", score: [0, 0] },
-          { name: "", score: [0, 0] },
-        ],
-        Professional: [
-          { name: "", score: [0, 0] },
-          { name: "", score: [0, 0] },
-        ],
-        Crew: [
-          { name: "", score: [1, 0] },
-          { name: "", score: [1, 0] },
-        ],
-      });
-      setStarvation(0);
-      setSubsist(0);
-      setLoadout(undefined);
-      setItems([]);
-      setLocalUpdatedAt(null);
-      setCloudUpdatedAt(null);
+      setToDefaults();
     }
   }, [characterLoaded]);
 
@@ -384,11 +397,93 @@ export default function CharacterSheetProvider({
         localStorage.setItem("charsheet", JSON.stringify(data));
         setLocalUpdatedAt(savedDate);
         setChanges(false);
+        setDbChanges(true);
       }
     }, 100);
     return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [changes]);
+
+  const { mutateAsync: saveToCloud, isPending } = useMutation({
+    mutationFn: async () => {
+      if (!name) {
+        return;
+      }
+      const data = {
+        portrait,
+        name,
+        alias,
+        univQuestions,
+        bloodshedQ,
+        selectedArchetype,
+        selectedSkillset,
+        selectedBackground,
+        selectedHeritage,
+        selectedFightingStyle,
+        selectedDonum,
+        donumProgress,
+        donumPhase,
+        questions: Array.from(questions),
+        notes,
+        xp: xpRef.current,
+        attributes,
+        stress,
+        conditions,
+        conditionRecovery: conditionRecoveryRef.current,
+        healing,
+        harm3,
+        harm2,
+        harm1,
+        armor,
+        hArmor,
+        sArmor,
+        abilities,
+        bonds,
+        starvation,
+        subsist,
+        loadout,
+        items,
+      };
+      if (!data) {
+        return;
+      }
+      const stringifiedData = JSON.stringify(data);
+      const response = await fetch(`/api/characters/upload`, {
+        method: "POST",
+        body: JSON.stringify({ character: stringifiedData }),
+      });
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to save character");
+      }
+      return response.json();
+    },
+    onError: (error) => {
+      console.error("Error saving character to cloud", error);
+      toast({
+        title: "Error",
+        description: `Character auto-save to cloud failed`,
+        variant: "destructive",
+      });
+    },
+    onSuccess: () => {
+      toast({
+        title: "Character auto-saved to cloud",
+      });
+    },
+  });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (dbChanges) {
+        saveToCloud();
+        setCloudUpdatedAt(new Date());
+        setDbChanges(false);
+      }
+    }, 60 * 1000 /** 1 minute */);
+    return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dbChanges]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleDebounceChange = useCallback(
@@ -472,6 +567,7 @@ export default function CharacterSheetProvider({
         items,
         localUpdatedAt,
         cloudUpdatedAt,
+        isSaving: isPending,
         setPortrait,
         setName,
         setAlias,
