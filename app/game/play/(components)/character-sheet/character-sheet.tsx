@@ -35,8 +35,6 @@ import Portrait from "./components/portrait";
 import MissionSection from "./components/mission-section";
 import ProfileSection from "./components/profile-section";
 import ChurnSection from "./components/churn-section";
-import { useQuery } from "@tanstack/react-query";
-import { useToast } from "@/hooks/use-toast";
 
 export default function Charsheet() {
   const [tab, setTab] = useState("mission");
@@ -62,6 +60,7 @@ export default function Charsheet() {
     bonds,
     localUpdatedAt,
     cloudUpdatedAt,
+    isFetching,
     isSaving,
     setName,
     setAlias,
@@ -73,72 +72,8 @@ export default function Charsheet() {
     setSelectedDonum,
     setBonds,
     setChanges,
-    setCharacterLoaded,
-    setCloudUpdatedAt,
     handleDebounceChange,
   } = useCharacterSheet();
-
-  const { toast } = useToast();
-
-  const { isFetching, refetch } = useQuery({
-    queryKey: ["characters", name],
-    queryFn: async () => {
-      if (!name) {
-        return { message: "no character to fetch" };
-      }
-      const response = await fetch(`/api/characters/${name}`, {
-        cache: "no-cache",
-      });
-      const character = await response.json();
-
-      /**
-       * if the fetched character sheet is newer than the character data
-       * in local storage, set the character sheet to that
-       */
-      try {
-        if (
-          !localUpdatedAt ||
-          new Date(character.updatedAt) > new Date(localUpdatedAt)
-        ) {
-          console.log("loading character from db");
-          localStorage.setItem("charsheet", JSON.stringify(character));
-          setCharacterLoaded(new Date());
-          toast({
-            title: "Newer version of character synced from cloud.",
-          });
-          return { message: "character loaded" };
-        }
-        console.log("ignoring old character save");
-        // still set the cloudUpdatedAt to the fetched value
-        setCloudUpdatedAt(character.updatedAt);
-        return { message: "ignoring old character save" };
-      } catch (error) {
-        console.error(error);
-        toast({
-          title: "Error",
-          description: `There was an error syncing character with cloud: ${error}`,
-          variant: "destructive",
-        });
-        return {
-          message: "there was an error while loading character",
-          error,
-        };
-      }
-    },
-  });
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (
-        !!localUpdatedAt &&
-        !!cloudUpdatedAt &&
-        new Date(localUpdatedAt) <= new Date(cloudUpdatedAt)
-      ) {
-        refetch();
-      }
-    }, 5 * 60 * 1000 /** 5 minutes */);
-    return () => clearInterval(interval);
-  }, [localUpdatedAt, cloudUpdatedAt, refetch]);
 
   useEffect(() => {
     if (window === undefined) return;
