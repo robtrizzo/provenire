@@ -1,5 +1,5 @@
 import type { Faction } from "@/types/game";
-export default async function FactionEntry({ faction }: { faction: Faction }) {
+export default function FactionEntry({ faction }: { faction: Faction }) {
   return (
     <span>
       <b>{faction.name}</b> ({faction.location}){" "}

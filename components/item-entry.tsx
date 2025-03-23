@@ -1,6 +1,6 @@
 import { Item } from "@/types/game";
 
-export default async function ItemEntry({ item }: { item: Item }) {
+export default function ItemEntry({ item }: { item: Item }) {
   return (
     <span>
       <b>{item.name}</b> ({item.clock}){" "}

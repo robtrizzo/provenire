@@ -6,9 +6,9 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
+} from "@/components/ui/table";
 
-export default async function ScornTable() {
+export default function ScornTable() {
   return (
     <Table>
       <TableCaption>scorn table</TableCaption>

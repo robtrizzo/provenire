@@ -45,6 +45,15 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import AgendaPopover from "./(popovers)/agenda-popover";
+import Forge from "@/app/game/the-churn/(agendas)/forge";
+import Explore from "@/app/game/the-churn/(agendas)/explore";
+import Pit from "@/app/game/the-churn/(agendas)/pit";
+import Carve from "@/app/game/the-churn/(agendas)/carve";
+import Gamble from "@/app/game/the-churn/(agendas)/gamble";
+import Know from "@/app/game/the-churn/(agendas)/know";
+import Worth from "@/app/game/the-churn/(agendas)/worth";
+import Walk from "@/app/game/the-churn/(agendas)/walk";
 
 export default function CrewSheet() {
   const session = useSession();
@@ -465,7 +474,12 @@ export default function CrewSheet() {
             <span className="mt-1 text-sm text-white">AGENDAS</span>
           </div>
           <div className="mt-4 mb-2 mx-2">
-            <b className="mt-1 text-white">Forge the tools of rebellion</b>
+            <div className="mt-1 flex items-end justify-between">
+              <b className="text-white">Forge the tools of rebellion</b>
+              <AgendaPopover>
+                <Forge />
+              </AgendaPopover>
+            </div>
             <Separator />
           </div>
           {schematics.length > 0 && (
@@ -505,9 +519,14 @@ export default function CrewSheet() {
             </div>
           )}
           <div className="mt-4 mb-2 mx-2">
-            <b className="mt-1 text-white">
-              Explore the factory&apos;s heights and depths
-            </b>
+            <div className="mt-1 flex items-end justify-between">
+              <b className="mt-1 text-white">
+                Explore the factory&apos;s heights and depths
+              </b>
+              <AgendaPopover>
+                <Explore />
+              </AgendaPopover>
+            </div>
             <Separator />
           </div>
           {scouting.map((s, idx) => (
@@ -525,9 +544,14 @@ export default function CrewSheet() {
             </div>
           )}
           <div className="mt-4 mb-2 mx-2">
-            <b className="mt-1 text-white">
-              Pit the oppressors against each other
-            </b>
+            <div className="mt-1 flex items-end justify-between">
+              <b className="mt-1 text-white">
+                Pit the oppressors against each other
+              </b>
+              <AgendaPopover>
+                <Pit />
+              </AgendaPopover>
+            </div>
             <Separator />
           </div>
           {blackmail.map((b, idx) => (
@@ -544,9 +568,14 @@ export default function CrewSheet() {
             </div>
           )}
           <div className="mt-4 mb-2 mx-2">
-            <b className="mt-1 text-white">
-              Carve a path of connection and conversation
-            </b>
+            <div className="mt-1 flex items-end justify-between">
+              <b className="mt-1 text-white">
+                Carve a path of connection and conversation
+              </b>
+              <AgendaPopover>
+                <Carve />
+              </AgendaPopover>
+            </div>
             <Separator />
           </div>
           {factions.map((f, idx) => (
@@ -558,7 +587,12 @@ export default function CrewSheet() {
             />
           ))}
           <div className="mt-4 mb-2 mx-2">
-            <b className="mt-1 text-white">Gamble and fight for glory</b>
+            <div className="mt-1 flex items-end justify-between">
+              <b className="mt-1 text-white">Gamble and fight for glory</b>
+              <AgendaPopover>
+                <Gamble />
+              </AgendaPopover>
+            </div>
             <Separator />
           </div>
           {pcGladiators.length > 0 && (
@@ -598,9 +632,14 @@ export default function CrewSheet() {
             </div>
           )}
           <div className="mt-4 mb-2 mx-2">
-            <b className="mt-1 text-white">
-              Make them know you&apos;re not afraid
-            </b>
+            <div className="mt-1 flex items-end justify-between">
+              <b className="mt-1 text-white">
+                Make them know you&apos;re not afraid
+              </b>
+              <AgendaPopover>
+                <Know />
+              </AgendaPopover>
+            </div>
             <Separator />
           </div>
           {rGangs.length > 0 && (
@@ -640,7 +679,12 @@ export default function CrewSheet() {
             </div>
           )}
           <div className="mt-4 mb-2 mx-2">
-            <b className="mt-1 text-white">Make the pain worth it</b>
+            <div className="mt-1 flex items-end justify-between">
+              <b className="mt-1 text-white">Make the pain worth it</b>
+              <AgendaPopover>
+                <Worth />
+              </AgendaPopover>
+            </div>
             <Separator />
           </div>
           {livingSpace.length > 0 && (
@@ -731,9 +775,14 @@ export default function CrewSheet() {
             </div>
           )}
           <div className="mt-4 mb-2 mx-2">
-            <b className="mt-1 text-white">
-              Walk among the oppressors and learn their secrets
-            </b>
+            <div className="mt-1 flex items-end justify-between">
+              <b className="mt-1 text-white">
+                Walk among the oppressors and learn their secrets
+              </b>
+              <AgendaPopover>
+                <Walk />
+              </AgendaPopover>
+            </div>
             <Separator />
           </div>
           {operations.map((o, idx) => (

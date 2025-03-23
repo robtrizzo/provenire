@@ -1,4 +1,4 @@
-export default async function FactoryMap() {
+export default function FactoryMap() {
   return (
     <div className="border-[1px] border-border rounded-md p-6 flex items-center max-w-[900px]">
       <div className="flex flex-col items-center">

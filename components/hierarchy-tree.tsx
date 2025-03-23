@@ -4,7 +4,7 @@ import {
   TypographyP,
 } from "@/components/ui/typography";
 
-export default async function HierarchyTree() {
+export default function HierarchyTree() {
   return (
     <div className="border-[1px] border-border rounded-md p-6 w-[830px]">
       <div className="flex items-center mb-8 gap-16">
