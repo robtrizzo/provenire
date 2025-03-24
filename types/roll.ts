@@ -39,8 +39,51 @@ export function validateRoll(roll: Roll) {
 }
 
 export function blueHigher(roll: Roll): boolean {
-    // crits are intersting and blueHigher refers to 2+ 6s on blues
-    return roll.result === 'crit' ? roll.blueDice.filter(d => d === 6).length >= 2 : Math.max(...roll.blueDice) >= Math.max(...roll.redDice);
+    if (roll.result === 'crit') {
+        return roll.blueDice.filter(d => d === 6).length >= 1;
+    }
+
+    // crit won't be used but lets us use RollResult
+    const categories = {
+        red: { "failure": 0, "partial": 0, "success": 0, "crit": 0 },
+        blue: { "failure": 0, "partial": 0, "success": 0, "crit": 0 },
+    };
+
+    const countDie = (die: number): RollResult => {
+        switch (die) {
+            case 1:
+            case 2:
+            case 3:
+                return "failure";
+            case 4:
+            case 5:
+                return "partial";
+            case 6:
+                return "success";
+            default:
+                return "failure"; // shouldn't happen
+        }
+    }
+
+    roll.redDice.forEach((die) => {
+        categories.red[countDie(die)]++;
+    });
+
+    roll.blueDice.forEach((die) => {
+        categories.blue[countDie(die)]++;
+    });
+
+    if (categories.blue.success >= 1) {
+        return true;
+    } else if (categories.red.success >= 1) {
+        return false
+    }
+    if (categories.blue.partial >= 1) {
+        return true;
+    } else if (categories.red.partial >= 1) {
+        return false
+    }
+    return categories.blue.failure >= 1;
 }
 
 export function stressFromResist(roll: Roll): number {
@@ -56,7 +99,7 @@ export function stressFromResist(roll: Roll): number {
             stress = blueHigher(roll) ? 0 : 1;
             break;
         case "crit":
-            stress = blueHigher(roll) ? -1 : 0;
+            stress = -1;
             break;
     }
     return stress;

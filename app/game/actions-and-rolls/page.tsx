@@ -214,8 +214,7 @@ export default function Page() {
             <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">
               Critical
             </TableCell>
-            <TableCell className="w-20">0 stress</TableCell>
-            <TableCell className="w-20">clear 1 stress</TableCell>
+            <TableCell colSpan={2} className="w-20">clear 1 stress</TableCell>
           </TableRow>
         </TableBody>
       </Table>
