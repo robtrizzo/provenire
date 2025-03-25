@@ -283,6 +283,58 @@ export default async function Page() {
         <b>resisted</b>. The players may choose to make it a quick resolution or
         to dive deep into the scene.
       </TypographyP>
+      <TypographyH2 id="subsistence">Subsistence</TypographyH2>
+      <TypographyP>
+        Not everyone who lives in the factory works. Many are too young, too
+        old, or not cut out for the brutality of the factory floor. These people
+        rely on the labor of their family members to survive. Your character
+        works not only to feed themselves, but to feed their loved ones as well.
+      </TypographyP>
+      <TypographyBlockquote>
+        <b>Frida the Cruel</b> is on the hunt. Her overseers and enforcers prowl
+        Fabrication to find the ones responsible for thwarting her. In order to
+        work your normal job, mark <b>+2 heat</b> or <b>raise the stakes</b>. If
+        you choose not to work, instead mark a permanent{" "}
+        <b>level 1 harm: hungry</b> and gain <b>+1d</b> in the{" "}
+        <b>agendas phase</b>.
+      </TypographyBlockquote>
+      <TypographyP>
+        First, each character advances the <b>Starvation</b> clock by{" "}
+        <b>2 ticks</b>. If the <b>Starvation</b> clock is full at the end of the{" "}
+        <b>Agendas phase</b>, one of the character&apos;s family members
+        perishes from hunger.
+      </TypographyP>
+      <TypographyBlockquote>
+        At any time during the <b>Churn</b>, a character may choose to spend{" "}
+        <b>1 food</b> to reduce the <b>Starvation</b> clock by <b>1</b>. This
+        can be done even if the <b>Starvation</b> clock is full.
+      </TypographyBlockquote>
+      <TypographyP>
+        After the <b>Starvation</b> clock has been advanced, the PC labors in
+        the dangerous conditions dictated by their Background. They roll an
+        action that must include one granted by their Background to determine
+        results.
+      </TypographyP>
+      <TypographyUnorderedList>
+        <li>
+          <b>Critical Success:</b> As success, but gain an additional benefit
+          according to your Background.
+        </li>
+        <li>
+          <b>Success:</b> You&apos;ve earned enough to feed your family and
+          yourself. Reduce the <b>Starvation</b> clock by 2.
+        </li>
+        <li>
+          <b>Partial Success:</b> You work yourself to the bone, but are given
+          scraps nonetheless. Reduce the <b>Starvation</b> clock by 1. Suffer
+          consequences according to your Background.
+        </li>
+        <li>
+          <b>Failure:</b> You&apos;ve earned nothing. Mark a level one permanent
+          harm: &quot;hungry&quot;. This cannot be healed until you eat. Suffer
+          consequences according to your Background.
+        </li>
+      </TypographyUnorderedList>
       <TypographyH2 id="agendas">Agendas</TypographyH2>
       <TypographyP>
         Just because the mission is over doesn&apos;t mean your work is done. In
@@ -338,52 +390,6 @@ export default async function Page() {
       <Know />
       <Worth />
       <Walk />
-
-      <TypographyH2 id="subsistence">Subsistence</TypographyH2>
-      <TypographyP>
-        Not everyone who lives in the factory works. Many are too young, too
-        old, or not cut out for the brutality of the factory floor. These people
-        rely on the labor of their family members to survive. Your character
-        works not only to feed themselves, but to feed their loved ones as well.
-      </TypographyP>
-      <TypographyP>
-        During the Churn, there is a <b>Subsistence</b> phase. First, each
-        character advances the <b>Starvation</b> clock by <b>2 ticks</b>. If the{" "}
-        <b>Starvation</b> clock is full at the end of the{" "}
-        <b>Subsistence phase</b>, one of the character&apos;s family members
-        perishes from hunger.
-      </TypographyP>
-      <TypographyBlockquote>
-        At any time during the <b>Churn</b>, a character may choose to spend{" "}
-        <b>1 food</b> to reduce the <b>Starvation</b> clock by <b>1</b>. This
-        can be done even if the <b>Starvation</b> clock is full.
-      </TypographyBlockquote>
-      <TypographyP>
-        After the <b>Starvation</b> clock has been advanced, the PC labors in
-        the dangerous conditions dictated by their Background. They roll an
-        action that must include one granted by their Background to determine
-        results.
-      </TypographyP>
-      <TypographyUnorderedList>
-        <li>
-          <b>Critical Success:</b> As success, but gain an additional benefit
-          according to your Background.
-        </li>
-        <li>
-          <b>Success:</b> You&apos;ve earned enough to feed your family and
-          yourself. Reduce the <b>Starvation</b> clock by 2.
-        </li>
-        <li>
-          <b>Partial Success:</b> You work yourself to the bone, but are given
-          scraps nonetheless. Reduce the <b>Starvation</b> clock by 1. Suffer
-          consequences according to your Background.
-        </li>
-        <li>
-          <b>Failure:</b> You&apos;ve earned nothing. Mark a level one permanent
-          harm: &quot;hungry&quot;. This cannot be healed until you eat. Suffer
-          consequences according to your Background.
-        </li>
-      </TypographyUnorderedList>
       <Separator className="my-4" />
       <div className="w-full flex justify-between">
         <Link href="/game/actions-and-rolls">

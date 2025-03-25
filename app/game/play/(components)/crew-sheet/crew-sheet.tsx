@@ -253,7 +253,7 @@ export default function CrewSheet() {
                 key={`rep-${Date.now()}`}
                 max={4}
                 current={rep}
-                numDisabled={3}
+                numDisabled={0}
                 onChange={(n) => {
                   if (isAdmin) {
                     setRep(n);
@@ -305,7 +305,7 @@ export default function CrewSheet() {
                 key={`goodwill-${Date.now()}`}
                 max={4}
                 current={goodwill}
-                numDisabled={3}
+                numDisabled={0}
                 onChange={(n) => {
                   if (isAdmin) {
                     setGoodwill(n);

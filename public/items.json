@@ -105,6 +105,14 @@
       "slots": 4,
       "traits": ["bulky", "heavy"],
       "description": "An unwieldy makeshift backpack for liquids"
+    },
+    {
+      "name": "Masks",
+      "clock": 4,
+      "ticks": 0,
+      "slots": 0,
+      "traits": ["ugly", "fragile"],
+      "description": "An unwieldy makeshift backpack for liquids"
     }
   ],
   "formulae": [
