@@ -2,6 +2,7 @@ import {
   TypographyH2,
   TypographyH3,
   TypographyP,
+  TypographyUnorderedList,
 } from "@/components/ui/typography";
 import Link from "next/link";
 import Abilities from "@/components/abilities/abilities";
@@ -147,6 +148,19 @@ export default function ChurnSection() {
             </div>
           </div>
         </TypographyH2>
+        <TypographyH3 className="text-sm text-muted-foreground mt-4">
+          Frida&apos;s Hunt
+        </TypographyH3>
+        <TypographyP>Choose one:</TypographyP>
+        <TypographyUnorderedList>
+          <li>
+            labor: <b>+2 heat</b> or <b>raise the stakes</b>
+          </li>
+          <li>
+            help the crew: permanent <b>level 1 harm: &quot;hungry&quot;</b> and{" "}
+            <b>+1d</b> in the <b>agendas phase</b>
+          </li>
+        </TypographyUnorderedList>
         <TypographyH3 className="text-sm text-muted-foreground mt-4">
           Critical Benefit (
           <span className="text-red-500">{selectedBackground?.name}</span>)
