@@ -37,6 +37,17 @@ export default function DramatisPersonae() {
       </div>
       <div>
         <TypographyH4 className="text-emerald-700 text-center">
+          Lair
+        </TypographyH4>
+        <Separator className="mt-2 mb-4 bg-emerald-700" />
+        <div className="flex items-center justify-center gap-2 flex-wrap">
+          <NamePortrait name="Flynn" />
+          <NamePortrait name="Udigo" s3 />
+          <NamePortrait name="Teia Ild" s3 />
+        </div>
+      </div>
+      <div>
+        <TypographyH4 className="text-emerald-700 text-center">
           Laborers
         </TypographyH4>
         <Separator className="mt-2 mb-4 bg-emerald-700" />
@@ -45,6 +56,19 @@ export default function DramatisPersonae() {
           <NamePortrait name="Galin" s3 />
           <NamePortrait name="Frax" s3 />
           <NamePortrait name="Donios" s3 />
+        </div>
+      </div>
+      <div>
+        <TypographyH4 className="text-emerald-700 text-center">
+          Pit Fighters
+        </TypographyH4>
+        <Separator className="mt-2 mb-4 bg-emerald-700" />
+        <div className="flex items-center justify-center gap-2 flex-wrap">
+          <NamePortrait name="Leon" s3 />
+          <NamePortrait name="Phaidime" s3 />
+          <NamePortrait name="Toric" s3 />
+          <NamePortrait name="Marcus" s3 />
+          <NamePortrait name="Aabid" s3 />
         </div>
       </div>
       <div>
@@ -124,6 +148,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Sidar" s3 dead />
           <NamePortrait name="Dunny" s3 />
           <NamePortrait name="Darius Azad" s3 />
+          <NamePortrait name="Hitchen" s3 />
         </div>
       </div>
       <div>
@@ -152,9 +177,9 @@ export default function DramatisPersonae() {
           <NamePortrait name="Malgus Veradun" s3 pc />
           <NamePortrait name="Von" s3 pc />
           <NamePortrait name="Sire Ciber" s3 />
-          <NamePortrait name="Moore" s3 />
-          <NamePortrait name="Nichros Perydark" s3 />
+          <NamePortrait name="Moore" s3 dead />
           <NamePortrait name="Laramie Black" s3 />
+          <NamePortrait name="Nichros Perydark" s3 />
           <NamePortrait name="Yewin" s3 />
           <NamePortrait name="Zamza Veradun" />
           <NamePortrait name="Noirax Veradun" />
@@ -196,10 +221,10 @@ export default function DramatisPersonae() {
         </TypographyH4>
         <Separator className="mt-2 mb-4 bg-red-700" />
         <div className="flex items-center justify-center gap-2 flex-wrap">
-          <NamePortrait name="Moore" s3 />
+          <NamePortrait name="Moore" s3 dead />
+          <NamePortrait name="Laramie Black" s3 />
           <NamePortrait name="Malgus Veradun" s3 pc />
           <NamePortrait name="Nichros Perydark" s3 />
-          <NamePortrait name="Laramie Black" s3 />
           <NamePortrait name="Yewin" s3 />
           <NamePortrait name="Zamza Veradun" />
         </div>
@@ -216,7 +241,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Minamo" s3 />
           <NamePortrait name="Nidan" s3 dead />
           <NamePortrait name="Ebrimud" s3 />
-          <NamePortrait name="Katavida" s3 />
+          <NamePortrait name="Katavida" s3 dead />
           <NamePortrait name="Athaulf" s3 />
           <NamePortrait name="Deshald" s3 />
           <NamePortrait name="Phelchen" s3 />
@@ -278,7 +303,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Minamo" s3 />
           <NamePortrait name="Nidan" s3 dead />
           <NamePortrait name="Ebrimud" s3 />
-          <NamePortrait name="Katavida" s3 />
+          <NamePortrait name="Katavida" s3 dead />
           <NamePortrait name="Athaulf" s3 />
           <NamePortrait name="Deshald" s3 />
           <NamePortrait name="Phelchen" s3 />
@@ -395,7 +420,7 @@ export default function DramatisPersonae() {
         <div className="flex items-center justify-center gap-2 flex-wrap">
           <NamePortrait name="Aika Drak" s3 pc />
           <NamePortrait name="Geleswin" s3 />
-          <NamePortrait name="Bran" s3 />
+          <NamePortrait name="Bran" s3 dead />
           <NamePortrait name="Malix" s3 />
           <NamePortrait name="Venee Palen" s3 />
           <NamePortrait name="Kasr" />
@@ -474,7 +499,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Suba" />
           <NamePortrait name="Tsuji" />
           <NamePortrait name="Rhima" s3 />
-          <NamePortrait name="Katavida" s3 />
+          <NamePortrait name="Katavida" s3 dead />
           <NamePortrait name="Athaulf" s3 />
         </div>
       </div>
