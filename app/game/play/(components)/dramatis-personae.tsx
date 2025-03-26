@@ -93,7 +93,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Lorel" s3 />
           <NamePortrait name="Miteri" />
           <NamePortrait name="Kian" />
-          <NamePortrait name="Bran" s3 />
+          <NamePortrait name="Bran" s3 dead />
           <NamePortrait name="Gideon" s3 />
           <NamePortrait name="Theo" s3 />
           <NamePortrait name="Hrodulfr" />
