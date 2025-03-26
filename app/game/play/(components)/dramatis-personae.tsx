@@ -385,7 +385,7 @@ export default function DramatisPersonae() {
         <Separator className="mt-2 mb-4 bg-red-700" />
         <div className="flex items-center justify-center gap-2 flex-wrap">
           <NamePortrait name="Ridora the Ravenous" s3 />
-          <NamePortrait name="Theodoric the Torturer" s3 />
+          <NamePortrait name="Theodoric the Torturer" s3 dead />
         </div>
       </div>
       <div>
