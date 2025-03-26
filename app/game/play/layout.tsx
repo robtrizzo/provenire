@@ -1,16 +1,11 @@
 "use server";
 
-import CrewSheetProvider from "@/contexts/crewSheetContext";
-import CharacterSheetProvider from "@/contexts/characterSheetContext";
-import RollProvider from "@/contexts/rollContext";
-import { ReactNode } from "react";
+import Providers from "@/providers/playProviders";
 
-export default async function Layout({ children }: { children: ReactNode }) {
-  return (
-    <CharacterSheetProvider>
-      <RollProvider>
-        <CrewSheetProvider>{children}</CrewSheetProvider>
-      </RollProvider>
-    </CharacterSheetProvider>
-  );
+export default async function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <Providers>{children}</Providers>;
 }

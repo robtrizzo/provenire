@@ -58,6 +58,10 @@ export default function Charsheet() {
     selectedFightingStyle,
     selectedDonum,
     bonds,
+    localUpdatedAt,
+    cloudUpdatedAt,
+    isFetching,
+    isSaving,
     setName,
     setAlias,
     setSelectedArchetype,
@@ -68,16 +72,12 @@ export default function Charsheet() {
     setSelectedDonum,
     setBonds,
     setChanges,
-    setCharacterLoaded,
     handleDebounceChange,
   } = useCharacterSheet();
 
-  function triggerCharacterLoaded() {
-    setCharacterLoaded(new Date());
-  }
-
   useEffect(() => {
     if (window === undefined) return;
+
     // read the hash and set the tab
     const hash = window.location.hash;
     if (hash && ["mission", "profile", "churn"].includes(hash.substring(1))) {
@@ -90,10 +90,28 @@ export default function Charsheet() {
   return (
     <div>
       <div className="flex justify-between">
-        <div className="flex gap-2 mt-5 ml-auto">
+        <div className="flex items-center gap-2 mt-5 ml-auto">
+          <div className="flex flex-col">
+            <code className="text-xs text-muted-foreground">
+              last <span className="text-amber-800">local</span> save:{" "}
+              {localUpdatedAt
+                ? new Date(localUpdatedAt).toLocaleString()
+                : "N/A"}
+            </code>
+            <code className="text-xs text-muted-foreground">
+              last <span className="text-sky-800">cloud</span> save:{" "}
+              {isSaving
+                ? "saving..."
+                : isFetching
+                ? "fetching..."
+                : cloudUpdatedAt
+                ? new Date(cloudUpdatedAt).toLocaleString()
+                : "N/A"}
+            </code>
+          </div>
           <SaveCharacter initialName={name} />
-          <LoadCharacter triggerCharacterLoaded={triggerCharacterLoaded} />
-          <ClearCharacter triggerCharacterLoaded={triggerCharacterLoaded} />
+          <LoadCharacter />
+          <ClearCharacter />
         </div>
       </div>
       <div className="flex flex-col md:flex-row mt-1 items-start gap-1">

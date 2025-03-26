@@ -1,5 +1,6 @@
 export interface Character {
   name: string;
+  updatedAt: Date;
 }
 
 export type Archetype = {
@@ -209,4 +210,5 @@ export interface Crew {
   community: CommunityProject[];
   operations: Operation[];
   clocks: Clock[];
+  updatedAt: Date;
 }

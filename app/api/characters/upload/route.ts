@@ -14,6 +14,7 @@ async function insertCharacter({
   if (!characterName) {
     throw new Error("No character name provided. Aborting insert.");
   }
+  characterJSON = { ...characterJSON, updatedAt: new Date() };
   const key = `user:${userId}:character:${characterName}`;
   const res = await redis.set(key, characterJSON);
   console.log(`Redis set ${key} result: ${res}`);

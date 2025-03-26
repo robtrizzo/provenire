@@ -3,14 +3,19 @@ import { blueHigher, Roll } from "@/types/roll";
 
 export default function DieTopDetails({ roll }: { roll: Roll }) {
   return (
-    <div className="flex gap-1 items-center">
+    <div className="flex gap-1 items-center relative">
+      {roll.charName && (
+        <span className="text-muted-foreground text-xs block items-center gap-2 absolute top-0 right-0">
+          {roll.charName}
+        </span>
+      )}
       <div className="mt-2 text-md flex flex-col">
         <span className="font-bold capitalize">{roll.result}</span>
         <span className="text-sm font-semibold capitalize">{`${roll.type}${
           roll.tag ? ` - ${roll.tag}` : ""
         }`}</span>
       </div>
-      <div className="flex flex-1 justify-end">
+      <div className="flex flex-1 justify-end pt-3">
         {roll.result === "crit" ? (
           <>
             <Die

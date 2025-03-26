@@ -24,6 +24,7 @@ import { useCharacterSheet } from "./characterSheetContext";
 import { Die } from "@/components/die";
 import { cn } from "@/lib/utils";
 import { useSession } from "next-auth/react";
+import { useChannel } from "ably/react";
 
 interface RollContextProps {
   rollActions: (
@@ -65,6 +66,7 @@ interface RollContextProps {
     rollLeft: string,
     rollRight: string
   ) => void;
+  handleFortuneRollButton: (numDice: number) => void;
 }
 
 const RollContext = createContext<RollContextProps | undefined>(undefined);
@@ -89,6 +91,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   const [fortuneDice, setFortuneDice] = useState<number>(0);
   const queryClient = useQueryClient();
   const session = useSession();
+  const username = session?.data?.user.name;
   const [rolls, setRolls] = useState<Roll[]>([]);
   const [currentDiceFilter, setCurrentDiceFilter] = useState<string>("all");
   const [rollLeft, setRollLeft] = useState<string>("");
@@ -250,7 +253,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   async function diceToast(
     roll: Roll,
     action1: string | undefined = undefined,
-    action2: string | undefined = undefined
+    action2: string | undefined = undefined,
+    username: string | undefined = undefined
   ) {
     const resultText = resultsMessage(roll);
 
@@ -290,8 +294,13 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       variant: "grid",
       // @ts-expect-error todo
       title: (
-        <div className="flex items-center flex-wrap gap-1">
-          <span className="mt-1">
+        <div className="flex items-center flex-wrap gap-1 relative border-b-[1px] border-border">
+          {username && (
+            <span className="absolute top-0 left-0 text-xs text-muted-foreground">
+              {username}
+            </span>
+          )}
+          <span className="mt-1.5">
             Rolled {action1}
             {action2 ? ` + ${action2}` : ""}
           </span>
@@ -299,13 +308,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
             <Die key={i} roll={r} className="h-10 w-10 text-red-800" />
           ))}
           {roll.blueDice.map((r, i) => (
-            <Die
-              key={i}
-              roll={r}
-              className={`h-10 w-10 ${
-                roll.type === "fortune" ? "" : "text-blue-800"
-              }`}
-            />
+            <Die key={i} roll={r} className={"h-10 w-10 text-blue-800"} />
           ))}
         </div>
       ),
@@ -321,13 +324,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
               roll.blueDice
                 .filter((r) => r === 6)
                 .map((r, i) => (
-                  <Die
-                    key={i}
-                    roll={r}
-                    className={`h-10 w-10 ${
-                      roll.type === "fortune" ? "" : "text-blue-800"
-                    }`}
-                  />
+                  <Die key={i} roll={r} className={"h-10 w-10 text-blue-800"} />
                 )),
             ]
           ) : (
@@ -335,11 +332,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
               roll={roll.resultDie}
               className={cn(
                 "h-10 w-10",
-                blueHigher(roll)
-                  ? `h-10 w-10 ${
-                      roll.type === "fortune" ? "" : "text-blue-800"
-                    }`
-                  : "text-red-400"
+                blueHigher(roll) ? "h-10 w-10 text-blue-800" : "text-red-400"
               )}
             />
           )}
@@ -428,6 +421,24 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
+  const { channel } = useChannel("rolls", "new", (message) => {
+    if (session?.status !== "authenticated") {
+      return;
+    }
+    const {
+      roll,
+      action1,
+      action2,
+      username,
+    }: {
+      roll: Roll;
+      action1: string | undefined;
+      action2: string | undefined;
+      username: string;
+    } = message.data;
+    diceToast(roll, action1, action2, username);
+  });
+
   const handleCurrentDiceFilterChange = (val: string) => {
     setCurrentDiceFilter(val);
     localStorage.setItem(DICE_FILTER_LOCAL_STORAGE_KEY, val);
@@ -442,11 +453,29 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     if (!rollLeft) {
       const [attribute, action] = rollRight.split("-") as [Attribute, string];
       const roll = await rollActions(type, attribute, action);
-      diceToast(roll, action);
+      if (isPrivate) {
+        diceToast(roll, action);
+      } else {
+        channel.publish("new", {
+          roll,
+          action1: action,
+          action2: undefined,
+          username,
+        });
+      }
     } else if (!rollRight) {
       const [attribute, action] = rollLeft.split("-") as [Attribute, string];
       const roll = await rollActions(type, attribute, action);
-      diceToast(roll, action);
+      if (isPrivate) {
+        diceToast(roll, action);
+      } else {
+        channel.publish("new", {
+          roll,
+          action1: action,
+          action2: undefined,
+          username,
+        });
+      }
     } else {
       const [attributeLeft, actionLeft] = rollLeft.split("-") as [
         Attribute,
@@ -463,12 +492,36 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         attributeRight,
         actionRight
       );
-      diceToast(roll, actionLeft, actionRight);
+      if (isPrivate) {
+        diceToast(roll, actionLeft, actionRight);
+      } else {
+        channel.publish("new", {
+          roll,
+          action1: actionLeft,
+          action2: actionRight,
+          username,
+        });
+      }
     }
     setRollLeft("");
     setRollRight("");
     setBonusDiceRed(0);
     setBonusDiceBlue(0);
+  }
+
+  async function handleFortuneRollButton(numDice: number) {
+    const roll = await rollDice("fortune", 0, numDice);
+    if (isPrivate) {
+      diceToast(roll);
+    } else {
+      channel.publish("new", {
+        roll,
+        action1: undefined,
+        action2: undefined,
+        username,
+      });
+    }
+    setFortuneDice(0);
   }
 
   return (
@@ -498,6 +551,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         setRollLeft,
         setRollRight,
         handleRollButton,
+        handleFortuneRollButton,
       }}
     >
       {children}
