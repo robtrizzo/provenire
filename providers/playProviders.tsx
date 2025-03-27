@@ -6,6 +6,7 @@ import CharacterSheetProvider from "@/contexts/characterSheetContext";
 import RollProvider from "@/contexts/rollContext";
 
 const ablyClient = new Ably.Realtime({
+  clientId: "ably-updates",
   key: process.env.NEXT_PUBLIC_ABLY_API_KEY,
 });
 
