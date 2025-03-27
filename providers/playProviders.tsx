@@ -6,7 +6,8 @@ import CharacterSheetProvider from "@/contexts/characterSheetContext";
 import RollProvider from "@/contexts/rollContext";
 
 const ablyClient = new Ably.Realtime({
-  authUrl: "/api/auth/ably",
+  authUrl: process.env.NEXT_PUBLIC_ABLY_AUTH_URL,
+  authMethod: "POST",
 });
 
 export default function Providers({
