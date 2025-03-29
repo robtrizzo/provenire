@@ -22,6 +22,7 @@ export type FightingStyle = {
   attributes: Attributes;
   actions: Action[];
   abilities: Ability[];
+  restrictedTo?: string;
 };
 
 export type Donum = {

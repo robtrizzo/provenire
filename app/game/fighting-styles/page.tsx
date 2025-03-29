@@ -17,8 +17,13 @@ import {
   Flame,
   Activity,
 } from "lucide-react";
+import { checkAuth } from "@/lib/auth";
+import { distortedStyle } from "@/lib/styles";
 
 export default async function Page() {
+  const { error: view_mirado_forbidden } = await checkAuth("user", [
+    "view-mirado",
+  ]);
   return (
     <div>
       <Breadcrumbs
@@ -254,6 +259,57 @@ export default async function Page() {
         yourself to make a devastating blow against an overwhelmed, cornered, or
         prone foe.
       </TypographyP>
+      {!view_mirado_forbidden && (
+        <>
+          <TypographyH3 id="mirado" className="mt-8 flex gap-2">
+            Mirado <VenetianMask />
+          </TypographyH3>
+          <TypographyP className="text-muted-foreground">
+            Situational awareness and adaptability
+          </TypographyP>
+          <MiradoSkillTree />
+          <TypographyH4 className="mt-6">Combat Awareness</TypographyH4>
+          <TypographyP>
+            Mirado is the hand to hand martial art which compliments soldiers
+            equipped with{" "}
+            <span style={distortedStyle}>
+              redacted redacted red actedredacted
+            </span>
+            . Mirado is about centering yourself in the eye of the storm and
+            reacting to the situation as it changes.
+          </TypographyP>
+          <TypographyH4 className="mt-6">Combat Instinct</TypographyH4>
+          <TypographyP>
+            You cannot be surprise attacked by anything which is possible to
+            perceive with ordinary senses. Of course, if you had{" "}
+            <span style={distortedStyle}>red actedre dac tedredaced</span> it
+            would be even more effective.
+          </TypographyP>
+          <TypographyH4 className="mt-6">Six Edged Intersection</TypographyH4>
+          <TypographyP>
+            Mirado is an ancient Hiean word, which roughly translates into
+            &quot;the art of six edges&quot;. The combat awareness aspects of
+            the martial art is new, but the striking style has retained its
+            roots. When up close and personal with a foe, large weapons and
+            movements become ineffective against you.
+          </TypographyP>
+          <TypographyH4 className="mt-6">Third Eye</TypographyH4>
+          <TypographyP>
+            While already in the thick of combat, you may <b>push yourself</b>{" "}
+            to ask the <b>Narrator</b> <i>&quot;What am I missing?&quot;</i>.
+            The <b>Narrator</b> must answer honestly.
+          </TypographyP>
+          <TypographyH4 className="mt-6">Mirado Surge</TypographyH4>
+          <TypographyP>
+            You may{" "}
+            <Link href="#strain">
+              <span className="text-red-500 underline font-bold">strain</span>
+            </Link>{" "}
+            yourself to deliver a series of rapid consecutive strikes which are
+            devastating to an overwhelmed, fatigued, or overconfident foe.
+          </TypographyP>
+        </>
+      )}
       <TypographyH2 id="strain" className="mt-8">
         Strain
       </TypographyH2>
@@ -660,6 +716,86 @@ async function ThroatgoreSkillTree() {
         <div className="h-24 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
           <TypographyP className="text-lg text-center font-bold">
             Fatal Finisher
+          </TypographyP>
+        </div>
+        <div className="h-24 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
+          <TypographyP className="text-lg text-center font-bold">
+            ???
+          </TypographyP>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+async function MiradoSkillTree() {
+  return (
+    <div className="border-[1px] border-border rounded-md p-6 flex items-center max-w-[340px] md:max-w-none overflow-auto">
+      <div className="flex flex-col">
+        <div className="h-24 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
+          <TypographyP className="text-lg text-center font-bold">
+            Combat Awareness
+          </TypographyP>
+        </div>
+      </div>
+      <div className="w-8 h-24 flex items-center justify-center">
+        <div className="w-8 h-1 bg-muted-foreground" />
+      </div>
+      <div className="flex flex-col">
+        <div className="w-1 h-[180px] bg-muted-foreground" />
+      </div>
+      <div className="flex flex-col items-center gap-8">
+        <div className="w-8 h-36 flex items-center justify-center">
+          <div className="w-8 h-1 bg-muted-foreground" />
+        </div>
+        <div className="w-8 h-36 flex items-center justify-center">
+          <div className="w-8 h-1 bg-muted-foreground" />
+        </div>
+      </div>
+      <div className="flex flex-col items-center gap-20">
+        <div className="h-24 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
+          <TypographyP className="text-lg text-center font-bold">
+            Combat Instinct
+          </TypographyP>
+        </div>
+        <div className="h-24 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
+          <TypographyP className="text-lg text-center font-bold">
+            Six Edged Intersection
+          </TypographyP>
+        </div>
+      </div>
+      <div className="flex flex-col items-center gap-8">
+        <div className="w-16 h-36 flex items-center justify-center">
+          <div className="w-16 h-1 bg-muted-foreground" />
+        </div>
+        <div className="w-16 h-36 flex items-center justify-center">
+          <div className="w-16 h-1 bg-muted-foreground" />
+        </div>
+      </div>
+      <div className="flex flex-col items-center gap-20">
+        <div className="h-24 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
+          <TypographyP className="text-lg text-center font-bold">
+            Third Eye
+          </TypographyP>
+        </div>
+        <div className="h-24 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
+          <TypographyP className="text-lg text-center font-bold">
+            Mirado Surge
+          </TypographyP>
+        </div>
+      </div>
+      <div className="flex flex-col items-center gap-8">
+        <div className="w-16 h-36 flex items-center justify-center">
+          <div className="w-16 h-1 bg-muted-foreground" />
+        </div>
+        <div className="w-16 h-36 flex items-center justify-center">
+          <div className="w-16 h-1 bg-muted-foreground" />
+        </div>
+      </div>
+      <div className="flex flex-col items-center gap-20">
+        <div className="h-24 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
+          <TypographyP className="text-lg text-center font-bold">
+            ???
           </TypographyP>
         </div>
         <div className="h-24 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">

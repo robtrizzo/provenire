@@ -31,6 +31,7 @@ import LoadCharacter from "./components/load-character";
 import ClearCharacter from "./components/clear-character";
 import { useCharacterSheet } from "@/contexts/characterSheetContext";
 import { useRoll } from "@/contexts/rollContext";
+import { useSession } from "next-auth/react";
 import Portrait from "./components/portrait";
 import MissionSection from "./components/mission-section";
 import ProfileSection from "./components/profile-section";
@@ -74,6 +75,10 @@ export default function Charsheet() {
     setChanges,
     handleDebounceChange,
   } = useCharacterSheet();
+
+  const session = useSession();
+  const isAdmin = session?.data?.user.role === "admin";
+  const userPerms = session?.data?.user.permissions || [];
 
   useEffect(() => {
     if (window === undefined) return;
@@ -355,14 +360,23 @@ export default function Charsheet() {
                   <SelectValue placeholder="Select a fighting style" />
                 </SelectTrigger>
                 <SelectContent>
-                  {fightingStyles.map((fs) => (
-                    <SelectItem key={fs.name} value={fs.name}>
-                      {fs.name}
-                      <span className="text-muted-foreground ml-4">
-                        {fs.description}
-                      </span>
-                    </SelectItem>
-                  ))}
+                  {fightingStyles.map((fs) => {
+                    if (
+                      fs.restrictedTo &&
+                      !isAdmin &&
+                      !userPerms.includes(fs.restrictedTo)
+                    ) {
+                      return null;
+                    }
+                    return (
+                      <SelectItem key={fs.name} value={fs.name}>
+                        {fs.name}
+                        <span className="text-muted-foreground ml-4">
+                          {fs.description}
+                        </span>
+                      </SelectItem>
+                    );
+                  })}
                   <SelectSeparator />
                   <Button
                     variant="secondary"

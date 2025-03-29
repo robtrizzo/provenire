@@ -193,5 +193,45 @@
         "slug": "unstoppable"
       }
     ]
+  },
+  {
+    "instructor": "???",
+    "name": "Mirado",
+    "description": "Situational awareness and adaptability",
+    "attributes": {
+      "Heart": [],
+      "Instinct": [],
+      "Machina": ["Mirado"]
+    },
+    "actions": [
+      {
+        "name": "Mirado",
+        "attribute": "Machina",
+        "description": "Observe then act"
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Combat Awareness",
+        "slug": "combat-awareness"
+      },
+      {
+        "name": "Combat Instinct",
+        "slug": "combat-instinct"
+      },
+      {
+        "name": "Six Edged Intersection",
+        "slug": "six-edged-intersection"
+      },
+      {
+        "name": "Third Eye",
+        "slug": "third-eye"
+      },
+      {
+        "name": "Mirado Surge",
+        "slug": "mirado-surge"
+      }
+    ],
+    "restrictedTo": "view-mirado"
   }
 ]
