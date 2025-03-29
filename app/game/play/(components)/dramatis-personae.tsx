@@ -327,6 +327,8 @@ export default function DramatisPersonae() {
           <NamePortrait name="Lanorella" s3 />
           <NamePortrait name="Hesperos" s3 />
           <NamePortrait name="Deritus" s3 />
+          <NamePortrait name="Vult" s3 />
+          <NamePortrait name="Tallia" s3 />
         </div>
       </div>
       <div>
