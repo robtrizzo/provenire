@@ -24,7 +24,7 @@ import { useCharacterSheet } from "./characterSheetContext";
 import { Die } from "@/components/die";
 import { cn } from "@/lib/utils";
 import { useSession } from "next-auth/react";
-import { useChannel } from "ably/react";
+import { useChannel, useConnectionStateListener } from "ably/react";
 
 interface RollContextProps {
   rollActions: (
@@ -85,6 +85,18 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   const { toast } = useToast();
 
   const { attributes, name } = useCharacterSheet();
+
+  const [wsConnectionState, setWsConnectionState] =
+    useState<string>("uninitialized");
+
+  useConnectionStateListener((stateChange) => {
+    console.log(
+      `Websocket connection changed from ${stateChange.previous} to ${stateChange.current}`
+    );
+    setWsConnectionState(stateChange.current);
+  });
+
+  const wsConnected = wsConnectionState === "connected";
 
   const [bonusDiceRed, setBonusDiceRed] = useState<number>(0);
   const [bonusDiceBlue, setBonusDiceBlue] = useState<number>(0);
@@ -453,7 +465,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     if (!rollLeft) {
       const [attribute, action] = rollRight.split("-") as [Attribute, string];
       const roll = await rollActions(type, attribute, action);
-      if (isPrivate) {
+      if (isPrivate || !wsConnected) {
         diceToast(roll, action);
       } else {
         channel.publish("new", {
@@ -466,7 +478,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     } else if (!rollRight) {
       const [attribute, action] = rollLeft.split("-") as [Attribute, string];
       const roll = await rollActions(type, attribute, action);
-      if (isPrivate) {
+      if (isPrivate || !wsConnected) {
         diceToast(roll, action);
       } else {
         channel.publish("new", {
@@ -492,7 +504,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         attributeRight,
         actionRight
       );
-      if (isPrivate) {
+      if (isPrivate || !wsConnected) {
         diceToast(roll, actionLeft, actionRight);
       } else {
         channel.publish("new", {
@@ -511,7 +523,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
 
   async function handleFortuneRollButton(numDice: number) {
     const roll = await rollDice("fortune", 0, numDice);
-    if (isPrivate) {
+    if (isPrivate || !wsConnected) {
       diceToast(roll);
     } else {
       channel.publish("new", {

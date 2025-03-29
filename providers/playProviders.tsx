@@ -13,10 +13,6 @@ const ablyClient = new Ably.Realtime({
   },
 });
 
-ablyClient.connection.on((stateChange) => {
-  console.log("New websocket state is " + stateChange.current);
-});
-
 export default function Providers({
   children,
 }: Readonly<{
