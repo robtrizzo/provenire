@@ -19,11 +19,15 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import DiceHistory from "@/app/game/play/(components)/dice-history/history";
 import { useSession } from "next-auth/react";
-import { Loader, Menu } from "lucide-react";
+import { Loader, Menu, RefreshCcw } from "lucide-react";
 import { useRoll } from "@/contexts/rollContext";
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent } from "@/components/ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+} from "@/components/ui/dropdown-menu";
 import { ExportMenuItem } from "@/app/game/play/(components)/dice-history/export";
-// import { DiceClear } from "./clear-button";
+import { debounce } from "@/lib/utils";
 
 export default function DiceSheet() {
   const [open, setOpen] = useState(false);
@@ -34,11 +38,12 @@ export default function DiceSheet() {
     currentDiceFilter,
     handleCurrentDiceFilterChange,
     fetchNextPage,
+    refetchRolls,
     hasNextPage,
     rollsArePending,
   } = useRoll();
 
-  const handleUserChange = (value: string)=>  {
+  const handleUserChange = (value: string) => {
     handleCurrentDiceFilterChange(value);
   };
 
@@ -49,7 +54,7 @@ export default function DiceSheet() {
       return response.json();
     },
   });
-  const getFilteredUsers = () : User[] => {
+  const getFilteredUsers = (): User[] => {
     // If userData is not yet loaded, return an empty array
     if (!userData) return [];
 
@@ -67,11 +72,11 @@ export default function DiceSheet() {
   const selectOptions = () => [
     { value: "all", label: "Everybody's" },
     { value: "own", label: "Yours" },
-    ...(filteredUsers?.map(user => ({
+    ...(filteredUsers?.map((user) => ({
       value: user.id,
-      label: user.name
-    })) || [])
-  ]
+      label: user.name,
+    })) || []),
+  ];
 
   const getPlaceholderText = () => {
     if (currentDiceFilter === "own") {
@@ -79,13 +84,15 @@ export default function DiceSheet() {
     } else if (currentDiceFilter === "all") {
       return "Everybody's";
     } else {
-      const curUser = filteredUsers.find((user: User) => user.id === currentDiceFilter);
+      const curUser = filteredUsers.find(
+        (user: User) => user.id === currentDiceFilter
+      );
       return curUser?.name;
     }
   };
 
   return (
-    <Sheet open={open} onOpenChange={setOpen}>
+    <Sheet open={ open } onOpenChange={ setOpen }>
       <SheetTrigger asChild>
         <Button variant="secondary" className="align middle;">
           View Dice History
@@ -96,55 +103,63 @@ export default function DiceSheet() {
           <SheetTitle>Dice History</SheetTitle>
           <SheetDescription></SheetDescription>
         </SheetHeader>
-        {usersArePending ? (
+        { usersArePending ? (
           <div className="flex items-center justify-center h-screen">
-            <Loader className="animate-spin" />
+            <Loader className="animate-spin"/>
           </div>
         ) : (
           <div className="flex items-center justify-between space-x-4">
-            <Select
-              onValueChange={(value) => {
-                handleUserChange(value);
-              }}
-            >
-              <SelectTrigger className="w-[180px]" aria-label="Filter dice history">
-                <SelectValue placeholder={getPlaceholderText()} />
-              </SelectTrigger>
-              <SelectContent>
-                {selectOptions().map(option => (
-                  <SelectItem key={option.value} value={option.value}>
-                    {option.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <div className="flex items-center">
+              <Select
+                onValueChange={ (value) => {
+                  handleUserChange(value);
+                } }
+              >
+                <SelectTrigger
+                  className="w-[180px]"
+                  aria-label="Filter dice history"
+                >
+                  <SelectValue placeholder={ getPlaceholderText() }/>
+                </SelectTrigger>
+                <SelectContent>
+                  { selectOptions().map((option) => (
+                    <SelectItem key={ option.value } value={ option.value }>
+                      { option.label }
+                    </SelectItem>
+                  )) }
+                </SelectContent>
+              </Select>
+              <Button size="icon" variant="ghost" onClick={ debounce(refetchRolls, 300) }>
+                <RefreshCcw className="h-4 w-4"/>
+                <span className="sr-only">Refresh</span>
+              </Button>
+            </div>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="icon">
-                  <Menu className="h-[1.2rem] w-[1.2rem]" />
+                  <Menu className="h-[1.2rem] w-[1.2rem]"/>
                   <span className="sr-only">Toggle menu</span>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <ExportMenuItem selectedFilter={currentDiceFilter} />
+                <ExportMenuItem selectedFilter={ currentDiceFilter }/>
               </DropdownMenuContent>
             </DropdownMenu>
-            {/*{currentDiceFilter === "own" && <DiceClear />}*/}
           </div>
-        )}
+        ) }
 
         <div className="overflow-auto">
-          {rollsArePending || !currentDiceFilter ? (
+          { rollsArePending || !currentDiceFilter ? (
             <div className="flex items-center justify-center h-screen">
-              <Loader className="animate-spin" />
+              <Loader className="animate-spin"/>
             </div>
           ) : (
             <DiceHistory
-              rolls={rolls}
-              rollsUntilNearEnd={5}
-              onNearEnd={() => hasNextPage && fetchNextPage()}
+              rolls={ rolls }
+              rollsUntilNearEnd={ 5 }
+              onNearEnd={ () => hasNextPage && fetchNextPage() }
             />
-          )}
+          ) }
         </div>
       </SheetContent>
     </Sheet>
