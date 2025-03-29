@@ -102,10 +102,6 @@ interface CharacterSheetContextProps {
   setStarvation: React.Dispatch<React.SetStateAction<number>>;
   setSubsist: React.Dispatch<React.SetStateAction<number>>;
   setLoadout: React.Dispatch<React.SetStateAction<Loadout | undefined>>;
-  setItems: React.Dispatch<React.SetStateAction<Item[]>>;
-  setChanges: React.Dispatch<React.SetStateAction<boolean>>;
-  setCharacterLoaded: React.Dispatch<React.SetStateAction<Date>>;
-  handleDebounceChange: () => void;
   handleUpdateQuestion: (key: string, value: string) => void;
   handleUpdateItemName: (index: number, value: string) => void;
   handleUpdateItemSlots: (index: number, value: number) => void;
@@ -114,6 +110,22 @@ interface CharacterSheetContextProps {
     action: string,
     score: number[]
   ) => void;
+  setItems: React.Dispatch<React.SetStateAction<Item[]>>;
+  handleUpdateBackgroundQuestion: (
+    questionIdx: number,
+    newQuestion: string
+  ) => void;
+  handleUpdateSkillsetQuestion: (
+    questionIdx: number,
+    newQuestion: string
+  ) => void;
+  handleUpdateArchetypeQuestion: (
+    questionIdx: number,
+    newQuestion: string
+  ) => void;
+  setChanges: React.Dispatch<React.SetStateAction<boolean>>;
+  setCharacterLoaded: React.Dispatch<React.SetStateAction<Date>>;
+  handleDebounceChange: () => void;
   setCloudUpdatedAt: React.Dispatch<React.SetStateAction<Date | null>>;
 }
 
@@ -564,6 +576,62 @@ export default function CharacterSheetProvider({
     handleDebounceChange();
   }
 
+  function handleUpdateBackgroundQuestion(
+    questionIdx: number,
+    newQuestion: string
+  ) {
+    if (!selectedBackground?.questions) {
+      console.error(
+        "can't update background question: background not selected"
+      );
+      return;
+    }
+    if (questionIdx > selectedBackground.questions.length - 1) {
+      console.error("can't update background question: index out of bounds");
+      return;
+    }
+    const questions = selectedBackground.questions;
+    questions[questionIdx] = newQuestion;
+    setSelectedBackground({ ...selectedBackground, questions });
+    setChanges(true);
+  }
+
+  function handleUpdateSkillsetQuestion(
+    questionIdx: number,
+    newQuestion: string
+  ) {
+    if (!selectedSkillset?.questions) {
+      console.error("can't update skillset question: skillset not selected");
+      return;
+    }
+    if (questionIdx > selectedSkillset.questions.length - 1) {
+      console.error("can't update skillset question: index out of bounds");
+      return;
+    }
+    const questions = selectedSkillset.questions;
+    questions[questionIdx] = newQuestion;
+    setSelectedSkillset({ ...selectedSkillset, questions });
+    setChanges(true);
+  }
+
+  function handleUpdateArchetypeQuestion(
+    questionIdx: number,
+    newQuestion: string
+  ) {
+    if (!selectedArchetype?.questions) {
+      console.error("can't update archetype question: archetype not selected");
+      return;
+    }
+    if (questionIdx > selectedArchetype.questions.length - 1) {
+      console.error("can't update archetype question: index out of bounds");
+      return;
+    }
+    const questions = selectedArchetype.questions;
+    questions[questionIdx] = newQuestion;
+    setSelectedArchetype({ ...selectedArchetype, questions });
+    setChanges(true);
+  }
+
   function handleUpdateItemName(index: number, value: string) {
     const newItems = [...items];
     newItems[index] = { ...newItems[index], name: value };
@@ -665,6 +733,9 @@ export default function CharacterSheetProvider({
         setCharacterLoaded,
         handleDebounceChange,
         handleUpdateQuestion,
+        handleUpdateBackgroundQuestion,
+        handleUpdateSkillsetQuestion,
+        handleUpdateArchetypeQuestion,
         handleUpdateItemName,
         handleUpdateItemSlots,
         handleUpdateActionScore,

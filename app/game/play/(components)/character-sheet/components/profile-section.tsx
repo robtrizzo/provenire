@@ -9,6 +9,10 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { useCharacterSheet } from "@/contexts/characterSheetContext";
+import { useSession } from "next-auth/react";
+import EditBackgroundQuestionPopover from "./edit-background-question-popover";
+import EditSkillsetQuestionPopover from "./edit-skillset-question-popover";
+import EditArchetypeQuestionPopover from "./edit-archetype-background-questions";
 
 export default function ProfileSection() {
   const {
@@ -27,6 +31,9 @@ export default function ProfileSection() {
     handleDebounceChange,
     handleUpdateQuestion,
   } = useCharacterSheet();
+
+  const session = useSession();
+  const isAdmin = session?.data?.user.role === "admin";
 
   return (
     <>
@@ -164,9 +171,12 @@ export default function ProfileSection() {
         )}
         {selectedBackground?.questions?.map((q, i) => (
           <div key={`q-${i}`} className="w-full gap-1.5 my-2">
-            <Label htmlFor={`q-${i}`} className="text-red-500 box-border">
-              {q}
-            </Label>
+            <div className="flex items-center justify-between gap-2">
+              <Label htmlFor={`q-${i}`} className="text-red-500 box-border">
+                {q}
+              </Label>
+              {isAdmin && <EditBackgroundQuestionPopover questionIdx={i} />}
+            </div>
             <Textarea
               id={`q-${i}`}
               value={questions.get(`${selectedBackground.name}-${i}`) || ""}
@@ -181,9 +191,12 @@ export default function ProfileSection() {
         ))}
         {selectedSkillset?.questions?.map((q, i) => (
           <div key={`q-${i}`} className="w-full gap-1.5 my-2">
-            <Label htmlFor={`q-${i}`} className="text-indigo-500 ">
-              {q}
-            </Label>
+            <div className="flex items-center justify-between gap-2">
+              <Label htmlFor={`q-${i}`} className="text-indigo-500 box-border">
+                {q}
+              </Label>
+              {isAdmin && <EditSkillsetQuestionPopover questionIdx={i} />}
+            </div>
             <Textarea
               id={`q-${i}`}
               value={questions.get(`${selectedSkillset.name}-${i}`)}
@@ -198,9 +211,12 @@ export default function ProfileSection() {
         ))}
         {selectedArchetype?.questions.map((q, i) => (
           <div key={`q-${i}`} className="w-full gap-1.5 my-2">
-            <Label htmlFor={`q-${i}`} className="text-amber-500 box-border">
-              {q}
-            </Label>
+            <div className="flex items-center justify-between gap-2">
+              <Label htmlFor={`q-${i}`} className="text-amber-500 box-border">
+                {q}
+              </Label>
+              {isAdmin && <EditArchetypeQuestionPopover questionIdx={i} />}
+            </div>
             <Textarea
               id={`q-${i}`}
               value={questions.get(`${selectedArchetype.name}-${i}`)}
@@ -219,7 +235,6 @@ export default function ProfileSection() {
         <Textarea
           className="min-h-[20vh]"
           id="notes"
-
           value={notes}
           onChange={(e) => {
             setNotes(e.target.value);
