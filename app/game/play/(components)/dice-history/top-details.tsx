@@ -27,7 +27,7 @@ export default function DieTopDetails({ roll }: { roll: Roll }) {
             <Die
               roll={6}
               className={`h-12 w-12 text-${
-                blueHigher(roll) ? "blue" : "red"
+                roll.blueDice.filter(d => d === 6).length >= 2 ? "blue" : "red"
               }-800`}
             />
           </>
