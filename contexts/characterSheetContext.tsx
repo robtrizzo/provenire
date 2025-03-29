@@ -23,6 +23,7 @@ import {
 import { debounce } from "@/lib/utils";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
+import { useSession } from "next-auth/react";
 
 interface CharacterSheetContextProps {
   portrait: string;
@@ -148,6 +149,9 @@ export default function CharacterSheetProvider({
 }: {
   children: React.ReactNode;
 }) {
+  const session = useSession();
+  const isAdmin = session?.data?.user.role === "admin";
+
   const [selectedArchetype, setSelectedArchetype] = useState<Archetype>();
   const [selectedSkillset, setSelectedSkillset] = useState<Skillset>();
   const [selectedBackground, setSelectedBackground] = useState<Background>();
@@ -548,7 +552,7 @@ export default function CharacterSheetProvider({
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (dbChanges) {
+      if (!isAdmin && dbChanges) {
         saveToCloud();
         setCloudUpdatedAt(new Date());
         setDbChanges(false);
@@ -556,7 +560,7 @@ export default function CharacterSheetProvider({
     }, 60 * 1000 /** 1 minute */);
     return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dbChanges]);
+  }, [isAdmin, dbChanges]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleDebounceChange = useCallback(
