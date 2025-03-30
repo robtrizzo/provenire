@@ -85,7 +85,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Lio" s3 />
           <NamePortrait name="Kent" s3 />
           <NamePortrait name="Gaila the Daft" />
-          <NamePortrait name="Audo the Gorger" s3 />
+          <NamePortrait name="Audo the Gorger" s3 dead />
           <NamePortrait name="Hellet" s3 />
           <NamePortrait name="Gelimer" s3 />
           <NamePortrait name="Alma" s3 />
@@ -103,6 +103,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Suba" />
           <NamePortrait name="Isaac" />
           <NamePortrait name="Rhima" s3 />
+          <NamePortrait name="Thraus" s3 />
         </div>
       </div>
       <div>
@@ -111,7 +112,8 @@ export default function DramatisPersonae() {
         </TypographyH4>
         <Separator className="mt-2 mb-4 bg-red-700" />
         <div className="flex items-center justify-center gap-2 flex-wrap">
-          <NamePortrait name="Audo the Gorger" s3 />
+          <NamePortrait name="Audo the Gorger" s3 dead />
+          <NamePortrait name="Thraus" s3 />
           <NamePortrait name="Hellet" s3 />
         </div>
       </div>
@@ -149,6 +151,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Dunny" s3 />
           <NamePortrait name="Darius Azad" s3 />
           <NamePortrait name="Hitchen" s3 />
+          <NamePortrait name="Xan" s3 dead />
         </div>
       </div>
       <div>
@@ -162,6 +165,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Sidar" s3 dead />
           <NamePortrait name="Gabe" />
           <NamePortrait name="Darius Azad" s3 />
+          <NamePortrait name="Xan" s3 dead />
         </div>
       </div>
       <div>
@@ -200,7 +204,7 @@ export default function DramatisPersonae() {
           />
           <NamePortrait name="Wilgefort" s3 />
           <NamePortrait name="Seperi" s3 />
-          <NamePortrait name="Ardaric" />
+          <NamePortrait name="Adaric" s3 />
           <NamePortrait name="Theodora" />
           <NamePortrait name="Elisaweta" />
           <NamePortrait name="Jeanne" />
@@ -329,6 +333,10 @@ export default function DramatisPersonae() {
           <NamePortrait name="Deritus" s3 />
           <NamePortrait name="Vult" s3 />
           <NamePortrait name="Tallia" s3 />
+          <NamePortrait name="Cranus" s3 />
+          <NamePortrait name="Aldara" s3 />
+          <NamePortrait name="Varus" s3 />
+          <NamePortrait name="Wulif" s3 />
         </div>
       </div>
       <div>
@@ -340,7 +348,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Bessemer" />
           <NamePortrait name="Kuni the Rover" dead s3 />
           <NamePortrait name="Svintha the Crumber" s3 />
-          <NamePortrait name="Audo the Gorger" s3 />
+          <NamePortrait name="Audo the Gorger" s3 dead />
           <NamePortrait name="Riks the Rat" />
           <NamePortrait name="Radegond the Stalker" />
           <NamePortrait name="Naric the Swindler" />
@@ -357,7 +365,7 @@ export default function DramatisPersonae() {
             name="Cyrus"
             src="https://provenire.s3.us-east-1.amazonaws.com/npc-art/cyrus_enforcer.png"
           />
-          <NamePortrait name="Ardaric" />
+          <NamePortrait name="Adaric" s3 />
           <NamePortrait name="Kaethe" />
           <NamePortrait name="Lorya" s3 />
           <NamePortrait name="Jyothi" />
@@ -366,6 +374,8 @@ export default function DramatisPersonae() {
           <NamePortrait name="Deritus" s3 />
           <NamePortrait name="Luys" />
           <NamePortrait name="Laikal" s3 />
+          <NamePortrait name="Thraus" s3 />
+          <NamePortrait name="Wulif" s3 />
         </div>
       </div>
       <div>
@@ -388,7 +398,8 @@ export default function DramatisPersonae() {
         <div className="flex items-center justify-center gap-2 flex-wrap">
           <NamePortrait name="Ridora the Ravenous" s3 />
           <NamePortrait name="Theodoric the Torturer" s3 dead />
-          <NamePortrait name="Hrodulfr the Sire" />
+          <NamePortrait name="Hrodulfr the Sire" s3 />
+          <NamePortrait name="Varus" s3 />
         </div>
       </div>
       <div>
