@@ -9,6 +9,7 @@ import { VenetianMask, Flame, Activity } from "lucide-react";
 import { useCharacterSheet } from "@/contexts/characterSheetContext";
 import { useRoll } from "@/contexts/rollContext";
 import ActionsSummaryPopover from "./actions-summary-popover";
+import React from "react";
 
 export default function ActionsSection() {
   const {
@@ -20,9 +21,19 @@ export default function ActionsSection() {
     handleUpdateActionScore,
   } = useCharacterSheet();
 
-  const { diceToast, rollActions, setRollLeft, setRollRight } = useRoll();
+  const { doRoll, setRollLeft, setRollRight } = useRoll();
 
-  return (
+  const handleActionRoll = (e: React.MouseEvent<HTMLDivElement>, action: string, isLeft: boolean) => {
+    if (e.shiftKey) {
+      doRoll("action", action, "");
+    } else if (isLeft) {
+      setRollLeft(action);
+    } else {
+      setRollRight(action);
+  }}
+
+
+return (
     <>
       <TypographyH2 className="text-md text-muted-foreground mt-8 flex items-end justify-between">
         Actions <ActionsSummaryPopover />
@@ -38,14 +49,7 @@ export default function ActionsSection() {
         <div className="flex flex-col">
           <div
             className="h-10 flex items-center hover:cursor-pointer group"
-            onClick={async (e) => {
-              if (e.shiftKey) {
-                const roll = await rollActions("action", "Heart", "Defy");
-                diceToast(roll, "Defy");
-              } else {
-                setRollLeft("Heart-Defy");
-              }
-            }}
+            onClick={async (e) => { handleActionRoll(e, "Heart-Defy", true) }}
           >
             <TypographyH4 className="group-hover:underline mt-0">
               Defy
@@ -54,14 +58,7 @@ export default function ActionsSection() {
           <Separator />
           <div
             className="h-10 flex items-center hover:cursor-pointer group"
-            onClick={async (e) => {
-              if (e.shiftKey) {
-                const roll = await rollActions("action", "Heart", "Persuade");
-                diceToast(roll, "Persuade");
-              } else {
-                setRollLeft("Heart-Persuade");
-              }
-            }}
+            onClick={async (e) => { handleActionRoll(e, "Heart-Persuade", true) }}
           >
             <TypographyH4 className="group-hover:underline mt-0">
               Persuade
@@ -95,14 +92,7 @@ export default function ActionsSection() {
               <div
                 key={`bh-${i}`}
                 className="h-10 hover:cursor-pointer group"
-                onClick={async (e) => {
-                  if (e.shiftKey) {
-                    const roll = await rollActions("action", "Heart", a);
-                    diceToast(roll, a);
-                  } else {
-                    setRollRight(`Heart-${a}`);
-                  }
-                }}
+                onClick={async (e) => { handleActionRoll(e, `Heart-${a}`, false) }}
               >
                 <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline mt-0">
                   {a}
@@ -116,14 +106,7 @@ export default function ActionsSection() {
               <div
                 key={`sh-${i}`}
                 className="h-10 hover:cursor-pointer group"
-                onClick={async (e) => {
-                  if (e.shiftKey) {
-                    const roll = await rollActions("action", "Heart", a);
-                    diceToast(roll, a);
-                  } else {
-                    setRollRight(`Heart-${a}`);
-                  }
-                }}
+                onClick={async (e) => { handleActionRoll(e, `Heart-${a}`, false) }}
               >
                 <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline mt-0">
                   {a}
@@ -137,14 +120,7 @@ export default function ActionsSection() {
               <div
                 key={`ah-${i}`}
                 className="h-10 hover:cursor-pointer group"
-                onClick={async (e) => {
-                  if (e.shiftKey) {
-                    const roll = await rollActions("action", "Heart", a);
-                    diceToast(roll, a);
-                  } else {
-                    setRollRight(`Heart-${a}`);
-                  }
-                }}
+                onClick={async (e) => { handleActionRoll(e, `Heart-${a}`, false) }}
               >
                 <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline mt-0">
                   {a}
@@ -158,14 +134,7 @@ export default function ActionsSection() {
               <div
                 key={`fh-${i}`}
                 className="h-10 hover:cursor-pointer group"
-                onClick={async (e) => {
-                  if (e.shiftKey) {
-                    const roll = await rollActions("action", "Heart", a);
-                    diceToast(roll, a);
-                  } else {
-                    setRollRight(`Heart-${a}`);
-                  }
-                }}
+                onClick={async (e) => { handleActionRoll(e, `Heart-${a}`, false) }}
               >
                 <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline mt-0">
                   {a}
@@ -241,14 +210,7 @@ export default function ActionsSection() {
         <div className="flex flex-col">
           <div
             className="h-10 flex items-center hover:cursor-pointer group"
-            onClick={async (e) => {
-              if (e.shiftKey) {
-                const roll = await rollActions("action", "Instinct", "Charge");
-                diceToast(roll, "Charge");
-              } else {
-                setRollLeft("Instinct-Charge");
-              }
-            }}
+            onClick={async (e) => { handleActionRoll(e, "Instinct-Charge", true) }}
           >
             <TypographyH4 className="group-hover:underline mt-0">
               Charge
@@ -257,14 +219,7 @@ export default function ActionsSection() {
           <Separator />
           <div
             className="h-10 flex items-center hover:cursor-pointer group"
-            onClick={async (e) => {
-              if (e.shiftKey) {
-                const roll = await rollActions("action", "Instinct", "Prowl");
-                diceToast(roll, "Prowl");
-              } else {
-                setRollLeft("Instinct-Prowl");
-              }
-            }}
+            onClick={async (e) => { handleActionRoll(e, "Instinct-Prowl", true) }}
           >
             <TypographyH4 className="group-hover:underline mt-0">
               Prowl
@@ -298,14 +253,7 @@ export default function ActionsSection() {
               <div
                 key={`bi-${i}`}
                 className="h-10 hover:cursor-pointer group"
-                onClick={async (e) => {
-                  if (e.shiftKey) {
-                    const roll = await rollActions("action", "Instinct", a);
-                    diceToast(roll, a);
-                  } else {
-                    setRollRight(`Instinct-${a}`);
-                  }
-                }}
+                onClick={async (e) => { handleActionRoll(e, `Instinct-${a}`, false) }}
               >
                 <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline mt-0">
                   {a}
@@ -319,14 +267,7 @@ export default function ActionsSection() {
               <div
                 key={`si-${i}`}
                 className="h-10 hover:cursor-pointer group"
-                onClick={async (e) => {
-                  if (e.shiftKey) {
-                    const roll = await rollActions("action", "Instinct", a);
-                    diceToast(roll, a);
-                  } else {
-                    setRollRight(`Instinct-${a}`);
-                  }
-                }}
+                onClick={async (e) => { handleActionRoll(e, `Instinct-${a}`, false) }}
               >
                 <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline mt-0">
                   {a}
@@ -340,14 +281,7 @@ export default function ActionsSection() {
               <div
                 key={`ai-${i}`}
                 className="h-10 hover:cursor-pointer group"
-                onClick={async (e) => {
-                  if (e.shiftKey) {
-                    const roll = await rollActions("action", "Instinct", a);
-                    diceToast(roll, a);
-                  } else {
-                    setRollRight(`Instinct-${a}`);
-                  }
-                }}
+                onClick={async (e) => { handleActionRoll(e, `Instinct-${a}`, false) }}
               >
                 <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline mt-0">
                   {a}
@@ -361,14 +295,7 @@ export default function ActionsSection() {
               <div
                 key={`fi-${i}`}
                 className="h-10 hover:cursor-pointer group"
-                onClick={async (e) => {
-                  if (e.shiftKey) {
-                    const roll = await rollActions("action", "Instinct", a);
-                    diceToast(roll, a);
-                  } else {
-                    setRollRight(`Instinct-${a}`);
-                  }
-                }}
+                onClick={async (e) => { handleActionRoll(e, `Instinct-${a}`, false) }}
               >
                 <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline mt-0">
                   {a}
@@ -444,14 +371,7 @@ export default function ActionsSection() {
         <div className="flex flex-col">
           <div
             className="h-10 flex items-center hover:cursor-pointer group"
-            onClick={async (e) => {
-              if (e.shiftKey) {
-                const roll = await rollActions("action", "Machina", "Suggest");
-                diceToast(roll, "Suggest");
-              } else {
-                setRollLeft("Machina-Suggest");
-              }
-            }}
+            onClick={async (e) => { handleActionRoll(e, "Machina-Suggest", true) }}
           >
             <TypographyH4 className="group-hover:underline mt-0">
               Suggest
@@ -460,14 +380,7 @@ export default function ActionsSection() {
           <Separator />
           <div
             className="h-10 flex items-center hover:cursor-pointer group"
-            onClick={async (e) => {
-              if (e.shiftKey) {
-                const roll = await rollActions("action", "Machina", "Survey");
-                diceToast(roll, "Survey");
-              } else {
-                setRollLeft("Machina-Survey");
-              }
-            }}
+            onClick={async (e) => { handleActionRoll(e, "Machina-Survey", true) }}
           >
             <TypographyH4 className="group-hover:underline mt-0">
               Survey
@@ -501,14 +414,7 @@ export default function ActionsSection() {
               <div
                 key={`bm-${i}`}
                 className="h-10 hover:cursor-pointer group"
-                onClick={async (e) => {
-                  if (e.shiftKey) {
-                    const roll = await rollActions("action", "Machina", a);
-                    diceToast(roll, a);
-                  } else {
-                    setRollRight(`Machina-${a}`);
-                  }
-                }}
+                onClick={async (e) => { handleActionRoll(e, `Machina-${a}`, false) }}
               >
                 <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline mt-0">
                   {a}
@@ -522,14 +428,7 @@ export default function ActionsSection() {
               <div
                 key={`sm-${i}`}
                 className="h-10 hover:cursor-pointer group"
-                onClick={async (e) => {
-                  if (e.shiftKey) {
-                    const roll = await rollActions("action", "Machina", a);
-                    diceToast(roll, a);
-                  } else {
-                    setRollRight(`Machina-${a}`);
-                  }
-                }}
+                onClick={async (e) => { handleActionRoll(e, `Machina-${a}`, false) }}
               >
                 <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline mt-0">
                   {a}
@@ -543,14 +442,7 @@ export default function ActionsSection() {
               <div
                 key={`am-${i}`}
                 className="h-10 hover:cursor-pointer group"
-                onClick={async (e) => {
-                  if (e.shiftKey) {
-                    const roll = await rollActions("action", "Machina", a);
-                    diceToast(roll, a);
-                  } else {
-                    setRollRight(`Machina-${a}`);
-                  }
-                }}
+                onClick={async (e) => { handleActionRoll(e, `Machina-${a}`, false) }}
               >
                 <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline mt-0">
                   {a}
@@ -564,14 +456,7 @@ export default function ActionsSection() {
               <div
                 key={`fm-${i}`}
                 className="h-10 hover:cursor-pointer group"
-                onClick={async (e) => {
-                  if (e.shiftKey) {
-                    const roll = await rollActions("action", "Machina", a);
-                    diceToast(roll, a);
-                  } else {
-                    setRollRight(`Machina-${a}`);
-                  }
-                }}
+                onClick={async (e) => { handleActionRoll(e, `Machina-${a}`, false) }}
               >
                 <TypographyH4 className="h-10 ml-2 flex items-center justify-start group-hover:underline mt-0">
                   {a}

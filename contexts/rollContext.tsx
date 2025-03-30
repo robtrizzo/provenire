@@ -27,20 +27,6 @@ import { useSession } from "next-auth/react";
 import { useChannel, useConnectionStateListener } from "ably/react";
 
 interface RollContextProps {
-  rollActions: (
-    type: RollType,
-    attribute1: Attribute,
-    action1: string,
-    attribute2?: Attribute | undefined,
-    action2?: string | undefined
-  ) => Promise<Roll>;
-  rollDice: (
-    type: RollType,
-    numRed: number,
-    numBlue: number,
-    tag?: string
-  ) => Promise<Roll>;
-  diceToast: (roll: Roll, action1?: string, action2?: string) => void;
   bonusDiceRed: number;
   bonusDiceBlue: number;
   currentDiceFilter: string;
@@ -61,7 +47,7 @@ interface RollContextProps {
   setRollLeft: React.Dispatch<React.SetStateAction<string>>;
   setRollRight: React.Dispatch<React.SetStateAction<string>>;
   setIsPrivate: React.Dispatch<React.SetStateAction<boolean>>;
-  handleRollButton: (
+  doRoll: (
     type: RollType,
     rollLeft: string,
     rollRight: string
@@ -131,24 +117,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       }
       roll.userid = userId;
       roll.timestamp = new Date().toISOString();
-      if (currentDiceFilter === "own" || currentDiceFilter === "all") {
-        rolls.unshift(roll);
-        setRolls(rolls);
-      }
       return response.json();
-    },
-    onSuccess: async () => {
-      // If the current user makes a roll, we need to invalidate their filter for what the one not currently loaded.
-      // That is, if they're looking at "own", invalidate "all" and vice versa. If they're looking at someone else's,
-      // invalidate both
-      if (currentDiceFilter === "own") {
-        await queryClient.invalidateQueries({ queryKey: ["rolls", "all"] });
-      } else if (currentDiceFilter === "all") {
-        await queryClient.invalidateQueries({ queryKey: ["rolls", "own"] });
-      } else {
-        await queryClient.invalidateQueries({ queryKey: ["rolls", "all"] });
-        await queryClient.invalidateQueries({ queryKey: ["rolls", "own"] });
-      }
     },
     onError: (error) => {
       console.error("Failed to save roll", error);
@@ -306,22 +275,26 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       variant: "grid",
       // @ts-expect-error todo
       title: (
-        <div className="flex items-center flex-wrap gap-1 relative border-b-[1px] border-border">
+        <div className="flex justify-between items-center w-full border-b border-border pb-1 pt-3 relative">
           {username && (
             <span className="absolute top-0 left-0 text-xs text-muted-foreground">
               {username}
             </span>
           )}
-          <span className="mt-1.5">
+
+          <div className="mt-1.5">
             Rolled {action1}
             {action2 ? ` + ${action2}` : ""}
-          </span>
-          {roll.redDice.map((r, i) => (
-            <Die key={i} roll={r} className="h-10 w-10 text-red-800" />
-          ))}
-          {roll.blueDice.map((r, i) => (
-            <Die key={i} roll={r} className={"h-10 w-10 text-blue-800"} />
-          ))}
+          </div>
+
+          <div className="flex flex-wrap gap-1 justify-end">
+            {roll.redDice.map((r, i) => (
+              <Die key={i} roll={r} className="h-10 w-10 text-red-800" />
+            ))}
+            {roll.blueDice.map((r, i) => (
+              <Die key={i} roll={r} className="h-10 w-10 text-blue-800" />
+            ))}
+          </div>
         </div>
       ),
       description: (
@@ -428,10 +401,19 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     if (typeof window !== "undefined") {
       const df = localStorage.getItem(DICE_FILTER_LOCAL_STORAGE_KEY);
       if (!!df) {
+        if (df === "own") {
+          // If the saved filter is "own", set it to the current user's id
+          // This is a pseudo-migration to align "yours" with the actual user id
+          const userId = session?.data?.user?.id;
+          if (userId) {
+            setCurrentDiceFilter(userId);
+            return;
+          }
+        }
         setCurrentDiceFilter(df);
       }
     }
-  }, []);
+  }, [session?.data?.user?.id]);
 
   const { channel } = useChannel("rolls", "new", (message) => {
     if (session?.status !== "authenticated") {
@@ -449,14 +431,18 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       username: string;
     } = message.data;
     diceToast(roll, action1, action2, username);
+    if (currentDiceFilter === "all" || currentDiceFilter === roll.userid) {
+      setRolls([roll, ...rolls]);
+    }
   });
 
   const handleCurrentDiceFilterChange = (val: string) => {
+    queryClient.invalidateQueries({ queryKey: ["rolls", val] });
     setCurrentDiceFilter(val);
     localStorage.setItem(DICE_FILTER_LOCAL_STORAGE_KEY, val);
   };
 
-  async function handleRollButton(
+  async function doRoll(
     type: RollType,
     rollLeft: string,
     rollRight: string
@@ -539,7 +525,6 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   return (
     <RollContext.Provider
       value={{
-        diceToast,
         bonusDiceRed,
         bonusDiceBlue,
         currentDiceFilter,
@@ -547,8 +532,6 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         fetchNextPage,
         handleCurrentDiceFilterChange,
         hasNextPage,
-        rollActions,
-        rollDice,
         rolls,
         rollsArePending,
         isPrivate,
@@ -562,7 +545,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         rollRight,
         setRollLeft,
         setRollRight,
-        handleRollButton,
+        doRoll,
         handleFortuneRollButton,
       }}
     >
