@@ -37,7 +37,7 @@ export default function RollSection() {
     rollRight,
     setRollLeft,
     setRollRight,
-    handleRollButton,
+    doRoll,
     handleFortuneRollButton,
   } = useRoll();
 
@@ -177,14 +177,14 @@ export default function RollSection() {
         <Button
           variant="destructive"
           onClick={async () => {
-            handleRollButton("resist", rollLeft, rollRight);
+            doRoll("resist", rollLeft, rollRight);
           }}
         >
           <ShieldAlert /> Resist
         </Button>
         <Button
           onClick={async () => {
-            handleRollButton("action", rollLeft, rollRight);
+            doRoll("action", rollLeft, rollRight);
           }}
           className="flex items-center gap-2"
         >
@@ -193,7 +193,7 @@ export default function RollSection() {
         <Button
           variant="secondary"
           onClick={async () => {
-            handleRollButton("project", rollLeft, rollRight);
+            doRoll("project", rollLeft, rollRight);
           }}
         >
           <Cog /> Project
