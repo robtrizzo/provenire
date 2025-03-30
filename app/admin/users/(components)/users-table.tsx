@@ -1,37 +1,49 @@
 "use client";
-import { useState } from "react";
-import { TableCell, TableRow } from "@/components/ui/table";
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { RoleSelect } from "./role-select";
+import { PermissionsDialog } from "@/app/admin/users/(components)/permissions-dialog";
 
-export function UsersTable({ initialUsers }: { initialUsers: User[] }) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [users, setUsers] = useState<User[]>(initialUsers);
+export function UsersTable({ users }: { users: User[] }) {
 
-  const handleRoleChange = async (userId: string, newRole: string) => {
-    try {
-      // Update the user's role in the database
-      // TODO update this to use tanstack query
-      await fetch(`/api/users/${userId}/role`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ role: newRole }),
-      });
-
-      // TODO Refetch all users and update the users state
-    } catch (error) {
-      console.error("Error updating user role:", error);
-    }
-  };
-
-  return users.map((user: User, idx: number) => (
-    <TableRow key={idx}>
-      <TableCell>{user.name}</TableCell>
-      <TableCell>{user.email}</TableCell>
-      <TableCell>
-        <RoleSelect user={user} onRoleChange={handleRoleChange} />
-      </TableCell>
-    </TableRow>
-  ));
+  return (
+    <Table>
+      <TableCaption>users table</TableCaption>
+      <TableHeader>
+        <TableRow>
+          <TableHead className="border-r-slate-800 border-r-[1px]">
+            username
+          </TableHead>
+          <TableHead>email</TableHead>
+          <TableHead className="border-l-slate-800 border-l-[1px]">
+            role
+          </TableHead>
+          <TableHead className="border-l-slate-800 border-l-[1px]">
+            permissions
+          </TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        { users ? (
+          users.map((user: User, idx: number) => (
+            <TableRow key={ idx }>
+              <TableCell>{ user.name }</TableCell>
+              <TableCell>{ user.email }</TableCell>
+              <TableCell>
+                <RoleSelect userid={ user.id } userRole={user.role || "user"}/>
+              </TableCell>
+              <TableCell>
+                <PermissionsDialog
+                  userid={ user.id }
+                  username={ user.name }
+                  initialPermissions={ user.permissions }
+                />
+              </TableCell>
+            </TableRow>
+          ))
+        ) : (
+          <div>Loading...</div>
+        ) }
+      </TableBody>
+    </Table>
+  );
 }
