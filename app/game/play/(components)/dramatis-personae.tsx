@@ -16,6 +16,7 @@ export default function DramatisPersonae() {
             <NamePortrait name="Nail" s3 pc />
             <NamePortrait name="Malgus Veradun" s3 pc />
             <NamePortrait name="Merit" s3 pc />
+            <NamePortrait name="Jonah" />
           </div>
         </div>
       </div>
@@ -217,6 +218,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Luys" />
           <NamePortrait name="Frax" s3 />
           <NamePortrait name="Donios" s3 />
+          <NamePortrait name="Aldara" s3 />
         </div>
       </div>
       <div>
@@ -231,6 +233,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Nichros Perydark" s3 />
           <NamePortrait name="Yewin" s3 />
           <NamePortrait name="Zamza Veradun" />
+          <NamePortrait name="Aldara" s3 />
         </div>
       </div>
       <div>
@@ -333,8 +336,6 @@ export default function DramatisPersonae() {
           <NamePortrait name="Deritus" s3 />
           <NamePortrait name="Vult" s3 />
           <NamePortrait name="Tallia" s3 />
-          <NamePortrait name="Cranus" s3 />
-          <NamePortrait name="Aldara" s3 />
           <NamePortrait name="Varus" s3 />
           <NamePortrait name="Wulif" s3 />
         </div>

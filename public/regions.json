@@ -2,7 +2,7 @@
   {
     "name": "Fabrication",
     "contact": {
-      "name": "Jamaiah",
+      "name": "Teia Ild",
       "description": "A scared young revolutionary (from the outside world) searching for his sister",
       "clock": 5,
       "ticks": 0
@@ -36,5 +36,81 @@
         "ticks": 0
       }
     ]
+  },
+  {
+    "name": "Penal Pen",
+    "pathways": [
+      {
+        "name": "Assembly",
+        "clock": 5,
+        "ticks": 0
+      },
+      {
+        "name": "Spire",
+        "clock": 5,
+        "ticks": 0
+      },
+      {
+        "name": "Graft",
+        "clock": 7,
+        "ticks": 0
+      }
+    ],
+    "contact": {
+      "name": "Lamar",
+      "description": "An explorer of the primordial factory who has learned many of its secret places.",
+      "clock": 5,
+      "ticks": 0
+    },
+    "danger": {
+      "name": "Maron",
+      "description": "A prisoner so powerful and so foul that he was sealed away along with the beasts in the pen's dark recesses",
+      "clock": 3,
+      "ticks": 0
+    },
+    "feature": {
+      "name": "Amplification Chamber",
+      "description": "Beehive-like structure with a central pillar studded with protruding pipes, vents, and a tangled mass of black veins.",
+      "clock": 3,
+      "ticks": 0
+    }
+  },
+  {
+    "name": "Graft",
+    "pathways": [
+      {
+        "name": "Foundry",
+        "clock": 5,
+        "ticks": 0
+      },
+      {
+        "name": "???",
+        "clock": 5,
+        "ticks": 0
+      },
+      {
+        "name": "Penal Pen",
+        "clock": 7,
+        "ticks": 0
+      }
+    ],
+    "contact": {
+      "name": "",
+      "description": "",
+      "clock": 5,
+      "ticks": 0
+    },
+    "danger": {
+      "name": "",
+      "description": "",
+      "clock": 3,
+      "ticks": 0
+    },
+    "feature": {
+      "name": "Clean Room",
+      "description": "Pristine and stocked with precisely machined medical tools. A single operating table dominates the room.",
+      "clock": 3,
+      "ticks": 0
+    }
   }
 ]
