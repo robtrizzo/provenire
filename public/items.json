@@ -113,6 +113,38 @@
       "slots": 0,
       "traits": ["ugly", "fragile"],
       "description": "Slapdash face coverings for concealing your identities."
+    },
+    {
+      "name": "Axe of the Wolf",
+      "clock": 6,
+      "ticks": 0,
+      "slots": 1,
+      "traits": ["unwieldy", "memorable", "advanced"],
+      "description": "Brilliantly forged axe with blades fashioned like snarling wolf heads. Intricate inlays wrap the haft."
+    },
+    {
+      "name": "Small Silver Bowl",
+      "clock": 8,
+      "ticks": 0,
+      "slots": 1,
+      "traits": ["convoluted", "memorable", "valuable"],
+      "description": "Shallow silver bowl with intricate engravings"
+    },
+    {
+      "name": "Large Silver Bowl",
+      "clock": 8,
+      "ticks": 0,
+      "slots": 3,
+      "traits": ["convoluted", "memorable", "valuable", "bulky"],
+      "description": "Shallow silver bowl with intricate engravings"
+    },
+    {
+      "name": "Crow Feather Glider",
+      "clock": 4,
+      "ticks": 0,
+      "slots": 2,
+      "traits": ["tailored", "unwieldy"],
+      "description": "Glider constructed from pipes and crow feathers. Seems to have been designed for a child or small person. The feathers are carefully arranged to provide lift and stability."
     }
   ],
   "formulae": [
@@ -163,6 +195,14 @@
       "slots": 1,
       "traits": ["light-blind", "stains"],
       "description": "Apply to the eyes to see in the dark for some time."
+    },
+    {
+      "name": "Ichor",
+      "clock": 8,
+      "ticks": 0,
+      "slots": 0,
+      "traits": [],
+      "description": "Thick dark liquid from vials found in Amalina's bedchamber."
     }
   ]
 }
