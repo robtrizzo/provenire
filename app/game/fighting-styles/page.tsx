@@ -323,6 +323,14 @@ export default async function Page() {
           permanent level one harm: <i>strained</i>.
         </b>
       </TypographyP>
+      <TypographyP>
+        This was before <b>the Crew</b> learned <b>Aldam</b>. If you have
+        learned{" "}
+        <Link href="/game/aldam#bronze-coils">
+          <i className="text-red-500 underline font-bold">Brass Coils</i>
+        </Link>
+        , you may spend <b className="text-red-500">1 Blood</b> instead.
+      </TypographyP>
       <Separator className="my-3" />
       <div className="w-full flex justify-between">
         <Link href="/game/archetypes">
@@ -330,9 +338,9 @@ export default async function Page() {
             <ChevronLeft /> Archetypes
           </Button>
         </Link>
-        <Link href="/game/character-sheet">
+        <Link href="/game/aldam">
           <Button variant="outline">
-            Character Sheet <ChevronRight />
+            Aldam <ChevronRight />
           </Button>
         </Link>
       </div>

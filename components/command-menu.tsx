@@ -185,6 +185,16 @@ export default function CommandMenu() {
             Throatgore
           </CommandItem>
         </CommandGroup>
+        <CommandGroup heading="Aldam">
+          <CommandItem
+            onSelect={() => {
+              router.push("/game/aldam#gredoran");
+              setOpen(false);
+            }}
+          >
+            Gredoran Aldam
+          </CommandItem>
+        </CommandGroup>
         <CommandSeparator />
         <CommandGroup heading="Rules (Pages)">
           <CommandItem
@@ -290,6 +300,14 @@ export default function CommandMenu() {
             }}
           >
             Fighting Styles
+          </CommandItem>
+          <CommandItem
+            onSelect={() => {
+              router.push("/game/aldam");
+              setOpen(false);
+            }}
+          >
+            Aldam
           </CommandItem>
         </CommandGroup>
         <CommandGroup heading="Rules (Terms)">

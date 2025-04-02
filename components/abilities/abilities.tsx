@@ -12,22 +12,23 @@ import {
 import type { Ability } from "@/types/game";
 import components from "@/components/abilities/mapping";
 import { cn } from "@/lib/utils";
+import { useCharacterSheet } from "@/contexts/characterSheetContext";
 
 const Abilities = ({
   abilities,
-  characterAbilities,
-  setCharacterAbilities,
-  setChanges,
   variant = "unlocked",
   className,
 }: {
   abilities: Ability[];
-  characterAbilities?: string[];
-  setCharacterAbilities?: (abilities: string[]) => void;
-  setChanges?: (changed: boolean) => void;
   variant?: "unlocked" | "advancement" | "wiki";
   className?: string;
 }) => {
+  const {
+    abilities: characterAbilities,
+    setAbilities: setCharacterAbilities,
+    setChanges,
+  } = useCharacterSheet();
+
   const [dynamicComponents, setDynamicComponents] = useState<{
     [key: string]: React.FC | null;
   }>({});

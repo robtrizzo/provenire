@@ -46,6 +46,10 @@ interface CharacterSheetContextProps {
   stress: number;
   conditions: string[];
   conditionRecoveryRef: React.RefObject<number>;
+  blood: number;
+  maxBlood: number;
+  water: number;
+  maxWater: number;
   healing: number;
   harm3: string;
   harm2: string[];
@@ -91,6 +95,10 @@ interface CharacterSheetContextProps {
   setAttributes: React.Dispatch<React.SetStateAction<CharacterAttributes>>;
   setStress: React.Dispatch<React.SetStateAction<number>>;
   setConditions: React.Dispatch<React.SetStateAction<string[]>>;
+  setBlood: React.Dispatch<React.SetStateAction<number>>;
+  setMaxBlood: React.Dispatch<React.SetStateAction<number>>;
+  setWater: React.Dispatch<React.SetStateAction<number>>;
+  setMaxWater: React.Dispatch<React.SetStateAction<number>>;
   setHealing: React.Dispatch<React.SetStateAction<number>>;
   setHarm3: React.Dispatch<React.SetStateAction<string>>;
   setHarm2: React.Dispatch<React.SetStateAction<string[]>>;
@@ -220,6 +228,11 @@ export default function CharacterSheetProvider({
   const [conditions, setConditions] = useState<string[]>([]);
   const conditionRecoveryRef = useRef(0);
 
+  const [blood, setBlood] = useState<number>(0);
+  const [maxBlood, setMaxBlood] = useState<number>(1);
+  const [water, setWater] = useState<number>(0);
+  const [maxWater, setMaxWater] = useState<number>(1);
+
   const [healing, setHealing] = useState<number>(0);
   const [harm3, setHarm3] = useState<string>("");
   const [harm2, setHarm2] = useState<string[]>(["", ""]);
@@ -270,6 +283,10 @@ export default function CharacterSheetProvider({
     setConditions([]);
     setStress(0);
     conditionRecoveryRef.current = 0;
+    setBlood(0);
+    setMaxBlood(1);
+    setWater(0);
+    setMaxWater(1);
     setHealing(0);
     setHarm3("");
     setHarm2(["", ""]);
@@ -336,6 +353,10 @@ export default function CharacterSheetProvider({
         }
         setStress(parsed.stress || 0);
         conditionRecoveryRef.current = parsed.conditionRecovery || 0;
+        setBlood(parsed.blood || 0);
+        setMaxBlood(parsed.maxBlood || 1);
+        setWater(parsed.water || 0);
+        setMaxWater(parsed.maxWater || 1);
         setHealing(parsed.healing || 0);
         setHarm3(parsed.harm3 || "");
         setHarm2(parsed.harm2 || ["", ""]);
@@ -685,6 +706,10 @@ export default function CharacterSheetProvider({
         stress,
         conditions,
         conditionRecoveryRef,
+        blood,
+        maxBlood,
+        water,
+        maxWater,
         healing,
         harm3,
         harm2,
@@ -720,6 +745,10 @@ export default function CharacterSheetProvider({
         setAttributes,
         setStress,
         setConditions,
+        setBlood,
+        setMaxBlood,
+        setWater,
+        setMaxWater,
         setHealing,
         setHarm3,
         setHarm2,

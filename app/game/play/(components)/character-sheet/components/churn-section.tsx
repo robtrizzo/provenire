@@ -14,6 +14,7 @@ import { useCharacterSheet } from "@/contexts/characterSheetContext";
 import XPSection from "./xp-section";
 import StressSection from "./stress-section";
 import HarmSection from "./harm-section";
+import aldams from "@/public/aldams.json";
 
 export default function ChurnSection() {
   const {
@@ -21,14 +22,15 @@ export default function ChurnSection() {
     selectedSkillset,
     selectedBackground,
     selectedFightingStyle,
-    abilities,
     starvation,
     subsist,
-    setAbilities,
     setStarvation,
     setSubsist,
     setChanges,
   } = useCharacterSheet();
+
+  // for now, the only one available
+  const gredoranAldam = aldams.find((a) => a.name === "Gredoran Aldam");
 
   return (
     <div className="my-3 grid grid-cols-1 md:grid-cols-2 gap-6 focus-visible:outline-hidden">
@@ -46,16 +48,10 @@ export default function ChurnSection() {
             <div className="ml-2">
               <Abilities
                 abilities={selectedSkillset?.abilities?.mission}
-                characterAbilities={abilities}
-                setCharacterAbilities={setAbilities}
-                setChanges={setChanges}
                 variant="advancement"
               />
               <Abilities
                 abilities={selectedSkillset?.abilities?.downtime}
-                characterAbilities={abilities}
-                setCharacterAbilities={setAbilities}
-                setChanges={setChanges}
                 variant="advancement"
               />
             </div>
@@ -69,16 +65,10 @@ export default function ChurnSection() {
             <div className="ml-2">
               <Abilities
                 abilities={selectedArchetype?.abilities?.mission}
-                characterAbilities={abilities}
-                setCharacterAbilities={setAbilities}
-                setChanges={setChanges}
                 variant="advancement"
               />
               <Abilities
                 abilities={selectedArchetype?.abilities?.downtime}
-                characterAbilities={abilities}
-                setCharacterAbilities={setAbilities}
-                setChanges={setChanges}
                 variant="advancement"
               />
             </div>
@@ -92,14 +82,22 @@ export default function ChurnSection() {
             <div className="ml-2">
               <Abilities
                 abilities={selectedFightingStyle?.abilities}
-                characterAbilities={abilities}
-                setCharacterAbilities={setAbilities}
-                setChanges={setChanges}
                 variant="advancement"
               />
             </div>
           </div>
         )}
+        <div className="mt-4">
+          <TypographyH3 className="text-sm text-red-500 mt-4">
+            Gredoran Aldam&apos;s Abilities
+          </TypographyH3>
+          <div className="ml-2">
+            <Abilities
+              abilities={gredoranAldam!.abilities}
+              variant="advancement"
+            />
+          </div>
+        </div>
       </div>
       <div className="my-4 flex flex-col">
         <div className="mt-1">

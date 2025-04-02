@@ -1,0 +1,31 @@
+[
+  {
+    "name": "Gredoran Aldam",
+    "abilities": [
+      {
+        "name": "Bronze Bones",
+        "slug": "bronze-bones"
+      },
+      {
+        "name": "Brass Coils",
+        "slug": "brass-coils"
+      },
+      {
+        "name": "Zinc Pulse",
+        "slug": "zinc-pulse"
+      },
+      {
+        "name": "Nickel Vessel",
+        "slug": "nickel-vessel"
+      },
+      {
+        "name": "Silver Sight",
+        "slug": "silver-sight"
+      },
+      {
+        "name": "Mercurial Skull",
+        "slug": "mercurial-skull"
+      }
+    ]
+  }
+]

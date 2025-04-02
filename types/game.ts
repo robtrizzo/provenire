@@ -30,6 +30,7 @@ export type Donum = {
   translation: string;
   description: string;
   provenire: string;
+  type?: string;
 };
 
 export type DonumPhase = "Emergence" | "Nascence" | "Versance" | "Dominance";

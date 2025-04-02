@@ -107,6 +107,10 @@ const data = {
           title: "Fighting Styles",
           url: "/game/fighting-styles",
         },
+        {
+          title: "Aldam",
+          url: "/game/aldam",
+        },
       ],
     },
     {

@@ -18,16 +18,16 @@ import StressSection from "./stress-section";
 import HarmSection from "./harm-section";
 import ActionsSection from "./actions-section";
 import DonumSection from "./donum-section";
+import ResourcesSection from "./resources-section";
+import aldams from "@/public/aldams.json";
 
 export default function MissionSection() {
   const {
     selectedArchetype,
     selectedSkillset,
     selectedFightingStyle,
-    abilities,
     loadout,
     items,
-    setAbilities,
     setLoadout,
     setItems,
     setChanges,
@@ -35,9 +35,12 @@ export default function MissionSection() {
     handleUpdateItemSlots,
   } = useCharacterSheet();
 
+  const gredoranAldams = aldams.find((a) => a.name === "Gredoran Aldam");
+
   return (
     <div className="my-3 grid grid-cols-1 md:grid-cols-2 gap-6 focus-visible:outline-hidden">
       <div className="mt-4">
+        <ResourcesSection />
         <ActionsSection />
         <DonumSection />
         <TypographyH2 className="text-md text-muted-foreground mt-4">
@@ -164,18 +167,8 @@ export default function MissionSection() {
               {selectedSkillset?.name}&apos;s Abilities
             </TypographyH3>
             <div className="ml-2">
-              <Abilities
-                abilities={selectedSkillset?.abilities?.mission}
-                characterAbilities={abilities}
-                setCharacterAbilities={setAbilities}
-                setChanges={setChanges}
-              />
-              <Abilities
-                abilities={selectedSkillset?.abilities?.downtime}
-                characterAbilities={abilities}
-                setCharacterAbilities={setAbilities}
-                setChanges={setChanges}
-              />
+              <Abilities abilities={selectedSkillset?.abilities?.mission} />
+              <Abilities abilities={selectedSkillset?.abilities?.downtime} />
             </div>
           </div>
         )}
@@ -185,18 +178,8 @@ export default function MissionSection() {
               {selectedArchetype?.name}&apos;s Abilities
             </TypographyH3>
             <div className="ml-2">
-              <Abilities
-                abilities={selectedArchetype?.abilities?.mission}
-                characterAbilities={abilities}
-                setCharacterAbilities={setAbilities}
-                setChanges={setChanges}
-              />
-              <Abilities
-                abilities={selectedArchetype?.abilities?.downtime}
-                characterAbilities={abilities}
-                setCharacterAbilities={setAbilities}
-                setChanges={setChanges}
-              />
+              <Abilities abilities={selectedArchetype?.abilities?.mission} />
+              <Abilities abilities={selectedArchetype?.abilities?.downtime} />
             </div>
           </div>
         )}
@@ -206,15 +189,18 @@ export default function MissionSection() {
               {selectedFightingStyle?.name}&apos;s Abilities
             </TypographyH3>
             <div className="ml-2">
-              <Abilities
-                abilities={selectedFightingStyle?.abilities}
-                characterAbilities={abilities}
-                setCharacterAbilities={setAbilities}
-                setChanges={setChanges}
-              />
+              <Abilities abilities={selectedFightingStyle?.abilities} />
             </div>
           </div>
         )}
+        <div className="mt-4">
+          <TypographyH3 className="text-sm text-red-500 mt-4">
+            Gredoran Aldam&apos;s Abilities
+          </TypographyH3>
+          <div className="ml-2">
+            <Abilities abilities={gredoranAldams!.abilities} />
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import archetypes from "@/public/archetypes.json";
 import skillsets from "@/public/skillsets.json";
 import fightingStyles from "@/public/fighting_styles.json";
+import aldams from "@/public/aldams.json";
 
 const allSlugs = [];
 
@@ -16,6 +17,10 @@ for (const skillset of skillsets) {
 
 for (const fightingStyle of fightingStyles) {
   allSlugs.push(fightingStyle.abilities.map((a) => a.slug));
+}
+
+for (const aldam of aldams) {
+  allSlugs.push(aldam.abilities.map((a) => a.slug));
 }
 
 const dynamicComponents = allSlugs

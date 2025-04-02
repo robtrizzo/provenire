@@ -37,7 +37,11 @@ export default function DonumSection() {
         <TypographyP className="text-xs">
           <b>Donum Provenire:</b> {selectedDonum.provenire} Heal any one harm
           and <b>crit</b> on any one roll in the scene. When the moment is over,
-          mark a <b>level 3 harm</b>: surge wracked.
+          mark a <b>level 3 harm</b>:{" "}
+          {selectedDonum.type === "transformation"
+            ? "surge wracked"
+            : "body parched"}
+          .
         </TypographyP>
       </CardContent>
     </Card>
