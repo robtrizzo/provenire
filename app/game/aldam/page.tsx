@@ -16,8 +16,8 @@ export default async function Page() {
     <>
       <TypographyH1>Aldam</TypographyH1>
       <TypographyP>
-        <b>Aldham</b> is an ancient <i>Gredoran</i> word. The original meaning
-        is long lost to history, but now it can be described as a cluster of
+        <b>Aldam</b> is an ancient <i>Gredoran</i> word. The original meaning is
+        long lost to history, but now it can be described as a cluster of
         meanings. <b>Made from earth&apos;s mud</b>, a{" "}
         <b>phantom of the self</b>, the <b>intensity of blackness</b>, a moment
         of <b>wishful thinking</b>, and most commonly, the{" "}
