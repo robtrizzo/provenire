@@ -83,13 +83,9 @@ export default async function Page() {
         In <i>Gredoran Aldam</i>, there are three points of the body&apos;s
         divine triangle: the limbs, the heart, and the eyes. Each point of the
         divine triangle requires a lifetime to master, yet each are essential
-        unto one another.
-      </TypographyP>
-      <TypographyP>
-        Each point of the divine triangle requires a lifetime to master, yet
-        each are essential unto one another. The arts are named from the holy{" "}
-        <i>Gredoran</i> metals. Adorning onesself with these metals is taught to
-        enhance these aspects.
+        unto one another. The arts are named from the holy <i>Gredoran</i>{" "}
+        metals. Adorning onesself with these metals is taught to enhance these
+        aspects.
       </TypographyP>
       <TypographyH3>Limbs</TypographyH3>
       <TypographyP>
