@@ -8,7 +8,7 @@ import {
 import loadouts from "@/public/loadouts.json";
 import { Item } from "@/types/game";
 import { Checkbox } from "@/components/ui/checkbox";
-import Abilities from "@/components/abilities/abilities";
+import Abilities from "@/app/game/play/(components)/character-sheet/components/abilities";
 import ItemsTable from "@/app/game/play/(components)/character-sheet/components/items-table";
 import RollSection from "../components/roll-section";
 import Bonds from "../components/bonds";

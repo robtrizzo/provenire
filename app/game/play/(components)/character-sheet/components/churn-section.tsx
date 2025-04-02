@@ -5,7 +5,7 @@ import {
   TypographyUnorderedList,
 } from "@/components/ui/typography";
 import Link from "next/link";
-import Abilities from "@/components/abilities/abilities";
+import Abilities from "@/app/game/play/(components)/character-sheet/components/abilities";
 import DowntimeActionsAccordion from "@/components/downtime-actions-accordion";
 import Crit from "@/components/subsistence/crit/subsistenceCrit";
 import Consequences from "@/components/subsistence/consequences/subsistenceConsequences";
