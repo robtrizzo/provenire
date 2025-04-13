@@ -205,7 +205,7 @@ export default function DramatisPersonae() {
           />
           <NamePortrait name="Wilgefort" s3 />
           <NamePortrait name="Seperi" s3 />
-          <NamePortrait name="Adaric" s3 />
+          <NamePortrait name="Adaric" s3 dead />
           <NamePortrait name="Theodora" />
           <NamePortrait name="Elisaweta" />
           <NamePortrait name="Jeanne" />
@@ -257,7 +257,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Nadia" s3 />
           <NamePortrait name="Veria" s3 />
           <NamePortrait name="Malix" s3 />
-          <NamePortrait name="Gisava the Bully" />
+          <NamePortrait name="Gisava the Bully" s3 />
           <NamePortrait name="Felix the Facetious" s3 />
           <NamePortrait name="Lorin" />
           <NamePortrait
@@ -353,7 +353,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Riks the Rat" />
           <NamePortrait name="Radegond the Stalker" />
           <NamePortrait name="Naric the Swindler" />
-          <NamePortrait name="Gisava the Bully" />
+          <NamePortrait name="Gisava the Bully" s3 />
           <NamePortrait name="Gaila the Daft" />
           <NamePortrait name="Hellet" s3 />
           <NamePortrait name="Borani" s3 />
@@ -366,7 +366,7 @@ export default function DramatisPersonae() {
             name="Cyrus"
             src="https://provenire.s3.us-east-1.amazonaws.com/npc-art/cyrus_enforcer.png"
           />
-          <NamePortrait name="Adaric" s3 />
+          <NamePortrait name="Adaric" s3 dead />
           <NamePortrait name="Kaethe" />
           <NamePortrait name="Lorya" s3 />
           <NamePortrait name="Jyothi" />
