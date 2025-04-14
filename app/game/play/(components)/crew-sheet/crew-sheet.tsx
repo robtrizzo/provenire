@@ -357,7 +357,7 @@ export default function CrewSheet() {
                 key={`intel-${Date.now()}`}
                 max={4}
                 current={intel}
-                numDisabled={3}
+                numDisabled={0}
                 onChange={(n) => {
                   if (isAdmin) {
                     setIntel(n);

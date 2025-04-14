@@ -25,7 +25,7 @@ export default function HierarchyTree() {
         <div className="flex flex-col items-center gap-8 w-36">
           <div className="h-36 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
             <TypographyH4 className="text-center">
-              FELIX <span className="text-xs">the</span> FACETIOUS
+              WESS <span className="text-xs">the</span> SHARK
             </TypographyH4>
             <TypographyP className="text-xs text-center">
               <span className="font-bold">+1d</span> to avoid first overseer

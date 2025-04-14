@@ -190,7 +190,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Noirax Veradun" />
           <NamePortrait name="Venee Palen" s3 />
           <NamePortrait name="Pachni" />
-          <NamePortrait name="Kasr" />
+          <NamePortrait name="Kasr" dead />
           <NamePortrait name="Amalina the Crow" s3 />
           <NamePortrait name="Naaza" s3 />
           <NamePortrait name="Kerrac" s3 />
@@ -438,7 +438,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Bran" s3 dead />
           <NamePortrait name="Malix" s3 />
           <NamePortrait name="Venee Palen" s3 />
-          <NamePortrait name="Kasr" />
+          <NamePortrait name="Kasr" dead />
           <NamePortrait name="Nibel" />
           <NamePortrait name="Rodulf" />
           <NamePortrait name="Buffy" />
