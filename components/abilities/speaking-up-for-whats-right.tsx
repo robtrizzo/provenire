@@ -1,13 +1,13 @@
-import { TypographyP } from '@/components/ui/typography';
+import { TypographyP } from "@/components/ui/typography";
 export default function SpeakingUpForWhatsRight() {
   return (
     <div>
       <TypographyP>
-        After a successful mission, Leaders can spend a downtime activity to
-        convince a faction that the crew is only doing what&apos;s right.{' '}
-        <strong>1-3:</strong> +1 scorn, <strong>4/5:</strong> +1 goodwill,{' '}
-        <strong>6:</strong> -1 scorn, <strong>Critical:</strong> +1 goodwill and
-        -1 scorn.
+        During downtime, Leaders can spend <b>1 goodwill</b>{" "}
+        <span className="text-xs text-muted-foreground">OR</span> generate{" "}
+        <b>+2 heat</b> to pursue the{" "}
+        <b>Make them know you&apos;re not afraid</b> or{" "}
+        <b>Making the pain worth it</b> agendas.
       </TypographyP>
     </div>
   );
