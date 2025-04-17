@@ -71,7 +71,7 @@ export default function FactoryMap() {
           </div>
         </div>
         <div className="h-36 w-36 bg-muted-foreground text-primary-foreground flex items-center justify-center opacity-80">
-          Spire
+          SPIRE
         </div>
         <div className="w-36 h-8 flex items-center justify-center ">
           <div className="border-2 border-border rounded-full w-8 h-8 flex items-center justify-center">
