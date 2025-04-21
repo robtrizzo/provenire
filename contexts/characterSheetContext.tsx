@@ -132,6 +132,7 @@ interface CharacterSheetContextProps {
     questionIdx: number,
     newQuestion: string
   ) => void;
+  increaseMaxBlood: () => void;
   setChanges: React.Dispatch<React.SetStateAction<boolean>>;
   setCharacterLoaded: React.Dispatch<React.SetStateAction<Date>>;
   handleDebounceChange: () => void;
@@ -687,6 +688,10 @@ export default function CharacterSheetProvider({
     setChanges(true);
   }
 
+  function increaseMaxBlood() {
+    setMaxBlood(Math.min(4, maxBlood + 1));
+  }
+
   return (
     <CharacterSheetContext.Provider
       value={{
@@ -776,6 +781,7 @@ export default function CharacterSheetProvider({
         handleUpdateItemName,
         handleUpdateItemSlots,
         handleUpdateActionScore,
+        increaseMaxBlood,
         setCloudUpdatedAt,
       }}
     >

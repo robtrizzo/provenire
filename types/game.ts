@@ -30,6 +30,8 @@ export type Donum = {
   translation: string;
   description: string;
   provenire: string;
+  metamorphosis: string;
+  phase: DonumPhase;
   type?: string;
 };
 

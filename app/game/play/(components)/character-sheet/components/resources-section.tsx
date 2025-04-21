@@ -11,7 +11,7 @@ export default function ResourcesSection() {
     blood,
     setBlood,
     maxBlood,
-    setMaxBlood,
+    increaseMaxBlood,
     water,
     setWater,
     maxWater,
@@ -45,7 +45,7 @@ export default function ResourcesSection() {
                     variant="outline"
                     disabled={!hasNickelVessel}
                     onClick={() => {
-                      setMaxBlood(Math.min(4, maxBlood + 1));
+                      increaseMaxBlood();
                       setChanges(true);
                     }}
                   >

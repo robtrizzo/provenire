@@ -403,7 +403,7 @@ export default function Charsheet() {
                     | Donum
                     | undefined;
                   if (foundDonum) {
-                    setSelectedDonum(foundDonum);
+                    setSelectedDonum({ ...foundDonum, phase: "Emergence" });
                     setChanges(true);
                   }
                 }}

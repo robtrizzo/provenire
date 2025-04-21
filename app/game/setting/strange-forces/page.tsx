@@ -146,9 +146,37 @@ export default async function Page() {
         power in that scene.
       </TypographyP>
       <TypographyP>
-        After the <i>Donum Provenire</i>, the transformation enters a new phase.
+        After the <i>Donum Provenire</i>, the transformation enters a new phase:{" "}
+        <i>Donum Nascence</i>.
       </TypographyP>
-      <p style={distortedStyle} className="select-none">
+      <TypographyP>
+        Nascent beasts can control elements of their transformations, though
+        they still have a lifetime to grow into the art. Your character&apos;s{" "}
+        <i>Maeonic Gut</i> grows, storing more blood than prey could. Your
+        character may advance their <i>Donum&apos;s Nascence</i> skill tree by
+        spending <b>3 xp clocks</b> and <b className="text-red-500">1 blood</b>.
+      </TypographyP>
+      <TypographyP>
+        You may spend <b className="text-red-500">1 blood</b> to gain <b>+1d</b>{" "}
+        on a roll where your <i>Donum</i> could assist you. Anytime you are
+        transformed and roll a <b>1-3</b>, you experience a <i>mishap</i>. A{" "}
+        <i>mishap</i> is a danger or complication spawned from your
+        unfamiliarity with your own power. When <i>mishaps</i> occur,{" "}
+        <b>mark 1 xp</b>; they may be resisted as normal.
+      </TypographyP>
+      <TypographyP>
+        <i>Nascent</i> beasts have a <b>Nascence clock</b>. Each time your
+        character spends <b>blood</b> or experiences a <i>mishap</i>, they mark
+        the <b>Nascence clock</b>. Once full, your character unlocks their{" "}
+        <i>Donum Metamorphosis</i>: a moment of your choosing where the
+        transformation permanently evolves and provides your character with
+        dangerous power in that scene.
+      </TypographyP>
+      <TypographyP>
+        After the <i>Donum Metamorphosis</i>, the transformation enters a new
+        phase: <i>Donum Versance</i>.
+      </TypographyP>
+      <p style={distortedStyle} className="select-none mt-2">
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat ut
         explicabo autem in provident deserunt ipsa pariatur excepturi maxime,
         omnis, id officia blanditiis minima repellendus esse necessitatibus,
