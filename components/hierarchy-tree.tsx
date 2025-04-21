@@ -23,7 +23,7 @@ export default function HierarchyTree() {
       </div>
       <div className="flex items-center">
         <div className="flex flex-col items-center gap-8 w-36">
-          <div className="h-36 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
+          <div className="h-36 w-36 p-2 bg-secondary text-secondary-foreground flex flex-col items-center justify-center">
             <TypographyH4 className="text-center">
               WESS <span className="text-xs">the</span> SHARK
             </TypographyH4>
@@ -32,7 +32,7 @@ export default function HierarchyTree() {
               encountered per mission
             </TypographyP>
           </div>
-          <div className="h-36 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
+          <div className="h-36 w-36 p-2 bg-secondary text-secondary-foreground flex flex-col items-center justify-center">
             <TypographyH4 className="text-center">
               SVINTHA <span className="text-xs">the</span> CRUMBER
             </TypographyH4>
@@ -49,7 +49,7 @@ export default function HierarchyTree() {
               <span className="font-bold">+1d</span> to engagement roll
             </TypographyP>
           </div>
-          <div className="h-36 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
+          <div className="h-36 w-36 p-2 bg-secondary text-secondary-foreground flex flex-col items-center justify-center">
             <TypographyH4 className="text-center">
               RIKS <span className="text-xs">the</span> RAT
             </TypographyH4>
@@ -58,7 +58,7 @@ export default function HierarchyTree() {
               fellow workers
             </TypographyP>
           </div>
-          <div className="h-36 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
+          <div className="h-36 w-36 p-2 bg-secondary text-secondary-foreground flex-col items-center justify-center">
             <TypographyH4 className="text-center">
               RADEGOND <span className="text-xs">the</span> STALKER
             </TypographyH4>
@@ -67,7 +67,7 @@ export default function HierarchyTree() {
               heat is 4 or less
             </TypographyP>
           </div>
-          <div className="h-36 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
+          <div className="h-36 w-36 p-2 bg-secondary text-secondary-foreground flex flex-col items-center justify-center">
             <TypographyH4 className="text-center">
               NARIC <span className="text-xs">the</span> SWINDLER
             </TypographyH4>
@@ -148,7 +148,7 @@ export default function HierarchyTree() {
         </div>
         <div className="flex flex-col items-center gap-8 w-36">
           <div className="h-18" />
-          <div className="h-36 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
+          <div className="h-36 w-36 p-2 bg-secondary text-secondary-foreground flex flex-col items-center justify-center">
             <TypographyH4 className="text-center">
               MARNGIL <span className="text-xs">the</span> BEAR
             </TypographyH4>
