@@ -130,7 +130,7 @@ export default function ChurnSection() {
               <div className="shrink-0">
                 <Clock
                   key={`starvation-${new Date().getTime()}`}
-                  max={5}
+                  max={6}
                   current={starvation}
                   height={35}
                   width={35}
