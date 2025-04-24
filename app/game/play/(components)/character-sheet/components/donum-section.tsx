@@ -66,15 +66,7 @@ function Curse() {
         <TypographyP className="not-first:mt-0 text-xs">
           {selectedDonum.description}
         </TypographyP>
-        <TypographyP className="text-xs">
-          <b>Donum Provenire:</b> {selectedDonum.provenire} Heal any one harm
-          and <b>crit</b> on any one roll in the scene. When the moment is over,
-          mark a <b>level 3 harm</b>:{" "}
-          {selectedDonum.type === "transformation"
-            ? "surge wracked"
-            : "body parched"}
-          .
-        </TypographyP>
+        <TypographyP className="text-xs">{selectedDonum.advance}</TypographyP>
       </CardContent>
     </Card>
   );
