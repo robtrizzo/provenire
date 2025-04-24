@@ -14,7 +14,7 @@ import { Separator } from "@/components/ui/separator";
 export default async function Page() {
   return (
     <>
-      <TypographyH1>Aldam</TypographyH1>
+      <TypographyH1>Aldams</TypographyH1>
       <TypographyP>
         <b>Aldam</b> is an ancient <i>Gredoran</i> word. The original meaning is
         long lost to history, but now it can be described as a cluster of
@@ -145,14 +145,14 @@ export default async function Page() {
       </TypographyP>
       <Separator className="my-4" />
       <div className="w-full flex justify-between">
-        <Link href="/game/fighting-styles">
+        <Link href="/game/sources-of-power">
           <Button variant="outline">
-            <ChevronLeft /> Fighting Styles
+            <ChevronLeft /> Sources of Power
           </Button>
         </Link>
-        <Link href="/game/character-sheet">
+        <Link href="/game/sources-of-power/transformations">
           <Button variant="outline">
-            Character Sheet <ChevronRight />
+            Transformations <ChevronRight />
           </Button>
         </Link>
       </div>

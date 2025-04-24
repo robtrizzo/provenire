@@ -4,7 +4,8 @@
     "translation": "Gift of the Crow",
     "description": "",
     "provenire": "Cunning of the first crow sharpens your mind and dulls the emotions of prey. Your body twists and contracts and hollows itself out to make it possible for air to lift you up into the heights where you belong.",
-    "type": "transformation"
+    "type": "transformation",
+    "abilities": []
   },
   {
     "name": "Donum Rex",
@@ -12,26 +13,49 @@
     "description": "",
     "provenire": "Power as ancient as Kingwulf himself warps your body in his visage. A second pulse thumps in your chest. You are his bloodline. You have been blessed with his might which suffuses your limbs and repairs your wounds.",
     "metamorphosis": "Kingwulf's order demands a strict difference between a blessed wolf and a cursed monster. And paradoxically, the very nature of the blessing is one of monstrous entropy. Your body experiences this confluxion as latent metamorphosis takes hold. You are of Kingwulf's blood, but what has it become of you when this is over?",
-    "type": "transformation"
+    "type": "transformation",
+    "abilities": []
   },
   {
     "name": "Donum Ursa",
     "translation": "Gift of the Bear",
     "description": "",
     "provenire": "Strength, sturdiness, and the tickling of the call to sleep wrap around you like a warm blanket. Your body grows heavy and large. Your belly rumbles with a fathomless hunger.",
-    "type": "transformation"
+    "type": "transformation",
+    "abilities": []
   },
   {
     "name": "Exsecratus Portentum",
     "translation": "Accursed Monster",
     "description": "",
     "provenire": "The curse of the monster. An ancient blight of the bloodline that has haunted Rath since time immemorium. Your body contorts and writhes with horrid power. You will be an outcast. You will be hunted.",
-    "type": "transformation"
+    "type": "transformation",
+    "abilities": []
   },
   {
     "name": "Donum Vitae",
     "translation": "Gift of Life",
     "description": "",
-    "provenire": "Oscillating waves of warmth and chill tingle from your chest to your fingertips, soothing your aches and pains. Effortless energy fills you like a cup: full and waiting for a new vessel to overflow into."
+    "provenire": "Oscillating waves of warmth and chill tingle from your chest to your fingertips, soothing your aches and pains. Effortless energy fills you like a cup: full and waiting for a new vessel to overflow into.",
+    "restrictedTo": "view-donums",
+    "abilities": []
+  },
+  {
+    "name": "Visu Exteriore",
+    "translation": "Outer Sight",
+    "description": "You stumbled into a place with the eyes. They saw you. And in turn, you saw so, so much. Your life: both thus far and future. You saw your own doom. But so much information is difficult for any mind to grasp, much less one addled by the drone. Regardless of what you do and don't remember, you can't shake the feeling that it is coming.",
+    "advance": "Curse of Outer Sight has a Doom clock. Each time your character marks another tick on the clock, they unlock a new ability granted by the curse. When the clock fills, your doom arrives.",
+    "type": "curse",
+    "restrictedTo": "outer-sight",
+    "abilities": [
+      { "name": "Doomed", "slug": "doomed", "keystone": true },
+      { "name": "Omens", "slug": "omens" },
+      { "name": "Glimpse", "slug": "glimpse" },
+      { "name": "Ripples", "slug": "ripples" },
+      { "name": "Premonition", "slug": "premonition" },
+      { "name": "Inner Peace", "slug": "inner-peace" },
+      { "name": "Agent of Fate", "slug": "agent-of-fate" },
+      { "name": "Never Looking Back", "slug": "never-looking-back" }
+    ]
   }
 ]

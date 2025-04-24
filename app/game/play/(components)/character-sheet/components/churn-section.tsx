@@ -22,6 +22,7 @@ export default function ChurnSection() {
     selectedSkillset,
     selectedBackground,
     selectedFightingStyle,
+    selectedDonum,
     starvation,
     subsist,
     setStarvation,
@@ -98,6 +99,19 @@ export default function ChurnSection() {
             />
           </div>
         </div>
+        {selectedDonum && (
+          <div className="mt-4">
+            <TypographyH3 className="text-sm text-fuchsia-500 mt-4">
+              {selectedDonum.name}&apos;s Abilities
+            </TypographyH3>
+            <div className="ml-2">
+              <Abilities
+                abilities={selectedDonum!.abilities}
+                variant="advancement"
+              />
+            </div>
+          </div>
+        )}
       </div>
       <div className="my-4 flex flex-col">
         <div className="mt-1">

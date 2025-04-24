@@ -10,10 +10,20 @@ export default function StressSection() {
     stress,
     conditions,
     conditionRecoveryRef,
+    selectedDonum,
     setStress,
     setConditions,
     setChanges,
   } = useCharacterSheet();
+
+  const conditionsList = [
+    "Insecure",
+    "Afraid",
+    "Angry",
+    "Hopeless",
+    "Guilty",
+    selectedDonum?.name === "Visu Exteriore" ? "Doomed" : null,
+  ];
 
   return (
     <div className="flex flex-col gap-2">
@@ -49,23 +59,26 @@ export default function StressSection() {
         </div>
       </div>
       <div className="flex gap-4 flex-wrap mt-2">
-        {["Insecure", "Afraid", "Angry", "Hopeless", "Guilty"].map((c) => (
-          <Condition
-            key={`${c}${new Date().getTime()}`}
-            name={c}
-            active={conditions.includes(c)}
-            disabled={conditions.length >= 4 && !conditions.includes(c)}
-            onClick={() => {
-              if (conditions.includes(c)) {
-                setConditions(conditions.filter((con) => con !== c));
-              } else if (conditions.length < 4) {
-                // todo refactor with a variable maxStress
-                setConditions([...conditions, c]);
-              }
-              setChanges(true);
-            }}
-          />
-        ))}
+        {conditionsList.map((c) => {
+          if (!c) return null;
+          return (
+            <Condition
+              key={`${c}${new Date().getTime()}`}
+              name={c}
+              active={conditions.includes(c)}
+              disabled={conditions.length >= 4 && !conditions.includes(c)}
+              onClick={() => {
+                if (conditions.includes(c)) {
+                  setConditions(conditions.filter((con) => con !== c));
+                } else if (conditions.length < 4) {
+                  // todo refactor with a variable maxStress
+                  setConditions([...conditions, c]);
+                }
+                setChanges(true);
+              }}
+            />
+          );
+        })}
       </div>
     </div>
   );

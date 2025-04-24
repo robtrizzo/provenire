@@ -188,7 +188,7 @@ export default function CommandMenu() {
         <CommandGroup heading="Aldam">
           <CommandItem
             onSelect={() => {
-              router.push("/game/aldam#gredoran");
+              router.push("/game/sources-of-power/aldams#gredoran");
               setOpen(false);
             }}
           >
@@ -301,13 +301,47 @@ export default function CommandMenu() {
           >
             Fighting Styles
           </CommandItem>
+        </CommandGroup>
+        <CommandGroup heading="Sources of Power">
           <CommandItem
             onSelect={() => {
-              router.push("/game/aldam");
+              router.push("/game/sources-of-power");
               setOpen(false);
             }}
           >
-            Aldam
+            Sources of Power
+          </CommandItem>
+          <CommandItem
+            onSelect={() => {
+              router.push("/game/sources-of-power/aldams");
+              setOpen(false);
+            }}
+          >
+            Aldams
+          </CommandItem>
+          <CommandItem
+            onSelect={() => {
+              router.push("/game/sources-of-power/transformations");
+              setOpen(false);
+            }}
+          >
+            Transformations
+          </CommandItem>
+          <CommandItem
+            onSelect={() => {
+              router.push("/game/sources-of-power/donums");
+              setOpen(false);
+            }}
+          >
+            Donums
+          </CommandItem>
+          <CommandItem
+            onSelect={() => {
+              router.push("/game/sources-of-power/curses");
+              setOpen(false);
+            }}
+          >
+            Curses
           </CommandItem>
         </CommandGroup>
         <CommandGroup heading="Rules (Terms)">

@@ -11,6 +11,10 @@ export default function DonumSection() {
     return null;
   }
 
+  if (selectedDonum.type === "curse") {
+    return <Curse />;
+  }
+
   switch (selectedDonum.phase) {
     case "Emergence": {
       return <Emergence />;
@@ -32,6 +36,48 @@ export default function DonumSection() {
       return <Emergence />;
     }
   }
+}
+
+function Curse() {
+  const { selectedDonum, donumProgress, setDonumProgress, setChanges } =
+    useCharacterSheet();
+
+  if (!selectedDonum) {
+    return null;
+  }
+  return (
+    <Card className="mt-6">
+      <CardHeader>
+        <TypographyH2 className="text-md text-muted-foreground flex items-end justify-between">
+          {selectedDonum.name} ({selectedDonum.translation})
+          <Clock
+            width={35}
+            height={35}
+            max={7}
+            current={donumProgress}
+            setVal={(n) => {
+              setDonumProgress(n);
+              setChanges(true);
+            }}
+          />
+        </TypographyH2>
+      </CardHeader>
+      <CardContent>
+        <TypographyP className="not-first:mt-0 text-xs">
+          {selectedDonum.description}
+        </TypographyP>
+        <TypographyP className="text-xs">
+          <b>Donum Provenire:</b> {selectedDonum.provenire} Heal any one harm
+          and <b>crit</b> on any one roll in the scene. When the moment is over,
+          mark a <b>level 3 harm</b>:{" "}
+          {selectedDonum.type === "transformation"
+            ? "surge wracked"
+            : "body parched"}
+          .
+        </TypographyP>
+      </CardContent>
+    </Card>
+  );
 }
 
 function Emergence() {

@@ -107,10 +107,19 @@ const data = {
           title: "Fighting Styles",
           url: "/game/fighting-styles",
         },
+      ],
+    },
+    {
+      title: "Sources of Power",
+      url: "/game/sources-of-power",
+      items: [
+        { title: "Aldams", url: "/game/sources-of-power/aldams" },
         {
-          title: "Aldam",
-          url: "/game/aldam",
+          title: "Transformations",
+          url: "/game/sources-of-power/transformations",
         },
+        { title: "Donums", url: "/game/sources-of-power/donums" },
+        { title: "Curses", url: "/game/sources-of-power/curses" },
       ],
     },
     {

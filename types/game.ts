@@ -33,6 +33,8 @@ export type Donum = {
   metamorphosis: string;
   phase: DonumPhase;
   type?: string;
+  restrictedTo: string;
+  abilities: Ability[];
 };
 
 export type DonumPhase = "Emergence" | "Nascence" | "Versance" | "Dominance";

@@ -2,6 +2,7 @@ import archetypes from "@/public/archetypes.json";
 import skillsets from "@/public/skillsets.json";
 import fightingStyles from "@/public/fighting_styles.json";
 import aldams from "@/public/aldams.json";
+import donums from "@/public/donums.json";
 
 const allSlugs = [];
 
@@ -21,6 +22,10 @@ for (const fightingStyle of fightingStyles) {
 
 for (const aldam of aldams) {
   allSlugs.push(aldam.abilities.map((a) => a.slug));
+}
+
+for (const donum of donums) {
+  allSlugs.push(donum.abilities.map((a) => a.slug));
 }
 
 const dynamicComponents = allSlugs

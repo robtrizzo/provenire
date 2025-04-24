@@ -26,6 +26,7 @@ export default function MissionSection() {
     selectedArchetype,
     selectedSkillset,
     selectedFightingStyle,
+    selectedDonum,
     loadout,
     items,
     setLoadout,
@@ -201,6 +202,16 @@ export default function MissionSection() {
             <Abilities abilities={gredoranAldams!.abilities} />
           </div>
         </div>
+        {selectedDonum && (
+          <div className="mt-4">
+            <TypographyH3 className="text-sm text-fuchsia-500 mt-4">
+              {selectedDonum?.name}&apos;s Abilities
+            </TypographyH3>
+            <div className="ml-2">
+              <Abilities abilities={selectedDonum?.abilities} />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

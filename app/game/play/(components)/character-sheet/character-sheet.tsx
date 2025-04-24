@@ -424,14 +424,23 @@ export default function Charsheet() {
                   />
                 </SelectTrigger>
                 <SelectContent>
-                  {donums.map((d) => (
-                    <SelectItem key={d.name} value={d.name}>
-                      {d.name}
-                      <span className="text-muted-foreground ml-4">
-                        ({d.translation})
-                      </span>
-                    </SelectItem>
-                  ))}
+                  {donums.map((d) => {
+                    if (
+                      d.restrictedTo &&
+                      !isAdmin &&
+                      !userPerms.includes(d.restrictedTo)
+                    ) {
+                      return null;
+                    }
+                    return (
+                      <SelectItem key={d.name} value={d.name}>
+                        {d.name}
+                        <span className="text-muted-foreground ml-4">
+                          ({d.translation})
+                        </span>
+                      </SelectItem>
+                    );
+                  })}
                   <SelectSeparator />
                   <Button
                     variant="secondary"
