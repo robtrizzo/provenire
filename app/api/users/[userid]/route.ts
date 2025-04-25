@@ -20,7 +20,7 @@ export async function PUT(
 
     return NextResponse.json({ message: "User updated successfully", user });
   } catch (err) {
-    console.error("Error fetching user", err);
+    console.error("Error updating user", err);
     return NextResponse.json(
         { error: "Failed to update user" },
         { status: 500 }
