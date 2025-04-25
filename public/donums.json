@@ -14,7 +14,37 @@
     "provenire": "Power as ancient as Kingwulf himself warps your body in his visage. A second pulse thumps in your chest. You are his bloodline. You have been blessed with his might which suffuses your limbs and repairs your wounds.",
     "metamorphosis": "Kingwulf's order demands a strict difference between a blessed wolf and a cursed monster. And paradoxically, the very nature of the blessing is one of monstrous entropy. Your body experiences this confluxion as latent metamorphosis takes hold. You are of Kingwulf's blood, but what has it become of you when this is over?",
     "type": "transformation",
-    "abilities": []
+    "abilities": [
+      {
+        "name": "Donum Rex",
+        "slug": "donum-rex",
+        "keystone": true
+      },
+      {
+        "name": "Scent of Prey",
+        "slug": "scent-of-prey"
+      },
+      {
+        "name": "Predator's Pulse",
+        "slug": "predators-pulse"
+      },
+      {
+        "name": "Weapons of the Wolf",
+        "slug": "weapons-of-the-wolf"
+      },
+      {
+        "name": "Sturdy Skin",
+        "slug": "sturdy-skin"
+      },
+      {
+        "name": "Skillful Shifting",
+        "slug": "skillful-shifting"
+      },
+      {
+        "name": "Grand Appetite",
+        "slug": "grand-appetite"
+      }
+    ]
   },
   {
     "name": "Donum Ursa",

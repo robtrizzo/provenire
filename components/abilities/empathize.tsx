@@ -1,4 +1,4 @@
-import { TypographyP } from '@/components/ui/typography';
+import { TypographyP } from "@/components/ui/typography";
 export default function Empathize() {
   return (
     <div>

@@ -192,8 +192,9 @@ function Nascence() {
         </TypographyP>
         <TypographyP className="text-xs">
           <b>Donum Metamorphosis:</b> {selectedDonum.metamorphosis} Heal any one
-          harm and <b>crit</b> on any one roll in the scene. Any roll of{" "}
-          <b>1-3</b> within the scene causes a disastrous <i>mishap</i>.
+          harm and take <b>+1 forward</b> for the remainder of the scene. Any
+          roll of <b>1-3</b> within the scene causes a disastrous <i>mishap</i>{" "}
+          which you cannot <b>resist</b>.
         </TypographyP>
       </CardContent>
     </Card>

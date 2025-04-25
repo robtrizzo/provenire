@@ -99,7 +99,8 @@ export default function ChurnSection() {
             />
           </div>
         </div>
-        {selectedDonum && (
+        {((selectedDonum && selectedDonum.phase !== "Emergence") ||
+          selectedDonum?.type === "curse") && (
           <div className="mt-4">
             <TypographyH3 className="text-sm text-fuchsia-500 mt-4">
               {selectedDonum.name}&apos;s Abilities

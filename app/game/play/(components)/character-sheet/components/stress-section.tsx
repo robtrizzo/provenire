@@ -11,6 +11,7 @@ export default function StressSection() {
     conditions,
     conditionRecoveryRef,
     selectedDonum,
+    abilities,
     setStress,
     setConditions,
     setChanges,
@@ -23,6 +24,7 @@ export default function StressSection() {
     "Hopeless",
     "Guilty",
     selectedDonum?.name === "Visu Exteriore" ? "Doomed" : null,
+    abilities.includes("Grand Appetite") ? "Insatiable" : null,
   ];
 
   return (
