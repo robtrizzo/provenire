@@ -27,7 +27,7 @@ import {
   DropdownMenuContent,
 } from "@/components/ui/dropdown-menu";
 import { ExportMenuItem } from "@/app/game/play/(components)/dice-history/export";
-import { debounce } from "@/lib/utils";
+import { debounce, partition } from "@/lib/utils";
 
 export default function DiceSheet() {
   const [open, setOpen] = useState(false);
@@ -54,39 +54,36 @@ export default function DiceSheet() {
       return response.json();
     },
   });
-  const getFilteredUsers = (): User[] => {
+  const getAllUsers = (): User[] => {
     // If userData is not yet loaded, return an empty array
     if (!userData) return [];
 
     // Ensure userData is an array before processing
-    const users = Array.isArray(userData) ? userData : [];
-
-    return users
-      .sort((a: User, b: User) => a.name.localeCompare(b.name))
-      .filter((user: User) => user.id !== session?.data?.user?.id);
+    const users: User[] = Array.isArray(userData) ? userData : [];
+    const [ownUser, otherUsers] = partition(users, u => u.id === session?.data?.user?.id)
+    return [...ownUser, ...otherUsers.sort((a: User, b: User) => a.name.localeCompare(b.name))];
   };
 
-  const filteredUsers = getFilteredUsers();
+  const allUsers = getAllUsers();
 
-  // Update the select options creation to include a null check
   const selectOptions = () => [
     { value: "all", label: "Everybody's" },
-    { value: "own", label: "Yours" },
-    ...(filteredUsers?.map((user) => ({
+    ...(allUsers?.map((user) => ({
       value: user.id,
-      label: user.name,
+      label: user.id === session?.data?.user?.id ? "Yours" : user.name,
     })) || []),
   ];
 
   const getPlaceholderText = () => {
-    if (currentDiceFilter === "own") {
-      return "Yours";
-    } else if (currentDiceFilter === "all") {
+    if (currentDiceFilter === "all") {
       return "Everybody's";
+    } else if (currentDiceFilter === session?.data?.user?.id) {
+      return "Yours";
     } else {
-      const curUser = filteredUsers.find(
+      const curUser = allUsers.find(
         (user: User) => user.id === currentDiceFilter
       );
+
       return curUser?.name;
     }
   };

@@ -57,3 +57,10 @@ export function getQSParamFromURL(key: string, request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   return searchParams.get(key);
 }
+
+// split one array into 2, based on the provided func
+export function partition<T>(array :T[], filter: (value: T, index: number, array: T[]) => boolean): [T[], T[]] {
+  const pass:T[] = [], fail: T[] = [];
+  array.forEach((e, idx, arr) => (filter(e, idx, arr) ? pass : fail).push(e));
+  return [pass, fail];
+}
