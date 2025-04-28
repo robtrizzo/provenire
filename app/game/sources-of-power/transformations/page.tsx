@@ -56,21 +56,26 @@ export default async function Page() {
       </TypographyP>
       <TypographyP>
         After the <i>Donum Provenire</i>, the transformation enters a new phase:{" "}
-        <i>Donum Nascence</i>.
+        <i>Donum Nascence</i>. Your character&apos;s <i>Maeonic Gut</i> grows,
+        storing more blood than prey could.
       </TypographyP>
+      <TypographyBlockquote>
+        You gain <b className="text-red-500">+1 max Blood</b>. Any time your
+        belly is empty (no blood), take a{" "}
+        <b>level 1 permanent harm: blood-starved</b>.
+      </TypographyBlockquote>
       <TypographyP>
         Nascent beasts can control elements of their transformations, though
-        they still have a lifetime to grow into the art. Your character&apos;s{" "}
-        <i>Maeonic Gut</i> grows, storing more blood than prey could. Your
-        character may advance their <i>Donum&apos;s Nascence</i> skill tree by
-        spending <b>3 xp clocks</b> and <b className="text-red-500">1 blood</b>.
+        they still have a lifetime to grow into the art.
       </TypographyP>
+      <TypographyBlockquote>
+        Your character may advance their <i>Donum&apos;s Nascence</i> skill tree
+        by spending <b>3 xp clocks</b> during the <b>Train</b> activity.
+      </TypographyBlockquote>
       <TypographyP>
-        You may spend <b className="text-red-500">1 blood</b> to gain <b>+1d</b>{" "}
-        on a roll where your <i>Donum</i> could assist you. Anytime you are
-        transformed and roll a <b>1-3</b>, you experience a <i>mishap</i>. A{" "}
-        <i>mishap</i> is a danger or complication spawned from your
-        unfamiliarity with your own power. When <i>mishaps</i> occur,{" "}
+        Anytime you are transformed and roll a <b>1-3</b>, you experience a{" "}
+        <i>mishap</i>. A <i>mishap</i> is a danger or complication spawned from
+        your unfamiliarity with your own power. When <i>mishaps</i> occur,{" "}
         <b>mark 1 xp</b>; they may be resisted as normal.
       </TypographyP>
       <TypographyP>
@@ -150,11 +155,6 @@ async function DonumRex() {
         complete. Spend <b className="text-red-500">1 Blood</b> to shift
         partially or fully into your wolf form for up to one day.
       </TypographyP>
-      <TypographyBlockquote>
-        You gain <b className="text-red-500">+1 max Blood</b>. Any time your
-        belly is empty (no blood), take a{" "}
-        <b>level 1 permanent harm: blood-starved</b>.
-      </TypographyBlockquote>
       <TypographyP>
         As natural as the beast&apos;s body feels to you, the transition is
         still sloppy and painful. It can take several minutes, but once complete
