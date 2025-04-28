@@ -209,7 +209,8 @@
       "clock": 6,
       "ticks": 0,
       "slots": 1,
-      "traits": []
+      "traits": [],
+      "description": "Canteen sized packet of blood. It's still warm..."
     }
   ]
 }
