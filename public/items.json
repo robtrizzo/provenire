@@ -203,6 +203,13 @@
       "slots": 0,
       "traits": [],
       "description": "Thick dark liquid from vials found in Amalina's bedchamber."
+    },
+    {
+      "name": "Enriched Blood",
+      "clock": 6,
+      "ticks": 0,
+      "slots": 1,
+      "traits": []
     }
   ]
 }

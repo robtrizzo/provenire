@@ -257,7 +257,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Nadia" s3 />
           <NamePortrait name="Veria" s3 />
           <NamePortrait name="Malix" s3 />
-          <NamePortrait name="Gisava the Bully" s3 />
+          <NamePortrait name="Gisava the Bully" s3 dead />
           <NamePortrait name="Felix the Facetious" s3 />
           <NamePortrait name="Lorin" />
           <NamePortrait
@@ -353,7 +353,7 @@ export default function DramatisPersonae() {
           <NamePortrait name="Riks the Rat" />
           <NamePortrait name="Radegond the Stalker" />
           <NamePortrait name="Naric the Swindler" />
-          <NamePortrait name="Gisava the Bully" s3 />
+          <NamePortrait name="Gisava the Bully" s3 dead />
           <NamePortrait name="Gaila the Daft" />
           <NamePortrait name="Hellet" s3 />
           <NamePortrait name="Borani" s3 />

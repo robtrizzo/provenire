@@ -78,7 +78,7 @@ export default function HierarchyTree() {
           </div>
           <div className="h-36 w-36 p-2 bg-muted-foreground text-primary-foreground flex flex-col items-center justify-center">
             <TypographyH4 className="text-center">
-              GISAVA <span className="text-xs">the</span> BULLY
+              BORANI <span className="text-xs">the</span> RASH
             </TypographyH4>
             <TypographyP className="text-xs text-center">
               may trade <span className="font-bold">1 goodwill</span> for{" "}
