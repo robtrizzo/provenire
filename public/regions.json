@@ -112,5 +112,43 @@
       "clock": 3,
       "ticks": 0
     }
+  },
+  {
+    "name": "Spire",
+    "pathways": [
+      {
+        "name": "Nexus",
+        "clock": 5,
+        "ticks": 0
+      },
+      {
+        "name": "???",
+        "clock": 9,
+        "ticks": 0
+      },
+      {
+        "name": "???",
+        "clock": 13,
+        "ticks": 0
+      }
+    ],
+    "contact": {
+      "name": "",
+      "description": "",
+      "clock": 5,
+      "ticks": 0
+    },
+    "danger": {
+      "name": "",
+      "description": "",
+      "clock": 3,
+      "ticks": 0
+    },
+    "feature": {
+      "name": "",
+      "description": "",
+      "clock": 3,
+      "ticks": 0
+    }
   }
 ]
