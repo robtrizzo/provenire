@@ -302,8 +302,8 @@ export default async function Page() {
         manipulate trees and wood.
       </TypographyP>
       <TypographyP className="pl-4">
-        <b>Donum Lux</b>, <strong>The Gift of the Harvest</strong>: Enhance the
-        growth of edible plants.
+        <b>Donum Messis</b>, <strong>The Gift of the Harvest</strong>: Enhance
+        the growth of edible plants.
       </TypographyP>
       <TypographyH3>Narscillia</TypographyH3>
       <TypographyP className="pl-4">
