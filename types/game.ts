@@ -1,6 +1,19 @@
 export interface Character {
   name: string;
   updatedAt: Date;
+  player: string;
+  portrait?: string;
+  key?: string;
+  stress: number;
+  conditions: string[];
+  healing: number;
+  harm3: string;
+  harm2: string[];
+  harm1: string[];
+  armor: boolean;
+  sArmor: boolean;
+  hArmor: boolean;
+  abilities: string[];
 }
 
 export type Archetype = {

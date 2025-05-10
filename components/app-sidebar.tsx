@@ -3,6 +3,7 @@ import * as React from "react";
 import { usePathname } from "next/navigation";
 
 import AuthButton from "@/components/ui/AuthButton.client";
+import { useSession } from "next-auth/react";
 
 import { ModeToggle } from "@/components/ui/mode-toggle";
 
@@ -20,6 +21,7 @@ import {
 } from "@/components/ui/sidebar";
 import { Button } from "./ui/button";
 import Link from "next/link";
+import { ShieldUser } from "lucide-react";
 
 const data = {
   navMain: [
@@ -146,9 +148,11 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const pathname = usePathname();
+  const session = useSession();
+  const isAdmin = session?.data?.user.role === "admin";
   return (
     <Sidebar variant="floating" {...props}>
-      <SidebarHeader>
+      <SidebarHeader className="relative">
         <SidebarMenu>
           <SidebarMenuItem>
             <div className="flex justify-center w-full">
@@ -156,6 +160,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </div>
           </SidebarMenuItem>
         </SidebarMenu>
+        {isAdmin && (
+          <Link href="/admin" className="absolute top-2 right-2">
+            <ShieldUser />
+          </Link>
+        )}
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>

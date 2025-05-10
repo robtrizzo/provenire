@@ -2,22 +2,26 @@ import { NextResponse } from "next/server";
 import { checkAuth } from "@/lib/auth";
 import redis from "@/lib/redis";
 import { Character } from "@/types/game";
+import { User } from "next-auth";
 
 async function insertCharacter({
-  userId,
+  user,
   characterJSON,
 }: {
-  userId: string;
+  user: User;
   characterJSON: Character;
 }) {
   const characterName = characterJSON?.name;
   if (!characterName) {
     throw new Error("No character name provided. Aborting insert.");
   }
-  characterJSON = { ...characterJSON, updatedAt: new Date() };
-  const key = `user:${userId}:character:${characterName}`;
-  const res = await redis.set(key, characterJSON);
-  console.log(`Redis set ${key} result: ${res}`);
+  characterJSON = {
+    ...characterJSON,
+    updatedAt: new Date(),
+    player: user.name!,
+  };
+  const key = `user:${user.id}:character:${characterName}`;
+  await redis.set(key, characterJSON);
 }
 
 export async function POST(request: Request): Promise<NextResponse> {
@@ -38,7 +42,7 @@ export async function POST(request: Request): Promise<NextResponse> {
 
   try {
     await insertCharacter({
-      userId: session.user.id!,
+      user: session.user,
       characterJSON: JSON.parse(requestBody.character),
     });
   } catch (error) {
