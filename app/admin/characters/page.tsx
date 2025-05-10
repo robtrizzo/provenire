@@ -1,7 +1,7 @@
 "use server";
 import Breadcrumbs from "../(components)/breadcrumbs";
 import { Character } from "@/types/game";
-import { getAllCharacters } from "@/app/api/characters/route";
+import { getAllCharacters } from "@/handlers/characters";
 import ManageCharacters from "./(components)/manage-characters";
 
 export default async function Page() {
