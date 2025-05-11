@@ -71,6 +71,22 @@
     "abilities": []
   },
   {
+    "name": "Donum Ferro",
+    "translation": "Gift of Iron",
+    "description": "",
+    "provenire": "Waves of sharp tingling and pulses of heat ripple through your flesh, coalesce in the sharp points of your bones. An invisible vibration emanates from all metal, calling to you, reacting to your motions.",
+    "restrictedTo": "view-donums",
+    "abilities": []
+  },
+  {
+    "name": "Donum Ira",
+    "translation": "Gift of Rage",
+    "description": "",
+    "provenire": "Your heart throbs and your pulse flinches you from forehead to toe-tip. Your thoughts bring forth emotion, which in turns begets action. Every moment of inertia is a moment of potential and building pressure. You are a coiled spring, ready to release.",
+    "restrictedTo": "view-donums",
+    "abilities": []
+  },
+  {
     "name": "Visu Exteriore",
     "translation": "Outer Sight",
     "description": "You stumbled into a place with the eyes. They saw you. And in turn, you saw so, so much. Your life: both thus far and future. You saw your own doom. But so much information is difficult for any mind to grasp, much less one addled by the drone. Regardless of what you do and don't remember, you can't shake the feeling that it is coming.",
