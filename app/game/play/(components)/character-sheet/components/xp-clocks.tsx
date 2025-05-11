@@ -73,10 +73,10 @@ export default function XPClocks({
           </svg>
         </div>
       </div>
-      <div className="flex">
+      <div className="flex flex-wrap">
         <Button
           variant="ghost"
-          className="text-xs text-muted-foreground text-center w-full"
+          className="text-xs text-muted-foreground text-center"
           disabled={xp < 6}
           onClick={() => {
             if (xp >= 6) {
@@ -89,7 +89,7 @@ export default function XPClocks({
         </Button>
         <Button
           variant="ghost"
-          className="text-xs text-muted-foreground text-center w-full"
+          className="text-xs text-muted-foreground text-center"
           onClick={() => {
             setXp(xp + 1);
             setVal(xp + 1);
@@ -99,7 +99,7 @@ export default function XPClocks({
         </Button>
         <Button
           variant="ghost"
-          className="text-xs text-muted-foreground text-center w-full"
+          className="text-xs text-muted-foreground text-center"
           disabled={xp <= 0}
           onClick={() => {
             if (xp > 0) {
