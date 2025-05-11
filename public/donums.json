@@ -87,6 +87,14 @@
     "abilities": []
   },
   {
+    "name": "Donum Silex",
+    "translation": "Gift of Stone",
+    "description": "",
+    "provenire": "A cooling sensation spreads in fractaline angles from the base of your skull to your palms. You feel vaguely aware of distant lumps of stone, but most of all: an immensity far beneath your feet. Material to be molded by your designs.",
+    "restrictedTo": "view-donums",
+    "abilities": []
+  },
+  {
     "name": "Visu Exteriore",
     "translation": "Outer Sight",
     "description": "You stumbled into a place with the eyes. They saw you. And in turn, you saw so, so much. Your life: both thus far and future. You saw your own doom. But so much information is difficult for any mind to grasp, much less one addled by the drone. Regardless of what you do and don't remember, you can't shake the feeling that it is coming.",

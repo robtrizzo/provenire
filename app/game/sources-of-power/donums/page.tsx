@@ -76,7 +76,7 @@ export default async function Page() {
 }
 
 async function DonumProvenire() {
-  const { error } = await checkAuth("player", ["has-donum"]);
+  const { error } = await checkAuth("player", ["view-donums"]);
   if (error) return null;
   return (
     <>
