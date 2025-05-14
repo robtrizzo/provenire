@@ -67,8 +67,39 @@
     "translation": "Gift of Life",
     "description": "",
     "provenire": "Oscillating waves of warmth and chill tingle from your chest to your fingertips, soothing your aches and pains. Effortless energy fills you like a cup: full and waiting for a new vessel to overflow into.",
+    "metamorphosis": "That endless, vibrating energy which fills you reaches a critical threshold and begins to change. It pours from you, seeking direction, seeking new vessels to fill. Do you take hold of it and shape it into something new? Or do you let it flow freely, to do as it will onto others?",
     "restrictedTo": "view-donums",
-    "abilities": []
+    "abilities": [
+      {
+        "name": "Donum Vitae",
+        "slug": "donum-vitae",
+        "keystone": true
+      },
+      {
+        "name": "Euphoria",
+        "slug": "euphoria"
+      },
+      {
+        "name": "Reckless Strength",
+        "slug": "reckless-strength"
+      },
+      {
+        "name": "Endless Energy",
+        "slug": "endless-energy"
+      },
+      {
+        "name": "Inner Sensation",
+        "slug": "inner-sensation"
+      },
+      {
+        "name": "Rapid Vitality",
+        "slug": "rapid-vitality"
+      },
+      {
+        "name": "Grow Reserve",
+        "slug": "grow-reserve"
+      }
+    ]
   },
   {
     "name": "Donum Ferro",
