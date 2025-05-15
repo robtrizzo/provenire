@@ -10,10 +10,20 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import Breadcrumbs from "@/components/ui/breadcrumbs";
 
 export default async function Page() {
   return (
     <>
+      <Breadcrumbs
+        crumbs={[
+          { name: "Sources of Power", href: "/game/sources-of-power" },
+          {
+            name: "Aldams",
+            href: "#",
+          },
+        ]}
+      />
       <TypographyH1>Aldams</TypographyH1>
       <TypographyP>
         <b>Aldam</b> is an ancient <i>Gredoran</i> word. The original meaning is

@@ -10,12 +10,14 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import Breadcrumbs from "@/components/ui/breadcrumbs";
 
 export default async function Page() {
   const { error } = await checkAuth("user", ["view-donums"]);
   if (error) redirect("/game");
   return (
     <>
+      <Breadcrumbs crumbs={[{ name: "Sources of Power", href: "#" }]} />
       <TypographyH1>Sources of Power</TypographyH1>
       <Aldams />
       <Transformations />

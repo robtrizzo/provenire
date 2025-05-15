@@ -10,11 +10,21 @@ import {
   TypographyH4,
   TypographyP,
 } from "@/components/ui/typography";
+import Breadcrumbs from "@/components/ui/breadcrumbs";
 import { distortedStyle } from "@/lib/styles";
 import { checkAuth } from "@/lib/auth";
 export default async function Page() {
   return (
     <>
+      <Breadcrumbs
+        crumbs={[
+          { name: "Sources of Power", href: "/game/sources-of-power" },
+          {
+            name: "Curses",
+            href: "#",
+          },
+        ]}
+      />
       <TypographyH1>Curses</TypographyH1>
       <p style={distortedStyle} className="select-none">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Est non quia
