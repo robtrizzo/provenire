@@ -9,7 +9,7 @@ import Breadcrumbs from "@/components/ui/breadcrumbs";
 import { redirect } from "next/navigation";
 
 export default async function Page() {
-  const { error } = await checkAuth("user", ["donum-vitae"]);
+  const { error } = await checkAuth("user", ["donum-silex"]);
   if (error) redirect("/game/sources-of-power/donums");
   return (
     <>
