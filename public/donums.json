@@ -123,7 +123,37 @@
     "description": "",
     "provenire": "A cooling sensation spreads in fractaline angles from the base of your skull to your palms. You feel vaguely aware of distant lumps of stone, but most of all: an immensity far beneath your feet. Material to be molded by your designs.",
     "restrictedTo": "view-donums",
-    "abilities": []
+    "abilities": [
+      {
+        "name": "Donum Silex",
+        "slug": "donum-silex",
+        "keystone": true
+      },
+      {
+        "name": "Hidden by the Largeness",
+        "slug": "hidden-by-the-largeness"
+      },
+      {
+        "name": "Fractal Growth",
+        "slug": "fractal-growth"
+      },
+      {
+        "name": "Move Stone",
+        "slug": "move-stone"
+      },
+      {
+        "name": "Santoris Art",
+        "slug": "santoris-art"
+      },
+      {
+        "name": "Latticework",
+        "slug": "latticework"
+      },
+      {
+        "name": "Ancestral Right",
+        "slug": "ancestral-right"
+      }
+    ]
   },
   {
     "name": "Visu Exteriore",

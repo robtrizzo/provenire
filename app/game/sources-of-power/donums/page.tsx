@@ -282,7 +282,9 @@ async function InnerSanctum() {
       <TypographyP>
         Create and manipulate blood and some bodily functions.
       </TypographyP>
-      <TypographyH3 className="text-lg">Donum Silex</TypographyH3>
+      <ConditionalLink perm="donum-silex" href="donums/donum-silex">
+        <TypographyH3 className="text-lg">Donum Silex</TypographyH3>
+      </ConditionalLink>
       <span className="text-muted-foreground">the gift of Stone</span>
       <TypographyP>
         Manipulate or create stone, dirt, sand, and glass.
