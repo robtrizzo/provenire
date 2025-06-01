@@ -25,6 +25,9 @@ export default function StressSection() {
     "Guilty",
     selectedDonum?.name === "Visu Exteriore" ? "Doomed" : null,
     abilities.includes("Grand Appetite") ? "Insatiable" : null,
+    selectedDonum?.name === "Donum Ira" && selectedDonum.phase !== "Emergence"
+      ? "Enraged"
+      : null,
   ];
 
   return (

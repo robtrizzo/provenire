@@ -196,7 +196,9 @@ async function DonumList() {
         supercharges this power if held by the <em>wielder</em> and is immune to
         it if held by someone else.
       </TypographyP>
-      <TypographyH3 className="text-lg">Donum Ira</TypographyH3>
+      <ConditionalLink href="donums/donum-ira" perm="donum-ira">
+        <TypographyH3 className="text-lg">Donum Ira</TypographyH3>
+      </ConditionalLink>
       <span className="text-muted-foreground">the gift of Rage</span>
       <TypographyP>
         Empower the body fortify the mind, influence the emotions of others.

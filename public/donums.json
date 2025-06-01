@@ -115,7 +115,37 @@
     "description": "",
     "provenire": "Your heart throbs and your pulse flinches you from forehead to toe-tip. Your thoughts bring forth emotion, which in turns begets action. Every moment of inertia is a moment of potential and building pressure. You are a coiled spring, ready to release.",
     "restrictedTo": "view-donums",
-    "abilities": []
+    "abilities": [
+      {
+        "name": "Donum Ira",
+        "slug": "donum-ira",
+        "keystone": true
+      },
+      {
+        "name": "Ira Sympath",
+        "slug": "ira-sympath"
+      },
+      {
+        "name": "Heat Sink",
+        "slug": "heat-sink"
+      },
+      {
+        "name": "Flare",
+        "slug": "flare"
+      },
+      {
+        "name": "Wrathful Hands",
+        "slug": "wrathful-hands"
+      },
+      {
+        "name": "Ira Foci",
+        "slug": "ira-foci"
+      },
+      {
+        "name": "Surpress and Release",
+        "slug": "surpress-and-release"
+      }
+    ]
   },
   {
     "name": "Donum Silex",
