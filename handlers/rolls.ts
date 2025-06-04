@@ -1,5 +1,7 @@
 import redis from "@/lib/redis";
 import { Roll } from "@/types/roll";
+import { client, Bucket } from "@/lib/s3";
+import { GetObjectCommand } from "@aws-sdk/client-s3";
 
 export async function addRoll(userId: string, roll: Roll): Promise<void> {
   const key = `user:${userId}:rolls`;
@@ -36,6 +38,24 @@ export async function clearRolls(userId: string): Promise<void> {
   await redis.eval(delScript, ["rolls"], [userId]);
 }
 
-export async function getAllRolls(cursor: number, pageSize: number): Promise<Roll[]> {
+export async function getAllRolls(
+  cursor: number,
+  pageSize: number
+): Promise<Roll[]> {
   return await redis.lrange("rolls", cursor, cursor + pageSize - 1);
+}
+
+export async function getAggregatedRolls() {
+  const Key = "rolls/rolls.json";
+
+  const command = new GetObjectCommand({ Bucket, Key });
+  const response = await client.send(command);
+
+  if (!response.Body) {
+    console.error("invalid response body");
+    return;
+  }
+
+  const fileContent = await response.Body.transformToString();
+  return JSON.parse(fileContent);
 }

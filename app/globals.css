@@ -196,3 +196,29 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer base {
+  :root {
+    --chart-0: hsl(269, 97%, 85%);
+    --chart-1: hsl(270, 95%, 75%);
+    --chart-2: hsl(271, 91%, 65%);
+    --chart-3: hsl(271, 81%, 56%);
+    --chart-4: hsl(272, 72%, 47%);
+    --chart-5: hsl(273, 67%, 39%);
+    --chart-6: hsl(274, 66%, 32%);
+    --chart-red: hsl(0, 84%, 60%);
+    --chart-blue: hsl(217, 91%, 60%);
+  }
+
+  .dark {
+    --chart-0: hsl(269, 97%, 85%);
+    --chart-1: hsl(270, 95%, 75%);
+    --chart-2: hsl(271, 91%, 65%);
+    --chart-3: hsl(271, 81%, 56%);
+    --chart-4: hsl(272, 72%, 47%);
+    --chart-5: hsl(273, 67%, 39%);
+    --chart-6: hsl(274, 66%, 32%);
+    --chart-red: hsl(0, 84%, 60%);
+    --chart-blue: hsl(217, 91%, 60%);
+  }
+}

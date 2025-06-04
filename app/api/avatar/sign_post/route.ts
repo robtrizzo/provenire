@@ -1,7 +1,7 @@
 import { checkAuth } from "@/lib/auth";
 import { NextRequest, NextResponse } from "next/server";
 import { createPresignedPost } from "@aws-sdk/s3-presigned-post";
-import { S3Client } from "@aws-sdk/client-s3";
+import { region, Bucket, client } from "@/lib/s3";
 import { getQSParamFromURL } from "@/lib/utils";
 import { Conditions } from "@aws-sdk/s3-presigned-post/dist-types/types";
 
@@ -9,19 +9,14 @@ export async function GET(request: NextRequest) {
   const { error } = await checkAuth("player");
   if (error) return error;
 
-  const region = process.env.AWS_REGION;
   if (!region) {
-    console.error("AWS_REGION missing");
     return NextResponse.json(
       { error: "Error creating presigned upload link" },
       { status: 500 }
     );
   }
 
-  const client = new S3Client({ region });
-  const Bucket = process.env.AWS_IMAGE_BUCKET_NAME;
   if (!Bucket) {
-    console.error("AWS_IMAGE_BUCKET_NAME missing");
     return NextResponse.json(
       { error: "Error creating presigned upload link" },
       { status: 500 }
