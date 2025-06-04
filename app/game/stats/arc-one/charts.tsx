@@ -3381,7 +3381,7 @@ function RollsWithDieValueInfo({
         </b>
         ) of their rolls
       </span>
-      <RatioSection ratio={ratio} />.
+      <RatioSection ratio={ratio} />
     </div>
   );
 }
