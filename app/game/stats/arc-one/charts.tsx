@@ -1540,7 +1540,7 @@ export default function Charts({ data }: { data: Roll[] }) {
         </div>
         <div className="flex flex-col items-center justify-center">
           <span>
-            Taking nap{" "}
+            Taking a nap{" "}
             <span className="text-xs text-muted-foreground">goes to...</span>
           </span>
           <span className="text-5xl text-orange-500">Nail</span>
