@@ -3305,8 +3305,7 @@ function RollsByNumberOfDiceInfo({ data, c }: { data: Roll[]; c: string }) {
             <code>{totalRolls}</code>
           </u>
         </b>{" "}
-        rolls! That&apos;s <RatioSection ratio={totalRollRatio} />
-        !(
+        rolls! That&apos;s <RatioSection ratio={totalRollRatio} />! (
         <b>
           <u>
             <code>{partyAvgRolls}</code>
