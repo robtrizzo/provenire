@@ -1227,6 +1227,653 @@ export default function Charts({ data }: { data: Roll[] }) {
 
       <div className="py-8">
         <TypographyP>
+          This is so cool - let&apos;s award some superlatives! 🏆
+        </TypographyP>
+      </div>
+
+      <div className="flex flex-col gap-16 w-full items-center justify-center">
+        <div className="flex flex-col items-center justify-center">
+          <span>
+            Most dice rolled{" "}
+            <span className="text-xs text-muted-foreground">goes to...</span>
+          </span>
+          <span className="text-5xl text-orange-500">Malgus Veradun</span>
+          <span>
+            With a total of{" "}
+            <b>
+              <u>
+                <code>433</code>
+              </u>
+            </b>{" "}
+            dice rolled -{" "}
+            <b className="text-green-500">
+              <u>
+                <code>49.517%</code>
+              </u>
+            </b>{" "}
+            <i>more</i> than the party average!
+          </span>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <span>
+            And related, most rolls{" "}
+            <span className="text-xs text-muted-foreground">goes to...</span>
+          </span>
+          <span className="text-5xl text-orange-500">Malgus Veradun</span>
+          <span>
+            With a total of{" "}
+            <b>
+              <u>
+                <code>186</code>
+              </u>
+            </b>{" "}
+            rolls -{" "}
+            <b className="text-green-500">
+              <u>
+                <code>59.718%</code>
+              </u>
+            </b>{" "}
+            <i>more</i> than the party average!
+          </span>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <span>
+            Reddest character{" "}
+            <span className="text-xs text-muted-foreground">goes to...</span>
+          </span>
+          <span className="text-5xl text-indigo-500">
+            Lilya Shirin Prisca Amati
+          </span>
+          <span>
+            Red dice made up{" "}
+            <b>
+              <u>
+                <code>77.737%</code>
+              </u>
+            </b>{" "}
+            of her dice pools -{" "}
+            <b className="text-green-500">
+              <u>
+                <code>48.753%</code>
+              </u>
+            </b>{" "}
+            <i>more</i> than the party average!
+          </span>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <span>
+            Bluest character{" "}
+            <span className="text-xs text-muted-foreground">goes to...</span>
+          </span>
+          <span className="text-5xl text-orange-500">Drusa Santoris</span>
+          <span>
+            Blue dice made up{" "}
+            <b>
+              <u>
+                <code>75.585%</code>
+              </u>
+            </b>{" "}
+            of their dice pools -{" "}
+            <b className="text-green-500">
+              <u>
+                <code>58.323%</code>
+              </u>
+            </b>{" "}
+            <i>more</i> than the party average!
+          </span>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <span>
+            Luckiest duck{" "}
+            <span className="text-xs text-muted-foreground">goes to...</span>
+          </span>
+          <span className="text-5xl text-orange-500">Malgus Veradun</span>
+          <span>
+            Their average die roll was{" "}
+            <b>
+              <u>
+                <code>3.624</code>
+              </u>
+            </b>{" "}
+            -{" "}
+            <b className="text-green-500">
+              <u>
+                <code>3.567%</code>
+              </u>
+            </b>{" "}
+            <i>more</i> lucky than the party average!
+          </span>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <span>
+            And our least fortunate son{" "}
+            <span className="text-xs text-muted-foreground">goes to...</span>
+          </span>
+          <span className="text-5xl text-indigo-500">Twenty-One</span>
+          <span>
+            Their average die roll was{" "}
+            <b>
+              <u>
+                <code>3.371</code>
+              </u>
+            </b>{" "}
+            -{" "}
+            <b className="text-red-500">
+              <u>
+                <code>3.664%</code>
+              </u>
+            </b>{" "}
+            <i>less</i> lucky than the party average...
+          </span>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <span>
+            Highest roller{" "}
+            <span className="text-xs text-muted-foreground">goes to...</span>
+          </span>
+          <span className="text-5xl text-indigo-500">
+            Lilya Shirin Prisca Amati
+          </span>
+          <span>
+            Her average highest die was{" "}
+            <b>
+              <u>
+                <code>4.65</code>
+              </u>
+            </b>{" "}
+            -{" "}
+            <b className="text-green-500">
+              <u>
+                <code>5.538%</code>
+              </u>
+            </b>{" "}
+            <i>more</i> than the party average!
+          </span>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <span>
+            Driver of the struggle bus{" "}
+            <span className="text-xs text-muted-foreground">goes to...</span>
+          </span>
+          <span className="text-5xl text-indigo-500">Twenty-One</span>
+          <span>
+            His average highest die was{" "}
+            <b>
+              <u>
+                <code>4.107</code>
+              </u>
+            </b>{" "}
+            -{" "}
+            <b className="text-red-500">
+              <u>
+                <code>6.786%</code>
+              </u>
+            </b>{" "}
+            <i>less</i> than the party average...
+          </span>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <span>
+            Dice gremlin{" "}
+            <span className="text-xs text-muted-foreground">goes to...</span>
+          </span>
+          <span className="text-5xl text-orange-500">Nail</span>
+          <span>
+            His average dice per roll was{" "}
+            <b>
+              <u>
+                <code>2.698</code>
+              </u>
+            </b>{" "}
+            -{" "}
+            <b className="text-green-500">
+              <u>
+                <code>20.987%</code>
+              </u>
+            </b>{" "}
+            <i>more</i> than the party average!
+          </span>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <span>
+            Risk taker{" "}
+            <span className="text-xs text-muted-foreground">goes to...</span>
+          </span>
+          <span className="text-5xl text-orange-500">Malgus Veradun</span>
+          <span>
+            He made{" "}
+            <b>
+              <u>
+                <code>16</code>
+              </u>
+            </b>{" "}
+            rolls with{" "}
+            <b>
+              <u>
+                <code>0</code>
+              </u>
+            </b>{" "}
+            dice -{" "}
+            <b className="text-green-500">
+              <u>
+                <code>102.638%</code>
+              </u>
+            </b>{" "}
+            <i>more</i> than the party average!
+          </span>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <span>
+            Remembered to click the <i>Resist</i> button{" "}
+            <span className="text-xs text-muted-foreground">goes to...</span>
+          </span>
+          <span className="text-5xl text-indigo-500">
+            Lilya Shirin Prisca Amati
+          </span>
+          <span>
+            <b>
+              <u>
+                <code>25%</code>
+              </u>
+            </b>{" "}
+            of her rolls were resistance rolls -{" "}
+            <b className="text-green-500">
+              <u>
+                <code>29.796%</code>
+              </u>
+            </b>{" "}
+            <i>more</i> than the party average!
+          </span>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <span>
+            Industrious{" "}
+            <span className="text-xs text-muted-foreground">goes to...</span>
+          </span>
+          <span className="text-5xl text-orange-500">Nail</span>
+          <span>
+            <b>
+              <u>
+                <code>12.95%</code>
+              </u>
+            </b>{" "}
+            of his rolls were project rolls -{" "}
+            <b className="text-green-500">
+              <u>
+                <code>149.566%</code>
+              </u>
+            </b>{" "}
+            <i>more</i> than the party average!
+          </span>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <span>
+            Ain&apos;t nobody got time for that{" "}
+            <span className="text-xs text-muted-foreground">goes to...</span>
+          </span>
+          <span className="text-5xl text-indigo-500">Aika Drak</span>
+          <span>
+            Never clicked the <i>Project</i> roll button! (but we know she was
+            explorin it up)
+          </span>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <span>
+            Taking action{" "}
+            <span className="text-xs text-muted-foreground">goes to...</span>
+          </span>
+          <span className="text-5xl text-indigo-500">Bessemer</span>
+          <span>
+            <b>
+              <u>
+                <code>78.03%</code>
+              </u>
+            </b>{" "}
+            of his rolls were action rolls -{" "}
+            <b className="text-green-500">
+              <u>
+                <code>18.02%</code>
+              </u>
+            </b>{" "}
+            <i>more</i> than the party average!
+          </span>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <span>
+            Taking nap{" "}
+            <span className="text-xs text-muted-foreground">goes to...</span>
+          </span>
+          <span className="text-5xl text-orange-500">Nail</span>
+          <span>
+            <b>
+              <u>
+                <code>57.554%</code>
+              </u>
+            </b>{" "}
+            of his rolls were action rolls -{" "}
+            <b className="text-red-500">
+              <u>
+                <code>12.95%</code>
+              </u>
+            </b>{" "}
+            <i>less</i> than the party average!
+          </span>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <span>
+            Gambler{" "}
+            <span className="text-xs text-muted-foreground">goes to...</span>
+          </span>
+          <span className="text-5xl text-orange-500">Jonah</span>
+          <span>
+            <b>
+              <u>
+                <code>13.333%</code>
+              </u>
+            </b>{" "}
+            of his rolls were fortune rolls -{" "}
+            <b className="text-green-500">
+              <u>
+                <code>41.329%</code>
+              </u>
+            </b>{" "}
+            <i>more</i> than the party average!
+          </span>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <span>
+            Least fortunate fortunes{" "}
+            <span className="text-xs text-muted-foreground">goes to...</span>
+          </span>
+          <span className="text-5xl text-indigo-500">
+            Liliya Shirin Prisca Amati
+          </span>
+          <span>
+            Her fortune rolls were an average of{" "}
+            <b>
+              <u>
+                <code>2.889</code>
+              </u>
+            </b>{" "}
+            -{" "}
+            <b className="text-red-500">
+              <u>
+                <code>22.96%</code>
+              </u>
+            </b>{" "}
+            <i>less</i> than the party average!
+          </span>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <span>
+            Concer of quences{" "}
+            <span className="text-xs text-muted-foreground">goes to...</span>
+          </span>
+          <span className="text-5xl text-orange-500">Merit</span>
+          <span>
+            She suffered consequences to her actions{" "}
+            <b>
+              <u>
+                <code>76.316%</code>
+              </u>
+            </b>{" "}
+            of the time -{" "}
+            <b className="text-red-500">
+              <u>
+                <code>14.4%</code>
+              </u>
+            </b>{" "}
+            <i>more</i> than the party average!
+          </span>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <span>
+            Can&apos;t lose{" "}
+            <span className="text-xs text-muted-foreground">goes to...</span>
+          </span>
+          <span className="text-5xl text-indigo-500">
+            Lilya Shirin Prisca Amati
+          </span>
+          <span>
+            She failed{" "}
+            <b>
+              <u>
+                <code>8.065%</code>
+              </u>
+            </b>{" "}
+            of her actions -{" "}
+            <b className="text-green-500">
+              <u>
+                <code>64.302%</code>
+              </u>
+            </b>{" "}
+            <i>less</i> than the party average!
+          </span>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <span>
+            Partialist{" "}
+            <span className="text-xs text-muted-foreground">goes to...</span>
+          </span>
+          <span className="text-5xl text-indigo-500">Aika Drak</span>
+          <span>
+            <b>
+              <u>
+                <code>51.282%</code>
+              </u>
+            </b>{" "}
+            of her actions were partial successes -{" "}
+            <b className="text-green-500">
+              <u>
+                <code>16.249%</code>
+              </u>
+            </b>{" "}
+            <i>more</i> than the party average!
+          </span>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <span>
+            Roaring success{" "}
+            <span className="text-xs text-muted-foreground">goes to...</span>
+          </span>
+          <span className="text-5xl text-indigo-500">
+            Lilya Shirin Prisca Amati
+          </span>
+          <span>
+            <b>
+              <u>
+                <code>46.774%</code>
+              </u>
+            </b>{" "}
+            of her actions were full successes -{" "}
+            <b className="text-green-500">
+              <u>
+                <code>62.551%</code>
+              </u>
+            </b>{" "}
+            <i>more</i> than the party average!
+          </span>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <span>
+            Critter{" "}
+            <span className="text-xs text-muted-foreground">goes to...</span>
+          </span>
+          <span className="text-5xl text-orange-500">Nail</span>
+          <span>
+            <b>
+              <u>
+                <code>10%</code>
+              </u>
+            </b>{" "}
+            of his actions were crits -{" "}
+            <b className="text-green-500">
+              <u>
+                <code>121.337%</code>
+              </u>
+            </b>{" "}
+            <i>more</i> than the party average!
+          </span>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <span>
+            Acrobatic{" "}
+            <span className="text-xs text-muted-foreground">goes to...</span>
+          </span>
+          <span className="text-5xl text-indigo-500">Aika Drak</span>
+          <span>
+            <b>
+              <u>
+                <code>58.824%</code>
+              </u>
+            </b>{" "}
+            of her rolls were using mobility skills -{" "}
+            <b className="text-green-500">
+              <u>
+                <code>206.647%</code>
+              </u>
+            </b>{" "}
+            <i>more</i> than the party average!
+          </span>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <span>
+            Three left feet{" "}
+            <span className="text-xs text-muted-foreground">goes to...</span>
+          </span>
+          <span className="text-5xl text-orange-500">Nail & Jonah</span>
+          <span>Neither of them ever used a mobility skill...</span>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <span>
+            Cerebral{" "}
+            <span className="text-xs text-muted-foreground">goes to...</span>
+          </span>
+          <span className="text-5xl text-indigo-500">Von</span>
+          <span>
+            <b>
+              <u>
+                <code>58.685%</code>
+              </u>
+            </b>{" "}
+            of his actions were using perceptive skills -{" "}
+            <b className="text-green-500">
+              <u>
+                <code>143.486%</code>
+              </u>
+            </b>{" "}
+            <i>more</i> than the party average!
+          </span>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <span>
+            Straighforward{" "}
+            <span className="text-xs text-muted-foreground">goes to...</span>
+          </span>
+          <span className="text-5xl text-indigo-500">Twenty One</span>
+          <span>
+            <b>
+              <u>
+                <code>4.167%</code>
+              </u>
+            </b>{" "}
+            of his actions were using perceptive skills -{" "}
+            <b className="text-red-500">
+              <u>
+                <code>82.711%</code>
+              </u>
+            </b>{" "}
+            <i>less</i> than the party average!
+          </span>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <span>
+            Talkative{" "}
+            <span className="text-xs text-muted-foreground">goes to...</span>
+          </span>
+          <span className="text-5xl text-orange-500">Merit</span>
+          <span>
+            <b>
+              <u>
+                <code>59.77%</code>
+              </u>
+            </b>{" "}
+            of her actions were using social skills -{" "}
+            <b className="text-green-500">
+              <u>
+                <code>131.891%</code>
+              </u>
+            </b>{" "}
+            <i>more</i> than the party average!
+          </span>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <span>
+            Shy{" "}
+            <span className="text-xs text-muted-foreground">goes to...</span>
+          </span>
+          <span className="text-5xl text-orange-500">Nail</span>
+          <span>
+            <b>
+              <u>
+                <code>2.542%</code>
+              </u>
+            </b>{" "}
+            of his actions were using social skills -{" "}
+            <b className="text-red-500">
+              <u>
+                <code>90.138%</code>
+              </u>
+            </b>{" "}
+            <i>less</i> than the party average!
+          </span>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <span>
+            Warrior{" "}
+            <span className="text-xs text-muted-foreground">goes to...</span>
+          </span>
+          <span className="text-5xl text-orange-500">Jonah</span>
+          <span>
+            <b>
+              <u>
+                <code>78.912%</code>
+              </u>
+            </b>{" "}
+            of his actions were using combat skills -{" "}
+            <b className="text-green-500">
+              <u>
+                <code>162.14%</code>
+              </u>
+            </b>{" "}
+            <i>more</i> than the party average!
+          </span>
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <span>
+            Dove{" "}
+            <span className="text-xs text-muted-foreground">goes to...</span>
+          </span>
+          <span className="text-5xl text-orange-500">Drusa Santoris</span>
+          <span>
+            <b>
+              <u>
+                <code>3.226%</code>
+              </u>
+            </b>{" "}
+            of her actions were using combat skills -{" "}
+            <b className="text-red-500">
+              <u>
+                <code>89.283%</code>
+              </u>
+            </b>{" "}
+            <i>less</i> than the party average!
+          </span>
+        </div>
+      </div>
+
+      <div className="py-8">
+        <TypographyP>
           Wow, that was a whole lot of fun. Thanks to those of you who made it
           to the end! This game has been a joy and I hope this makes it just
           that little bit greater of an experience.
@@ -1239,6 +1886,62 @@ export default function Charts({ data }: { data: Roll[] }) {
     </div>
   );
 }
+
+const mobilitySkills = [
+  "Carry",
+  "Prowl",
+  "Acrobatics",
+  "Pipedancing",
+  "Squeeze",
+  "Lift",
+];
+const mobilityPercent = 19.183;
+const socialSkills = [
+  "Impersonate",
+  "Persuade",
+  "Suggest",
+  "Rally",
+  "Ignite",
+  "Manipulate",
+  "Challenge",
+  "Comfort",
+  "Organize",
+  "Inspire",
+  "Spin",
+  "Encourage",
+  "Rhetoric",
+  "Drama",
+  "Frighten",
+  "Fuel",
+];
+const socialPercent = 25.775;
+const perceptionSkills = [
+  "Rummage",
+  "Interface",
+  "Survey",
+  "Observe",
+  "Assess",
+  "Study",
+  "Logic",
+  "Eavesdrop",
+  "Disconnect",
+];
+const perceptionPercent = 24.102;
+const combatSkills = [
+  "Charge",
+  "Defy",
+  "Mirado",
+  "Intercede",
+  "Backsnap",
+  "Loyalty",
+  "Persevere",
+  "Brace",
+  "Smash",
+  "Pull",
+  "Bleedout",
+  "Crowdbreaking",
+];
+const combatPercent = 30.103;
 
 function DiceByColor({ data }: { data: Roll[] }) {
   const rollsByColor = rollsByColorTransform(data);
@@ -2421,10 +3124,19 @@ function CharacterStats({
 
       <div className="py-6">
         <TypographyP>
-          Sadly the effort to calculate percentages versus the party would be a
-          whole lot more effort - but it would have been cool! But let&apos;s
-          take a look at {characterName}&apos;s favorite abilities by action and
-          resist roll, then wrap this all up!
+          Sadly the effort to every skill&apos;s percentage versus the party
+          would be a whole lot more effort - but it would have been cool!
+          Here&apos;s a breakdown of your skill use based on some rough
+          categories!
+        </TypographyP>
+      </div>
+
+      <ActionsByCategory data={characterRolls} />
+
+      <div className="py-6">
+        <TypographyP>
+          Let&apos;s take a look at {characterName}&apos;s favorite abilities by
+          action and resist roll, then wrap this all up!
         </TypographyP>
       </div>
       <span className="text-xl">Action Rolls</span>
@@ -2993,6 +3705,99 @@ function ActionRollsByResultInfo({ data }: { data: Roll[] }) {
           of their rolls
         </span>
         <RatioSection ratio={getRatio(getPercent(c, total), pac)} />
+      </div>
+    </div>
+  );
+}
+
+function ActionsByCategory({ data }: { data: Roll[] }) {
+  // const actionRollsByResult = actionRollsByResultTransform(data);
+  const rollsByAction = rollsByActionTransform(data);
+  const total = rollsByAction.reduce((acc, e) => acc + e.total, 0);
+  let mobile = 0;
+  let social = 0;
+  let perception = 0;
+  let combat = 0;
+  for (const entry of rollsByAction) {
+    if (mobilitySkills.includes(entry.action)) {
+      mobile += entry.total;
+    }
+    if (socialSkills.includes(entry.action)) {
+      social += entry.total;
+    }
+    if (perceptionSkills.includes(entry.action)) {
+      perception += entry.total;
+    }
+    if (combatSkills.includes(entry.action)) {
+      combat += entry.total;
+    }
+  }
+  const mobileP = getPercent(mobile, total);
+  const socialP = getPercent(social, total);
+  const perceptionP = getPercent(perception, total);
+  const combatP = getPercent(combat, total);
+
+  return (
+    <div className="py-6 w-full grid grid-cols-1 md:grid-cols-2 mx-auto">
+      <div className="mt-4 flex flex-col items-center">
+        <div className="flex items-center gap-2">
+          <b className={`text-4xl text-fuchsia-500`}>{mobile}</b>
+          <span>Mobility</span>
+        </div>
+        <span>
+          <b>
+            <u>
+              <code>{mobileP}%</code>
+            </u>
+          </b>{" "}
+          of their rolls
+        </span>
+        <RatioSection ratio={getRatio(mobileP, mobilityPercent)} />
+      </div>
+      <div className="mt-4 flex flex-col items-center">
+        <div className="flex items-center gap-2">
+          <b className={`text-4xl text-lime-500`}>{social}</b>
+          <span>Social</span>
+        </div>
+        <span>
+          <b>
+            <u>
+              <code>{socialP}%</code>
+            </u>
+          </b>{" "}
+          of their rolls
+        </span>
+        <RatioSection ratio={getRatio(socialP, socialPercent)} />
+      </div>
+      <div className="mt-4 flex flex-col items-center">
+        <div className="flex items-center gap-2">
+          <b className={`text-4xl text-zinc-500`}>{perception}</b>
+          <span>Perceptive</span>
+        </div>
+        <span>
+          <b>
+            <u>
+              <code>{perceptionP}%</code>
+            </u>
+          </b>{" "}
+          of their rolls
+        </span>
+        <RatioSection ratio={getRatio(perceptionP, perceptionPercent)} />
+      </div>
+      <div className="mt-4 flex flex-col items-center">
+        <div className="flex items-center gap-2">
+          <b className={`text-4xl text-emerald-500`}>{combat}</b>
+          <span>Combat</span>
+        </div>
+        <span>
+          <b>
+            <u>
+              <code>{combatP}%</code>
+            </u>
+          </b>{" "}
+          of their rolls
+        </span>
+        <RatioSection ratio={getRatio(combatP, combatPercent)} />
       </div>
     </div>
   );

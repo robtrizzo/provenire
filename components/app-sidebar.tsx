@@ -143,6 +143,11 @@ const data = {
       title: "Blog",
       url: "/game/blog",
     },
+    {
+      title: "Stats",
+      url: "#",
+      items: [{ title: "Arc One", url: "/game/stats/arc-one" }],
+    },
   ],
 };
 
