@@ -3124,8 +3124,8 @@ function CharacterStats({
 
       <div className="py-6">
         <TypographyP>
-          Sadly the effort to every skill&apos;s percentage versus the party
-          would be a whole lot more effort - but it would have been cool!
+          Sadly the effort to calculate every skill&apos;s percentage versus the
+          party would be a whole lot more effort - but it would have been cool!
           Here&apos;s a breakdown of your skill use based on some rough
           categories!
         </TypographyP>
