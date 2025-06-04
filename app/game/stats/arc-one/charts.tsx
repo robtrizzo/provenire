@@ -39,10 +39,17 @@ import {
 import {
   TypographyBlockquote,
   TypographyH1,
+  TypographyH3,
   TypographyP,
 } from "@/components/ui/typography";
 import { Separator } from "@/components/ui/separator";
 import Breadcrumbs from "@/components/ui/breadcrumbs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { TabsContent } from "@radix-ui/react-tabs";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { CornerLeftUp } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function Charts({ data }: { data: Roll[] }) {
   return (
@@ -344,7 +351,13 @@ export default function Charts({ data }: { data: Roll[] }) {
 
       <div className="py-8">
         <TypographyP>
-          Wow, you guys rolled a 6{" "}
+          Wow, your average roll result was a{" "}
+          <u>
+            <b>
+              <code>4.406</code>
+            </b>
+          </u>
+          . Not to mention you guys rolled a 6{" "}
           <u>
             <b>
               <code>31.761%</code>
@@ -818,8 +831,8 @@ export default function Charts({ data }: { data: Roll[] }) {
 
       <div className="py-8">
         <TypographyP>
-          Well this looks about how I&apos;d expect. Nightshift reign supreme on
-          non-combat actions where Dayshift takes the killing cake! But
+          Well this looks about how I&apos;d expect. Nightshift reigns supreme
+          on non-combat actions where Dayshift takes the killing cake! But
           let&apos;s linger on some of the findings, then differences.
         </TypographyP>
       </div>
@@ -1209,6 +1222,20 @@ export default function Charts({ data }: { data: Roll[] }) {
           Marie is cursed!
         </TypographyP>
       </div>
+
+      <CharacterStatsSection data={data} />
+
+      <div className="py-8">
+        <TypographyP>
+          Wow, that was a whole lot of fun. Thanks to those of you who made it
+          to the end! This game has been a joy and I hope this makes it just
+          that little bit greater of an experience.
+        </TypographyP>
+      </div>
+
+      <div className="py-8">
+        <TypographyP>See you in Arc 2, soldier.</TypographyP>
+      </div>
     </div>
   );
 }
@@ -1554,7 +1581,6 @@ function DiceByColorAndShift({ data }: { data: Roll[] }) {
 
 function RollsByNumberOfDice({ data }: { data: Roll[] }) {
   const rollsByNumberOfDice = rollsByNumberOfDiceTransform(data);
-  console.log("rollsbynumberofdice", rollsByNumberOfDice);
 
   const rollsByNumberOfDiceConfig = {
     count: {
@@ -1737,6 +1763,7 @@ function DiceByType({ data }: { data: Roll[] }) {
 
 function ActionRollsByResult({ data }: { data: Roll[] }) {
   const actionRollsByResult = actionRollsByResultTransform(data);
+  const totalRolls = actionRollsByResult.reduce((acc, e) => acc + e.count, 0);
 
   const actionRollsByResultConfig = {
     fail: {
@@ -1789,7 +1816,7 @@ function ActionRollsByResult({ data }: { data: Roll[] }) {
                       y={viewBox.cy}
                       className="fill-rose-500 text-3xl font-bold"
                     >
-                      {"841".toLocaleString()}
+                      {totalRolls.toLocaleString()}
                     </tspan>
                     <tspan
                       x={viewBox.cx}
@@ -2262,5 +2289,711 @@ function RollsByActionResist({ data }: { data: Roll[] }) {
         </Bar>
       </BarChart>
     </ChartContainer>
+  );
+}
+
+function CharacterStatsSection({ data }: { data: Roll[] }) {
+  const characters = [
+    "Bessemer",
+    "Twenty-One",
+    "Aika Drak",
+    "Lilya Amati",
+    "Von",
+    "Jonah",
+    "Naaza",
+    "Merit",
+    "Drusa S.",
+    "Nail",
+    "Malgus Veradun",
+  ];
+
+  return (
+    <div className="w-full" id="tabs">
+      <Tabs defaultValue="info">
+        <TabsList>
+          {characters.map((c, i) => (
+            <TabsTrigger key={c + i + "trigger"} value={c}>
+              {c}
+            </TabsTrigger>
+          ))}
+        </TabsList>
+        <TabsContent value="info">
+          <div className="p-4">
+            <TypographyP>Select a tab to begin!</TypographyP>
+          </div>
+        </TabsContent>
+        {characters.map((c, i) => (
+          <TabsContent key={c + i + "content"} value={c}>
+            <CharacterStats data={data} characterName={c} />
+          </TabsContent>
+        ))}
+      </Tabs>
+      <Link href="#tabs">
+        <Button size="sm" variant="outline">
+          <CornerLeftUp /> back to tabs
+        </Button>
+      </Link>
+    </div>
+  );
+}
+
+function CharacterStats({
+  data,
+  characterName,
+}: {
+  data: Roll[];
+  characterName: string;
+}) {
+  const characterRolls = data.filter((e) => e.charName === characterName);
+
+  if (characterRolls.length === 0) {
+    return (
+      <div>
+        <TypographyP className="text-red-500">
+          No data for {characterName}!
+        </TypographyP>
+      </div>
+    );
+  }
+
+  return (
+    <div className="p-4">
+      <TypographyH3>{characterName}</TypographyH3>
+      <DiceByColor data={characterRolls} />
+      <DiceByColorInfo data={characterRolls} c={characterName} />
+      <div className="py-6">
+        <TypographyP>
+          Drum roll, please 🥁! Let&apos;s see this broken down by dice numbers!
+          Time to find out how lucky you were...
+        </TypographyP>
+      </div>
+      <DiceByNumber data={characterRolls} />
+      <DiceByNumberInfo data={characterRolls} c={characterName} />
+
+      <div className="py-6">
+        <TypographyP>
+          That&apos;s some valuable insight, but it may not yet be the full
+          picture! After all, you take the highest of your dice (most of the
+          time). So let&apos;s see how lucky your <i>rolls</i> are compared to
+          your dice!
+        </TypographyP>
+      </div>
+
+      <RollsByResult data={characterRolls} />
+      <RollsByResultInfo data={characterRolls} c={characterName} />
+
+      <div className="py-6">
+        <TypographyP>
+          Now let&apos;s take a look at number of dice per roll! I&apos;m
+          curious to see who was loading up on bonds and assists.
+        </TypographyP>
+      </div>
+      <RollsByNumberOfDice data={characterRolls} />
+      <RollsByNumberOfDiceInfo data={characterRolls} c={characterName} />
+
+      <div className="py-6">
+        <TypographyP>
+          So how do these rolls break down per type? And how lucky were they?
+        </TypographyP>
+      </div>
+
+      <RollsByResultAndType data={characterRolls} />
+      <RollsByResultAndTypeInfo data={characterRolls} />
+
+      <div className="py-6">
+        <TypographyP>
+          Incredibly related to the last stats, how often did this character
+          succeed on their action rolls? How do they stack up against the rest
+          of the party?
+        </TypographyP>
+      </div>
+
+      <ActionRollsByResult data={characterRolls} />
+      <ActionRollsByResultInfo data={characterRolls} />
+
+      <div className="py-6">
+        <TypographyP>
+          Last but certainly not least, what were their favorite abilities?
+        </TypographyP>
+      </div>
+
+      <RollsByAction data={characterRolls} />
+
+      <div className="py-6">
+        <TypographyP>
+          Sadly the effort to calculate percentages versus the party would be a
+          whole lot more effort - but it would have been cool! But let&apos;s
+          take a look at {characterName}&apos;s favorite abilities by action and
+          resist roll, then wrap this all up!
+        </TypographyP>
+      </div>
+      <span className="text-xl">Action Rolls</span>
+      <RollsByActionAction data={characterRolls} />
+      <span className="text-xl">Resistance Rolls</span>
+      <RollsByActionResist data={characterRolls} />
+    </div>
+  );
+}
+
+function getRatio(n: number, d: number): number {
+  return Number((100 - (n / d) * 100).toFixed(3));
+}
+
+function getPercent(n: number, d: number): number {
+  return Number(((n / d) * 100).toFixed(3));
+}
+
+function DiceByColorInfo({ data, c }: { data: Roll[]; c: string }) {
+  const averageDice = 289.6;
+  const averageRedRatio = 52.259;
+  const averageBlueRatio = 47.741;
+
+  const rollsByColor = rollsByColorTransform(data);
+
+  const totalDice = useMemo(() => {
+    return rollsByColor.reduce((acc, curr) => acc + curr.total, 0);
+  }, [rollsByColor]);
+
+  const percentTotal = getRatio(totalDice, averageDice);
+  const ptMore = percentTotal < 0;
+
+  const red = rollsByColor.find((e) => e.color === "red")!.total;
+  const redRatio = getPercent(red, totalDice);
+  const redRatioDiff = getRatio(redRatio, averageRedRatio);
+  const rrdMore = redRatioDiff < 0;
+
+  const blue = rollsByColor.find((e) => e.color === "blue")!.total;
+  const blueRatio = getPercent(blue, totalDice);
+  const blueRatioDiff = getRatio(blueRatio, averageBlueRatio);
+  const brdMore = blueRatioDiff < 0;
+
+  return (
+    <div className="my-8">
+      <TypographyP>
+        Looks like {c} rolled{" "}
+        <b className={cn(ptMore ? "text-green-500" : "text-red-500")}>
+          <u>
+            <code>{ptMore ? percentTotal * -1 : percentTotal}%</code>
+          </u>
+        </b>{" "}
+        <i>{ptMore ? "more" : "less"}</i> dice than the average player! (
+        <b>
+          <u>
+            <code>289.6</code>
+          </u>
+        </b>
+        ). Breaking this down into red and blue dice, {c} rolled red dice{" "}
+        <b>
+          <u>
+            <code>{redRatio}%</code>
+          </u>
+        </b>{" "}
+        of the time, that&apos;s{" "}
+        <b className={cn(rrdMore ? "text-green-500" : "text-red-500")}>
+          <u>
+            <code>{rrdMore ? redRatioDiff * -1 : redRatioDiff}%</code>
+          </u>
+        </b>{" "}
+        <i>{rrdMore ? "more" : "less"}</i> than the average player! (
+        <b>
+          <u>
+            <code>{averageRedRatio}%</code>
+          </u>
+        </b>
+        ). On the flipside, {c} rolled blue dice{" "}
+        <b>
+          <u>
+            <code>{blueRatio}%</code>
+          </u>
+        </b>{" "}
+        of the time, that&apos;s{" "}
+        <b className={cn(brdMore ? "text-green-500" : "text-red-500")}>
+          <u>
+            <code>{brdMore ? blueRatioDiff * -1 : blueRatioDiff}%</code>
+          </u>
+        </b>{" "}
+        <i>{brdMore ? "more" : "less"}</i> than the average player! (
+        <b>
+          <u>
+            <code>{averageBlueRatio}%</code>
+          </u>
+        </b>
+        ).
+      </TypographyP>
+    </div>
+  );
+}
+
+function DiceByNumberInfo({ data, c }: { data: Roll[]; c: string }) {
+  const rollsByNumber = rollsByNumberTransform(data);
+
+  const totalRolls = rollsByNumber.reduce((acc, e) => acc + e.count, 0);
+
+  const averageRoll = Number(
+    (
+      rollsByNumber.reduce((acc, e) => acc + e.count * e.number, 0) / totalRolls
+    ).toFixed(3)
+  );
+
+  const partyAvg = 3.4992;
+
+  const avgRatio = getRatio(averageRoll, partyAvg);
+  const aMore = avgRatio < 0;
+
+  return (
+    <div className="py-6">
+      <TypographyP>
+        Looks like {c} had an average roll of{" "}
+        <b>
+          <u>
+            <code>{averageRoll}</code>
+          </u>
+        </b>
+        . That makes them{" "}
+        <b className={cn(aMore ? "text-green-500" : "text-red-500")}>
+          <u>
+            <code>{aMore ? avgRatio * -1 : avgRatio}%</code>
+          </u>
+        </b>{" "}
+        <i>{aMore ? "more" : "less"}</i> lucky than our average player!{" "}
+        {aMore ? "Good for you!" : "Sucks to be you!"}
+      </TypographyP>
+    </div>
+  );
+}
+
+function RollsByNumberOfDiceInfo({ data, c }: { data: Roll[]; c: string }) {
+  const rollsByNumberOfDice = rollsByNumberOfDiceTransform(data);
+
+  const totalRolls = rollsByNumberOfDice.reduce((acc, e) => acc + e.count, 0);
+  const partyAvgRolls = 116.455;
+  const totalRollRatio = getRatio(totalRolls, partyAvgRolls);
+
+  const avg = Number(
+    (
+      rollsByNumberOfDice.reduce((acc, e) => acc + e.count * e.numDice, 0) /
+      totalRolls
+    ).toFixed(3)
+  );
+
+  const partyAvg = 2.23;
+
+  const ratio = getRatio(avg, partyAvg);
+  const rMore = ratio < 0;
+
+  const partyTotalRolls = 1272;
+  const partyTotals = [54, 147, 635, 347, 70, 17, 2];
+
+  return (
+    <div className="py-6">
+      <TypographyP>
+        {c} made a total of{" "}
+        <b>
+          <u>
+            <code>{totalRolls}</code>
+          </u>
+        </b>{" "}
+        rolls! That&apos;s <RatioSection ratio={totalRollRatio} />
+        !(
+        <b>
+          <u>
+            <code>{partyAvgRolls}</code>
+          </u>
+        </b>
+        ). Of these{" "}
+        <b>
+          <u>
+            <code>{totalRolls}</code>
+          </u>
+        </b>{" "}
+        rolls, they had an average of{" "}
+        <b>
+          <u>
+            <code>{avg}</code>
+          </u>
+        </b>{" "}
+        dice per roll. That&apos;s <RatioSection ratio={ratio} />.{" "}
+        {rMore ? "Nice!" : "Ouch."}
+      </TypographyP>
+      <TypographyP>
+        Why don&apos;t we break this down further though? I want to see each die
+        value here...
+      </TypographyP>
+      <div className="grid grid-cols-1 md:grid-cols-3 w-full mx-auto">
+        {rollsByNumberOfDice.map((e, i) => (
+          <RollsWithDieValueInfo
+            key={`${i}${e.numDice}`}
+            dVal={e.numDice}
+            cVal={e.count}
+            cTotal={totalRolls}
+            pVal={partyTotals[e.numDice]}
+            pTotal={partyTotalRolls}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function RollsWithDieValueInfo({
+  dVal,
+  cVal,
+  cTotal,
+  pVal,
+  pTotal,
+}: {
+  dVal: number;
+  cVal: number;
+  cTotal: number;
+  pVal: number;
+  pTotal: number;
+}) {
+  const per = getPercent(cVal, cTotal);
+  const ratio = getRatio(per, getPercent(pVal, pTotal));
+  return (
+    <div className="mt-4 flex flex-col items-center justify-center">
+      <b className="text-4xl">{dVal}</b>
+      <span>
+        <b>
+          <u>
+            <code>{per}%</code>
+          </u>
+        </b>{" "}
+        (
+        <b>
+          <u>
+            <code>
+              {cVal}/{cTotal}
+            </code>
+          </u>
+        </b>
+        ) of their rolls
+      </span>
+      <RatioSection ratio={ratio} />.
+    </div>
+  );
+}
+
+function RollsByResultInfo({ data, c }: { data: Roll[]; c: string }) {
+  const rollsByResult = rollsByResultTransform(data);
+
+  const totalRolls = rollsByResult.reduce((acc, e) => acc + e.count, 0);
+  const averageResult = Number(
+    (
+      rollsByResult.reduce((acc, e) => acc + e.count * e.number, 0) / totalRolls
+    ).toFixed(3)
+  );
+  const ratio = getRatio(averageResult, 4.406);
+  const rMore = ratio < 0;
+
+  return (
+    <div className="py-6">
+      <TypographyP>
+        {c}&apos;s average highest die per roll was{" "}
+        <b>
+          <u>
+            <code>{averageResult}</code>
+          </u>
+        </b>
+        . That&apos;s <RatioSection ratio={ratio} />.{" "}
+        {rMore ? "You lucky bastard!" : "Bad luck, friend..."}
+      </TypographyP>
+    </div>
+  );
+}
+
+function RatioSection({ ratio }: { ratio: number }) {
+  const rMore = ratio < 0;
+  return (
+    <span>
+      <b className={cn(rMore ? "text-green-500" : "text-red-500")}>
+        <u>
+          <code>{rMore ? ratio * -1 : ratio}%</code>
+        </u>
+      </b>{" "}
+      <i>{rMore ? "more" : "less"}</i> than the party average
+    </span>
+  );
+}
+
+function RollsByResultAndTypeInfo({ data }: { data: Roll[] }) {
+  const rollsByResultAndType = rollsByResultAndTypeTransform(data);
+  let a = 0;
+  let p = 0;
+  let r = 0;
+  let f = 0;
+  let avgA = 0;
+  let avgP = 0;
+  let avgR = 0;
+  let avgF = 0;
+  for (const entry of rollsByResultAndType) {
+    a += entry.action;
+    avgA += entry.action * entry.number;
+    p += entry.project;
+    avgP += entry.project * entry.number;
+    r += entry.resist;
+    avgR += entry.resist * entry.number;
+    f += entry.fortune;
+    avgF += entry.fortune * entry.number;
+  }
+  avgA = Number((avgA / a).toFixed(3));
+  avgP = Number((avgP / p).toFixed(3));
+  avgR = Number((avgR / r).toFixed(3));
+  avgF = Number((avgF / f).toFixed(3));
+  const totals = [
+    { type: "action", total: a },
+    { type: "project", total: p },
+    { type: "resist", total: r },
+    { type: "fortune", total: f },
+  ].sort((a, b) => a.total - b.total);
+  const total = a + p + r + f;
+
+  const par = 66.116;
+  const ppr = 5.189;
+  const prr = 19.261;
+  const pfr = 9.434;
+
+  const paa = 4.489;
+  const ppa = 4.939;
+  const pra = 4.298;
+  const pfa = 3.75;
+
+  return (
+    <div className="py-8 w-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 w-full mx-auto">
+        <div className="mt-4 flex flex-col items-center">
+          <div className="flex items-center gap-2">
+            <b
+              className={`text-${
+                2 + totals.findIndex((e) => e.type === "resist")
+              }xl text-cyan-500`}
+            >
+              {r}
+            </b>
+            <span>Resist</span>
+          </div>
+          <span>
+            <b>
+              <u>
+                <code>{getPercent(r, total)}%</code>
+              </u>
+            </b>{" "}
+            of their rolls
+          </span>
+          <RatioSection ratio={getRatio(getPercent(r, total), prr)} />
+          <span>
+            with an average roll of{" "}
+            <b>
+              <u>
+                <code>{avgR}</code>
+              </u>
+            </b>
+          </span>
+          <span>
+            <RatioSection ratio={getRatio(avgR, pra)} /> (
+            <b>
+              <u>
+                <code>{pra}</code>
+              </u>
+            </b>
+            )
+          </span>
+        </div>
+        <div className="mt-4 flex flex-col items-center">
+          <div className="flex items-center gap-2">
+            <b
+              className={`text-${
+                2 + totals.findIndex((e) => e.type === "project")
+              }xl text-stone-500`}
+            >
+              {p}
+            </b>
+            <span>Project</span>
+          </div>
+          <span>
+            <b>
+              <u>
+                <code>{getPercent(p, total)}%</code>
+              </u>
+            </b>{" "}
+            of their rolls
+          </span>
+          <RatioSection ratio={getRatio(getPercent(p, total), ppr)} />
+          <span>
+            with an average roll of{" "}
+            <b>
+              <u>
+                <code>{avgP}</code>
+              </u>
+            </b>
+          </span>
+          <span>
+            <RatioSection ratio={getRatio(avgP, ppa)} /> (
+            <b>
+              <u>
+                <code>{ppa}</code>
+              </u>
+            </b>
+            )
+          </span>
+        </div>
+        <div className="mt-4 flex flex-col items-center">
+          <div className="flex items-center gap-2">
+            <b
+              className={`text-${
+                2 + totals.findIndex((e) => e.type === "action")
+              }xl text-rose-500`}
+            >
+              {a}
+            </b>
+            <span>Action</span>
+          </div>
+          <span>
+            <b>
+              <u>
+                <code>{getPercent(a, total)}%</code>
+              </u>
+            </b>{" "}
+            of their rolls
+          </span>
+          <RatioSection ratio={getRatio(getPercent(a, total), par)} />
+          <span>
+            with an average roll of{" "}
+            <b>
+              <u>
+                <code>{avgA}</code>
+              </u>
+            </b>
+          </span>
+          <span>
+            <RatioSection ratio={getRatio(avgA, paa)} /> (
+            <b>
+              <u>
+                <code>{paa}</code>
+              </u>
+            </b>
+            )
+          </span>
+        </div>
+        <div className="mt-4 flex flex-col items-center">
+          <div className="flex items-center gap-2">
+            <b
+              className={`text-${
+                2 + totals.findIndex((e) => e.type === "fortune")
+              }xl text-yellow-500`}
+            >
+              {f}
+            </b>
+            <span>Fortune</span>
+          </div>
+          <span>
+            <b>
+              <u>
+                <code>{getPercent(f, total)}%</code>
+              </u>
+            </b>{" "}
+            of their rolls
+          </span>
+          <RatioSection ratio={getRatio(getPercent(f, total), pfr)} />
+          <span>
+            with an average roll of{" "}
+            <b>
+              <u>
+                <code>{avgF}</code>
+              </u>
+            </b>
+          </span>
+          <span>
+            <RatioSection ratio={getRatio(avgF, pfa)} /> (
+            <b>
+              <u>
+                <code>{pfa}</code>
+              </u>
+            </b>
+            )
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ActionRollsByResultInfo({ data }: { data: Roll[] }) {
+  const actionRollsByResult = actionRollsByResultTransform(data);
+  const total = actionRollsByResult.reduce((acc, e) => acc + e.count, 0);
+
+  const f = actionRollsByResult.find((e) => e.result === "fail")!.count;
+  const p = actionRollsByResult.find((e) => e.result === "partial")!.count;
+  const s = actionRollsByResult.find((e) => e.result === "success")!.count;
+  const c = actionRollsByResult.find((e) => e.result === "critical")!.count;
+
+  const paf = 22.592;
+  const pap = 44.114;
+  const pas = 28.775;
+  const pac = 4.518;
+
+  return (
+    <div className="py-6 w-full grid grid-cols-1 md:grid-cols-2 mx-auto">
+      <div className="mt-4 flex flex-col items-center">
+        <div className="flex items-center gap-2">
+          <b className={`text-4xl text-pink-500`}>{f}</b>
+          <span>Failed</span>
+        </div>
+        <span>
+          <b>
+            <u>
+              <code>{getPercent(f, total)}%</code>
+            </u>
+          </b>{" "}
+          of their rolls
+        </span>
+        <RatioSection ratio={getRatio(getPercent(f, total), paf)} />
+      </div>
+      <div className="mt-4 flex flex-col items-center">
+        <div className="flex items-center gap-2">
+          <b className={`text-4xl text-cyan-500`}>{p}</b>
+          <span>Partial</span>
+        </div>
+        <span>
+          <b>
+            <u>
+              <code>{getPercent(p, total)}%</code>
+            </u>
+          </b>{" "}
+          of their rolls
+        </span>
+        <RatioSection ratio={getRatio(getPercent(p, total), pap)} />
+      </div>
+      <div className="mt-4 flex flex-col items-center">
+        <div className="flex items-center gap-2">
+          <b className={`text-4xl text-green-500`}>{s}</b>
+          <span>Succeeded</span>
+        </div>
+        <span>
+          <b>
+            <u>
+              <code>{getPercent(s, total)}%</code>
+            </u>
+          </b>{" "}
+          of their rolls
+        </span>
+        <RatioSection ratio={getRatio(getPercent(s, total), pas)} />
+      </div>
+      <div className="mt-4 flex flex-col items-center">
+        <div className="flex items-center gap-2">
+          <b className={`text-4xl text-yellow-500`}>{c}</b>
+          <span>Crit</span>
+        </div>
+        <span>
+          <b>
+            <u>
+              <code>{getPercent(c, total)}%</code>
+            </u>
+          </b>{" "}
+          of their rolls
+        </span>
+        <RatioSection ratio={getRatio(getPercent(c, total), pac)} />
+      </div>
+    </div>
   );
 }

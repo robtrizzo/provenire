@@ -222,3 +222,7 @@
     --chart-blue: hsl(217, 91%, 60%);
   }
 }
+
+html {
+  scroll-behavior: smooth;
+}
