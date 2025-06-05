@@ -591,7 +591,7 @@ export const arcOneSurvey: Survey = {
               value: "expand",
             },
             {
-              text: "Yes but I'd like to see it simplified.",
+              text: "It's okay, but I'd like to see it simplified.",
               color: "text-violet-500",
               value: "simplify",
             },
@@ -958,7 +958,7 @@ export const arcOneSurvey: Survey = {
               value: "less",
             },
             {
-              text: "No. I frequently didn't know what to pick.",
+              text: "No. It was boring / overcomplicated.",
               color: "text-red-500",
               value: "no",
             },
