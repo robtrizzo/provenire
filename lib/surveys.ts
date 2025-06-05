@@ -304,7 +304,7 @@ export const arcOneSurvey: Survey = {
             },
             {
               text: "It felt like the right number.",
-              value: "less",
+              value: "same",
             },
             {
               text: "I would have liked less sessions.",
