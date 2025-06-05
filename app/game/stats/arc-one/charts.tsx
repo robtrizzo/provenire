@@ -88,7 +88,7 @@ export default function Charts({ data }: { data: Roll[] }) {
               <code>52.259%</code>
             </b>
           </u>{" "}
-          of the dice guys rolled were red, with{" "}
+          of the dice you guys rolled were red, with{" "}
           <u>
             <b>
               <code>47.741%</code>
