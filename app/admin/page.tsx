@@ -19,6 +19,13 @@ export default async function Page() {
       <Link href="/admin/characters" className="ml-2 underline text-red-500">
         manage characters
       </Link>
+      <br />
+      <Link
+        href="/game/surveys/results/arc-one"
+        className="ml-2 underline text-red-500"
+      >
+        arc one survey results
+      </Link>
     </>
   );
 }
