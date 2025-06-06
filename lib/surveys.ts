@@ -560,7 +560,7 @@ export const arcOneSurvey: Survey = {
             {
               text: "Yes but it feels a bit too harsh.",
               color: "text-violet-500",
-              value: "forgiving",
+              value: "harsh",
             },
             {
               text: "Hate it, please change it.",
