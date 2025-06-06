@@ -10,7 +10,7 @@ export type Survey = {
 
 export type Category = {
   title: string;
-  questions: Question[];
+  questions: Question[] | AggregatedQuestionResponse[];
 };
 
 export type Question = {
@@ -26,4 +26,18 @@ export type Option = {
   text: string;
   value: string;
   color?: string;
+};
+
+export type AggregatedQuestionResponse = {
+  id: number;
+  title: string;
+  type: "text" | "multiple-choice";
+  options?: Option[]; // Only for multiple-choice questions
+  required?: boolean; // Whether the question must be answered
+  answer: AggregatedAnswer[];
+};
+
+export type AggregatedAnswer = {
+  user: string;
+  answer: string;
 };

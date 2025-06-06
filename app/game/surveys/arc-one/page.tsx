@@ -18,7 +18,12 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import type { Category, Question, Survey } from "@/types/survey";
+import type {
+  AggregatedQuestionResponse,
+  Category,
+  Question,
+  Survey,
+} from "@/types/survey";
 import { cn } from "@/lib/utils";
 import { arcOneSurvey } from "@/lib/surveys";
 
@@ -274,7 +279,7 @@ function TextQuestion({
   question,
   handleMarkDirty,
 }: {
-  question: Question;
+  question: Question | AggregatedQuestionResponse;
   handleMarkDirty: () => void;
 }) {
   return (
@@ -286,7 +291,7 @@ function TextQuestion({
         <Textarea
           name={`q-${question.id}`}
           placeholder="Type your feedback here."
-          defaultValue={question.answer || ""}
+          defaultValue={(question.answer as string) || ""}
           onChange={handleMarkDirty}
         />
       </CardContent>
@@ -298,7 +303,7 @@ function MultipleChoiceQuestion({
   question,
   handleMarkDirty,
 }: {
-  question: Question;
+  question: Question | AggregatedQuestionResponse;
   handleMarkDirty: () => void;
 }) {
   return (
@@ -309,7 +314,7 @@ function MultipleChoiceQuestion({
       <CardContent>
         <RadioGroup
           name={`q-${question.id}`}
-          defaultValue={question.answer || ""}
+          defaultValue={(question.answer as string) || ""}
           onChange={handleMarkDirty}
         >
           {question.options?.map((option, index) => (
