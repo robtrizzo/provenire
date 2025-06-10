@@ -41,7 +41,7 @@ export default function CommandMenu() {
         <CommandGroup heading="Play">
           <CommandItem
             onSelect={() => {
-              router.push("/game/play#character");
+              router.push("/game/arc-one/play#character");
               setOpen(false);
             }}
           >
@@ -49,7 +49,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/play#crew");
+              router.push("/game/arc-one/play#crew");
               setOpen(false);
             }}
           >
@@ -60,7 +60,7 @@ export default function CommandMenu() {
         <CommandGroup heading="Heritages">
           <CommandItem
             onSelect={() => {
-              router.push("/game/heritages");
+              router.push("/game/arc-one/heritages");
               setOpen(false);
             }}
           >
@@ -70,7 +70,7 @@ export default function CommandMenu() {
             <CommandItem
               key={heritage.name}
               onSelect={() => {
-                router.push(`/game/heritages#${heritage.name}`);
+                router.push(`/game/arc-one/heritages#${heritage.name}`);
                 setOpen(false);
               }}
             >
@@ -81,7 +81,7 @@ export default function CommandMenu() {
         <CommandGroup heading="Backgrounds">
           <CommandItem
             onSelect={() => {
-              router.push("/game/backgrounds");
+              router.push("/game/arc-one/backgrounds");
               setOpen(false);
             }}
           >
@@ -91,7 +91,7 @@ export default function CommandMenu() {
             <CommandItem
               key={background.name}
               onSelect={() => {
-                router.push(`/game/backgrounds#${background.name}`);
+                router.push(`/game/arc-one/backgrounds#${background.name}`);
                 setOpen(false);
               }}
             >
@@ -103,7 +103,7 @@ export default function CommandMenu() {
         <CommandGroup heading="Skillsets">
           <CommandItem
             onSelect={() => {
-              router.push("/game/skillsets");
+              router.push("/game/arc-one/skillsets");
               setOpen(false);
             }}
           >
@@ -113,7 +113,7 @@ export default function CommandMenu() {
             <CommandItem
               key={skillset.name}
               onSelect={() => {
-                router.push(`/game/skillsets#${skillset.name}`);
+                router.push(`/game/arc-one/skillsets#${skillset.name}`);
                 setOpen(false);
               }}
             >
@@ -125,7 +125,7 @@ export default function CommandMenu() {
         <CommandGroup heading="Archetypes">
           <CommandItem
             onSelect={() => {
-              router.push("/game/archetypes");
+              router.push("/game/arc-one/archetypes");
               setOpen(false);
             }}
           >
@@ -135,7 +135,7 @@ export default function CommandMenu() {
             <CommandItem
               key={archetype.name}
               onSelect={() => {
-                router.push(`/game/archetypes#${archetype.name}`);
+                router.push(`/game/arc-one/archetypes#${archetype.name}`);
                 setOpen(false);
               }}
             >
@@ -146,7 +146,7 @@ export default function CommandMenu() {
         <CommandGroup heading="Fighting Styles">
           <CommandItem
             onSelect={() => {
-              router.push("/game/fighting-styles#crowdbreaking");
+              router.push("/game/arc-one/fighting-styles#crowdbreaking");
               setOpen(false);
             }}
           >
@@ -154,7 +154,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/fighting-styles#pipedancing");
+              router.push("/game/arc-one/fighting-styles#pipedancing");
               setOpen(false);
             }}
           >
@@ -162,7 +162,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/fighting-styles#backsnap");
+              router.push("/game/arc-one/fighting-styles#backsnap");
               setOpen(false);
             }}
           >
@@ -170,7 +170,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/fighting-styles#bleedout");
+              router.push("/game/arc-one/fighting-styles#bleedout");
               setOpen(false);
             }}
           >
@@ -178,7 +178,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/fighting-styles#throatgore");
+              router.push("/game/arc-one/fighting-styles#throatgore");
               setOpen(false);
             }}
           >
@@ -188,7 +188,7 @@ export default function CommandMenu() {
         <CommandGroup heading="Aldam">
           <CommandItem
             onSelect={() => {
-              router.push("/game/sources-of-power/aldams#gredoran");
+              router.push("/game/arc-one/sources-of-power/aldams#gredoran");
               setOpen(false);
             }}
           >
@@ -207,7 +207,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/setting");
+              router.push("/game/arc-one/setting");
               setOpen(false);
             }}
           >
@@ -215,7 +215,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/setting/culture");
+              router.push("/game/arc-one/setting/culture");
               setOpen(false);
             }}
           >
@@ -223,7 +223,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/setting/steel-trap");
+              router.push("/game/arc-one/setting/steel-trap");
               setOpen(false);
             }}
           >
@@ -231,7 +231,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/setting/strange-forces");
+              router.push("/game/arc-one/setting/strange-forces");
               setOpen(false);
             }}
           >
@@ -239,7 +239,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/core-system");
+              router.push("/game/arc-one/core-system");
               setOpen(false);
             }}
           >
@@ -247,7 +247,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/actions-and-rolls");
+              router.push("/game/arc-one/actions-and-rolls");
               setOpen(false);
             }}
           >
@@ -255,7 +255,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/prelude");
+              router.push("/game/arc-one/prelude");
               setOpen(false);
             }}
           >
@@ -263,7 +263,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/mission");
+              router.push("/game/arc-one/mission");
               setOpen(false);
             }}
           >
@@ -271,7 +271,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/the-churn");
+              router.push("/game/arc-one/the-churn");
               setOpen(false);
             }}
           >
@@ -279,7 +279,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/appendix");
+              router.push("/game/arc-one/appendix");
               setOpen(false);
             }}
           >
@@ -287,7 +287,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/character-creation");
+              router.push("/game/arc-one/character-creation");
               setOpen(false);
             }}
           >
@@ -295,7 +295,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/fighting-styles");
+              router.push("/game/arc-one/fighting-styles");
               setOpen(false);
             }}
           >
@@ -305,7 +305,7 @@ export default function CommandMenu() {
         <CommandGroup heading="Sources of Power">
           <CommandItem
             onSelect={() => {
-              router.push("/game/sources-of-power");
+              router.push("/game/arc-one/sources-of-power");
               setOpen(false);
             }}
           >
@@ -313,7 +313,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/sources-of-power/aldams");
+              router.push("/game/arc-one/sources-of-power/aldams");
               setOpen(false);
             }}
           >
@@ -321,7 +321,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/sources-of-power/transformations");
+              router.push("/game/arc-one/sources-of-power/transformations");
               setOpen(false);
             }}
           >
@@ -329,7 +329,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/sources-of-power/donums");
+              router.push("/game/arc-one/sources-of-power/donums");
               setOpen(false);
             }}
           >
@@ -337,7 +337,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/sources-of-power/curses");
+              router.push("/game/arc-one/sources-of-power/curses");
               setOpen(false);
             }}
           >
@@ -347,7 +347,7 @@ export default function CommandMenu() {
         <CommandGroup heading="Rules (Terms)">
           <CommandItem
             onSelect={() => {
-              router.push("/game/core-system#bonus-dice");
+              router.push("/game/arc-one/core-system#bonus-dice");
               setOpen(false);
             }}
           >
@@ -355,7 +355,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/core-system#resistance-roll");
+              router.push("/game/arc-one/core-system#resistance-roll");
               setOpen(false);
             }}
           >
@@ -363,7 +363,9 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/core-system#experience-and-advancement");
+              router.push(
+                "/game/arc-one/core-system#experience-and-advancement"
+              );
               setOpen(false);
             }}
           >
@@ -371,7 +373,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/actions-and-rolls#bonds");
+              router.push("/game/arc-one/actions-and-rolls#bonds");
               setOpen(false);
             }}
           >
@@ -379,7 +381,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/actions-and-rolls#action-roll");
+              router.push("/game/arc-one/actions-and-rolls#action-roll");
               setOpen(false);
             }}
           >
@@ -387,7 +389,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/actions-and-rolls#resistance-roll");
+              router.push("/game/arc-one/actions-and-rolls#resistance-roll");
               setOpen(false);
             }}
           >
@@ -395,7 +397,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/actions-and-rolls#project-rolls");
+              router.push("/game/arc-one/actions-and-rolls#project-rolls");
               setOpen(false);
             }}
           >
@@ -403,7 +405,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/prelude#downtime");
+              router.push("/game/arc-one/prelude#downtime");
               setOpen(false);
             }}
           >
@@ -411,7 +413,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/prelude#engagement-roll");
+              router.push("/game/arc-one/prelude#engagement-roll");
               setOpen(false);
             }}
           >
@@ -419,7 +421,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/prelude#approach");
+              router.push("/game/arc-one/prelude#approach");
               setOpen(false);
             }}
           >
@@ -427,7 +429,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/prelude#loadout");
+              router.push("/game/arc-one/prelude#loadout");
               setOpen(false);
             }}
           >
@@ -435,7 +437,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/mission#flashbacks");
+              router.push("/game/arc-one/mission#flashbacks");
               setOpen(false);
             }}
           >
@@ -443,7 +445,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/mission#combat");
+              router.push("/game/arc-one/mission#combat");
               setOpen(false);
             }}
           >
@@ -451,7 +453,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/mission#stress");
+              router.push("/game/arc-one/mission#stress");
               setOpen(false);
             }}
           >
@@ -459,7 +461,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/mission#conditions");
+              router.push("/game/arc-one/mission#conditions");
               setOpen(false);
             }}
           >
@@ -467,7 +469,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/mission#harm");
+              router.push("/game/arc-one/mission#harm");
               setOpen(false);
             }}
           >
@@ -475,7 +477,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/mission#armor");
+              router.push("/game/arc-one/mission#armor");
               setOpen(false);
             }}
           >
@@ -483,7 +485,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/the-churn#aftermath");
+              router.push("/game/arc-one/the-churn#aftermath");
               setOpen(false);
             }}
           >
@@ -491,7 +493,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/the-churn#rep");
+              router.push("/game/arc-one/the-churn#rep");
               setOpen(false);
             }}
           >
@@ -499,7 +501,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/the-churn#mission-xp");
+              router.push("/game/arc-one/the-churn#mission-xp");
               setOpen(false);
             }}
           >
@@ -507,7 +509,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/the-churn#heat");
+              router.push("/game/arc-one/the-churn#heat");
               setOpen(false);
             }}
           >
@@ -515,7 +517,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/the-churn#crackdowns");
+              router.push("/game/arc-one/the-churn#crackdowns");
               setOpen(false);
             }}
           >
@@ -523,7 +525,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/the-churn#subsistence");
+              router.push("/game/arc-one/the-churn#subsistence");
               setOpen(false);
             }}
           >
@@ -531,7 +533,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/the-churn#agendas");
+              router.push("/game/arc-one/the-churn#agendas");
               setOpen(false);
             }}
           >
@@ -539,7 +541,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/the-churn#entanglements");
+              router.push("/game/arc-one/the-churn#entanglements");
               setOpen(false);
             }}
           >
@@ -547,7 +549,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/setting/strange-forces#kings-spell");
+              router.push("/game/arc-one/setting/strange-forces#kings-spell");
               setOpen(false);
             }}
           >
@@ -555,7 +557,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/fighting-styles#strain");
+              router.push("/game/arc-one/fighting-styles#strain");
               setOpen(false);
             }}
           >
@@ -563,7 +565,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/skillsets#schematics");
+              router.push("/game/arc-one/skillsets#schematics");
               setOpen(false);
             }}
           >
@@ -571,7 +573,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/appendix#equipment-traits");
+              router.push("/game/arc-one/appendix#equipment-traits");
               setOpen(false);
             }}
           >
@@ -579,7 +581,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/skillsets#formulae");
+              router.push("/game/arc-one/skillsets#formulae");
               setOpen(false);
             }}
           >
@@ -587,7 +589,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/appendix#alchemical-traits");
+              router.push("/game/arc-one/appendix#alchemical-traits");
               setOpen(false);
             }}
           >
@@ -595,7 +597,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/appendix#gang-traits");
+              router.push("/game/arc-one/appendix#gang-traits");
               setOpen(false);
             }}
           >
@@ -606,7 +608,7 @@ export default function CommandMenu() {
         <CommandGroup heading="Setting">
           <CommandItem
             onSelect={() => {
-              router.push("/game/setting#kingwulf");
+              router.push("/game/arc-one/setting#kingwulf");
               setOpen(false);
             }}
           >
@@ -614,7 +616,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/setting#liberty-city");
+              router.push("/game/arc-one/setting#liberty-city");
               setOpen(false);
             }}
           >
@@ -622,7 +624,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/setting#the-steel-trap");
+              router.push("/game/arc-one/setting#the-steel-trap");
               setOpen(false);
             }}
           >
@@ -630,7 +632,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/setting#fabrication");
+              router.push("/game/arc-one/setting#fabrication");
               setOpen(false);
             }}
           >
@@ -641,7 +643,7 @@ export default function CommandMenu() {
         <CommandGroup heading="Character Creation">
           <CommandItem
             onSelect={() => {
-              router.push("/game/character-creation#heritage");
+              router.push("/game/arc-one/character-creation#heritage");
               setOpen(false);
             }}
           >
@@ -649,7 +651,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/character-creation#background");
+              router.push("/game/arc-one/character-creation#background");
               setOpen(false);
             }}
           >
@@ -657,7 +659,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/character-creation#skillset");
+              router.push("/game/arc-one/character-creation#skillset");
               setOpen(false);
             }}
           >
@@ -665,7 +667,7 @@ export default function CommandMenu() {
           </CommandItem>
           <CommandItem
             onSelect={() => {
-              router.push("/game/character-creation#archetype");
+              router.push("/game/arc-one/character-creation#archetype");
               setOpen(false);
             }}
           >
