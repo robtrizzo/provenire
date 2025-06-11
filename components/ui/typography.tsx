@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+import { cn } from "@/lib/utils";
 export function TypographyH1({
   children,
   className,
@@ -9,7 +9,7 @@ export function TypographyH1({
   return (
     <h1
       className={cn(
-        'font-sans scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mt-4',
+        "font-sans scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mt-4",
         className
       )}
     >
@@ -30,7 +30,7 @@ export function TypographyH2({
     <h2
       id={id}
       className={cn(
-        'font-sans scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0 mt-4',
+        "font-sans scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0 mt-4",
         className
       )}
     >
@@ -51,7 +51,7 @@ export function TypographyH3({
     <h3
       id={id}
       className={cn(
-        'font-sans scroll-m-20 text-2xl font-semibold tracking-tight mt-4',
+        "font-sans scroll-m-20 text-2xl font-semibold tracking-tight mt-4",
         className
       )}
     >
@@ -72,7 +72,7 @@ export function TypographyH4({
     <h4
       id={id}
       className={cn(
-        'font-sans scroll-m-20 text-xl font-semibold tracking-tight mt-4',
+        "font-sans scroll-m-20 text-xl font-semibold tracking-tight mt-4",
         className
       )}
     >
@@ -90,24 +90,22 @@ export function TypographyP({
   className?: string;
 }) {
   return (
-    <p
-      id={id}
-      className={cn(
-        'font-serif leading-7 not-first:mt-2',
-        className
-      )}
-    >
+    <p id={id} className={cn("font-serif leading-7 not-first:mt-2", className)}>
       {children}
     </p>
   );
 }
 export function TypographyBlockquote({
   children,
+  className,
 }: {
   children: React.ReactNode;
+  className?: string;
 }) {
   return (
-    <blockquote className="my-4 border-l-2 pl-6 font-serif italic">
+    <blockquote
+      className={cn("my-4 border-l-2 pl-6 font-serif italic", className)}
+    >
       {children}
     </blockquote>
   );
@@ -132,7 +130,7 @@ export function TypographyUnorderedList({
   className?: string;
 }) {
   return (
-    <ul className={cn('mb-4 ml-6 list-disc [&>li]:mt-2 font-serif', className)}>
+    <ul className={cn("mb-4 ml-6 list-disc [&>li]:mt-2 font-serif", className)}>
       {children}
     </ul>
   );
