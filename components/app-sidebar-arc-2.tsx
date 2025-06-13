@@ -106,12 +106,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarGroup>
           <SidebarMenu>
             <SidebarMenuItem>
-              <Link href="/game/arc-two/play">
+              <Link href="#">
                 <Button
                   variant="secondary"
+                  disabled
                   className="w-full text-lg py-6 relative bg-black group text-white hover:font-white hover:bg-black"
                 >
-                  Play
+                  Play <span className="text-sm">(coming soon)</span>
                   <div className="invisible group-hover:visible">
                     <BorderBeam duration={12} size={12} />
                     <BorderBeam duration={12} delay={4} size={12} />

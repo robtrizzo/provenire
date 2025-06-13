@@ -78,6 +78,31 @@ export default async function Page() {
         distinctive features more pronounced. These nobles are called{" "}
         <i>gloats</i>.
       </TypographyP>
+      <TypographyH3 className="font-cyber">Transformations</TypographyH3>
+      <TypographyP>
+        Wolves remain at the top of the bestial hierarchy, though the line has
+        become incredibly blurry. Anyone with enough{" "}
+        <span className="font-cyber">¤P</span> can buy beast-mod or a full beast
+        sleeve. And born wolves can wear sleeves which aren&apos;t wolf at all.{" "}
+        <span className="font-cyber">OverCorp</span> does its best to keep a
+        handle on this with{" "}
+        <span className="font-cyber">Social Situational</span>, but over the
+        years this has become less effective. Being a wolf is an aesthetic of
+        power. And real power is <span className="font-cyber">¤P</span>.
+      </TypographyP>
+      <TypographyP>
+        This has become further complicated{" "}
+        <b className="font-sans">Kingwulf</b> adopting the birds of prey and
+        predatory felines into the fold. The least ancient of the adopted
+        bloodlines, but philosophers are left wondering if all predatory beasts
+        will one day be adopted. It&apos;s not outside the realm of possibility.
+      </TypographyP>
+      <TypographyP>
+        One thing from ages past has remained the same: children born with
+        monstrous transformations are unacceptable. Parents of those children
+        are forced to choose between emgergency re-sleeving the child or ...
+        worse.
+      </TypographyP>
       <TypographyH2 className="font-cyber">Technology</TypographyH2>
       <TypographyP>
         You live in the golden age of exponential discovery and advancement.
@@ -158,17 +183,19 @@ export default async function Page() {
         <b className="font-sans">Kingwulf&apos;s</b> permission. In the dark
         ages, this was done by frantic glory-seeking and faux proxies granting
         blessings. Society has advanced. Now, you can purchase intimacy,
-        relationships, and even marriage rights with Favors (¤F).
+        relationships, and even marriage rights with Favors{" "}
+        <span className="font-cyber">(¤F)</span>.
       </TypographyP>
       <TypographyBlockquote className="font-cyber text-xs">
         OverCorp brings you FavorBank Credit: because it&apos;s not sexy to have
         to wait.
       </TypographyBlockquote>
       <TypographyP>
-        Favors aren&apos;t distributed as payment like Pelts (¤P) are for labor
-        or exchanging goods. Favors are earned through good social behavior and
-        contributions to society. If you find yourself short on Favors, or a
-        deficit in the worst case, you can find yourself in danger from the law.
+        Favors aren&apos;t distributed as payment like Pelts{" "}
+        <span className="font-cyber">(¤P)</span> are for labor or exchanging
+        goods. Favors are earned through good social behavior and contributions
+        to society. If you find yourself short on Favors, or a deficit in the
+        worst case, you can find yourself in danger from the law.
       </TypographyP>
       <TypographyBlockquote className="font-cyber text-xs">
         Rat-track: helping you enjoy the best part of the hunt - a Beasttech

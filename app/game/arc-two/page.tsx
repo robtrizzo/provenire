@@ -53,12 +53,12 @@ export default async function Page() {
           <span className="pl-2">- {session?.user.id}_identity</span>
         </AnimatedSpan>
         <AnimatedSpan delay={8300}>
-          <span>Billing account ¤ 1.05...</span>
+          <span>Billing account ¤F 1.05...</span>
         </AnimatedSpan>
         <AnimatedSpan delay={9300} className="text-red-500">
           <span>
             Account #{session?.user.image?.split(".")[2].split("/")[3]} has
-            insufficient ¤
+            insufficient ¤F
           </span>
         </AnimatedSpan>
         <AnimatedSpan delay={9800}>
