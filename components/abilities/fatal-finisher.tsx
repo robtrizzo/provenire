@@ -5,7 +5,7 @@ export default function FatalFinisher() {
   return (
     <TypographyP>
       You may{" "}
-      <Link href="/game/fighting-styles#strain">
+      <Link href="/game/arc-one/fighting-styles#strain">
         <span className="text-red-500 underline font-bold">strain</span>
       </Link>{" "}
       yourself to make a devastating blow against an overwhelmed, cornered, or

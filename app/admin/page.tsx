@@ -21,7 +21,7 @@ export default async function Page() {
       </Link>
       <br />
       <Link
-        href="/game/surveys/results/arc-one"
+        href="/game/arc-one/surveys/results"
         className="ml-2 underline text-red-500"
       >
         arc one survey results

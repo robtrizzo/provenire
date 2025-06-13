@@ -27,7 +27,7 @@ const data = {
   navMain: [
     {
       title: "Introduction",
-      url: "/game",
+      url: "/game/arc-one",
     },
     {
       title: "Setting",
@@ -35,19 +35,19 @@ const data = {
       items: [
         {
           title: "Era 3",
-          url: "/game/setting",
+          url: "/game/arc-one/setting",
         },
         {
           title: "Culture",
-          url: "/game/setting/culture",
+          url: "/game/arc-one/setting/culture",
         },
         {
           title: "The Steel Trap",
-          url: "/game/setting/steel-trap",
+          url: "/game/arc-one/setting/steel-trap",
         },
         {
           title: "Strange Forces",
-          url: "/game/setting/strange-forces",
+          url: "/game/arc-one/setting/strange-forces",
         },
       ],
     },
@@ -57,27 +57,27 @@ const data = {
       items: [
         {
           title: "Core System",
-          url: "/game/core-system",
+          url: "/game/arc-one/core-system",
         },
         {
           title: "Actions, Bonds, & Rolls",
-          url: "/game/actions-and-rolls",
+          url: "/game/arc-one/actions-and-rolls",
         },
         {
           title: "Prelude",
-          url: "/game/prelude",
+          url: "/game/arc-one/prelude",
         },
         {
           title: "Mission",
-          url: "/game/mission",
+          url: "/game/arc-one/mission",
         },
         {
           title: "Churn",
-          url: "/game/the-churn",
+          url: "/game/arc-one/the-churn",
         },
         {
           title: "Appendix",
-          url: "/game/appendix",
+          url: "/game/arc-one/appendix",
         },
       ],
     },
@@ -87,52 +87,52 @@ const data = {
       items: [
         {
           title: "Overview",
-          url: "/game/character-creation",
+          url: "/game/arc-one/character-creation",
         },
         {
           title: "Heritages",
-          url: "/game/heritages",
+          url: "/game/arc-one/heritages",
         },
         {
           title: "Backgrounds",
-          url: "/game/backgrounds",
+          url: "/game/arc-one/backgrounds",
         },
         {
           title: "Skillsets",
-          url: "/game/skillsets",
+          url: "/game/arc-one/skillsets",
         },
         {
           title: "Archetypes",
-          url: "/game/archetypes",
+          url: "/game/arc-one/archetypes",
         },
         {
           title: "Fighting Styles",
-          url: "/game/fighting-styles",
+          url: "/game/arc-one/fighting-styles",
         },
       ],
     },
     {
       title: "Sources of Power",
-      url: "/game/sources-of-power",
+      url: "/game/arc-one/sources-of-power",
       items: [
-        { title: "Aldams", url: "/game/sources-of-power/aldams" },
+        { title: "Aldams", url: "/game/arc-one/sources-of-power/aldams" },
         {
           title: "Transformations",
-          url: "/game/sources-of-power/transformations",
+          url: "/game/arc-one/sources-of-power/transformations",
         },
-        { title: "Donums", url: "/game/sources-of-power/donums" },
-        { title: "Curses", url: "/game/sources-of-power/curses" },
+        { title: "Donums", url: "/game/arc-one/sources-of-power/donums" },
+        { title: "Curses", url: "/game/arc-one/sources-of-power/curses" },
       ],
     },
     {
       title: "Playtests",
       url: "#",
       items: [
-        { title: "Playtest One", url: "/game/playtest-one" },
-        { title: "Playtest Two", url: "/game/playtest-two" },
-        { title: "Playtest Three", url: "/game/playtest-three" },
-        { title: "Playtest Four", url: "/game/playtest-four" },
-        { title: "Playtest Five", url: "/game/playtest-five" },
+        { title: "Playtest One", url: "/game/arc-one/playtest-one" },
+        { title: "Playtest Two", url: "/game/arc-one/playtest-two" },
+        { title: "Playtest Three", url: "/game/arc-one/playtest-three" },
+        { title: "Playtest Four", url: "/game/arc-one/playtest-four" },
+        { title: "Playtest Five", url: "/game/arc-one/playtest-five" },
       ],
     },
     {
@@ -146,12 +146,12 @@ const data = {
     {
       title: "Stats",
       url: "#",
-      items: [{ title: "Arc One", url: "/game/stats/arc-one" }],
+      items: [{ title: "Arc One", url: "/game/arc-one/stats/arc-one" }],
     },
     {
       title: "Surveys",
       url: "#",
-      items: [{ title: "Arc One", url: "/game/surveys/arc-one" }],
+      items: [{ title: "Arc One", url: "/game/arc-one/surveys/arc-one" }],
     },
   ],
 };
@@ -211,7 +211,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarGroup>
           <SidebarMenu>
             <SidebarMenuItem>
-              <Link href="/game/play">
+              <Link href="/game/arc-one/play">
                 <Button variant="secondary" className="w-full text-lg py-6">
                   Play
                 </Button>

@@ -1,15 +1,15 @@
-import { TypographyP } from '@/components/ui/typography';
-import Link from 'next/link';
+import { TypographyP } from "@/components/ui/typography";
+import Link from "next/link";
 export default function PainToRage() {
   return (
     <div>
       <TypographyP>
-        When the{' '}
+        When the{" "}
         <span className="font-bold text-fuchsia-700 underline">
-          <Link href="/game/setting/strange-forces#kings-spell">
+          <Link href="/game/arc-one/setting/strange-forces#kings-spell">
             The King&apos;s Spell
           </Link>
-        </span>{' '}
+        </span>{" "}
         is used on you, you may choose to ignore it. If you do, you must attack
         the source of the spell.
       </TypographyP>

@@ -3,6 +3,7 @@ import Head from "next/head";
 import {
   Josefin_Sans as FontSans,
   Caudex as FontSerif,
+  Orbitron as FontCyber,
 } from "next/font/google";
 import Providers from "@/providers/providers";
 import { cn } from "@/lib/utils";
@@ -20,6 +21,13 @@ const fontSerif = FontSerif({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-serif",
+});
+
+const fontCyber = FontCyber({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-cyber",
 });
 
 // Kotta One would be good for script
@@ -43,7 +51,8 @@ export default function RootLayout({
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
           fontSans.variable,
-          fontSerif.variable
+          fontSerif.variable,
+          fontCyber.variable
         )}
       >
         <Providers>{children}</Providers>

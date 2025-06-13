@@ -7,6 +7,7 @@
 @theme {
   --font-sans: var(--font-sans);
   --font-serif: var(--font-serif);
+  --font-cyber: var(--font-cyber);
 
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
@@ -220,6 +221,12 @@
     --chart-6: hsl(274, 66%, 32%);
     --chart-red: hsl(0, 84%, 60%);
     --chart-blue: hsl(217, 91%, 60%);
+  }
+}
+
+@layer utilities {
+  .box-reflect {
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0004);
   }
 }
 

@@ -2,7 +2,6 @@ import type { NextConfig } from "next";
 import createMDX from "@next/mdx";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   experimental: {
     reactCompiler: true,
   },
@@ -34,6 +33,17 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
     ],
+  },
+  redirects: async () => {
+    return [
+      {
+        // Match any /game/* except /game/arc-one, /game/arc-two, /game/blog, or /game/crucible
+        // and redirect to /game/arc-one/:path
+        source: "/game/:path((?!arc-one|arc-two|blog|crucible).+)",
+        destination: "/game/arc-one/:path",
+        permanent: true,
+      },
+    ];
   },
 };
 

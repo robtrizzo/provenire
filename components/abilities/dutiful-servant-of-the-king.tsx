@@ -1,16 +1,16 @@
 import {
   TypographyP,
   TypographyUnorderedList,
-} from '@/components/ui/typography';
-import Link from 'next/link';
+} from "@/components/ui/typography";
+import Link from "next/link";
 export default function DutifulServantOfTheKing() {
   return (
     <div>
       <TypographyP>
         The Logistician values the King&apos;s order and has worked diligently
-        within its confines. For this, they&apos;ve been rewarded with the{' '}
+        within its confines. For this, they&apos;ve been rewarded with the{" "}
         <span className="font-bold text-fuchsia-700 underline">
-          <Link href="/game/setting/strange-forces#kings-spell">
+          <Link href="/game/arc-one/setting/strange-forces#kings-spell">
             The King&apos;s Spell
           </Link>
           .
