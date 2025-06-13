@@ -73,6 +73,10 @@ export default async function Page() {
               <b>Business sectors:</b>
             </code>
             <code>Psyche extraction, neuro tapping, sleeves</code>
+            <code>
+              <b>Subsidiaries:</b>
+            </code>
+            <code>Ambrosia Medical</code>
           </div>
         </Card>
         <Card className="rounded-none">
