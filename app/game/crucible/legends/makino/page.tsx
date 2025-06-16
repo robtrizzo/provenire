@@ -41,7 +41,7 @@ export default async function Page() {
       <TypographyP>Era Two, the Hidden City.</TypographyP>
       <TypographyH3>Psyche</TypographyH3>
       <TypographyP>
-        Fueled by rage and more than half mad with grief. A deep seeded drive
+        Fueled by rage and more than half mad with grief. A deep seeded drive to
         rid the world of powerful people and to be reunited with his loves.
       </TypographyP>
       <TypographyH3>Abilities</TypographyH3>
