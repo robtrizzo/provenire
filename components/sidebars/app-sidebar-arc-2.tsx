@@ -19,139 +19,34 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ShieldUser } from "lucide-react";
+import { BorderBeam } from "@/components/magicui/border-beam";
 
 const data = {
   navMain: [
     {
       title: "Introduction",
-      url: "/game/arc-one",
+      url: "/game/arc-two/introduction",
     },
     {
       title: "Setting",
       url: "#",
       items: [
         {
-          title: "Era 3",
-          url: "/game/arc-one/setting",
+          title: "Feasting",
+          url: "/game/arc-two/setting/feasting",
         },
         {
           title: "Culture",
-          url: "/game/arc-one/setting/culture",
+          url: "/game/arc-two/setting/culture",
         },
         {
-          title: "The Steel Trap",
-          url: "/game/arc-one/setting/steel-trap",
-        },
-        {
-          title: "Strange Forces",
-          url: "/game/arc-one/setting/strange-forces",
+          title: "Power Players",
+          url: "/game/arc-two/setting/power-players",
         },
       ],
-    },
-    {
-      title: "Rules",
-      url: "#",
-      items: [
-        {
-          title: "Core System",
-          url: "/game/arc-one/core-system",
-        },
-        {
-          title: "Actions, Bonds, & Rolls",
-          url: "/game/arc-one/actions-and-rolls",
-        },
-        {
-          title: "Prelude",
-          url: "/game/arc-one/prelude",
-        },
-        {
-          title: "Mission",
-          url: "/game/arc-one/mission",
-        },
-        {
-          title: "Churn",
-          url: "/game/arc-one/the-churn",
-        },
-        {
-          title: "Appendix",
-          url: "/game/arc-one/appendix",
-        },
-      ],
-    },
-    {
-      title: "Character Creation",
-      url: "#",
-      items: [
-        {
-          title: "Overview",
-          url: "/game/arc-one/character-creation",
-        },
-        {
-          title: "Heritages",
-          url: "/game/arc-one/heritages",
-        },
-        {
-          title: "Backgrounds",
-          url: "/game/arc-one/backgrounds",
-        },
-        {
-          title: "Skillsets",
-          url: "/game/arc-one/skillsets",
-        },
-        {
-          title: "Archetypes",
-          url: "/game/arc-one/archetypes",
-        },
-        {
-          title: "Fighting Styles",
-          url: "/game/arc-one/fighting-styles",
-        },
-      ],
-    },
-    {
-      title: "Sources of Power",
-      url: "/game/arc-one/sources-of-power",
-      items: [
-        { title: "Aldams", url: "/game/arc-one/sources-of-power/aldams" },
-        {
-          title: "Transformations",
-          url: "/game/arc-one/sources-of-power/transformations",
-        },
-        { title: "Donums", url: "/game/arc-one/sources-of-power/donums" },
-        { title: "Curses", url: "/game/arc-one/sources-of-power/curses" },
-      ],
-    },
-    {
-      title: "Playtests",
-      url: "#",
-      items: [
-        { title: "Playtest One", url: "/game/arc-one/playtest-one" },
-        { title: "Playtest Two", url: "/game/arc-one/playtest-two" },
-        { title: "Playtest Three", url: "/game/arc-one/playtest-three" },
-        { title: "Playtest Four", url: "/game/arc-one/playtest-four" },
-        { title: "Playtest Five", url: "/game/arc-one/playtest-five" },
-      ],
-    },
-    {
-      title: "Crucible",
-      url: "/game/crucible",
-    },
-    {
-      title: "Blog",
-      url: "/game/blog",
-    },
-    {
-      title: "Stats",
-      url: "#",
-      items: [{ title: "Arc One", url: "/game/arc-one/stats/arc-one" }],
-    },
-    {
-      title: "Surveys",
-      url: "#",
-      items: [{ title: "Arc One", url: "/game/arc-one/surveys/arc-one" }],
     },
   ],
 };
@@ -211,9 +106,18 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarGroup>
           <SidebarMenu>
             <SidebarMenuItem>
-              <Link href="/game/arc-one/play">
-                <Button variant="secondary" className="w-full text-lg py-6">
-                  Play
+              <Link href="#">
+                <Button
+                  variant="secondary"
+                  disabled
+                  className="w-full text-lg py-6 relative bg-black group text-white hover:font-white hover:bg-black"
+                >
+                  Play <span className="text-sm">(coming soon)</span>
+                  <div className="invisible group-hover:visible">
+                    <BorderBeam duration={12} size={12} />
+                    <BorderBeam duration={12} delay={4} size={12} />
+                    <BorderBeam duration={12} delay={8} size={12} />
+                  </div>
                 </Button>
               </Link>
             </SidebarMenuItem>

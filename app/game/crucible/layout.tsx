@@ -1,6 +1,4 @@
-import CommandMenu from "@/components/command-menu";
-import { Toaster } from "@/components/ui/toaster";
-import { AppSidebar } from "@/components/sidebars/app-sidebar-arc-2";
+import { AppSidebar } from "@/components/sidebars/app-sidebar-crucible";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -11,8 +9,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         } as React.CSSProperties
       }
     >
-      <Toaster />
-      <CommandMenu />
       <AppSidebar />
       <SidebarInset>
         <div className="relative p-4 box-border max-w-full">

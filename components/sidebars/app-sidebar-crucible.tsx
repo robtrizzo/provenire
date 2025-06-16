@@ -19,32 +19,58 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
-import { Button } from "./ui/button";
 import Link from "next/link";
 import { ShieldUser } from "lucide-react";
-import { BorderBeam } from "./magicui/border-beam";
 
 const data = {
   navMain: [
     {
       title: "Introduction",
-      url: "/game/arc-two/introduction",
+      url: "/game/crucible",
     },
     {
-      title: "Setting",
+      title: "Legends",
       url: "#",
       items: [
         {
-          title: "Feasting",
-          url: "/game/arc-two/setting/feasting",
+          title: "Dunstan",
+          url: "/game/crucible/legends/dunstan",
         },
         {
-          title: "Culture",
-          url: "/game/arc-two/setting/culture",
+          title: "Engel",
+          url: "/game/crucible/legends/engel",
         },
         {
-          title: "Power Players",
-          url: "/game/arc-two/setting/power-players",
+          title: "Issa",
+          url: "/game/crucible/legends/issa",
+        },
+        {
+          title: "Luciana",
+          url: "/game/crucible/legends/luciana",
+        },
+        {
+          title: "Makino",
+          url: "/game/crucible/legends/makino",
+        },
+        {
+          title: "Matteo",
+          url: "/game/crucible/legends/matteo",
+        },
+        {
+          title: "Takota",
+          url: "/game/crucible/legends/takota",
+        },
+        {
+          title: "Velda",
+          url: "/game/crucible/legends/velda",
+        },
+        {
+          title: "Ygg",
+          url: "/game/crucible/legends/ygg",
+        },
+        {
+          title: "Zephyr",
+          url: "/game/crucible/legends/zephyr",
         },
       ],
     },
@@ -101,26 +127,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 ) : null}
               </SidebarMenuItem>
             ))}
-          </SidebarMenu>
-        </SidebarGroup>
-        <SidebarGroup>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <Link href="#">
-                <Button
-                  variant="secondary"
-                  disabled
-                  className="w-full text-lg py-6 relative bg-black group text-white hover:font-white hover:bg-black"
-                >
-                  Play <span className="text-sm">(coming soon)</span>
-                  <div className="invisible group-hover:visible">
-                    <BorderBeam duration={12} size={12} />
-                    <BorderBeam duration={12} delay={4} size={12} />
-                    <BorderBeam duration={12} delay={8} size={12} />
-                  </div>
-                </Button>
-              </Link>
-            </SidebarMenuItem>
           </SidebarMenu>
         </SidebarGroup>
         <SidebarGroup className="mt-auto">

@@ -1,8 +1,16 @@
+import Breadcrumbs from "@/components/ui/breadcrumbs";
 import { TypographyH1, TypographyP } from "@/components/ui/typography";
 
 export default async function Page() {
   return (
-    <div className="p-6">
+    <>
+      <Breadcrumbs
+        crumbs={[
+          { name: "Game", href: "/game" },
+          { name: "Crucible", href: "#" },
+          { name: "Introduction", href: "#" },
+        ]}
+      />
       <TypographyH1>Crucible</TypographyH1>
       <TypographyP>
         <b>Crucible</b> is a narrative-only game played by a <b>Narrator</b> and{" "}
@@ -70,6 +78,6 @@ export default async function Page() {
       <TypographyP className="text-muted-foreground">
         And then we play to find out what happens.
       </TypographyP>
-    </div>
+    </>
   );
 }
