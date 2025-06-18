@@ -62,7 +62,7 @@ export default async function Page() {
             <code>
               <b>Subsidiaries:</b>
             </code>
-            <code>Genlab</code>
+            <code>Genlab, Strata</code>
           </div>
         </Card>
         <Card className="rounded-none">

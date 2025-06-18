@@ -60,7 +60,12 @@ export default async function Page() {
       <TypographyP>
         You may only unlock one piece of <b>baggage</b> per mission cycle. Each
         piece of <b>baggage</b> you unlock reduces your <b>max stress</b> by{" "}
-        <b>1</b>.
+        <b>1</b>. At any time, you may contact{" "}
+        <b className="font-cyber">Winith</b>, <b>Root&apos;s</b> head of HR and
+        Wellness to re-shelve relapsed memories. This will reset your{" "}
+        <b>max stress</b>, but remove all unlocked <b>baggage</b> rewards.{" "}
+        <b className="font-cyber text-stone-500">Rivals</b> will continue to
+        harry you though.
       </TypographyP>
       <TypographyBlockquote>
         The <b>memory clock</b> is a 4-piece clock{" "}
@@ -106,6 +111,7 @@ export default async function Page() {
         <b className="font-cyber text-lime-500">Drive</b> is the answer to why
         you joined <b className="font-cyber">Root</b> in the first place.
       </TypographyP>
+
       <TypographyH2 className="font-cyber mt-8">
         Redzone Punk Metalist
       </TypographyH2>
@@ -192,14 +198,185 @@ export default async function Page() {
           other&apos;s backs on stage and in a scrap.
         </li>
       </TypographyUnorderedList>
+
       <TypographyH2 className="font-cyber mt-8">Grid Finch</TypographyH2>
+
       <TypographyH2 className="font-cyber mt-8">Motorhead</TypographyH2>
+
       <TypographyH2 className="font-cyber mt-8">Dynastic Scion</TypographyH2>
-      <TypographyH2 className="font-cyber mt-8">Trust Fund Baby</TypographyH2>
+      <TypographyP>
+        The corporate suits fancy themselves the rulers of{" "}
+        <b className="font-cyber">Feasting</b>. But compared to the noble
+        families, they are babes - breastmilk still on their whimpering upstart
+        lips. You&apos;ll show them real power. Real power is blood, fangs, and{" "}
+        <b>Kingwulf&apos;s</b> favor.
+      </TypographyP>
+      <TypographyP>
+        When you walk the streets, the people show you respect. Or they aught
+        to. If they don&apos;t, they know the price. Your family built this
+        place, employs them, raises them up under the glory of your name.
+      </TypographyP>
+      <TypographyP>
+        When you aren&apos;t prowling your turf, you&apos;re cementing your
+        alliances, both familial and personal. Worth it to grease palms just in
+        case you ever need to call in favors.
+      </TypographyP>
+      <Separator className="mt-2" />
+      <TypographyP>
+        <b className="font-cyber">
+          Starting Action: <span className="text-red-500">Authority</span>
+        </b>
+      </TypographyP>
+      <TypographyP className="font-cyber">
+        <b className="font-cyber">Sleeve:</b> Beasttech Pride Hide
+      </TypographyP>
+      <TypographyP>
+        <b className="font-cyber">
+          Cyberware: <span className="text-fuchsia-500">ETD Adrenaspike</span>
+        </b>
+      </TypographyP>
+      <Separator className="mt-2" />
+      <TypographyH3 className="font-cyber">Baggage</TypographyH3>
+      <TypographyUnorderedList>
+        <li>
+          <b className="font-cyber">
+            Your elder [ <span className="text-red-500">Scheme</span>
+            {" -> "}
+            <span className="text-stone-500">Rival</span> ]
+          </b>{" "}
+          There&apos;s only one way to climb higher in your family, and
+          that&apos;s by knocking someone else down. It&apos;s not personal,
+          just power.
+        </li>
+        <li>
+          <b className="font-cyber">
+            Dynasty Rival [ <span className="text-stone-500">Rival</span>
+            {" -> "}
+            <span className="text-fuchsia-500">Bestial Transformation</span> ]
+          </b>{" "}
+          You&apos;ve done a disservice to your bloodline. They&apos;re here to
+          take their rightful place in the family hierarchy... at your expense.
+        </li>
+        <li>
+          <b className="font-cyber">
+            Your hurt [ <span className="text-lime-500">Drive</span> ]
+          </b>{" "}
+          The inferiority complex punching you in the gut. The paranoia that
+          your closest friends will stab you in the back. You find out why.
+        </li>
+        <li>
+          <b className="font-cyber">
+            A mentor [ <span className="text-sky-500">Bond</span> ]
+          </b>{" "}
+          They taught you everything you know about the game of power; hell,
+          they basically raised you.
+        </li>
+        <li>
+          <b className="font-cyber">
+            Underworld contact [ <span className="text-red-500">Consort</span>{" "}
+            {" -> "}
+            <span className="text-sky-500">Bond</span> ]
+          </b>{" "}
+          A useful servant of the dynasty, but with questionable loyalty. They
+          played a role in your rise.
+        </li>
+      </TypographyUnorderedList>
+
+      <TypographyH2 className="font-cyber mt-8">
+        Trust Fund Dilettante
+      </TypographyH2>
+      <TypographyP>
+        The point of life is bliss. You spend your days awash in a perpetual
+        bath of dopamine. Anything which strikes your fancy is yours, supplied
+        to you by a flock of doting servants.
+      </TypographyP>
+      <TypographyP>
+        Not to minimize your contributions to society. Because of your
+        privilaged position, you&apos;re freed up to think about the important
+        things. You share your cutting truths and insightful observations in the
+        podcast circuit and the news.
+      </TypographyP>
+      <TypographyP>
+        That all being said, you don&apos;t really know much about anything.
+        Well, you know a little about a lot of things. You have interests!
+        Besides, why learn anything when you can just slot in a codec when you
+        need to?
+      </TypographyP>
+      <Separator className="mt-2" />
+      <TypographyP>
+        <b className="font-cyber">
+          Starting Action: <span className="font-normal">N / A</span>
+        </b>
+      </TypographyP>
+      <TypographyP className="font-cyber">
+        <b className="font-cyber">Sleeve:</b> Feelmax Skyn
+      </TypographyP>
+      <TypographyBlockquote className="font-cyber text-xs">
+        Strata brings you the pinnacle of luxury sleeves. The latest in our
+        Velvet series, the Feelmax Skyn. Feel it the most where it counts.
+      </TypographyBlockquote>
+      <TypographyP>
+        <b className="font-cyber">
+          Cyberware:{" "}
+          <span className="text-fuchsia-500">
+            Renaissance Man 64 Core Cortical Stack
+          </span>
+        </b>
+      </TypographyP>
+      <Separator className="mt-2" />
+      <TypographyH3 className="font-cyber">Baggage</TypographyH3>
+      <TypographyUnorderedList>
+        <li>
+          <b className="font-cyber">
+            Corpo Bount [ <span className="text-stone-500">Rival</span> ]
+          </b>{" "}
+          Plenty of people want to get at your family. Whether its for ambition,
+          money, or revenge, they&apos;re here to take you out.
+        </li>
+        <li>
+          <b className="font-cyber">
+            Bodyguard [ <span className="text-stone-500">Rival</span> {" -> "}{" "}
+            <span className="text-fuchsia-500">Project: Pheonix</span> ]
+          </b>{" "}
+          You gave them the slip to go your own way. They&apos;re here to take
+          you back.
+        </li>
+        <li>
+          <b className="font-cyber">
+            Your hurt [ <span className="text-red-500">Pretense</span> ]
+          </b>{" "}
+          The gnawing sense that you dont belong. Like you&apos;re an impostor
+          of a human being going through the motions. You find out why.
+        </li>
+        <li>
+          <b className="font-cyber">
+            Best Friend [ <span className="text-sky-500">Bond</span>
+            {" -> "}
+            <span className="text-stone-500">Rival</span> ]
+          </b>{" "}
+          Someone who relates to your rich kid problems. A partner in mischief
+          and an admittedly bad influence.
+        </li>
+        <li>
+          <b className="font-cyber">
+            A sibling (
+            <span className="font-normal text-xs">or other relative</span>) [{" "}
+            <span className="text-sky-500">Bond</span> {" -> "}
+            <span className="text-lime-500">Drive</span> ]
+          </b>{" "}
+          Your closest family member. The only one who supports your dreams and
+          keeps you in check.
+        </li>
+      </TypographyUnorderedList>
+
       <TypographyH2 className="font-cyber mt-8">Biofundamentalist</TypographyH2>
+
       <TypographyH2 className="font-cyber mt-8">Factory Mundane</TypographyH2>
+
       <TypographyH2 className="font-cyber mt-8">Netrunner</TypographyH2>
+
       <TypographyH2 className="font-cyber mt-8">Bount</TypographyH2>
+
       <TypographyH2 className="font-cyber mt-8">Corpo Tech Wiz</TypographyH2>
     </>
   );
