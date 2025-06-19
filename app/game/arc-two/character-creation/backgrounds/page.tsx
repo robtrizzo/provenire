@@ -605,7 +605,7 @@ export default async function Page() {
         <b className="font-cyber">Sleeve:</b> Integra Model 2 Mod Pro
       </TypographyP>
       <TypographyBlockquote className="font-cyber text-xs">
-        Introducing our most customizable budget model yet, Model 8 Mod Max.
+        Introducing our most customizable budget model yet, Model 2 Mod Max.
         Dream big.
       </TypographyBlockquote>
       <TypographyP>
