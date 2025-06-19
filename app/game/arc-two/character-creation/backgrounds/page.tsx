@@ -704,7 +704,7 @@ export default async function Page() {
       <TypographyUnorderedList>
         <li>
           <b className="font-cyber">
-            Your bike [ <span className="text-red-500">Drive</span>
+            Your bike [ <span className="text-red-500">Pilot</span>
             {" -> "}
             <span className="text-fuchsia-500">
               Silcana Neural Interface &quot;Roadrunner&quot;
@@ -716,7 +716,7 @@ export default async function Page() {
         </li>
         <li>
           <b className="font-cyber">
-            Cult Freak [ <span className="text-stone-500">Rival</span>
+            Bio Cult Freak [ <span className="text-stone-500">Rival</span>
             {" -> "}
             <span className="text-red-500">Challenge</span> ]
           </b>{" "}
@@ -941,7 +941,7 @@ export default async function Page() {
       <TypographyP>
         That all being said, you don&apos;t really know much about anything.
         Well, you know a little about a lot of things. You have interests!
-        Besides, why learn anything when you can just slot in a codec when you
+        Besides, why learn anything when you can just slot in a codex when you
         need to?
       </TypographyP>
       <Separator className="mt-2" />
