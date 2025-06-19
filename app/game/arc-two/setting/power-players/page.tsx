@@ -48,7 +48,7 @@ export default async function Page() {
             <code>
               <b>Subsidiaries:</b>
             </code>
-            <code>Cytech</code>
+            <code>Cytech, Strata</code>
           </div>
         </Card>
         <Card className="rounded-none">
@@ -76,7 +76,7 @@ export default async function Page() {
             <code>
               <b>Subsidiaries:</b>
             </code>
-            <code>Ambrosia Medical</code>
+            <code>Ambrosia Medical, Zetalab</code>
           </div>
         </Card>
         <Card className="rounded-none">
