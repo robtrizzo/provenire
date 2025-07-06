@@ -60,10 +60,10 @@ const data = {
         //   title: "Archetypes",
         //   url: "/game/arc-two/character-creation/archetypes",
         // },
-        // {
-        //   title: "Operatives",
-        //   url: "/game/arc-two/character-creation/operatives",
-        // },
+        {
+          title: "Operatives",
+          url: "/game/arc-two/character-creation/operatives",
+        },
       ],
     },
   ],

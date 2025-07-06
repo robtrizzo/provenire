@@ -87,6 +87,10 @@ export default async function Page() {
               <b>Business sectors:</b>
             </code>
             <code>Construction, robotics, weapons, security</code>
+            <code>
+              <b>Subsidiaries:</b>
+            </code>
+            <code>Buran Hovertech</code>
           </div>
         </Card>
         <Card className="rounded-none">
