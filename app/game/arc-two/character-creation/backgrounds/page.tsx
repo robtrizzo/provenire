@@ -544,7 +544,7 @@ export default async function Page() {
           <b className="font-cyber">
             Your hurt [ <span className="text-stone-500">Rival</span> ]
           </b>{" "}
-          You sacrificed everything to get ahed in life. All for the promise of
+          You sacrificed everything to get ahead in life. All for the promise of
           a humble retirement in your twilight years. And what did you get for
           it? Debt. Threats. A body incapable of sensation.
         </li>
