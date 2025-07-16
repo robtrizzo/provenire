@@ -10,6 +10,5 @@ export default function OpPortrait(
   const src = `${
     process.env.NEXT_PUBLIC_S3_BUCKET
   }/era3/arc2/operatives/named/${name.toLowerCase()}.png`;
-  console.log("OpPortrait src:", src);
   return <Image {...props} src={src} alt={name} />;
 }

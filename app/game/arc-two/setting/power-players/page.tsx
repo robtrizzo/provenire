@@ -121,6 +121,10 @@ export default async function Page() {
               <b>Business sectors:</b>
             </code>
             <code>Nettech, holobroadcasting, cybersec</code>
+            <code>
+              <b>Subsidiaries:</b>
+            </code>
+            <code>Synthra</code>
           </div>
         </Card>
       </div>
