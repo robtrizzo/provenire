@@ -14,17 +14,7 @@ import {
 export default async function Page() {
   return (
     <>
-      <Breadcrumbs
-        crumbs={[
-          { name: "Game", href: "/game" },
-          { name: "Arc Two", href: "/game/arc-two" },
-          {
-            name: "Character Creation",
-            href: "/game/arc-two/character-creation",
-          },
-          { name: "Backgrounds", href: "#" },
-        ]}
-      />
+      <Breadcrumbs />
       <TypographyH1 className="font-cyber mb-8">Backgrounds</TypographyH1>
       <TypographyP>
         This is who you were before you joined{" "}
