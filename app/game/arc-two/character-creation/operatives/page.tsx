@@ -55,9 +55,9 @@ export default async function Page() {
         It&apos;s a lethal job. You don&apos;t know the exact turnover rate, but
         the churn seems to be intense. Of course, you&apos;re not without tools
         to help with the corp&apos;s goals. Each operative is provided a skill
-        codex [ <span className="font-cyber text-red-500">Action</span> ] and
-        specialized [{" "}
-        <span className="font-cyber text-fuchsia-500">Cyberware</span> ].
+        codex [ <b className="font-cyber text-red-500">Action</b> ] and
+        specialized [ <b className="font-cyber text-fuchsia-500">Cyberware</b>{" "}
+        ].
       </TypographyP>
 
       <div className="flex flex-col gap-2 mt-4">
