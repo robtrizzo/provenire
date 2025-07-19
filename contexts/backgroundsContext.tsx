@@ -6,35 +6,35 @@ import { createContext, ReactNode, useContext, useState } from "react";
 
 const MAX_POINTS = 5;
 
-interface OperativesContextProps {
+interface BackgroundsContextProps {
   MAX_POINTS: number;
   votesFetching: boolean;
   votes: CharacterOptionVote[];
   pointsSpent: number;
   castVote: ({
-    operative,
+    background,
     vote,
   }: {
-    operative: string;
+    background: string;
     vote: CharacterOptionVoteType;
   }) => void;
   castVoteError: string | null;
   refetchVotes: () => void;
 }
 
-const OperativesContext = createContext<OperativesContextProps | undefined>(
+const BackgroundsContext = createContext<BackgroundsContextProps | undefined>(
   undefined
 );
 
-export const useOperatives = () => {
-  const context = useContext(OperativesContext);
+export const useBackgrounds = () => {
+  const context = useContext(BackgroundsContext);
   if (!context) {
-    throw new Error("useOperatives must be used within a OperativesProvider");
+    throw new Error("useBackgrounds must be used within a BackgroundsProvider");
   }
   return context;
 };
 
-export default function OperativesProvider({
+export default function BackgroundsProvider({
   children,
 }: {
   children: ReactNode;
@@ -47,10 +47,10 @@ export default function OperativesProvider({
 
   const fetchCharacterOptionVoteData = async () => {
     try {
-      const response = await fetch("/api/operatives/votes");
+      const response = await fetch("/api/backgrounds/votes");
       if (!response.ok) {
         console.error(
-          `Failed to fetch operative vote data. status: ${response.status}`
+          `Failed to fetch background vote data. status: ${response.status}`
         );
         return [];
       }
@@ -58,7 +58,7 @@ export default function OperativesProvider({
       handleCalculatePlayerPoints(votes);
       return votes;
     } catch (error) {
-      console.error("Error fetching operative vote data:", error);
+      console.error("Error fetching background vote data:", error);
       throw error;
     }
   };
@@ -81,10 +81,10 @@ export default function OperativesProvider({
   }
 
   const handleCastVote = async ({
-    operative,
+    background,
     vote,
   }: {
-    operative: string;
+    background: string;
     vote: CharacterOptionVoteType;
   }) => {
     if (!session.data?.user?.id) {
@@ -95,19 +95,19 @@ export default function OperativesProvider({
     setCastVoteError(null);
     const votePoints = vote === "please" ? 3 : vote === "seemsCool" ? 1 : 0;
     let pointDiff = 0;
-    // detect if the user has already voted for this operative
-    const operativeVotes = queryClient
-      .getQueryData<CharacterOptionVote[]>(["votes", "operatives", "list"])
-      ?.find((v) => v.name === operative);
-    if (operativeVotes) {
-      if (userInVoteArray(userId, operativeVotes.votes[vote])) {
+    // detect if the user has already voted for this background
+    const backgroundVotes = queryClient
+      .getQueryData<CharacterOptionVote[]>(["votes", "backgrounds", "list"])
+      ?.find((v) => v.name === background);
+    if (backgroundVotes) {
+      if (userInVoteArray(userId, backgroundVotes.votes[vote])) {
         // user already voted for this, diff is 0
-      } else if (userInVoteArray(userId, operativeVotes.votes.please)) {
+      } else if (userInVoteArray(userId, backgroundVotes.votes.please)) {
         pointDiff = votePoints - 3;
-      } else if (userInVoteArray(userId, operativeVotes.votes.seemsCool)) {
+      } else if (userInVoteArray(userId, backgroundVotes.votes.seemsCool)) {
         pointDiff = votePoints - 1;
       } else {
-        // user has not voted for this operative before, diff is votePoints
+        // user has not voted for this background before, diff is votePoints
         pointDiff = votePoints;
       }
     }
@@ -116,24 +116,24 @@ export default function OperativesProvider({
       setCastVoteError(`You need ${votePoints} points to cast this vote.`);
       return;
     }
-    await castVote({ operative, vote });
+    await castVote({ background, vote });
   };
 
   const { data, isFetching, refetch } = useQuery({
-    queryKey: ["votes", "operatives", "list"],
+    queryKey: ["votes", "backgrounds", "list"],
     queryFn: fetchCharacterOptionVoteData,
     enabled: !!session.data?.user?.id,
   });
 
   const { mutateAsync: castVote } = useMutation({
     mutationFn: async ({
-      operative,
+      background,
       vote,
     }: {
-      operative: string;
+      background: string;
       vote: CharacterOptionVoteType;
     }) => {
-      const response = await fetch(`/api/operatives/votes/${operative}`, {
+      const response = await fetch(`/api/backgrounds/votes/${background}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -142,7 +142,7 @@ export default function OperativesProvider({
       });
       if (!response.ok) {
         console.error(
-          "Failed to cast operative vote. Status: ",
+          "Failed to cast background vote. Status: ",
           response.status
         );
         return response.json();
@@ -151,16 +151,17 @@ export default function OperativesProvider({
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["votes", "operatives", "list"],
+        queryKey: ["votes", "backgrounds", "list"],
       });
     },
     onError: (error) => {
       console.error("Failed to cast vote", error);
+      setCastVoteError(error.message);
     },
   });
 
   return (
-    <OperativesContext.Provider
+    <BackgroundsContext.Provider
       value={{
         MAX_POINTS,
         votesFetching: isFetching,
@@ -172,6 +173,6 @@ export default function OperativesProvider({
       }}
     >
       {children}
-    </OperativesContext.Provider>
+    </BackgroundsContext.Provider>
   );
 }

@@ -9,14 +9,14 @@ import { Button } from "@/components/ui/button";
 import { Hand, RefreshCw } from "lucide-react";
 import { TypographyH4, TypographyP } from "@/components/ui/typography";
 import { cn } from "@/lib/utils";
-import { useOperatives } from "@/contexts/operativesContext";
+import { useBackgrounds } from "@/contexts/backgroundsContext";
 import { useSession } from "next-auth/react";
 import UserAvatar from "@/components/ui/UserAvatar";
 
 const votecardstyle =
   "border-[1px] p-2 rounded-md w-full hover:border-2 mb-[2px] hover:mb-0";
 
-export default function OperativeVotePopover({ name }: { name: string }) {
+export default function BackgroundVotePopover({ name }: { name: string }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -25,7 +25,6 @@ export default function OperativeVotePopover({ name }: { name: string }) {
         <Button
           size="icon"
           variant="secondary"
-          className="absolute top-2 right-2"
           onClick={() => {
             setOpen(!open);
           }}
@@ -48,14 +47,14 @@ function VoteSection({ name }: { name: string }) {
     refetchVotes,
     votesFetching,
     castVoteError,
-  } = useOperatives();
+  } = useBackgrounds();
 
   if (!session.data?.user) {
     return (
       <div className="flex flex-col items-center gap-2">
         <TypographyH4>Login Required</TypographyH4>
         <TypographyP>
-          You must be logged in to cast a vote for this operative.
+          You must be logged in to cast a vote for this background.
         </TypographyP>
       </div>
     );
@@ -65,7 +64,7 @@ function VoteSection({ name }: { name: string }) {
     <div className="flex flex-col items-center gap-2">
       <TypographyH4>Indicate Interest</TypographyH4>
       <span className="text-xs">
-        Select your interest level in this operative.
+        Select your interest level in this background.
       </span>
       <TypographyP>
         Your points remaining: <b>{MAX_POINTS - pointsSpent}</b>
@@ -149,9 +148,9 @@ function VoteTypeSection({
   name: string;
   vote: CharacterOptionVoteType;
 }) {
-  const { votes, castVote, votesFetching } = useOperatives();
+  const { votes, castVote, votesFetching } = useBackgrounds();
 
-  const operativeVotes = votes.find((vote) => vote.name === name)?.votes[vote];
+  const backgroundVotes = votes.find((vote) => vote.name === name)?.votes[vote];
 
   return (
     <div
@@ -162,12 +161,12 @@ function VoteTypeSection({
       )}
       onClick={() => {
         if (votesFetching) return;
-        castVote({ operative: name, vote });
+        castVote({ background: name, vote });
       }}
     >
       <VoteTypeSectionDescriptor vote={vote} />
       <div className="flex flex-col gap-1">
-        {operativeVotes?.map((user) => (
+        {backgroundVotes?.map((user) => (
           <UserAvatar key={user.id} user={user} />
         ))}
       </div>
