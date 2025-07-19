@@ -10,6 +10,7 @@ import {
   TypographyP,
   TypographyUnorderedList,
 } from "@/components/ui/typography";
+import BackgroundVotePopover from "./(components)/background-vote-popover";
 
 export default async function Page() {
   return (
@@ -133,7 +134,7 @@ export default async function Page() {
         unique background from each of the other players.
       </TypographyP>
 
-      <TypographyH2 className="font-cyber mt-8">Biofundamentalist</TypographyH2>
+      <BackgroundTitle name="Biofundamentalist" />
       <TypographyP>
         Kingwulf conquered the world to create a paradise for predators, not a
         bleak concrete jungle populated with more machine than flesh. This world
@@ -214,7 +215,7 @@ export default async function Page() {
         </li>
       </TypographyUnorderedList>
 
-      <TypographyH2 className="font-cyber mt-8">Bount</TypographyH2>
+      <BackgroundTitle name="Bount" />
       <TypographyP>
         The Royal Rathi Army chewed you up and spit you out. You&apos;ve lost
         count of the number of times you&apos;ve died, been resleeved, and set
@@ -300,7 +301,7 @@ export default async function Page() {
         </li>
       </TypographyUnorderedList>
 
-      <TypographyH2 className="font-cyber mt-8">Corpo Labcoat</TypographyH2>
+      <BackgroundTitle name="Corpo Labcoat" />
       <TypographyP>
         You live in the golden age of technological advancement, and you&apos;re
         a part of it. As a toddler, your parents sent you to the best science
@@ -401,7 +402,7 @@ export default async function Page() {
         <b className="text-red-500">Tartech</b>
       </TypographyBlockquote>
 
-      <TypographyH2 className="font-cyber mt-8">Dynastic Scion</TypographyH2>
+      <BackgroundTitle name="Dynastic Scion" />
       <TypographyP>
         The corporate suits fancy themselves the rulers of{" "}
         <b className="font-cyber">Feasting</b>. But compared to the noble
@@ -480,7 +481,7 @@ export default async function Page() {
         </li>
       </TypographyUnorderedList>
 
-      <TypographyH2 className="font-cyber mt-8">Factory Mundane</TypographyH2>
+      <BackgroundTitle name="Factory Mundane" />
       <TypographyP>
         Day in and day out, you commute to the Grid, put in your hours, come
         home, repeat. But if you&apos;re going to pay the bills with dull
@@ -571,7 +572,7 @@ export default async function Page() {
         </li>
       </TypographyUnorderedList>
 
-      <TypographyH2 className="font-cyber mt-8">Grid Finch</TypographyH2>
+      <BackgroundTitle name="Grid Finch" />
       <TypographyP>
         You&apos;ve got a simple arrangement with the chop shoppers: you steal
         parts, you get a good price on cobbled chrome. Sometimes you even get a
@@ -666,7 +667,7 @@ export default async function Page() {
         </li>
       </TypographyUnorderedList>
 
-      <TypographyH2 className="font-cyber mt-8">Motorhead</TypographyH2>
+      <BackgroundTitle name="Motorhead" />
       <TypographyP>
         Pumping pistons, perfectly fitted gears, rumbling internal combustion -
         technology is beautiful. For as long as you remember, you&apos;ve had an
@@ -750,7 +751,7 @@ export default async function Page() {
         </li>
       </TypographyUnorderedList>
 
-      <TypographyH2 className="font-cyber mt-8">Netrunner</TypographyH2>
+      <BackgroundTitle name="Netrunner" />
       <TypographyP>
         Flesh and metal are obselete. Everything important went virtual a long
         time ago. Information, currency, security, entertainment, even{" "}
@@ -837,9 +838,7 @@ export default async function Page() {
         </li>
       </TypographyUnorderedList>
 
-      <TypographyH2 className="font-cyber mt-8">
-        Redzone Punk Metalist
-      </TypographyH2>
+      <BackgroundTitle name="Redzone Punk Metalist" />
       <TypographyP>
         Grab your guitar and c-sword. There are fascists in these streets.
         Can&apos;t let them think they own the joint.
@@ -924,9 +923,7 @@ export default async function Page() {
         </li>
       </TypographyUnorderedList>
 
-      <TypographyH2 className="font-cyber mt-8">
-        Trust Fund Dilettante
-      </TypographyH2>
+      <BackgroundTitle name="Trust Fund Dilettante" />
       <TypographyP>
         The point of life is bliss. You spend your days awash in a perpetual
         bath of dopamine. Anything which strikes your fancy is yours, supplied
@@ -1011,5 +1008,16 @@ export default async function Page() {
         </li>
       </TypographyUnorderedList>
     </>
+  );
+}
+
+function BackgroundTitle({ name }: { name: string }) {
+  return (
+    <TypographyH2 className="font-cyber mt-8" id={name}>
+      <div className="flex justify-between">
+        {name}
+        <BackgroundVotePopover name={name} />
+      </div>
+    </TypographyH2>
   );
 }
