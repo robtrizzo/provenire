@@ -1,6 +1,6 @@
 import redis from "@/lib/redis";
 
-type CharacterOptionType = "op" | "ar";
+type CharacterOptionType = "op" | "ar" | "bg";
 
 export async function getAllCharacterOptionVotes(type: CharacterOptionType) {
   const keys = await redis.keys(`votes:${type}:*`);

@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card";
 import { TypographyH3 } from "@/components/ui/typography";
 import OpPortrait from "./operative-portrait";
 import Link from "next/link";
-import CharacterOptionVotePopover from "./operative-vote-popver";
+import OperativeVotePopover from "./operative-vote-popver";
 export default function OperativeCard({
   name,
   children,
@@ -30,7 +30,7 @@ export default function OperativeCard({
           {children}
         </div>
       </div>
-      <CharacterOptionVotePopover name={name} />
+      <OperativeVotePopover name={name} />
     </Card>
   );
 }
