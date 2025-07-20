@@ -1,3 +1,4 @@
+"use client";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -9,12 +10,16 @@ import {
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 
 export default function Breadcrumbs({
-  crumbs,
+  crumbs, // optional override
 }: {
   crumbs?: { name: string; href: string }[];
 }) {
+  const pathname = usePathname();
+  const generatedBreadcrumbs = crumbs || generateBreadcrumbs(pathname);
+  console.log("generatedBreadcrumbs", generatedBreadcrumbs);
   return (
     <header className="flex h-16 shrink-0 items-center gap-2 py-4">
       <SidebarTrigger className="ml-1" />
@@ -22,12 +27,14 @@ export default function Breadcrumbs({
         orientation="vertical"
         className={cn(
           "mr-2 h-4",
-          crumbs && crumbs?.length > 0 ? "visible" : "hidden"
+          generatedBreadcrumbs && generatedBreadcrumbs?.length > 0
+            ? "visible"
+            : "hidden"
         )}
       />
       <Breadcrumb>
         <BreadcrumbList>
-          {crumbs?.map((crumb, index) => [
+          {generatedBreadcrumbs?.map((crumb, index) => [
             <BreadcrumbItem key={crumb.name} className="hidden md:block">
               {crumb.href === "#" ? (
                 <BreadcrumbPage>{crumb.name}</BreadcrumbPage>
@@ -35,7 +42,7 @@ export default function Breadcrumbs({
                 <BreadcrumbLink href={crumb.href}>{crumb.name}</BreadcrumbLink>
               )}
             </BreadcrumbItem>,
-            index < crumbs.length - 1 && [
+            index < generatedBreadcrumbs.length - 1 && [
               <BreadcrumbSeparator
                 className="hidden md:block"
                 key={`${crumb.name}-sep`}
@@ -46,4 +53,20 @@ export default function Breadcrumbs({
       </Breadcrumb>
     </header>
   );
+}
+
+function generateBreadcrumbs(pathname: string) {
+  const segments = pathname.split("/").filter(Boolean);
+  return segments.map((segment, index) => {
+    let href;
+    if (index === segments.length - 1) {
+      href = "#";
+    } else {
+      href = "/" + segments.slice(0, index + 1).join("/");
+    }
+    const name = segment
+      .replace(/-/g, " ")
+      .replace(/\b\w/g, (l) => l.toUpperCase());
+    return { name, href };
+  });
 }
