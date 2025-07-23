@@ -1,0 +1,530 @@
+[
+  {
+    "name": "Strategist",
+    "shortDescription": "Intense, inquisitive, perceptive.",
+    "questions": [
+      "Who would you love to date, to give your all, if only you could figure out a good way to ... whatever people do to start dating?",
+      "Which one of the staff has already filed an HR complaint after your correct, but irreverent, nay, scathing contrarianism?",
+      "Which one of the staff do you have dirt on? How might they be exploited for your advantage?",
+      "Whose romantic advances have you ruined with brutal honesty and tactless criticism?"
+    ],
+    "startingAction": "Scheme",
+    "abilities": [
+      {
+        "name": "The Chess Game of Life",
+        "keystone": true,
+        "slug": "the-chess-game-of-life"
+      },
+      {
+        "name": "My Body is My Machine",
+        "keystone": false,
+        "slug": "my-body-is-my-machine"
+      },
+      {
+        "name": "Villainous Intellect",
+        "keystone": false,
+        "slug": "villainous-intellect"
+      },
+      {
+        "name": "Thirst for Knowledge",
+        "keystone": false,
+        "slug": "thirst-for-knowledge"
+      }
+    ]
+  },
+  {
+    "name": "Engineer",
+    "shortDescription": "Cerebral, experimental, positive.",
+    "questions": [
+      "Most folks don't have the Favors to spend on social gatherings; how did you use your creativity to bring joy to your friends?",
+      "Who is a pleasant distraction from your thoughts? Why can't you work up the courage to ask them out?",
+      "You hacked into some stolen corporate tech and it resulted in a close friend getting injured. Who?",
+      "Whose romantic advances have you ruined with your stubborn willful ignorance of feelings?"
+    ],
+    "startingAction": "Tinker",
+    "abilities": [
+      {
+        "name": "The Life of the Mind",
+        "keystone": true,
+        "slug": "the-life-of-the-mind"
+      },
+      {
+        "name": "Mysteries of the Machines",
+        "keystone": false,
+        "slug": "mysteries-of-the-machines"
+      },
+      {
+        "name": "Curious and Original",
+        "keystone": false,
+        "slug": "curious-and-original"
+      },
+      {
+        "name": "Open Minded",
+        "keystone": false,
+        "slug": "open-minded"
+      }
+    ]
+  },
+  {
+    "name": "Commander",
+    "shortDescription": "Decisive, ruthless, disciplined.",
+    "questions": [
+      "What's the name of your group of loyal lackeys?",
+      "Who would you love to date, if only they took romance as seriously as you do?",
+      "Who else knows about the secret network of informants you've set up throughout Cytech?",
+      "Whose romantic advances have you spurned because they weren't putting in as much to the relationship as you?"
+    ],
+    "startingAction": "Command",
+    "abilities": [
+      {
+        "name": "A Worthy Challenge",
+        "keystone": true,
+        "slug": "a-worthy-challenge"
+      },
+      {
+        "name": "Strive for Greatness",
+        "keystone": false,
+        "slug": "strive-for-greatness"
+      },
+      {
+        "name": "Efficiency is King",
+        "keystone": false,
+        "slug": "efficiency-is-king"
+      },
+      {
+        "name": "Sacrificial Pawn",
+        "keystone": false,
+        "slug": "sacrificial-pawn"
+      }
+    ]
+  },
+  {
+    "name": "Visionary",
+    "shortDescription": "Bold, rebellious, contrarian.",
+    "questions": [
+      "Who have you inspired with your relentless wit and sharp mind for revolutionary rhetoric?",
+      "Who would you love to date, if only you could find the right opportunity for your grand gesture of affection?",
+      "Which staff member have you so chronically debated that they become irritated with you on sight? What's the moment you think they realized you're right?",
+      "Whose romantic advances have you ruined because they couldn't keep up with your constant need for growth and novelty?"
+    ],
+    "startingAction": "Rhetoric",
+    "abilities": [
+      {
+        "name": "Rapid Originality",
+        "keystone": true,
+        "slug": "rapid-originality"
+      },
+      {
+        "name": "Question Everything",
+        "keystone": false,
+        "slug": "question-everything"
+      },
+      {
+        "name": "Contrarian Charisma",
+        "keystone": false,
+        "slug": "contrarian-charisma"
+      },
+      {
+        "name": "Expert Brainstormer",
+        "keystone": false,
+        "slug": "expert-brainstormer"
+      }
+    ]
+  },
+  {
+    "name": "Advocate",
+    "shortDescription": "Thoughtful, principled, altruistic.",
+    "questions": [
+      "Whose life have you saved by stepping in and taking the punishment for them?",
+      "Who do you have a deep romantic, or even spiritual connection with? What's stopping you from dating each other?",
+      "Your indominable dedication to your principles and peers has resulted in years of horrible treatment. How has this scarred you? Through this ordeal, you've turned the heart of a corpo bount. Who are they?",
+      "Whose romantic advances have you spurned because they don't share your core values?"
+    ],
+    "startingAction": "Connect",
+    "abilities": [
+      {
+        "name": "Seeking Purpose",
+        "keystone": true,
+        "slug": "seeking-purpose"
+      },
+      {
+        "name": "A Personal Mission",
+        "keystone": false,
+        "slug": "a-personal-mission"
+      },
+      {
+        "name": "Connecting with Others",
+        "keystone": false,
+        "slug": "connecting-with-others"
+      },
+      {
+        "name": "Principled Perfectionism",
+        "keystone": false,
+        "slug": "principled-perfectionism"
+      }
+    ]
+  },
+  {
+    "name": "Idealist",
+    "shortDescription": "Imaginative, empathetic, compassionate.",
+    "questions": [
+      "Who is your best friend? Someone you've inspired with grand visions of the future and who you've always helped out of bad spots?",
+      "Who would you love to date despite all of their superficial flaws? Why are they your soul-mate?",
+      "Which one of the corps threatens your best friend in order to get you to be an informant?",
+      "Who broke your heart because dating them wasn't everything you'd imagined it would be?"
+    ],
+    "startingAction": "Comfort",
+    "abilities": [
+      {
+        "name": "In Search of a Calling",
+        "keystone": true,
+        "slug": "in-search-of-a-calling"
+      },
+      {
+        "name": "Open Heart",
+        "keystone": false,
+        "slug": "open-heart"
+      },
+      {
+        "name": "Speaking their Truth",
+        "keystone": false,
+        "slug": "speaking-their-truth"
+      },
+      {
+        "name": "Empathize",
+        "keystone": false,
+        "slug": "empathize"
+      }
+    ]
+  },
+  {
+    "name": "Leader",
+    "shortDescription": "Warm, passionate, optimistic.",
+    "questions": [
+      "When your community leader passed away, who advocated for you to take their place? How is filling their shoes going?",
+      "Who's the one who got away? Where are they now, and what's your plan to win them back?",
+      "Which one of the corps poisoned food meant for you, resulting in the death of one of your loved ones? Who?",
+      "Who rejected you after what seemed to them as a sudden declaration of your love?"
+    ],
+    "startingAction": "Inspire",
+    "abilities": [
+      {
+        "name": "Lead the Way",
+        "keystone": true,
+        "slug": "lead-the-way"
+      },
+      {
+        "name": "Intense and Receptive",
+        "keystone": false,
+        "slug": "intense-and-receptive"
+      },
+      {
+        "name": "Speaking Up for What's Right",
+        "keystone": false,
+        "slug": "speaking-up-for-whats-right"
+      },
+      {
+        "name": "Getting Involved",
+        "keystone": false,
+        "slug": "getting-involved"
+      }
+    ]
+  },
+  {
+    "name": "Dreamer",
+    "shortDescription": "Hopeful, openhearted, carefree.",
+    "questions": [
+      "Your dreams are vivid, almost ... real? What do you do in your dreams, where you can't be monitored?",
+      "Who's your ex who you would love to date again? Why does it seem like too much work?",
+      "Which one of the corps watches your each and every move, punishing you immediately if you so much as toe the line of the box they've defined for you?",
+      "Who did you break up with after an intense honeymoon phase because the flames of romance started to flicker?"
+    ],
+    "startingAction": "Read",
+    "abilities": [
+      {
+        "name": "The Magic of Everyday Life",
+        "keystone": true,
+        "slug": "the-magic-of-everyday-life"
+      },
+      {
+        "name": "Burst of Enthusiasm",
+        "keystone": false,
+        "slug": "burst-of-enthusiasm"
+      },
+      {
+        "name": "People Pleaser",
+        "keystone": false,
+        "slug": "people-pleaser"
+      },
+      {
+        "name": "Emotionally Perceptive",
+        "keystone": false,
+        "slug": "emotionally-perceptive"
+      }
+    ]
+  },
+  {
+    "name": "Logistician",
+    "shortDescription": "Willful, rational, methodical.",
+    "questions": [
+      "Who do you have feelings for, who just makes sense for you? How long have you been waiting for them to make a move?",
+      "Which one of the corps noticed how hard you worked and then doubled your workload because of it?",
+      "You've attended a meeting of a corp's top executives. What have you learned that could help ruin their plans?",
+      "Who broke up with you despite you being the one who won every argument?"
+    ],
+    "startingAction": "Logic",
+    "abilities": [
+      {
+        "name": "Dutiful Servant of the King",
+        "keystone": true,
+        "slug": "dutiful-servant-of-the-king"
+      },
+      {
+        "name": "By the Book is Practical",
+        "keystone": false,
+        "slug": "by-the-book-is-practical"
+      },
+      {
+        "name": "Structure and Order",
+        "keystone": false,
+        "slug": "structure-and-order"
+      },
+      {
+        "name": "Picking Up the Slack",
+        "keystone": false,
+        "slug": "picking-up-the-slack"
+      }
+    ]
+  },
+  {
+    "name": "Defender",
+    "shortDescription": "Steady, responsible, understanding.",
+    "questions": [
+      "You've been giving up pieces of your body to make rent. What toll has this taken on you?",
+      "Who do you have a crush on; who you jump to the defense of, even when it doesn't make sense? Why haven't you expressed your feelings?",
+      "Which one of the dynastic family scions loves tormenting you, beating you, watching you suffer as you quietly work in order to support your family?",
+      "Who broke up with you because you never let them fight their own battles?"
+    ],
+    "startingAction": "Loyalty",
+    "abilities": [
+      {
+        "name": "Showing Up",
+        "keystone": true,
+        "slug": "showing-up"
+      },
+      {
+        "name": "The Gift of Loyalty",
+        "keystone": false,
+        "slug": "the-gift-of-loyalty"
+      },
+      {
+        "name": "The Highest Standard",
+        "keystone": false,
+        "slug": "the-highest-standard"
+      },
+      {
+        "name": "Humble Dedication",
+        "keystone": false,
+        "slug": "humble-dedication"
+      }
+    ]
+  },
+  {
+    "name": "Executive",
+    "shortDescription": "Resilient, diligent, stabilizing.",
+    "questions": [
+      "Who do you see at social gatherings who really interests you? What position do you need to be in before you know they'd go out with you?",
+      "Which one of the corps has abducted you to conduct foul experiments? What scars has their tampering left?",
+      "Many of these years you have shut out the woes of the world and focused wholeheartedly on yourself. What special skill have you honed in this time?",
+      "Who broke up with you because you're incapable of having your mind changed?"
+    ],
+    "startingAction": "Berate",
+    "abilities": [
+      {
+        "name": "Lead by Example",
+        "keystone": true,
+        "slug": "lead-by-example"
+      },
+      {
+        "name": "Here are the Facts",
+        "keystone": false,
+        "slug": "here-are-the-facts"
+      },
+      {
+        "name": "A Greater Responsibility",
+        "keystone": false,
+        "slug": "a-greater-responsibility"
+      },
+      {
+        "name": "Climb the Ladder",
+        "keystone": false,
+        "slug": "climb-the-ladder"
+      }
+    ]
+  },
+  {
+    "name": "Consul",
+    "shortDescription": "Attentive, encouraging, generous.",
+    "questions": [
+      "You have a treasure trove of old movies and books about heroes of the past. Who are they?",
+      "Someone is always there for you, reassuring you when you doubt yourself and supporting you through hard times. Who are they? How do you plan to win their heart?",
+      "You and your shiftmates have worked together in secret for years to build a secret passage into a corpo building. What's in the room?",
+      "Who did you break up with because they never gave you the approval you need, even when you changed yourself for them?"
+    ],
+    "startingAction": "Encourage",
+    "abilities": [
+      {
+        "name": "Relationships that Last",
+        "keystone": true,
+        "slug": "relationships-that-last"
+      },
+      {
+        "name": "It's the Little Things",
+        "keystone": false,
+        "slug": "its-the-little-things"
+      },
+      {
+        "name": "Host a Gathering",
+        "keystone": false,
+        "slug": "host-a-gathering"
+      },
+      {
+        "name": "Living for Connection",
+        "keystone": false,
+        "slug": "living-for-connection"
+      }
+    ]
+  },
+  {
+    "name": "Virtuoso",
+    "shortDescription": "Solitary, exploratory, direct.",
+    "questions": [
+      "Who is your mentor? A fellow tinkerer who has helped you learn the multitude of your interests?",
+      "Who is the latest flame to catch your eye? What's your novel plan to initiate love?",
+      "Which one of the staff gets a little too close? Breathes down your neck? Is visible from the corner of your eye whenever you check?",
+      "Who did you break up with because they wanted to get serious too quickly?"
+    ],
+    "startingAction": "Stubborn",
+    "abilities": [
+      {
+        "name": "Personal Project",
+        "keystone": true,
+        "slug": "personal-project"
+      },
+      {
+        "name": "Defying the Rules",
+        "keystone": false,
+        "slug": "defying-the-rules"
+      },
+      {
+        "name": "Dare to Differ",
+        "keystone": false,
+        "slug": "dare-to-differ"
+      },
+      {
+        "name": "All Fair Play",
+        "keystone": false,
+        "slug": "all-fair-play"
+      }
+    ]
+  },
+  {
+    "name": "Artist",
+    "shortDescription": "Centered, interested, openminded.",
+    "questions": [
+      "Who do you delight in surprising in little ways? Why haven't they asked you out yet?",
+      "Which one of the staff takes delight in working to control you? To break you down so you don't even attempt small acts of defiance?",
+      "You've been working on a passion project, some form of creativity and insight to express your bold ideas and speak to your fellows' hearts. What is it?",
+      "Who did you mutually break up with due to their pushiness and your guarded emotions?"
+    ],
+    "startingAction": "Drama",
+    "abilities": [
+      {
+        "name": "Many Passions",
+        "keystone": false,
+        "slug": "many-passions"
+      },
+      {
+        "name": "Pain to Rage",
+        "keystone": false,
+        "slug": "pain-to-rage"
+      },
+      {
+        "name": "Overwhelmed",
+        "keystone": false,
+        "slug": "overwhelmed"
+      },
+      {
+        "name": "Read Emotions",
+        "keystone": true,
+        "slug": "read-emotions"
+      }
+    ]
+  },
+  {
+    "name": "Adventurer",
+    "shortDescription": "Energetic, enthusiastic, impulsive.",
+    "questions": [
+      "Who is your partner in crime? Your confidant and close friend who you adventure with?",
+      "Who would you love to introduce to all of your hobbies? To explore and have fun with?",
+      "You've been using your large social circle to spread rumors amongst the company. What are the rumors and how will they work to your crew's advantage?",
+      "Who broke up with you because they were looking for something not just fun, but deeper?"
+    ],
+    "startingAction": "Initiate",
+    "abilities": [
+      {
+        "name": "Dive Right In",
+        "keystone": true,
+        "slug": "dive-right-in"
+      },
+      {
+        "name": "Call Them Out",
+        "keystone": false,
+        "slug": "call-them-out"
+      },
+      {
+        "name": "Socialite",
+        "keystone": false,
+        "slug": "socialite"
+      },
+      {
+        "name": "The Path Less Traveled",
+        "keystone": false,
+        "slug": "the-path-less-traveled"
+      }
+    ]
+  },
+  {
+    "name": "Entertainer",
+    "shortDescription": "Social, witty, observant.",
+    "questions": [
+      "Sometimes when you dream, you make contact with someone else in a very real way. Who are they?",
+      "Who excites you? Makes you full of energy with just their presence? What's stopping you?",
+      "Which one of the staff takes time to sabotage or outright ruin your clothing and appearance?",
+      "Who did you break up with because they criticized you and just killed the spark?"
+    ],
+    "startingAction": "Visual Calculus",
+    "abilities": [
+      {
+        "name": "A Spontaneous Spirit",
+        "keystone": true,
+        "slug": "a-spontaneous-spirit"
+      },
+      {
+        "name": "Situational Awareness",
+        "keystone": false,
+        "slug": "situational-awareness"
+      },
+      {
+        "name": "Living With Passion",
+        "keystone": false,
+        "slug": "living-with-passion"
+      },
+      {
+        "name": "Avoid Conflict",
+        "keystone": false,
+        "slug": "avoid-conflict"
+      }
+    ]
+  }
+]

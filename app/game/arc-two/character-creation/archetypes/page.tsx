@@ -1,74 +1,101 @@
 import Breadcrumbs from "@/components/ui/breadcrumbs";
-import { TypographyH1, TypographyH2 } from "@/components/ui/typography";
+import {
+  TypographyH1,
+  TypographyH2,
+  TypographyP,
+} from "@/components/ui/typography";
 import ArchetypeVotePopover from "./(components)/archetype-vote-popover";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import archetypes from "@/public/arc2/archetypes.json";
+import { ArchetypeV2 } from "@/types/game";
+import Ability from "@/components/abilities/ability";
 
-export default async function Page() {
+export default function Page() {
   return (
     <>
       <Breadcrumbs />
       <TypographyH1 className="font-cyber mb-8">Archetypes</TypographyH1>
-      <ArchetypeTitle name="Strategist" />
-      <span className="text-muted-foreground">
-        Intense, inquisitive, perceptive
-      </span>
-      <ArchetypeTitle name="Engineer" />
-      <span className="text-muted-foreground">
-        Cerebral, experimental, positive
-      </span>
-      <ArchetypeTitle name="Commander" />
-      <span className="text-muted-foreground">
-        Decisive, ruthless, disciplined
-      </span>
-      <ArchetypeTitle name="Visionary" />
-      <span className="text-muted-foreground">
-        Bold, rebellious, contrarian
-      </span>
-      <ArchetypeTitle name="Advocate" />
-      <span className="text-muted-foreground">
-        Thoughtful, principled, altruistic
-      </span>
-      <ArchetypeTitle name="Idealist" />
-      <span className="text-muted-foreground">
-        Imaginative, empathetic, compassionate
-      </span>
-      <ArchetypeTitle name="Leader" />
-      <span className="text-muted-foreground">
-        Warm, passionate, optimistic
-      </span>
-      <ArchetypeTitle name="Dreamer" />
-      <span className="text-muted-foreground">
-        Hopeful, openhearted, carefree
-      </span>
-      <ArchetypeTitle name="Logistician" />
-      <span className="text-muted-foreground">
-        Willful, rational, methodical
-      </span>
-      <ArchetypeTitle name="Defender" />
-      <span className="text-muted-foreground">
-        Steady, responsible, understanding
-      </span>
-      <ArchetypeTitle name="Executive" />
-      <span className="text-muted-foreground">
-        Resilient, diligent, stabilizing
-      </span>
-      <ArchetypeTitle name="Consul" />
-      <span className="text-muted-foreground">
-        Attentive, encouraging, generous
-      </span>
-      <ArchetypeTitle name="Virtuoso" />
-      <span className="text-muted-foreground">
-        Solitary, exploratory, direct
-      </span>
-      <ArchetypeTitle name="Artist" />
-      <span className="text-muted-foreground">
-        Centered, interested, openminded
-      </span>
-      <ArchetypeTitle name="Adventurer" />
-      <span className="text-muted-foreground">
-        Energetic, enthusiastic, impulsive
-      </span>
-      <ArchetypeTitle name="Entertainer" />
-      <span className="text-muted-foreground">Social, witty, observant</span>
+
+      {archetypes.map((a) => (
+        <Archetype key={a.name} archetype={a} />
+      ))}
+    </>
+  );
+}
+
+function Archetype({ archetype }: { archetype: ArchetypeV2 }) {
+  const { name, questions, shortDescription, startingAction, abilities } =
+    archetype;
+  return (
+    <>
+      <ArchetypeTitle name={name} />
+      <span className="text-muted-foreground">{shortDescription}</span>
+      <TypographyP>
+        <b className="font-cyber">
+          Starting Action:{" "}
+          <span className="text-red-500">{startingAction}</span>
+        </b>
+      </TypographyP>
+      <div className="ml-4 mt-2">
+        <i className="text-sm">
+          {questions.map((q, i) => (
+            <TypographyP key={name + "question" + i}>{q}</TypographyP>
+          ))}
+        </i>
+      </div>
+
+      <Accordion type="multiple">
+        <AccordionItem value="chessgame">
+          <AccordionTrigger className="hover:no-underline">
+            <TypographyP>
+              <b className="font-cyber">Starting Ability</b>
+            </TypographyP>
+          </AccordionTrigger>
+          <AccordionContent>
+            <div className="mx-4">
+              <b className="text-amber-500 font-cyber">{abilities[0].name}</b>
+              <Ability
+                ability={abilities[0]}
+                category="archetypes"
+                arc="arc2"
+                type={archetype.name.toLocaleLowerCase()}
+              />
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+
+      <Accordion type="multiple">
+        <AccordionItem value="chessgame">
+          <AccordionTrigger className="hover:no-underline">
+            <TypographyP>
+              <b className="font-cyber">Unlockable Abilities:</b>
+            </TypographyP>
+          </AccordionTrigger>
+          <AccordionContent>
+            <div className="mx-4 flex flex-col gap-2">
+              {abilities.slice(1).map((a, i) => {
+                return (
+                  <div key={a.name + i}>
+                    <b className="font-cyber">{a.name}</b>
+                    <Ability
+                      ability={a}
+                      category="archetypes"
+                      arc="arc2"
+                      type={archetype.name.toLocaleLowerCase()}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
     </>
   );
 }

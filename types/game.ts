@@ -28,6 +28,14 @@ export type Archetype = {
   };
 };
 
+export type ArchetypeV2 = {
+  name: string;
+  questions: string[];
+  shortDescription: string;
+  startingAction: string;
+  abilities: Ability[];
+};
+
 export type FightingStyle = {
   name: string;
   instructor: string;

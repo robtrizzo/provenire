@@ -66,6 +66,24 @@ const data = {
         },
       ],
     },
+    {
+      title: "Cycle of Play",
+      url: "#",
+      items: [
+        {
+          title: "Prelude",
+          url: "/game/arc-two/cycle-of-play/prelude",
+        },
+        {
+          title: "Mission",
+          url: "/game/arc-two/cycle-of-play/mission",
+        },
+        {
+          title: "Churn",
+          url: "/game/arc-two/cycle-of-play/churn",
+        },
+      ],
+    },
   ],
 };
 

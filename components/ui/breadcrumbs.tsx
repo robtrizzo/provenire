@@ -19,7 +19,6 @@ export default function Breadcrumbs({
 }) {
   const pathname = usePathname();
   const generatedBreadcrumbs = crumbs || generateBreadcrumbs(pathname);
-  console.log("generatedBreadcrumbs", generatedBreadcrumbs);
   return (
     <header className="flex h-16 shrink-0 items-center gap-2 py-4">
       <SidebarTrigger className="ml-1" />
