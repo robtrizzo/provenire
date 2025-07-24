@@ -1,7 +1,9 @@
 import Breadcrumbs from "@/components/ui/breadcrumbs";
 import {
+  TypographyBlockquote,
   TypographyH1,
   TypographyH2,
+  TypographyH3,
   TypographyP,
 } from "@/components/ui/typography";
 import ArchetypeVotePopover from "./(components)/archetype-vote-popover";
@@ -20,7 +22,29 @@ export default function Page() {
     <>
       <Breadcrumbs />
       <TypographyH1 className="font-cyber mb-8">Archetypes</TypographyH1>
-
+      <TypographyP>
+        Even without your memories, some things stay the same. This is who you
+        are, or at least one piece of you that survived the{" "}
+        <i>memory shelving</i>. In some ways, this is who you&apos;ve always
+        been. In others, key parts of your past shaped you.
+      </TypographyP>
+      <TypographyBlockquote>
+        Your character will regain memory of their <b>Horizon Questions</b> once
+        you&apos;ve crossed the <i>memroy horizon</i> (unlocking <b>four</b>{" "}
+        pieces of <b>baggage</b>).
+      </TypographyBlockquote>
+      <TypographyH3>Choosing an Archetype</TypographyH3>
+      <TypographyP>
+        The questions are intended to allow you to develop your character&apos;s
+        personality and flesh out their short tenure at{" "}
+        <span className="font-cyber">Root</span> so far. For questions involving
+        staff at <span className="font-cyber">Root</span>, feel free to name an
+        established character or make one up.
+      </TypographyP>
+      <TypographyP>
+        Due to the nature of these questions and abilities, I ask that you
+        attempt to pick a unique archetype from each of the other players.
+      </TypographyP>
       {archetypes.map((a) => (
         <Archetype key={a.name} archetype={a} />
       ))}
@@ -41,13 +65,30 @@ function Archetype({ archetype }: { archetype: ArchetypeV2 }) {
           <span className="text-red-500">{startingAction}</span>
         </b>
       </TypographyP>
+      <TypographyP>
+        <b className="font-cyber">Starting Questons:</b>
+      </TypographyP>
       <div className="ml-4 mt-2">
         <i className="text-sm">
-          {questions.map((q, i) => (
+          {questions.starting.map((q, i) => (
             <TypographyP key={name + "question" + i}>{q}</TypographyP>
           ))}
         </i>
       </div>
+      {archetype.questions.horizon.length > 0 && (
+        <>
+          <TypographyP>
+            <b className="font-cyber">Horizon Questons:</b>
+          </TypographyP>
+          <div className="ml-4 mt-2">
+            <i className="text-sm">
+              {questions.horizon.map((q, i) => (
+                <TypographyP key={name + "question" + i}>{q}</TypographyP>
+              ))}
+            </i>
+          </div>
+        </>
+      )}
 
       <Accordion type="multiple">
         <AccordionItem value="chessgame">

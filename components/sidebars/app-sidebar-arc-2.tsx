@@ -64,6 +64,10 @@ const data = {
           title: "Operatives",
           url: "/game/arc-two/character-creation/operatives",
         },
+        {
+          title: "Advancement",
+          url: "/game/arc-two/character-creation/advancement",
+        },
       ],
     },
     {
@@ -81,6 +85,16 @@ const data = {
         {
           title: "Churn",
           url: "/game/arc-two/cycle-of-play/churn",
+        },
+      ],
+    },
+    {
+      title: "Rules",
+      url: "#",
+      items: [
+        {
+          title: "Actions and Rolls",
+          url: "/game/arc-two/rules/actions-and-rolls",
         },
       ],
     },

@@ -30,7 +30,10 @@ export type Archetype = {
 
 export type ArchetypeV2 = {
   name: string;
-  questions: string[];
+  questions: {
+    starting: string[];
+    horizon: string[];
+  };
   shortDescription: string;
   startingAction: string;
   abilities: Ability[];
