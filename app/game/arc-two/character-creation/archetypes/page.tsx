@@ -16,6 +16,7 @@ import {
 import archetypes from "@/public/arc2/archetypes.json";
 import { ArchetypeV2 } from "@/types/game";
 import Ability from "@/components/abilities/ability";
+import Link from "next/link";
 
 export default function Page() {
   return (
@@ -30,8 +31,11 @@ export default function Page() {
       </TypographyP>
       <TypographyBlockquote>
         Your character will regain memory of their <b>Horizon Questions</b> once
-        you&apos;ve crossed the <i>memroy horizon</i> (unlocking <b>four</b>{" "}
-        pieces of <b>baggage</b>).
+        you&apos;ve crossed the{" "}
+        <Link href="/game/arc-two/character-creation/advancement#memory-horizon">
+          <i className="underline text-red-500">memory horizon</i>
+        </Link>
+        ).
       </TypographyBlockquote>
       <TypographyH3>Choosing an Archetype</TypographyH3>
       <TypographyP>
