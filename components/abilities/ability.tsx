@@ -1,5 +1,7 @@
+"use client";
 import type { Ability } from "@/types/game";
 import dynamic from "next/dynamic";
+import { Suspense } from "react";
 
 const ABILITIES_DIR = "@/components/abilities";
 
@@ -10,12 +12,13 @@ interface AbilityProps {
   type: string;
 }
 
-export default async function Ability(props: AbilityProps) {
+export default function Ability(props: AbilityProps) {
   const { ability, category, arc, type } = props;
   const importPath = `${ABILITIES_DIR}/${category}/${arc}/${type}/${ability.slug}`;
-  const Ability = dynamic(
-    () =>
-      import(importPath).catch(() => ({
+  const Ability = dynamic(() =>
+    import(importPath)
+      .then((module) => module.default)
+      .catch(() => ({
         default: () => (
           <div>
             <span className="text-red-500">
@@ -26,10 +29,11 @@ export default async function Ability(props: AbilityProps) {
             </span>
           </div>
         ),
-      })),
-    {
-      loading: () => <p>Loading ability...</p>,
-    }
+      }))
   );
-  return <Ability />;
+  return (
+    <Suspense fallback={<div>Loading ability...</div>}>
+      <Ability />
+    </Suspense>
+  );
 }
