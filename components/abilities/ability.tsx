@@ -1,9 +1,22 @@
 "use client";
 import type { Ability } from "@/types/game";
-import dynamic from "next/dynamic";
-import { Suspense } from "react";
+import { abilityRegistry } from "./registry";
 
-const ABILITIES_DIR = "@/components/abilities";
+// Add index signatures to match dynamic access
+import type { ComponentType } from "react";
+
+type AbilityRegistryType = {
+  [category: string]: {
+    [arc: string]: {
+      [type: string]: {
+        [slug: string]: ComponentType<unknown>;
+      };
+    };
+  };
+};
+
+// Cast abilityRegistry to the new type
+const typedAbilityRegistry = abilityRegistry as unknown as AbilityRegistryType;
 
 interface AbilityProps {
   ability: Ability;
@@ -14,26 +27,15 @@ interface AbilityProps {
 
 export default function Ability(props: AbilityProps) {
   const { ability, category, arc, type } = props;
-  const importPath = `${ABILITIES_DIR}/${category}/${arc}/${type}/${ability.slug}`;
-  const Ability = dynamic(() =>
-    import(importPath)
-      .then((module) => module.default)
-      .catch(() => ({
-        default: () => (
-          <div>
-            <span className="text-red-500">
-              Ability not found: {ability.name}. Check{" "}
-              <code className="text-muted-foreground text-xs">
-                {importPath}
-              </code>
-            </span>
-          </div>
-        ),
-      }))
-  );
-  return (
-    <Suspense fallback={<div>Loading ability...</div>}>
-      <Ability />
-    </Suspense>
-  );
+  const AbilityComponent =
+    typedAbilityRegistry?.[category]?.[arc]?.[type]?.[ability.slug];
+  if (!AbilityComponent) {
+    return (
+      <div>
+        <span className="text-red-500">Ability not found: {ability.name}</span>
+      </div>
+    );
+  }
+
+  return <AbilityComponent />;
 }
