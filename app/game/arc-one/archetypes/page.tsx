@@ -9,8 +9,7 @@ import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import ArchetypeQuestions from "@/components/archetype-questions";
 import archetypes from "@/public/archetypes.json";
-import Abilities from "@/components/abilities/abilities";
-import type { Archetype } from "@/types/game";
+import type { Ability as AbilityType, Archetype } from "@/types/game";
 import ActionDescription from "@/components/action-description";
 import {
   Accordion,
@@ -19,6 +18,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import Breadcrumbs from "@/components/ui/breadcrumbs";
+import { cn } from "@/lib/utils";
+import Ability from "@/components/abilities/ability";
 
 export default async function Page() {
   return (
@@ -99,17 +100,47 @@ function ArchetypeContent({ archetype }: { archetype: Archetype }) {
         <ArchetypeQuestions archetype={archetype.name} />
       </div>
       <TypographyH3>Mission</TypographyH3>
-      <Abilities
-        abilities={archetype.abilities.mission}
-        variant="wiki"
-        className="mb-4 px-4"
-      />
+      {archetype.abilities.mission.map((a, i) => (
+        <WikiAbility
+          key={a.name + i}
+          ability={a}
+          archetypeName={archetype.name}
+        />
+      ))}
       <TypographyH3>Downtime</TypographyH3>
-      <Abilities
-        abilities={archetype.abilities.downtime}
-        variant="wiki"
-        className="mb-4 px-4"
-      />
+      {archetype.abilities.downtime.map((a, i) => (
+        <WikiAbility
+          key={a.name + i}
+          ability={a}
+          archetypeName={archetype.name}
+        />
+      ))}
     </div>
+  );
+}
+
+async function WikiAbility({
+  ability,
+  archetypeName,
+}: {
+  ability: AbilityType;
+  archetypeName: string;
+}) {
+  return (
+    <AccordionItem value={ability.name} className="w-full">
+      <AccordionTrigger>
+        <TypographyP className={cn(ability.keystone && "text-amber-500")}>
+          {ability.name}
+        </TypographyP>
+      </AccordionTrigger>
+      <AccordionContent>
+        <Ability
+          ability={ability}
+          category="archetypes"
+          arc="arc1"
+          type={archetypeName.toLocaleLowerCase()}
+        />
+      </AccordionContent>
+    </AccordionItem>
   );
 }
