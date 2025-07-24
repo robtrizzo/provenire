@@ -46,11 +46,36 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  webpack: (config) => {
+  webpack: (config, { isServer }) => {
     config.resolve.alias["@abilities"] = path.join(
       __dirname,
       "components/abilities"
     );
+    // Force inclusion of all ability files in the bundle
+    if (!isServer) {
+      interface AbilitiesPlugin {
+        apply: (compiler: import("webpack").Compiler) => void;
+      }
+
+      const abilitiesPlugin: AbilitiesPlugin = {
+        apply: (compiler) => {
+          compiler.hooks.afterCompile.tap(
+            "AbilitiesPlugin",
+            (compilation: import("webpack").Compilation) => {
+              const abilitiesDir: string = path.join(
+                __dirname,
+                "components/abilities"
+              );
+              (compilation.contextDependencies as unknown as Set<string>).add(
+                abilitiesDir
+              );
+            }
+          );
+        },
+      };
+
+      (config.plugins as Array<AbilitiesPlugin>).push(abilitiesPlugin);
+    }
     return config;
   },
 };
