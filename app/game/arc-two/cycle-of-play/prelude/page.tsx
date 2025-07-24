@@ -6,7 +6,6 @@ import {
   TypographyH2,
   TypographyH3,
   TypographyP,
-  TypographyUnorderedList,
 } from "@/components/ui/typography";
 import { GitGraph } from "lucide-react";
 import Link from "next/link";
