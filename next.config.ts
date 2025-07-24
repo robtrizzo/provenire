@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import createMDX from "@next/mdx";
+import path from "path";
 
 const nextConfig: NextConfig = {
   experimental: {
@@ -44,6 +45,13 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
     ];
+  },
+  webpack: (config) => {
+    config.resolve.alias["@abilities"] = path.join(
+      __dirname,
+      "components/abilities"
+    );
+    return config;
   },
 };
 
