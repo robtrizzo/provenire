@@ -218,7 +218,9 @@ export default async function Page() {
         <b className="font-cyber text-stone-500">Rivals</b> are NPCs which will
         endeavor to make your life harder whenever given the opportunity.
       </TypographyP>
-      <TypographyH3 className="font-cyber">Memory Horizon</TypographyH3>
+      <TypographyH3 id="memory-horizon" className="font-cyber">
+        Memory Horizon
+      </TypographyH3>
       <TypographyP>
         Once a threshold of memories have returned to you (4 pieces of{" "}
         <b>baggage</b>), the floodgates have opened and you remember more and
