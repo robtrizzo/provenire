@@ -1,5 +1,5 @@
-import { TypographyP } from '@/components/ui/typography';
-export default function SpeakingUpForWhatsRight() {
+import { TypographyP } from "@/components/ui/typography";
+export default function LeadTheWay() {
   return (
     <div>
       <TypographyP>
