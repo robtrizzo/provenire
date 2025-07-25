@@ -46,11 +46,11 @@ export default async function Page() {
       </TypographyP>
       <TypographyP>
         First, choose if you wish to resleeve. This may be to or from your
-        biosleeve, one of <span className="font-cyber">Root&apos;s</span> spare
-        sleeves, or one you&apos;ve bought with your own <b>¤P</b>. When you
-        relseeve, your cyberware is transferred alongside your psyche. Even for
-        experienced operatives, resleeving is psychologically arduous: make a{" "}
-        <b>resistance roll</b> unless you&apos;re entering your birthsleeve.
+        birthsleeve, one of <span className="font-cyber">Root&apos;s</span>{" "}
+        spare sleeves, or one you&apos;ve bought with your own <b>¤P</b>. When
+        you relseeve, your cyberware is transferred alongside your psyche. Even
+        for experienced operatives, resleeving is psychologically arduous: make
+        a <b>resistance roll</b> unless you&apos;re entering your birthsleeve.
       </TypographyP>
       <TypographyP>
         Next, choose if you want any new cyberware installed. Some cyberware

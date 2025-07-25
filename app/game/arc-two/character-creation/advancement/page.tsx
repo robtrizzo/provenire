@@ -253,7 +253,7 @@ export default async function Page() {
       <TypographyH3 className="font-cyber">Straining Bonds</TypographyH3>
       <TypographyP>
         Whenever you <b>strain a bond</b>, you may decrease its rating by any
-        amount (but don&apos; clear the &quot;advance&quot; marker if it&apos;s
+        amount (but don&apos;t clear the &quot;advance&quot; marker if it&apos;s
         checked). When you do, gain <b>xp clocks</b> equal to the number it
         would have cost to advance the difference.
       </TypographyP>
