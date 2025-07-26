@@ -47,7 +47,7 @@ export default async function Page() {
       </TypographyP>
       <TypographyBlockquote>
         To learn more about <b>baggage</b>,{" "}
-        <Link href="/game/arc-two/character-creation/advancement#baggage">
+        <Link href="/game/arc-two/character-options/advancement#baggage">
           <span className="underline text-red-500">go here</span>
         </Link>
       </TypographyBlockquote>

@@ -49,24 +49,12 @@ const data = {
       ],
     },
     {
-      title: "Character Creation",
+      title: "Rules",
       url: "#",
       items: [
         {
-          title: "Backgrounds",
-          url: "/game/arc-two/character-creation/backgrounds",
-        },
-        {
-          title: "Archetypes",
-          url: "/game/arc-two/character-creation/archetypes",
-        },
-        {
-          title: "Operatives",
-          url: "/game/arc-two/character-creation/operatives",
-        },
-        {
-          title: "Advancement",
-          url: "/game/arc-two/character-creation/advancement",
+          title: "Actions and Rolls",
+          url: "/game/arc-two/rules/actions-and-rolls",
         },
       ],
     },
@@ -89,12 +77,24 @@ const data = {
       ],
     },
     {
-      title: "Rules",
+      title: "Character Options",
       url: "#",
       items: [
         {
-          title: "Actions and Rolls",
-          url: "/game/arc-two/rules/actions-and-rolls",
+          title: "Backgrounds",
+          url: "/game/arc-two/character-options/backgrounds",
+        },
+        {
+          title: "Archetypes",
+          url: "/game/arc-two/character-options/archetypes",
+        },
+        {
+          title: "Operatives",
+          url: "/game/arc-two/character-options/operatives",
+        },
+        {
+          title: "Advancement",
+          url: "/game/arc-two/character-options/advancement",
         },
       ],
     },

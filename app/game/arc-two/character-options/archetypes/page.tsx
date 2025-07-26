@@ -32,7 +32,7 @@ export default function Page() {
       <TypographyBlockquote>
         Your character will regain memory of their <b>Horizon Questions</b> once
         you&apos;ve crossed the{" "}
-        <Link href="/game/arc-two/character-creation/advancement#memory-horizon">
+        <Link href="/game/arc-two/character-options/advancement#memory-horizon">
           <i className="underline text-red-500">memory horizon</i>
         </Link>
         ).

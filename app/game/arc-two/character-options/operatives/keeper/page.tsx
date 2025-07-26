@@ -10,16 +10,16 @@ export default async function Page() {
           { name: "Arc Two", href: "/game/arc-two" },
           {
             name: "Character Creation",
-            href: "/game/arc-two/character-creation",
+            href: "/game/arc-two/character-options",
           },
           {
             name: "Operatives",
-            href: "/game/arc-two/character-creation/operatives",
+            href: "/game/arc-two/character-options/operatives",
           },
-          { name: "Notion", href: "#" },
+          { name: "Keeper", href: "#" },
         ]}
       />
-      <TypographyH1>Notion</TypographyH1>
+      <TypographyH1>Keeper</TypographyH1>
     </>
   );
 }
