@@ -16,7 +16,7 @@ export function BuildupCheckboxes({
   max: number;
   numDisabled?: number;
   current: number;
-  onChange: (n: number) => void;
+  onChange?: (n: number) => void;
   clearPosition?: "start" | "end";
   className?: string;
 }) {
@@ -24,7 +24,9 @@ export function BuildupCheckboxes({
   const [localCurrent, setLocalCurrent] = useState(current);
   const handleOnChange = (n: number) => {
     setLocalCurrent(n);
-    onChange(n);
+    if (onChange) {
+      onChange(n);
+    }
   };
   return (
     <div className={cn("flex items-center gap-1", className)}>
