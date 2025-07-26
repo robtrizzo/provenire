@@ -1,3 +1,4 @@
+import { BuildupCheckboxes } from "@/components/buildup-checkboxes";
 import Clock from "@/components/clock";
 import Breadcrumbs from "@/components/ui/breadcrumbs";
 import { Card } from "@/components/ui/card";
@@ -9,13 +10,13 @@ import {
   TypographyH4,
   TypographyP,
 } from "@/components/ui/typography";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Repeat } from "lucide-react";
 
 export default async function Page() {
   return (
     <>
       <Breadcrumbs />
-      <TypographyH1>Advancement</TypographyH1>
+      <TypographyH1 className="font-cyber">Advancement</TypographyH1>
       <TypographyH2 id="actions" className="font-cyber mb-4">
         Actions
       </TypographyH2>
@@ -292,6 +293,152 @@ export default async function Page() {
         <sup className="text-amber-500">*</sup> most cyberware doesn&apos;t
         include a skill tree; cyberware granted by operative choice does.
       </TypographyBlockquote>
+
+      <TypographyH2 className="font-cyber">Wealth & Lifestyle</TypographyH2>
+      <TypographyP>
+        For each of <b>Pelts</b> (<span className="font-cyber">¤P</span>) and{" "}
+        <b>Favors</b> (<span className="font-cyber">¤F</span>) you track your
+        lifestyle with a 4-piece clock{" "}
+        <span className="inline-flex">
+          <Clock height={20} width={20} max={4} current={0} clickable={false} />
+        </span>
+        . Each tick on the <b>lifestyle clock</b> represents a noticeable
+        improvement in your character&apos;s day to day conditions.
+      </TypographyP>
+      <TypographyH4 className="font-cyber">Pelts (¤P)</TypographyH4>
+      <TypographyP>
+        Your <span className="font-cyber">¤P</span> <b>lifestyle clock</b> also
+        includes a <b>wealth tracker</b>{" "}
+        <span className="inline-flex">
+          <BuildupCheckboxes max={8} current={0} />
+        </span>
+        . When the <b>wealth tracker</b> becomes full, you may clear it and tick
+        your <b>lifestyle clock</b> by one.
+      </TypographyP>
+      <TypographyP>
+        <span className="inline-flex">
+          <Clock height={20} width={20} max={4} current={0} clickable={false} />
+        </span>{" "}
+        Destitute. You&apos;re barely keeping up with bills and what little free
+        time you have between shifts is spent avoiding debt collectors. Your
+        living conditions are one of the shoebox bunks in a residential rack.
+      </TypographyP>
+      <TypographyP>
+        <span className="inline-flex">
+          <Clock height={20} width={20} max={4} current={1} clickable={false} />
+        </span>{" "}
+        Struggling. The bills are paid but if you slip up for even a few days
+        you&apos;ll be back in a bad spot. Your living conditions are a cramped
+        pod with your own washroom. You can support{" "}
+        <span className="text-emerald-500 font-cyber text-sm">
+          <Repeat className="inline text-emerald-500" /> 1 ¤P
+        </span>{" "}
+        of subscriptions without needing to touch your expendable income.
+      </TypographyP>
+      <TypographyP>
+        <span className="inline-flex">
+          <Clock height={20} width={20} max={4} current={2} clickable={false} />
+        </span>{" "}
+        Getting By. You can&apos;t complain. As long as you don&apos;t take a
+        big financial hit, you should be able to coast. Your living conditions
+        are a modest studio flat. You can support{" "}
+        <span className="text-emerald-500 font-cyber text-sm">
+          <Repeat className="inline text-emerald-500" /> 4 ¤P
+        </span>{" "}
+        of subscriptions without needing to touch your expendable income, though
+        your contitions also permanently require{" "}
+        <span className="text-emerald-500 font-cyber text-sm">
+          <Repeat className="inline text-emerald-500" /> 1 ¤P
+        </span>
+        .
+      </TypographyP>
+      <TypographyP>
+        <span className="inline-flex">
+          <Clock height={20} width={20} max={4} current={3} clickable={false} />
+        </span>{" "}
+        Decent. You don&apos;t have to worry much about <b>Pelts</b>, and you
+        can get most basic things you want. Your living conditions are a three
+        room apartment with a nice view and minimal pollution. You can support{" "}
+        <span className="text-emerald-500 font-cyber text-sm">
+          <Repeat className="inline text-emerald-500" /> 6 ¤P
+        </span>{" "}
+        of subscriptions without needing to touch your expendable income, though
+        your contitions also permanently require{" "}
+        <span className="text-emerald-500 font-cyber text-sm">
+          <Repeat className="inline text-emerald-500" /> 2 ¤P
+        </span>
+        .
+      </TypographyP>
+      <TypographyP>
+        <span className="inline-flex">
+          <Clock height={20} width={20} max={4} current={4} clickable={false} />
+        </span>{" "}
+        The Dream. <b>Pelts</b> are never on your mind, and you can spend them
+        freely without a worry. Your living conditions are a penthouse suite in
+        one of the cheaper neighborhoods. You can support{" "}
+        <span className="text-emerald-500 font-cyber text-sm">
+          <Repeat className="inline text-emerald-500" /> 10 ¤P
+        </span>{" "}
+        of subscriptions without needing to touch your expendable income, though
+        your contitions also permanently require{" "}
+        <span className="text-emerald-500 font-cyber text-sm">
+          <Repeat className="inline text-emerald-500" /> 4 ¤P
+        </span>
+        .
+      </TypographyP>
+      <TypographyH4 className="font-cyber">Favors (¤F)</TypographyH4>
+      <TypographyP>
+        Your <span className="font-cyber">¤F</span> <b>lifestyle clock</b> also
+        includes a <b>wealth tracker</b>{" "}
+        <span className="inline-flex">
+          <BuildupCheckboxes max={4} current={0} />
+        </span>
+        . When the <b>wealth tracker</b> becomes full, you may clear it and tick
+        your <b>lifestyle clock</b> by one.
+      </TypographyP>
+      <TypographyP>
+        <span className="inline-flex">
+          <Clock height={20} width={20} max={4} current={0} clickable={false} />
+        </span>{" "}
+        Hunted. You&apos;re marked as a parasite on <b>Kingwulf&apos;s</b>{" "}
+        empire and beasts will actively hunt you for a bounty. When you{" "}
+        <b>Take a Breather</b>, mark <b>2 stress</b> or a{" "}
+        <b>level two harm: bitten</b>.
+      </TypographyP>
+      <TypographyP>
+        <span className="inline-flex">
+          <Clock height={20} width={20} max={4} current={1} clickable={false} />
+        </span>{" "}
+        Isolated. You have friends, but you don&apos;t have the{" "}
+        <span className="font-cyber">¤F</span> to hang out with them much. Or
+        really at all. You miss your family. When you <b>Take a Breather</b>,
+        clear <b>2 stress</b>.
+      </TypographyP>
+      <TypographyP>
+        <span className="inline-flex">
+          <Clock height={20} width={20} max={4} current={2} clickable={false} />
+        </span>{" "}
+        Steady. You can hang out with your friends and family without worrying
+        too much. You could even date someone if you wanted. When you{" "}
+        <b>Take a Breather</b>, clear <b>4 stress</b>.
+      </TypographyP>
+      <TypographyP>
+        <span className="inline-flex">
+          <Clock height={20} width={20} max={4} current={3} clickable={false} />
+        </span>{" "}
+        Eligable. You can host large social gatherings and acquire marriage
+        permits. You&apos;ll be able to look after a few kids, too. When you{" "}
+        <b>Take a Breather</b>, clear <b>all of your stress</b>.
+      </TypographyP>
+      <TypographyP>
+        <span className="inline-flex">
+          <Clock height={20} width={20} max={4} current={4} clickable={false} />
+        </span>{" "}
+        Distinguished. You get invited to high-life social events. You could
+        have multiple families and as many kids as you want. When you{" "}
+        <b>Take a Breather</b>, clear <b>all of your stress</b> and clear a{" "}
+        <b>condition</b>.
+      </TypographyP>
       <div className="mb-8" />
     </>
   );
