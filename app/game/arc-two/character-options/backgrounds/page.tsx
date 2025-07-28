@@ -163,7 +163,13 @@ export default async function Page() {
       </TypographyP>
       <TypographyP>
         <b className="font-cyber">
-          Cyberware: <span className="text-fuchsia-500">Rat-track</span>
+          Cyberware:{" "}
+          <Link
+            href="/game/arc-two/character-options/cyberware#Rat-track"
+            className="underline decoration-fuchsia-500"
+          >
+            <span className="text-fuchsia-500">Rat-track</span>
+          </Link>
         </b>
       </TypographyP>
       <Separator className="mt-2" />
@@ -181,13 +187,23 @@ export default async function Page() {
         <li>
           <b className="font-cyber">
             Your stash [{" "}
-            <span className="text-fuchsia-500">
-              HSG-3 &quot;His Magesty&quot;
-            </span>
+            <Link
+              href="/game/arc-two/character-options/cyberware#hsg"
+              className="underline decoration-fuchsia-500"
+            >
+              <span className="text-fuchsia-500">
+                HSG-3 &quot;His Magesty&quot;
+              </span>
+            </Link>
             {" -> "}
-            <span className="text-fuchsia-500">
-              Integra Overwatch Drone &quot;Osprey&quot;
-            </span>
+            <Link
+              href="/game/arc-two/character-options/cyberware#osprey"
+              className="underline decoration-fuchsia-500"
+            >
+              <span className="text-fuchsia-500">
+                Integra Overwatch Drone &quot;Osprey&quot;
+              </span>
+            </Link>
             ]
           </b>{" "}
           You didn&apos;t come away from the army empty handed. You have stashes
@@ -250,9 +266,14 @@ export default async function Page() {
       <TypographyP>
         <b className="font-cyber">
           Cyberware:{" "}
-          <span className="text-fuchsia-500">
-            Integra Optics &quot;Crow&apos;s Eye&quot;
-          </span>
+          <Link
+            href="/game/arc-two/character-options/cyberware#crowseye"
+            className="underline decoration-fuchsia-500"
+          >
+            <span className="text-fuchsia-500">
+              Integra Optics &quot;Crow&apos;s Eye&quot;
+            </span>
+          </Link>
         </b>
       </TypographyP>
       <Separator className="mt-2" />
@@ -291,9 +312,14 @@ export default async function Page() {
           <b className="font-cyber">
             A collaborator [ <span className="text-sky-500">Bond</span>
             {" -> "}
-            <span className="text-fuchsia-500">
-              3MI Holosomatic Projector
-            </span>{" "}
+            <Link
+              href="/game/arc-two/character-options/cyberware#3MI Holosomatic Projector"
+              className="underline decoration-fuchsia-500"
+            >
+              <span className="text-fuchsia-500">
+                3MI Holosomatic Projector
+              </span>
+            </Link>{" "}
             ]
           </b>{" "}
           Your closest friend and partner in progress. You rarely spoke about
@@ -349,7 +375,13 @@ export default async function Page() {
       </TypographyP>
       <TypographyP>
         <b className="font-cyber">
-          Cyberware: <span className="text-fuchsia-500">ETD Adrenaspike</span>
+          Cyberware:{" "}
+          <Link
+            href="/game/arc-two/character-options/cyberware#ETD Adrenaspike"
+            className="underline decoration-fuchsia-500"
+          >
+            <span className="text-fuchsia-500">ETD Adrenaspike</span>
+          </Link>
         </b>
       </TypographyP>
       <Separator className="mt-2" />
@@ -430,7 +462,14 @@ export default async function Page() {
       <TypographyP>
         <b className="font-cyber">
           Cyberware:{" "}
-          <span className="text-fuchsia-500">3MI Lara Gameforce VTA Spike</span>
+          <Link
+            href="/game/arc-two/character-options/cyberware#Lara Gameforce VTA Spike"
+            className="underline decoration-fuchsia-500"
+          >
+            <span className="text-fuchsia-500">
+              3MI Lara Gameforce VTA Spike
+            </span>
+          </Link>
         </b>
       </TypographyP>
       <TypographyBlockquote className="font-cyber text-xs">
@@ -530,9 +569,14 @@ export default async function Page() {
       <TypographyP>
         <b className="font-cyber">
           Cyberware:{" "}
-          <span className="text-fuchsia-500">
-            Beasttech Pounce Spring Joints
-          </span>
+          <Link
+            href="/game/arc-two/character-options/cyberware#Pounce Spring Joints"
+            className="underline decoration-fuchsia-500"
+          >
+            <span className="text-fuchsia-500">
+              Beasttech Pounce Spring Joints
+            </span>
+          </Link>
         </b>
       </TypographyP>
       <Separator className="mt-2" />
@@ -567,9 +611,14 @@ export default async function Page() {
           <b className="font-cyber">
             Chop shopper [ <span className="text-sky-500">Bond</span>
             {" -> "}
-            <span className="text-fuchsia-500">
-              Zetalab Evasion Platform &quot;GTFO&quot;
-            </span>{" "}
+            <Link
+              href="/game/arc-two/character-options/cyberware#gtfo"
+              className="underline decoration-fuchsia-500"
+            >
+              <span className="text-fuchsia-500">
+                Zetalab Evasion Platform &quot;GTFO&quot;
+              </span>
+            </Link>{" "}
             ]
           </b>{" "}
           You&apos;ve been in their workshop more times than you can count. Your
@@ -613,9 +662,14 @@ export default async function Page() {
       <TypographyP>
         <b className="font-cyber">
           Cyberware:{" "}
-          <span className="text-fuchsia-500">
-            Integra Chambercore &quot;Growler&quot;
-          </span>
+          <Link
+            href="/game/arc-two/character-options/cyberware#growler"
+            className="underline decoration-fuchsia-500"
+          >
+            <span className="text-fuchsia-500">
+              Integra Chambercore &quot;Growler&quot;
+            </span>
+          </Link>
         </b>
       </TypographyP>
       <Separator className="mt-2" />
@@ -625,9 +679,14 @@ export default async function Page() {
           <b className="font-cyber">
             Your bike [ <span className="text-red-500">Pilot</span>
             {" -> "}
-            <span className="text-fuchsia-500">
-              Silcana Neural Interface &quot;Roadrunner&quot;
-            </span>{" "}
+            <Link
+              href="/game/arc-two/character-options/cyberware#roadrunner"
+              className="underline decoration-fuchsia-500"
+            >
+              <span className="text-fuchsia-500">
+                Silcana Neural Interface &quot;Roadrunner&quot;
+              </span>
+            </Link>{" "}
             ]
           </b>{" "}
           You and that bike are family. You&apos;ve been modifying it since
@@ -660,7 +719,14 @@ export default async function Page() {
         <li>
           <b className="font-cyber">
             Corpo sponsor [{" "}
-            <span className="text-fuchsia-500">3MI Autonav Integrated HUD</span>{" "}
+            <Link
+              href="/game/arc-two/character-options/cyberware#Autonav Integrated HUD"
+              className="underline decoration-fuchsia-500"
+            >
+              <span className="text-fuchsia-500">
+                3MI Autonav Integrated HUD
+              </span>
+            </Link>{" "}
             {" -> "}
             <span className="text-stone-500">Rival</span> ]
           </b>{" "}
@@ -696,7 +762,12 @@ export default async function Page() {
       <TypographyP>
         <b className="font-cyber">
           Cyberware:{" "}
-          <span className="text-fuchsia-500">Integra Lobe Optiplex</span>
+          <Link
+            href="/game/arc-two/character-options/cyberware#Lobe Optiplex"
+            className="underline decoration-fuchsia-500"
+          >
+            <span className="text-fuchsia-500">Integra Lobe Optiplex</span>
+          </Link>
         </b>
       </TypographyP>
       <TypographyBlockquote className="font-cyber text-xs">
@@ -710,9 +781,14 @@ export default async function Page() {
           <b className="font-cyber">
             An old mark [ <span className="text-red-500">Manipulate</span>
             {" -> "}
-            <span className="text-fuchsia-500">
-              Overcorp Personality Codec
-            </span>{" "}
+            <Link
+              href="/game/arc-two/character-options/cyberware#Personality Codec"
+              className="underline decoration-fuchsia-500"
+            >
+              <span className="text-fuchsia-500">
+                Overcorp Personality Codec
+              </span>
+            </Link>{" "}
             ]
           </b>{" "}
           It&apos;s a shame, they weren&apos;t too bad of a person, but you
@@ -721,7 +797,14 @@ export default async function Page() {
         <li>
           <b className="font-cyber">
             Your body [ <span className="text-red-500">Netsurf</span> {" -> "}{" "}
-            <span className="text-fuchsia-500">Kerengraf Cyberrend Suite</span>{" "}
+            <Link
+              href="/game/arc-two/character-options/cyberware#Kerengraf Cyberrend Suite"
+              className="underline decoration-fuchsia-500"
+            >
+              <span className="text-fuchsia-500">
+                Kerengraf Cyberrend Suite
+              </span>
+            </Link>{" "}
             ]
           </b>{" "}
           Your meat wastes away, hanging like a vestigial limb from the brain
@@ -791,9 +874,14 @@ export default async function Page() {
       <TypographyP>
         <b className="font-cyber">
           Cyberware:{" "}
-          <span className="text-fuchsia-500">
-            Integrated Advanced Audio Suite &quot;Boombox&quot;
-          </span>
+          <Link
+            href="/game/arc-two/character-options/cyberware#boombox"
+            className="underline decoration-fuchsia-500"
+          >
+            <span className="text-fuchsia-500">
+              Integrated Advanced Audio Suite &quot;Boombox&quot;
+            </span>
+          </Link>
         </b>
       </TypographyP>
       <Separator className="mt-2" />
@@ -834,7 +922,13 @@ export default async function Page() {
         <li>
           <b className="font-cyber">
             A bandmate [ <span className="text-sky-500">Bond</span> {" -> "}
-            <span className="text-fuchsia-500">Cyberaxe Guitar</span> ]
+            <Link
+              href="/game/arc-two/character-options/cyberware#Cyberaxe Guitar"
+              className="underline decoration-fuchsia-500"
+            >
+              <span className="text-fuchsia-500">Cyberaxe Guitar</span>
+            </Link>{" "}
+            ]
           </b>{" "}
           You were closest friends, basically siblings. You had each
           other&apos;s backs on stage and in a scrap.
@@ -875,9 +969,14 @@ export default async function Page() {
       <TypographyP>
         <b className="font-cyber">
           Cyberware:{" "}
-          <span className="text-fuchsia-500">
-            Renaissance Man 64 Core Cortical Stack
-          </span>
+          <Link
+            href="/game/arc-two/character-options/cyberware#Renaissance Man 64 Core Cortical Stack"
+            className="underline decoration-fuchsia-500"
+          >
+            <span className="text-fuchsia-500">
+              Renaissance Man 64 Core Cortical Stack
+            </span>
+          </Link>
         </b>
       </TypographyP>
       <Separator className="mt-2" />
@@ -893,7 +992,13 @@ export default async function Page() {
         <li>
           <b className="font-cyber">
             Bodyguard [ <span className="text-stone-500">Rival</span> {" -> "}{" "}
-            <span className="text-fuchsia-500">Project: Pheonix</span> ]
+            <Link
+              href="/game/arc-two/character-options/cyberware#Project Phoenix"
+              className="underline decoration-fuchsia-500"
+            >
+              <span className="text-fuchsia-500">Project Phoenix</span>
+            </Link>{" "}
+            ]
           </b>{" "}
           You gave them the slip to go your own way. They&apos;re here to take
           you back.

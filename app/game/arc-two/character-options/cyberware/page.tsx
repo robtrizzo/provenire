@@ -220,6 +220,7 @@ export default async function Page() {
       </TypographyP>
       <CyberwareHeader
         name={`Integra Optics "Crow's Eye"`}
+        id="crowseye"
         dangerous={false}
         manufacturer="Integra"
         tech="Gentech, Neurotech, Tartech"
@@ -305,6 +306,7 @@ export default async function Page() {
       </TypographyP>
       <CyberwareHeader
         name={`Integrated Advanced Audio Suite "Boombox"`}
+        id="boombox"
         dangerous={true}
         manufacturer="3MI"
         tech="Crystech, Electrotech, Gentech"
@@ -379,6 +381,7 @@ export default async function Page() {
 
       <CyberwareHeader
         name={`HSG-3 "His Majesty"`}
+        id="hsg"
         dangerous={false}
         manufacturer="Foundation"
         tech="Crystech, Metaltech"
@@ -398,6 +401,7 @@ export default async function Page() {
       </TypographyP>
       <CyberwareHeader
         name={`Integra Overwatch Drone "Osprey"`}
+        id="osprey"
         dangerous={true}
         manufacturer="Integra"
         tech="Crystech, Electrotech, Metaltech"
@@ -461,6 +465,7 @@ export default async function Page() {
       </TypographyP>
       <CyberwareHeader
         name={`Chambercore "Growler"`}
+        id="growler"
         dangerous={true}
         manufacturer="Foundation, Integra"
         tech="Gentech, Metaltech"
@@ -488,6 +493,7 @@ export default async function Page() {
       </TypographyP>
       <CyberwareHeader
         name={`Silcana Neural Interface "Roadrunner"`}
+        id="roadrunner"
         dangerous={true}
         manufacturer="Silcana"
         tech="Neurotech"
@@ -515,6 +521,7 @@ export default async function Page() {
       </TypographyP>
       <CyberwareHeader
         name={`Zetalab Evasion Platform "GTFO"`}
+        id="gtfo"
         dangerous={false}
         manufacturer="Zetalab"
         tech="Tartech"
@@ -647,6 +654,7 @@ export default async function Page() {
 
 function CyberwareHeader({
   name,
+  id,
   dangerous,
   manufacturer,
   tech,
@@ -654,6 +662,7 @@ function CyberwareHeader({
   subscription,
 }: {
   name: string;
+  id?: string;
   dangerous: boolean;
   manufacturer: string;
   tech: string;
@@ -662,7 +671,7 @@ function CyberwareHeader({
 }) {
   return (
     <>
-      <TypographyH3 className="font-cyber" id={name}>
+      <TypographyH3 className="font-cyber" id={id || name}>
         {name}
         {dangerous && <GitGraph className="ml-6 inline-block text-pink-500" />}
       </TypographyH3>
