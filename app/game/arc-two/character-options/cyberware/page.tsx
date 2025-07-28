@@ -255,6 +255,114 @@ export default async function Page() {
         <span className="font-cyber">¤F</span>, you may always choose to
         immersion-game and recover <b>3 stress</b>.
       </TypographyP>
+      <CyberwareHeader
+        name="Pounce Spring Joints"
+        dangerous={true}
+        manufacturer="Beasttech"
+        tech="Metaltech"
+        price={5}
+      />
+      <TypographyP>
+        <span className="font-cyber">Beasttech</span> corporate reps insist the
+        spring joints were esigned for freerunners, but everyone knows who the
+        main market is: assassins and thieves who want to scramble out of the
+        jaws of the law.
+      </TypographyP>
+      <TypographyP>
+        The integration surgury is notoriously painful and intense. Every joint
+        in the body is replaced with chrome. The result is a body which is far
+        more flexible than it was before and joints which can store potential
+        energy from movement to movement. That potential energy can be used for
+        large &quot;springy&quot; motions once the customer has become
+        acclimated.
+      </TypographyP>
+      <CyberwareHeader
+        name="Autonav Integrated HUD"
+        dangerous={false}
+        manufacturer="3MI"
+        tech="Holotech, Neurotech"
+        price={3}
+      />
+      <TypographyP>
+        A living map of <span className="font-cyber">Feasting</span> updated in
+        real time and streamed to your HUD.
+      </TypographyP>
+      <TypographyP>
+        <b className="font-cyber">Addons:</b>
+        <br />
+        <b className="font-cyber">Smart-routing:</b>{" "}
+        <span className="text-emerald-500 font-cyber">
+          <Repeat className="inline" /> 1 ¤P
+        </span>
+        <br />
+        <b className="font-cyber">Corporate Megabuilding Map Pack:</b>{" "}
+        <span className="text-emerald-500 font-cyber">2 ¤P</span>
+        <br />
+        <b className="font-cyber">Black Market Police Scanner:</b>{" "}
+        <span className="text-emerald-500 font-cyber">
+          1 ¤P, <Repeat className="inline" /> 1 ¤P
+        </span>
+      </TypographyP>
+      <CyberwareHeader
+        name={`Integrated Advanced Audio Suite "Boombox"`}
+        dangerous={true}
+        manufacturer="3MI"
+        tech="Crystech, Electrotech, Gentech"
+        price={4}
+      />
+      <TypographyP>
+        Designed for the true audiophile, the{" "}
+        <span className="font-cyber">&quot;Boombox&quot;</span> enables hearing
+        a much wider breadth of the audio spectrum. Not only is hearing keener,
+        but loud sounds are dynamically dampened to prevent overloads from
+        sudden spikes in volume.
+      </TypographyP>
+      <TypographyP>
+        Most customers of integrated audio suites are music fans or musicians
+        themselves, though the advanced suites have also been known to be used
+        for surveilance.
+      </TypographyP>
+      <CyberwareHeader
+        name={`Cortical Stack`}
+        dangerous={true}
+        manufacturer="Varies"
+        tech="Neurotech"
+        price="X"
+      />
+      <TypographyP>
+        A <span className="font-cyber">Cortical Stack</span> is cyberware which
+        expands the number of <b>coxex actions</b> your sleeve can support. Most
+        sleeves can already support one or more <b>codexes</b>, but who
+        doesn&apos;t like being good at things? There are a variety of{" "}
+        <span className="font-cyber">Cortical Stacks</span> out there from
+        different manufacturers.
+      </TypographyP>
+      <TypographyP>
+        <span className="font-cyber">
+          <b>Cortex Expansion Kit</b> [{" "}
+          <span className="text-amber-500">Overcorp</span> ]{" "}
+          <span className="text-emerald-500">2 ¤P</span>: +1 <b>codex action</b>
+        </span>
+        <br />
+        <span className="font-cyber">
+          <b>TalentUp Gold</b> [{" "}
+          <span className="text-amber-500">Silcana Discoveries</span> ]{" "}
+          <span className="text-emerald-500">
+            0 ¤P,{" "}
+            <span className="text-emerald-500">
+              <Repeat className="inline" /> 1 ¤P
+            </span>{" "}
+          </span>
+          : +2 <b>codex actions</b>
+        </span>
+        <br />
+        <span className="font-cyber">
+          <b>Renaissance Man 64 Core</b> [{" "}
+          <span className="text-amber-500">Vantro Enterprises</span> ]{" "}
+          <span className="text-emerald-500">12 ¤P</span>: +4{" "}
+          <b>codex actions</b>
+        </span>
+      </TypographyP>
 
       <TypographyH2 className="font-cyber">Special Cyberware</TypographyH2>
       <TypographyP>
@@ -273,7 +381,7 @@ export default async function Page() {
         name={`HSG-3 "His Majesty"`}
         dangerous={false}
         manufacturer="Foundation"
-        tech="Metaltech, Tartech"
+        tech="Crystech, Metaltech"
         price={5}
       />
       <TypographyP>
@@ -292,7 +400,7 @@ export default async function Page() {
         name={`Integra Overwatch Drone "Osprey"`}
         dangerous={true}
         manufacturer="Integra"
-        tech="Electrotech, Metaltech, Tartech"
+        tech="Crystech, Electrotech, Metaltech"
         price={10}
       />
       <TypographyP>
@@ -351,6 +459,187 @@ export default async function Page() {
         overhauls the customer&apos;s hypothalmus and metabolic system to enable
         recovery within minutes.
       </TypographyP>
+      <CyberwareHeader
+        name={`Chambercore "Growler"`}
+        dangerous={true}
+        manufacturer="Foundation, Integra"
+        tech="Gentech, Metaltech"
+        price={6}
+      />
+      <TypographyP>
+        Fashioned after an internal combustion engine, the{" "}
+        <span className="font-cyber">&quot;Growler&quot;</span> was initially
+        designed to power medium to large{" "}
+        <span className="font-cyber">Foundation</span> construction vehicles.{" "}
+        <span className="font-cyber">Integra</span> discovered a niche market of
+        cybermodders who wanted more energy efficiency in their sleeves, and so
+        adapted the engine to replace the cardiovascular and metabolic systems.
+      </TypographyP>
+      <TypographyP>
+        The <span className="font-cyber">&quot;Growler&quot;</span> gets its
+        namesake from the noise it makes, more audible whenever the customer
+        opens their mouth. The main benefit of the{" "}
+        <span className="font-cyber">&quot;Growler&quot;</span> is that it
+        enables metabolizing nearly anything for fuel. Of course, the engine
+        runs best on refined petrolium, but with the power of modern technology,
+        nearly anything will do. The means that with sufficient fuel, the
+        customer can perform continuous high-strain activities without
+        fatiguing.
+      </TypographyP>
+      <CyberwareHeader
+        name={`Silcana Neural Interface "Roadrunner"`}
+        dangerous={true}
+        manufacturer="Silcana"
+        tech="Neurotech"
+        price={6}
+        subscription="1"
+      />
+      <TypographyP>
+        Conceptually, it&apos;s a simple idea: allow direct neural integration
+        with vehicles. In practice it means{" "}
+        <span className="font-cyber">Silcana</span> developers work around the
+        clock to continue supporting new vehicles and ensuring legacy platforms
+        are bug-free.
+      </TypographyP>
+      <TypographyP>
+        In practice, the customer&apos;s body fuses with the vehicle. They
+        become one. For many, it&apos;s an incredibly unpleasant experience to
+        be fused with an inanimate object. But for the customers who stick with
+        it, they become unparalleled masters of their machine.
+      </TypographyP>
+
+      <TypographyH2 className="font-cyber">Experimental Cyberware</TypographyH2>
+      <TypographyP>
+        This is cyberware that is either one of a kind or prohibited from sale
+        on the consumer market.
+      </TypographyP>
+      <CyberwareHeader
+        name={`Zetalab Evasion Platform "GTFO"`}
+        dangerous={false}
+        manufacturer="Zetalab"
+        tech="Tartech"
+        price={8}
+      />
+      <TypographyP>
+        An experimental model created for black ops infiltrators, then
+        abandoned. Or so the offical story goes. The occasional{" "}
+        <span className="font-cyber">&quot;GTFO&quot;</span> can be found on the
+        black market and becomes the envy of many a cybermodder.
+      </TypographyP>
+      <TypographyP>
+        When activated, the <span className="font-cyber">&quot;GTFO&quot;</span>{" "}
+        expels a cloud of shadow, wraps the customer in a near-perfect
+        invisibility, and disrupts all electronic surveilance systems in the
+        area. As the name suggests, it&apos;s the best-in-class getaway
+        cybermod.
+      </TypographyP>
+      <CyberwareHeader
+        name={`Lobe Optiplex`}
+        dangerous={true}
+        manufacturer="Integra"
+        tech="Neurotech, Nettech"
+        price={10}
+      />
+      <TypographyP>
+        An implant surgery would be so destructive to the customer&apos;s brain
+        that instead <span className="font-cyber">Integra</span> has devised a
+        procedure much closer to resleeving for this mod. Once complete, the
+        customer can split their mind into pseudoindependant parallel psyches.
+        The master ego can collapse all errant threads back together when tasks
+        are concluded.
+      </TypographyP>
+      <TypographyP>
+        When making an <b>action roll</b> which multiple minds could benefit,
+        the customer may split up their <b>action dice</b> however they please,
+        marking <b>1 stress</b> for each group. They then add{" "}
+        <b className="text-red-500">+1d</b> to each group and roll them all
+        separately, taking the highest roll.
+      </TypographyP>
+      <CyberwareHeader
+        name={`Personality Codec`}
+        dangerous={false}
+        manufacturer="Overcorp"
+        tech="Neurotech, Nettech"
+        price={8}
+      />
+      <TypographyP>
+        Top secret tech which <span className="font-cyber">Overcorp</span> goes
+        to great lengths to keep under wraps. Encodes and decrypts the
+        user&apos;s personality such that it can&apos;t be tampered with nearly
+        as easily. In the hands of a netrunner or{" "}
+        <span className="font-cyber">Overcorp</span> social engineer, the{" "}
+        <span className="font-cyber">Personality Codec</span> can be used to
+        unspool a personality and make changes.
+      </TypographyP>
+      <TypographyP>
+        Personality edits are enormously complicated, so it usually requires the
+        encoder to tediously experiment with their manipulations. If they screw
+        it up, instead of a subtle change the target suffers a psychotic break.
+      </TypographyP>
+      <CyberwareHeader
+        name={`Kerengraf Cyberrend Suite`}
+        dangerous={false}
+        manufacturer="N/A"
+        tech="Electrotech, Nettech"
+        price={10}
+      />
+      <TypographyP>
+        In the early years of the net,{" "}
+        <span className="font-cyber">Overcorp</span> underestimated its
+        potential. What threat could digitized invisible wavelengths pose? A
+        mistake they have paid dearly for.
+      </TypographyP>
+      <TypographyP>
+        Before the advent of the cyber black wall and advanced ICE, a cabal of
+        netrunners constructed machina as potent as any magic in old legends.{" "}
+        <span className="font-cyber">Overcorp</span> has done its damndest to
+        seal these programs away, but they live on.
+      </TypographyP>
+      <TypographyP>
+        This is one. Once released into a target&apos;s cyberware, the{" "}
+        <span className="font-cyber">Kerengraf Cyberrend Hack</span> hijacks the
+        circuitry and spreads throughout the target&apos;s body, rapidly turning
+        their veins into superheated plasma.
+      </TypographyP>
+      <CyberwareHeader
+        name={`Cyberaxe Guitar`}
+        dangerous={false}
+        manufacturer="Freebird Customworks"
+        tech="Crystech, Metaltech"
+        price={6}
+      />
+      <TypographyP>
+        State of the art electric guitar and tricked out hand weapon. One of a
+        kind piece stylishly carved from wolfbone and studded with mag-resistant
+        dampeners. Capable of playing notes above and blow the normal audible
+        spectrum and oh did I mention that it auto-tunes?
+      </TypographyP>
+      <TypographyP>
+        Passes as an instrument, even when examined with xray. Then when the
+        blade is deployed, the stability systems kick in too. The blade is
+        variable size, from a shortsword to a fuck-off giant axe. No matter the
+        size, it&apos;s perfectly wieghted with a smartmag field and integrated
+        gyros to assist the blade cutting where you want it to. The edge has
+        been inlaid with an <i>adamantine</i> powder, allowing it to cut through
+        nearly anything.
+      </TypographyP>
+      <TypographyP>
+        One of a kind. Overengineered? Maybe. Overpriced? Nah, worth every Pelt.
+      </TypographyP>
+      <CyberwareHeader
+        name={`Project Phoenix`}
+        dangerous={false}
+        manufacturer="Vantro Enterprises"
+        tech="Gentech, Neurotech"
+        price={16}
+      />
+      <TypographyP>
+        A generational leap past the psyche restoration of{" "}
+        <span className="font-cyber">PsycX</span>. This implant is connected to
+        an apparatus within a secure bunker where your sleeve will be
+        reconstructed within moments. Field tests show a less than two second
+        gap in memory from death to conciousness.
+      </TypographyP>
       <div className="mb-8" />
     </>
   );
@@ -368,7 +657,7 @@ function CyberwareHeader({
   dangerous: boolean;
   manufacturer: string;
   tech: string;
-  price: number;
+  price: number | string;
   subscription?: string;
 }) {
   return (
