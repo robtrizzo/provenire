@@ -294,7 +294,9 @@ export default async function Page() {
         include a skill tree; cyberware granted by operative choice does.
       </TypographyBlockquote>
 
-      <TypographyH2 className="font-cyber">Wealth & Lifestyle</TypographyH2>
+      <TypographyH2 className="font-cyber" id="wealth-and-lifestyle">
+        Wealth & Lifestyle
+      </TypographyH2>
       <TypographyP>
         For each of <b>Pelts</b> (<span className="font-cyber">¤P</span>) and{" "}
         <b>Favors</b> (<span className="font-cyber">¤F</span>) you track your
