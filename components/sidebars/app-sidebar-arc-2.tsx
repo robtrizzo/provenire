@@ -97,6 +97,10 @@ const data = {
           url: "/game/arc-two/character-options/cyberware",
         },
         {
+          title: "Sleeves",
+          url: "/game/arc-two/character-options/sleeves",
+        },
+        {
           title: "Advancement",
           url: "/game/arc-two/character-options/advancement",
         },
