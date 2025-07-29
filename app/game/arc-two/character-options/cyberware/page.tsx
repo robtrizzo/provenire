@@ -366,6 +366,80 @@ export default async function Page() {
         </span>
       </TypographyP>
 
+      <CyberwareHeader
+        name={`Skill Codex`}
+        dangerous={false}
+        manufacturer="Overcorp"
+        tech="Neurotech"
+        price="X"
+        subscription="X"
+      />
+      <TypographyP>
+        A <span className="font-cyber">Skill Codex</span> is chrome that you can
+        slot into your cortical stack and simply <i>know</i> how to do
+        something. How well? Depends on the quality of the codex.
+      </TypographyP>
+      <TypographyP className="font-cyber text-sm">
+        <div className="inline-block">
+          <div className="flex gap-2">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4"></div>
+          </div>
+        </div>{" "}
+        <span className="text-emerald-500">
+          1 ¤P,{" "}
+          <span className="text-emerald-500">
+            <Repeat className="inline" /> 1 ¤P
+          </span>{" "}
+        </span>
+        <br />
+        <div className="inline-block">
+          <div className="flex gap-2">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+          </div>
+        </div>{" "}
+        <span className="text-muted-foreground text-xs">OR</span>{" "}
+        <div className="inline-block">
+          <div className="flex gap-2">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4"></div>
+          </div>
+        </div>{" "}
+        <span className="text-emerald-500">
+          2 ¤P,{" "}
+          <span className="text-emerald-500">
+            <Repeat className="inline" /> 2 ¤P
+          </span>{" "}
+        </span>
+        <br />
+        <div className="inline-block">
+          <div className="flex gap-2">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+          </div>
+        </div>{" "}
+        <span className="text-emerald-500">
+          4 ¤P,{" "}
+          <span className="text-emerald-500">
+            <Repeat className="inline" /> 3 ¤P
+          </span>{" "}
+        </span>
+        <br />
+        <div className="inline-block">
+          <div className="flex gap-2">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+          </div>
+        </div>{" "}
+        <span className="text-emerald-500">
+          6 ¤P,{" "}
+          <span className="text-emerald-500">
+            <Repeat className="inline" /> 4 ¤P
+          </span>{" "}
+        </span>
+      </TypographyP>
+
       <TypographyH2 className="font-cyber">Special Cyberware</TypographyH2>
       <TypographyP>
         This is a cyberware you wouldn&apos;t just find on the street. This is
