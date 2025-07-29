@@ -749,7 +749,7 @@ function CyberwareHeader({
         {name}
         {dangerous && <GitGraph className="ml-6 inline-block text-pink-500" />}
       </TypographyH3>
-      <div className="flex gap-3 font-cyber text-muted-foreground text-sm">
+      <div className="flex gap-3 font-cyber text-muted-foreground text-sm flex-wrap">
         <span className="text-amber-500">{manufacturer}</span>
         <span>|</span>
         <span className="text-red-500">{tech}</span>
