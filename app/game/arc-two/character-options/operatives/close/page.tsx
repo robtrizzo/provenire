@@ -110,14 +110,97 @@ export default async function Page() {
         The <span className="font-cyber">&quot;Revivify&quot;</span> works off
         of a simple neuro-mechanism. Think <i>&quot;survive&quot;</i> and form a
         strong mental image of your sleeve knitting back together. This kicks
-        off the resequencer and the tech takes care of the rest, mark{" "}
-        <b>2 stress</b> and heal any one <b>harm</b> your sleeve has suffered.
+        off the resequencer and the tech takes care of the rest,{" "}
+        <b>push yourself</b> and heal any one <b>harm</b> your sleeve has
+        suffered.
       </TypographyP>
       <TypographyP>
         The <span className="font-cyber">&quot;Revivify&quot;</span> is powered
         by fuel cells which are inserted into the base of the sleeve&apos;s
         spinal column. Each repair consumes a fuel rod. Additional fuel rods are{" "}
         <b>1 inventory slot</b> apiece.
+      </TypographyP>
+      <div className="mt-2 flex items-center gap-4">
+        <TypographyH3 className="font-cyber mt-0">
+          Preemptive Release
+        </TypographyH3>
+        <ClockCost num={2} />
+      </div>
+      <TypographyP>
+        Sometimes damage to your sleeve may happen unexpectedly or faster than
+        you can think. For cases like this, skilled users of{" "}
+        <span className="font-cyber">&quot;Revivify&quot;</span> can flush their
+        body with the healing energies a short time before expected catastrophe
+        to increase their odds of survival.
+      </TypographyP>
+      <TypographyP>
+        When you activate{" "}
+        <span className="font-cyber">&quot;Revivify&quot;</span> in this way,
+        some energy is inevitably wasted. <b>Push yourself</b> and reduce the
+        next <b>harm</b> you receive in a short timeframe by <b>3 tiers</b>.
+      </TypographyP>
+      <div className="mt-2 flex items-center gap-4">
+        <TypographyH3 className="font-cyber mt-0">All In</TypographyH3>
+        <ClockCost num={3} />
+      </div>
+      <span className="font-cyber text-muted-foreground">
+        <b>
+          <u>Prerequisite</u>:
+        </b>{" "}
+        Preemptive Release
+      </span>
+      <TypographyP>
+        The mind places mental blocks on pushing your body past its limits. This
+        is for good reason so that you dont&apos;t injure yourself. But with
+        chrome like the <span className="font-cyber">&quot;Revivify&quot;</span>
+        , that sort of thinking is obselete for you.
+      </TypographyP>
+      <TypographyP>
+        There&apos;s no special trick to using the{" "}
+        <span className="font-cyber">&quot;Revivify&quot;</span> in this way.
+        You brace yourself and bush far beyond your phsyical limits, dealing
+        with the pain because you know it&apos;s just pain. <b>Push yourself</b>{" "}
+        to perform a burst of superhuman strength or stamina.
+      </TypographyP>
+      <div className="mt-2 flex items-center gap-4">
+        <TypographyH3 className="font-cyber mt-0">Precise Control</TypographyH3>
+        <ClockCost num={3} />
+      </div>
+      <TypographyP>
+        With rigorous practice,{" "}
+        <span className="font-cyber">&quot;Revivify&quot;</span> can be used to
+        regenerate small wounds by using excess energy in the body as opposed to
+        its fuel cells. It&apos;s reasons like this that justify not automating
+        the chrome.
+      </TypographyP>
+      <TypographyP>
+        At the end of any scene in which{" "}
+        <span className="font-cyber">Close</span> didn&apos;t heavily exert
+        themselves, they may clear a <b>level one harm</b>.
+      </TypographyP>
+      <div className="mt-2 flex items-center gap-4">
+        <TypographyH3 className="font-cyber mt-0">Resurrect</TypographyH3>
+        <ClockCost num={5} />
+      </div>
+      <span className="font-cyber text-muted-foreground">
+        <b>
+          <u>Prerequisite</u>:
+        </b>{" "}
+        Preemptive Release
+      </span>
+      <TypographyP>
+        Only one <span className="font-cyber">Close</span> has ever managed to
+        pull this off. And frankly, we don&apos;t even know how.{" "}
+        <b>Harys&apos;s</b> best theory is they somehow used reflex neurons in
+        their spinal column to store a delayed <i>&quot;survive&quot;</i>{" "}
+        impluse. Even if you do somehow get this to work, try to keep it subtle.{" "}
+        <span className="font-cyber">Close</span> is supposed to always make it
+        out.
+      </TypographyP>
+      <TypographyP>
+        To perform a self-resurrection, <b>mark a condition</b>. As long as a
+        fist-sized chunk of you survives, you&apos;ll come back. When you do,
+        you&apos;ll still be in bad shape: fill your <b>harm tracker</b>.
       </TypographyP>
     </>
   );

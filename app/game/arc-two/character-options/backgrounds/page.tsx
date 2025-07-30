@@ -79,7 +79,13 @@ export default async function Page() {
         </b>
       </TypographyP>
       <TypographyP className="font-cyber">
-        <b className="font-cyber">Sleeve:</b> birthsleeve
+        <b className="font-cyber">Sleeve:</b>{" "}
+        <Link
+          href="/game/arc-two/character-options/sleeves#Birthsleeve"
+          className="underline decoration-fuchsia-500"
+        >
+          birthsleeve
+        </Link>
       </TypographyP>
       <TypographyP>
         <b className="font-cyber">
@@ -159,7 +165,13 @@ export default async function Page() {
         </b>
       </TypographyP>
       <TypographyP className="font-cyber">
-        <b className="font-cyber">Sleeve:</b> Beasttech Bloodhound
+        <b className="font-cyber">Sleeve:</b>{" "}
+        <Link
+          href="/game/arc-two/character-options/sleeves#Bloodhound"
+          className="underline decoration-fuchsia-500"
+        >
+          Beasttech Bloodhound
+        </Link>
       </TypographyP>
       <TypographyP>
         <b className="font-cyber">
@@ -261,7 +273,13 @@ export default async function Page() {
         </b>
       </TypographyP>
       <TypographyP className="font-cyber">
-        <b className="font-cyber">Sleeve:</b> Vantro Enterprises Model 8-L
+        <b className="font-cyber">Sleeve:</b>{" "}
+        <Link
+          href="/game/arc-two/character-options/sleeves#Model 8-L"
+          className="underline decoration-fuchsia-500"
+        >
+          Vantro Enterprises Model 8-L
+        </Link>
       </TypographyP>
       <TypographyP>
         <b className="font-cyber">
@@ -371,7 +389,13 @@ export default async function Page() {
         </b>
       </TypographyP>
       <TypographyP className="font-cyber">
-        <b className="font-cyber">Sleeve:</b> Beasttech Pride Hide
+        <b className="font-cyber">Sleeve:</b>{" "}
+        <Link
+          href="/game/arc-two/character-options/sleeves#Pride Hide"
+          className="underline decoration-fuchsia-500"
+        >
+          Beasttech Pride Hide
+        </Link>
       </TypographyP>
       <TypographyP>
         <b className="font-cyber">
@@ -457,7 +481,13 @@ export default async function Page() {
         </b>
       </TypographyP>
       <TypographyP className="font-cyber">
-        <b className="font-cyber">Sleeve:</b> Foundation Omnifab
+        <b className="font-cyber">Sleeve:</b>{" "}
+        <Link
+          href="/game/arc-two/character-options/sleeves#Omnifab"
+          className="underline decoration-fuchsia-500"
+        >
+          Foundation Omnifab
+        </Link>
       </TypographyP>
       <TypographyP>
         <b className="font-cyber">
@@ -560,7 +590,13 @@ export default async function Page() {
         </b>
       </TypographyP>
       <TypographyP className="font-cyber">
-        <b className="font-cyber">Sleeve:</b> Integra Model 2 Mod Pro
+        <b className="font-cyber">Sleeve:</b>{" "}
+        <Link
+          href="/game/arc-two/character-options/sleeves#Model 2 Mod Pro"
+          className="underline decoration-fuchsia-500"
+        >
+          Integra Model 2 Mod Pro
+        </Link>
       </TypographyP>
       <TypographyBlockquote className="font-cyber text-xs">
         Introducing our most customizable budget model yet, Model 2 Mod Max.
@@ -657,7 +693,13 @@ export default async function Page() {
         </b>
       </TypographyP>
       <TypographyP className="font-cyber">
-        <b className="font-cyber">Sleeve:</b> Foundation Machina
+        <b className="font-cyber">Sleeve:</b>{" "}
+        <Link
+          href="/game/arc-two/character-options/sleeves#Machina"
+          className="underline decoration-fuchsia-500"
+        >
+          Foundation Machina
+        </Link>
       </TypographyP>
       <TypographyP>
         <b className="font-cyber">
@@ -757,7 +799,13 @@ export default async function Page() {
         </b>
       </TypographyP>
       <TypographyP className="font-cyber">
-        <b className="font-cyber">Sleeve:</b> Sentry Mastermind
+        <b className="font-cyber">Sleeve:</b>{" "}
+        <Link
+          href="/game/arc-two/character-options/sleeves#Mastermind"
+          className="underline decoration-fuchsia-500"
+        >
+          Sentry Mastermind
+        </Link>
       </TypographyP>
       <TypographyP>
         <b className="font-cyber">
@@ -869,7 +917,13 @@ export default async function Page() {
         </b>
       </TypographyP>
       <TypographyP className="font-cyber">
-        <b className="font-cyber">Sleeve:</b> birthsleeve
+        <b className="font-cyber">Sleeve:</b>{" "}
+        <Link
+          href="/game/arc-two/character-options/sleeves#Birthsleeve"
+          className="underline decoration-fuchsia-500"
+        >
+          birthsleeve
+        </Link>
       </TypographyP>
       <TypographyP>
         <b className="font-cyber">
@@ -960,7 +1014,13 @@ export default async function Page() {
         </b>
       </TypographyP>
       <TypographyP className="font-cyber">
-        <b className="font-cyber">Sleeve:</b> Feelmax Skyn
+        <b className="font-cyber">Sleeve:</b>{" "}
+        <Link
+          href="/game/arc-two/character-options/sleeves#Feelmax Skyn"
+          className="underline decoration-fuchsia-500"
+        >
+          Feelmax Skyn
+        </Link>
       </TypographyP>
       <TypographyBlockquote className="font-cyber text-xs">
         Strata brings you the pinnacle of luxury sleeves. The latest in our
