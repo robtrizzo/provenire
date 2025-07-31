@@ -99,7 +99,7 @@ export default async function Page() {
         corporate contact specialist handle that.
       </TypographyP>
       <div className="mt-2 flex items-center gap-4">
-        <TypographyH3 className="font-cyber mt-0">Obliterate</TypographyH3>
+        <TypographyH3 className="font-cyber mt-0">Overkill</TypographyH3>
         <ClockCost num={0} />
       </div>
       <TypographyP>
@@ -202,7 +202,7 @@ export default async function Page() {
         fall back to <i>ignition</i>; <b>6</b>: no consequence.
       </TypographyP>
       <div className="mt-2 flex items-center gap-4">
-        <TypographyH3 className="font-cyber mt-0">Annihilate</TypographyH3>
+        <TypographyH3 className="font-cyber mt-0">Obliterate</TypographyH3>
         <ClockCost num={5} />
       </div>
       <span className="font-cyber text-muted-foreground">
