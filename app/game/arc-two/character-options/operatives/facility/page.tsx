@@ -142,7 +142,7 @@ export default async function Page() {
       <TypographyP>
         By swinging and/or throwing immense objects,{" "}
         <span className="font-cyber">Facility</span> can launch themselves with
-        the centrifugal force. Brace yourself, it's not often a graceful
+        the centrifugal force. Brace yourself, it&apos;s not often a graceful
         landing.
       </TypographyP>
       <div className="mt-2 flex items-center gap-4">
