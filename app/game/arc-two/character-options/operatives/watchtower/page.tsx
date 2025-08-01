@@ -64,13 +64,13 @@ export default async function Page() {
         During missions Root may ask you to...
       </TypographyP>
       <TypographyUnorderedList>
-        <li>Relay important events to mission control</li>
-        <li>Be the on-site director and frame the action</li>
+        <li>Close the loop. Tie up loose ends.</li>
+        <li>Drop a bombshell reveal about one of your teammates</li>
         <li>
           Make sure good &quot;stunt partners&quot; don&apos;t die too soon
         </li>
-        <li>Talk a hot-headed teammate down from going off-script</li>
-        <li>Spot new threats before they can impact the scene</li>
+        <li>Withold critical information from a teammate</li>
+        <li>Tag in for a teammate who&apos;s been taken out of the action</li>
       </TypographyUnorderedList>
       <TypographyH2 className="font-cyber">
         Advanced Surveilance Swarm &quot;Watchdogs&quot;

@@ -66,12 +66,12 @@ export default async function Page() {
       </TypographyP>
       <TypographyUnorderedList>
         <li>Smooth talk past security</li>
-        <li>Lounge at a bar just long enough to rescue the team later</li>
-        <li>Turn heads with suave confidence</li>
+        <li>Lounge around just long enough to rescue the team later</li>
         <li>
           Hold off your kill-shot until all the camera angles are just right
         </li>
         <li>Start fights with a salvo of cinematic explosions</li>
+        <li>Horrifically embarass yourself</li>
       </TypographyUnorderedList>
       <TypographyH2 className="font-cyber">
         Experimental Integrated Blast Engine &quot;Overkill, Beibe&quot;

@@ -65,7 +65,7 @@ export default async function Page() {
         <li>Run into a burning building</li>
         <li>Jump in the way of traffic to save a teammate</li>
         <li>Escape ten assassins with your hands tied behind your back</li>
-        <li>Diffuse a bomb</li>
+        <li>Defuse a bomb</li>
         <li>Start a fight when the talking gets too boring</li>
       </TypographyUnorderedList>
       <TypographyH2 className="font-cyber">

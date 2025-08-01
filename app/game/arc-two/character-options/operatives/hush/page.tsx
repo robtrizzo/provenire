@@ -64,13 +64,11 @@ export default async function Page() {
         During missions Root may ask you to...
       </TypographyP>
       <TypographyUnorderedList>
-        <li>Decapitate three enemies with one blow and vanish</li>
+        <li>Strike a blow and vanish into the shadows</li>
         <li>Taunt your prey before you hunt them down</li>
-        <li>Execute foes begging for mercy</li>
-        <li>
-          Leave a trail of dead guards and disabled security for your team
-        </li>
+        <li>When asked a question, stay silent</li>
         <li>Intimidatingly emerge from the shadows</li>
+        <li>Reveal your face to someone you&apos;d never want to see it</li>
       </TypographyUnorderedList>
       <TypographyH2 className="font-cyber">
         Antidetection Platform &quot;Vaporwave&quot;
