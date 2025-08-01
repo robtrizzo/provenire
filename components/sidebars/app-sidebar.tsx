@@ -146,12 +146,12 @@ const data = {
     {
       title: "Stats",
       url: "#",
-      items: [{ title: "Arc One", url: "/game/arc-one/stats/arc-one" }],
+      items: [{ title: "Arc One", url: "/game/arc-one/stats" }],
     },
     {
       title: "Surveys",
       url: "#",
-      items: [{ title: "Arc One", url: "/game/arc-one/surveys/arc-one" }],
+      items: [{ title: "Arc One", url: "/game/arc-one/surveys" }],
     },
   ],
 };
