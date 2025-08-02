@@ -105,10 +105,10 @@ export default async function Page() {
       </div>
       <TypographyP>
         The <span className="font-cyber">&quot;Watchdogs&quot;</span> are a
-        potent surveilance tool, but it can also be incredibly overwhelming to
-        the senses. The neural implant that enables piloting the drones also
-        streams all of their data back to your brain and reconstructs a real
-        time 3D image of the surrounding area. This makes{" "}
+        potent surveilance tool, but it can also be overwhelming to the senses.
+        The neural implant that enables piloting the drones also streams all of
+        their data back to your brain and reconstructs a real time 3D image of
+        the surrounding area. This makes{" "}
         <span className="font-cyber">Watchtower</span> incredibly capable of
         spotting incoming threats.
       </TypographyP>
@@ -125,11 +125,11 @@ export default async function Page() {
         <ClockCost num={2} />
       </div>
       <TypographyP>
-        <b>Felicity</b> and her team of media coordinators are in the
-        team&apos;s ear to make sure <span className="font-cyber">Cytech</span>{" "}
-        captures all the best footage. But they&apos;ve never been in your
-        shoes. You see the action first-hand and you know for a fact that
-        you&apos;re a better director than they are a lot of the time.
+        <b>Felicity</b> and her of media coordinators are in the team&apos;s ear
+        to make sure <span className="font-cyber">Cytech</span> captures all the
+        best footage. But they&apos;ve never been in your shoes. You see the
+        action first-hand and you know for a fact that you&apos;re a better
+        director than they are a lot of the time.
       </TypographyP>
       <TypographyP>
         When you disagree with <b>Felicity</b> on a directing call,{" "}

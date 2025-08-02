@@ -181,8 +181,8 @@ export default async function Page() {
       </div>
       <TypographyP>
         You begin experiencing terrible nightmares. Vivid scenes of you and your
-        loved ones suffering at the hands of evil folk. But your memories are
-        shelved - did this happen? Is this why you joined{" "}
+        loved ones suffering at the hands of wretched fiends. But your memories
+        are shelved - did this happen? Is this why you joined{" "}
         <span className="font-cyber">Root</span>?
       </TypographyP>
       <TypographyP>

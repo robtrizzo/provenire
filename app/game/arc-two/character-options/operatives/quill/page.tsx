@@ -154,7 +154,7 @@ export default async function Page() {
       </TypographyP>
       <TypographyP>
         At the end of each mission, <span className="font-cyber">Quill</span>{" "}
-        may convert any physical <b>codex action</b> they used during the
+        may convert any one physical <b>codex action</b> they used during the
         mission into an <b>ego action</b> without needing to spend the{" "}
         <b>xp clocks</b> to do so.
       </TypographyP>
@@ -178,7 +178,7 @@ export default async function Page() {
       </TypographyP>
       <TypographyUnorderedList>
         <li>
-          a teammate <b>assists</b> <span className="font-cyber">Quill</span> on
+          <span className="font-cyber">Quill</span> <b>assists</b> a teammate on
           a <b>physical action roll</b>
         </li>
         <li>
