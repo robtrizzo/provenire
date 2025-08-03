@@ -81,6 +81,10 @@ const data = {
       url: "#",
       items: [
         {
+          title: "Character Creation",
+          url: "/game/arc-two/character-options/character-creation",
+        },
+        {
           title: "Backgrounds",
           url: "/game/arc-two/character-options/backgrounds",
         },
