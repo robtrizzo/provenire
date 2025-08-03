@@ -60,7 +60,7 @@ export default async function Page() {
         They may embrace the role or reject it - that&apos;s up to you. But
         regardless of what your character wants, this is what{" "}
         <span className="font-cyber">ROOT</span> expects of them.{" "}
-        <b>Operatives</b> include an <b>action</b> and{" "}
+        <b>Operatives</b> include a <b> codex action</b> and{" "}
         <b>experimental cyberware</b>.
       </TypographyP>
       <TypographyBlockquote className="font-cyber text-sm">
