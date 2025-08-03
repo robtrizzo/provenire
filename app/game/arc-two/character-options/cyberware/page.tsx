@@ -367,7 +367,7 @@ export default async function Page() {
       </TypographyP>
 
       <CyberwareHeader
-        name={`Skill Codex`}
+        name="Basic Skill Codex"
         dangerous={false}
         manufacturer="Overcorp"
         tech="Neurotech"
@@ -378,6 +378,11 @@ export default async function Page() {
         A <span className="font-cyber">Skill Codex</span> is chrome that you can
         slot into your cortical stack and simply <i>know</i> how to do
         something. How well? Depends on the quality of the codex.
+      </TypographyP>
+      <TypographyP>
+        There are also various degrees of skills. <b>Basic</b> skills are ones
+        which <span className="font-cyber">Overcorp</span> execs have agreed are
+        useful and safe for all citizens to learn.
       </TypographyP>
       <TypographyP className="font-cyber text-sm">
         <div className="inline-block">
@@ -588,6 +593,87 @@ export default async function Page() {
         it, they become unparalleled masters of their machine.
       </TypographyP>
 
+      <CyberwareHeader
+        name="Specialized Skill Codex"
+        dangerous={false}
+        manufacturer="Overcorp"
+        tech="Neurotech"
+        price="X"
+        subscription="X"
+      />
+      <TypographyP>
+        A <span className="font-cyber">Skill Codex</span> is chrome that you can
+        slot into your cortical stack and simply <i>know</i> how to do
+        something. How well? Depends on the quality of the codex.
+      </TypographyP>
+      <TypographyP>
+        There are also various degrees of skills. <b>Specialized</b> skills are
+        ones which <span className="font-cyber">Overcorp</span> judges as risky
+        or low-value for citizens to possess. These include{" "}
+        <b>fighting styles</b>, questionable social skills, and in-depth
+        knowledge about certain technologies.
+      </TypographyP>
+      <TypographyP className="font-cyber text-sm">
+        <div className="inline-block">
+          <div className="flex gap-2">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4"></div>
+          </div>
+        </div>{" "}
+        <span className="text-emerald-500">
+          3 ¤P,{" "}
+          <span className="text-emerald-500">
+            <Repeat className="inline" /> 1 ¤P
+          </span>{" "}
+        </span>
+        <br />
+        <div className="inline-block">
+          <div className="flex gap-2">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+          </div>
+        </div>{" "}
+        <span className="text-muted-foreground text-xs">OR</span>{" "}
+        <div className="inline-block">
+          <div className="flex gap-2">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4"></div>
+          </div>
+        </div>{" "}
+        <span className="text-emerald-500">
+          5 ¤P,{" "}
+          <span className="text-emerald-500">
+            <Repeat className="inline" /> 2 ¤P
+          </span>{" "}
+        </span>
+        <br />
+        <div className="inline-block">
+          <div className="flex gap-2">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+          </div>
+        </div>{" "}
+        <span className="text-emerald-500">
+          7 ¤P,{" "}
+          <span className="text-emerald-500">
+            <Repeat className="inline" /> 3 ¤P
+          </span>{" "}
+        </span>
+        <br />
+        <div className="inline-block">
+          <div className="flex gap-2">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+          </div>
+        </div>{" "}
+        <span className="text-emerald-500">
+          9 ¤P,{" "}
+          <span className="text-emerald-500">
+            <Repeat className="inline" /> 4 ¤P
+          </span>{" "}
+        </span>
+      </TypographyP>
+
       <TypographyH2 className="font-cyber">Experimental Cyberware</TypographyH2>
       <TypographyP>
         This is cyberware that is either one of a kind or prohibited from sale
@@ -721,6 +807,88 @@ export default async function Page() {
         reconstructed within moments. Field tests show a less than two second
         gap in memory from death to conciousness.
       </TypographyP>
+
+      <CyberwareHeader
+        name="Forbidden Skill Codex"
+        dangerous={false}
+        manufacturer="???"
+        tech="Neurotech"
+        price="X"
+        subscription="X"
+      />
+      <TypographyP>
+        A <span className="font-cyber">Skill Codex</span> is chrome that you can
+        slot into your cortical stack and simply <i>know</i> how to do
+        something. How well? Depends on the quality of the codex.
+      </TypographyP>
+      <TypographyP>
+        There are also various degrees of skills. <b>Forbidden</b> skills are
+        ones which <span className="font-cyber">Overcorp</span> execs have
+        outlawed, as they have been deemed too dangerous for public access. Only
+        way to get your hands on one of these is the black market. And they
+        charge a pretty pelt.
+      </TypographyP>
+      <TypographyP className="font-cyber text-sm">
+        <div className="inline-block">
+          <div className="flex gap-2">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4"></div>
+          </div>
+        </div>{" "}
+        <span className="text-emerald-500">
+          5 ¤P,{" "}
+          <span className="text-emerald-500">
+            <Repeat className="inline" /> 2 ¤P
+          </span>{" "}
+        </span>
+        <br />
+        <div className="inline-block">
+          <div className="flex gap-2">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+          </div>
+        </div>{" "}
+        <span className="text-muted-foreground text-xs">OR</span>{" "}
+        <div className="inline-block">
+          <div className="flex gap-2">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4"></div>
+          </div>
+        </div>{" "}
+        <span className="text-emerald-500">
+          7 ¤P,{" "}
+          <span className="text-emerald-500">
+            <Repeat className="inline" /> 3 ¤P
+          </span>{" "}
+        </span>
+        <br />
+        <div className="inline-block">
+          <div className="flex gap-2">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
+          </div>
+        </div>{" "}
+        <span className="text-emerald-500">
+          9 ¤P,{" "}
+          <span className="text-emerald-500">
+            <Repeat className="inline" /> 5 ¤P
+          </span>{" "}
+        </span>
+        <br />
+        <div className="inline-block">
+          <div className="flex gap-2">
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+            <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500"></div>
+          </div>
+        </div>{" "}
+        <span className="text-emerald-500">
+          11 ¤P,{" "}
+          <span className="text-emerald-500">
+            <Repeat className="inline" /> 7 ¤P
+          </span>{" "}
+        </span>
+      </TypographyP>
+
       <div className="mb-8" />
     </>
   );
