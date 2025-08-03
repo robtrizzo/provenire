@@ -105,6 +105,10 @@ const data = {
           url: "/game/arc-two/character-options/sleeves",
         },
         {
+          title: "Actions",
+          url: "/game/arc-two/character-options/actions",
+        },
+        {
           title: "Advancement",
           url: "/game/arc-two/character-options/advancement",
         },

@@ -117,9 +117,9 @@ export default async function Page() {
         </div>
         ). One of your benefits at <span className="font-cyber">Root</span> is
         that they will provide any number of{" "}
-        <span className="font-cyber">q1</span> <b>Codex Actions</b> to you free
-        of charge. If you want better, you&apos;ll have to subscribe to that
-        cyberware.
+        <span className="font-cyber">q1</span> <b>Basic Codex Actions</b> to you
+        free of charge. If you want better, you&apos;ll have to subscribe to
+        that cyberware.
       </TypographyP>
       <TypographyH4 className="font-cyber">Learning Codex Actions</TypographyH4>
       <TypographyP>
