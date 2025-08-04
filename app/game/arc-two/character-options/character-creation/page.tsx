@@ -27,14 +27,12 @@ export default async function Page() {
         <span className="font-cyber">ROOT&apos;s</span> parent company,{" "}
         <span className="font-cyber">Cytech</span>.
       </TypographyP>
-
       <TypographyH2>Guided Creation</TypographyH2>
       <TypographyP>
         You can make choices and fill out your character in any order you
         please! But if you&apos;re looking for a structured framework,
         here&apos;s one.
       </TypographyP>
-
       <TypographyP>
         I recommend glancing over each of the options before making a choice
         since each choice will modify your gameplay experience quite a bit.{" "}
@@ -42,7 +40,6 @@ export default async function Page() {
         most narrative-focused, and <b>Operative</b> the most mission-focused of
         the options.
       </TypographyP>
-
       <TypographyP>
         <b>
           <u>Step One</u>
@@ -73,7 +70,6 @@ export default async function Page() {
         </div>
         . Subscription fees will be paid by ROOT.
       </TypographyBlockquote>
-
       <TypographyP>
         <b>
           <u>Step Two</u>
@@ -111,7 +107,6 @@ export default async function Page() {
         place. If you would rather the <b>Narrator</b> do this for you,
         that&apos;s fine too. Just let me know.
       </TypographyP>
-
       <TypographyP>
         <b>
           <u>Step Three</u>
@@ -135,7 +130,6 @@ export default async function Page() {
         </div>
         .
       </TypographyBlockquote>
-
       <TypographyP>
         <b>
           <u>Step Four</u>
@@ -164,7 +158,6 @@ export default async function Page() {
         </div>
         .
       </TypographyBlockquote>
-
       <TypographyP>
         <b>
           <u>Step Five</u>
@@ -177,7 +170,6 @@ export default async function Page() {
         Narrator will review your answers to help you stay within the bounds of
         the fiction.
       </TypographyP>
-
       <TypographyP>
         <b>
           <u>Step Six</u>
@@ -185,14 +177,32 @@ export default async function Page() {
       </TypographyP>
       <TypographyP>
         In addition to the <b>actions</b> granted by character choices, you may
-        choose three additional <b>basic actions</b> and one{" "}
-        <b>specialized action</b> as <b>ego actions</b>. Each one starts at{" "}
+        choose three additional{" "}
+        <Link href="/game/arc-two/character-options/actions#basic">
+          <b className="text-red-500">
+            <u>basic actions</u>
+          </b>
+        </Link>{" "}
+        and one additional{" "}
+        <Link href="/game/arc-two/character-options/actions">
+          <b className="text-red-500">
+            <u>restricted action</u>
+          </b>
+        </Link>{" "}
+        <span className="text-sm text-muted-foreground">OR</span>{" "}
+        <Link href="/game/arc-two/character-options/actions">
+          <b className="text-red-500">
+            <u>forbidden action</u>
+          </b>
+        </Link>{" "}
+        as <b>ego actions</b>. Each one starts at{" "}
         <div className="inline-block ml-2">
           <div className="flex items-center gap-2 mb-4">
             <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500"></div>
             <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4"></div>
           </div>
         </div>
+        .
       </TypographyP>
 
       <TypographyP>
@@ -221,7 +231,6 @@ export default async function Page() {
         Though keep in mind your character has only known them for a few weeks
         now.
       </TypographyP>
-
       <TypographyP>
         <b>
           <u>Step Eight</u>
@@ -245,7 +254,6 @@ export default async function Page() {
         </Link>{" "}
         for how many <b>xp clocks</b> each progression costs.
       </TypographyP>
-
       <TypographyP>
         <b>
           <u>Step Nine</u>
@@ -262,7 +270,6 @@ export default async function Page() {
         </span>{" "}
         if you wish to spend <b>¤P</b> on additional cyberware.
       </TypographyP>
-
       <TypographyP>
         <b>
           <u>Step Ten</u>

@@ -237,7 +237,7 @@ export default async function Page() {
         </li>
         <li>
           <b className="font-cyber">
-            War buddy [ <span className="text-red-500">Endure</span>
+            War buddy [ <span className="text-red-500">Persevere</span>
             {" -> "}
             <span className="text-sky-500">Bond</span> ]
           </b>{" "}

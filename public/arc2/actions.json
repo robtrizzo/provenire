@@ -1,0 +1,396 @@
+{
+  "Basic": [
+    {
+      "name": "Ambush",
+      "description": "Exploit surprise for frightful or violent ends."
+    },
+    {
+      "name": "Authority",
+      "description": "Let your position of power do the talking."
+    },
+    {
+      "name": "Assess",
+      "description": "Think before acting. Catalog the possible advantages and consequences of a course of action."
+    },
+    {
+      "name": "Backsnap",
+      "description": "Overwhelming aggression",
+      "restrictAtStart": true
+    },
+    {
+      "name": "Berate",
+      "description": "Use your words to make someone feel small"
+    },
+    {
+      "name": "Bleedout",
+      "description": "Small, precise strikes in vital regions",
+      "restrictAtStart": true
+    },
+    {
+      "name": "Brace",
+      "description": "Prepare for a sudden pain or shock."
+    },
+    {
+      "name": "Browse",
+      "description": "Passively take note of a collection of things without paying attention to specifics."
+    },
+    {
+      "name": "Carry",
+      "description": "Traverse your surroundings while under a heavy load."
+    },
+    {
+      "name": "Challenge",
+      "description": "Confront someone in a way that demands a response."
+    },
+    {
+      "name": "Charge",
+      "description": "Rush into danger without a plan."
+    },
+    {
+      "name": "Command",
+      "description": "Wield authority to get things done"
+    },
+    {
+      "name": "Disconnect",
+      "description": "Fortify your mind against upsetting stimuli."
+    },
+    {
+      "name": "Interface",
+      "description": "Work with tech the way it was intended to accomplish a task."
+    },
+    {
+      "name": "Frighten",
+      "description": "Use fear as a blunt instrument."
+    },
+    {
+      "name": "Instinct",
+      "description": "Make the right call when there's no time to think."
+    },
+    {
+      "name": "Encyclopedia [X]",
+      "description": "Recall propagandized basic information about a topic.",
+      "suboptions": [
+        "Nature",
+        "Technology",
+        "Feasting City",
+        "Beasts",
+        "Social hierarchy",
+        "Corporations"
+      ]
+    },
+    {
+      "name": "Loyalty (Kingwulf)",
+      "description": "Use your commitment to Kingwulf as a source of strength."
+    },
+    {
+      "name": "Manufacture",
+      "description": "Create something from raw materials or components."
+    },
+    {
+      "name": "Navigate",
+      "description": "Find your way through complex environments."
+    },
+    {
+      "name": "Netsurf",
+      "description": "Use the net to find information or communicate with others."
+    },
+    {
+      "name": "Observe",
+      "description": "Watch and learn. Gain insight into a person or situation."
+    },
+    {
+      "name": "Persevere",
+      "description": "Endure pain or hardship to accomplish a task."
+    },
+    {
+      "name": "Persuade",
+      "description": "Convince someone to do something without misleading them."
+    },
+    {
+      "name": "Prowl",
+      "description": "Skirt the edges of danger or lurk in the shadows."
+    },
+    {
+      "name": "Pull",
+      "description": "Move something heavy or difficult."
+    },
+    {
+      "name": "Resolve [X]",
+      "description": "Find strength in your deep personal convictions.",
+      "suboptions": ["Kingwulf's Order", "Might of Beasts"]
+    },
+    {
+      "name": "Relate [X]",
+      "description": "Establish a connection or understanding with someone.",
+      "suboptions": ["Worker", "Beast"]
+    },
+    {
+      "name": "Rummage",
+      "description": "Search through refuse for something useful."
+    },
+    {
+      "name": "Stalk",
+      "description": "Follow someone or something without being noticed."
+    },
+    {
+      "name": "Step",
+      "description": "Move carefully through dangerous terrain."
+    },
+    {
+      "name": "Suggest",
+      "description": "Plant an idea in someone's mind without them realizing it."
+    },
+    {
+      "name": "Survey",
+      "description": "Watch vigilantly to notice details others might miss."
+    },
+    {
+      "name": "Throatgore",
+      "description": "Pack tactics, go for the throat",
+      "restrictAtStart": true
+    },
+    {
+      "name": "Visual Calculus",
+      "description": "Understand how physical things in the world will affect each other"
+    }
+  ],
+  "Restricted": [
+    {
+      "name": "Acrobatics",
+      "description": "Traverse your surroundings with grace and speed."
+    },
+    {
+      "name": "Analyze",
+      "description": "Examine something to understand its function or purpose."
+    },
+
+    {
+      "name": "Brawl",
+      "description": "Engage in unstructured close combat."
+    },
+    {
+      "name": "Candor",
+      "description": "Get someone to view you favorably or reveal a secret."
+    },
+    {
+      "name": "Cobble",
+      "description": "Rapidly make an improvised tool or weapon from available tech."
+    },
+    {
+      "name": "Consort",
+      "description": "Meet with others to gain information or favors."
+    },
+    {
+      "name": "Coordinate",
+      "description": "Direct multiple unique entities to act as one."
+    },
+    {
+      "name": "Crowdbreaking",
+      "description": "Maximize damage to groups of surrounding foes",
+      "restrictAtStart": true
+    },
+    {
+      "name": "Debate",
+      "description": "Engage in a formal discussion to convince others of your point of view."
+    },
+    {
+      "name": "Deal",
+      "description": "Negotiate a mutually beneficial agreement with someone."
+    },
+    {
+      "name": "Drama",
+      "description": "Appeal to emotions to elicit a response."
+    },
+    {
+      "name": "Eavesdrop",
+      "description": "Listen in on a conversation without being noticed."
+    },
+    {
+      "name": "Flaunt",
+      "description": "Broadcast your skills and make a spectacle of using them."
+    },
+    {
+      "name": "Fuel",
+      "description": "Inflame a fire or strong emotion."
+    },
+    {
+      "name": "Galvanize",
+      "description": "Stoke positive energy; inspire confidence in yourself and others."
+    },
+    {
+      "name": "Hide",
+      "description": "Conceal yourself or something else from view."
+    },
+    {
+      "name": "Intercede",
+      "description": "Put yourself in harm's way to protect someone else."
+    },
+    {
+      "name": "Lift",
+      "description": "Take something from someone without them noticing."
+    },
+    {
+      "name": "Logic",
+      "description": "Analyze something to understand where its axioms lead"
+    },
+    {
+      "name": "Lurk",
+      "description": "Remain unnoticed while observing your surroundings."
+    },
+    {
+      "name": "Manipulate",
+      "description": "Deceive or coerce someone into doing what you want."
+    },
+    {
+      "name": "Mirado",
+      "description": "Observe, then act.",
+      "restrictAtStart": true
+    },
+    {
+      "name": "Obfuscate",
+      "description": "Hide your true intentions or confound someone's understanding."
+    },
+    {
+      "name": "Organize",
+      "description": "Arrange meetings, get people on the same page, or create understanding from chaos."
+    },
+    {
+      "name": "Pilot",
+      "description": "Operate a vehicle or machine with skill."
+    },
+    {
+      "name": "Pretense",
+      "description": "Present a false front or disguise your true intentions."
+    },
+    {
+      "name": "Read",
+      "description": "Understand the emotions of others"
+    },
+    {
+      "name": "Resolve [X]",
+      "description": "Find strength in your deep personal convictions.",
+      "suboptions": ["Endless march of industry", "Cybernetic supremacy"]
+    },
+    {
+      "name": "Sabotage",
+      "description": "Tamper with or damage a machine or device."
+    },
+    {
+      "name": "Scheme",
+      "description": "Make a complicated plan to do something underhanded or immoral"
+    },
+    {
+      "name": "Smash",
+      "description": "Hurt someone or damage something with brute force."
+    },
+    {
+      "name": "Smolder",
+      "description": "Handle social situations with a cool, charming demeanor."
+    },
+    {
+      "name": "Spin",
+      "description": "Twist the truth or redirect conversation to your advantage."
+    },
+    {
+      "name": "Squeeze",
+      "description": "Get into or out of a tight spot."
+    },
+    {
+      "name": "Study",
+      "description": "Research a topic or item. Gain insight into its function or history."
+    },
+    {
+      "name": "Tech [X]",
+      "description": "Use your knowledge of a specific technology to accomplish a task",
+      "suboptions": [
+        "Crystech",
+        "Electrotech",
+        "Gentech",
+        "Holotech",
+        "Metaltech",
+        "Neurotech",
+        "Nettech",
+        "Tartech"
+      ]
+    },
+    {
+      "name": "Tinker",
+      "description": "Work to understand or improve a machine or device"
+    }
+  ],
+  "Forbidden": [
+    {
+      "name": "Bravado",
+      "description": "Maintain confidence even in the face of overwhelming odds."
+    },
+    {
+      "name": "Comfort",
+      "description": "Provide emotional support to someone in need"
+    },
+    {
+      "name": "Connect",
+      "description": "Open up to someone so that they reciprocate"
+    },
+    {
+      "name": "Defy",
+      "description": "Push back or lash out against a higher power or authority."
+    },
+    {
+      "name": "Diverge",
+      "description": "Think outside of convention and embrace unexpected solutions."
+    },
+    {
+      "name": "Encourage",
+      "description": "Aid someone to feel confident in their own strengths"
+    },
+    {
+      "name": "Hack",
+      "description": "Manipulate a system or device to gain unauthorized access or control."
+    },
+    {
+      "name": "History",
+      "description": "Recall past events or knowledge to inform your actions.",
+      "restrictAtStart": true
+    },
+    {
+      "name": "Ignite",
+      "description": "Incite action from an individual or group on the brink of conflict."
+    },
+    {
+      "name": "Impersonate",
+      "description": "Pass yourself off as someone who you aren't."
+    },
+    {
+      "name": "Initiate",
+      "description": "Start something dangerous or take the first step into the unknown"
+    },
+    {
+      "name": "Inspire",
+      "description": "Motivate others to take action"
+    },
+    {
+      "name": "Loyalty",
+      "description": "Use your commitment to something as a source of strength."
+    },
+    {
+      "name": "Rally",
+      "description": "Inspire others to come together and act as one."
+    },
+    {
+      "name": "Relate",
+      "description": "Establish a connection or understanding with someone."
+    },
+    {
+      "name": "Resolve",
+      "description": "Find strength in your deep personal convictions."
+    },
+    {
+      "name": "Rhetoric",
+      "description": "Persuade or manipulate others with the way your words make them feel"
+    },
+    {
+      "name": "Stubborn",
+      "description": "Resist change or pressure"
+    }
+  ]
+}

@@ -101,8 +101,10 @@ export type Heritage = {
 
 export interface Action {
   name: string;
-  attribute: Attribute;
+  attribute?: Attribute;
   description: string;
+  restrictAtStart?: boolean;
+  suboptions?: string[];
 }
 
 export type Skillset = {

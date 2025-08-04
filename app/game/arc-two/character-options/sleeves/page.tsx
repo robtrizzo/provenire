@@ -87,6 +87,28 @@ export default async function Page() {
         <SleeveChart dur={2} bea={2} mod={2} sen={2} int={2} com={4} />
       </div>
       <SleeveHeader
+        name="Leased Biosleeve"
+        codex={2}
+        price={0}
+        subscription="1"
+      />
+      <div className="grid grid-cols-1 lg:grid-cols-2">
+        <div>
+          <TypographyP>
+            Maybe your birthsleeve got dusted, or maybe you just wanted to
+            switch up your look. Regardless, there is an enormous market for
+            leased biosleeves out there.
+          </TypographyP>
+          <TypographyP>
+            Many biosleeve lease agreements forbid modding the sleeve or
+            allowing it to come to any harm. Violation of the contract will
+            require purchasing the sleeve for its full price of{" "}
+            <span className="font-cyber text-emerald-500">5 ¤P</span>.
+          </TypographyP>
+        </div>
+        <SleeveChart dur={2} bea={2} mod={0} sen={2} int={2} com={2} />
+      </div>
+      <SleeveHeader
         name="Omnifab"
         manufacturer="Foundation"
         codex={1}
