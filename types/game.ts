@@ -16,6 +16,32 @@ export interface Character {
   abilities: string[];
 }
 
+export interface CharacterV2 {
+  name: string;
+  updatedAt: Date;
+  player: string;
+  portrait?: string;
+  key?: string;
+  stress: number;
+  conditions: string[];
+  healing: number;
+  harm3: string;
+  harm2: string[];
+  harm1: string[];
+  armor: boolean;
+  sArmor: boolean;
+  hArmor: boolean;
+  abilities: string[];
+  actions: {
+    left: ActionV2[];
+    right: ActionV2[];
+  };
+}
+
+export type ActionV2 = {
+  name: string;
+};
+
 export type Archetype = {
   name: string;
   questions: string[];
