@@ -348,7 +348,7 @@ export default async function Page() {
           <Repeat className="inline text-emerald-500" /> 4 ¤P
         </span>{" "}
         of subscriptions without needing to touch your expendable income, though
-        your contitions also permanently require{" "}
+        your conditions also permanently require{" "}
         <span className="text-emerald-500 font-cyber text-sm">
           <Repeat className="inline text-emerald-500" /> 1 ¤P
         </span>
@@ -365,7 +365,7 @@ export default async function Page() {
           <Repeat className="inline text-emerald-500" /> 6 ¤P
         </span>{" "}
         of subscriptions without needing to touch your expendable income, though
-        your contitions also permanently require{" "}
+        your conditions also permanently require{" "}
         <span className="text-emerald-500 font-cyber text-sm">
           <Repeat className="inline text-emerald-500" /> 2 ¤P
         </span>
@@ -382,7 +382,7 @@ export default async function Page() {
           <Repeat className="inline text-emerald-500" /> 10 ¤P
         </span>{" "}
         of subscriptions without needing to touch your expendable income, though
-        your contitions also permanently require{" "}
+        your conditions also permanently require{" "}
         <span className="text-emerald-500 font-cyber text-sm">
           <Repeat className="inline text-emerald-500" /> 4 ¤P
         </span>
