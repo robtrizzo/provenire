@@ -1,0 +1,12 @@
+[
+  { "name": "Canon", "action": "Smolder" },
+  { "name": "Close", "action": "Instinct" },
+  { "name": "Facility", "action": "Galvanize" },
+  { "name": "Hush", "action": "Ambush" },
+  { "name": "Impact", "action": "Bravado" },
+  { "name": "Keeper", "action": "Coordinate" },
+  { "name": "Notion", "action": "Resolve" },
+  { "name": "Quill", "action": "Flaunt" },
+  { "name": "Severance", "action": "Diverge" },
+  { "name": "Watchtower", "action": "Assess" }
+]

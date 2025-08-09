@@ -1,0 +1,106 @@
+[
+  {
+    "name": "Throatgore",
+    "description": "Pack tactics, go for the throat",
+    "abilities": [
+      {
+        "name": "Pack Tactics",
+        "slug": "pack-tactics"
+      },
+      {
+        "name": "Coordinated Assault",
+        "slug": "coordinated-assault"
+      },
+      {
+        "name": "Fatal Opening",
+        "slug": "fatal-opening"
+      },
+      {
+        "name": "Isolating Counter",
+        "slug": "isolating-counter"
+      },
+      {
+        "name": "Fatal Finisher",
+        "slug": "fatal-finisher"
+      }
+    ]
+  },
+  {
+    "name": "Bleedout",
+    "description": "Small, precise strikes in vital regions",
+    "abilities": [
+      {
+        "name": "Skirmish",
+        "slug": "skirmish"
+      },
+      {
+        "name": "Debilitating Strikes",
+        "slug": "debilitating-strikes"
+      },
+      {
+        "name": "Predatory Focus",
+        "slug": "predatory-focus"
+      },
+      {
+        "name": "Combat Canny",
+        "slug": "combat-canny"
+      },
+      {
+        "name": "Deceiver's Surge",
+        "slug": "deceivers-surge"
+      }
+    ]
+  },
+  {
+    "name": "Backsnap",
+    "description": "Overwhelming aggression",
+    "abilities": [
+      {
+        "name": "Reckless Mindset",
+        "slug": "reckless-mindset"
+      },
+      {
+        "name": "Immediate Brutality",
+        "slug": "immediate-brutality"
+      },
+      {
+        "name": "Bloody Counter",
+        "slug": "bloody-counter"
+      },
+      {
+        "name": "Reaper's Surge",
+        "slug": "reapers-surge"
+      },
+      {
+        "name": "Unstoppable",
+        "slug": "unstoppable"
+      }
+    ]
+  },
+  {
+    "name": "Mirado",
+    "description": "Situational awareness and adaptability",
+    "abilities": [
+      {
+        "name": "Combat Awareness",
+        "slug": "combat-awareness"
+      },
+      {
+        "name": "Combat Instinct",
+        "slug": "combat-instinct"
+      },
+      {
+        "name": "Six Edged Intersection",
+        "slug": "six-edged-intersection"
+      },
+      {
+        "name": "Third Eye",
+        "slug": "third-eye"
+      },
+      {
+        "name": "Mirado Surge",
+        "slug": "mirado-surge"
+      }
+    ]
+  }
+]

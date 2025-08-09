@@ -1,0 +1,75 @@
+[
+  {
+    "name": "Birthsleeve",
+    "codexSlots": 2
+  },
+  {
+    "name": "Leased Biosleeve",
+    "codexSlots": 2,
+    "subscription": 1
+  },
+  {
+    "name": "Omnifab",
+    "codexSlots": 1,
+    "price": 6,
+    "manufacturer": "Foundation",
+    "tech": ["Metaltech", "Nettech"]
+  },
+  {
+    "name": "Model 2 Mod Pro",
+    "codexSlots": 1,
+    "price": 2,
+    "manufacturer": "Integra",
+    "tech": ["Metaltech"]
+  },
+  {
+    "name": "Bright Smile",
+    "codexSlots": 1,
+    "price": 4,
+    "manufacturer": "3MI",
+    "tech": ["Metaltech"]
+  },
+  {
+    "name": "Bloodhound",
+    "codexSlots": 2,
+    "price": 8,
+    "manufacturer": "Beasttech",
+    "tech": ["Gentech", "Metaltech"]
+  },
+  {
+    "name": "Model 8-L",
+    "codexSlots": 3,
+    "price": 8,
+    "manufacturer": "Vantro Enterprises",
+    "tech": ["Gentech", "Neurotech"]
+  },
+  {
+    "name": "Pride Hide",
+    "codexSlots": 1,
+    "price": 12,
+    "subscription": 1,
+    "manufacturer": "Beasttech",
+    "tech": ["Gentech", "Metaltech"]
+  },
+  {
+    "name": "Machina",
+    "codexSlots": 1,
+    "price": 8,
+    "manufacturer": "Foundation",
+    "tech": ["Metaltech"]
+  },
+  {
+    "name": "Feelmax Skyn",
+    "codexSlots": 1,
+    "price": 20,
+    "manufacturer": "Strata",
+    "tech": ["Gentech", "Neurotech"]
+  },
+  {
+    "name": "Mastermind",
+    "codexSlots": 3,
+    "price": 10,
+    "manufacturer": "Sentry",
+    "tech": ["Gentech", "Nettech", "Neurotech"]
+  }
+]
