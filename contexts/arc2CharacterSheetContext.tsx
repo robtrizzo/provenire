@@ -38,6 +38,7 @@ interface CharacterSheetContextProps {
   selectedFightingStyle: FightingStyleV2 | undefined;
   questions: Map<string, string>;
   notes: string;
+  xp: number;
   stress: number;
   conditions: string[];
   harm3: string;
@@ -76,6 +77,7 @@ interface CharacterSheetContextProps {
   >;
   setQuestions: React.Dispatch<React.SetStateAction<Map<string, string>>>;
   setNotes: React.Dispatch<React.SetStateAction<string>>;
+  setXp: React.Dispatch<React.SetStateAction<number>>;
   setStress: React.Dispatch<React.SetStateAction<number>>;
   setConditions: React.Dispatch<React.SetStateAction<string[]>>;
   setHarm3: React.Dispatch<React.SetStateAction<string>>;
@@ -149,6 +151,8 @@ export default function CharacterSheetProvider({
   const [questions, setQuestions] = useState<Map<string, string>>(new Map());
   const [notes, setNotes] = useState<string>("");
 
+  const [xp, setXp] = useState(0);
+
   const [stress, setStress] = useState(0);
   const [conditions, setConditions] = useState<string[]>([]);
 
@@ -188,6 +192,7 @@ export default function CharacterSheetProvider({
     setSelectedFightingStyle(undefined);
     setQuestions(new Map());
     setNotes("");
+    setXp(0);
     setConditions([]);
     setStress(0);
     setHarm3("");
@@ -225,6 +230,9 @@ export default function CharacterSheetProvider({
 
         setQuestions(new Map(parsed.questions));
         setNotes(parsed.notes || "");
+
+        setXp(parsed.xp);
+
         if (parsed.conditions) {
           setConditions(parsed.conditions);
         }
@@ -264,6 +272,7 @@ export default function CharacterSheetProvider({
           selectedFightingStyle,
           questions: Array.from(questions),
           notes,
+          xp,
           stress,
           conditions,
           harm3,
@@ -306,6 +315,7 @@ export default function CharacterSheetProvider({
         selectedFightingStyle,
         questions: Array.from(questions),
         notes,
+        xp,
         stress,
         conditions,
         harm3,
@@ -510,6 +520,7 @@ export default function CharacterSheetProvider({
         selectedFightingStyle,
         questions,
         notes,
+        xp,
         stress,
         conditions,
         harm3,
@@ -537,6 +548,7 @@ export default function CharacterSheetProvider({
         setSelectedFightingStyle,
         setQuestions,
         setNotes,
+        setXp,
         setStress,
         setConditions,
         setHarm3,

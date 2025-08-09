@@ -1,5 +1,5 @@
 import { TypographyH2 } from "@/components/ui/typography";
-import XPClocks from "./xp-clocks";
+import XPClocks from "@/components/character-sheet/xp-clocks";
 import XPInfo from "./xp-info";
 import { useCharacterSheet } from "@/contexts/characterSheetContext";
 export default function XPSection() {
@@ -10,7 +10,7 @@ export default function XPSection() {
         Experience <XPInfo />
       </TypographyH2>
       <XPClocks
-        current={xpRef.current}
+        initial={xpRef.current}
         setVal={(n) => {
           xpRef.current = n;
           setChanges(true);

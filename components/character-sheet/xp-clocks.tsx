@@ -3,15 +3,16 @@ import { useState } from "react";
 import Clock from "@/components/clock";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
+
 export default function XPClocks({
-  current,
+  initial,
   setVal,
 }: {
-  current: number;
+  initial: number;
   setVal: (n: number) => void;
 }) {
   const { theme } = useTheme();
-  const [xp, setXp] = useState<number>(current);
+  const [xp, setXp] = useState<number>(initial);
 
   const dark = theme === "dark";
 
@@ -41,6 +42,8 @@ export default function XPClocks({
     );
   });
 
+  const clocks = Math.floor(xp / 6) || 0;
+
   return (
     <div className="p-1 flex items-center gap-2 justify-between select-none flex-wrap">
       <div className="p-1 flex items-center gap-2 select-none">
@@ -60,7 +63,7 @@ export default function XPClocks({
                   "0px 0px 2px white, 0px 0px 2px white, 0px 0px 2px white",
               }}
             >
-              {Math.floor(xp / 6)}
+              {clocks}
             </span>
           </div>
           <svg
