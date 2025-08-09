@@ -16,32 +16,6 @@ export interface Character {
   abilities: string[];
 }
 
-export interface CharacterV2 {
-  name: string;
-  updatedAt: Date;
-  player: string;
-  portrait?: string;
-  key?: string;
-  stress: number;
-  conditions: string[];
-  healing: number;
-  harm3: string;
-  harm2: string[];
-  harm1: string[];
-  armor: boolean;
-  sArmor: boolean;
-  hArmor: boolean;
-  abilities: string[];
-  actions: {
-    left: ActionV2[];
-    right: ActionV2[];
-  };
-}
-
-export type ActionV2 = {
-  name: string;
-};
-
 export type Archetype = {
   name: string;
   questions: string[];
@@ -271,3 +245,77 @@ export interface Crew {
   clocks: Clock[];
   updatedAt: Date;
 }
+
+// ARC TWO ------------------ //
+
+export type BackgroundV2 = {
+  name: string;
+};
+
+export type Sleeve = {
+  name: string;
+  codexSlots: number;
+  price?: number;
+  subscription?: number;
+  manufacturer?: string;
+  tech?: string[];
+};
+
+export type Operative = {
+  name: string;
+  action: string;
+};
+
+export type FightingStyleV2 = {
+  name: string;
+  description: string;
+  instructor?: string;
+  abilities: Ability[];
+};
+
+export type Transformation = {
+  name: string;
+  translation?: string;
+  description?: string;
+  provenire?: string;
+  abilities: Ability[];
+};
+
+export interface CharacterV2 {
+  name: string;
+  updatedAt: Date;
+  player: string;
+  portrait?: string;
+  key?: string;
+  stress: number;
+  conditions: string[];
+  harm: CharacterHarm;
+  armor: boolean;
+  sArmor: boolean;
+  hArmor: boolean;
+  abilities: string[];
+  actions: {
+    left: ActionV2[];
+    right: ActionV2[];
+  };
+}
+
+export type CharacterHarm = {
+  [level: number]: HarmLevel;
+};
+export type HarmLevel = {
+  slots: string[];
+  maxSlots: number;
+};
+
+export type ActionV2 = {
+  name: string;
+  description: string;
+  type: "ego" | "codex";
+  overCorpClassification?: "basic" | "restricted" | "forbidden";
+  suboptions?: string[];
+  subscription?: number;
+  subscriptionPaid?: boolean;
+  score: [number, number];
+  tags?: string[];
+};

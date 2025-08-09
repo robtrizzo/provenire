@@ -26,7 +26,7 @@ import {
   Donum,
 } from "@/types/game";
 import { Button } from "@/components/ui/button";
-import SaveCharacter from "./components/save-character";
+import SaveCharacter from "../../../../../../components/character-sheet/save-character";
 import LoadCharacter from "./components/load-character";
 import ClearCharacter from "./components/clear-character";
 import { useCharacterSheet } from "@/contexts/characterSheetContext";

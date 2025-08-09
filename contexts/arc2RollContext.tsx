@@ -20,7 +20,7 @@ import {
   useMutation,
   useQueryClient,
 } from "@tanstack/react-query";
-import { useCharacterSheet } from "./characterSheetContext";
+import { useCharacterSheet } from "./arc2CharacterSheetContext";
 import { Die } from "@/components/die";
 import { cn } from "@/lib/utils";
 import { useSession } from "next-auth/react";
@@ -411,7 +411,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     }
   }, [session?.data?.user?.id]);
 
-  const { channel } = useChannel("rolls", "new", (message) => {
+  const { channel } = useChannel("arc2-rolls", "new", (message) => {
     if (session?.status !== "authenticated") {
       return;
     }
