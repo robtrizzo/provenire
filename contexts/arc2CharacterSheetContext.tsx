@@ -15,6 +15,7 @@ import {
   Operative,
   FightingStyleV2,
   Transformation,
+  CharacterHarm,
 } from "@/types/game";
 import { debounce } from "@/lib/utils";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -22,6 +23,21 @@ import { useToast } from "@/hooks/use-toast";
 import { useSession } from "next-auth/react";
 
 const SUPPORTED_VERSION = 2;
+
+const DEFAULT_HARM: CharacterHarm = {
+  1: {
+    slots: ["", ""],
+    maxSlots: 2,
+  },
+  2: {
+    slots: ["", ""],
+    maxSlots: 2,
+  },
+  3: {
+    slots: [""],
+    maxSlots: 1,
+  },
+};
 
 interface CharacterSheetContextProps {
   compatibleVersions: number[];
@@ -38,12 +54,15 @@ interface CharacterSheetContextProps {
   selectedFightingStyle: FightingStyleV2 | undefined;
   questions: Map<string, string>;
   notes: string;
+  wealthP: number;
+  wealthF: number;
+  pelts: number;
+  favors: number;
   xp: number;
   stress: number;
+  maxStress: number;
   conditions: string[];
-  harm3: string;
-  harm2: string[];
-  harm1: string[];
+  harm: CharacterHarm;
   armor: boolean;
   hArmor: boolean;
   sArmor: boolean;
@@ -77,18 +96,26 @@ interface CharacterSheetContextProps {
   >;
   setQuestions: React.Dispatch<React.SetStateAction<Map<string, string>>>;
   setNotes: React.Dispatch<React.SetStateAction<string>>;
+  setWealthP: React.Dispatch<React.SetStateAction<number>>;
+  setWealthF: React.Dispatch<React.SetStateAction<number>>;
+  setPelts: React.Dispatch<React.SetStateAction<number>>;
+  setFavors: React.Dispatch<React.SetStateAction<number>>;
   setXp: React.Dispatch<React.SetStateAction<number>>;
+  setMaxStress: React.Dispatch<React.SetStateAction<number>>;
   setStress: React.Dispatch<React.SetStateAction<number>>;
   setConditions: React.Dispatch<React.SetStateAction<string[]>>;
-  setHarm3: React.Dispatch<React.SetStateAction<string>>;
-  setHarm2: React.Dispatch<React.SetStateAction<string[]>>;
-  setHarm1: React.Dispatch<React.SetStateAction<string[]>>;
+  setHarm: React.Dispatch<React.SetStateAction<CharacterHarm>>;
   setArmor: React.Dispatch<React.SetStateAction<boolean>>;
   setHArmor: React.Dispatch<React.SetStateAction<boolean>>;
   setSArmor: React.Dispatch<React.SetStateAction<boolean>>;
   setAbilities: React.Dispatch<React.SetStateAction<string[]>>;
   setLoadout: React.Dispatch<React.SetStateAction<Loadout | undefined>>;
   handleUpdateQuestion: (key: string, value: string) => void;
+  handleUpdateHarmSlot: (
+    level: number,
+    slotIndex: number,
+    description: string
+  ) => void;
   handleUpdateItemName: (index: number, value: string) => void;
   handleUpdateItemSlots: (index: number, value: number) => void;
   setItems: React.Dispatch<React.SetStateAction<Item[]>>;
@@ -151,14 +178,18 @@ export default function CharacterSheetProvider({
   const [questions, setQuestions] = useState<Map<string, string>>(new Map());
   const [notes, setNotes] = useState<string>("");
 
+  const [wealthP, setWealthP] = useState<number>(1);
+  const [wealthF, setWealthF] = useState<number>(1);
+  const [pelts, setPelts] = useState<number>(0);
+  const [favors, setFavors] = useState<number>(0);
+
   const [xp, setXp] = useState(0);
 
+  const [maxStress, setMaxStress] = useState(9);
   const [stress, setStress] = useState(0);
   const [conditions, setConditions] = useState<string[]>([]);
 
-  const [harm3, setHarm3] = useState<string>("");
-  const [harm2, setHarm2] = useState<string[]>(["", ""]);
-  const [harm1, setHarm1] = useState<string[]>(["tired", ""]);
+  const [harm, setHarm] = useState<CharacterHarm>(DEFAULT_HARM);
 
   const [armor, setArmor] = useState<boolean>(false);
   const [hArmor, setHArmor] = useState<boolean>(false);
@@ -192,12 +223,15 @@ export default function CharacterSheetProvider({
     setSelectedFightingStyle(undefined);
     setQuestions(new Map());
     setNotes("");
+    setWealthP(1);
+    setWealthF(1);
+    setPelts(0);
+    setFavors(0);
     setXp(0);
     setConditions([]);
     setStress(0);
-    setHarm3("");
-    setHarm2(["", ""]);
-    setHarm1(["", ""]);
+    setMaxStress(0);
+    setHarm(DEFAULT_HARM);
     setArmor(false);
     setHArmor(false);
     setSArmor(false);
@@ -231,15 +265,19 @@ export default function CharacterSheetProvider({
         setQuestions(new Map(parsed.questions));
         setNotes(parsed.notes || "");
 
+        setWealthP(parsed.wealthP || 1);
+        setWealthF(parsed.wealthF || 1);
+        setPelts(parsed.pelts || 0);
+        setFavors(parsed.favors || 0);
+
         setXp(parsed.xp);
 
         if (parsed.conditions) {
           setConditions(parsed.conditions);
         }
+        setMaxStress(parsed.maxStress || 9);
         setStress(parsed.stress || 0);
-        setHarm3(parsed.harm3 || "");
-        setHarm2(parsed.harm2 || ["", ""]);
-        setHarm1(parsed.harm1 || ["", ""]);
+        setHarm(parsed.harm || DEFAULT_HARM);
         setArmor(parsed.armor || false);
         setHArmor(parsed.hArmor || false);
         setSArmor(parsed.sArmor || false);
@@ -272,12 +310,15 @@ export default function CharacterSheetProvider({
           selectedFightingStyle,
           questions: Array.from(questions),
           notes,
+          wealthP,
+          wealthF,
+          pelts,
+          favors,
           xp,
+          maxStress,
           stress,
           conditions,
-          harm3,
-          harm2,
-          harm1,
+          harm,
           armor,
           hArmor,
           sArmor,
@@ -315,12 +356,15 @@ export default function CharacterSheetProvider({
         selectedFightingStyle,
         questions: Array.from(questions),
         notes,
+        wealthP,
+        wealthF,
+        pelts,
+        favors,
         xp,
+        maxStress,
         stress,
         conditions,
-        harm3,
-        harm2,
-        harm1,
+        harm,
         armor,
         hArmor,
         sArmor,
@@ -489,6 +533,31 @@ export default function CharacterSheetProvider({
     setChanges(true);
   }
 
+  function handleUpdateHarmSlot(
+    level: number,
+    slotIndex: number,
+    description: string
+  ) {
+    const updatedHarm = { ...harm };
+
+    // Ensure the level exists
+    if (!updatedHarm[level]) {
+      updatedHarm[level] = { slots: [], maxSlots: 1 };
+    }
+
+    // Ensure slots array is the right size
+    const levelData = updatedHarm[level];
+    while (levelData.slots.length < levelData.maxSlots) {
+      levelData.slots.push("");
+    }
+
+    // Update the specific slot
+    levelData.slots[slotIndex] = description.trim() || "";
+
+    setHarm(updatedHarm);
+    handleDebounceChange();
+  }
+
   function handleUpdateItemName(index: number, value: string) {
     const newItems = [...items];
     newItems[index] = { ...newItems[index], name: value };
@@ -520,12 +589,15 @@ export default function CharacterSheetProvider({
         selectedFightingStyle,
         questions,
         notes,
+        wealthP,
+        wealthF,
+        pelts,
+        favors,
         xp,
+        maxStress,
         stress,
         conditions,
-        harm3,
-        harm2,
-        harm1,
+        harm,
         armor,
         hArmor,
         sArmor,
@@ -548,12 +620,15 @@ export default function CharacterSheetProvider({
         setSelectedFightingStyle,
         setQuestions,
         setNotes,
+        setWealthP,
+        setWealthF,
+        setPelts,
+        setFavors,
         setXp,
+        setMaxStress,
         setStress,
         setConditions,
-        setHarm3,
-        setHarm2,
-        setHarm1,
+        setHarm,
         setArmor,
         setHArmor,
         setSArmor,
@@ -565,6 +640,7 @@ export default function CharacterSheetProvider({
         handleDebounceChange,
         handleUpdateQuestion,
         handleUpdateArchetypeQuestion,
+        handleUpdateHarmSlot,
         handleUpdateItemName,
         handleUpdateItemSlots,
         setCloudUpdatedAt,
