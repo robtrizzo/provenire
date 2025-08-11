@@ -84,7 +84,6 @@ interface CharacterSheetContextProps {
   setSelectedBackground: React.Dispatch<
     React.SetStateAction<BackgroundV2 | undefined>
   >;
-  setSelectedSleeve: React.Dispatch<React.SetStateAction<Sleeve | undefined>>;
   setSelectedOperative: React.Dispatch<
     React.SetStateAction<Operative | undefined>
   >;
@@ -111,6 +110,8 @@ interface CharacterSheetContextProps {
   setAbilities: React.Dispatch<React.SetStateAction<string[]>>;
   setLoadout: React.Dispatch<React.SetStateAction<Loadout | undefined>>;
   handleUpdateQuestion: (key: string, value: string) => void;
+  handleUpdateSleeve: (sleeve: Sleeve | undefined) => void;
+  harmsEmpty: () => boolean;
   handleUpdateHarmSlot: (
     level: number,
     slotIndex: number,
@@ -533,6 +534,22 @@ export default function CharacterSheetProvider({
     setChanges(true);
   }
 
+  function harmsEmpty() {
+    return Object.values(harm).every((level) =>
+      level.slots.every((slot) => slot === "" || slot === undefined)
+    );
+  }
+
+  function handleUpdateSleeve(newSleeve?: Sleeve | undefined) {
+    setSelectedSleeve(newSleeve);
+    let newHarm = DEFAULT_HARM;
+    if (newSleeve?.harm) {
+      newHarm = newSleeve.harm;
+    }
+    setHarm(newHarm);
+    setChanges(true);
+  }
+
   function handleUpdateHarmSlot(
     level: number,
     slotIndex: number,
@@ -614,7 +631,6 @@ export default function CharacterSheetProvider({
         setUnivQuestions,
         setSelectedArchetype,
         setSelectedBackground,
-        setSelectedSleeve,
         setSelectedOperative,
         setSelectedTransformation,
         setSelectedFightingStyle,
@@ -640,6 +656,8 @@ export default function CharacterSheetProvider({
         handleDebounceChange,
         handleUpdateQuestion,
         handleUpdateArchetypeQuestion,
+        handleUpdateSleeve,
+        harmsEmpty,
         handleUpdateHarmSlot,
         handleUpdateItemName,
         handleUpdateItemSlots,

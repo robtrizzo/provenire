@@ -259,6 +259,7 @@ export type Sleeve = {
   subscription?: number;
   manufacturer?: string;
   tech?: string[];
+  harm?: CharacterHarm;
 };
 
 export type Operative = {

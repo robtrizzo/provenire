@@ -25,6 +25,8 @@ import operatives from "@/public/arc2/operatives.json";
 import transformations from "@/public/arc2/transformations.json";
 import fightingStyles from "@/public/arc2/fighting-styles.json";
 import Portrait from "@/components/character-sheet/portrait";
+import ChangeSleeveAlertDialog from "./change-sleeve-alert-dialog";
+import { useState } from "react";
 
 export default function Options() {
   const {
@@ -42,13 +44,19 @@ export default function Options() {
     setAlias,
     setSelectedArchetype,
     setSelectedBackground,
-    setSelectedSleeve,
+    handleUpdateSleeve,
+    harmsEmpty,
     setSelectedOperative,
     setSelectedTransformation,
     setSelectedFightingStyle,
     setChanges,
     handleDebounceChange,
   } = useCharacterSheet();
+
+  const [sleeveAlertOpen, setSleeveAlertOpen] = useState(false);
+  const [pendingSleeveChange, setPendingSleeveChange] = useState<
+    Sleeve | undefined
+  >();
 
   return (
     <div className="flex flex-col md:flex-row mt-1 items-start gap-1">
@@ -171,6 +179,22 @@ export default function Options() {
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 w-full my-1">
           <div>
+            <ChangeSleeveAlertDialog
+              open={sleeveAlertOpen}
+              onCancel={() => {
+                console.log("cancelled");
+                setSleeveAlertOpen(false);
+                setPendingSleeveChange(undefined);
+              }}
+              onContinue={() => {
+                console.log("continued");
+                if (pendingSleeveChange) {
+                  handleUpdateSleeve(pendingSleeveChange);
+                }
+                setSleeveAlertOpen(false);
+                setPendingSleeveChange(undefined);
+              }}
+            />
             <Select
               key={selectedSleeve?.name || "empty"}
               value={selectedSleeve?.name}
@@ -178,9 +202,14 @@ export default function Options() {
                 const foundSleeve = sleeves.find((b) => b.name === value) as
                   | Sleeve
                   | undefined;
+
                 if (foundSleeve) {
-                  setSelectedSleeve(foundSleeve);
-                  setChanges(true);
+                  if (!harmsEmpty()) {
+                    setPendingSleeveChange(foundSleeve);
+                    setSleeveAlertOpen(true);
+                  } else {
+                    handleUpdateSleeve(foundSleeve);
+                  }
                 }
               }}
             >
@@ -200,8 +229,7 @@ export default function Options() {
                   className="w-full px-2"
                   onClick={(e) => {
                     e.stopPropagation();
-                    setSelectedSleeve(undefined);
-                    setChanges(true);
+                    handleUpdateSleeve(undefined);
                   }}
                 >
                   Clear

@@ -30,9 +30,11 @@ export default function HarmSection() {
       </TypographyH3>
       <div className="flex items-center">
         <div className="flex flex-col items-center">
-          <span className="bg-secondary p-2 h-10 w-6 shrink-0">3</span>
-          <span className="bg-secondary p-2 h-10 w-6 shrink-0">2</span>
-          <span className="bg-secondary p-2 h-10 w-6 shrink-0">1</span>
+          {harmLevels.map((level) => (
+            <span key={level} className="bg-secondary p-2 h-10 w-6 shrink-0">
+              {level}
+            </span>
+          ))}
         </div>
         <div className="flex flex-col items-center w-full">
           {harmLevels.map((level) => {

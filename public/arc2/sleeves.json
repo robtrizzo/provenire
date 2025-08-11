@@ -13,21 +13,63 @@
     "codexSlots": 1,
     "price": 6,
     "manufacturer": "Foundation",
-    "tech": ["Metaltech", "Nettech"]
+    "tech": ["Metaltech", "Nettech"],
+    "harm": {
+      "1": {
+        "slots": ["", "", ""],
+        "maxSlots": 3
+      },
+      "2": {
+        "slots": ["", ""],
+        "maxSlots": 2
+      },
+      "3": {
+        "slots": [""],
+        "maxSlots": 1
+      }
+    }
   },
   {
     "name": "Model 2 Mod Pro",
     "codexSlots": 1,
     "price": 2,
     "manufacturer": "Integra",
-    "tech": ["Metaltech"]
+    "tech": ["Metaltech"],
+    "harm": {
+      "1": {
+        "slots": [""],
+        "maxSlots": 1
+      },
+      "2": {
+        "slots": ["", ""],
+        "maxSlots": 2
+      },
+      "3": {
+        "slots": [""],
+        "maxSlots": 1
+      }
+    }
   },
   {
     "name": "Bright Smile",
     "codexSlots": 1,
     "price": 4,
     "manufacturer": "3MI",
-    "tech": ["Metaltech"]
+    "tech": ["Metaltech"],
+    "harm": {
+      "1": {
+        "slots": ["", ""],
+        "maxSlots": 2
+      },
+      "2": {
+        "slots": [""],
+        "maxSlots": 1
+      },
+      "3": {
+        "slots": [""],
+        "maxSlots": 1
+      }
+    }
   },
   {
     "name": "Bloodhound",
@@ -41,7 +83,21 @@
     "codexSlots": 3,
     "price": 8,
     "manufacturer": "Vantro Enterprises",
-    "tech": ["Gentech", "Neurotech"]
+    "tech": ["Gentech", "Neurotech"],
+    "harm": {
+      "1": {
+        "slots": ["", ""],
+        "maxSlots": 2
+      },
+      "2": {
+        "slots": [""],
+        "maxSlots": 1
+      },
+      "3": {
+        "slots": [""],
+        "maxSlots": 1
+      }
+    }
   },
   {
     "name": "Pride Hide",
@@ -49,27 +105,79 @@
     "price": 12,
     "subscription": 1,
     "manufacturer": "Beasttech",
-    "tech": ["Gentech", "Metaltech"]
+    "tech": ["Gentech", "Metaltech"],
+    "harm": {
+      "1": {
+        "slots": ["", "", ""],
+        "maxSlots": 3
+      },
+      "2": {
+        "slots": ["", ""],
+        "maxSlots": 2
+      },
+      "3": {
+        "slots": ["", ""],
+        "maxSlots": 2
+      }
+    }
   },
   {
     "name": "Machina",
     "codexSlots": 1,
     "price": 8,
     "manufacturer": "Foundation",
-    "tech": ["Metaltech"]
+    "tech": ["Metaltech"],
+    "harm": {
+      "1": {
+        "slots": ["", ""],
+        "maxSlots": 2
+      },
+      "2": {
+        "slots": ["", "", ""],
+        "maxSlots": 3
+      },
+      "3": {
+        "slots": [""],
+        "maxSlots": 1
+      }
+    }
   },
   {
     "name": "Feelmax Skyn",
     "codexSlots": 1,
     "price": 20,
     "manufacturer": "Strata",
-    "tech": ["Gentech", "Neurotech"]
+    "tech": ["Gentech", "Neurotech"],
+    "harm": {
+      "1": {
+        "slots": ["", ""],
+        "maxSlots": 2
+      },
+      "2": {
+        "slots": [""],
+        "maxSlots": 1
+      },
+      "3": {
+        "slots": [""],
+        "maxSlots": 1
+      }
+    }
   },
   {
     "name": "Mastermind",
     "codexSlots": 3,
     "price": 10,
     "manufacturer": "Sentry",
-    "tech": ["Gentech", "Nettech", "Neurotech"]
+    "tech": ["Gentech", "Nettech", "Neurotech"],
+    "harm": {
+      "1": {
+        "slots": [""],
+        "maxSlots": 1
+      },
+      "2": {
+        "slots": [""],
+        "maxSlots": 1
+      }
+    }
   }
 ]
