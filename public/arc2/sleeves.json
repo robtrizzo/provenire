@@ -179,5 +179,30 @@
         "maxSlots": 1
       }
     }
+  },
+  {
+    "name": "Ravager",
+    "codexSlots": 1,
+    "price": 16,
+    "manufacturer": "Beasttech",
+    "tech": ["Gentech", "Metaltech", "Neurotech"],
+    "harm": {
+      "1": {
+        "slots": ["", "", ""],
+        "maxSlots": 3
+      },
+      "2": {
+        "slots": ["", ""],
+        "maxSlots": 2
+      },
+      "3": {
+        "slots": [""],
+        "maxSlots": 1
+      },
+      "4": {
+        "slots": [""],
+        "maxSlots": 1
+      }
+    }
   }
 ]
