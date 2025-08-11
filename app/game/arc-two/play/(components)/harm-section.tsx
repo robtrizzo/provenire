@@ -5,7 +5,7 @@ import { useCharacterSheet } from "@/contexts/arc2CharacterSheetContext";
 
 export default function HarmSection() {
   const {
-    harm,
+    effectiveHarm,
     armor,
     hArmor,
     sArmor,
@@ -17,11 +17,13 @@ export default function HarmSection() {
   } = useCharacterSheet();
 
   const getSlotValue = (level: number, slotIndex: number): string => {
-    return harm[level]?.slots[slotIndex] || "";
+    return effectiveHarm[level]?.slots[slotIndex] || "";
   };
 
-  // Get harm levels sorted in descending order (3, 2, 1)
-  const harmLevels = Object.keys(harm).sort((a, b) => Number(b) - Number(a));
+  // Get effectiveHarm levels sorted in descending order (3, 2, 1)
+  const effectiveHarmLevels = Object.keys(effectiveHarm).sort(
+    (a, b) => Number(b) - Number(a)
+  );
 
   return (
     <>
@@ -30,15 +32,15 @@ export default function HarmSection() {
       </TypographyH3>
       <div className="flex items-center">
         <div className="flex flex-col items-center">
-          {harmLevels.map((level) => (
+          {effectiveHarmLevels.map((level) => (
             <span key={level} className="bg-secondary p-2 h-10 w-6 shrink-0">
               {level}
             </span>
           ))}
         </div>
         <div className="flex flex-col items-center w-full">
-          {harmLevels.map((level) => {
-            const levelData = harm[Number(level)];
+          {effectiveHarmLevels.map((level) => {
+            const levelData = effectiveHarm[Number(level)];
             const slots = Array.from(
               { length: levelData.maxSlots },
               (_, i) => i

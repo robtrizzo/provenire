@@ -28,17 +28,6 @@ export type Archetype = {
   };
 };
 
-export type ArchetypeV2 = {
-  name: string;
-  questions: {
-    starting: string[];
-    horizon: string[];
-  };
-  shortDescription: string;
-  startingAction: string;
-  abilities: Ability[];
-};
-
 export type FightingStyle = {
   name: string;
   instructor: string;
@@ -68,6 +57,7 @@ export interface Ability {
   name: string;
   keystone?: boolean;
   slug: string;
+  harmModifiers?: HarmModifier[];
 }
 
 export type Attribute = "Heart" | "Instinct" | "Machina";
@@ -162,6 +152,7 @@ export type Item = Clock & {
   uses?: number;
   traits: string[];
   description: string;
+  harmModifiers?: HarmModifier[];
 };
 
 export type Faction = Clock & {
@@ -248,6 +239,17 @@ export interface Crew {
 
 // ARC TWO ------------------ //
 
+export type ArchetypeV2 = {
+  name: string;
+  questions: {
+    starting: string[];
+    horizon: string[];
+  };
+  shortDescription: string;
+  startingAction: string;
+  abilities: Ability[];
+};
+
 export type BackgroundV2 = {
   name: string;
 };
@@ -262,9 +264,17 @@ export type Sleeve = {
   harm?: CharacterHarm;
 };
 
+export interface HarmModifier {
+  level: number;
+  slotChange: number;
+  source: string;
+  sourceId: string;
+}
+
 export type Operative = {
   name: string;
   action: string;
+  harmModifiers?: HarmModifier[];
 };
 
 export type FightingStyleV2 = {

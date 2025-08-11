@@ -16,6 +16,8 @@ import {
   FightingStyleV2,
   Transformation,
   CharacterHarm,
+  HarmModifier,
+  Ability,
 } from "@/types/game";
 import { debounce } from "@/lib/utils";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -63,10 +65,11 @@ interface CharacterSheetContextProps {
   maxStress: number;
   conditions: string[];
   harm: CharacterHarm;
+  effectiveHarm: CharacterHarm;
   armor: boolean;
   hArmor: boolean;
   sArmor: boolean;
-  abilities: string[];
+  abilities: Ability[];
   loadout: Loadout | undefined;
   items: Item[];
   localUpdatedAt: Date | null;
@@ -107,7 +110,7 @@ interface CharacterSheetContextProps {
   setArmor: React.Dispatch<React.SetStateAction<boolean>>;
   setHArmor: React.Dispatch<React.SetStateAction<boolean>>;
   setSArmor: React.Dispatch<React.SetStateAction<boolean>>;
-  setAbilities: React.Dispatch<React.SetStateAction<string[]>>;
+  setAbilities: React.Dispatch<React.SetStateAction<Ability[]>>;
   setLoadout: React.Dispatch<React.SetStateAction<Loadout | undefined>>;
   handleUpdateQuestion: (key: string, value: string) => void;
   handleUpdateSleeve: (sleeve: Sleeve | undefined) => void;
@@ -190,7 +193,9 @@ export default function CharacterSheetProvider({
   const [stress, setStress] = useState(0);
   const [conditions, setConditions] = useState<string[]>([]);
 
-  const [harm, setHarm] = useState<CharacterHarm>(DEFAULT_HARM);
+  const [harm, setHarm] = useState<CharacterHarm>(
+    JSON.parse(JSON.stringify(DEFAULT_HARM))
+  );
 
   const [armor, setArmor] = useState<boolean>(false);
   const [hArmor, setHArmor] = useState<boolean>(false);
@@ -199,7 +204,7 @@ export default function CharacterSheetProvider({
   const [loadout, setLoadout] = useState<Loadout>();
   const [items, setItems] = useState<Item[]>([]);
 
-  const [abilities, setAbilities] = useState<string[]>([]);
+  const [abilities, setAbilities] = useState<Ability[]>([]);
 
   const [changes, setChanges] = useState(false);
   const [dbChanges, setDbChanges] = useState(false);
@@ -232,7 +237,7 @@ export default function CharacterSheetProvider({
     setConditions([]);
     setStress(0);
     setMaxStress(0);
-    setHarm(DEFAULT_HARM);
+    setHarm(JSON.parse(JSON.stringify(DEFAULT_HARM)));
     setArmor(false);
     setHArmor(false);
     setSArmor(false);
@@ -278,7 +283,7 @@ export default function CharacterSheetProvider({
         }
         setMaxStress(parsed.maxStress || 9);
         setStress(parsed.stress || 0);
-        setHarm(parsed.harm || DEFAULT_HARM);
+        setHarm(parsed.harm || JSON.parse(JSON.stringify(DEFAULT_HARM)));
         setArmor(parsed.armor || false);
         setHArmor(parsed.hArmor || false);
         setSArmor(parsed.sArmor || false);
@@ -542,10 +547,18 @@ export default function CharacterSheetProvider({
 
   function handleUpdateSleeve(newSleeve?: Sleeve | undefined) {
     setSelectedSleeve(newSleeve);
-    let newHarm = DEFAULT_HARM;
+
+    let harmToCopy = DEFAULT_HARM;
     if (newSleeve?.harm) {
-      newHarm = newSleeve.harm;
+      harmToCopy = newSleeve.harm;
     }
+
+    const newHarm: CharacterHarm = {};
+
+    Object.keys(harmToCopy).forEach((level) => {
+      newHarm[Number(level)] = harmToCopy[Number(level)];
+    });
+
     setHarm(newHarm);
     setChanges(true);
   }
@@ -555,25 +568,92 @@ export default function CharacterSheetProvider({
     slotIndex: number,
     description: string
   ) {
-    const updatedHarm = { ...harm };
+    const updatedHarm: CharacterHarm = {};
 
-    // Ensure the level exists
+    Object.keys(harm).forEach((levelKey) => {
+      const numericKey = Number(levelKey);
+      updatedHarm[numericKey] = {
+        slots: [...harm[numericKey].slots],
+        maxSlots: harm[numericKey].maxSlots,
+      };
+    });
+
     if (!updatedHarm[level]) {
-      updatedHarm[level] = { slots: [], maxSlots: 1 };
+      return;
     }
 
-    // Ensure slots array is the right size
-    const levelData = updatedHarm[level];
-    while (levelData.slots.length < levelData.maxSlots) {
-      levelData.slots.push("");
-    }
-
-    // Update the specific slot
-    levelData.slots[slotIndex] = description.trim() || "";
+    updatedHarm[level].slots[slotIndex] = description.trim() || "";
 
     setHarm(updatedHarm);
     handleDebounceChange();
   }
+
+  function calculateEffectiveHarm(): CharacterHarm {
+    const originalHarm = harm;
+    const baseHarm: CharacterHarm = {};
+
+    Object.keys(originalHarm).forEach((level) => {
+      const levelKey = level as unknown as keyof typeof originalHarm;
+      const numericKey = Number(level);
+
+      baseHarm[numericKey] = {
+        slots: [...originalHarm[levelKey].slots],
+        maxSlots: originalHarm[levelKey].maxSlots,
+      };
+    });
+
+    const allModifiers: HarmModifier[] = [];
+
+    if (selectedOperative?.harmModifiers) {
+      allModifiers.push(...selectedOperative.harmModifiers);
+    }
+
+    items.forEach((item) => {
+      if (item.harmModifiers) {
+        allModifiers.push(...item.harmModifiers);
+      }
+    });
+
+    abilities.forEach((ability) => {
+      if (ability.harmModifiers) {
+        allModifiers.push(...ability.harmModifiers);
+      }
+    });
+
+    allModifiers.forEach((mod) => {
+      const modLevel = Number(mod.level);
+
+      if (baseHarm[modLevel]) {
+        const newMaxSlots = Math.max(
+          0,
+          baseHarm[modLevel].maxSlots + mod.slotChange
+        );
+
+        const currentSlots = [...baseHarm[modLevel].slots];
+        if (newMaxSlots > currentSlots.length) {
+          while (currentSlots.length < newMaxSlots) {
+            currentSlots.push("");
+          }
+        } else if (newMaxSlots < currentSlots.length) {
+          currentSlots.splice(newMaxSlots);
+        }
+
+        baseHarm[modLevel] = {
+          slots: currentSlots,
+          maxSlots: newMaxSlots,
+        };
+      } else if (mod.slotChange > 0) {
+        baseHarm[modLevel] = {
+          slots: Array.from({ length: mod.slotChange }, () => ""),
+          maxSlots: Math.max(0, mod.slotChange),
+        };
+      }
+    });
+
+    return baseHarm;
+  }
+
+  const effectiveHarm = calculateEffectiveHarm();
 
   function handleUpdateItemName(index: number, value: string) {
     const newItems = [...items];
@@ -615,6 +695,7 @@ export default function CharacterSheetProvider({
         stress,
         conditions,
         harm,
+        effectiveHarm,
         armor,
         hArmor,
         sArmor,

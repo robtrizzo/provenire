@@ -3,7 +3,30 @@
   { "name": "Close", "action": "Instinct" },
   { "name": "Facility", "action": "Galvanize" },
   { "name": "Hush", "action": "Ambush" },
-  { "name": "Impact", "action": "Bravado" },
+  {
+    "name": "Impact",
+    "action": "Bravado",
+    "harmModifiers": [
+      {
+        "level": 1,
+        "slotChange": 1,
+        "source": "operative",
+        "sourceId": "impact"
+      },
+      {
+        "level": 2,
+        "slotChange": 1,
+        "source": "operative",
+        "sourceId": "impact"
+      },
+      {
+        "level": 3,
+        "slotChange": 2,
+        "source": "operative",
+        "sourceId": "impact"
+      }
+    ]
+  },
   { "name": "Keeper", "action": "Coordinate" },
   { "name": "Notion", "action": "Resolve" },
   { "name": "Quill", "action": "Flaunt" },
