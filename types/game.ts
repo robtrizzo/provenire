@@ -252,6 +252,10 @@ export type ArchetypeV2 = {
 
 export type BackgroundV2 = {
   name: string;
+  actions: {
+    starting: string[];
+    baggage: string[];
+  };
 };
 
 export type Sleeve = {
@@ -319,14 +323,28 @@ export type HarmLevel = {
   maxSlots: number;
 };
 
+export type DictionaryAction = {
+  name: string;
+  description: string;
+  restrictAtStart?: boolean;
+  suboptions?: string[];
+};
+
 export type ActionV2 = {
   name: string;
   description: string;
-  type: "ego" | "codex";
+  type: "ego" | "codex" | "bond";
   overCorpClassification?: "basic" | "restricted" | "forbidden";
   suboptions?: string[];
   subscription?: number;
   subscriptionPaid?: boolean;
   score: [number, number];
   tags?: string[];
+  position?: "left" | "right";
+};
+
+export type CharacterActions = {
+  available: ActionV2[];
+  left: ActionV2[];
+  right: ActionV2[];
 };

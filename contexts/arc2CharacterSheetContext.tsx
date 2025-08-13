@@ -18,6 +18,8 @@ import {
   CharacterHarm,
   HarmModifier,
   Ability,
+  ActionV2,
+  CharacterActions,
 } from "@/types/game";
 import { debounce } from "@/lib/utils";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -60,6 +62,7 @@ interface CharacterSheetContextProps {
   wealthF: number;
   pelts: number;
   favors: number;
+  actions: CharacterActions;
   xp: number;
   stress: number;
   maxStress: number;
@@ -102,6 +105,7 @@ interface CharacterSheetContextProps {
   setWealthF: React.Dispatch<React.SetStateAction<number>>;
   setPelts: React.Dispatch<React.SetStateAction<number>>;
   setFavors: React.Dispatch<React.SetStateAction<number>>;
+  setActions: React.Dispatch<React.SetStateAction<CharacterActions>>;
   setXp: React.Dispatch<React.SetStateAction<number>>;
   setMaxStress: React.Dispatch<React.SetStateAction<number>>;
   setStress: React.Dispatch<React.SetStateAction<number>>;
@@ -128,6 +132,9 @@ interface CharacterSheetContextProps {
     questionIdx: number,
     newQuestion: string
   ) => void;
+  handleAddAvailableAction: (action: ActionV2) => void;
+  handleRemoveAvailableAction: (actionName: string) => void;
+  handleEditAction: (newAction: ActionV2) => void;
   setChanges: React.Dispatch<React.SetStateAction<boolean>>;
   setCharacterLoaded: React.Dispatch<React.SetStateAction<Date>>;
   handleDebounceChange: () => void;
@@ -187,6 +194,12 @@ export default function CharacterSheetProvider({
   const [pelts, setPelts] = useState<number>(0);
   const [favors, setFavors] = useState<number>(0);
 
+  const [actions, setActions] = useState<CharacterActions>({
+    available: [],
+    left: [],
+    right: [],
+  });
+
   const [xp, setXp] = useState(0);
 
   const [maxStress, setMaxStress] = useState(9);
@@ -233,6 +246,11 @@ export default function CharacterSheetProvider({
     setWealthF(1);
     setPelts(0);
     setFavors(0);
+    setActions({
+      available: [],
+      left: [],
+      right: [],
+    });
     setXp(0);
     setConditions([]);
     setStress(0);
@@ -275,6 +293,14 @@ export default function CharacterSheetProvider({
         setWealthF(parsed.wealthF || 1);
         setPelts(parsed.pelts || 0);
         setFavors(parsed.favors || 0);
+
+        setActions(
+          parsed.actions || {
+            available: [],
+            left: [],
+            right: [],
+          }
+        );
 
         setXp(parsed.xp);
 
@@ -320,6 +346,7 @@ export default function CharacterSheetProvider({
           wealthF,
           pelts,
           favors,
+          actions,
           xp,
           maxStress,
           stress,
@@ -366,6 +393,7 @@ export default function CharacterSheetProvider({
         wealthF,
         pelts,
         favors,
+        actions,
         xp,
         maxStress,
         stress,
@@ -669,6 +697,45 @@ export default function CharacterSheetProvider({
     handleDebounceChange();
   }
 
+  function handleAddAvailableAction(action: ActionV2) {
+    if (actions.available.findIndex((a) => a.name === action.name) === -1) {
+      setActions({
+        available: [...actions.available, action],
+        left: actions.left,
+        right: actions.right,
+      });
+    }
+    setChanges(true);
+  }
+
+  function handleRemoveAvailableAction(actionName: string) {
+    const newAvailable = actions.available.filter((a) => a.name !== actionName);
+    const newLeft = actions.available.filter((a) => a.name !== actionName);
+    const newRight = actions.available.filter((a) => a.name !== actionName);
+    setActions({
+      available: newAvailable,
+      left: newLeft,
+      right: newRight,
+    });
+    setChanges(true);
+  }
+
+  function handleEditAction(newAction: ActionV2) {
+    const updateActionInArray = (actionArray: ActionV2[]) => {
+      return actionArray.map((action) =>
+        action.name === newAction.name ? newAction : action
+      );
+    };
+
+    setActions({
+      available: updateActionInArray(actions.available),
+      left: updateActionInArray(actions.left),
+      right: updateActionInArray(actions.right),
+    });
+
+    setChanges(true);
+  }
+
   return (
     <CharacterSheetContext.Provider
       value={{
@@ -690,6 +757,7 @@ export default function CharacterSheetProvider({
         wealthF,
         pelts,
         favors,
+        actions,
         xp,
         maxStress,
         stress,
@@ -721,6 +789,7 @@ export default function CharacterSheetProvider({
         setWealthF,
         setPelts,
         setFavors,
+        setActions,
         setXp,
         setMaxStress,
         setStress,
@@ -742,6 +811,9 @@ export default function CharacterSheetProvider({
         handleUpdateHarmSlot,
         handleUpdateItemName,
         handleUpdateItemSlots,
+        handleAddAvailableAction,
+        handleRemoveAvailableAction,
+        handleEditAction,
         setCloudUpdatedAt,
         clearCharacter: setToDefaults,
       }}

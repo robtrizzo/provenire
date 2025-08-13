@@ -21,7 +21,7 @@ export default function XPInfo() {
         <Button
           size="icon"
           variant="ghost"
-          className="p-1 text-blue-600 hover:text-blue-600 h-10 w-10"
+          className="p-1 text-blue-600 hover:text-sky-600 h-10 w-10"
         >
           <BookOpen style={{ height: "24px", width: "24px" }} />
         </Button>

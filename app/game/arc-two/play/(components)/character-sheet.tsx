@@ -1,3 +1,4 @@
+import ActionSection from "./action-section";
 import Controls from "./controls";
 import HarmSection from "./harm-section";
 import LoadoutSection from "./loadout-section";
@@ -14,6 +15,7 @@ export default function CharacterSheet() {
       <div className="my-3 grid grid-cols-1 md:grid-cols-2 gap-6 focus-visible:outline-hidden">
         <div className="mt-4">
           <WealthSection />
+          <ActionSection />
         </div>
         <div className="flex flex-col my-6 md:mt-4">
           <XPSection />

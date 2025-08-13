@@ -1,32 +1,72 @@
 [
   {
-    "name": "Biofundamentalist"
+    "name": "Biofundamentalist",
+    "actions": {
+      "starting": ["Stalk", "Frighten", "Relate"],
+      "baggage": []
+    }
   },
   {
-    "name": "Bount"
+    "name": "Bount",
+    "actions": {
+      "starting": [],
+      "baggage": ["Lurk", "Persevere"]
+    }
   },
   {
-    "name": "Corpo Labcoat"
+    "name": "Corpo Labcoat",
+    "actions": {
+      "starting": ["Analyze"],
+      "baggage": ["Tech [X]", "Debate"]
+    }
   },
   {
-    "name": "Dynastic Scion"
+    "name": "Dynastic Scion",
+    "actions": {
+      "starting": ["Authority"],
+      "baggage": ["Scheme", "Consort"]
+    }
   },
   {
-    "name": "Factory Mundane"
+    "name": "Factory Mundane",
+    "actions": {
+      "starting": ["Interface"],
+      "baggage": ["Manufacture", "Disconnect"]
+    }
   },
   {
-    "name": "Grid Finch"
+    "name": "Grid Finch",
+    "actions": {
+      "starting": ["Deal"],
+      "baggage": ["Navigate", "Hide"]
+    }
   },
   {
-    "name": "Motorhead"
+    "name": "Motorhead",
+    "actions": {
+      "starting": ["Tinker"],
+      "baggage": ["Pilot", "Challenge"]
+    }
   },
   {
-    "name": "Netrunner"
+    "name": "Netrunner",
+    "actions": {
+      "starting": ["Hack"],
+      "baggage": ["Manipulate", "Netsurf"]
+    }
   },
   {
-    "name": "Redzone Punk Metalist"
+    "name": "Redzone Punk Metalist",
+    "actions": {
+      "starting": ["Brawl"],
+      "baggage": ["Ignite", "Defy"]
+    }
   },
   {
-    "name": "Trust Fund Dilettante"
+    "name": "Trust Fund Dilettante",
+    "actions": {
+      "starting": [],
+      "baggage": ["Pretense"]
+    }
   }
 ]
