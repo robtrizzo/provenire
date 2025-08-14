@@ -12,22 +12,38 @@ export default function ActionSection() {
   const rightActions = actions.available.filter(
     (action) => action.position === "right"
   );
+  const numPausedSubscriptions = actions.available.reduce((acc, action) => {
+    if (action.type === "codex" && !action.subscriptionPaid) {
+      return acc + 1;
+    } else {
+      return acc;
+    }
+  }, 0);
 
   return (
     <>
       <TypographyH2 className="text-md text-muted-foreground flex items-end justify-between">
-        Actions <EditActions />
+        Actions{" "}
+        <div>
+          <span className="text-muted-foreground font-light italic text-sm">
+            ({numPausedSubscriptions} paused subscription
+            {numPausedSubscriptions === 1 ? "" : "s"})
+          </span>{" "}
+          <EditActions />
+        </div>
       </TypographyH2>
       <div className="flex gap-4">
         <div className="flex-1">
-          {leftActions.map((action) => (
-            <ActionWidget key={action.name} action={action} />
-          ))}
+          {leftActions.map((action) => {
+            if (action.type === "codex" && !action.subscriptionPaid)
+              return null;
+            return <ActionWidget key={action.name} action={action} />;
+          })}
         </div>
         <div className="flex-1">
-          {rightActions.map((action) => (
-            <ActionWidget key={action.name} action={action} />
-          ))}
+          {rightActions.map((action) => {
+            return <ActionWidget key={action.name} action={action} />;
+          })}
         </div>
       </div>
     </>

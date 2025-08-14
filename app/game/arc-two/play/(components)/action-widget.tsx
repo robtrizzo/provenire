@@ -180,7 +180,7 @@ export default function ActionWidget({
           <ContextMenuItem>
             <Dices /> Roll
           </ContextMenuItem>
-          <ContextMenuItem>
+          <ContextMenuItem onClick={togglePosition}>
             {action.position === "left" ? (
               <span>
                 Move right <ArrowBigRightDash className="inline-block" />
@@ -191,7 +191,7 @@ export default function ActionWidget({
               </span>
             )}
           </ContextMenuItem>
-          <ContextMenuItem>
+          <ContextMenuItem onClick={toggleEgo}>
             <span>
               Swap from{" "}
               {action.type === "ego" ? (
@@ -208,7 +208,7 @@ export default function ActionWidget({
             </span>
           </ContextMenuItem>
           {action.type === "codex" && (
-            <ContextMenuItem>
+            <ContextMenuItem onClick={toggleReimbursed}>
               {action.subscriptionPaid ? (
                 <span>
                   <span className="text-muted-foreground">Pause</span>{" "}
