@@ -88,6 +88,7 @@ export default function WealthSection() {
         onContinue={() => {
           if (pendingWealthChange) {
             setMaxWealthPReached(pendingWealthChange);
+            setWealthP(pendingWealthChange);
           }
           setPendingWealthChange(undefined);
           setAlertOpen(false);

@@ -21,6 +21,7 @@ export default function Subscriptions() {
     favorBankMember,
     setFavorBankMember,
     actions,
+    items,
     selectedOperative,
     selectedSleeve,
     setMaxWealthPReached,
@@ -42,6 +43,8 @@ export default function Subscriptions() {
   const codexActions = actions.filter(
     (a) => a.type === "codex" && a.subscriptionPaid
   );
+
+  const subItems = items.filter((i) => i.subscription && i.subscriptionPaid);
 
   const toggleFavorBankSubscription = () => {
     setFavorBankMember(!favorBankMember);
@@ -93,6 +96,12 @@ export default function Subscriptions() {
               FavorBank fees <span className="text-emerald-500">1 ¤P</span>
             </span>
           )}
+          {subItems.map((sa, idx) => (
+            <span key={sa.name + idx} className="font-cyber text-sm">
+              {sa.name}{" "}
+              <span className="text-emerald-500">{sa.subscription} ¤P</span>
+            </span>
+          ))}
         </div>
         {(selectedSleeve?.subscription || 0) > 0 && (
           <>

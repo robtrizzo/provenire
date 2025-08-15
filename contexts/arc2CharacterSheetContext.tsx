@@ -704,6 +704,13 @@ export default function CharacterSheetProvider({
       return acc + (action.subscription || 1);
     }, 0);
 
+    const itemSubs = items.reduce((acc, item) => {
+      if (item.subscription && item.subscriptionPaid) {
+        return acc + item.subscription;
+      }
+      return acc;
+    }, 0);
+
     const favorBankInterest = favorBankMember ? -1 + wealthP : 0;
 
     const lifestyleSupports = wealthLevels.pelts[wealthP].supportsSubscriptions;
@@ -714,6 +721,7 @@ export default function CharacterSheetProvider({
       Math.max(
         0,
         actionSubs +
+          itemSubs +
           (selectedSleeve?.subscription || 0) +
           lifestyleCost -
           lifestyleSupports
