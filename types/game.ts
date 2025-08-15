@@ -256,6 +256,27 @@ export type BackgroundV2 = {
     starting: string[];
     baggage: string[];
   };
+  baggage: Baggage[];
+};
+
+export type Baggage = {
+  name: string;
+  subtitle?: string;
+  description: string;
+  unlocks: BaggageUnlock[];
+};
+
+export type BaggageUnlock = {
+  name: string;
+  unlocked: boolean;
+  type:
+    | "cyberware"
+    | "action"
+    | "transformation"
+    | "drive"
+    | "fightingStyle"
+    | "bond"
+    | "rival";
 };
 
 export type Sleeve = {

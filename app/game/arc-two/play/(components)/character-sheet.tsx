@@ -1,4 +1,5 @@
 import ActionSection from "./action-section";
+import BaggageSection from "./baggage-section";
 import Controls from "./controls";
 import HarmSection from "./harm-section";
 import LoadoutSection from "./loadout-section";
@@ -20,6 +21,7 @@ export default function CharacterSheet() {
         </div>
         <div className="flex flex-col my-6 md:mt-4">
           <StressSection />
+          <BaggageSection />
           <HarmSection />
           <LoadoutSection />
         </div>

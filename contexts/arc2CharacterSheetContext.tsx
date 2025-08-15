@@ -19,6 +19,7 @@ import {
   Ability,
   ActionV2,
   ItemV2,
+  Baggage,
 } from "@/types/game";
 import { debounce } from "@/lib/utils";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -70,6 +71,8 @@ interface CharacterSheetContextProps {
   stress: number;
   maxStress: number;
   conditions: string[];
+  memory: number;
+  unlockedBaggage: Baggage[];
   harm: CharacterHarm;
   effectiveHarm: CharacterHarm;
   armor: boolean;
@@ -115,6 +118,8 @@ interface CharacterSheetContextProps {
   setMaxStress: React.Dispatch<React.SetStateAction<number>>;
   setStress: React.Dispatch<React.SetStateAction<number>>;
   setConditions: React.Dispatch<React.SetStateAction<string[]>>;
+  setMemory: React.Dispatch<React.SetStateAction<number>>;
+  setUnlockedBaggage: React.Dispatch<React.SetStateAction<Baggage[]>>;
   setHarm: React.Dispatch<React.SetStateAction<CharacterHarm>>;
   setArmor: React.Dispatch<React.SetStateAction<boolean>>;
   setHArmor: React.Dispatch<React.SetStateAction<boolean>>;
@@ -210,6 +215,9 @@ export default function CharacterSheetProvider({
   const [stress, setStress] = useState(0);
   const [conditions, setConditions] = useState<string[]>([]);
 
+  const [memory, setMemory] = useState(0);
+  const [unlockedBaggage, setUnlockedBaggage] = useState<Baggage[]>([]);
+
   const [harm, setHarm] = useState<CharacterHarm>(
     JSON.parse(JSON.stringify(DEFAULT_HARM))
   );
@@ -257,6 +265,8 @@ export default function CharacterSheetProvider({
     setConditions([]);
     setStress(0);
     setMaxStress(0);
+    setMemory(0);
+    setUnlockedBaggage([]);
     setHarm(JSON.parse(JSON.stringify(DEFAULT_HARM)));
     setArmor(false);
     setHArmor(false);
@@ -307,6 +317,8 @@ export default function CharacterSheetProvider({
         }
         setMaxStress(parsed.maxStress || 9);
         setStress(parsed.stress || 0);
+        setMemory(parsed.memory || 0);
+        setUnlockedBaggage(parsed.unlockdBaggage || []);
         setHarm(parsed.harm || JSON.parse(JSON.stringify(DEFAULT_HARM)));
         setArmor(parsed.armor || false);
         setHArmor(parsed.hArmor || false);
@@ -351,6 +363,8 @@ export default function CharacterSheetProvider({
           maxStress,
           stress,
           conditions,
+          memory,
+          unlockedBaggage,
           harm,
           armor,
           hArmor,
@@ -399,6 +413,8 @@ export default function CharacterSheetProvider({
         maxStress,
         stress,
         conditions,
+        memory,
+        unlockedBaggage,
         harm,
         armor,
         hArmor,
@@ -803,6 +819,8 @@ export default function CharacterSheetProvider({
         maxStress,
         stress,
         conditions,
+        memory,
+        unlockedBaggage,
         harm,
         effectiveHarm,
         armor,
@@ -837,6 +855,8 @@ export default function CharacterSheetProvider({
         setMaxStress,
         setStress,
         setConditions,
+        setMemory,
+        setUnlockedBaggage,
         setHarm,
         setArmor,
         setHArmor,

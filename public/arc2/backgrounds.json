@@ -4,21 +4,214 @@
     "actions": {
       "starting": ["Stalk", "Frighten", "Relate"],
       "baggage": []
-    }
+    },
+    "baggage": [
+      {
+        "name": "A passion",
+        "description": "A passtime you sank endless hours into, not related to work or survival - just something beautiful that you share with a few close friends.",
+        "unlocks": [
+          {
+            "name": "Bond",
+            "type": "bond"
+          }
+        ]
+      },
+      {
+        "name": "Littermate",
+        "description": "You forgot who you are and where you come from. You left the pack. And so you have become prey.",
+        "unlocks": [
+          {
+            "name": "Rival",
+            "type": "rival"
+          },
+          {
+            "name": "Bestial Fighting Style",
+            "type": "fightingStyle"
+          }
+        ]
+      },
+      {
+        "name": "Your hurt",
+        "description": "The persistent sense of rejection, unworthiness. Fear of being alone forever. You find out why.",
+        "unlocks": [
+          {
+            "name": "Drive",
+            "type": "drive"
+          },
+          {
+            "name": "Bond",
+            "type": "bond"
+          }
+        ]
+      },
+      {
+        "name": "Escaped prey",
+        "description": "You hunted them once and they got away. Well now it's their turn, and they've brought backup, bitch.",
+        "unlocks": [
+          {
+            "name": "Rival",
+            "type": "rival"
+          },
+          {
+            "name": "Bestial Transformation",
+            "type": "transformation"
+          }
+        ]
+      },
+      {
+        "name": "A parent",
+        "subtitle": "or other relative",
+        "description": "They've always had a soft spot for you. Instead of driving you away, they look forward to when you come back to the pack.",
+        "unlocks": [
+          {
+            "name": "Bond",
+            "type": "bond"
+          }
+        ]
+      }
+    ]
   },
   {
     "name": "Bount",
     "actions": {
       "starting": [],
       "baggage": ["Lurk", "Persevere"]
-    }
+    },
+    "baggage": [
+      {
+        "name": "The Cycle of Revenge",
+        "description": "Fuckin corpos didn't tell you the target was a Dynastic daughter. Now they're all coming for you.",
+        "unlocks": [
+          {
+            "name": "Rival",
+            "type": "rival"
+          },
+          {
+            "name": "Lurk",
+            "type": "action"
+          }
+        ]
+      },
+      {
+        "name": "Your stash",
+        "description": "You didn't come away from the army empty handed. You have stashes across the city for just the right occasion.",
+        "unlocks": [
+          {
+            "name": "HSG-3 \"His Magesty\"",
+            "type": "cyberware"
+          },
+          {
+            "name": "Integra Overwatch Drone \"Osprey\"",
+            "type": "cyberware"
+          }
+        ]
+      },
+      {
+        "name": "Your hurt",
+        "description": "The waves of nihilism. The nightmares you never remember. You find out why.",
+        "unlocks": [
+          {
+            "name": "Drive",
+            "type": "drive"
+          }
+        ]
+      },
+      {
+        "name": "Corpo scum",
+        "description": "You have simple boundaries: no kids, no innocents. Some clients just don't know how to be told \"no\".",
+        "unlocks": [
+          {
+            "name": "Rival",
+            "type": "rival"
+          }
+        ]
+      },
+      {
+        "name": "War buddy",
+        "description": "You've crossed paths in battle dozens of times, each time in a different body. You made the introductions that got them into this business.",
+        "unlocks": [
+          {
+            "name": "Persevere",
+            "type": "action"
+          },
+          {
+            "name": "Bond",
+            "type": "bond"
+          }
+        ]
+      }
+    ]
   },
   {
     "name": "Corpo Labcoat",
     "actions": {
       "starting": ["Analyze"],
       "baggage": ["Tech [X]", "Debate"]
-    }
+    },
+    "baggage": [
+      {
+        "name": "Your work",
+        "description": "They released it unfinished and ... wait... you dedicated your life to this to help people. What has this become?",
+        "unlocks": [
+          {
+            "name": "Tech [X]",
+            "type": "action"
+          }
+        ]
+      },
+      {
+        "name": "A naysayer",
+        "description": "They always doubted your intellect and sought to discredit you. Your mutual animosity has only escalated over the years.",
+        "unlocks": [
+          {
+            "name": "Rival",
+            "type": "rival"
+          },
+          {
+            "name": "Debate",
+            "type": "action"
+          }
+        ]
+      },
+      {
+        "name": "Your hurt",
+        "description": "A painful inability to feel anything as strongly as you see others experience. An inescapable sense of betrayal. You find out why.",
+        "unlocks": [
+          {
+            "name": "Drive",
+            "type": "drive"
+          },
+          {
+            "name": "Bond",
+            "type": "bond"
+          }
+        ]
+      },
+      {
+        "name": "A collaborator",
+        "description": "Your closest friend and partner in progress. You rarely spoke about personal matters, but you always understood each other.",
+        "unlocks": [
+          {
+            "name": "Bond",
+            "type": "bond"
+          },
+          {
+            "name": "3MI Holosomatic Projector",
+            "type": "cyberware"
+          }
+        ]
+      },
+      {
+        "name": "A curiosity",
+        "description": "You have an inquisitive mind. It's what you designed yourself to do. When you noticed an inconsistency in the company, you couldn't help but to unspool that thread.",
+        "unlocks": [
+          {
+            "name": "Rival",
+            "type": "rival"
+          }
+        ]
+      }
+    ]
   },
   {
     "name": "Dynastic Scion",
