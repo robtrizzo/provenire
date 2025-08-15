@@ -11,21 +11,31 @@ export default function StressSection() {
     conditions,
     abilities,
     selectedArchetype,
+    unlockedBaggage,
     setStress,
     setConditions,
     setChanges,
   } = useCharacterSheet();
+
+  const unlockedBaggageEntries = unlockedBaggage.reduce(
+    (acc, ulb) =>
+      acc + ulb.unlocks.reduce((acc, ul) => (ul.unlocked ? acc + 1 : acc), 0),
+    0
+  );
+
+  const stressReducedByBaggage =
+    unlockedBaggageEntries <= 4 ? unlockedBaggageEntries : 0;
 
   const conditionsList = ["Insecure", "Afraid", "Angry", "Hopeless", "Guilty"];
   if (selectedArchetype?.name === "Adventurer") {
     conditionsList.push("Frantic");
   }
 
-  if (abilities.includes("Overwhelmed")) {
+  if (abilities.find((a) => a.name === "Overwhelmed")) {
     conditionsList.push("Overwhelmed");
   }
 
-  if (abilities.includes("Avoid Conflict")) {
+  if (abilities.find((a) => a.name === "Avoid Conflict")) {
     conditionsList.push("Avoidant");
   }
 
@@ -37,7 +47,7 @@ export default function StressSection() {
       <div className="flex justify-between">
         <BuildupCheckboxes
           max={maxStress}
-          numDisabled={conditions.length}
+          numDisabled={conditions.length + stressReducedByBaggage}
           current={stress}
           onChange={(n) => {
             setStress(n);
