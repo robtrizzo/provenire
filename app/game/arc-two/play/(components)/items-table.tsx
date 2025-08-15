@@ -333,6 +333,7 @@ function ItemsList({
                                       subscription: o.subscription,
                                       subscriptionPaid: true,
                                       dangerous: o.dangerous,
+                                      codexExpansion: o.codexExpansion,
                                     })
                                   }
                                 >
@@ -380,6 +381,7 @@ function ItemsList({
                         subscription: item.subscription,
                         subscriptionPaid: true,
                         dangerous: item.dangerous,
+                        codexExpansion: item.codexExpansion,
                       })
                     }
                   >

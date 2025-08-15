@@ -389,6 +389,8 @@ export type ItemV2 = {
       cost?: number;
       subscription?: number;
       dangerous?: boolean;
+      codexExpansion?: number;
     }
   ];
+  codexExpansion?: number;
 };

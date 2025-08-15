@@ -111,18 +111,21 @@
       {
         "name": "Cortex Expansion Kit",
         "cost": 2,
-        "dangerous": true
+        "dangerous": true,
+        "codexExpansion": 1
       },
       {
         "name": "TalentUp Gold",
         "cost": 0,
         "subscription": 1,
-        "dangerous": true
+        "dangerous": true,
+        "codexExpansion": 2
       },
       {
         "name": "Renaissance Man 64 Core",
         "cost": 12,
-        "dangerous": true
+        "dangerous": true,
+        "codexExpansion": 4
       }
     ]
   },

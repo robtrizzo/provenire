@@ -165,7 +165,13 @@ export default function ActionWidget({
     return (
       <ContextMenu>
         <ContextMenuTrigger asChild>
-          <div className="p-2 grid grid-cols-8 gap-2 hover:bg-input/50">
+          <div
+            className={cn(
+              "p-2 grid grid-cols-8 gap-2 hover:bg-input/50",
+              action.type === "codex" && "hover:bg-fuchsia-500/20",
+              action.type === "ego" && "hover:bg-rose-500/20"
+            )}
+          >
             <div className="flex items-center col-span-6">
               <span className="text-lg">{action.name}</span>
             </div>
