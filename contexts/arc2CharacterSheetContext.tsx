@@ -19,12 +19,12 @@ import {
   HarmModifier,
   Ability,
   ActionV2,
-  CharacterActions,
 } from "@/types/game";
 import { debounce } from "@/lib/utils";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { useSession } from "next-auth/react";
+import wealthLevels from "@/public/arc2/wealth.json";
 
 const SUPPORTED_VERSION = 2;
 
@@ -62,7 +62,10 @@ interface CharacterSheetContextProps {
   wealthF: number;
   pelts: number;
   favors: number;
-  actions: CharacterActions;
+  maxWealthPReached: number;
+  favorBankMember: boolean;
+  subscriptions: number;
+  actions: ActionV2[];
   xp: number;
   stress: number;
   maxStress: number;
@@ -105,7 +108,9 @@ interface CharacterSheetContextProps {
   setWealthF: React.Dispatch<React.SetStateAction<number>>;
   setPelts: React.Dispatch<React.SetStateAction<number>>;
   setFavors: React.Dispatch<React.SetStateAction<number>>;
-  setActions: React.Dispatch<React.SetStateAction<CharacterActions>>;
+  setMaxWealthPReached: React.Dispatch<React.SetStateAction<number>>;
+  setFavorBankMember: React.Dispatch<React.SetStateAction<boolean>>;
+  setActions: React.Dispatch<React.SetStateAction<ActionV2[]>>;
   setXp: React.Dispatch<React.SetStateAction<number>>;
   setMaxStress: React.Dispatch<React.SetStateAction<number>>;
   setStress: React.Dispatch<React.SetStateAction<number>>;
@@ -190,15 +195,13 @@ export default function CharacterSheetProvider({
   const [notes, setNotes] = useState<string>("");
 
   const [wealthP, setWealthP] = useState<number>(1);
+  const [maxWealthPReached, setMaxWealthPReached] = useState<number>(1);
   const [wealthF, setWealthF] = useState<number>(1);
   const [pelts, setPelts] = useState<number>(0);
   const [favors, setFavors] = useState<number>(0);
+  const [favorBankMember, setFavorBankMember] = useState<boolean>(true);
 
-  const [actions, setActions] = useState<CharacterActions>({
-    available: [],
-    left: [],
-    right: [],
-  });
+  const [actions, setActions] = useState<ActionV2[]>([]);
 
   const [xp, setXp] = useState(0);
 
@@ -243,14 +246,12 @@ export default function CharacterSheetProvider({
     setQuestions(new Map());
     setNotes("");
     setWealthP(1);
+    setMaxWealthPReached(1);
     setWealthF(1);
     setPelts(0);
     setFavors(0);
-    setActions({
-      available: [],
-      left: [],
-      right: [],
-    });
+    setFavorBankMember(true);
+    setActions([]);
     setXp(0);
     setConditions([]);
     setStress(0);
@@ -290,17 +291,13 @@ export default function CharacterSheetProvider({
         setNotes(parsed.notes || "");
 
         setWealthP(parsed.wealthP || 1);
+        setMaxWealthPReached(parsed.maxWealthPReached || 1);
         setWealthF(parsed.wealthF || 1);
         setPelts(parsed.pelts || 0);
         setFavors(parsed.favors || 0);
+        setFavorBankMember(parsed.favorBankMember || true);
 
-        setActions(
-          parsed.actions || {
-            available: [],
-            left: [],
-            right: [],
-          }
-        );
+        setActions(parsed.actions || []);
 
         setXp(parsed.xp);
 
@@ -343,9 +340,11 @@ export default function CharacterSheetProvider({
           questions: Array.from(questions),
           notes,
           wealthP,
+          maxWealthPReached,
           wealthF,
           pelts,
           favors,
+          favorBankMember,
           actions,
           xp,
           maxStress,
@@ -390,6 +389,7 @@ export default function CharacterSheetProvider({
         questions: Array.from(questions),
         notes,
         wealthP,
+        maxWealthPReached,
         wealthF,
         pelts,
         favors,
@@ -683,6 +683,45 @@ export default function CharacterSheetProvider({
 
   const effectiveHarm = calculateEffectiveHarm();
 
+  function calculateSubscriptions(): number {
+    const actionSubs = actions.reduce((acc, action) => {
+      if (action.type !== "codex" || !action.subscriptionPaid) {
+        return acc;
+      }
+
+      // non-forbidden q1 codexes are subsidezed by ROOT
+      const totalScore = action.score[0] + action.score[1];
+      if (action.overCorpClassification !== "forbidden" && totalScore <= 1) {
+        return acc;
+      }
+
+      // operative codex action subsidized by ROOT up to q2
+      if (action.name === selectedOperative?.action && totalScore <= 2) {
+        return acc;
+      }
+
+      return acc + (action.subscription || 1);
+    }, 0);
+
+    const favorBankInterest = favorBankMember ? -1 + wealthP : 0;
+
+    const lifestyleSupports = wealthLevels.pelts[wealthP].supportsSubscriptions;
+
+    const lifestyleCost = wealthLevels.pelts[maxWealthPReached].cost;
+
+    return (
+      Math.max(
+        0,
+        actionSubs +
+          (selectedSleeve?.subscription || 0) +
+          lifestyleCost -
+          lifestyleSupports
+      ) - favorBankInterest
+    );
+  }
+
+  const subscriptions = calculateSubscriptions();
+
   function handleUpdateItemName(index: number, value: string) {
     const newItems = [...items];
     newItems[index] = { ...newItems[index], name: value };
@@ -698,40 +737,23 @@ export default function CharacterSheetProvider({
   }
 
   function handleAddAvailableAction(action: ActionV2) {
-    if (actions.available.findIndex((a) => a.name === action.name) === -1) {
-      setActions({
-        available: [...actions.available, action],
-        left: actions.left,
-        right: actions.right,
-      });
+    if (actions.findIndex((a) => a.name === action.name) === -1) {
+      setActions([...actions, action]);
     }
     setChanges(true);
   }
 
   function handleRemoveAvailableAction(actionName: string) {
-    const newAvailable = actions.available.filter((a) => a.name !== actionName);
-    const newLeft = actions.available.filter((a) => a.name !== actionName);
-    const newRight = actions.available.filter((a) => a.name !== actionName);
-    setActions({
-      available: newAvailable,
-      left: newLeft,
-      right: newRight,
-    });
+    setActions(actions.filter((a) => a.name !== actionName));
     setChanges(true);
   }
 
   function handleEditAction(newAction: ActionV2) {
-    const updateActionInArray = (actionArray: ActionV2[]) => {
-      return actionArray.map((action) =>
+    setActions(
+      actions.map((action) =>
         action.name === newAction.name ? newAction : action
-      );
-    };
-
-    setActions({
-      available: updateActionInArray(actions.available),
-      left: updateActionInArray(actions.left),
-      right: updateActionInArray(actions.right),
-    });
+      )
+    );
 
     setChanges(true);
   }
@@ -754,9 +776,12 @@ export default function CharacterSheetProvider({
         questions,
         notes,
         wealthP,
+        maxWealthPReached,
         wealthF,
         pelts,
         favors,
+        favorBankMember,
+        subscriptions,
         actions,
         xp,
         maxStress,
@@ -786,9 +811,11 @@ export default function CharacterSheetProvider({
         setQuestions,
         setNotes,
         setWealthP,
+        setMaxWealthPReached,
         setWealthF,
         setPelts,
         setFavors,
+        setFavorBankMember,
         setActions,
         setXp,
         setMaxStress,

@@ -51,7 +51,7 @@ export default function EditActions() {
         <TypographyH3 className="mt-8 font-cyber flex items-end justify-between flex-wrap">
           Configure Actions <AddActionCombobox />
         </TypographyH3>
-        {actions.available.map((a, i) => (
+        {actions.map((a, i) => (
           <ActionWidget action={a} key={a.name + i} mode="edit" />
         ))}
         <TypographyH3 className="font-cyber">Starting Actions</TypographyH3>

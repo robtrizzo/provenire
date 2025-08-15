@@ -6,13 +6,9 @@ import ActionWidget from "./action-widget";
 export default function ActionSection() {
   const { actions } = useCharacterSheet();
 
-  const leftActions = actions.available.filter(
-    (action) => action.position === "left"
-  );
-  const rightActions = actions.available.filter(
-    (action) => action.position === "right"
-  );
-  const numPausedSubscriptions = actions.available.reduce((acc, action) => {
+  const leftActions = actions.filter((action) => action.position === "left");
+  const rightActions = actions.filter((action) => action.position === "right");
+  const numPausedSubscriptions = actions.reduce((acc, action) => {
     if (action.type === "codex" && !action.subscriptionPaid) {
       return acc + 1;
     } else {
@@ -42,6 +38,8 @@ export default function ActionSection() {
         </div>
         <div className="flex-1">
           {rightActions.map((action) => {
+            if (action.type === "codex" && !action.subscriptionPaid)
+              return null;
             return <ActionWidget key={action.name} action={action} />;
           })}
         </div>

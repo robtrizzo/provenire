@@ -25,7 +25,6 @@ export default function WealthTracker({
   const [wealth, setWealth] = useState<number>(initialWealth);
 
   const handleChangeCurrency = (n: number) => {
-    // setCurrency(n);
     onChangeCurrency(n);
     onChange();
   };
@@ -34,7 +33,6 @@ export default function WealthTracker({
     if (currency < maxCurrency) {
       console.error("currency must be maxed out before advancing lifestyle");
     }
-    // setCurrency(0);
     onChangeCurrency(0);
     const newLifestyle = Math.min(maxWealth, wealth + 1);
     setWealth(newLifestyle);
@@ -46,7 +44,6 @@ export default function WealthTracker({
     if (currency > 0) {
       console.error("currency must be zero before reducing lifestyle");
     }
-    // setCurrency(maxCurrency);
     onChangeCurrency(maxCurrency);
     const newLifestyle = Math.max(0, wealth - 1);
     setWealth(newLifestyle);
@@ -75,19 +72,19 @@ export default function WealthTracker({
           <Button
             variant="ghost"
             className="text-muted-foreground text-center"
-            disabled={currency < maxCurrency}
-            onClick={handleIncrementLifestyle}
+            disabled={currency > 0}
+            onClick={handleDecramentLifestyle}
           >
-            +
+            -
           </Button>
           <span className="font-cyber text-xs">lifestyle</span>
           <Button
             variant="ghost"
             className="text-muted-foreground text-center"
-            disabled={currency > 0}
-            onClick={handleDecramentLifestyle}
+            disabled={currency < maxCurrency}
+            onClick={handleIncrementLifestyle}
           >
-            -
+            +
           </Button>
         </div>
       </div>

@@ -343,8 +343,9 @@ export type ActionV2 = {
   position?: "left" | "right";
 };
 
-export type CharacterActions = {
-  available: ActionV2[];
-  left: ActionV2[];
-  right: ActionV2[];
+export type PeltsWealthLevel = {
+  name: string;
+  conditions: string;
+  supportsSubscriptions: number;
+  cost: number;
 };
