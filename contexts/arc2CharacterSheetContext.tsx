@@ -20,6 +20,7 @@ import {
   ActionV2,
   ItemV2,
   Baggage,
+  BondV2,
 } from "@/types/game";
 import { debounce } from "@/lib/utils";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -67,6 +68,7 @@ interface CharacterSheetContextProps {
   favorBankMember: boolean;
   subscriptions: number;
   actions: ActionV2[];
+  bonds: BondV2[];
   xp: number;
   stress: number;
   maxStress: number;
@@ -114,6 +116,7 @@ interface CharacterSheetContextProps {
   setMaxWealthPReached: React.Dispatch<React.SetStateAction<number>>;
   setFavorBankMember: React.Dispatch<React.SetStateAction<boolean>>;
   setActions: React.Dispatch<React.SetStateAction<ActionV2[]>>;
+  setBonds: React.Dispatch<React.SetStateAction<BondV2[]>>;
   setXp: React.Dispatch<React.SetStateAction<number>>;
   setMaxStress: React.Dispatch<React.SetStateAction<number>>;
   setStress: React.Dispatch<React.SetStateAction<number>>;
@@ -208,6 +211,7 @@ export default function CharacterSheetProvider({
   const [favorBankMember, setFavorBankMember] = useState<boolean>(true);
 
   const [actions, setActions] = useState<ActionV2[]>([]);
+  const [bonds, setBonds] = useState<BondV2[]>([]);
 
   const [xp, setXp] = useState(0);
 
@@ -261,6 +265,7 @@ export default function CharacterSheetProvider({
     setFavors(0);
     setFavorBankMember(true);
     setActions([]);
+    setBonds([]);
     setXp(0);
     setConditions([]);
     setStress(0);
@@ -309,6 +314,7 @@ export default function CharacterSheetProvider({
         setFavorBankMember(parsed.favorBankMember || true);
 
         setActions(parsed.actions || []);
+        setBonds(parsed.bonds || []);
 
         setXp(parsed.xp);
 
@@ -359,6 +365,7 @@ export default function CharacterSheetProvider({
           favors,
           favorBankMember,
           actions,
+          bonds,
           xp,
           maxStress,
           stress,
@@ -409,6 +416,7 @@ export default function CharacterSheetProvider({
         pelts,
         favors,
         actions,
+        bonds,
         xp,
         maxStress,
         stress,
@@ -815,6 +823,7 @@ export default function CharacterSheetProvider({
         favorBankMember,
         subscriptions,
         actions,
+        bonds,
         xp,
         maxStress,
         stress,
@@ -851,6 +860,7 @@ export default function CharacterSheetProvider({
         setFavors,
         setFavorBankMember,
         setActions,
+        setBonds,
         setXp,
         setMaxStress,
         setStress,

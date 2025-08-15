@@ -394,3 +394,10 @@ export type ItemV2 = {
   ];
   codexExpansion?: number;
 };
+
+export type BondV2 = {
+  name: string;
+  notes?: string;
+  score: [number, number];
+  advanced?: boolean;
+};
