@@ -1,10 +1,10 @@
-import ItemsTable from "@/components/character-sheet/items-table";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 import { TypographyH3, TypographyP } from "@/components/ui/typography";
 import { useCharacterSheet } from "@/contexts/arc2CharacterSheetContext";
-import loadouts from "@/public/loadouts.json";
-import { Item } from "@/types/game";
+import default_loadouts from "@/public/loadouts.json";
+import { ItemV2 } from "@/types/game";
+import ItemsTable from "./items-table";
 export default function LoadoutSection() {
   const {
     loadout,
@@ -14,7 +14,10 @@ export default function LoadoutSection() {
     setItems,
     handleUpdateItemName,
     handleUpdateItemSlots,
+    handleToggleItemSubscription,
   } = useCharacterSheet();
+
+  const loadouts = default_loadouts;
 
   return (
     <>
@@ -77,17 +80,14 @@ export default function LoadoutSection() {
         loadout={loadout}
         handleChangeItemName={handleUpdateItemName}
         handleChangeItemSlots={handleUpdateItemSlots}
+        handleToggleItemSubscription={handleToggleItemSubscription}
         handleAddItem={() => {
           if (!items || items.length === 0) {
             setItems([
               {
                 name: "",
                 slots: 1,
-                ticks: 0,
-                clock: 3,
                 uses: undefined,
-                traits: [],
-                description: "",
               },
             ]);
           } else {
@@ -96,17 +96,13 @@ export default function LoadoutSection() {
               {
                 name: "",
                 slots: 1,
-                ticks: 0,
-                clock: 3,
                 uses: undefined,
-                traits: [],
-                description: "",
               },
             ]);
           }
           setChanges(true);
         }}
-        handleAddBasicItem={(item: Item) => {
+        handleAddBasicItem={(item: ItemV2) => {
           if (!items || items.length === 0) {
             setItems([item]);
           } else {

@@ -349,3 +349,25 @@ export type PeltsWealthLevel = {
   supportsSubscriptions: number;
   cost: number;
 };
+
+export type ItemV2 = {
+  name: string;
+  slots: number;
+  uses?: number;
+  traits?: string[];
+  description?: string;
+  harmModifiers?: HarmModifier[];
+  dangerous?: boolean;
+  cost?: number;
+  subscription?: number;
+  subscriptionPaid?: boolean;
+  options?: [
+    {
+      name: string;
+      description?: string;
+      cost?: number;
+      subscription?: number;
+      dangerous?: boolean;
+    }
+  ];
+};

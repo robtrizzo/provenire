@@ -209,7 +209,7 @@ export default function ActionWidget({
           </ContextMenuItem>
           {action.type === "codex" && (
             <ContextMenuItem onClick={toggleReimbursed}>
-              {action.subscriptionPaid ? (
+              {action.subscriptionPaid && (
                 <span>
                   <span className="text-muted-foreground">Pause</span>{" "}
                   subscription (
@@ -219,8 +219,6 @@ export default function ActionWidget({
                   </span>
                   )
                 </span>
-              ) : (
-                <span></span>
               )}
             </ContextMenuItem>
           )}

@@ -9,7 +9,6 @@ import React, {
 import {
   type ArchetypeV2,
   Loadout,
-  Item,
   BackgroundV2,
   Sleeve,
   Operative,
@@ -19,6 +18,7 @@ import {
   HarmModifier,
   Ability,
   ActionV2,
+  ItemV2,
 } from "@/types/game";
 import { debounce } from "@/lib/utils";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -77,7 +77,7 @@ interface CharacterSheetContextProps {
   sArmor: boolean;
   abilities: Ability[];
   loadout: Loadout | undefined;
-  items: Item[];
+  items: ItemV2[];
   localUpdatedAt: Date | null;
   cloudUpdatedAt: Date | null;
   isFetching: boolean;
@@ -131,7 +131,8 @@ interface CharacterSheetContextProps {
   ) => void;
   handleUpdateItemName: (index: number, value: string) => void;
   handleUpdateItemSlots: (index: number, value: number) => void;
-  setItems: React.Dispatch<React.SetStateAction<Item[]>>;
+  handleToggleItemSubscription: (index: number) => void;
+  setItems: React.Dispatch<React.SetStateAction<ItemV2[]>>;
   handleUpdateArchetypeQuestion: (
     horizon: boolean,
     questionIdx: number,
@@ -218,7 +219,7 @@ export default function CharacterSheetProvider({
   const [sArmor, setSArmor] = useState<boolean>(false);
 
   const [loadout, setLoadout] = useState<Loadout>();
-  const [items, setItems] = useState<Item[]>([]);
+  const [items, setItems] = useState<ItemV2[]>([]);
 
   const [abilities, setAbilities] = useState<Ability[]>([]);
 
@@ -735,6 +736,13 @@ export default function CharacterSheetProvider({
     setItems(newItems);
     handleDebounceChange();
   }
+  function handleToggleItemSubscription(index: number) {
+    const newItems = [...items];
+    const newValue = !newItems[index].subscriptionPaid;
+    newItems[index] = { ...newItems[index], subscriptionPaid: newValue };
+    setItems(newItems);
+    handleDebounceChange();
+  }
 
   function handleAddAvailableAction(action: ActionV2) {
     if (actions.findIndex((a) => a.name === action.name) === -1) {
@@ -838,6 +846,7 @@ export default function CharacterSheetProvider({
         handleUpdateHarmSlot,
         handleUpdateItemName,
         handleUpdateItemSlots,
+        handleToggleItemSubscription,
         handleAddAvailableAction,
         handleRemoveAvailableAction,
         handleEditAction,

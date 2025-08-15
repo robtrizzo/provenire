@@ -1,1 +1,57 @@
-[]
+[
+  {
+    "name": "PsycX Neural Imaging Chip",
+    "cost": 0,
+    "slots": 0,
+    "options": [
+      {
+        "name": "Budget",
+        "cost": 0,
+        "subscription": 0
+      },
+      {
+        "name": "Flex",
+        "cost": 0,
+        "subscription": 0
+      },
+      {
+        "name": "Basic",
+        "cost": 0,
+        "subscription": 1
+      },
+      {
+        "name": "Noble",
+        "cost": 0,
+        "subscription": 2
+      },
+      {
+        "name": "Royal",
+        "cost": 0,
+        "subscription": 3
+      }
+    ]
+  },
+  {
+    "name": "Social Situational",
+    "cost": 1,
+    "slots": 0
+  },
+  {
+    "name": "Your Blood, Your Story",
+    "cost": 3,
+    "slots": 0,
+    "options": [
+      {
+        "name": "Standard",
+        "cost": 3,
+        "subscription": 0
+      },
+      {
+        "name": "Black Market Genhack",
+        "cost": 3,
+        "subscription": 3,
+        "dangerous": true
+      }
+    ]
+  }
+]
