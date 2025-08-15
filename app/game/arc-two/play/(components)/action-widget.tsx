@@ -223,7 +223,10 @@ export default function ActionWidget({
             </ContextMenuItem>
           )}
           <ContextMenuSeparator />
-          <ContextMenuItem className="bg-destructive">
+          <ContextMenuItem
+            className="bg-destructive"
+            onClick={handleRemoveAction}
+          >
             <Trash className="text-destructive-foreground" /> Remove
           </ContextMenuItem>
         </ContextMenuContent>
