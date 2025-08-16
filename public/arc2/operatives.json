@@ -10,9 +10,44 @@
       { "name": "Obliterate", "slug": "obliterate", "cost": 5 }
     ]
   },
-  { "name": "Close", "action": "Instinct" },
-  { "name": "Facility", "action": "Galvanize" },
-  { "name": "Hush", "action": "Ambush" },
+  {
+    "name": "Close",
+    "action": "Instinct",
+    "abilities": [
+      { "name": "Revivify", "keystone": true, "slug": "revivify", "cost": 0 },
+      { "name": "Preemptive Release", "slug": "preemptive-release", "cost": 2 },
+      { "name": "All In", "slug": "all-in", "cost": 3 },
+      { "name": "Precise Control", "slug": "precise-control", "cost": 3 },
+      { "name": "Resurrect", "slug": "resurrect", "cost": 5 }
+    ]
+  },
+  {
+    "name": "Facility",
+    "action": "Galvanize",
+    "abilities": [
+      {
+        "name": "Heavy Hauler",
+        "keystone": true,
+        "slug": "heavy-hauler",
+        "cost": 0
+      },
+      { "name": "Into the Fray", "slug": "into-the-fray", "cost": 2 },
+      { "name": "Controlled Launch", "slug": "controlled-launch", "cost": 3 },
+      { "name": "Unstoppable", "slug": "unstoppable", "cost": 3 },
+      { "name": "Oversized Weaponry", "slug": "oversized-weaponry", "cost": 5 }
+    ]
+  },
+  {
+    "name": "Hush",
+    "action": "Ambush",
+    "abilities": [
+      { "name": "Vaporwave", "keystone": true, "slug": "vaporwave", "cost": 0 },
+      { "name": "Shadowstep", "slug": "shadowstep", "cost": 2 },
+      { "name": "Midnight Silence", "slug": "midnight-silence", "cost": 3 },
+      { "name": "Shadow Synthesis", "slug": "shadow-synthesis", "cost": 3 },
+      { "name": "Sensory Eclipse", "slug": "sensory-eclipse", "cost": 5 }
+    ]
+  },
   {
     "name": "Impact",
     "action": "Bravado",
@@ -35,11 +70,99 @@
         "source": "operative",
         "sourceId": "impact"
       }
+    ],
+    "abilities": [
+      {
+        "name": "Tough It Out",
+        "keystone": true,
+        "slug": "tough-it-out",
+        "cost": 0
+      },
+      { "name": "Hurt Me Once...", "slug": "hurt-me-once", "cost": 2 },
+      { "name": "Maximum Effort", "slug": "maximum-effort", "cost": 3 },
+      { "name": "Indominable", "slug": "indominable", "cost": 3 },
+      { "name": "Unlock Potential", "slug": "unlock-potential", "cost": 5 }
     ]
   },
-  { "name": "Keeper", "action": "Coordinate" },
-  { "name": "Notion", "action": "Resolve" },
-  { "name": "Quill", "action": "Flaunt" },
-  { "name": "Severance", "action": "Diverge" },
-  { "name": "Watchtower", "action": "Assess" }
+  {
+    "name": "Keeper",
+    "action": "Coordinate",
+    "abilities": [
+      { "name": "Simulate", "keystone": true, "slug": "simulate", "cost": 0 },
+      { "name": "No Risk, No Reward", "slug": "no-risk-no-reward", "cost": 2 },
+      { "name": "Teamwork", "slug": "teamwork", "cost": 2 },
+      { "name": "Neural Overclock", "slug": "neural-overclock", "cost": 3 },
+      { "name": "Reality Fracture", "slug": "reality-fracture", "cost": 6 }
+    ]
+  },
+  {
+    "name": "Notion",
+    "action": "Resolve",
+    "abilities": [
+      { "name": "Ravager", "keystone": true, "slug": "ravager", "cost": 0 },
+      { "name": "Devourer", "slug": "devourer", "cost": 2 },
+      { "name": "Night Terrors", "slug": "night-terrors", "cost": 3 },
+      { "name": "Beast Within", "slug": "beast-within", "cost": 3 },
+      { "name": "Warform", "slug": "warform", "cost": 5 }
+    ]
+  },
+  {
+    "name": "Quill",
+    "action": "Flaunt",
+    "abilities": [
+      { "name": "Potential", "keystone": true, "slug": "potential", "cost": 0 },
+      {
+        "name": "Accellerated Autodidact",
+        "slug": "accellerated-autodidact",
+        "cost": 4
+      },
+      { "name": "Mimicry", "slug": "mimicry", "cost": 5 },
+      { "name": "Relentless Regimen", "slug": "relentless-regimen", "cost": 5 },
+      { "name": "Max Potential", "slug": "max-potential", "cost": 7 }
+    ]
+  },
+  {
+    "name": "Severance",
+    "action": "Diverge",
+    "abilities": [
+      {
+        "name": "Impulse Projection",
+        "keystone": true,
+        "slug": "impulse-projection",
+        "cost": 0
+      },
+      { "name": "Marionette", "slug": "marionette", "cost": 2 },
+      { "name": "Sympathy", "slug": "sympathy", "cost": 3 },
+      { "name": "Assimilate", "slug": "assimilate", "cost": 3 },
+      { "name": "Empathy", "slug": "empathy", "cost": 5 }
+    ]
+  },
+  {
+    "name": "Watchtower",
+    "action": "Assess",
+    "abilities": [
+      {
+        "name": "Saw it Coming",
+        "keystone": true,
+        "slug": "saw-it-coming",
+        "cost": 0
+      },
+      {
+        "name": "Give Me the Fucking Camera",
+        "slug": "give-me-the-fucking-camera",
+        "cost": 2
+      },
+      { "name": "Attack Dogs", "slug": "attack-dogs", "cost": 3 },
+      {
+        "name": "Mission Control, Tell Corporate They Can Shove It",
+        "slug": "mission-control-tell-corporate-they-can-shove-it",
+        "cost": 3
+      },
+      {
+        "name": "Contract Escalation",
+        "slug": "contract-escalation",
+        "cost": 5
+      }
+    ]
+  }
 ]
