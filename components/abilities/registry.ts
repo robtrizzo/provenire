@@ -163,6 +163,15 @@ import SituationalAwareness1 from "./archetypes/arc1/entertainer/situational-awa
 import LivingWithPassion1 from "./archetypes/arc1/entertainer/living-with-passion";
 import AvoidConflict1 from "./archetypes/arc1/entertainer/avoid-conflict";
 
+// operatives
+// arc2
+// canon
+import Overkill from "./operatives/arc2/canon/overkill";
+import WarmupRoutine from "./operatives/arc2/canon/warmup-routine";
+import JustOneMoreShot from "./operatives/arc2/canon/just-one-more-shot";
+import WarningShots from "./operatives/arc2/canon/warning-shots";
+import Obliterate from "./operatives/arc2/canon/obliterate";
+
 export type AbilityRegistryType = {
   [category: string]: {
     [arc: string]: {
@@ -369,6 +378,17 @@ export const abilityRegistry = {
         "situational-awareness": SituationalAwareness2,
         "living-with-passion": LivingWithPassion2,
         "avoid-conflict": AvoidConflict2,
+      },
+    },
+  },
+  operatives: {
+    arc2: {
+      canon: {
+        overkill: Overkill,
+        "warmup-routine": WarmupRoutine,
+        "just-one-more-shot": JustOneMoreShot,
+        "warning-shots": WarningShots,
+        obliterate: Obliterate,
       },
     },
   },

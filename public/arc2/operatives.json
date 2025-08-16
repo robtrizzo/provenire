@@ -1,5 +1,15 @@
 [
-  { "name": "Canon", "action": "Smolder" },
+  {
+    "name": "Canon",
+    "action": "Smolder",
+    "abilities": [
+      { "name": "Overkill", "keystone": true, "slug": "overkill", "cost": 0 },
+      { "name": "Warmup Routine", "slug": "warmup-routine", "cost": 2 },
+      { "name": "Just One More Shot", "slug": "just-one-more-shot", "cost": 3 },
+      { "name": "Warning Shots", "slug": "warning-shots", "cost": 3 },
+      { "name": "Obliterate", "slug": "obliterate", "cost": 5 }
+    ]
+  },
   { "name": "Close", "action": "Instinct" },
   { "name": "Facility", "action": "Galvanize" },
   { "name": "Hush", "action": "Ambush" },

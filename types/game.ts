@@ -60,6 +60,7 @@ export interface Ability {
   harmModifiers?: HarmModifier[];
   cost?: number;
   type?: string;
+  source?: string;
 }
 
 export type Attribute = "Heart" | "Instinct" | "Machina";
@@ -302,6 +303,7 @@ export type Operative = {
   name: string;
   action: string;
   harmModifiers?: HarmModifier[];
+  abilities: Ability[];
 };
 
 export type FightingStyleV2 = {
