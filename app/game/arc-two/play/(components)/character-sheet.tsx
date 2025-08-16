@@ -1,3 +1,4 @@
+import AbilitiesSection from "./abilities-section";
 import ActionSection from "./action-section";
 import BaggageSection from "./baggage-section";
 import BondsSection from "./bonds-section";
@@ -28,6 +29,7 @@ export default function CharacterSheet() {
               <WealthSection />
               <ActionSection />
               <BondsSection />
+              <AbilitiesSection />
             </div>
             <div className="flex flex-col my-6 md:mt-4">
               <StressSection />

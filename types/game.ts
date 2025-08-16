@@ -58,6 +58,8 @@ export interface Ability {
   keystone?: boolean;
   slug: string;
   harmModifiers?: HarmModifier[];
+  cost?: number;
+  type?: string;
 }
 
 export type Attribute = "Heart" | "Instinct" | "Machina";

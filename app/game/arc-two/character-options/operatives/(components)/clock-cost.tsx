@@ -7,7 +7,7 @@ const cx = adjustedWidth / 2;
 const cy = adjustedHeight / 2;
 const outerRadius = Math.min(adjustedWidth, adjustedHeight) / 2;
 
-export default async function ClockCost({ num }: { num: number }) {
+export default function ClockCost({ num }: { num: number }) {
   const spokes = Array.from({ length: 6 }, (_, i) => {
     const angle = (360 / 6) * i - 90;
     const x = cx + outerRadius * Math.cos((angle * Math.PI) / 180);
