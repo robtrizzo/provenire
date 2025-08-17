@@ -101,13 +101,7 @@ export default function ItemsTable({
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="flex gap-2 items-center">
-              <ItemsList
-                addBasicItem={addBasicItem}
-                items={allItems as ItemV2[]}
-              />
-              Item
-            </TableHead>
+            <TableHead className="flex gap-2 items-center">Item</TableHead>
             <TableHead className="w-[100px]">
               slots
               {loadout && (
@@ -137,16 +131,19 @@ export default function ItemsTable({
         </TableBody>
       </Table>
       <Separator className="my-1" />
-      <Button
-        size="sm"
-        variant="outline"
-        className="ml-2 mt-1"
-        onClick={() => {
-          handleAddItem();
-        }}
-      >
-        <DiamondPlus /> add custom item
-      </Button>
+      <div className="flex items-center justify-between">
+        <ItemsList addBasicItem={addBasicItem} items={allItems as ItemV2[]} />
+        <Button
+          size="sm"
+          variant="outline"
+          className="ml-2 mt-1"
+          onClick={() => {
+            handleAddItem();
+          }}
+        >
+          <DiamondPlus /> add custom item
+        </Button>
+      </div>
     </div>
   );
 }
@@ -254,12 +251,8 @@ function ItemsList({
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <Button
-          size="icon"
-          variant="ghost"
-          className="p-1 text-blue-600 hover:text-blue-600 h-10 w-10"
-        >
-          <List style={{ height: "24px", width: "24px" }} />
+        <Button size="sm" variant="outline">
+          <List className="text-blue-500" /> items list
         </Button>
       </PopoverTrigger>
       <PopoverContent className="max-w-screen w-[600px] relative h-[500px] overflow-auto">
