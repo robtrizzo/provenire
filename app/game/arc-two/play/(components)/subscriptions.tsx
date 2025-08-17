@@ -195,7 +195,7 @@ function CodexActionSubscriptionItem({
   const totalScore = codexAction.score[0] + codexAction.score[1];
   const subsidizedByRoot =
     (codexAction.overCorpClassification !== "forbidden" && totalScore <= 1) ||
-    (operativeAction && totalScore >= 2);
+    (operativeAction && totalScore <= 2);
 
   if (subsidizedByRoot) {
     return (
