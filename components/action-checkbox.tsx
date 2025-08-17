@@ -12,7 +12,8 @@ export function ActionCheckbox({
   if (level === 0) {
     return (
       <Checkbox
-        onClick={() => {
+        onClick={(e) => {
+          e.stopPropagation();
           setLevel(1);
           if (onClick) {
             onClick(1);
@@ -26,7 +27,8 @@ export function ActionCheckbox({
   if (level === 1) {
     return (
       <Checkbox
-        onClick={() => {
+        onClick={(e) => {
+          e.stopPropagation();
           setLevel(2);
           if (onClick) {
             onClick(2);
@@ -47,7 +49,8 @@ export function ActionCheckbox({
   if (level === 2) {
     return (
       <Checkbox
-        onClick={() => {
+        onClick={(e) => {
+          e.stopPropagation();
           setLevel(0);
           if (onClick) {
             onClick(0);
