@@ -172,10 +172,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarGroup>
           <SidebarMenu>
             <SidebarMenuItem>
-              <Link href="#">
+              <Link href="/game/arc-two/play">
                 <Button
                   variant="secondary"
-                  disabled
                   className="w-full text-lg py-6 relative bg-black group text-white hover:font-white hover:bg-black"
                 >
                   Play <span className="text-sm">(coming soon)</span>
