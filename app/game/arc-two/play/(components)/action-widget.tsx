@@ -25,6 +25,7 @@ import {
   ContextMenuSeparator,
   ContextMenuTrigger,
 } from "@/components/ui/context-menu";
+import { useRoll } from "@/contexts/arc2RollContext";
 
 export default function ActionWidget({
   action,
@@ -34,6 +35,7 @@ export default function ActionWidget({
   mode?: "edit" | "default";
 }) {
   const { handleRemoveAvailableAction, handleEditAction } = useCharacterSheet();
+  const { setRollLeft, setRollRight, doRoll } = useRoll();
 
   const handleRemoveAction = () => {
     handleRemoveAvailableAction(action.name);
@@ -171,6 +173,15 @@ export default function ActionWidget({
               action.type === "codex" && "hover:bg-fuchsia-500/20",
               action.type === "ego" && "hover:bg-rose-500/20"
             )}
+            onClick={() => {
+              if (action.position === "left") {
+                setRollLeft(action);
+              } else if (action.position === "right") {
+                setRollRight(action);
+              } else {
+                console.error("invalid action position");
+              }
+            }}
           >
             <div className="flex items-center col-span-6">
               <span className="text-lg">{action.name}</span>
@@ -183,7 +194,11 @@ export default function ActionWidget({
           </div>
         </ContextMenuTrigger>
         <ContextMenuContent>
-          <ContextMenuItem>
+          <ContextMenuItem
+            onClick={() => {
+              doRoll("action", action, undefined);
+            }}
+          >
             <Dices /> Roll
           </ContextMenuItem>
           <ContextMenuItem onClick={togglePosition}>

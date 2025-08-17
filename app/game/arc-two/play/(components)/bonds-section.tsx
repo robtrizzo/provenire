@@ -38,6 +38,7 @@ import { useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useRoll } from "@/contexts/arc2RollContext";
 
 export default function BondsSection() {
   const { bonds, setBonds, setChanges } = useCharacterSheet();
@@ -104,6 +105,18 @@ function BondWidget({
   handleRemoveBond: () => void;
 }) {
   const [dialogOpen, setDialogOpen] = useState(false);
+
+  const {
+    rollLeft,
+    rollRight,
+    setRollLeft,
+    setRollRight,
+    bonusDiceBlue,
+    bonusDiceRed,
+    setBonusDiceBlue,
+    setBonusDiceRed,
+  } = useRoll();
+
   const handleToggleBondAdvanced = () => {
     handleUpdateBond({ ...bond, advanced: !bond.advanced });
   };
@@ -124,12 +137,39 @@ function BondWidget({
     setDialogOpen(false);
   };
 
-  // TODO handle onclick adding bond to roll widget
+  const handleSetBondLeft = () => {
+    if (rollRight?.name === bond.name) {
+      setRollRight(undefined);
+    }
+    setRollLeft(bond);
+  };
+
+  const handleSetBondRight = () => {
+    if (rollLeft?.name === bond.name) {
+      setRollLeft(undefined);
+    }
+    setRollRight(bond);
+  };
+
+  const handleBondAddBonusDice = () => {
+    setBonusDiceRed(bonusDiceRed + bond.score.filter((s) => s === 1).length);
+    setBonusDiceBlue(bonusDiceBlue + bond.score.filter((s) => s === 2).length);
+  };
+
   return (
     <>
       <ContextMenu>
         <ContextMenuTrigger asChild>
-          <div className="p-2 grid grid-cols-8 gap-2 hover:bg-input/50">
+          <div
+            className="p-2 grid grid-cols-8 gap-2 hover:bg-input/50"
+            onClick={() => {
+              if (rollLeft === undefined) {
+                handleSetBondLeft();
+              } else if (rollRight === undefined) {
+                handleSetBondRight();
+              }
+            }}
+          >
             <div className="flex items-center gap-4 col-span-6">
               <span className="text-lg shrink-0">{bond.name}</span>
               <span className="text-sm text-muted-foreground truncate">
@@ -138,7 +178,12 @@ function BondWidget({
             </div>
             <ActionScore
               score={bond.score}
-              onChange={() => {}}
+              onChange={(newScore) => {
+                handleUpdateBond({
+                  ...bond,
+                  score: newScore as [number, number],
+                });
+              }}
               className="col-span-1"
             />
             <Tooltip>
@@ -157,13 +202,13 @@ function BondWidget({
           <ContextMenuItem>
             <Dices /> Roll
           </ContextMenuItem>
-          <ContextMenuItem>
+          <ContextMenuItem onClick={handleSetBondLeft}>
             <PanelLeftClose /> Set Roll Left
           </ContextMenuItem>
-          <ContextMenuItem>
+          <ContextMenuItem onClick={handleSetBondRight}>
             <PanelRightClose /> Set Roll Right
           </ContextMenuItem>
-          <ContextMenuItem>
+          <ContextMenuItem onClick={handleBondAddBonusDice}>
             <Plus /> Add as bonus dice
           </ContextMenuItem>
           <ContextMenuSeparator />
