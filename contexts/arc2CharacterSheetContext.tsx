@@ -632,7 +632,11 @@ export default function CharacterSheetProvider({
     });
 
     if (!updatedHarm[level]) {
-      return;
+      const effectiveLevel = effectiveHarm[level];
+      updatedHarm[level] = {
+        slots: Array.from({ length: effectiveLevel.maxSlots }, () => ""), // Always start with empty slots
+        maxSlots: 0,
+      };
     }
 
     updatedHarm[level].slots[slotIndex] = description.trim() || "";
