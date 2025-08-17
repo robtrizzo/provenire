@@ -5,7 +5,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { resultsMessage, Roll, ticksFromProject } from "@/types/roll";
+import { Roll } from "@/types/roll";
+import { resultsMessage, ticksFromProject } from "@/lib/roll";
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";

@@ -15,6 +15,7 @@ import { ShieldAlert, Dices, Cog } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { useCharacterSheet } from "@/contexts/arc2CharacterSheetContext";
 import { useRoll } from "@/contexts/arc2RollContext";
+import { Checkbox } from "@/components/ui/checkbox";
 
 export default function RollSection() {
   const {
@@ -30,6 +31,8 @@ export default function RollSection() {
     setBonusDiceRed,
     setBonusDiceBlue,
     setFortuneDice,
+    isEmotional,
+    setIsEmotional,
     handleFortuneRollButton,
     doRoll,
   } = useRoll();
@@ -201,26 +204,36 @@ export default function RollSection() {
             </span>
           </div>
         </div>
-        <div>
-          <Label htmlFor="fortune-dice">Fortune Dice</Label>
-          <div className="flex gap-4">
-            <Input
-              id="fortune-dice"
-              type="number"
-              className="w-20"
-              min={0}
-              value={fortuneDice}
-              onChange={(e) => {
-                setFortuneDice(parseInt(e.target.value));
-              }}
+        <div className="w-full flex justify-between items-end">
+          <div>
+            <Label htmlFor="fortune-dice">Fortune Dice</Label>
+            <div className="flex gap-4">
+              <Input
+                id="fortune-dice"
+                type="number"
+                className="w-20"
+                min={0}
+                value={fortuneDice}
+                onChange={(e) => {
+                  setFortuneDice(parseInt(e.target.value));
+                }}
+              />
+              <Button
+                onClick={async () => {
+                  handleFortuneRollButton(fortuneDice);
+                }}
+              >
+                Fortune Roll
+              </Button>
+            </div>
+          </div>
+          <div className="flex gap-2 items-end">
+            <Checkbox
+              id="emotional"
+              checked={isEmotional}
+              onCheckedChange={(checked) => setIsEmotional(!!checked)}
             />
-            <Button
-              onClick={async () => {
-                handleFortuneRollButton(fortuneDice);
-              }}
-            >
-              Fortune Roll
-            </Button>
+            <Label htmlFor="emotional">I&apos;m feeling emotional</Label>
           </div>
         </div>
       </div>

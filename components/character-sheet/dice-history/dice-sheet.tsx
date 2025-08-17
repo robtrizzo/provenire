@@ -17,7 +17,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import DiceHistory from "@/app/game/arc-one/play/(components)/dice-history/history";
+import DiceHistory from "./history";
 import { useSession } from "next-auth/react";
 import { Loader, Menu, RefreshCcw } from "lucide-react";
 import {

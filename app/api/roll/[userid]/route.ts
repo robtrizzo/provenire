@@ -4,9 +4,9 @@ import { checkAuth } from "@/lib/auth";
 import { addRoll, getRolls, clearRolls } from "@/handlers/rolls";
 
 export async function POST(
-    request: NextRequest,
-    { params }: { params: Promise<{ userid: string }> }
-  ) {
+  request: NextRequest,
+  { params }: { params: Promise<{ userid: string }> }
+) {
   const { session, error } = await checkAuth("player");
   if (error) return error;
 
@@ -16,7 +16,10 @@ export async function POST(
   }
 
   if (userid !== session!.user!.id && !session!.user!.role.includes("admin")) {
-    return NextResponse.json({ error: "cannot add rolls for another user" }, { status: 403 });
+    return NextResponse.json(
+      { error: "cannot add rolls for another user" },
+      { status: 403 }
+    );
   }
 
   if (!request.body) {
@@ -51,12 +54,12 @@ export async function POST(
 }
 
 export async function GET(
-    request: NextRequest,
-    { params }: { params: Promise<{ userid: string }> }
-  ) {
+  request: NextRequest,
+  { params }: { params: Promise<{ userid: string }> }
+) {
   const { session, error } = await checkAuth("player");
   if (error) return error;
-  
+
   const userid = (await params).userid;
   if (!userid) {
     return NextResponse.json({ error: "must provide userid" });
@@ -69,7 +72,9 @@ export async function GET(
   try {
     let rolls = await getRolls(userid, cursor, pageSize);
     if (!session?.user?.role.includes("admin")) {
-      rolls = rolls.filter((roll) => !roll.private || roll.userid === session?.user?.id);
+      rolls = rolls.filter(
+        (roll) => !roll.private || roll.userid === session?.user?.id
+      );
     }
     return NextResponse.json(rolls);
   } catch (error) {
@@ -79,12 +84,12 @@ export async function GET(
 }
 
 export async function DELETE(
-    request: NextRequest,
-    { params }: { params: Promise<{ userid: string }> }
-  ) {
+  request: NextRequest,
+  { params }: { params: Promise<{ userid: string }> }
+) {
   const { error } = await checkAuth("admin");
   if (error) return error;
-  
+
   const userid = (await params).userid;
   if (!userid) {
     return NextResponse.json({ error: "must provide userid" });

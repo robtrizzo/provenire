@@ -8,13 +8,8 @@ import React, {
 } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Attribute } from "@/types/game";
-import {
-  blueHigher,
-  resultsMessage,
-  Roll,
-  RollType,
-  ticksFromProject,
-} from "@/types/roll";
+import { Roll, RollType } from "@/types/roll";
+import { blueHigher, resultsMessage, ticksFromProject } from "@/lib/roll";
 import {
   useInfiniteQuery,
   useMutation,

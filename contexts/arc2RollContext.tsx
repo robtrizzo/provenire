@@ -8,13 +8,14 @@ import React, {
 } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Rollable } from "@/types/game";
+import { Roll, RollType } from "@/types/roll";
 import {
   blueHigher,
+  getHighestRollColor,
   resultsMessage,
-  Roll,
-  RollType,
   ticksFromProject,
-} from "@/types/roll";
+  dieVariants,
+} from "@/lib/roll";
 import {
   useInfiniteQuery,
   useMutation,
@@ -22,7 +23,6 @@ import {
 } from "@tanstack/react-query";
 import { useCharacterSheet } from "./arc2CharacterSheetContext";
 import { Die } from "@/components/die";
-import { cn } from "@/lib/utils";
 import { useSession } from "next-auth/react";
 import { useChannel, useConnectionStateListener } from "ably/react";
 
@@ -36,6 +36,7 @@ interface RollContextProps {
   fortuneDice: number;
   rolls: Roll[];
   rollsArePending: boolean;
+  isEmotional: boolean;
   isPrivate: boolean;
   setBonusDiceRed: React.Dispatch<React.SetStateAction<number>>;
   setBonusDiceBlue: React.Dispatch<React.SetStateAction<number>>;
@@ -46,6 +47,7 @@ interface RollContextProps {
   rollRight: Rollable | undefined;
   setRollLeft: React.Dispatch<React.SetStateAction<Rollable | undefined>>;
   setRollRight: React.Dispatch<React.SetStateAction<Rollable | undefined>>;
+  setIsEmotional: React.Dispatch<React.SetStateAction<boolean>>;
   setIsPrivate: React.Dispatch<React.SetStateAction<boolean>>;
   doRoll: (
     type: RollType,
@@ -94,6 +96,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   const [currentDiceFilter, setCurrentDiceFilter] = useState<string>("all");
   const [rollLeft, setRollLeft] = useState<Rollable>();
   const [rollRight, setRollRight] = useState<Rollable>();
+  const [isEmotional, setIsEmotional] = useState<boolean>(false);
   const [isPrivate, setIsPrivate] = useState<boolean>(false);
 
   const { mutateAsync: saveDiceRoll } = useMutation({
@@ -129,10 +132,16 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     },
   });
 
+  const PINK_DIE_SIDES = [1, 1, 1, 1, 6, 6];
+  function rollPinkDie(): number {
+    return PINK_DIE_SIDES[Math.floor(Math.random() * 6)];
+  }
+
   const rollDice = async (
     type: RollType,
     numRed: number,
     numBlue: number,
+    numPink: number,
     tag?: string
   ): Promise<Roll> => {
     numRed += bonusDiceRed;
@@ -147,25 +156,62 @@ export default function RollProvider({ children }: { children: ReactNode }) {
 
     roll.redDice = [];
     roll.blueDice = [];
+    roll.pinkDice = [];
 
     const takeLower = numRed + numBlue == 0;
     if (takeLower) {
       if (type === "fortune") {
         numBlue = 2;
       } else {
-        numRed = 2;
+        if (numPink > 0) {
+          numRed = Math.max(0, 2 - numPink);
+        } else {
+          numRed = 2;
+        }
       }
     }
+
+    // if there are pink dice, they'll randomly replace other dice
+    if (numPink > 0) {
+      for (let i = 0; i < numPink; i++) {
+        const totalDice = numRed + numBlue;
+
+        // Only replace if there are dice to replace
+        if (totalDice > 0) {
+          // Calculate probability based on proportion of red vs blue dice
+          const redProbability = numRed / totalDice;
+
+          if (Math.random() < redProbability) {
+            if (numRed > 0) {
+              numRed--;
+            } else if (numBlue > 0) {
+              numBlue--;
+            }
+          } else {
+            if (numBlue > 0) {
+              numBlue--;
+            } else if (numRed > 0) {
+              numRed--;
+            }
+          }
+        }
+      }
+    }
+
     for (let i = 0; i < numRed; i++) {
       roll.redDice.push(Math.floor(Math.random() * 6) + 1);
     }
     for (let i = 0; i < numBlue; i++) {
       roll.blueDice.push(Math.floor(Math.random() * 6) + 1);
     }
+    for (let i = 0; i < numPink; i++) {
+      roll.pinkDice.push(rollPinkDie());
+    }
 
     const redSixes = roll.redDice.filter((r) => r === 6).length;
     const blueSixes = roll.blueDice.filter((r) => r === 6).length;
-    if (redSixes + blueSixes >= 2) {
+    const pinkSixes = roll.pinkDice.filter((r) => r === 6).length;
+    if (redSixes + blueSixes + pinkSixes >= 2) {
       roll.result = "crit";
       roll.effect = "improved";
       roll.resultDie = 6;
@@ -174,13 +220,13 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         if (type == "fortune") {
           roll.resultDie = Math.min(...roll.blueDice);
         } else {
-          roll.resultDie = Math.min(...roll.redDice);
+          roll.resultDie = Math.min(...roll.redDice, ...roll.pinkDice);
         }
         roll.effect = "reduced";
       } else {
         const bh = blueHigher(roll);
         roll.resultDie = bh
-          ? Math.max(...roll.blueDice)
+          ? Math.max(...roll.blueDice, ...roll.pinkDice) // pink dice count as normal effect
           : Math.max(...roll.redDice);
         roll.effect = bh ? "normal" : "reduced";
       }
@@ -222,7 +268,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       type,
       redRolls,
       blueRolls,
-      `${action1}${action2 ? ` | ${action2}` : ""}`
+      type === "action" && isEmotional ? 1 : 0,
+      `${action1?.name}${action2 ? ` | ${action2.name}` : ""}`
     );
   }
 
@@ -289,6 +336,9 @@ export default function RollProvider({ children }: { children: ReactNode }) {
             {roll.blueDice.map((r, i) => (
               <Die key={i} roll={r} className="h-10 w-10 text-blue-800" />
             ))}
+            {roll.pinkDice?.map((r, i) => (
+              <Die key={i} roll={r} className="h-10 w-10 text-pink-800" />
+            ))}
           </div>
         </div>
       ),
@@ -306,14 +356,16 @@ export default function RollProvider({ children }: { children: ReactNode }) {
                 .map((r, i) => (
                   <Die key={i} roll={r} className={"h-10 w-10 text-blue-800"} />
                 )),
+              roll.pinkDice
+                ?.filter((r) => r === 6)
+                .map((r, i) => (
+                  <Die key={i} roll={r} className={"h-10 w-10 text-pink-400"} />
+                )),
             ]
           ) : (
             <Die
               roll={roll.resultDie}
-              className={cn(
-                "h-10 w-10",
-                blueHigher(roll) ? "h-10 w-10 text-blue-800" : "text-red-400"
-              )}
+              className={dieVariants({ type: getHighestRollColor(roll) })}
             />
           )}
           {descNode}
@@ -487,7 +539,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   }
 
   async function handleFortuneRollButton(numDice: number) {
-    const roll = await rollDice("fortune", 0, numDice);
+    const roll = await rollDice("fortune", 0, numDice, 0);
     if (isPrivate || !wsConnected) {
       diceToast(roll);
     } else {
@@ -513,11 +565,13 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         hasNextPage,
         rolls,
         rollsArePending,
+        isEmotional,
         isPrivate,
         setBonusDiceRed,
         setBonusDiceBlue,
         setFortuneDice,
         setRolls,
+        setIsEmotional,
         setIsPrivate,
         refetchRolls,
         rollLeft,
