@@ -735,7 +735,7 @@ export default function CharacterSheetProvider({
       return acc;
     }, 0);
 
-    const favorBankInterest = favorBankMember ? -1 + wealthP : 0;
+    const favorBankInterest = favorBankMember ? wealthP : 0;
 
     const lifestyleSupports = wealthLevels.pelts[wealthP].supportsSubscriptions;
 
@@ -746,6 +746,7 @@ export default function CharacterSheetProvider({
         0,
         actionSubs +
           itemSubs +
+          (favorBankMember ? 1 : 0) +
           (selectedSleeve?.subscription || 0) +
           lifestyleCost -
           lifestyleSupports

@@ -35,10 +35,7 @@ export default function Subscriptions() {
   const lifestyleSupports = lifestyle.supportsSubscriptions;
 
   const subtotal =
-    subscriptions +
-    favorBankInterest +
-    lifestyleSupports +
-    (favorBankMember ? 1 : 0);
+    subscriptions + favorBankInterest + (favorBankMember ? 1 : 0);
 
   const codexActions = actions.filter(
     (a) => a.type === "codex" && a.subscriptionPaid
