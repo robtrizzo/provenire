@@ -12,7 +12,6 @@ import {
   TypographyH4,
   TypographyUnorderedList,
 } from "@/components/ui/typography";
-import Link from "next/link";
 import { X, BookOpen } from "lucide-react";
 
 export default function ConditionsInfo() {
@@ -31,84 +30,63 @@ export default function ConditionsInfo() {
         <TypographyH3>Conditions</TypographyH3>
         <TypographyP>
           <strong>Conditions</strong> are powerful negative emotions which the
-          PCs cannot shed without some effort. They can be compartmentalized and
-          ignored for a time, but once the mission is done and PCs have to
-          return to everyday life, that&apos;s when <strong>conditions</strong>{" "}
-          rear their heads.
+          PCs cannot shed without some effort.
         </TypographyP>
         <TypographyP>
-          For each condition a character has, their{" "}
-          <strong>stress track</strong> is reduced by 2 (to a minimum of 1). If
-          a PC can no longer take another <strong>condition</strong>, they must
-          lash out against the machine.
+          For each condition a character has, their <strong>max stress</strong>{" "}
+          is reduced by 1. If a PC&apos;s <b>max stress</b> is <b>0</b>, they
+          can no longer mark <b>conditions</b>.
         </TypographyP>
         <TypographyP>
-          Each <strong>condition</strong> prohibits two different downtime
-          activities. They can be removed by either <strong>clearing</strong>{" "}
-          them or <strong>recovering</strong> from them. To{" "}
-          <strong>recover from them</strong>, another PC can{" "}
-          <strong>comfort</strong> your character, advancing your{" "}
-          <strong>recovery</strong> clock. More on <strong>recovery</strong>{" "}
-          <span className="text-red-600 underline">
-            <Link href="/game/arc-one/prelude#downtime">here</Link>
-          </span>
-          . To <strong>clear</strong> a <strong>condition</strong>, the PC has
-          to do a unique shitty thing which is both a narrative action and a
-          material cost. If they do this, they mark <strong>+1xp</strong> and
-          clear their <strong>stress track</strong>.
-        </TypographyP>
-        <TypographyP>
-          The <strong>conditions</strong> are:
+          To <b>clear a condition</b>, the PC can:
         </TypographyP>
         <TypographyUnorderedList>
           <li>
-            <strong>Afraid</strong>: You cannot <strong>train</strong> or pursue
-            a <strong>long term project</strong>. Clear by running from
-            something difficult (<strong>-2 rep or goodwill</strong>).
+            undergo a <b>psyche massage</b> during the <b>Prelude</b>
           </li>
           <li>
-            <strong>Angry</strong>: You cannot <strong>comfort</strong>.{" "}
-            <strong>Taking a breather</strong> requires a downtime activity.
-            Clear by breaking something important (<strong>-2 material</strong>)
-            or hurting someone (<strong>-2 goodwill</strong>).
+            spend <b>1 ¤F</b> while <b>Taking a Breather</b>
           </li>
           <li>
-            <strong>Guilty</strong>: You cannot <strong>shift blame</strong> or{" "}
-            <strong>recover</strong>. Clear by confessing to someone and making
-            a sacrifice (<strong>+7 heat or -2 materials</strong>).
-          </li>
-          <li>
-            <strong>Insecure</strong>: You cannot <strong>train</strong> or{" "}
-            <strong>shift blame</strong>. Clear by taking foolhardy action
-            without telling the crew (<strong>-2 intel</strong> or{" "}
-            <strong>raise the stakes</strong>).
-          </li>
-          <li>
-            <strong>Hopeless</strong>: You cannot <strong>comfort</strong> or{" "}
-            pursue a <strong>long term project</strong>. Clear by flinging
-            yourself into easy relief (<strong>-2 food or rep</strong>).
+            <b>Getting Emotional</b> during a mission
           </li>
         </TypographyUnorderedList>
+        <TypographyH4>Getting Emotional</TypographyH4>
         <TypographyP>
-          The <strong>Narrator</strong> may freely invoke one of your conditions
-          to cause problems for you in the fiction. When they do, mark{" "}
-          <strong>+1 xp</strong>. You may resist this as normal, or you may
-          choose to <strong>steel your heart</strong>.
+          Bottling up negative emotions works, for a time. But it doesn&apos;t
+          make them go away. Allowing them to manifest and be experienced fully
+          - that can bring some potential catharsis.
         </TypographyP>
-        <TypographyH4 className="mt-4">Steeling Your Heart</TypographyH4>
         <TypographyP>
-          When you <strong>steel your heart</strong>, you still mark{" "}
-          <strong>+1 xp</strong> from the <strong>Narrator</strong> invoking
-          your condition. You describe how you compartmentalize your emotions -
-          the <strong>Narrator</strong> may no longer invoke that condition for
-          the rest of the mission, though you become vulnerable to the{" "}
-          <strong>drone</strong> and{" "}
-          <span className="font-bold text-fuchsia-700 underline">
-            <Link href="/game/arc-one/setting/strange-forces#kings-spell">
-              The King&apos;s Spell
-            </Link>
-          </span>
-          .
+          When you feel that your characater&apos;s conditions would be
+          affecting them during a mission, you may mark{" "}
+          <i>&quot;I&apos;m feeling emotional&quot;</i> in the roll widget.
+          While this is marked, your <b>action rolls</b> will have a{" "}
+          <b>condition die</b>.
+        </TypographyP>
+        <TypographyP>
+          The <b>condition die</b> has four sides of <b>1</b> and two sides of{" "}
+          <b>6</b>. It randomly replaces one of the other dice in your roll. If
+          you roll a <b>6</b> on the <b>condition die</b>, you may{" "}
+          <b>clear a condition</b> and unmark{" "}
+          <i>&quot;I&apos;m feeling emotional&quot;</i>. Otherwise unmark{" "}
+          <i>&quot;I&apos;m feeling emotional&quot;</i> at the end of the scene.
+        </TypographyP>
+        <TypographyH4>Invoking Conditions</TypographyH4>
+        <TypographyP>
+          The <b>Narrator</b> may freely invoke one of your conditions to cause
+          problems for you in the fiction. When they do, mark <b>+1 xp</b>. You
+          may resist this as normal, or you may choose to{" "}
+          <b>steel your heart</b>.
+        </TypographyP>
+        <TypographyP className="mt-4 text-lg font-sans">
+          <b>Steeling Your Heart</b>
+        </TypographyP>
+        <TypographyP>
+          When you <b>steel your heart</b>, you still mark <b>+1 xp</b> from the{" "}
+          <b>Narrator</b> invoking your condition. You describe how you
+          compartmentalize your emotions - the <b>Narrator</b> may no longer
+          invoke that condition for the rest of the mission.
         </TypographyP>
       </PopoverContent>
     </Popover>
