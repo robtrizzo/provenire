@@ -163,6 +163,73 @@ import SituationalAwareness1 from "./archetypes/arc1/entertainer/situational-awa
 import LivingWithPassion1 from "./archetypes/arc1/entertainer/living-with-passion";
 import AvoidConflict1 from "./archetypes/arc1/entertainer/avoid-conflict";
 
+// operatives
+// arc2
+// canon
+import Overkill from "./operatives/arc2/canon/overkill";
+import WarmupRoutine from "./operatives/arc2/canon/warmup-routine";
+import JustOneMoreShot from "./operatives/arc2/canon/just-one-more-shot";
+import WarningShots from "./operatives/arc2/canon/warning-shots";
+import Obliterate from "./operatives/arc2/canon/obliterate";
+// close
+import Revivify from "./operatives/arc2/close/revivify";
+import PreemptiveRelease from "./operatives/arc2/close/preemptive-release";
+import AllIn from "./operatives/arc2/close/all-in";
+import PreciseControl from "./operatives/arc2/close/precise-control";
+import Resurrect from "./operatives/arc2/close/resurrect";
+// facility
+import HeavyHauler from "./operatives/arc2/facility/heavy-hauler";
+import IntoTheFray from "./operatives/arc2/facility/into-the-fray";
+import ControlledLaunch from "./operatives/arc2/facility/controlled-launch";
+import Unstoppable from "./operatives/arc2/facility/unstoppable";
+import OversizedWeaponry from "./operatives/arc2/facility/oversized-weaponry";
+// hush
+import Vaporwave from "./operatives/arc2/hush/vaporwave";
+import Shadowstep from "./operatives/arc2/hush/shadowstep";
+import MidnightSilence from "./operatives/arc2/hush/midnight-silence";
+import ShadowSynthesis from "./operatives/arc2/hush/shadow-synthesis";
+import SensoryEclipse from "./operatives/arc2/hush/sensory-eclipse";
+// impact
+import ToughItOut from "./operatives/arc2/impact/tough-it-out";
+import HurtMeOnce from "./operatives/arc2/impact/hurt-me-once";
+import MaximumEffort from "./operatives/arc2/impact/maximum-effort";
+import Indominable from "./operatives/arc2/impact/indominable";
+import UnlockPotential from "./operatives/arc2/impact/unlock-potential";
+// keeper
+import Simulate from "./operatives/arc2/keeper/simulate";
+import NoRiskNoReward from "./operatives/arc2/keeper/no-risk-no-reward";
+import Teamwork from "./operatives/arc2/keeper/teamwork";
+import NeuralOverclock from "./operatives/arc2/keeper/neural-overclock";
+import RealityFracture from "./operatives/arc2/keeper/reality-fracture";
+
+// notion
+import Ravager from "./operatives/arc2/notion/ravager";
+import Devourer from "./operatives/arc2/notion/devourer";
+import NightTerrors from "./operatives/arc2/notion/night-terrors";
+import BeastWithin from "./operatives/arc2/notion/beast-within";
+import Warform from "./operatives/arc2/notion/warform";
+
+// quill
+import Potential from "./operatives/arc2/quill/potential";
+import AccelleratedAutodidact from "./operatives/arc2/quill/accellerated-autodidact";
+import Mimicry from "./operatives/arc2/quill/mimicry";
+import RelentlessRegimen from "./operatives/arc2/quill/relentless-regimen";
+import MaxPotential from "./operatives/arc2/quill/max-potential";
+
+// severance
+import ImpulseProjection from "./operatives/arc2/severance/impulse-projection";
+import Marionette from "./operatives/arc2/severance/marionette";
+import Sympathy from "./operatives/arc2/severance/sympathy";
+import Assimilate from "./operatives/arc2/severance/assimilate";
+import Empathy from "./operatives/arc2/severance/empathy";
+
+// watchtower
+import SawItComing from "./operatives/arc2/watchtower/saw-it-coming";
+import GiveMeTheFuckingCamera from "./operatives/arc2/watchtower/give-me-the-fucking-camera";
+import AttackDogs from "./operatives/arc2/watchtower/attack-dogs";
+import MissionControlTellCorporateTheyCanShoveIt from "./operatives/arc2/watchtower/mission-control-tell-corporate-they-can-shove-it";
+import ContractEscalation from "./operatives/arc2/watchtower/contract-escalation";
+
 export type AbilityRegistryType = {
   [category: string]: {
     [arc: string]: {
@@ -369,6 +436,81 @@ export const abilityRegistry = {
         "situational-awareness": SituationalAwareness2,
         "living-with-passion": LivingWithPassion2,
         "avoid-conflict": AvoidConflict2,
+      },
+    },
+  },
+  operatives: {
+    arc2: {
+      canon: {
+        overkill: Overkill,
+        "warmup-routine": WarmupRoutine,
+        "just-one-more-shot": JustOneMoreShot,
+        "warning-shots": WarningShots,
+        obliterate: Obliterate,
+      },
+      close: {
+        revivify: Revivify,
+        "preemptive-release": PreemptiveRelease,
+        "all-in": AllIn,
+        "precise-control": PreciseControl,
+        resurrect: Resurrect,
+      },
+      facility: {
+        "heavy-hauler": HeavyHauler,
+        "into-the-fray": IntoTheFray,
+        "controlled-launch": ControlledLaunch,
+        unstoppable: Unstoppable,
+        "oversized-weaponry": OversizedWeaponry,
+      },
+      hush: {
+        vaporwave: Vaporwave,
+        shadowstep: Shadowstep,
+        "midnight-silence": MidnightSilence,
+        "shadow-synthesis": ShadowSynthesis,
+        "sensory-eclipse": SensoryEclipse,
+      },
+      impact: {
+        "tough-it-out": ToughItOut,
+        "hurt-me-once": HurtMeOnce,
+        "maximum-effort": MaximumEffort,
+        indominable: Indominable,
+        "unlock-potential": UnlockPotential,
+      },
+      keeper: {
+        simulate: Simulate,
+        "no-risk-no-reward": NoRiskNoReward,
+        teamwork: Teamwork,
+        "neural-overclock": NeuralOverclock,
+        "reality-fracture": RealityFracture,
+      },
+      notion: {
+        ravager: Ravager,
+        devourer: Devourer,
+        "night-terrors": NightTerrors,
+        "beast-within": BeastWithin,
+        warform: Warform,
+      },
+      quill: {
+        potential: Potential,
+        "accellerated-autodidact": AccelleratedAutodidact,
+        mimicry: Mimicry,
+        "relentless-regimen": RelentlessRegimen,
+        "max-potential": MaxPotential,
+      },
+      severance: {
+        "impulse-projection": ImpulseProjection,
+        marionette: Marionette,
+        sympathy: Sympathy,
+        assimilate: Assimilate,
+        empathy: Empathy,
+      },
+      watchtower: {
+        "saw-it-coming": SawItComing,
+        "give-me-the-fucking-camera": GiveMeTheFuckingCamera,
+        "attack-dogs": AttackDogs,
+        "mission-control-tell-corporate-they-can-shove-it":
+          MissionControlTellCorporateTheyCanShoveIt,
+        "contract-escalation": ContractEscalation,
       },
     },
   },

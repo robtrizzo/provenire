@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
@@ -9,21 +9,34 @@ export function BuildupCheckboxes({
   max,
   numDisabled,
   current,
+  defaultCurrent = 0,
   onChange,
   clearPosition = "start",
   className,
 }: {
   max: number;
   numDisabled?: number;
-  current: number;
+  current?: number;
+  defaultCurrent?: number;
   onChange?: (n: number) => void;
   clearPosition?: "start" | "end";
   className?: string;
 }) {
   const numToDisable = numDisabled || 0;
-  const [localCurrent, setLocalCurrent] = useState(current);
+  const [internalCurrent, setInternalCurrent] = useState(defaultCurrent);
+  const isControlled = current !== undefined;
+  const currentValue = isControlled ? current : internalCurrent;
+
+  useEffect(() => {
+    if (current !== undefined) {
+      setInternalCurrent(current);
+    }
+  }, [current]);
+
   const handleOnChange = (n: number) => {
-    setLocalCurrent(n);
+    if (!isControlled) {
+      setInternalCurrent(n);
+    }
     if (onChange) {
       onChange(n);
     }
@@ -42,7 +55,7 @@ export function BuildupCheckboxes({
           <X className="h-3 w-3" />
         </Button>
       )}
-      {Array.from({ length: Math.min(localCurrent, max - numToDisable) }).map(
+      {Array.from({ length: Math.min(currentValue, max - numToDisable) }).map(
         (_, i) => (
           <Checkbox
             key={`checked-${i}`}
@@ -54,11 +67,11 @@ export function BuildupCheckboxes({
           />
         )
       )}
-      {Array.from({ length: max - numToDisable - localCurrent }).map((_, i) => (
+      {Array.from({ length: max - numToDisable - currentValue }).map((_, i) => (
         <Checkbox
           key={`unchecked-${i}`}
           onClick={() => {
-            handleOnChange(localCurrent + i + 1);
+            handleOnChange(currentValue + i + 1);
           }}
           checked={false}
           className="rounded-none"

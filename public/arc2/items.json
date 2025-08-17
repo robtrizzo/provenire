@@ -1,0 +1,203 @@
+[
+  {
+    "name": "PsycX Neural Imaging Chip",
+    "cost": 0,
+    "slots": 0,
+    "options": [
+      {
+        "name": "Budget",
+        "cost": 0,
+        "subscription": 0
+      },
+      {
+        "name": "Flex",
+        "cost": 0,
+        "subscription": 0
+      },
+      {
+        "name": "Basic",
+        "cost": 0,
+        "subscription": 1
+      },
+      {
+        "name": "Noble",
+        "cost": 0,
+        "subscription": 2
+      },
+      {
+        "name": "Royal",
+        "cost": 0,
+        "subscription": 3
+      }
+    ]
+  },
+  {
+    "name": "Social Situational",
+    "cost": 1,
+    "slots": 0
+  },
+  {
+    "name": "Your Blood, Your Story",
+    "cost": 3,
+    "slots": 0,
+    "options": [
+      {
+        "name": "Standard",
+        "cost": 3,
+        "subscription": 0
+      },
+      {
+        "name": "Black Market Genhack",
+        "cost": 3,
+        "subscription": 3,
+        "dangerous": true
+      }
+    ]
+  },
+  {
+    "name": "Rat-track",
+    "cost": 4,
+    "slots": 0
+  },
+  {
+    "name": "Integra Optics",
+    "cost": 6,
+    "slots": 0
+  },
+  {
+    "name": "Lara Gameforce VTA Spike",
+    "cost": 4,
+    "subscription": 2,
+    "slots": 0
+  },
+  {
+    "name": "Pounce Spring Joints",
+    "cost": 5,
+    "slots": 1
+  },
+  {
+    "name": "Autonav Integrated HUD",
+    "cost": 3,
+    "slots": 0
+  },
+  {
+    "name": "(Autonav Addon) Smart Routing",
+    "cost": 0,
+    "slots": 0,
+    "subscription": 1
+  },
+  {
+    "name": "(Autonav Addon) Corporate Megabuilding Map Pack",
+    "cost": 2,
+    "slots": 0
+  },
+  {
+    "name": "(Autonav Addon) Black Market Police Scanner",
+    "cost": 1,
+    "slots": 0,
+    "subscription": 1
+  },
+  {
+    "name": "Integrated Advanced Audio Suite",
+    "cost": 4,
+    "slots": 1
+  },
+  {
+    "name": "Cortical Stack",
+    "cost": 0,
+    "slots": 0,
+    "dangerous": true,
+    "options": [
+      {
+        "name": "Cortex Expansion Kit",
+        "cost": 2,
+        "dangerous": true,
+        "codexExpansion": 1
+      },
+      {
+        "name": "TalentUp Gold",
+        "cost": 0,
+        "subscription": 1,
+        "dangerous": true,
+        "codexExpansion": 2
+      },
+      {
+        "name": "Renaissance Man 64 Core",
+        "cost": 12,
+        "dangerous": true,
+        "codexExpansion": 4
+      }
+    ]
+  },
+  {
+    "name": "HSG-3",
+    "cost": 5,
+    "slots": 2
+  },
+  {
+    "name": "Integra Overwatch Drone",
+    "cost": 10,
+    "slots": 2
+  },
+  {
+    "name": "3MI Holosomatic Projector",
+    "cost": 10,
+    "slots": 1
+  },
+  {
+    "name": "ETD Adrenaspike",
+    "slots": 1,
+    "options": [
+      { "name": "Standard", "cost": 6 },
+      {
+        "name": "Shadow Warrior Rapid Recovery Mods",
+        "cost": 10,
+        "dangerous": true
+      }
+    ]
+  },
+  {
+    "name": "Chambercore Growler",
+    "cost": 6,
+    "slots": 1,
+    "dangerous": true
+  },
+  {
+    "name": "Silcana Neural Interface",
+    "cost": 6,
+    "slots": 0,
+    "subscription": 1,
+    "dangerous": true
+  },
+  {
+    "name": "Zetalab Evasion Platform",
+    "cost": 8,
+    "slots": 1
+  },
+  {
+    "name": "Lobe Optiplex",
+    "cost": 10,
+    "slots": 0,
+    "dangerous": true
+  },
+  {
+    "name": "Personality Codec",
+    "cost": 8,
+    "slots": 0
+  },
+  {
+    "name": "Kerengraf Cyberrend Suite",
+    "cost": 10,
+    "slots": 0
+  },
+  {
+    "name": "Cyberaxe Guitar",
+    "cost": 6,
+    "slots": 1
+  },
+  {
+    "name": "Project Phoenix",
+    "cost": 16,
+    "slots": 0
+  }
+]

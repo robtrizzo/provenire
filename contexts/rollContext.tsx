@@ -8,13 +8,8 @@ import React, {
 } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Attribute } from "@/types/game";
-import {
-  blueHigher,
-  resultsMessage,
-  Roll,
-  RollType,
-  ticksFromProject,
-} from "@/types/roll";
+import { Roll, RollType } from "@/types/roll";
+import { blueHigher, resultsMessage, ticksFromProject } from "@/lib/roll";
 import {
   useInfiniteQuery,
   useMutation,
@@ -47,11 +42,7 @@ interface RollContextProps {
   setRollLeft: React.Dispatch<React.SetStateAction<string>>;
   setRollRight: React.Dispatch<React.SetStateAction<string>>;
   setIsPrivate: React.Dispatch<React.SetStateAction<boolean>>;
-  doRoll: (
-    type: RollType,
-    rollLeft: string,
-    rollRight: string
-  ) => void;
+  doRoll: (type: RollType, rollLeft: string, rollRight: string) => void;
   handleFortuneRollButton: (numDice: number) => void;
 }
 
@@ -442,11 +433,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     localStorage.setItem(DICE_FILTER_LOCAL_STORAGE_KEY, val);
   };
 
-  async function doRoll(
-    type: RollType,
-    rollLeft: string,
-    rollRight: string
-  ) {
+  async function doRoll(type: RollType, rollLeft: string, rollRight: string) {
     if (!rollLeft && !rollRight) return;
     if (!rollLeft) {
       const [attribute, action] = rollRight.split("-") as [Attribute, string];

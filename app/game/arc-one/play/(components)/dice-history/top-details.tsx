@@ -1,5 +1,6 @@
 import { Die } from "@/components/die";
-import { blueHigher, Roll } from "@/types/roll";
+import { Roll } from "@/types/roll";
+import { blueHigher } from "@/lib/roll";
 
 export default function DieTopDetails({ roll }: { roll: Roll }) {
   return (
@@ -27,7 +28,9 @@ export default function DieTopDetails({ roll }: { roll: Roll }) {
             <Die
               roll={6}
               className={`h-12 w-12 text-${
-                roll.blueDice.filter(d => d === 6).length >= 2 ? "blue" : "red"
+                roll.blueDice.filter((d) => d === 6).length >= 2
+                  ? "blue"
+                  : "red"
               }-800`}
             />
           </>

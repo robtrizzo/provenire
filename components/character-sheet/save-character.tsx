@@ -19,8 +19,10 @@ import { useMutation } from "@tanstack/react-query";
 
 export default function SaveCharacter({
   initialName,
+  lsKey,
 }: {
   initialName: string;
+  lsKey?: string;
 }) {
   const [name, setName] = useState(initialName);
   const [open, setOpen] = useState(false);
@@ -30,7 +32,7 @@ export default function SaveCharacter({
   }
 
   function saveToDevice() {
-    const data = localStorage.getItem("charsheet");
+    const data = localStorage.getItem(lsKey || "charsheet");
     if (!data) {
       return;
     }
@@ -44,7 +46,7 @@ export default function SaveCharacter({
 
   const { mutateAsync: saveToCloud, isPending } = useMutation({
     mutationFn: async () => {
-      const data = localStorage.getItem("charsheet");
+      const data = localStorage.getItem(lsKey || "charsheet");
       if (!data) {
         return;
       }
@@ -70,7 +72,7 @@ export default function SaveCharacter({
           Save
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-80 bg-secondary relative">
+      <PopoverContent className="w-80 relative">
         <div className="flex flex-col gap-2">
           <TypographyH4 className="text-md">Save Character</TypographyH4>
           <span className="font-serif text-sm text-muted-foreground mt-0">

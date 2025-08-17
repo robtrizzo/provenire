@@ -90,7 +90,7 @@ export default async function Page() {
         The <span className="font-cyber">Environmental Sleeve Adaptor</span> was
         adapted from extreme sporting cyberware, which in turn was adapted from
         cyberware for extreme environments.{" "}
-        <span className="font-cyber">Impact&apos;s</span> environment is most
+        <span className="font-cyber">Impact&apos;s</span> environment is mostly
         blunt force trauma and explosions. So the{" "}
         <span className="font-cyber">&quot;Underdog&quot;</span> has been tuned
         for exactly that.

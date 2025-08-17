@@ -1,0 +1,657 @@
+[
+  {
+    "name": "Biofundamentalist",
+    "actions": {
+      "starting": ["Stalk", "Frighten", "Relate"],
+      "baggage": []
+    },
+    "baggage": [
+      {
+        "name": "A passion",
+        "description": "A passtime you sank endless hours into, not related to work or survival - just something beautiful that you share with a few close friends.",
+        "unlocks": [
+          {
+            "name": "Bond",
+            "type": "bond"
+          }
+        ]
+      },
+      {
+        "name": "Littermate",
+        "description": "You forgot who you are and where you come from. You left the pack. And so you have become prey.",
+        "unlocks": [
+          {
+            "name": "Rival",
+            "type": "rival"
+          },
+          {
+            "name": "Bestial Fighting Style",
+            "type": "fightingStyle"
+          }
+        ]
+      },
+      {
+        "name": "Your hurt",
+        "description": "The persistent sense of rejection, unworthiness. Fear of being alone forever. You find out why.",
+        "unlocks": [
+          {
+            "name": "Drive",
+            "type": "drive"
+          },
+          {
+            "name": "Bond",
+            "type": "bond"
+          }
+        ]
+      },
+      {
+        "name": "Escaped prey",
+        "description": "You hunted them once and they got away. Well now it's their turn, and they've brought backup, bitch.",
+        "unlocks": [
+          {
+            "name": "Rival",
+            "type": "rival"
+          },
+          {
+            "name": "Bestial Transformation",
+            "type": "transformation"
+          }
+        ]
+      },
+      {
+        "name": "A parent",
+        "subtitle": "or other relative",
+        "description": "They've always had a soft spot for you. Instead of driving you away, they look forward to when you come back to the pack.",
+        "unlocks": [
+          {
+            "name": "Bond",
+            "type": "bond"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Bount",
+    "actions": {
+      "starting": [],
+      "baggage": ["Lurk", "Persevere"]
+    },
+    "baggage": [
+      {
+        "name": "The Cycle of Revenge",
+        "description": "Fuckin corpos didn't tell you the target was a Dynastic daughter. Now they're all coming for you.",
+        "unlocks": [
+          {
+            "name": "Rival",
+            "type": "rival"
+          },
+          {
+            "name": "Lurk",
+            "type": "action"
+          }
+        ]
+      },
+      {
+        "name": "Your stash",
+        "description": "You didn't come away from the army empty handed. You have stashes across the city for just the right occasion.",
+        "unlocks": [
+          {
+            "name": "HSG-3 \"His Magesty\"",
+            "type": "cyberware"
+          },
+          {
+            "name": "Integra Overwatch Drone \"Osprey\"",
+            "type": "cyberware"
+          }
+        ]
+      },
+      {
+        "name": "Your hurt",
+        "description": "The waves of nihilism. The nightmares you never remember. You find out why.",
+        "unlocks": [
+          {
+            "name": "Drive",
+            "type": "drive"
+          }
+        ]
+      },
+      {
+        "name": "Corpo scum",
+        "description": "You have simple boundaries: no kids, no innocents. Some clients just don't know how to be told \"no\".",
+        "unlocks": [
+          {
+            "name": "Rival",
+            "type": "rival"
+          }
+        ]
+      },
+      {
+        "name": "War buddy",
+        "description": "You've crossed paths in battle dozens of times, each time in a different body. You made the introductions that got them into this business.",
+        "unlocks": [
+          {
+            "name": "Persevere",
+            "type": "action"
+          },
+          {
+            "name": "Bond",
+            "type": "bond"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Corpo Labcoat",
+    "actions": {
+      "starting": ["Analyze"],
+      "baggage": ["Tech [X]", "Debate"]
+    },
+    "baggage": [
+      {
+        "name": "Your work",
+        "description": "They released it unfinished and ... wait... you dedicated your life to this to help people. What has this become?",
+        "unlocks": [
+          {
+            "name": "Tech [X]",
+            "type": "action"
+          }
+        ]
+      },
+      {
+        "name": "A naysayer",
+        "description": "They always doubted your intellect and sought to discredit you. Your mutual animosity has only escalated over the years.",
+        "unlocks": [
+          {
+            "name": "Rival",
+            "type": "rival"
+          },
+          {
+            "name": "Debate",
+            "type": "action"
+          }
+        ]
+      },
+      {
+        "name": "Your hurt",
+        "description": "A painful inability to feel anything as strongly as you see others experience. An inescapable sense of betrayal. You find out why.",
+        "unlocks": [
+          {
+            "name": "Drive",
+            "type": "drive"
+          },
+          {
+            "name": "Bond",
+            "type": "bond"
+          }
+        ]
+      },
+      {
+        "name": "A collaborator",
+        "description": "Your closest friend and partner in progress. You rarely spoke about personal matters, but you always understood each other.",
+        "unlocks": [
+          {
+            "name": "Bond",
+            "type": "bond"
+          },
+          {
+            "name": "3MI Holosomatic Projector",
+            "type": "cyberware"
+          }
+        ]
+      },
+      {
+        "name": "A curiosity",
+        "description": "You have an inquisitive mind. It's what you designed yourself to do. When you noticed an inconsistency in the company, you couldn't help but to unspool that thread.",
+        "unlocks": [
+          {
+            "name": "Rival",
+            "type": "rival"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Dynastic Scion",
+    "actions": {
+      "starting": ["Authority"],
+      "baggage": ["Scheme", "Consort"]
+    },
+    "baggage": [
+      {
+        "name": "Your elder",
+        "description": "There's only one way to climb higher in your family, and that's by knocking someone else down. It's not personal, just power.",
+        "unlocks": [
+          {
+            "name": "Scheme",
+            "type": "action"
+          },
+          {
+            "name": "Rival",
+            "type": "rival"
+          }
+        ]
+      },
+      {
+        "name": "Dynasty Rival",
+        "description": "You've done a disservice to your bloodline. They're here to take their rightful place in the family hierarchy... at your expense.",
+        "unlocks": [
+          {
+            "name": "Rival",
+            "type": "rival"
+          },
+          {
+            "name": "Bestial Transformation",
+            "type": "transformation"
+          }
+        ]
+      },
+      {
+        "name": "Your hurt",
+        "description": "The inferiority complex punching you in the gut. The paranoia that your closest friends will stab you in the back. You find out why.",
+        "unlocks": [
+          {
+            "name": "Drive",
+            "type": "drive"
+          }
+        ]
+      },
+      {
+        "name": "A mentor",
+        "description": "They taught you everything you know about the game of power; hell, they basically raised you.",
+        "unlocks": [
+          {
+            "name": "Bond",
+            "type": "bond"
+          }
+        ]
+      },
+      {
+        "name": "Underworld contact",
+        "description": "A useful servant of the dynasty, but with questionable loyalty. They played a role in your rise.",
+        "unlocks": [
+          {
+            "name": "Consort",
+            "type": "action"
+          },
+          {
+            "name": "Bond",
+            "type": "bond"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Factory Mundane",
+    "actions": {
+      "starting": ["Interface"],
+      "baggage": ["Manufacture", "Disconnect"]
+    },
+    "baggage": [
+      {
+        "name": "The squad",
+        "description": "A cluster of gamers who like you, have all the time in the world to stay in netspace. Over the years you've all become incredibly close.",
+        "unlocks": [
+          {
+            "name": "Bond",
+            "type": "bond"
+          },
+          {
+            "name": "Bond",
+            "type": "bond"
+          }
+        ]
+      },
+      {
+        "name": "Your labor",
+        "description": "The product of endless hours of toil. You've seen it all day, every day. You know its inner workings from start to finish. You could tolerate it, until you found out what it really was.",
+        "unlocks": [
+          {
+            "name": "Manufacture",
+            "type": "action"
+          },
+          {
+            "name": "Drive",
+            "type": "drive"
+          }
+        ]
+      },
+      {
+        "name": "Your hurt",
+        "description": "You sacrificed everything to get ahead in life. All for the promise of a humble retirement in your twilight years. And what did you get for it? Debt. Threats. A body incapable of sensation.",
+        "unlocks": [
+          {
+            "name": "Rival",
+            "type": "rival"
+          }
+        ]
+      },
+      {
+        "name": "Your boss",
+        "description": "Your sleeve is a valuable company asset, and if you don't work, you don't get to keep it. They're not going to let you off that easy.",
+        "unlocks": [
+          {
+            "name": "Rival",
+            "type": "rival"
+          }
+        ]
+      },
+      {
+        "name": "A game",
+        "description": "The only thing that would get you through the day. Your VTA Spike allowed you to literally live the story. It became more real to you than your actual life at times.",
+        "unlocks": [
+          {
+            "name": "Disconnect",
+            "type": "action"
+          },
+          {
+            "name": "Fighting Style",
+            "type": "fightingStyle"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Grid Finch",
+    "actions": {
+      "starting": ["Deal"],
+      "baggage": ["Navigate", "Hide"]
+    },
+    "baggage": [
+      {
+        "name": "Your running grounds",
+        "description": "You've spent so many endless hours running lost in a maze, you began to pick up a sixth sense for the right turns to take.",
+        "unlocks": [
+          {
+            "name": "Navigate",
+            "type": "action"
+          }
+        ]
+      },
+      {
+        "name": "Birthsleeve",
+        "description": "What the fuck? You got dusted - four shots to the chest. The ripperdoc told you there was no coming back from that - bastard sold your meat!",
+        "unlocks": [
+          {
+            "name": "Rival",
+            "type": "rival"
+          }
+        ]
+      },
+      {
+        "name": "Your hurt",
+        "description": "The creeping dread that your days are numbered. The anxiety that you've forgotten something crucially important. You find out why.",
+        "unlocks": [
+          {
+            "name": "Rival",
+            "type": "rival"
+          },
+          {
+            "name": "Hide",
+            "type": "action"
+          }
+        ]
+      },
+      {
+        "name": "Chop shopper",
+        "description": "You've been in their workshop more times than you can count. Your home away from home, they all treated you real nice here.",
+        "unlocks": [
+          {
+            "name": "Bond",
+            "type": "bond"
+          },
+          {
+            "name": "Zetalab Evasion Platform \"GTFO\"",
+            "type": "cyberware"
+          }
+        ]
+      },
+      {
+        "name": "Your family",
+        "description": "You would do anything for them; and they for you. How long has it been since you saw them? Do they even know you're alive?",
+        "unlocks": [
+          {
+            "name": "Bond",
+            "type": "bond"
+          },
+          {
+            "name": "Drive",
+            "type": "drive"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Motorhead",
+    "actions": {
+      "starting": ["Tinker"],
+      "baggage": ["Pilot", "Challenge"]
+    },
+    "baggage": [
+      {
+        "name": "Your bike",
+        "description": "You and that bike are family. You've been modifying it since before you even got your own mods.",
+        "unlocks": [
+          {
+            "name": "Pilot",
+            "type": "action"
+          },
+          {
+            "name": "Silcana Neural Interface \"Roadrunner\"",
+            "type": "cyberware"
+          }
+        ]
+      },
+      {
+        "name": "Bio Cult Freak",
+        "description": "Most people think you're a little weird, sure. But these guys - they pin everything wrong with society on you and you in particular.",
+        "unlocks": [
+          {
+            "name": "Rival",
+            "type": "rival"
+          },
+          {
+            "name": "Challenge",
+            "type": "action"
+          }
+        ]
+      },
+      {
+        "name": "Your hurt",
+        "description": "The longing for something you feel is missing or incomplete. Life just feels so slow. You find out why.",
+        "unlocks": [
+          {
+            "name": "Drive",
+            "type": "drive"
+          }
+        ]
+      },
+      {
+        "name": "Rival racer",
+        "description": "Some corpo brat who thinks their money and fancy sleeve make them a better racer than you. They've had enough, and now they're gunning to elimate the competition.",
+        "unlocks": [
+          {
+            "name": "Rival",
+            "type": "rival"
+          }
+        ]
+      },
+      {
+        "name": "Corpo sponsor",
+        "description": "You got a sweet deal from a corpo to promote their brand in exchange for chrome. They were always a bit too pushy though.",
+        "unlocks": [
+          {
+            "name": "3MI Autonav Integrated HUD",
+            "type": "cyberware"
+          },
+          {
+            "name": "Rival",
+            "type": "rival"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Netrunner",
+    "actions": {
+      "starting": ["Hack"],
+      "baggage": ["Manipulate", "Netsurf"]
+    },
+    "baggage": [
+      {
+        "name": "An old mark",
+        "description": "It's a shame, they weren't too bad of a person, but you needed someone with access to that mainframe.",
+        "unlocks": [
+          {
+            "name": "Manipulate",
+            "type": "action"
+          },
+          {
+            "name": "Overcorp Personality Codec",
+            "type": "cyberware"
+          }
+        ]
+      },
+      {
+        "name": "Your body",
+        "description": "Your meat wastes away, hanging like a vestigial limb from the brain suspended by wires and tubes. You are not that body. You are what it allows you to become.",
+        "unlocks": [
+          {
+            "name": "Netsurf",
+            "type": "action"
+          },
+          {
+            "name": "Kerengraf Cyberrend Suite",
+            "type": "cyberware"
+          }
+        ]
+      },
+      {
+        "name": "Your hurt",
+        "description": "The slow drag of seconds. The paniced moments when you feel like something horrible is about to happen and you're supposed to do something about it. You find out why.",
+        "unlocks": [
+          {
+            "name": "Drive",
+            "type": "drive"
+          }
+        ]
+      },
+      {
+        "name": "Rival hacker",
+        "description": "They tried to compete, and quickly learned they're too slow or too dumb to keep up with you. Some people just never get over it.",
+        "unlocks": [
+          {
+            "name": "Rival",
+            "type": "rival"
+          }
+        ]
+      },
+      {
+        "name": "A family member",
+        "description": "They never understood your obsession with the net and they've been trying to bring you back into meatspace ever since.",
+        "unlocks": [
+          {
+            "name": "Rival",
+            "type": "rival"
+          },
+          {
+            "name": "Bond",
+            "type": "bond"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Redzone Punk Metalist",
+    "actions": {
+      "starting": ["Brawl"],
+      "baggage": ["Ignite", "Defy"]
+    },
+    "baggage": [
+      {
+        "name": "Your tunes",
+        "description": "You hear your music in a playlist or at a nearby club. You don't know how, but you know it's yours.",
+        "unlocks": [{ "name": "Ignite", "type": "action" }]
+      },
+      {
+        "name": "A fascist",
+        "description": "You rocked them at least once and now they're coming to get theirs",
+        "unlocks": [{ "name": "Rival", "type": "rival" }]
+      },
+      {
+        "name": "Your hurt",
+        "description": "That feeling when you're alone and you look at yourself in the mirror. The bottomless pit in your gut. You find out why.",
+        "unlocks": [
+          { "name": "Defy", "type": "action" },
+          { "name": "Drive", "type": "drive" }
+        ]
+      },
+      {
+        "name": "A frienemy",
+        "description": "Docking with the enemy? Well let's just say there's more than one way to change a mind. How'd it turn out? Well...",
+        "unlocks": [
+          { "name": "Rival", "type": "rival" },
+          { "name": "Bond", "type": "bond" }
+        ]
+      },
+      {
+        "name": "A bandmate",
+        "description": "You were closest friends, basically siblings. You had each other's backs on stage and in a scrap.",
+        "unlocks": [
+          { "name": "Bond", "type": "bond" },
+          { "name": "Cyberaxe Guitar", "type": "cyberware" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Trust Fund Dilettante",
+    "actions": {
+      "starting": [],
+      "baggage": ["Pretense"]
+    },
+    "baggage": [
+      {
+        "name": "Corpo bount",
+        "description": "Plenty of people want to get at your family. Whether its for ambition, money, or revenge, they're here to take you out.",
+        "unlocks": [{ "name": "Rival", "type": "rival" }]
+      },
+      {
+        "name": "Bodyguard",
+        "description": "You gave them the slip to go your own way. They're here to take you back.",
+        "unlocks": [
+          { "name": "Rival", "type": "rival" },
+          { "name": "Project Phoenix", "type": "cyberware" }
+        ]
+      },
+      {
+        "name": "Your hurt",
+        "description": "The gnawing sense that you dont belong. Like you're an impostor of a human being going through the motions. You find out why.",
+        "unlocks": [{ "name": "Pretense", "type": "action" }]
+      },
+      {
+        "name": "Best friend",
+        "description": "Someone who relates to your rich kid problems. A partner in mischief and an admittedly bad influence.",
+        "unlocks": [
+          { "name": "Bond", "type": "bond" },
+          { "name": "Rival", "type": "rival" }
+        ]
+      },
+      {
+        "name": "A sibling",
+        "description": "Your closest family member. The only one who supports your dreams and keeps you in check.",
+        "unlocks": [
+          { "name": "Bond", "type": "bond" },
+          { "name": "Drive", "type": "drive" }
+        ]
+      }
+    ]
+  }
+]

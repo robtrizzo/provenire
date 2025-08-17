@@ -28,17 +28,6 @@ export type Archetype = {
   };
 };
 
-export type ArchetypeV2 = {
-  name: string;
-  questions: {
-    starting: string[];
-    horizon: string[];
-  };
-  shortDescription: string;
-  startingAction: string;
-  abilities: Ability[];
-};
-
 export type FightingStyle = {
   name: string;
   instructor: string;
@@ -68,6 +57,10 @@ export interface Ability {
   name: string;
   keystone?: boolean;
   slug: string;
+  harmModifiers?: HarmModifier[];
+  cost?: number;
+  type?: string;
+  source?: string;
 }
 
 export type Attribute = "Heart" | "Instinct" | "Machina";
@@ -162,6 +155,7 @@ export type Item = Clock & {
   uses?: number;
   traits: string[];
   description: string;
+  harmModifiers?: HarmModifier[];
 };
 
 export type Faction = Clock & {
@@ -245,3 +239,174 @@ export interface Crew {
   clocks: Clock[];
   updatedAt: Date;
 }
+
+// ARC TWO ------------------ //
+
+export type ArchetypeV2 = {
+  name: string;
+  questions: {
+    starting: string[];
+    horizon: string[];
+  };
+  shortDescription: string;
+  startingAction: string;
+  abilities: Ability[];
+};
+
+export type BackgroundV2 = {
+  name: string;
+  actions: {
+    starting: string[];
+    baggage: string[];
+  };
+  baggage: Baggage[];
+};
+
+export type Baggage = {
+  name: string;
+  subtitle?: string;
+  description: string;
+  unlocks: BaggageUnlock[];
+};
+
+export type BaggageUnlock = {
+  name: string;
+  unlocked: boolean;
+  type:
+    | "cyberware"
+    | "action"
+    | "transformation"
+    | "drive"
+    | "fightingStyle"
+    | "bond"
+    | "rival";
+};
+
+export type Sleeve = {
+  name: string;
+  codexSlots: number;
+  price?: number;
+  subscription?: number;
+  manufacturer?: string;
+  tech?: string[];
+  harm?: CharacterHarm;
+};
+
+export interface HarmModifier {
+  level: number;
+  slotChange: number;
+  source: string;
+  sourceId: string;
+}
+
+export type Operative = {
+  name: string;
+  action: string;
+  harmModifiers?: HarmModifier[];
+  abilities: Ability[];
+};
+
+export type FightingStyleV2 = {
+  name: string;
+  description: string;
+  instructor?: string;
+  abilities: Ability[];
+};
+
+export type Transformation = {
+  name: string;
+  translation?: string;
+  description?: string;
+  provenire?: string;
+  abilities: Ability[];
+};
+
+export interface CharacterV2 {
+  name: string;
+  updatedAt: Date;
+  player: string;
+  portrait?: string;
+  key?: string;
+  stress: number;
+  conditions: string[];
+  harm: CharacterHarm;
+  armor: boolean;
+  sArmor: boolean;
+  hArmor: boolean;
+  abilities: string[];
+  actions: {
+    left: ActionV2[];
+    right: ActionV2[];
+  };
+}
+
+export type CharacterHarm = {
+  [level: number]: HarmLevel;
+};
+export type HarmLevel = {
+  slots: string[];
+  maxSlots: number;
+};
+
+export type DictionaryAction = {
+  name: string;
+  description: string;
+  restrictAtStart?: boolean;
+  suboptions?: string[];
+};
+
+export interface Rollable {
+  name: string;
+  score: [number, number];
+}
+
+export type ActionV2 = {
+  name: string;
+  description: string;
+  type: "ego" | "codex" | "bond";
+  overCorpClassification?: "basic" | "restricted" | "forbidden";
+  suboptions?: string[];
+  subscription?: number;
+  subscriptionPaid?: boolean;
+  score: [number, number];
+  tags?: string[];
+  position?: "left" | "right";
+};
+
+export type PeltsWealthLevel = {
+  name: string;
+  conditions: string;
+  supportsSubscriptions: number;
+  cost: number;
+};
+
+export type ItemV2 = {
+  name: string;
+  slots: number;
+  uses?: number;
+  traits?: string[];
+  description?: string;
+  harmModifiers?: HarmModifier[];
+  dangerous?: boolean;
+  cost?: number;
+  subscription?: number;
+  subscriptionPaid?: boolean;
+  options?: [
+    {
+      name: string;
+      description?: string;
+      cost?: number;
+      subscription?: number;
+      dangerous?: boolean;
+      codexExpansion?: number;
+    }
+  ];
+  codexExpansion?: number;
+};
+
+export type BondV2 = {
+  name: string;
+  notes?: string;
+  score: [number, number];
+  advanced?: boolean;
+};
