@@ -355,6 +355,11 @@ export type DictionaryAction = {
   suboptions?: string[];
 };
 
+export interface Rollable {
+  name: string;
+  score: [number, number];
+}
+
 export type ActionV2 = {
   name: string;
   description: string;

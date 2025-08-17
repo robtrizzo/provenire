@@ -7,7 +7,7 @@ import React, {
   useEffect,
 } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { Attribute } from "@/types/game";
+import { Rollable } from "@/types/game";
 import {
   blueHigher,
   resultsMessage,
@@ -42,12 +42,16 @@ interface RollContextProps {
   setFortuneDice: React.Dispatch<React.SetStateAction<number>>;
   setRolls: React.Dispatch<React.SetStateAction<Roll[]>>;
   refetchRolls: () => void;
-  rollLeft: string;
-  rollRight: string;
-  setRollLeft: React.Dispatch<React.SetStateAction<string>>;
-  setRollRight: React.Dispatch<React.SetStateAction<string>>;
+  rollLeft: Rollable | undefined;
+  rollRight: Rollable | undefined;
+  setRollLeft: React.Dispatch<React.SetStateAction<Rollable | undefined>>;
+  setRollRight: React.Dispatch<React.SetStateAction<Rollable | undefined>>;
   setIsPrivate: React.Dispatch<React.SetStateAction<boolean>>;
-  doRoll: (type: RollType, rollLeft: string, rollRight: string) => void;
+  doRoll: (
+    type: RollType,
+    rollLeft: Rollable | undefined,
+    rollRight: Rollable | undefined
+  ) => void;
   handleFortuneRollButton: (numDice: number) => void;
 }
 
@@ -66,7 +70,7 @@ export const useRoll = () => {
 export default function RollProvider({ children }: { children: ReactNode }) {
   const { toast } = useToast();
 
-  const { attributes, name } = useCharacterSheet();
+  const { name } = useCharacterSheet();
 
   const [wsConnectionState, setWsConnectionState] =
     useState<string>("uninitialized");
@@ -88,8 +92,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   const username = session?.data?.user.name;
   const [rolls, setRolls] = useState<Roll[]>([]);
   const [currentDiceFilter, setCurrentDiceFilter] = useState<string>("all");
-  const [rollLeft, setRollLeft] = useState<string>("");
-  const [rollRight, setRollRight] = useState<string>("");
+  const [rollLeft, setRollLeft] = useState<Rollable>();
+  const [rollRight, setRollRight] = useState<Rollable>();
   const [isPrivate, setIsPrivate] = useState<boolean>(false);
 
   const { mutateAsync: saveDiceRoll } = useMutation({
@@ -203,16 +207,11 @@ export default function RollProvider({ children }: { children: ReactNode }) {
 
   async function rollActions(
     type: RollType,
-    attribute1: Attribute,
-    action1: string,
-    attribute2?: Attribute | undefined,
-    action2?: string | undefined
+    action1?: Rollable,
+    action2?: Rollable
   ): Promise<Roll> {
-    const score1 = attributes?.[attribute1]?.[action1] || [0, 0];
-    const score2 =
-      attribute2 && action2
-        ? attributes?.[attribute2]?.[action2] || [0, 0]
-        : [0, 0];
+    const score1 = action1?.score || [0, 0];
+    const score2 = action2?.score || [0, 0];
     const redRolls =
       score1.filter((r) => r === 1).length +
       score2.filter((r) => r === 1).length;
@@ -438,63 +437,51 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     localStorage.setItem(DICE_FILTER_LOCAL_STORAGE_KEY, val);
   };
 
-  async function doRoll(type: RollType, rollLeft: string, rollRight: string) {
+  async function doRoll(
+    type: RollType,
+    rollLeft: Rollable | undefined,
+    rollRight: Rollable | undefined
+  ) {
     if (!rollLeft && !rollRight) return;
     if (!rollLeft) {
-      const [attribute, action] = rollRight.split("-") as [Attribute, string];
-      const roll = await rollActions(type, attribute, action);
+      const roll = await rollActions(type, rollRight);
       if (isPrivate || !wsConnected) {
-        diceToast(roll, action);
+        diceToast(roll, rollRight?.name);
       } else {
         channel.publish("new", {
           roll,
-          action1: action,
+          action1: rollRight?.name,
           action2: undefined,
           username,
         });
       }
     } else if (!rollRight) {
-      const [attribute, action] = rollLeft.split("-") as [Attribute, string];
-      const roll = await rollActions(type, attribute, action);
+      const roll = await rollActions(type, rollLeft);
       if (isPrivate || !wsConnected) {
-        diceToast(roll, action);
+        diceToast(roll, rollLeft.name);
       } else {
         channel.publish("new", {
           roll,
-          action1: action,
+          action1: rollLeft.name,
           action2: undefined,
           username,
         });
       }
     } else {
-      const [attributeLeft, actionLeft] = rollLeft.split("-") as [
-        Attribute,
-        string
-      ];
-      const [attributeRight, actionRight] = rollRight.split("-") as [
-        Attribute,
-        string
-      ];
-      const roll = await rollActions(
-        type,
-        attributeLeft,
-        actionLeft,
-        attributeRight,
-        actionRight
-      );
+      const roll = await rollActions(type, rollLeft, rollRight);
       if (isPrivate || !wsConnected) {
-        diceToast(roll, actionLeft, actionRight);
+        diceToast(roll, rollLeft.name, rollRight.name);
       } else {
         channel.publish("new", {
           roll,
-          action1: actionLeft,
-          action2: actionRight,
+          action1: rollLeft.name,
+          action2: rollRight.name,
           username,
         });
       }
     }
-    setRollLeft("");
-    setRollRight("");
+    setRollLeft(undefined);
+    setRollRight(undefined);
     setBonusDiceRed(0);
     setBonusDiceBlue(0);
   }

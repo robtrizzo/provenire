@@ -5,6 +5,8 @@ import Breadcrumbs from "@/components/ui/breadcrumbs";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { TypographyH2 } from "@/components/ui/typography";
 import CharacterSheet from "./(components)/character-sheet";
+import DiceSheet from "@/components/character-sheet/dice-history/dice-sheet";
+import { useRoll } from "@/contexts/arc2RollContext";
 
 const tabs = [
   { name: "Character", value: "character" },
@@ -23,9 +25,32 @@ export default function Page() {
     }
   }, []);
 
+  const {
+    rolls,
+    currentDiceFilter,
+    handleCurrentDiceFilterChange,
+    fetchNextPage,
+    refetchRolls,
+    hasNextPage,
+    rollsArePending,
+  } = useRoll();
+
   return (
     <>
-      <Breadcrumbs />
+      <div className="flex justify-between">
+        <Breadcrumbs />
+        <div className="flex gap-2 mt-5">
+          <DiceSheet
+            rolls={rolls}
+            currentDiceFilter={currentDiceFilter}
+            handleCurrentDiceFilterChange={handleCurrentDiceFilterChange}
+            fetchNextPage={fetchNextPage}
+            refetchRolls={refetchRolls}
+            hasNextPage={hasNextPage}
+            rollsArePending={rollsArePending}
+          />
+        </div>
+      </div>
       <Tabs defaultValue="crew" value={tab} className="w-full my-3 mx-auto">
         <TabsList className="grid w-full grid-cols-2">
           {tabs.map((tab) => (

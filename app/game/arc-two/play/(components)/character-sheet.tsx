@@ -7,6 +7,7 @@ import HarmSection from "./harm-section";
 import LoadoutSection from "./loadout-section";
 import Options from "./options";
 import ProfileSection from "./profile-section";
+import RollSection from "./roll-section";
 import StressSection from "./stress-section";
 import WealthSection from "./wealth-section";
 import XPSection from "./xp-section";
@@ -35,6 +36,7 @@ export default function CharacterSheet() {
               <StressSection />
               <BaggageSection />
               <HarmSection />
+              <RollSection />
               <LoadoutSection />
             </div>
           </div>
