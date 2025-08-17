@@ -16,7 +16,6 @@ export default function ClearCharacter({ onClear }: { onClear: () => void }) {
   }
 
   function clearCharacter() {
-    // localStorage.removeItem("charsheet");
     onClear();
     closePopover();
   }

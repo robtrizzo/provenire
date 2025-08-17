@@ -19,8 +19,10 @@ import { useMutation } from "@tanstack/react-query";
 
 export default function SaveCharacter({
   initialName,
+  lsKey,
 }: {
   initialName: string;
+  lsKey?: string;
 }) {
   const [name, setName] = useState(initialName);
   const [open, setOpen] = useState(false);
@@ -30,7 +32,7 @@ export default function SaveCharacter({
   }
 
   function saveToDevice() {
-    const data = localStorage.getItem("charsheet");
+    const data = localStorage.getItem(lsKey || "charsheet");
     if (!data) {
       return;
     }
@@ -44,7 +46,7 @@ export default function SaveCharacter({
 
   const { mutateAsync: saveToCloud, isPending } = useMutation({
     mutationFn: async () => {
-      const data = localStorage.getItem("charsheet");
+      const data = localStorage.getItem(lsKey || "charsheet");
       if (!data) {
         return;
       }

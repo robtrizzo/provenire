@@ -285,7 +285,7 @@ export default function CharacterSheetProvider({
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const data = localStorage.getItem("charsheet");
+    const data = localStorage.getItem("charsheet-arc2");
     if (data) {
       const parsed = JSON.parse(data);
       if (!parsed) {
@@ -381,7 +381,7 @@ export default function CharacterSheetProvider({
           items,
           updatedAt: savedDate,
         };
-        localStorage.setItem("charsheet", JSON.stringify(data));
+        localStorage.setItem("charsheet-arc2", JSON.stringify(data));
         setLocalUpdatedAt(savedDate);
         setChanges(false);
         setDbChanges(true);
@@ -486,7 +486,7 @@ export default function CharacterSheetProvider({
           new Date(character.updatedAt) > new Date(localUpdatedAt)
         ) {
           console.log("loading character from db");
-          localStorage.setItem("charsheet", JSON.stringify(character));
+          localStorage.setItem("charsheet-arc2", JSON.stringify(character));
           setCharacterLoaded(new Date());
           toast({
             title: "Newer version of character synced from cloud.",

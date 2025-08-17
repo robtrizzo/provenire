@@ -30,9 +30,11 @@ import Image from "next/image";
 export default function LoadCharacter({
   onLoad,
   compatibleVersions,
+  lsKey,
 }: {
   onLoad: (date: Date) => void;
   compatibleVersions: number[];
+  lsKey?: string;
 }) {
   const [open, setOpen] = useState(false);
 
@@ -56,7 +58,7 @@ export default function LoadCharacter({
         if (!data) {
           return;
         }
-        localStorage.setItem("charsheet", data.toString());
+        localStorage.setItem(lsKey || "charsheet", data.toString());
         onLoad(new Date());
         closePopover();
       };
@@ -86,6 +88,7 @@ export default function LoadCharacter({
             closePopover={closePopover}
             onLoad={onLoad}
             compatibleVersions={compatibleVersions}
+            lsKey={lsKey}
           />
           <Close asChild>
             <Button variant="destructive" className="text-sm">
@@ -106,10 +109,12 @@ function LoadFromCloud({
   closePopover,
   onLoad,
   compatibleVersions,
+  lsKey,
 }: {
   closePopover: () => void;
   onLoad: (date: Date) => void;
   compatibleVersions: number[];
+  lsKey?: string;
 }) {
   const [open, setOpen] = useState(false);
   function closeDialog() {
@@ -149,6 +154,7 @@ function LoadFromCloud({
               closePopover={closePopover}
               onLoad={onLoad}
               compatibleVersions={compatibleVersions}
+              lsKey={lsKey}
             />
           ))}
         </div>
@@ -163,12 +169,14 @@ function LoadCharacterButton({
   closePopover,
   onLoad,
   compatibleVersions,
+  lsKey,
 }: {
   char: any;
   closeDialog: () => void;
   closePopover: () => void;
   onLoad: (date: Date) => void;
   compatibleVersions: number[];
+  lsKey?: string;
 }) {
   const isCompatible = compatibleVersions.includes(char.version);
 
@@ -182,7 +190,7 @@ function LoadCharacterButton({
         )}`
       );
     }
-    localStorage.setItem("charsheet", JSON.stringify(char));
+    localStorage.setItem(lsKey || "charsheet", JSON.stringify(char));
     onLoad(new Date());
     closeDialog();
     closePopover();

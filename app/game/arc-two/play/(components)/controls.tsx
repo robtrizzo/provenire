@@ -38,10 +38,11 @@ export default function Controls() {
                 : "N/A"}
             </code>
           </div>
-          <SaveCharacter initialName={name} />
+          <SaveCharacter initialName={name} lsKey="charsheet-arc2" />
           <LoadCharacter
             onLoad={setCharacterLoaded}
             compatibleVersions={compatibleVersions}
+            lsKey="charsheet-arc2"
           />
           <ClearCharacter
             onClear={() => {
