@@ -20,12 +20,8 @@ export default function ConditionsInfo() {
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <Button
-          size="icon"
-          variant="ghost"
-          className="p-1 text-blue-600 hover:text-blue-600 h-10 w-10"
-        >
-          <BookOpen style={{ height: "24px", width: "24px" }} />
+        <Button size="icon" variant="outline">
+          <BookOpen className="text-blue-500" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="max-w-screen w-[450px] relative h-[500px] overflow-auto text-sm">

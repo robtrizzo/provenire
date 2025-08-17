@@ -36,12 +36,8 @@ export default function EditActions() {
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <Button
-          size="icon"
-          variant="ghost"
-          className="p-1 text-pink-500 hover:text-pink-500 h-10 w-10"
-        >
-          <BrainCog style={{ height: "24px", width: "24px" }} />
+        <Button size="icon" variant="outline">
+          <BrainCog className="text-pink-500" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="max-w-screen w-[600px] relative h-[500px] overflow-auto">

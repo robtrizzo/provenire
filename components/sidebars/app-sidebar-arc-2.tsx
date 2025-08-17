@@ -177,7 +177,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   variant="secondary"
                   className="w-full text-lg py-6 relative bg-black group text-white hover:font-white hover:bg-black"
                 >
-                  Play <span className="text-sm">(coming soon)</span>
+                  Play
                   <div className="invisible group-hover:visible">
                     <BorderBeam duration={12} size={12} />
                     <BorderBeam duration={12} delay={4} size={12} />
