@@ -258,6 +258,12 @@ import CombatInstinct from "./fighting-styles/arc2/mirado/combat-instinct";
 import ThirdEye from "./fighting-styles/arc2/mirado/third-eye";
 import SixEdgedIntersection from "./fighting-styles/arc2/mirado/six-edged-intersection";
 import MiradoSurge from "./fighting-styles/arc2/mirado/mirado-surge";
+// lotarlin
+import CutTheWater from "./fighting-styles/arc2/lotarlin/cut-the-water";
+import Permeate from "./fighting-styles/arc2/lotarlin/permeate";
+import CutTheSky from "./fighting-styles/arc2/lotarlin/cut-the-sky";
+import RipplesReturn from "./fighting-styles/arc2/lotarlin/ripples-return";
+import FlowingSurge from "./fighting-styles/arc2/lotarlin/flowing-surge";
 
 export type AbilityRegistryType = {
   [category: string]: {
@@ -579,6 +585,13 @@ export const abilityRegistry = {
         "fatal-opening": FatalOpening,
         "isolating-counter": IsolatingCounter,
         "fatal-finisher": FatalFinisher,
+      },
+      lotarlin: {
+        "cut-the-water": CutTheWater,
+        permeate: Permeate,
+        "cut-the-sky": CutTheSky,
+        "ripples-return": RipplesReturn,
+        "flowing-surge": FlowingSurge,
       },
     },
   },

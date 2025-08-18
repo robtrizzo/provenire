@@ -262,7 +262,9 @@ export default function AbilitiesSection() {
                   ability={ability}
                   category="fightingStyles"
                   arc="arc2"
-                  type={selectedFightingStyle.name.toLocaleLowerCase()}
+                  type={selectedFightingStyle.name
+                    .split(" ")[0]
+                    .toLocaleLowerCase()}
                 />
               </div>
             );

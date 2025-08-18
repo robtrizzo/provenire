@@ -12,6 +12,7 @@ import BleedoutSkillTree from "@/components/fighting-styles/bleedout-skill-tree"
 import ThroatgoreSkillTree from "@/components/fighting-styles/throatgore-skill-tree";
 import MiradoSkillTree from "@/components/fighting-styles/mirado-skill-tree";
 import Link from "next/link";
+import LotarlinSkillTree from "@/components/fighting-styles/lotarlin-skill-tree";
 
 export default async function Page() {
   return (
@@ -240,6 +241,47 @@ export default async function Page() {
         </Link>{" "}
         yourself to deliver a series of rapid consecutive strikes which are
         devastating to an overwhelmed, fatigued, or overconfident foe.
+      </TypographyP>
+      <TypographyH3 id="mirado" className="mt-8 flex gap-2">
+        Lotarlin Flow
+      </TypographyH3>
+      <TypographyP className="text-muted-foreground">
+        Constant movement, persistent pressure
+      </TypographyP>
+      <LotarlinSkillTree />
+      <TypographyH4 className="mt-6">Cut the Water</TypographyH4>
+      <TypographyP>
+        Lotarlin Flow can trace its origins to the Lotarlin Rebellion. The
+        rebels had a unique style of movement which has been popularized by
+        modern media. Contemporary Lotarlin focuses on this spirit:
+        practitioners &quot;cut&quot; from location A to B.
+      </TypographyP>
+      <TypographyH4 className="mt-6">Permeate</TypographyH4>
+      <TypographyP>
+        Your evasions are effortless and smooth when traversing difficult
+        terrain. While a still-navigable barrier is within reach, foes cannot
+        strike you with precision.
+      </TypographyP>
+      <TypographyH4 className="mt-6">Cut the Sky</TypographyH4>
+      <TypographyP>
+        Lotarlin experts learn to perform large aerial movements, making foes
+        relying on cover vulnerable to them. While in these maneuvers, the
+        practitioner is also vulnerable to sweeping or area attacks.
+      </TypographyP>
+      <TypographyH4 className="mt-6">Ripples Return</TypographyH4>
+      <TypographyP>
+        Your strikes come predictably but reletlessly. Foes which you focus your
+        efforts on eventually become your choice of <i>tired</i> or{" "}
+        <i>scattered</i>.
+      </TypographyP>
+      <TypographyH4 className="mt-6">Flowing Surge</TypographyH4>
+      <TypographyP>
+        You may{" "}
+        <Link href="#strain">
+          <span className="text-red-500 underline font-bold">strain</span>
+        </Link>{" "}
+        yourself to allow your hands to flow freely: your weapons uninterrupted
+        by your body&apos;s maneuverings for a few breaths.
       </TypographyP>
     </>
   );

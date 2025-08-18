@@ -153,5 +153,36 @@
         "cost": 3
       }
     ]
+  },
+  {
+    "name": "Lotarlin Flow",
+    "description": "Constant movement, persistent pressure",
+    "abilities": [
+      {
+        "name": "Cut the Water",
+        "slug": "cut-the-water",
+        "cost": 3
+      },
+      {
+        "name": "Permeate",
+        "slug": "permeate",
+        "cost": 3
+      },
+      {
+        "name": "Cut the Sky",
+        "slug": "cut-the-sky",
+        "cost": 3
+      },
+      {
+        "name": "Ripples Return",
+        "slug": "ripples-return",
+        "cost": 3
+      },
+      {
+        "name": "Flowing Surge",
+        "slug": "flowing-surge",
+        "cost": 3
+      }
+    ]
   }
 ]
