@@ -5,23 +5,28 @@
     "abilities": [
       {
         "name": "Pack Tactics",
-        "slug": "pack-tactics"
+        "slug": "pack-tactics",
+        "cost": 3
       },
       {
         "name": "Coordinated Assault",
-        "slug": "coordinated-assault"
+        "slug": "coordinated-assault",
+        "cost": 3
       },
       {
         "name": "Fatal Opening",
-        "slug": "fatal-opening"
+        "slug": "fatal-opening",
+        "cost": 3
       },
       {
         "name": "Isolating Counter",
-        "slug": "isolating-counter"
+        "slug": "isolating-counter",
+        "cost": 3
       },
       {
         "name": "Fatal Finisher",
-        "slug": "fatal-finisher"
+        "slug": "fatal-finisher",
+        "cost": 3
       }
     ]
   },
@@ -31,23 +36,28 @@
     "abilities": [
       {
         "name": "Skirmish",
-        "slug": "skirmish"
+        "slug": "skirmish",
+        "cost": 3
       },
       {
         "name": "Debilitating Strikes",
-        "slug": "debilitating-strikes"
+        "slug": "debilitating-strikes",
+        "cost": 3
       },
       {
         "name": "Predatory Focus",
-        "slug": "predatory-focus"
+        "slug": "predatory-focus",
+        "cost": 3
       },
       {
         "name": "Combat Canny",
-        "slug": "combat-canny"
+        "slug": "combat-canny",
+        "cost": 3
       },
       {
         "name": "Deceiver's Surge",
-        "slug": "deceivers-surge"
+        "slug": "deceivers-surge",
+        "cost": 3
       }
     ]
   },
@@ -57,23 +67,59 @@
     "abilities": [
       {
         "name": "Reckless Mindset",
-        "slug": "reckless-mindset"
+        "slug": "reckless-mindset",
+        "cost": 3
       },
       {
         "name": "Immediate Brutality",
-        "slug": "immediate-brutality"
+        "slug": "immediate-brutality",
+        "cost": 3
       },
       {
         "name": "Bloody Counter",
-        "slug": "bloody-counter"
+        "slug": "bloody-counter",
+        "cost": 3
       },
       {
         "name": "Reaper's Surge",
-        "slug": "reapers-surge"
+        "slug": "reapers-surge",
+        "cost": 3
       },
       {
         "name": "Unstoppable",
-        "slug": "unstoppable"
+        "slug": "unstoppable",
+        "cost": 3
+      }
+    ]
+  },
+  {
+    "name": "Crowdbreaking",
+    "description": "Maximize damage to groups of surrounding foes",
+    "abilities": [
+      {
+        "name": "Basic Weapons Training",
+        "slug": "basic-weapons-training",
+        "cost": 3
+      },
+      {
+        "name": "Cascade",
+        "slug": "cascade",
+        "cost": 3
+      },
+      {
+        "name": "Follow Through",
+        "slug": "follow-through",
+        "cost": 3
+      },
+      {
+        "name": "Clear a Path",
+        "slug": "clear-a-path",
+        "cost": 3
+      },
+      {
+        "name": "Muscular Surge",
+        "slug": "muscular-surge",
+        "cost": 3
       }
     ]
   },
@@ -83,23 +129,28 @@
     "abilities": [
       {
         "name": "Combat Awareness",
-        "slug": "combat-awareness"
+        "slug": "combat-awareness",
+        "cost": 3
       },
       {
         "name": "Combat Instinct",
-        "slug": "combat-instinct"
+        "slug": "combat-instinct",
+        "cost": 3
       },
       {
         "name": "Six Edged Intersection",
-        "slug": "six-edged-intersection"
+        "slug": "six-edged-intersection",
+        "cost": 3
       },
       {
         "name": "Third Eye",
-        "slug": "third-eye"
+        "slug": "third-eye",
+        "cost": 3
       },
       {
         "name": "Mirado Surge",
-        "slug": "mirado-surge"
+        "slug": "mirado-surge",
+        "cost": 3
       }
     ]
   }

@@ -47,12 +47,6 @@ export default function AbilitiesSection() {
     setChanges(true);
   };
 
-  // const archetypeAbilities = abilities.filter((a) => a.type === "archetype");
-  // const operativeAbilities = abilities.filter((a) => a.type === "operative");
-  // const fightingStyleAbilities = abilities.filter(
-  //   (a) => a.type === "fightingStyle"
-  // );
-
   return (
     <>
       <TypographyH2 className="text-md text-muted-foreground flex items-end justify-between">
@@ -219,12 +213,61 @@ export default function AbilitiesSection() {
             );
           })}
         </AbilityPanel>
+        <AbilityPanel
+          trigger={
+            <Button
+              size="sm"
+              variant="outline"
+              disabled={!selectedFightingStyle}
+            >
+              <span className="text-emerald-500">
+                <Plus className="inline-block" /> fighting style
+              </span>
+            </Button>
+          }
+        >
+          <TypographyH3 className="text-emerald-500">
+            {selectedFightingStyle?.name || "Fighting Style"}&apos;s Abilities
+          </TypographyH3>
+          {selectedFightingStyle?.abilities.map((ability, idx) => {
+            const unlocked = !!abilities.find((a) => a.name === ability.name);
+            return (
+              <div key={ability.name + "arc" + idx}>
+                <div className="flex items-center gap-4 flex-wrap">
+                  <TypographyH4>{ability.name}</TypographyH4>
+                  <ClockCost num={ability.keystone ? 0 : ability.cost || 2} />
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() =>
+                      handleAddOrRemoveAbility({
+                        ...ability,
+                        type: "fightingStyle",
+                        source: selectedFightingStyle.name,
+                      })
+                    }
+                  >
+                    {unlocked ? (
+                      <Trash size={10} className="inline-block text-red-500" />
+                    ) : (
+                      <LockKeyholeOpen size={10} className="inline-block" />
+                    )}
 
-        <Button size="sm" variant="outline" disabled={!selectedFightingStyle}>
-          <span className="text-emerald-500">
-            <Plus className="inline-block" /> fighting style
-          </span>
-        </Button>
+                    <span className={cn("text-xs", unlocked && "text-red-500")}>
+                      {unlocked ? "remove" : "unlock"}
+                    </span>
+                  </Button>
+                </div>
+                <AbilityComponent
+                  ability={ability}
+                  category="fightingStyles"
+                  arc="arc2"
+                  type={selectedFightingStyle.name.toLocaleLowerCase()}
+                />
+              </div>
+            );
+          })}
+        </AbilityPanel>
       </div>
     </>
   );

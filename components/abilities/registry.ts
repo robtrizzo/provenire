@@ -201,34 +201,63 @@ import NoRiskNoReward from "./operatives/arc2/keeper/no-risk-no-reward";
 import Teamwork from "./operatives/arc2/keeper/teamwork";
 import NeuralOverclock from "./operatives/arc2/keeper/neural-overclock";
 import RealityFracture from "./operatives/arc2/keeper/reality-fracture";
-
 // notion
 import Ravager from "./operatives/arc2/notion/ravager";
 import Devourer from "./operatives/arc2/notion/devourer";
 import NightTerrors from "./operatives/arc2/notion/night-terrors";
 import BeastWithin from "./operatives/arc2/notion/beast-within";
 import Warform from "./operatives/arc2/notion/warform";
-
 // quill
 import Potential from "./operatives/arc2/quill/potential";
 import AccelleratedAutodidact from "./operatives/arc2/quill/accellerated-autodidact";
 import Mimicry from "./operatives/arc2/quill/mimicry";
 import RelentlessRegimen from "./operatives/arc2/quill/relentless-regimen";
 import MaxPotential from "./operatives/arc2/quill/max-potential";
-
 // severance
 import ImpulseProjection from "./operatives/arc2/severance/impulse-projection";
 import Marionette from "./operatives/arc2/severance/marionette";
 import Sympathy from "./operatives/arc2/severance/sympathy";
 import Assimilate from "./operatives/arc2/severance/assimilate";
 import Empathy from "./operatives/arc2/severance/empathy";
-
 // watchtower
 import SawItComing from "./operatives/arc2/watchtower/saw-it-coming";
 import GiveMeTheFuckingCamera from "./operatives/arc2/watchtower/give-me-the-fucking-camera";
 import AttackDogs from "./operatives/arc2/watchtower/attack-dogs";
 import MissionControlTellCorporateTheyCanShoveIt from "./operatives/arc2/watchtower/mission-control-tell-corporate-they-can-shove-it";
 import ContractEscalation from "./operatives/arc2/watchtower/contract-escalation";
+
+// fighting styles
+// arc2
+// backsnap
+import RecklessMindset from "./fighting-styles/arc2/backsnap/reckless-mindset";
+import ImmediateBrutality from "./fighting-styles/arc2/backsnap/immediate-brutality";
+import BloodyCounter from "./fighting-styles/arc2/backsnap/bloody-counter";
+import ReapersSurge from "./fighting-styles/arc2/backsnap/reapers-surge";
+import UnstoppableBS from "./fighting-styles/arc2/backsnap/unstoppable";
+// bleedout
+import Skirmish from "./fighting-styles/arc2/bleedout/skirmish";
+import DebilitatingStrikes from "./fighting-styles/arc2/bleedout/debilitating-strikes";
+import PredatoryFocus from "./fighting-styles/arc2/bleedout/predatory-focus";
+import CombatCanny from "./fighting-styles/arc2/bleedout/combat-canny";
+import DeceiversSurge from "./fighting-styles/arc2/bleedout/deceivers-surge";
+// throatgore
+import PackTactics from "./fighting-styles/arc2/throatgore/pack-tactics";
+import CoordinatedAssault from "./fighting-styles/arc2/throatgore/coordinated-assault";
+import FatalOpening from "./fighting-styles/arc2/throatgore/fatal-opening";
+import IsolatingCounter from "./fighting-styles/arc2/throatgore/isolating-counter";
+import FatalFinisher from "./fighting-styles/arc2/throatgore/fatal-finisher";
+// crowdbreaking
+import BasicWeaponsTraining from "./fighting-styles/arc2/crowdbreaking/basic-weapons-training";
+import Cascade from "./fighting-styles/arc2/crowdbreaking/cascade";
+import FollowThrough from "./fighting-styles/arc2/crowdbreaking/follow-through";
+import ClearAPath from "./fighting-styles/arc2/crowdbreaking/clear-a-path";
+import MuscularSurge from "./fighting-styles/arc2/crowdbreaking/muscular-surge";
+// mirado
+import CombatAwareness from "./fighting-styles/arc2/mirado/combat-awareness";
+import CombatInstinct from "./fighting-styles/arc2/mirado/combat-instinct";
+import ThirdEye from "./fighting-styles/arc2/mirado/third-eye";
+import SixEdgedIntersection from "./fighting-styles/arc2/mirado/six-edged-intersection";
+import MiradoSurge from "./fighting-styles/arc2/mirado/mirado-surge";
 
 export type AbilityRegistryType = {
   [category: string]: {
@@ -511,6 +540,45 @@ export const abilityRegistry = {
         "mission-control-tell-corporate-they-can-shove-it":
           MissionControlTellCorporateTheyCanShoveIt,
         "contract-escalation": ContractEscalation,
+      },
+    },
+  },
+  fightingStyles: {
+    arc2: {
+      backsnap: {
+        "reckless-mindset": RecklessMindset,
+        "immediate-brutality": ImmediateBrutality,
+        "bloody-counter": BloodyCounter,
+        "reapers-surge": ReapersSurge,
+        unstoppable: UnstoppableBS,
+      },
+      bleedout: {
+        skirmish: Skirmish,
+        "debilitating-strikes": DebilitatingStrikes,
+        "predatory-focus": PredatoryFocus,
+        "combat-canny": CombatCanny,
+        "deceivers-surge": DeceiversSurge,
+      },
+      crowdbreaking: {
+        "basic-weapons-training": BasicWeaponsTraining,
+        "clear-a-path": ClearAPath,
+        "muscular-surge": MuscularSurge,
+        cascade: Cascade,
+        "follow-through": FollowThrough,
+      },
+      mirado: {
+        "combat-awareness": CombatAwareness,
+        "combat-instinct": CombatInstinct,
+        "third-eye": ThirdEye,
+        "six-edged-intersection": SixEdgedIntersection,
+        "mirado-surge": MiradoSurge,
+      },
+      throatgore: {
+        "pack-tactics": PackTactics,
+        "coordinated-assault": CoordinatedAssault,
+        "fatal-opening": FatalOpening,
+        "isolating-counter": IsolatingCounter,
+        "fatal-finisher": FatalFinisher,
       },
     },
   },

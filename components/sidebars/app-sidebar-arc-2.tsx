@@ -97,6 +97,10 @@ const data = {
           url: "/game/arc-two/character-options/operatives",
         },
         {
+          title: "Fighting Styles",
+          url: "/game/arc-two/character-options/fighting-styles",
+        },
+        {
           title: "Cyberware",
           url: "/game/arc-two/character-options/cyberware",
         },
