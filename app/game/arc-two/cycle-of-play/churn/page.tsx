@@ -15,6 +15,7 @@ import {
   TypographyH3,
   TypographyH4,
   TypographyP,
+  TypographyUnorderedList,
 } from "@/components/ui/typography";
 
 export default async function Page() {
@@ -80,6 +81,64 @@ export default async function Page() {
         rolls over.
       </TypographyP>
       <TypographyH3>Rewards</TypographyH3>
+      <TypographyH4 id="mission-xp">Mission XP</TypographyH4>
+      <TypographyP>
+        At the end of each mission, for each item below that occurred,{" "}
+        <b>+1 xp</b>. <b>+2 xp</b> if that item occurred multiple times.
+      </TypographyP>
+      <TypographyUnorderedList>
+        <li>You looked damn good on camera</li>
+        <li>
+          You struck fear into the Empire&apos;s foes with extreme violence
+        </li>
+        <li>You struggled with your past or your conditions</li>
+        <li>You grew closer to someone in your crew</li>
+        <li>
+          You grew apart from someone in the crew... also{" "}
+          <b>strain your bond</b>
+        </li>
+      </TypographyUnorderedList>
+      <TypographyH4 id="mission-xp">¤Pelts</TypographyH4>
+      <TypographyP>
+        At the end of each mission, for each item below that occurred,{" "}
+        <b>
+          +1 <span className="font-cyber">¤P</span>
+        </b>
+        .{" "}
+        <b>
+          +2 <span className="font-cyber">¤P</span>
+        </b>{" "}
+        if that item occurred multiple times.
+      </TypographyP>
+      <TypographyUnorderedList>
+        <li>You accomplished your mission objectives</li>
+        <li>
+          You got <b className="font-cyber">Felicity</b> the shots she wanted
+        </li>
+        <li>You recovered a valuable asset outside of mission parameters</li>
+      </TypographyUnorderedList>
+      <TypographyH4 id="mission-xp">¤Favors</TypographyH4>
+      <TypographyP>
+        At the end of each mission, for each item below that occurred,{" "}
+        <b>
+          +1 <span className="font-cyber">¤F</span>
+        </b>
+        .{" "}
+        <b>
+          +2 <span className="font-cyber">¤F</span>
+        </b>{" "}
+        if that item occurred multiple times.
+      </TypographyP>
+      <TypographyUnorderedList>
+        <li>
+          You publicly inspired or enforced fealty to <b>Kingwulf</b>
+        </li>
+        <li>You went above and beyond to serve someone in the royal family</li>
+        <li>
+          You did everything your superiors asked of you without question and
+          with gusto
+        </li>
+      </TypographyUnorderedList>
       <TypographyH2>Entanglements</TypographyH2>
       <TypographyP>
         Rivals, enemies, or annoying corporate execs will complicate your life.
