@@ -46,6 +46,10 @@ const data = {
           title: "Power Players",
           url: "/game/arc-two/setting/power-players",
         },
+        {
+          title: "Root Org Chart",
+          url: "/game/arc-two/setting/org-chart",
+        },
       ],
     },
     {
