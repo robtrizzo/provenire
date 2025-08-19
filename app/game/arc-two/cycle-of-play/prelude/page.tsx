@@ -6,6 +6,7 @@ import {
   TypographyH2,
   TypographyH3,
   TypographyP,
+  TypographyUnorderedList,
 } from "@/components/ui/typography";
 import { GitGraph } from "lucide-react";
 import Link from "next/link";
@@ -16,7 +17,30 @@ export default async function Page() {
       <Breadcrumbs />
       <TypographyH1>Prelude</TypographyH1>
       <TypographyH2>Free Play</TypographyH2>
+      <TypographyP>
+        The heart of <span className="italic">Provenire</span> is characters:
+        their stories, their journeys, and their relationships with the people
+        around them. The sake of <b>missions</b> is to paint the world and move
+        events forward in a compelling way so that character scenes have an
+        interesting stage.
+      </TypographyP>
+      <TypographyP>
+        During character scenes, the <b>conversation</b> between Narrator and
+        player is flipped. The players in the scene are the ones communicating
+        what is happening. They can describe the environment, people, and events
+        that transpire. The Narrator steps in only to play an NPC, to provide
+        requested context, or to adjudicate a roll or uncertain interaction.
+        Character scenes continue until the players decide it&apos;s time to
+        move on to choosing the next <b>mission</b>.
+      </TypographyP>
       <TypographyH2>Sitrep</TypographyH2>
+      <TypographyP>
+        <b className="font-cyber">Osgrot</b> will page the team and bring them
+        in for the mission sitrep. The characters will be briefed on their
+        objective, environment, assets, and obstacles they can expect. Once
+        sitrep concludes, the team has between a few hours and few days to
+        prepare as they please.
+      </TypographyP>
       <TypographyH2>Mission Prep</TypographyH2>
       <TypographyH3>Consort</TypographyH3>
       <TypographyP>
@@ -182,6 +206,147 @@ export default async function Page() {
       </div>
       <TypographyH2>Engagement Roll</TypographyH2>
       <TypographyH3>Approach</TypographyH3>
+      <TypographyP>
+        The approach is chosen for the operatives by{" "}
+        <b className="font-cyber">Osgrot</b>, with the exception of{" "}
+        <b className="font-cyber">Watchtower</b>, who can override this
+        decision. But if the engagement roll goes south,{" "}
+        <b className="font-cyber">Watchtower</b> can expect an angry debriefing
+        later. Regardless of who chooses the approach, the team fills in the key
+        detail.
+      </TypographyP>
+      <TypographyP>The approaches are:</TypographyP>
+      <TypographyUnorderedList>
+        <li>
+          <b>Assault</b>: Do violence to a target.{" "}
+          <span className="italic">Detail: the point of attack.</span>
+        </li>
+        <li>
+          <b>Deception</b>: Lure, trick, or manipulate.{" "}
+          <span className="italic">Detail: the method of deception.</span>
+        </li>
+        <li>
+          <b>Stealth</b>: Trespass unseen.{" "}
+          <span className="italic">Detail: the point of infiltration.</span>
+        </li>
+        <li>
+          <b>Cyber</b>: Engage in the workings of technology.{" "}
+          <span className="italic">Detail: the cybernetic method.</span>
+        </li>
+        <li>
+          <b>Social</b>: Negotiate, bargain, or persuade.{" "}
+          <span className="italic">Detail: the social connection.</span>
+        </li>
+        <li>
+          <b>Transport</b>: Carry cargo or people through danger.{" "}
+          <span className="italic">Detail: the route and means.</span>
+        </li>
+      </TypographyUnorderedList>
+      <TypographyH3 id="loadout">Item Loadouts</TypographyH3>
+      <TypographyP>
+        After the approach and detail are explained, each player chooses their
+        character&apos;s <b>load</b>. This indicates how much stuff they&apos;re
+        carrying on the mission. They don&apos;t have to select individual items
+        - just the maximum amount they&apos;ll have access to during the action.
+      </TypographyP>
+      <TypographyP>
+        Your character has a number of item slots equal to their <b>load</b>.
+        During the mission, you can <b>flashback</b> to having brought any item
+        &quot;just in case&quot; instead of having to plan ahead beforehand.
+        When you do this, mark off an item slot. If you don&apos;t have any item
+        slots left, you can still flashback, but you must include stashing the
+        item somewhere in the scene.
+      </TypographyP>
+      <TypographyP className="italic">
+        Some items cost more than 1 load, like armor (which costs 2). Heavy
+        armor costs 3.
+      </TypographyP>
+      <TypographyUnorderedList>
+        <li>
+          <b>Discreet: 1 load.</b> You&apos;re faster, and blend in with others.
+          You cannot carry heavy items.
+        </li>
+        <li>
+          <b>Conspicuous: 3 load.</b> You look like you&apos;re up to something.
+        </li>
+        <li>
+          <b>Bulky: 4 load.</b> You look like an operative on a mission. Your
+          movements are hampered.
+        </li>
+        <li>
+          <b>Encumbered: 7 load.</b> You&apos;re overburdened and can&apos;t do
+          anything except move very slowly.
+        </li>
+      </TypographyUnorderedList>
+      <TypographyH3>Major Advantages / Disadvantages</TypographyH3>
+      <TypographyP>
+        The engagement roll is a <b>fortune roll</b>, starting with <b>1d</b>{" "}
+        because <b className="font-cyber">ROOT</b> has taken the time to lay the
+        groundwork for you. The dice pool gets modified by any major advantages
+        or disadvantages the party has.
+      </TypographyP>
+      <TypographyUnorderedList>
+        <li>
+          Is this operation particularly bold or daring? Take <b>+1d</b>. Is
+          this operation overly complex or contingent on many factors? Take{" "}
+          <b>-1d</b>.
+        </li>
+        <li>
+          Does the <b>plan&apos;s detail</b> expose a vulnerability of the
+          target or hit them where they&apos;re weakest? Take <b>+1d</b>. Is the
+          target strongest against this approach, or do they have particular
+          defenses or special preparations? Take <b>-1d</b>.
+        </li>
+        <li>
+          Are you operating on particularly useful intel? Take <b>+1d</b>. Are
+          you operating on faulty or bad intel? Take <b>-1d</b>.
+        </li>
+        <li>
+          Are any of your <b>friends or contacts</b> providing aid for this
+          operation (at risk of their safety)? Take <b>+1d</b>. Are any{" "}
+          <b>enemies or rivals</b> interfering in the operation? Take <b>-1d</b>
+          . Anyone who volunteers an <b>enemy or rival</b> takes <b>+1xp</b>.
+        </li>
+        <li>
+          Is the target of this operation a worker or faction of workers? Take{" "}
+          <b>+1d</b>. Is the target a corp or part of a corp? Take <b>-1d</b>.
+          Is the target <span className="font-cyber">Overcorp</span> or a member
+          of the royal family? Take <b>-2d</b>.
+        </li>
+      </TypographyUnorderedList>
+      <TypographyP>
+        The engagement roll assumes that the PCs are approaching the target as
+        intelligently as they can, given the plan and detail they provided. We
+        don&apos;t need to play out the tentative probing maneuvers, special
+        precautions, or other ponderous non-action. The engagement roll covers
+        all of that. The PCs are already in action, facing the first obstacle of
+        the mission.
+      </TypographyP>
+      <TypographyP>
+        <b>Critical</b>: Exceptional result.{" "}
+        <span className="italic">
+          You&apos;ve already overcome the first obstacle and you&apos;re in a
+          controlled position for what&apos;s next.
+        </span>
+      </TypographyP>
+      <TypographyP>
+        <b>6</b>: Good result.{" "}
+        <span className="italic">
+          You&apos;re in a controlled position when the action starts.
+        </span>
+      </TypographyP>
+      <TypographyP>
+        <b>4/5</b>: Mixed result.{" "}
+        <span className="italic">
+          You&apos;re in a risky position when the action starts.
+        </span>
+      </TypographyP>
+      <TypographyP>
+        <b>1-3</b>: Bad result.{" "}
+        <span className="italic">
+          You&apos;re in a desperate position when the action starts.
+        </span>
+      </TypographyP>
     </>
   );
 }
