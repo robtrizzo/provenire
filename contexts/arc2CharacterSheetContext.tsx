@@ -324,7 +324,7 @@ export default function CharacterSheetProvider({
         setMaxStress(parsed.maxStress || 9);
         setStress(parsed.stress || 0);
         setMemory(parsed.memory || 0);
-        setUnlockedBaggage(parsed.unlockdBaggage || []);
+        setUnlockedBaggage(parsed.unlockedBaggage || []);
         setHarm(parsed.harm || JSON.parse(JSON.stringify(DEFAULT_HARM)));
         setArmor(parsed.armor || false);
         setHArmor(parsed.hArmor || false);
