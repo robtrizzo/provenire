@@ -81,28 +81,7 @@ export default function LoadoutSection() {
         handleChangeItemName={handleUpdateItemName}
         handleChangeItemSlots={handleUpdateItemSlots}
         handleToggleItemSubscription={handleToggleItemSubscription}
-        handleAddItem={() => {
-          if (!items || items.length === 0) {
-            setItems([
-              {
-                name: "",
-                slots: 1,
-                uses: undefined,
-              },
-            ]);
-          } else {
-            setItems([
-              ...items,
-              {
-                name: "",
-                slots: 1,
-                uses: undefined,
-              },
-            ]);
-          }
-          setChanges(true);
-        }}
-        handleAddBasicItem={(item: ItemV2) => {
+        handleAddItem={(item: ItemV2) => {
           if (!items || items.length === 0) {
             setItems([item]);
           } else {

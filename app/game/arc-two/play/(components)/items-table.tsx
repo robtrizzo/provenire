@@ -40,6 +40,18 @@ import {
   ContextMenuSeparator,
   ContextMenuTrigger,
 } from "@/components/ui/context-menu";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 
 export default function ItemsTable({
   className,
@@ -49,7 +61,6 @@ export default function ItemsTable({
   handleChangeItemSlots,
   handleToggleItemSubscription,
   handleAddItem,
-  handleAddBasicItem,
   handleRemoveItem,
 }: {
   className?: string;
@@ -58,8 +69,7 @@ export default function ItemsTable({
   handleChangeItemName: (index: number, name: string) => void;
   handleChangeItemSlots: (index: number, slots: number) => void;
   handleToggleItemSubscription: (index: number) => void;
-  handleAddItem: () => void;
-  handleAddBasicItem: (item: ItemV2) => void;
+  handleAddItem: (item: ItemV2) => void;
   handleRemoveItem: (index: number) => void;
 }) {
   const usedSlots = items?.reduce((acc, item) => acc + item.slots, 0);
@@ -92,8 +102,8 @@ export default function ItemsTable({
     debouncedHandleChangeItemSlots(index, slots);
   };
 
-  const addBasicItem = (item: ItemV2) => {
-    handleAddBasicItem(item);
+  const addItem = (item: ItemV2) => {
+    handleAddItem(item);
   };
 
   return (
@@ -132,17 +142,8 @@ export default function ItemsTable({
       </Table>
       <Separator className="my-1" />
       <div className="flex items-center justify-between">
-        <ItemsList addBasicItem={addBasicItem} items={allItems as ItemV2[]} />
-        <Button
-          size="sm"
-          variant="outline"
-          className="ml-2 mt-1"
-          onClick={() => {
-            handleAddItem();
-          }}
-        >
-          <DiamondPlus /> add custom item
-        </Button>
+        <ItemsList addBasicItem={addItem} items={allItems as ItemV2[]} />
+        <CustomItemDialog handleAddItem={addItem} />
       </div>
     </div>
   );
@@ -402,5 +403,100 @@ function ItemsList({
         </div>
       </PopoverContent>
     </Popover>
+  );
+}
+
+function CustomItemDialog({
+  handleAddItem,
+}: {
+  handleAddItem: (item: ItemV2) => void;
+}) {
+  const [open, setOpen] = useState(false);
+
+  const [subEnabled, setSubEnabled] = useState(false);
+
+  const handleSubmitCustomItem = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get("name") as string;
+    const description = formData.get("description") as string;
+    const slots = (formData.get("slots") || 0) as number;
+    const subscription = subEnabled
+      ? ((formData.get("subscription") || 0) as number)
+      : undefined;
+
+    const newItem: ItemV2 = {
+      name,
+      description,
+      slots,
+      subscription,
+      subscriptionPaid: subEnabled ? true : undefined,
+    };
+    handleAddItem(newItem);
+
+    setOpen(false);
+    setSubEnabled(false);
+  };
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button size="sm" variant="outline" className="ml-2 mt-1">
+          <DiamondPlus /> add custom item
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <form onSubmit={handleSubmitCustomItem}>
+          <DialogHeader>
+            <DialogTitle>Add a custom item</DialogTitle>
+            <DialogDescription>
+              Make changes to the item here. Click save when you&apos;re done.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4">
+            <div className="grid gap-3">
+              <Label htmlFor="name">Name</Label>
+              <Input id="name" name="name" defaultValue="new item" />
+            </div>
+            <div className="grid gap-3">
+              <Label htmlFor="description">Description</Label>
+              <Input
+                id="description"
+                name="description"
+                placeholder="add an item description here..."
+              />
+            </div>
+            <div className="grid gap-3">
+              <Label htmlFor="slots">Slots</Label>
+              <Input id="slots" name="slots" defaultValue={0} type="number" />
+            </div>
+            <div className="grid gap-3">
+              <Label htmlFor="subscription-enabled">Subscription</Label>
+              <Checkbox
+                checked={subEnabled}
+                onCheckedChange={(checked) => setSubEnabled(!!checked)}
+              />
+            </div>
+            <div className="grid gap-3">
+              <Label htmlFor="subscription">Subscription Amount</Label>
+              <Input
+                disabled={!subEnabled}
+                id="subscription"
+                name="subscription"
+                defaultValue={0}
+                type="number"
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant="outline">Cancel</Button>
+            </DialogClose>
+            <Button type="submit">Save changes</Button>
+          </DialogFooter>
+        </form>
+      </DialogContent>
+    </Dialog>
   );
 }
