@@ -1,7 +1,18 @@
 import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { useCharacterSheet } from "@/contexts/arc2CharacterSheetContext";
 export default function ProfileSection() {
+  return (
+    <>
+      <ArchetypeQuestionsSection />
+      <Separator className="my-2" />
+      <NotesSection />
+    </>
+  );
+}
+
+function ArchetypeQuestionsSection() {
   const { selectedArchetype, handleUpdateQuestion, questions } =
     useCharacterSheet();
   return (
@@ -54,6 +65,16 @@ export default function ProfileSection() {
           />
         </div>
       ))}
+    </>
+  );
+}
+
+function NotesSection() {
+  return (
+    <>
+      <div className="text-center">
+        <span>Notes</span>
+      </div>
     </>
   );
 }

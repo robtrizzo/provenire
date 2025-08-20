@@ -410,3 +410,8 @@ export type BondV2 = {
   score: [number, number];
   advanced?: boolean;
 };
+
+export type Note = {
+  name: string;
+  content: string;
+};

@@ -21,6 +21,7 @@ import {
   ItemV2,
   Baggage,
   BondV2,
+  Note,
 } from "@/types/game";
 import { debounce } from "@/lib/utils";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -59,7 +60,7 @@ interface CharacterSheetContextProps {
   selectedTransformation: Transformation | undefined;
   selectedFightingStyle: FightingStyleV2 | undefined;
   questions: Map<string, string>;
-  notes: string;
+  notes: Note[];
   wealthP: number;
   wealthF: number;
   pelts: number;
@@ -108,7 +109,7 @@ interface CharacterSheetContextProps {
     React.SetStateAction<FightingStyleV2 | undefined>
   >;
   setQuestions: React.Dispatch<React.SetStateAction<Map<string, string>>>;
-  setNotes: React.Dispatch<React.SetStateAction<string>>;
+  setNotes: React.Dispatch<React.SetStateAction<Note[]>>;
   setWealthP: React.Dispatch<React.SetStateAction<number>>;
   setWealthF: React.Dispatch<React.SetStateAction<number>>;
   setPelts: React.Dispatch<React.SetStateAction<number>>;
@@ -201,7 +202,7 @@ export default function CharacterSheetProvider({
 
   // where this is convenient, the performance is mid
   const [questions, setQuestions] = useState<Map<string, string>>(new Map());
-  const [notes, setNotes] = useState<string>("");
+  const [notes, setNotes] = useState<Note[]>([]);
 
   const [wealthP, setWealthP] = useState<number>(1);
   const [maxWealthPReached, setMaxWealthPReached] = useState<number>(1);
@@ -257,7 +258,7 @@ export default function CharacterSheetProvider({
     setSelectedTransformation(undefined);
     setSelectedFightingStyle(undefined);
     setQuestions(new Map());
-    setNotes("");
+    setNotes([]);
     setWealthP(1);
     setMaxWealthPReached(1);
     setWealthF(1);
@@ -304,7 +305,7 @@ export default function CharacterSheetProvider({
         setSelectedFightingStyle(parsed.selectedFightingStyle);
 
         setQuestions(new Map(parsed.questions));
-        setNotes(parsed.notes || "");
+        setNotes(parsed.notes || []);
 
         setWealthP(parsed.wealthP || 1);
         setMaxWealthPReached(parsed.maxWealthPReached || 1);
