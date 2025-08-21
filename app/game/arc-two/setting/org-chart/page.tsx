@@ -418,7 +418,7 @@ export default async function Page() {
                 <Avatar className="mx-auto mb-1 h-8 w-8">
                   <AvatarFallback className="text-xs">CC</AvatarFallback>
                 </Avatar>
-                <TypographyP className="text-xs">Cora Clawwulf</TypographyP>
+                <TypographyP className="text-xs">Magda Clawwulf</TypographyP>
                 <Badge variant="outline" className="text-xs">
                   Psyche Masseuse
                 </Badge>
@@ -602,9 +602,9 @@ export default async function Page() {
               </div>
               <div className="text-center">
                 <Avatar className="mx-auto mb-1 h-8 w-8">
-                  <AvatarFallback className="text-xs">ED</AvatarFallback>
+                  <AvatarFallback className="text-xs">MD</AvatarFallback>
                 </Avatar>
-                <TypographyP className="text-xs">Ebor Dag</TypographyP>
+                <TypographyP className="text-xs">Maxim Dag</TypographyP>
                 <Badge variant="outline" className="text-xs">
                   IMPACT
                 </Badge>
