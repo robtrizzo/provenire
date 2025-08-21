@@ -686,18 +686,18 @@ export default async function Page() {
               </div>
               <div className="text-center">
                 <Avatar className="mx-auto mb-1 h-8 w-8">
-                  <AvatarFallback className="text-xs">??</AvatarFallback>
+                  <AvatarFallback className="text-xs">T</AvatarFallback>
                 </Avatar>
-                <TypographyP className="text-xs">???</TypographyP>
+                <TypographyP className="text-xs">Tedward</TypographyP>
                 <Badge variant="outline" className="text-xs">
                   KEEPER
                 </Badge>
               </div>
               <div className="text-center">
                 <Avatar className="mx-auto mb-1 h-8 w-8">
-                  <AvatarFallback className="text-xs">?</AvatarFallback>
+                  <AvatarFallback className="text-xs">D</AvatarFallback>
                 </Avatar>
-                <TypographyP className="text-xs">???</TypographyP>
+                <TypographyP className="text-xs">Dothan</TypographyP>
                 <Badge variant="outline" className="text-xs">
                   SEVERANCE
                 </Badge>
@@ -777,6 +777,70 @@ export default async function Page() {
         Operative Handlers
       </TypographyH3>
       <div className="space-y-6 mb-8">
+        <Card className="border-emerald-200">
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <div className="text-center flex-1">
+                <Badge className="mb-2 bg-emerald-500">TEAM GAMMA</Badge>
+                <CardTitle className="text-sm font-cyber">
+                  Operatives Handler Unit
+                </CardTitle>
+              </div>
+              <Badge variant="outline" className="text-xs">
+                5 Handlers
+              </Badge>
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
+              <div className="text-center">
+                <Avatar className="mx-auto mb-1 h-8 w-8">
+                  <AvatarFallback className="text-xs">VE</AvatarFallback>
+                </Avatar>
+                <TypographyP className="text-xs">Varo Euri</TypographyP>
+                <Badge variant="outline" className="text-xs">
+                  HANDLES: LEO
+                </Badge>
+              </div>
+              <div className="text-center">
+                <Avatar className="mx-auto mb-1 h-8 w-8">
+                  <AvatarFallback className="text-xs">CR</AvatarFallback>
+                </Avatar>
+                <TypographyP className="text-xs">Comber Risimod</TypographyP>
+                <Badge variant="outline" className="text-xs">
+                  HANDLES: SYMON
+                </Badge>
+              </div>
+              <div className="text-center">
+                <Avatar className="mx-auto mb-1 h-8 w-8">
+                  <AvatarFallback className="text-xs">AH</AvatarFallback>
+                </Avatar>
+                <TypographyP className="text-xs">Artha Hil</TypographyP>
+                <Badge variant="outline" className="text-xs">
+                  HANDLES: ACE
+                </Badge>
+              </div>
+              <div className="text-center">
+                <Avatar className="mx-auto mb-1 h-8 w-8">
+                  <AvatarFallback className="text-xs">TS</AvatarFallback>
+                </Avatar>
+                <TypographyP className="text-xs">Tila Swan</TypographyP>
+                <Badge variant="outline" className="text-xs">
+                  HANDLES: TEDWARD
+                </Badge>
+              </div>
+              <div className="text-center">
+                <Avatar className="mx-auto mb-1 h-8 w-8">
+                  <AvatarFallback className="text-xs">FH</AvatarFallback>
+                </Avatar>
+                <TypographyP className="text-xs">Fern Hairuwulf</TypographyP>
+                <Badge variant="outline" className="text-xs">
+                  HANDLES: DOTHAN
+                </Badge>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
         <Card className="border-red-200">
           <CardHeader>
             <div className="flex items-center justify-between">
