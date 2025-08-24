@@ -136,7 +136,7 @@ function LoadFromCloud({
           Load from Cloud
         </Button>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="h-[600px] max-h-screen w-[600px] !max-w-screen overflow-auto">
         <DialogHeader>
           <DialogTitle>Select a character</DialogTitle>
           <DialogDescription>
