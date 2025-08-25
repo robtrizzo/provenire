@@ -8,14 +8,19 @@ import {
 } from "@/components/ui/select";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { TypographyP } from "@/components/ui/typography";
+import { TypographyP, TypographyUnorderedList } from "@/components/ui/typography";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { ShieldAlert, Dices, Cog } from "lucide-react";
+import { ShieldAlert, Dices, Cog, BookOpen } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { useCharacterSheet } from "@/contexts/arc2CharacterSheetContext";
 import { useRoll } from "@/contexts/arc2RollContext";
 import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 export default function RollSection() {
   const {
@@ -202,6 +207,56 @@ export default function RollSection() {
                 <li>special ability</li>
               </ul>
             </span>
+          </div>
+          <div className="text-muted-foreground text-xs leading-3 mt-2">
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button size="icon" variant="outline">
+                  <BookOpen className="text-blue-500" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="max-w-screen w-[450px] relative h-[500px] overflow-auto">
+                <TypographyP>
+                  There are a number of ways to gain bonus dice in <i>Provenire</i>. All
+                  bonus dice are blue, meaning they don&apos;t incur reduced effect if
+                  they&apos;re your highest roll.
+                </TypographyP>
+                <TypographyUnorderedList>
+                  <li>
+                    <b>Teamwork:</b> Another member of the crew marks <b>1 stress</b> and
+                    describes how they help you out. You add their <b>bond</b> with{" "}
+                    <b>you</b> to your roll.{" "}
+                    <i>
+                      Only one person can help you, otherwise it should be a group roll.
+                    </i>
+                  </li>
+                  <li>
+                    <b>Push yourself:</b> Describe how you dig deep to ensure success.
+                    Mark <b>2 stress</b> and get <b>1 bonus blue die</b>.{" "}
+                    <i>
+                      If you push yourself, you cannot also take a devil&apos;s bargain.
+                    </i>
+                  </li>
+                  <li>
+                    <b>Devil&apos;s Bargain:</b> The <b>Narrator</b> presents an
+                    interesting problem or consequence. Decide if you want to take the
+                    deal. If you do, get <b>1 bonus blue die</b>.{" "}
+                    <i>
+                      You may <b>resist</b> the consequences of the bargain if you want.
+                    </i>
+                  </li>
+                  <li>
+                    <b>Group Roll:</b> Ask if anyone else in the crew wants to make a roll
+                    with you. If they do, you decide who the leader is; the leader marks{" "}
+                    <b>1 xp</b>. Then everyone separately rolls their <b>bond</b> with the{" "}
+                    <b>leader</b> plus an action of their choice. The highest roll among
+                    the group is used as the result. For each member of the group that
+                    rolls a <b>1-3</b>, the leader marks <b>1 stress</b>. If the overall
+                    result has consequences, everyone suffers them.
+                  </li>
+                </TypographyUnorderedList>
+              </PopoverContent>
+            </Popover>
           </div>
         </div>
         <div className="w-full flex justify-between items-end">
