@@ -12,8 +12,6 @@ export default function LoadoutSection() {
     setChanges,
     items,
     setItems,
-    handleUpdateItemName,
-    handleUpdateItemSlots,
     handleToggleItemSubscription,
   } = useCharacterSheet();
 
@@ -78,8 +76,6 @@ export default function LoadoutSection() {
         className="mt-4"
         items={items}
         loadout={loadout}
-        handleChangeItemName={handleUpdateItemName}
-        handleChangeItemSlots={handleUpdateItemSlots}
         handleToggleItemSubscription={handleToggleItemSubscription}
         handleAddItem={(item: ItemV2) => {
           if (!items || items.length === 0) {
@@ -91,6 +87,16 @@ export default function LoadoutSection() {
         }}
         handleRemoveItem={(index: number) => {
           setItems(items.filter((_, i) => i !== index));
+          setChanges(true);
+        }}
+        handleEditItem={(updatedItem: ItemV2, index: number) => {
+          if (index < 0 || index > items.length - 1) {
+            console.error(`Cannot edit item: index ${index} out of bounds`);
+            return;
+          }
+          const itemsCopy = JSON.parse(JSON.stringify(items));
+          itemsCopy[index] = updatedItem;
+          setItems(itemsCopy);
           setChanges(true);
         }}
       />

@@ -138,8 +138,6 @@ interface CharacterSheetContextProps {
     slotIndex: number,
     description: string
   ) => void;
-  handleUpdateItemName: (index: number, value: string) => void;
-  handleUpdateItemSlots: (index: number, value: number) => void;
   handleToggleItemSubscription: (index: number) => void;
   setItems: React.Dispatch<React.SetStateAction<ItemV2[]>>;
   handleUpdateArchetypeQuestion: (
@@ -761,19 +759,6 @@ export default function CharacterSheetProvider({
 
   const subscriptions = calculateSubscriptions();
 
-  function handleUpdateItemName(index: number, value: string) {
-    const newItems = [...items];
-    newItems[index] = { ...newItems[index], name: value };
-    setItems(newItems);
-    handleDebounceChange();
-  }
-  function handleUpdateItemSlots(index: number, value: number) {
-    const newValue = value < 0 ? 0 : value;
-    const newItems = [...items];
-    newItems[index] = { ...newItems[index], slots: newValue };
-    setItems(newItems);
-    handleDebounceChange();
-  }
   function handleToggleItemSubscription(index: number) {
     const newItems = [...items];
     const newValue = !newItems[index].subscriptionPaid;
@@ -888,8 +873,6 @@ export default function CharacterSheetProvider({
         handleUpdateSleeve,
         harmsEmpty,
         handleUpdateHarmSlot,
-        handleUpdateItemName,
-        handleUpdateItemSlots,
         handleToggleItemSubscription,
         handleAddAvailableAction,
         handleRemoveAvailableAction,
