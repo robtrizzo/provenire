@@ -17,12 +17,7 @@ import ConditionalLink from "@/components/ui/conditional-link";
 export default async function Page() {
   return (
     <>
-      <Breadcrumbs
-        crumbs={[
-          { name: "Sources of Power", href: "/game/arc-one/sources-of-power" },
-          { name: "Donums", href: "#" },
-        ]}
-      />
+      <Breadcrumbs />
       <TypographyH1>Donums</TypographyH1>
       <TypographyP>
         <b>Donum</b> is the <strong>Arborian</strong> word for

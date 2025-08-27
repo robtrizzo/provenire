@@ -16,12 +16,7 @@ import Breadcrumbs from "@/components/ui/breadcrumbs";
 export default async function Page() {
   return (
     <>
-      <Breadcrumbs
-        crumbs={[
-          { name: "Rules", href: "/game/arc-one/core-system" },
-          { name: "Prelude", href: "#" },
-        ]}
-      />
+      <Breadcrumbs />
       <TypographyH1>Prelude</TypographyH1>
       <TypographyH2>Free Play</TypographyH2>
       <TypographyH3>Character Scenes</TypographyH3>

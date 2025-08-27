@@ -19,15 +19,7 @@ import Breadcrumbs from "@/components/ui/breadcrumbs";
 export default async function Page() {
   return (
     <>
-      <Breadcrumbs
-        crumbs={[
-          {
-            name: "Character Creation",
-            href: "/game/arc-one/character-creation",
-          },
-          { name: "Backgrounds", href: "#" },
-        ]}
-      />
+      <Breadcrumbs />
       <TypographyH1>Backgrounds</TypographyH1>
       <TypographyP>
         Day in and day out. Generation after generation. The price of living in

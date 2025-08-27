@@ -16,13 +16,7 @@ import Image from "next/image";
 export default async function Page() {
   return (
     <>
-      <Breadcrumbs
-        crumbs={[
-          { name: "Setting", href: "/game" },
-          { name: "Era 3", href: "/setting" },
-          { name: "The Steel Trap", href: "#" },
-        ]}
-      />
+      <Breadcrumbs />
       <div className="z-30 relative">
         <div
           className="absolute top-0 w-full max-w-[1067px] mx-auto mt-20"

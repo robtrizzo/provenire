@@ -10,14 +10,7 @@ import Image from "next/image";
 export default async function Page() {
   return (
     <>
-      <Breadcrumbs
-        crumbs={[
-          { name: "Game", href: "/game" },
-          { name: "Crucible", href: "/crucible" },
-          { name: "Legends", href: "#" },
-          { name: "Ygg", href: "#" },
-        ]}
-      />
+      <Breadcrumbs />
       <TypographyH1>
         Tale of Unwen, Cunning Wife who Delivers Kingwulf Victory for Dinner
       </TypographyH1>

@@ -15,15 +15,7 @@ import Breadcrumbs from "@/components/ui/breadcrumbs";
 export default async function Page() {
   return (
     <>
-      <Breadcrumbs
-        crumbs={[
-          { name: "Sources of Power", href: "/game/arc-one/sources-of-power" },
-          {
-            name: "Aldams",
-            href: "#",
-          },
-        ]}
-      />
+      <Breadcrumbs />
       <TypographyH1>Aldams</TypographyH1>
       <TypographyP>
         <b>Aldam</b> is an ancient <i>Gredoran</i> word. The original meaning is

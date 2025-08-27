@@ -9,14 +9,7 @@ import Image from "next/image";
 export default async function Page() {
   return (
     <>
-      <Breadcrumbs
-        crumbs={[
-          { name: "Game", href: "/game" },
-          { name: "Crucible", href: "/crucible" },
-          { name: "Legends", href: "#" },
-          { name: "Issa", href: "#" },
-        ]}
-      />
+      <Breadcrumbs />
       <TypographyH1>
         Another Victory by Baldomar and his Five Wives for the Glory of Kingwulf
       </TypographyH1>

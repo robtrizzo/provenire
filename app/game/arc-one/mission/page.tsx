@@ -16,12 +16,7 @@ import Breadcrumbs from "@/components/ui/breadcrumbs";
 export default async function Page() {
   return (
     <>
-      <Breadcrumbs
-        crumbs={[
-          { name: "Rules", href: "/game/arc-one/core-system" },
-          { name: "Mission", href: "#" },
-        ]}
-      />
+      <Breadcrumbs />
       <TypographyH1>The Mission</TypographyH1>
       <TypographyP>
         The mission is when the PCs risk their lives for the betterment of their

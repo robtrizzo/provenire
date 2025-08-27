@@ -16,15 +16,7 @@ import { checkAuth } from "@/lib/auth";
 export default async function Page() {
   return (
     <>
-      <Breadcrumbs
-        crumbs={[
-          { name: "Sources of Power", href: "/game/arc-one/sources-of-power" },
-          {
-            name: "Curses",
-            href: "#",
-          },
-        ]}
-      />
+      <Breadcrumbs />
       <TypographyH1>Curses</TypographyH1>
       <p style={distortedStyle} className="select-none">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Est non quia

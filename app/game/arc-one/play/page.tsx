@@ -26,7 +26,7 @@ export default function Page() {
   return (
     <>
       <div className="flex justify-between">
-        <Breadcrumbs crumbs={[{ name: "Play", href: "#" }]} />
+        <Breadcrumbs />
         <div className="flex gap-2 mt-5">
           <DiceSheet />
         </div>

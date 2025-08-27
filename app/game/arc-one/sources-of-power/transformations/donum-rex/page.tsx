@@ -14,16 +14,7 @@ export default async function Page() {
 
   return (
     <>
-      <Breadcrumbs
-        crumbs={[
-          { name: "Sources of Power", href: "/game/arc-one/sources-of-power" },
-          {
-            name: "Transformations",
-            href: "/game/arc-one/sources-of-power/transformations",
-          },
-          { name: "Donum Rex", href: "#" },
-        ]}
-      />
+      <Breadcrumbs />
       <TypographyH1 className="mb-2">
         Donum Rex{" "}
         <span className="text-muted-foreground">(Gift of the King)</span>

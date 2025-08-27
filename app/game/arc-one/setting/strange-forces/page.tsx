@@ -14,13 +14,7 @@ import { distortedStyle } from "@/lib/styles";
 export default async function Page() {
   return (
     <>
-      <Breadcrumbs
-        crumbs={[
-          { name: "Setting", href: "/game/arc-one" },
-          { name: "Era 3", href: "/game/arc-one/setting" },
-          { name: "Strange Forces of the Steel Trap", href: "#" },
-        ]}
-      />
+      <Breadcrumbs />
       <TypographyH1>Strange Forces of the Steel Trap</TypographyH1>
       <TypographyH2>The Drone</TypographyH2>
       <p style={distortedStyle} className="select-none">

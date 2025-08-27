@@ -54,12 +54,7 @@ import { Button } from "@/components/ui/button";
 export default function Charts({ data }: { data: Roll[] }) {
   return (
     <div className="flex flex-col w-full">
-      <Breadcrumbs
-        crumbs={[
-          { name: "Stats", href: "#" },
-          { name: "Arc One", href: "#" },
-        ]}
-      />
+      <Breadcrumbs />
       <TypographyH1>Arc One Dice Stats</TypographyH1>
       <div className="py-8">
         <TypographyP>

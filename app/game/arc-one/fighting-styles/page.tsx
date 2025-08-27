@@ -32,15 +32,7 @@ export default async function Page() {
   ]);
   return (
     <div>
-      <Breadcrumbs
-        crumbs={[
-          {
-            name: "Character Creation",
-            href: "/game/arc-one/character-creation",
-          },
-          { name: "Fighting Styles", href: "#" },
-        ]}
-      />
+      <Breadcrumbs />
       <TypographyH1>Fighting Styles</TypographyH1>
       <TypographyP>
         Most folk in the Steel Trap have been in a scrap at least once: the kind

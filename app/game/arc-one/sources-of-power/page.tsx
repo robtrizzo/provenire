@@ -17,7 +17,7 @@ export default async function Page() {
   if (error) redirect("/game");
   return (
     <>
-      <Breadcrumbs crumbs={[{ name: "Sources of Power", href: "#" }]} />
+      <Breadcrumbs />
       <TypographyH1>Sources of Power</TypographyH1>
       <Aldams />
       <Transformations />

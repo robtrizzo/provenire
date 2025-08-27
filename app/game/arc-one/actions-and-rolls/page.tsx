@@ -23,12 +23,7 @@ import Breadcrumbs from "@/components/ui/breadcrumbs";
 export default function Page() {
   return (
     <>
-      <Breadcrumbs
-        crumbs={[
-          { name: "Rules", href: "/game/arc-one/core-system" },
-          { name: "Actions & Rolls", href: "#" },
-        ]}
-      />
+      <Breadcrumbs />
       <TypographyH1>Actions, Bonds, & Rolls</TypographyH1>
       <TypographyH2>Action Ratings</TypographyH2>
       <TypographyP>

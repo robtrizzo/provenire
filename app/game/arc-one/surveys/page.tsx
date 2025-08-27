@@ -35,12 +35,7 @@ export default function Page() {
 
   return (
     <>
-      <Breadcrumbs
-        crumbs={[
-          { name: "Surveys", href: "#" },
-          { name: "Arc One", href: "#" },
-        ]}
-      />
+      <Breadcrumbs />
       <TypographyH1>Arc One Player Survey</TypographyH1>
       <TypographyP>
         Hey there gamers! Once again I have to thank you for a fantastic 36

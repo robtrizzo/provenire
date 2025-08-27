@@ -21,15 +21,7 @@ import Breadcrumbs from "@/components/ui/breadcrumbs";
 export default async function Page() {
   return (
     <>
-      <Breadcrumbs
-        crumbs={[
-          {
-            name: "Character Creation",
-            href: "/game/arc-one/character-creation",
-          },
-          { name: "Skillsets", href: "#" },
-        ]}
-      />
+      <Breadcrumbs />
       <TypographyH1>Skillsets</TypographyH1>
       <TypographyP>
         No one breaks the status quo in the Steel Trap. It&apos;s guaranteed

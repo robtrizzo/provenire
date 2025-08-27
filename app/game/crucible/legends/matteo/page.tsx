@@ -9,14 +9,7 @@ import Image from "next/image";
 export default async function Page() {
   return (
     <>
-      <Breadcrumbs
-        crumbs={[
-          { name: "Game", href: "/game" },
-          { name: "Crucible", href: "/crucible" },
-          { name: "Legends", href: "#" },
-          { name: "Matteo", href: "#" },
-        ]}
-      />
+      <Breadcrumbs />
       <TypographyH1>Matteo&apos;s Descent</TypographyH1>
       <div className="w-full max-w-[600px] relative aspect-square my-8">
         <Image

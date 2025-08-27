@@ -4,13 +4,7 @@ import { TypographyH1, TypographyP } from "@/components/ui/typography";
 export default async function Page() {
   return (
     <>
-      <Breadcrumbs
-        crumbs={[
-          { name: "Game", href: "/game" },
-          { name: "Crucible", href: "#" },
-          { name: "Introduction", href: "#" },
-        ]}
-      />
+      <Breadcrumbs />
       <TypographyH1>Crucible</TypographyH1>
       <TypographyP>
         <b>Crucible</b> is a narrative-only game played by a <b>Narrator</b> and{" "}

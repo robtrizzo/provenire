@@ -15,12 +15,7 @@ import { Separator } from "@/components/ui/separator";
 export default function Page() {
   return (
     <>
-      <Breadcrumbs
-        crumbs={[
-          { name: "Rules", href: "#" },
-          { name: "Core System", href: "#" },
-        ]}
-      />
+      <Breadcrumbs />
       <TypographyH1>Core System</TypographyH1>
       <TypographyP className="text-muted-foreground text-sm">
         The Core System section in Blades in the Dark is nearly perfect, so why

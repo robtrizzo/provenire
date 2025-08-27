@@ -10,7 +10,7 @@ import Image from "next/image";
 export default function Page() {
   return (
     <>
-      <Breadcrumbs crumbs={[{ name: "Introduction", href: "#" }]} />
+      <Breadcrumbs />
       <div className="z-30 relative">
         <div
           className="relative top-0 w-full max-w-[800px] mx-auto"

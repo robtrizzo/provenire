@@ -15,15 +15,7 @@ import Breadcrumbs from "@/components/ui/breadcrumbs";
 export default async function Page() {
   return (
     <div>
-      <Breadcrumbs
-        crumbs={[
-          {
-            name: "Character Creation",
-            href: "/game/arc-one/character-creation",
-          },
-          { name: "Heritages", href: "#" },
-        ]}
-      />
+      <Breadcrumbs />
       <TypographyH1 className="mb-12">Heritages</TypographyH1>
       <HeritageSummary heritage={heritages[0]} />
       <TypographyP>

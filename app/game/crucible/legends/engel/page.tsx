@@ -9,14 +9,7 @@ import Image from "next/image";
 export default async function Page() {
   return (
     <>
-      <Breadcrumbs
-        crumbs={[
-          { name: "Game", href: "/game" },
-          { name: "Crucible", href: "/crucible" },
-          { name: "Legends", href: "#" },
-          { name: "Engel", href: "#" },
-        ]}
-      />
+      <Breadcrumbs />
       <TypographyH1>The Fall of Ulgate, as told by Engel Otto</TypographyH1>
       <div className="w-full max-w-[600px] relative aspect-square my-8">
         <Image

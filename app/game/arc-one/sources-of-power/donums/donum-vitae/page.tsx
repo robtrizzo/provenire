@@ -13,13 +13,7 @@ export default async function Page() {
   if (error) redirect("/game/arc-one/sources-of-power/donums");
   return (
     <>
-      <Breadcrumbs
-        crumbs={[
-          { name: "Sources of Power", href: "/game/arc-one/sources-of-power" },
-          { name: "Donums", href: "/game/arc-one/sources-of-power/donums" },
-          { name: "Donum Vitae", href: "#" },
-        ]}
-      />
+      <Breadcrumbs />
       <TypographyH1 className="mb-2">
         Donum Vitae{" "}
         <span className="text-muted-foreground">(Gift of Vitality)</span>

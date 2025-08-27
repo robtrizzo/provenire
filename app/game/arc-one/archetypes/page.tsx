@@ -24,15 +24,7 @@ import Ability from "@/components/abilities/ability";
 export default async function Page() {
   return (
     <div>
-      <Breadcrumbs
-        crumbs={[
-          {
-            name: "Character Creation",
-            href: "/game/arc-one/character-creation",
-          },
-          { name: "Archetypes", href: "#" },
-        ]}
-      />
+      <Breadcrumbs />
       <TypographyH1>Archetypes</TypographyH1>
       <TypographyP>
         Trouble. Defiance. Rebellion. Danger and thrill at the prospect of

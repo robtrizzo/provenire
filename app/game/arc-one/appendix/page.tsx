@@ -9,12 +9,7 @@ import {
 export default async function Page() {
   return (
     <>
-      <Breadcrumbs
-        crumbs={[
-          { name: "Rules", href: "/game/arc-one/core-system" },
-          { name: "Appendix", href: "#" },
-        ]}
-      />
+      <Breadcrumbs />
       <TypographyH1>Appendix</TypographyH1>
       <TypographyH2 id="alchemical-traits" className="mt-6">
         Alchemical Traits

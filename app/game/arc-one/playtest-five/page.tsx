@@ -12,12 +12,7 @@ import Breadcrumbs from "@/components/ui/breadcrumbs";
 export default async function Page() {
   return (
     <>
-      <Breadcrumbs
-        crumbs={[
-          { name: "Playtests", href: "#" },
-          { name: "Playtest Five", href: "#" },
-        ]}
-      />
+      <Breadcrumbs />
       <TypographyH1>Playtest Five</TypographyH1>
       <TypographyP>
         The playtest will involve character creation and one full cycle of{" "}
