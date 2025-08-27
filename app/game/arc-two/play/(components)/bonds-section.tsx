@@ -191,6 +191,9 @@ function BondWidget({
                 <Checkbox
                   checked={bond.advanced}
                   className="col-span-1 mx-auto my-auto"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
                   onCheckedChange={handleToggleBondAdvanced}
                 />
               </TooltipTrigger>
