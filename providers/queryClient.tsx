@@ -1,5 +1,6 @@
-'use client';
-import { QueryClient } from '@tanstack/react-query';
+"use client";
+import { ConvexQueryClient } from "@convex-dev/react-query";
+import { QueryClient } from "@tanstack/react-query";
 function makeQueryClient() {
   return new QueryClient({
     defaultOptions: {
@@ -15,7 +16,7 @@ function makeQueryClient() {
 let browserQueryClient: QueryClient | undefined = undefined;
 
 export function getQueryClient() {
-  if (typeof window === 'undefined') {
+  if (typeof window === "undefined") {
     // Server: always make a new query client
     return makeQueryClient();
   } else {
