@@ -414,4 +414,5 @@ export type BondV2 = {
 export type Note = {
   name: string;
   content: string;
+  clock?: Clock;
 };
