@@ -70,6 +70,7 @@ interface CharacterSheetContextProps {
   subscriptions: number;
   actions: ActionV2[];
   bonds: BondV2[];
+  rivals: BondV2[];
   xp: number;
   stress: number;
   maxStress: number;
@@ -118,6 +119,7 @@ interface CharacterSheetContextProps {
   setFavorBankMember: React.Dispatch<React.SetStateAction<boolean>>;
   setActions: React.Dispatch<React.SetStateAction<ActionV2[]>>;
   setBonds: React.Dispatch<React.SetStateAction<BondV2[]>>;
+  setRivals: React.Dispatch<React.SetStateAction<BondV2[]>>;
   setXp: React.Dispatch<React.SetStateAction<number>>;
   setMaxStress: React.Dispatch<React.SetStateAction<number>>;
   setStress: React.Dispatch<React.SetStateAction<number>>;
@@ -211,6 +213,7 @@ export default function CharacterSheetProvider({
 
   const [actions, setActions] = useState<ActionV2[]>([]);
   const [bonds, setBonds] = useState<BondV2[]>([]);
+  const [rivals, setRivals] = useState<BondV2[]>([]);
 
   const [xp, setXp] = useState(0);
 
@@ -265,6 +268,7 @@ export default function CharacterSheetProvider({
     setFavorBankMember(true);
     setActions([]);
     setBonds([]);
+    setRivals([]);
     setXp(0);
     setConditions([]);
     setStress(0);
@@ -314,6 +318,7 @@ export default function CharacterSheetProvider({
 
         setActions(parsed.actions || []);
         setBonds(parsed.bonds || []);
+        setRivals(parsed.rivals || []);
 
         setXp(parsed.xp);
 
@@ -365,6 +370,7 @@ export default function CharacterSheetProvider({
           favorBankMember,
           actions,
           bonds,
+          rivals,
           xp,
           maxStress,
           stress,
@@ -416,6 +422,7 @@ export default function CharacterSheetProvider({
         favors,
         actions,
         bonds,
+        rivals,
         xp,
         maxStress,
         stress,
@@ -815,6 +822,7 @@ export default function CharacterSheetProvider({
         subscriptions,
         actions,
         bonds,
+        rivals,
         xp,
         maxStress,
         stress,
@@ -852,6 +860,7 @@ export default function CharacterSheetProvider({
         setFavorBankMember,
         setActions,
         setBonds,
+        setRivals,
         setXp,
         setMaxStress,
         setStress,
