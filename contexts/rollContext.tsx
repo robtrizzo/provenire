@@ -19,7 +19,6 @@ import { useCharacterSheet } from "./characterSheetContext";
 import { Die } from "@/components/die";
 import { cn } from "@/lib/utils";
 import { useSession } from "next-auth/react";
-import { useChannel, useConnectionStateListener } from "ably/react";
 
 interface RollContextProps {
   bonusDiceRed: number;
@@ -63,24 +62,11 @@ export default function RollProvider({ children }: { children: ReactNode }) {
 
   const { attributes, name } = useCharacterSheet();
 
-  const [wsConnectionState, setWsConnectionState] =
-    useState<string>("uninitialized");
-
-  useConnectionStateListener((stateChange) => {
-    console.log(
-      `Websocket connection changed from ${stateChange.previous} to ${stateChange.current}`
-    );
-    setWsConnectionState(stateChange.current);
-  });
-
-  const wsConnected = wsConnectionState === "connected";
-
   const [bonusDiceRed, setBonusDiceRed] = useState<number>(0);
   const [bonusDiceBlue, setBonusDiceBlue] = useState<number>(0);
   const [fortuneDice, setFortuneDice] = useState<number>(0);
   const queryClient = useQueryClient();
   const session = useSession();
-  const username = session?.data?.user.name;
   const [rolls, setRolls] = useState<Roll[]>([]);
   const [currentDiceFilter, setCurrentDiceFilter] = useState<string>("all");
   const [rollLeft, setRollLeft] = useState<string>("");
@@ -406,27 +392,6 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     }
   }, [session?.data?.user?.id]);
 
-  const { channel } = useChannel("rolls", "new", (message) => {
-    if (session?.status !== "authenticated") {
-      return;
-    }
-    const {
-      roll,
-      action1,
-      action2,
-      username,
-    }: {
-      roll: Roll;
-      action1: string | undefined;
-      action2: string | undefined;
-      username: string;
-    } = message.data;
-    diceToast(roll, action1, action2, username);
-    if (currentDiceFilter === "all" || currentDiceFilter === roll.userid) {
-      setRolls([roll, ...rolls]);
-    }
-  });
-
   const handleCurrentDiceFilterChange = (val: string) => {
     queryClient.invalidateQueries({ queryKey: ["rolls", val] });
     setCurrentDiceFilter(val);
@@ -438,28 +403,14 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     if (!rollLeft) {
       const [attribute, action] = rollRight.split("-") as [Attribute, string];
       const roll = await rollActions(type, attribute, action);
-      if (isPrivate || !wsConnected) {
+      if (isPrivate) {
         diceToast(roll, action);
-      } else {
-        channel.publish("new", {
-          roll,
-          action1: action,
-          action2: undefined,
-          username,
-        });
       }
     } else if (!rollRight) {
       const [attribute, action] = rollLeft.split("-") as [Attribute, string];
       const roll = await rollActions(type, attribute, action);
-      if (isPrivate || !wsConnected) {
+      if (isPrivate) {
         diceToast(roll, action);
-      } else {
-        channel.publish("new", {
-          roll,
-          action1: action,
-          action2: undefined,
-          username,
-        });
       }
     } else {
       const [attributeLeft, actionLeft] = rollLeft.split("-") as [
@@ -477,15 +428,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         attributeRight,
         actionRight
       );
-      if (isPrivate || !wsConnected) {
+      if (isPrivate) {
         diceToast(roll, actionLeft, actionRight);
-      } else {
-        channel.publish("new", {
-          roll,
-          action1: actionLeft,
-          action2: actionRight,
-          username,
-        });
       }
     }
     setRollLeft("");
@@ -496,15 +440,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
 
   async function handleFortuneRollButton(numDice: number) {
     const roll = await rollDice("fortune", 0, numDice);
-    if (isPrivate || !wsConnected) {
+    if (isPrivate) {
       diceToast(roll);
-    } else {
-      channel.publish("new", {
-        roll,
-        action1: undefined,
-        action2: undefined,
-        username,
-      });
     }
     setFortuneDice(0);
   }
