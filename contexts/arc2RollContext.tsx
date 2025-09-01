@@ -95,8 +95,6 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     "connecting" | "connected" | "disconnected"
   >("disconnected");
 
-  console.log("roll websocket connection status: ", connectionStatus);
-
   const { mutateAsync: saveDiceRoll } = useMutation({
     mutationFn: async (roll: Roll) => {
       const userId = session?.data?.user?.id;
