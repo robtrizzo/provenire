@@ -26,6 +26,8 @@ import {
 import { useCharacterSheet } from "./arc2CharacterSheetContext";
 import { Die } from "@/components/die";
 import { useSession } from "next-auth/react";
+import { RealtimeChannel } from "@supabase/supabase-js";
+import supabase from "@/lib/supabase";
 
 interface RollContextProps {
   bonusDiceRed: number;
@@ -39,6 +41,7 @@ interface RollContextProps {
   rollsArePending: boolean;
   isEmotional: boolean;
   isPrivate: boolean;
+  connectionStatus: "connecting" | "connected" | "disconnected";
   setBonusDiceRed: React.Dispatch<React.SetStateAction<number>>;
   setBonusDiceBlue: React.Dispatch<React.SetStateAction<number>>;
   setFortuneDice: React.Dispatch<React.SetStateAction<number>>;
@@ -86,6 +89,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   const [rollRight, setRollRight] = useState<Rollable>();
   const [isEmotional, setIsEmotional] = useState<boolean>(false);
   const [isPrivate, setIsPrivate] = useState<boolean>(false);
+  const [channel, setChannel] = useState<RealtimeChannel>();
 
   const [connectionStatus, setConnectionStatus] = useState<
     "connecting" | "connected" | "disconnected"
@@ -242,6 +246,13 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     }
 
     await saveDiceRoll(roll);
+    if (channel) {
+      channel.send({
+        type: "broadcast",
+        event: "roll",
+        payload: JSON.stringify(roll),
+      });
+    }
     return roll;
   };
 
@@ -480,65 +491,23 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   );
 
   useEffect(() => {
-    let eventSource: EventSource | null = null;
-    let reconnectTimeout: NodeJS.Timeout | null = null;
-    let isUnmounted = false;
+    setConnectionStatus("connecting");
+    const rollChannel = supabase.channel("rolls");
 
-    const connectToStream = () => {
-      if (isUnmounted) return;
-
-      setConnectionStatus("connecting");
-
-      if (eventSource) {
-        eventSource.close();
-      }
-
-      eventSource = new EventSource(`/api/roll/stream`);
-
-      eventSource.addEventListener("open", () => {
-        console.log("EventSource connected");
-        setConnectionStatus("connected");
-        if (reconnectTimeout) {
-          clearTimeout(reconnectTimeout);
-          reconnectTimeout = null;
-        }
-      });
-
-      eventSource.addEventListener("message", (event) => {
-        const roll = JSON.parse(event.data);
+    rollChannel
+      .on("broadcast", { event: "roll" }, (payload) => {
+        const roll = JSON.parse(payload.payload);
         handleRollEvent(roll);
-      });
+      })
+      .subscribe();
 
-      eventSource.addEventListener("error", (error) => {
-        console.log("EventSource error:", error);
-        setConnectionStatus("disconnected");
-
-        if (eventSource) {
-          eventSource.close();
-          eventSource = null;
-        }
-
-        // Attempt to reconnect after 1 seconds
-        if (!isUnmounted && !reconnectTimeout) {
-          console.log("Attempting to reconnect in 1 second...");
-          reconnectTimeout = setTimeout(() => {
-            reconnectTimeout = null;
-            connectToStream();
-          }, 1000);
-        }
-      });
-    };
-
-    connectToStream();
+    setChannel(rollChannel);
+    setConnectionStatus("connected");
 
     return () => {
-      isUnmounted = true;
-      if (reconnectTimeout) {
-        clearTimeout(reconnectTimeout);
-      }
-      if (eventSource) {
-        eventSource.close();
-      }
+      rollChannel.unsubscribe();
+      rollChannel.teardown();
+      setConnectionStatus("disconnected");
     };
   }, [handleRollEvent]);
 
@@ -556,19 +525,13 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     if (!rollLeft && !rollRight) return;
     if (!rollLeft) {
       const roll = await rollActions(type, rollRight);
-      if (isPrivate || connectionStatus !== "disconnected") {
-        diceToast(roll, rollRight?.name);
-      }
+      diceToast(roll, rollRight?.name);
     } else if (!rollRight) {
       const roll = await rollActions(type, rollLeft);
-      if (isPrivate || connectionStatus !== "disconnected") {
-        diceToast(roll, rollLeft.name);
-      }
+      diceToast(roll, rollLeft.name);
     } else {
       const roll = await rollActions(type, rollLeft, rollRight);
-      if (isPrivate || connectionStatus !== "disconnected") {
-        diceToast(roll, rollLeft.name, rollRight.name);
-      }
+      diceToast(roll, rollLeft.name, rollRight.name);
     }
     setRollLeft(undefined);
     setRollRight(undefined);
@@ -578,9 +541,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
 
   async function handleFortuneRollButton(numDice: number) {
     const roll = await rollDice("fortune", 0, numDice, 0);
-    if (isPrivate || connectionStatus !== "disconnected") {
-      diceToast(roll);
-    }
+    diceToast(roll);
     setFortuneDice(0);
   }
 
@@ -598,6 +559,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         rollsArePending,
         isEmotional,
         isPrivate,
+        connectionStatus,
         setBonusDiceRed,
         setBonusDiceBlue,
         setFortuneDice,
