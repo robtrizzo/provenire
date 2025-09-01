@@ -13,7 +13,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useCrewSheet } from "@/contexts/crewSheetContext";
 
 export default function SaveCrewButton() {
-  const { name, updateChannel, setName, setChanges } = useCrewSheet();
+  const { name, setName, setChanges } = useCrewSheet();
   const [open, setOpen] = useState(false);
   const nameInputRef = useRef<HTMLInputElement>(null);
 
@@ -54,7 +54,7 @@ export default function SaveCrewButton() {
         throw new Error("Error saving character to cloud");
       }
       if (!!updatedAt) {
-        updateChannel.publish("update", { ...crew, updatedAt });
+        // updateChannel.publish("update", { ...crew, updatedAt });
       }
       return { success, updatedAt };
     },

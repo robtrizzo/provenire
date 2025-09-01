@@ -8,8 +8,11 @@ export async function addRoll(userId: string, roll: Roll): Promise<void> {
   roll.timestamp = new Date().toISOString();
   await redis.lpush(key, JSON.stringify(roll));
 
+  const strRoll = JSON.stringify(roll);
   // also push to the global rolls list
-  await redis.lpush("rolls", JSON.stringify(roll));
+  await redis.lpush("rolls", strRoll);
+  // publish the roll to the channel
+  await redis.publish("rolls", strRoll);
 }
 
 export async function getRolls(
