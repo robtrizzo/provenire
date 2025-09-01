@@ -87,6 +87,12 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   const [isEmotional, setIsEmotional] = useState<boolean>(false);
   const [isPrivate, setIsPrivate] = useState<boolean>(false);
 
+  const [connectionStatus, setConnectionStatus] = useState<
+    "connecting" | "connected" | "disconnected"
+  >("disconnected");
+
+  console.log("roll websocket connection status: ", connectionStatus);
+
   const { mutateAsync: saveDiceRoll } = useMutation({
     mutationFn: async (roll: Roll) => {
       const userId = session?.data?.user?.id;
@@ -474,16 +480,29 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   );
 
   useEffect(() => {
-    console.log("eventsource effect");
     let eventSource: EventSource | null = null;
     let reconnectTimeout: NodeJS.Timeout | null = null;
+    let isUnmounted = false;
 
     const connectToStream = () => {
+      if (isUnmounted) return;
+
+      setConnectionStatus("connecting");
+
       if (eventSource) {
         eventSource.close();
       }
 
       eventSource = new EventSource(`/api/roll/stream`);
+
+      eventSource.addEventListener("open", () => {
+        console.log("EventSource connected");
+        setConnectionStatus("connected");
+        if (reconnectTimeout) {
+          clearTimeout(reconnectTimeout);
+          reconnectTimeout = null;
+        }
+      });
 
       eventSource.addEventListener("message", (event) => {
         const roll = JSON.parse(event.data);
@@ -492,22 +511,28 @@ export default function RollProvider({ children }: { children: ReactNode }) {
 
       eventSource.addEventListener("error", (error) => {
         console.log("EventSource error:", error);
+        setConnectionStatus("disconnected");
+
         if (eventSource) {
           eventSource.close();
           eventSource = null;
         }
 
-        reconnectTimeout = setTimeout(connectToStream, 1000);
-      });
-
-      eventSource.addEventListener("open", () => {
-        console.log("EventSource connected");
+        // Attempt to reconnect after 1 seconds
+        if (!isUnmounted && !reconnectTimeout) {
+          console.log("Attempting to reconnect in 1 second...");
+          reconnectTimeout = setTimeout(() => {
+            reconnectTimeout = null;
+            connectToStream();
+          }, 1000);
+        }
       });
     };
 
     connectToStream();
 
     return () => {
+      isUnmounted = true;
       if (reconnectTimeout) {
         clearTimeout(reconnectTimeout);
       }
