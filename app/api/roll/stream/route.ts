@@ -1,10 +1,10 @@
-export const runtime = "nodejs";
+// export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 import { createSubscriber } from "@/lib/redis-pubsub";
 import Redis from "ioredis";
 
-const setKey = "posts";
+const setKey = "rolls";
 
 export async function GET() {
   const encoder = new TextEncoder();

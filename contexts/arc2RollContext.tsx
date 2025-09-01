@@ -1,10 +1,11 @@
 "use client";
-import React, {
+import {
   createContext,
   useContext,
   useState,
   ReactNode,
   useEffect,
+  useCallback,
 } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Rollable } from "@/types/game";
@@ -15,6 +16,7 @@ import {
   resultsMessage,
   ticksFromProject,
   dieVariants,
+  getActionsFromTag,
 } from "@/lib/roll";
 import {
   useInfiniteQuery,
@@ -24,7 +26,6 @@ import {
 import { useCharacterSheet } from "./arc2CharacterSheetContext";
 import { Die } from "@/components/die";
 import { useSession } from "next-auth/react";
-import { useChannel, useConnectionStateListener } from "ably/react";
 
 interface RollContextProps {
   bonusDiceRed: number;
@@ -74,24 +75,11 @@ export default function RollProvider({ children }: { children: ReactNode }) {
 
   const { name } = useCharacterSheet();
 
-  const [wsConnectionState, setWsConnectionState] =
-    useState<string>("uninitialized");
-
-  useConnectionStateListener((stateChange) => {
-    console.log(
-      `Websocket connection changed from ${stateChange.previous} to ${stateChange.current}`
-    );
-    setWsConnectionState(stateChange.current);
-  });
-
-  const wsConnected = wsConnectionState === "connected";
-
   const [bonusDiceRed, setBonusDiceRed] = useState<number>(0);
   const [bonusDiceBlue, setBonusDiceBlue] = useState<number>(0);
   const [fortuneDice, setFortuneDice] = useState<number>(0);
   const queryClient = useQueryClient();
   const session = useSession();
-  const username = session?.data?.user.name;
   const [rolls, setRolls] = useState<Roll[]>([]);
   const [currentDiceFilter, setCurrentDiceFilter] = useState<string>("all");
   const [rollLeft, setRollLeft] = useState<Rollable>();
@@ -273,106 +261,117 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     );
   }
 
-  async function diceToast(
-    roll: Roll,
-    action1: string | undefined = undefined,
-    action2: string | undefined = undefined,
-    username: string | undefined = undefined
-  ) {
-    const resultText = resultsMessage(roll);
+  const diceToast = useCallback(
+    (
+      roll: Roll,
+      action1: string | undefined = undefined,
+      action2: string | undefined = undefined,
+      username: string | undefined = undefined
+    ) => {
+      const resultText = resultsMessage(roll);
 
-    let descNode: ReactNode;
-    if (roll.type === "project") {
-      const ticks = ticksFromProject(roll);
-      descNode = (
-        <div className="mt-1">
-          <span>{resultText}</span>
-          <div className="flex items-center justify-center gap-2">
-            <span className="text-center">
-              <b>Limited:</b> {ticks[0]}
-            </span>
-            <span className="text-center">
-              <b>Standard:</b> {ticks[1]}
-            </span>
-            <span className="text-center">
-              <b>Great:</b> {ticks[2]}
-            </span>
+      let descNode: ReactNode;
+      if (roll.type === "project") {
+        const ticks = ticksFromProject(roll);
+        descNode = (
+          <div className="mt-1">
+            <span>{resultText}</span>
+            <div className="flex items-center justify-center gap-2">
+              <span className="text-center">
+                <b>Limited:</b> {ticks[0]}
+              </span>
+              <span className="text-center">
+                <b>Standard:</b> {ticks[1]}
+              </span>
+              <span className="text-center">
+                <b>Great:</b> {ticks[2]}
+              </span>
+            </div>
           </div>
-        </div>
-      );
-    } else {
-      descNode = (
-        <div className="mt-1">
-          <span>{resultText}</span>
-        </div>
-      );
-    }
-
-    // fortune doesn't have an action. Set the action to "Fortune" to make it simpler
-    if (roll.type === "fortune") {
-      action1 = "Fortune";
-    }
-
-    toast({
-      variant: "grid",
-      // @ts-expect-error todo
-      title: (
-        <div className="flex justify-between items-center w-full border-b border-border pb-1 pt-3 relative">
-          {username && (
-            <span className="absolute top-0 left-0 text-xs text-muted-foreground">
-              {username}
-            </span>
-          )}
-
-          <div className="mt-1.5">
-            Rolled {action1}
-            {action2 ? ` + ${action2}` : ""}
+        );
+      } else {
+        descNode = (
+          <div className="mt-1">
+            <span>{resultText}</span>
           </div>
+        );
+      }
 
-          <div className="flex flex-wrap gap-1 justify-end">
-            {roll.redDice.map((r, i) => (
-              <Die key={i} roll={r} className="h-10 w-10 text-red-800" />
-            ))}
-            {roll.blueDice.map((r, i) => (
-              <Die key={i} roll={r} className="h-10 w-10 text-blue-800" />
-            ))}
-            {roll.pinkDice?.map((r, i) => (
-              <Die key={i} roll={r} className="h-10 w-10 text-pink-800" />
-            ))}
+      // fortune doesn't have an action. Set the action to "Fortune" to make it simpler
+      if (roll.type === "fortune") {
+        action1 = "Fortune";
+      }
+
+      toast({
+        variant: "grid",
+        // @ts-expect-error todo
+        title: (
+          <div className="flex justify-between items-center w-full border-b border-border pb-1 pt-3 relative">
+            {username && (
+              <span className="absolute top-0 left-0 text-xs text-muted-foreground">
+                {username}
+              </span>
+            )}
+
+            <div className="mt-1.5">
+              Rolled {action1}
+              {action2 ? ` + ${action2}` : ""}
+            </div>
+
+            <div className="flex flex-wrap gap-1 justify-end">
+              {roll.redDice.map((r, i) => (
+                <Die key={i} roll={r} className="h-10 w-10 text-red-800" />
+              ))}
+              {roll.blueDice.map((r, i) => (
+                <Die key={i} roll={r} className="h-10 w-10 text-blue-800" />
+              ))}
+              {roll.pinkDice?.map((r, i) => (
+                <Die key={i} roll={r} className="h-10 w-10 text-pink-800" />
+              ))}
+            </div>
           </div>
-        </div>
-      ),
-      description: (
-        <div className="flex items-center gap-4">
-          {roll.result === "crit" ? (
-            [
-              roll.redDice
-                .filter((r) => r === 6)
-                .map((r, i) => (
-                  <Die key={i} roll={r} className="h-10 w-10 text-red-400" />
-                )),
-              roll.blueDice
-                .filter((r) => r === 6)
-                .map((r, i) => (
-                  <Die key={i} roll={r} className={"h-10 w-10 text-blue-800"} />
-                )),
-              roll.pinkDice
-                ?.filter((r) => r === 6)
-                .map((r, i) => (
-                  <Die key={i} roll={r} className={"h-10 w-10 text-pink-400"} />
-                )),
-            ]
-          ) : (
-            <Die
-              roll={roll.resultDie}
-              className={dieVariants({ type: getHighestRollColor(roll) })}
-            />
-          )}
-          {descNode}
-        </div>
-      ),
-    });
-  }
+        ),
+        description: (
+          <div className="flex items-center gap-4">
+            {roll.result === "crit" ? (
+              [
+                roll.redDice
+                  .filter((r) => r === 6)
+                  .map((r, i) => (
+                    <Die key={i} roll={r} className="h-10 w-10 text-red-400" />
+                  )),
+                roll.blueDice
+                  .filter((r) => r === 6)
+                  .map((r, i) => (
+                    <Die
+                      key={i}
+                      roll={r}
+                      className={"h-10 w-10 text-blue-800"}
+                    />
+                  )),
+                roll.pinkDice
+                  ?.filter((r) => r === 6)
+                  .map((r, i) => (
+                    <Die
+                      key={i}
+                      roll={r}
+                      className={"h-10 w-10 text-pink-400"}
+                    />
+                  )),
+              ]
+            ) : (
+              <Die
+                roll={roll.resultDie}
+                className={dieVariants({ type: getHighestRollColor(roll) })}
+              />
+            )}
+            {descNode}
+          </div>
+        ),
+      });
+    },
+    [toast]
+  );
 
   const buildUrl = (val: string, cursor: number) => {
     const baseUrl = "/api/roll";
@@ -462,26 +461,61 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     }
   }, [session?.data?.user?.id]);
 
-  const { channel } = useChannel("arc2-rolls", "new", (message) => {
-    if (session?.status !== "authenticated") {
-      return;
-    }
-    const {
-      roll,
-      action1,
-      action2,
-      username,
-    }: {
-      roll: Roll;
-      action1: string | undefined;
-      action2: string | undefined;
-      username: string;
-    } = message.data;
-    diceToast(roll, action1, action2, username);
-    if (currentDiceFilter === "all" || currentDiceFilter === roll.userid) {
-      setRolls([roll, ...rolls]);
-    }
-  });
+  const handleRollEvent = useCallback(
+    (roll: Roll) => {
+      console.log("roll data", roll);
+      const [action1, action2] = getActionsFromTag(roll.tag ?? "");
+      diceToast(roll, action1 || "", action2 || "", roll.charName);
+      if (currentDiceFilter === "all" || currentDiceFilter === roll.userid) {
+        setRolls((prev) => [roll, ...prev]);
+      }
+    },
+    [currentDiceFilter, setRolls, diceToast]
+  );
+
+  useEffect(() => {
+    console.log("eventsource effect");
+    let eventSource: EventSource | null = null;
+    let reconnectTimeout: NodeJS.Timeout | null = null;
+
+    const connectToStream = () => {
+      if (eventSource) {
+        eventSource.close();
+      }
+
+      eventSource = new EventSource(`/api/roll/stream`);
+
+      eventSource.addEventListener("message", (event) => {
+        const roll = JSON.parse(event.data);
+        handleRollEvent(roll);
+      });
+
+      eventSource.addEventListener("error", (error) => {
+        console.log("EventSource error:", error);
+        if (eventSource) {
+          eventSource.close();
+          eventSource = null;
+        }
+
+        reconnectTimeout = setTimeout(connectToStream, 1000);
+      });
+
+      eventSource.addEventListener("open", () => {
+        console.log("EventSource connected");
+      });
+    };
+
+    connectToStream();
+
+    return () => {
+      if (reconnectTimeout) {
+        clearTimeout(reconnectTimeout);
+      }
+      if (eventSource) {
+        eventSource.close();
+      }
+    };
+  }, [handleRollEvent]);
 
   const handleCurrentDiceFilterChange = (val: string) => {
     queryClient.invalidateQueries({ queryKey: ["rolls", val] });
@@ -497,39 +531,18 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     if (!rollLeft && !rollRight) return;
     if (!rollLeft) {
       const roll = await rollActions(type, rollRight);
-      if (isPrivate || !wsConnected) {
+      if (isPrivate) {
         diceToast(roll, rollRight?.name);
-      } else {
-        channel.publish("new", {
-          roll,
-          action1: rollRight?.name,
-          action2: undefined,
-          username,
-        });
       }
     } else if (!rollRight) {
       const roll = await rollActions(type, rollLeft);
-      if (isPrivate || !wsConnected) {
+      if (isPrivate) {
         diceToast(roll, rollLeft.name);
-      } else {
-        channel.publish("new", {
-          roll,
-          action1: rollLeft.name,
-          action2: undefined,
-          username,
-        });
       }
     } else {
       const roll = await rollActions(type, rollLeft, rollRight);
-      if (isPrivate || !wsConnected) {
+      if (isPrivate) {
         diceToast(roll, rollLeft.name, rollRight.name);
-      } else {
-        channel.publish("new", {
-          roll,
-          action1: rollLeft.name,
-          action2: rollRight.name,
-          username,
-        });
       }
     }
     setRollLeft(undefined);
@@ -540,15 +553,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
 
   async function handleFortuneRollButton(numDice: number) {
     const roll = await rollDice("fortune", 0, numDice, 0);
-    if (isPrivate || !wsConnected) {
+    if (isPrivate) {
       diceToast(roll);
-    } else {
-      channel.publish("new", {
-        roll,
-        action1: undefined,
-        action2: undefined,
-        username,
-      });
     }
     setFortuneDice(0);
   }

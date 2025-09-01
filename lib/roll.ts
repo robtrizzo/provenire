@@ -194,3 +194,8 @@ export function resultsMessage(roll: Roll): string {
   }
   return resultText;
 }
+
+export function getActionsFromTag(tag: string): string[] {
+  const tokens = tag.split("|");
+  return tokens.map((token) => token.trim()).filter((token) => token !== "");
+}
