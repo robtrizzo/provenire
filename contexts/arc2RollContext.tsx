@@ -556,17 +556,17 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     if (!rollLeft && !rollRight) return;
     if (!rollLeft) {
       const roll = await rollActions(type, rollRight);
-      if (isPrivate) {
+      if (isPrivate || connectionStatus !== "disconnected") {
         diceToast(roll, rollRight?.name);
       }
     } else if (!rollRight) {
       const roll = await rollActions(type, rollLeft);
-      if (isPrivate) {
+      if (isPrivate || connectionStatus !== "disconnected") {
         diceToast(roll, rollLeft.name);
       }
     } else {
       const roll = await rollActions(type, rollLeft, rollRight);
-      if (isPrivate) {
+      if (isPrivate || connectionStatus !== "disconnected") {
         diceToast(roll, rollLeft.name, rollRight.name);
       }
     }
@@ -578,7 +578,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
 
   async function handleFortuneRollButton(numDice: number) {
     const roll = await rollDice("fortune", 0, numDice, 0);
-    if (isPrivate) {
+    if (isPrivate || connectionStatus !== "disconnected") {
       diceToast(roll);
     }
     setFortuneDice(0);
