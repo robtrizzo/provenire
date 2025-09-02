@@ -645,7 +645,7 @@ export default function CharacterSheetProvider({
       };
     }
 
-    updatedHarm[level].slots[slotIndex] = description.trim() || "";
+    updatedHarm[level].slots[slotIndex] = description || "";
 
     setHarm(updatedHarm);
     handleDebounceChange();
