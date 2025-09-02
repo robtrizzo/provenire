@@ -72,6 +72,7 @@ interface CharacterSheetContextProps {
   bonds: BondV2[];
   rivals: BondV2[];
   xp: number;
+  customResourceValues: Map<string, unknown>;
   stress: number;
   maxStress: number;
   conditions: string[];
@@ -121,6 +122,9 @@ interface CharacterSheetContextProps {
   setBonds: React.Dispatch<React.SetStateAction<BondV2[]>>;
   setRivals: React.Dispatch<React.SetStateAction<BondV2[]>>;
   setXp: React.Dispatch<React.SetStateAction<number>>;
+  setCustomResourceValues: React.Dispatch<
+    React.SetStateAction<Map<string, unknown>>
+  >;
   setMaxStress: React.Dispatch<React.SetStateAction<number>>;
   setStress: React.Dispatch<React.SetStateAction<number>>;
   setConditions: React.Dispatch<React.SetStateAction<string[]>>;
@@ -134,6 +138,7 @@ interface CharacterSheetContextProps {
   setLoadout: React.Dispatch<React.SetStateAction<Loadout | undefined>>;
   handleUpdateQuestion: (key: string, value: string) => void;
   handleUpdateSleeve: (sleeve: Sleeve | undefined) => void;
+  handleUpdateCustomResource: (resourceId: string, value: unknown) => void;
   harmsEmpty: () => boolean;
   handleUpdateHarmSlot: (
     level: number,
@@ -217,6 +222,10 @@ export default function CharacterSheetProvider({
 
   const [xp, setXp] = useState(0);
 
+  const [customResourceValues, setCustomResourceValues] = useState<
+    Map<string, unknown>
+  >(new Map());
+
   const [maxStress, setMaxStress] = useState(9);
   const [stress, setStress] = useState(0);
   const [conditions, setConditions] = useState<string[]>([]);
@@ -270,6 +279,7 @@ export default function CharacterSheetProvider({
     setBonds([]);
     setRivals([]);
     setXp(0);
+    setCustomResourceValues(new Map());
     setConditions([]);
     setStress(0);
     setMaxStress(0);
@@ -322,6 +332,8 @@ export default function CharacterSheetProvider({
 
         setXp(parsed.xp);
 
+        setCustomResourceValues(new Map(parsed.customResourceValues || []));
+
         if (parsed.conditions) {
           setConditions(parsed.conditions);
         }
@@ -372,6 +384,7 @@ export default function CharacterSheetProvider({
           bonds,
           rivals,
           xp,
+          customResourceValues: Array.from(customResourceValues),
           maxStress,
           stress,
           conditions,
@@ -424,6 +437,7 @@ export default function CharacterSheetProvider({
         bonds,
         rivals,
         xp,
+        customResourceValues: Array.from(customResourceValues),
         maxStress,
         stress,
         conditions,
@@ -796,6 +810,13 @@ export default function CharacterSheetProvider({
     setChanges(true);
   }
 
+  function handleUpdateCustomResource(resourceId: string, value: unknown) {
+    setCustomResourceValues(
+      new Map(customResourceValues.set(resourceId, value))
+    );
+    handleDebounceChange();
+  }
+
   return (
     <CharacterSheetContext.Provider
       value={{
@@ -824,6 +845,7 @@ export default function CharacterSheetProvider({
         bonds,
         rivals,
         xp,
+        customResourceValues,
         maxStress,
         stress,
         conditions,
@@ -862,6 +884,7 @@ export default function CharacterSheetProvider({
         setBonds,
         setRivals,
         setXp,
+        setCustomResourceValues,
         setMaxStress,
         setStress,
         setConditions,
@@ -886,6 +909,7 @@ export default function CharacterSheetProvider({
         handleAddAvailableAction,
         handleRemoveAvailableAction,
         handleEditAction,
+        handleUpdateCustomResource,
         setCloudUpdatedAt,
         clearCharacter: setToDefaults,
       }}

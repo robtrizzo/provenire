@@ -299,11 +299,35 @@ export interface HarmModifier {
   sourceId: string;
 }
 
+export type CustomResourceType = "xp-clock" | "heat-track";
+
+export interface CustomResource {
+  id: string;
+  name: string;
+  type: CustomResourceType;
+  description?: string;
+  config: CustomResourceConfig;
+}
+
+export type CustomResourceConfig = XPClockConfig | HeatTrackConfig;
+
+export interface XPClockConfig {
+  xp: number;
+  default: 0;
+}
+
+export interface HeatTrackConfig {
+  heat: number;
+  max: number;
+  default: 0;
+}
+
 export type Operative = {
   name: string;
   action: string;
   harmModifiers?: HarmModifier[];
   abilities: Ability[];
+  customResources?: CustomResource[];
 };
 
 export type FightingStyleV2 = {

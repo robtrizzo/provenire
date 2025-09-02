@@ -3,6 +3,7 @@ import ActionSection from "./action-section";
 import BaggageSection from "./baggage-section";
 import BondsSection from "./bonds-section";
 import Controls from "./controls";
+import CustomResources from "./custom-resources-section";
 import HarmSection from "./harm-section";
 import LoadoutSection from "./loadout-section";
 import Options from "./options";
@@ -27,6 +28,7 @@ export default function CharacterSheet() {
           <div className="my-3 grid grid-cols-1 md:grid-cols-2 gap-6 focus-visible:outline-hidden">
             <div className="mt-4">
               <XPSection />
+              <CustomResources />
               <WealthSection />
               <ActionSection />
               <BondsSection />

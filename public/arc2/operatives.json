@@ -104,6 +104,18 @@
       { "name": "Night Terrors", "slug": "night-terrors", "cost": 3 },
       { "name": "Beast Within", "slug": "beast-within", "cost": 3 },
       { "name": "Warform", "slug": "warform", "cost": 5 }
+    ],
+    "customResources": [
+      {
+        "id": "overcorp-heat",
+        "name": "Heat (Overcorp)",
+        "type": "heat-track",
+        "config": {
+          "max": 6,
+          "heat": 0,
+          "default": 0
+        }
+      }
     ]
   },
   {
@@ -119,6 +131,17 @@
       { "name": "Mimicry", "slug": "mimicry", "cost": 5 },
       { "name": "Relentless Regimen", "slug": "relentless-regimen", "cost": 5 },
       { "name": "Max Potential", "slug": "max-potential", "cost": 7 }
+    ],
+    "customResources": [
+      {
+        "id": "action-potential",
+        "name": "Potential",
+        "type": "xp-clock",
+        "config": {
+          "xp": 0,
+          "default": 0
+        }
+      }
     ]
   },
   {
