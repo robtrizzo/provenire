@@ -22,7 +22,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useCharacterFilters } from "../(providers)/character-filters-provider";
+import { useCharacterFilters } from "../../../../providers/character-filters-provider";
 
 const FormSchema = z.object({
   filters: z.array(CharacterFilterSchema),
