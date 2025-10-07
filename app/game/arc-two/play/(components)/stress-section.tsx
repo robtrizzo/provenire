@@ -15,6 +15,7 @@ export default function StressSection() {
     setStress,
     setConditions,
     setChanges,
+    isFetching,
   } = useCharacterSheet();
 
   const unlockedBaggageEntries = unlockedBaggage.reduce(
@@ -24,7 +25,7 @@ export default function StressSection() {
   );
 
   const stressReducedByBaggage =
-    unlockedBaggageEntries <= 4 ? unlockedBaggageEntries : 0;
+    unlockedBaggageEntries < 4 ? unlockedBaggageEntries : 0;
 
   const conditionsList = ["Insecure", "Afraid", "Angry", "Hopeless", "Guilty"];
   if (selectedArchetype?.name === "Adventurer") {
@@ -56,27 +57,40 @@ export default function StressSection() {
         />
       </div>
       <div className="flex gap-4 flex-wrap mt-2">
-        {conditionsList.map((c) => {
-          if (!c) return null;
-          return (
-            <Condition
-              key={c}
-              name={c}
-              active={conditions.includes(c)}
-              disabled={
-                conditions.length >= maxStress && !conditions.includes(c)
-              }
-              onClick={() => {
-                if (conditions.includes(c)) {
-                  setConditions(conditions.filter((con) => con !== c));
-                } else if (conditions.length <= maxStress) {
-                  setConditions([...conditions, c]);
-                }
-                setChanges(true);
-              }}
-            />
-          );
-        })}
+        {isFetching
+          ? conditionsList.map((c) => {
+              if (!c) return null;
+              return (
+                <Condition
+                  key={c}
+                  name={c}
+                  active={false}
+                  disabled={true}
+                  onClick={() => {}}
+                />
+              );
+            })
+          : conditionsList.map((c, idx) => {
+              if (!c) return null;
+              return (
+                <Condition
+                  key={c + idx}
+                  name={c}
+                  active={conditions.includes(c)}
+                  disabled={
+                    conditions.length >= maxStress && !conditions.includes(c)
+                  }
+                  onClick={() => {
+                    if (conditions.includes(c)) {
+                      setConditions(conditions.filter((con) => con !== c));
+                    } else if (conditions.length <= maxStress) {
+                      setConditions([...conditions, c]);
+                    }
+                    setChanges(true);
+                  }}
+                />
+              );
+            })}
       </div>
     </div>
   );
