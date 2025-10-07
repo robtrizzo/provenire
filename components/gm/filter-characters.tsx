@@ -8,7 +8,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Filter, Link as LinkIcon } from "lucide-react";
 import { useState } from "react";
-import { useCharacterFilters } from "@/app/admin/characters/(providers)/character-filters-provider";
+import { useCharacterFilters } from "@/providers/character-filters-provider";
 import { CharacterFilter } from "@/types/ui";
 import Link from "next/link";
 

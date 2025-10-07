@@ -1,8 +1,8 @@
 import Breadcrumbs from "@/components/ui/breadcrumbs";
 import DiceSheet from "@/app/game/arc-one/play/(components)/dice-history/sheet";
-import FilterCharacters from "./(components)/filter-characters";
-import CharacterFiltersProvider from "@/app/admin/characters/(providers)/character-filters-provider";
-import Characters from "./(components)/characters";
+import FilterCharacters from "@/components/gm/filter-characters";
+import CharacterFiltersProvider from "@/providers/character-filters-provider";
+import Characters from "../../../../../components/gm/characters";
 
 export default function Page() {
   return (

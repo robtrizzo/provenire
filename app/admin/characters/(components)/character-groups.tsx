@@ -11,7 +11,7 @@ import { Separator } from "@/components/ui/separator";
 import { Plus, Trash, X } from "lucide-react";
 import { useRef } from "react";
 import type { CharacterFilter } from "@/types/ui";
-import { useCharacterFilters } from "../(providers)/character-filters-provider";
+import { useCharacterFilters } from "../../../../providers/character-filters-provider";
 
 export default function CharacterGroups() {
   const { filters, updateFilters } = useCharacterFilters();

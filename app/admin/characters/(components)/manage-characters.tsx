@@ -2,7 +2,7 @@ import { Character } from "@/types/game";
 import { TypographyH1, TypographyH2 } from "@/components/ui/typography";
 import CharacterGroups from "./character-groups";
 import { CharactersTable } from "./characters-table";
-import CharacterFiltersProvider from "../(providers)/character-filters-provider";
+import CharacterFiltersProvider from "../../../../providers/character-filters-provider";
 export default function ManageCharacters({
   characters,
 }: {
