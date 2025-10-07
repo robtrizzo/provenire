@@ -363,6 +363,7 @@ export interface CharacterV2 {
     left: ActionV2[];
     right: ActionV2[];
   };
+  memory?: number;
   unlockedBaggage?: Baggage[];
 }
 

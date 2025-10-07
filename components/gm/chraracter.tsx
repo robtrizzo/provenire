@@ -3,11 +3,7 @@ import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { TypographyH3 } from "@/components/ui/typography";
-import type {
-  Character as Char,
-  CharacterHarm,
-  CharacterV2,
-} from "@/types/game";
+import type { Character as Char, CharacterV2 } from "@/types/game";
 import Image from "next/image";
 import { FC, ReactNode } from "react";
 
@@ -21,6 +17,7 @@ type Character = FC<CharacterProps> & {
   HarmV2: FC<CharacterProps>;
   StressV1: FC<CharacterProps>;
   StressV2: FC<CharacterProps>;
+  Baggage: FC<CharacterProps>;
 };
 
 const Character = ({ character, children }: CharacterProps) => {
@@ -201,6 +198,7 @@ function StressV1({ character }: { character: Char }) {
     </div>
   );
 }
+
 function StressV2({ character }: { character: CharacterV2 }) {
   const numBaggage = Math.min(
     4,
@@ -247,8 +245,47 @@ function StressV2({ character }: { character: CharacterV2 }) {
   );
 }
 
+function Baggage({ character }: { character: CharacterV2 }) {
+  const unlockedBaggage = character.unlockedBaggage || [];
+  const unlocks = unlockedBaggage.flatMap((ub) =>
+    ub.unlocks.filter((b) => !!b.unlocked)
+  );
+  const unlockedBaggageEntries = unlockedBaggage.reduce(
+    (acc, ulb) =>
+      acc + ulb.unlocks.reduce((acc, ul) => (ul.unlocked ? acc + 1 : acc), 0),
+    0
+  );
+
+  const maxMemory = unlockedBaggageEntries >= 4 ? 2 : 4;
+  return (
+    <div className="mt-4 flex flex-col gap-4">
+      <div className="flex gap-4 items-start">
+        <span>Memory</span>
+        <Clock
+          width={35}
+          height={35}
+          max={maxMemory}
+          current={character.memory || 0}
+        />
+      </div>
+      <div className="flex gap-4 items-start">
+        <span>Baggage</span>
+        {unlocks?.map((u, idx) => (
+          <div
+            key={u.name + idx}
+            className="py-1 px-2 border-[1px] rounded-md text-sm"
+          >
+            {u.name}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 Character.HarmV1 = HarmV1;
 Character.HarmV2 = HarmV2;
 Character.StressV1 = StressV1;
 Character.StressV2 = StressV2;
+Character.Baggage = Baggage;
 export default Character;

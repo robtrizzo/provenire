@@ -58,6 +58,7 @@ export default function Page() {
               const c = character as unknown as CharacterV2;
               return (
                 <Character character={character}>
+                  <Character.Baggage character={c} />
                   <Character.StressV2 character={c} />
                   <Character.HarmV2 character={c} />
                 </Character>
