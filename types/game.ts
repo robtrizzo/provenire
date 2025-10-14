@@ -15,6 +15,7 @@ export interface Character {
   hArmor: boolean;
   abilities: string[];
   version?: number;
+  id?: string;
 }
 
 export type Archetype = {
@@ -365,6 +366,8 @@ export interface CharacterV2 {
   };
   memory?: number;
   unlockedBaggage?: Baggage[];
+  version?: number;
+  id?: string;
 }
 
 export type CharacterHarm = {

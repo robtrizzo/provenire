@@ -28,6 +28,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { useSession } from "next-auth/react";
 import wealthLevels from "@/public/arc2/wealth.json";
+import { useParams } from "next/navigation";
 
 const SUPPORTED_VERSION = 2;
 
@@ -184,6 +185,9 @@ export default function CharacterSheetProvider({
   const session = useSession();
   const isAdmin = session?.data?.user.role === "admin";
 
+  const params = useParams();
+  const characterId = params?.characterId as string;
+
   const [selectedArchetype, setSelectedArchetype] = useState<ArchetypeV2>();
   const [selectedBackground, setSelectedBackground] = useState<BackgroundV2>();
   const [selectedSleeve, setSelectedSleeve] = useState<Sleeve>();
@@ -298,7 +302,7 @@ export default function CharacterSheetProvider({
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const data = localStorage.getItem("charsheet-arc2");
+    const data = localStorage.getItem(`charsheet-${characterId}`);
     if (data) {
       const parsed = JSON.parse(data);
       if (!parsed) {
@@ -354,7 +358,7 @@ export default function CharacterSheetProvider({
     } else {
       setToDefaults();
     }
-  }, [characterLoaded]);
+  }, [characterLoaded, characterId]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -399,7 +403,7 @@ export default function CharacterSheetProvider({
           items,
           updatedAt: savedDate,
         };
-        localStorage.setItem("charsheet-arc2", JSON.stringify(data));
+        localStorage.setItem(`charsheet-${characterId}`, JSON.stringify(data));
         setLocalUpdatedAt(savedDate);
         setChanges(false);
         setDbChanges(true);

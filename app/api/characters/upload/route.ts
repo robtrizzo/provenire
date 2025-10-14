@@ -3,6 +3,7 @@ import { checkAuth } from "@/lib/auth";
 import redis from "@/lib/redis";
 import { Character } from "@/types/game";
 import { User } from "next-auth";
+import { nanoid } from "@/lib/nanoid";
 
 async function insertCharacter({
   user,
@@ -11,16 +12,14 @@ async function insertCharacter({
   user: User;
   characterJSON: Character;
 }) {
-  const characterName = characterJSON?.name;
-  if (!characterName) {
-    throw new Error("No character name provided. Aborting insert.");
-  }
+  const id = nanoid();
   characterJSON = {
     ...characterJSON,
     updatedAt: new Date(),
     player: user.name!,
+    id,
   };
-  const key = `user:${user.id}:character:${characterName}`;
+  const key = `user:${user.id}:character:${id}`;
   await redis.set(key, characterJSON);
 }
 

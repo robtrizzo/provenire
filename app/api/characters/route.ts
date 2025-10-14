@@ -1,16 +1,10 @@
 import { NextResponse } from "next/server";
 import { checkAuth } from "@/lib/auth";
-import redis, { findKeysByPattern } from "@/lib/redis";
-import { getAllCharacters } from "@/handlers/characters";
+import {
+  getAllCharacters,
+  getAllCharactersForUser,
+} from "@/handlers/characters";
 import { Character } from "@/types/game";
-
-async function getAllCharactersForUser(userId: string | undefined) {
-  if (!userId) return [];
-  const pattern = `user:${userId}:character:*`;
-  const keys = await findKeysByPattern(pattern);
-  const characters = await Promise.all(keys.map((key) => redis.get(key)));
-  return characters;
-}
 
 export async function GET(req: Request) {
   const { session, error } = await checkAuth("player");
