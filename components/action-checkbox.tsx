@@ -4,15 +4,18 @@ import { Checkbox } from "@/components/ui/checkbox";
 export function ActionCheckbox({
   initialLevel,
   onClick,
+  disabled = false,
 }: {
   initialLevel?: number;
   onClick?: (n: number) => void;
+  disabled?: boolean;
 }) {
   const [level, setLevel] = useState(initialLevel || 0);
   if (level === 0) {
     return (
       <Checkbox
         onClick={(e) => {
+          if (disabled) return;
           e.stopPropagation();
           setLevel(1);
           if (onClick) {
@@ -28,6 +31,7 @@ export function ActionCheckbox({
     return (
       <Checkbox
         onClick={(e) => {
+          if (disabled) return;
           e.stopPropagation();
           setLevel(2);
           if (onClick) {
@@ -35,6 +39,7 @@ export function ActionCheckbox({
           }
         }}
         onContextMenu={(e) => {
+          if (disabled) return;
           e.preventDefault();
           setLevel(0);
           if (onClick) {
@@ -50,6 +55,7 @@ export function ActionCheckbox({
     return (
       <Checkbox
         onClick={(e) => {
+          if (disabled) return;
           e.stopPropagation();
           setLevel(0);
           if (onClick) {
@@ -57,6 +63,7 @@ export function ActionCheckbox({
           }
         }}
         onContextMenu={(e) => {
+          if (disabled) return;
           e.preventDefault();
           setLevel(1);
           if (onClick) {

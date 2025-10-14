@@ -14,7 +14,17 @@ import {
 } from "@/components/ui/typography";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { ShieldAlert, Dices, Cog, BookOpen } from "lucide-react";
+import {
+  ShieldAlert,
+  Dices,
+  Cog,
+  BookOpen,
+  Handshake,
+  UserStar,
+  LockKeyholeOpen,
+  LockKeyhole,
+  UserX,
+} from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { useCharacterSheet } from "@/contexts/arc2CharacterSheetContext";
 import { useRoll } from "@/contexts/arc2RollContext";
@@ -24,6 +34,19 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { ShineBorder } from "@/components/ui/shine-border";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Separator } from "@/components/ui/separator";
+import { GroupRollMember } from "@/types/roll";
+import { ActionScore } from "@/components/action-score";
+import ActionScoreArray from "@/components/ui/action-score-array";
+import { countScoreEntries } from "@/lib/roll";
 
 export default function RollSection() {
   const {
@@ -31,8 +54,6 @@ export default function RollSection() {
     setIsPrivate,
     rollLeft,
     rollRight,
-    setRollLeft,
-    setRollRight,
     bonusDiceRed,
     bonusDiceBlue,
     fortuneDice,
@@ -46,17 +67,11 @@ export default function RollSection() {
     connectionStatus,
   } = useRoll();
 
-  const { actions } = useCharacterSheet();
-
-  const enabledActions = actions.filter(
-    (a) => a.type !== "codex" || a.subscriptionPaid
-  );
-  const leftActions = enabledActions.filter((a) => a.position === "left");
-  const rightActions = enabledActions.filter((a) => a.position === "right");
+  const [groupRollOpen, setGroupRollOpen] = useState(false);
 
   return (
     <Card className="mt-4 p-4 flex flex-col gap-4">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-start">
         {connectionStatus === "disconnected" ? (
           <TypographyP className="text-red-600 text-xs font-mono">
             Disconnected
@@ -71,6 +86,8 @@ export default function RollSection() {
           </TypographyP>
         )}
 
+        <GroupRollDialog open={groupRollOpen} setOpen={setGroupRollOpen} />
+
         <div className="flex items-center space-x-2">
           <Label htmlFor="private-rolls">Private</Label>
           <Switch
@@ -80,77 +97,7 @@ export default function RollSection() {
           />
         </div>
       </div>
-      <div className="flex gap-4">
-        <Select
-          value={rollLeft?.name || ""}
-          onValueChange={(value) => {
-            const foundAction = leftActions.find((a) => a.name === value);
-            setRollLeft(foundAction);
-          }}
-        >
-          <SelectTrigger>
-            <SelectValue>
-              {rollLeft?.name || (
-                <span className="text-muted-foreground">Select an action</span>
-              )}
-            </SelectValue>
-          </SelectTrigger>
-          <SelectContent>
-            {leftActions.map((la, i) => (
-              <SelectItem key={la.name + i} value={la.name}>
-                {la.name}
-              </SelectItem>
-            ))}
-            <SelectSeparator />
-            <Button
-              variant="secondary"
-              size="sm"
-              className="w-full px-2"
-              onClick={(e) => {
-                e.stopPropagation();
-                setRollLeft(undefined);
-              }}
-            >
-              Clear
-            </Button>
-          </SelectContent>
-        </Select>
-
-        <Select
-          value={rollRight?.name || ""}
-          onValueChange={(value) => {
-            const foundAction = rightActions.find((a) => a.name === value);
-            setRollRight(foundAction);
-          }}
-        >
-          <SelectTrigger>
-            <SelectValue>
-              {rollRight?.name || (
-                <span className="text-muted-foreground">Select an action</span>
-              )}
-            </SelectValue>
-          </SelectTrigger>
-          <SelectContent>
-            {rightActions.map((la, i) => (
-              <SelectItem key={la.name + i} value={la.name}>
-                {la.name}
-              </SelectItem>
-            ))}
-            <SelectSeparator />
-            <Button
-              variant="secondary"
-              size="sm"
-              className="w-full px-2"
-              onClick={(e) => {
-                e.stopPropagation();
-                setRollRight(undefined);
-              }}
-            >
-              Clear
-            </Button>
-          </SelectContent>
-        </Select>
-      </div>
+      <RollSelect />
       <div className="flex gap-4 mx-auto">
         <Button
           variant="destructive"
@@ -179,39 +126,7 @@ export default function RollSection() {
       </div>
       <div className="flex gap-4 justify-between flex-wrap">
         <div className="flex gap-4">
-          <div className="flex flex-col gap-2">
-            <Label htmlFor="bonus-dice" className="text-center">
-              Bonus Dice
-            </Label>
-            <div className="flex gap-2">
-              <div className="flex gap-2 items-center">
-                <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500" />
-                <Input
-                  id="bonus-dice"
-                  type="number"
-                  className="w-20"
-                  min={0}
-                  value={bonusDiceRed}
-                  onChange={(e) => {
-                    setBonusDiceRed(parseInt(e.target.value));
-                  }}
-                />
-              </div>
-              <div className="flex gap-2 items-center">
-                <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500" />
-                <Input
-                  id="bonus-dice"
-                  type="number"
-                  className="w-20"
-                  min={0}
-                  value={bonusDiceBlue}
-                  onChange={(e) => {
-                    setBonusDiceBlue(parseInt(e.target.value));
-                  }}
-                />
-              </div>
-            </div>
-          </div>
+          <BonusDiceSection />
           <div className="text-muted-foreground text-xs leading-3 mt-2">
             <span>
               You can gain bonus dice through:{" "}
@@ -223,62 +138,7 @@ export default function RollSection() {
               </ul>
             </span>
           </div>
-          <div className="text-muted-foreground text-xs leading-3 mt-2">
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button size="icon" variant="outline">
-                  <BookOpen className="text-blue-500" />
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="max-w-screen w-[450px] relative h-[500px] overflow-auto">
-                <TypographyP>
-                  There are a number of ways to gain bonus dice in{" "}
-                  <i>Provenire</i>. All bonus dice are blue, meaning they
-                  don&apos;t incur reduced effect if they&apos;re your highest
-                  roll.
-                </TypographyP>
-                <TypographyUnorderedList>
-                  <li>
-                    <b>Teamwork:</b> Another member of the crew marks{" "}
-                    <b>1 stress</b> and describes how they help you out. You add
-                    their <b>bond</b> with <b>you</b> to your roll.{" "}
-                    <i>
-                      Only one person can help you, otherwise it should be a
-                      group roll.
-                    </i>
-                  </li>
-                  <li>
-                    <b>Push yourself:</b> Describe how you dig deep to ensure
-                    success. Mark <b>2 stress</b> and get{" "}
-                    <b>1 bonus blue die</b>.{" "}
-                    <i>
-                      If you push yourself, you cannot also take a devil&apos;s
-                      bargain.
-                    </i>
-                  </li>
-                  <li>
-                    <b>Devil&apos;s Bargain:</b> The <b>Narrator</b> presents an
-                    interesting problem or consequence. Decide if you want to
-                    take the deal. If you do, get <b>1 bonus blue die</b>.{" "}
-                    <i>
-                      You may <b>resist</b> the consequences of the bargain if
-                      you want.
-                    </i>
-                  </li>
-                  <li>
-                    <b>Group Roll:</b> Ask if anyone else in the crew wants to
-                    make a roll with you. If they do, you decide who the leader
-                    is; the leader marks <b>1 xp</b>. Then everyone separately
-                    rolls their <b>bond</b> with the <b>leader</b> plus an
-                    action of their choice. The highest roll among the group is
-                    used as the result. For each member of the group that rolls
-                    a <b>1-3</b>, the leader marks <b>1 stress</b>. If the
-                    overall result has consequences, everyone suffers them.
-                  </li>
-                </TypographyUnorderedList>
-              </PopoverContent>
-            </Popover>
-          </div>
+          <BonusDicePopover />
         </div>
         <div className="w-full flex justify-between items-end">
           <div>
@@ -314,5 +174,482 @@ export default function RollSection() {
         </div>
       </div>
     </Card>
+  );
+}
+
+function BonusDicePopover() {
+  return (
+    <div className="text-muted-foreground text-xs leading-3 mt-2">
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button size="icon" variant="outline">
+            <BookOpen className="text-blue-500" />
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="max-w-screen w-[450px] relative h-[500px] overflow-auto">
+          <TypographyP>
+            There are a number of ways to gain bonus dice in <i>Provenire</i>.
+            All bonus dice are blue, meaning they don&apos;t incur reduced
+            effect if they&apos;re your highest roll.
+          </TypographyP>
+          <TypographyUnorderedList>
+            <li>
+              <b>Teamwork:</b> Another member of the crew marks <b>1 stress</b>{" "}
+              and describes how they help you out. You add their <b>bond</b>{" "}
+              with <b>you</b> to your roll.{" "}
+              <i>
+                Only one person can help you, otherwise it should be a group
+                roll.
+              </i>
+            </li>
+            <li>
+              <b>Push yourself:</b> Describe how you dig deep to ensure success.
+              Mark <b>2 stress</b> and get <b>1 bonus blue die</b>.{" "}
+              <i>
+                If you push yourself, you cannot also take a devil&apos;s
+                bargain.
+              </i>
+            </li>
+            <li>
+              <b>Devil&apos;s Bargain:</b> The <b>Narrator</b> presents an
+              interesting problem or consequence. Decide if you want to take the
+              deal. If you do, get <b>1 bonus blue die</b>.{" "}
+              <i>
+                You may <b>resist</b> the consequences of the bargain if you
+                want.
+              </i>
+            </li>
+            <li>
+              <b>Group Roll:</b> Ask if anyone else in the crew wants to make a
+              roll with you. If they do, you decide who the leader is; the
+              leader marks <b>1 xp</b>. Then everyone separately rolls their{" "}
+              <b>bond</b> with the <b>leader</b> plus an action of their choice.
+              The highest roll among the group is used as the result. For each
+              member of the group that rolls a <b>1-3</b>, the leader marks{" "}
+              <b>1 stress</b>. If the overall result has consequences, everyone
+              suffers them.
+            </li>
+          </TypographyUnorderedList>
+        </PopoverContent>
+      </Popover>
+    </div>
+  );
+}
+
+function GroupRollDialog({
+  open,
+  setOpen,
+}: {
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+}) {
+  // const [locked, setLocked] = useState(false);
+
+  const {
+    rollLeft,
+    rollRight,
+    setRollLeft,
+    setRollRight,
+    bonusDiceRed,
+    bonusDiceBlue,
+    groupRoll,
+    joinGroupRoll,
+    handleChangeGroupRollLeader,
+    handleGroupRollLock,
+    handleRemoveGroupRollMember,
+  } = useRoll();
+
+  const { actions, bonds, name } = useCharacterSheet();
+
+  console.log("group roll", groupRoll);
+
+  useEffect(() => {
+    if (open) {
+      joinGroupRoll(name);
+    }
+  }, [open, name, joinGroupRoll]);
+
+  const leader: GroupRollMember | undefined = groupRoll.find(
+    (member) => member.leader
+  );
+  const otherMembers: GroupRollMember[] = groupRoll.filter(
+    (member) => !member.leader
+  );
+  const isLeader = !!leader && leader.charName === name;
+
+  const becomeLeader = () => handleChangeGroupRollLeader(name);
+  const stepDown = () => handleChangeGroupRollLeader(name, false);
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button size="sm" variant="outline" className="relative">
+          <ShineBorder
+            shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
+            className="hidden"
+          />
+          <Handshake /> Group
+        </Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogTitle>Group Roll</DialogTitle>
+        {isLeader ? (
+          <div className="relative">
+            <span className="italic text-center text-xs text-muted-foreground">
+              <b className="text-amber-500">You</b> are the leader
+            </span>
+            <Button
+              className="absolute top-0 right-0"
+              size="sm"
+              variant="outline"
+              onClick={stepDown}
+            >
+              step down
+            </Button>
+          </div>
+        ) : (
+          <>
+            <div className="relative">
+              {leader ? (
+                <span className="italic text-center text-xs text-muted-foreground">
+                  <b className="text-amber-500">
+                    {!!leader?.charName
+                      ? leader.charName
+                      : "An unnamed character"}
+                  </b>{" "}
+                  is the leader
+                </span>
+              ) : (
+                <span className="italic text-center text-xs text-muted-foreground">
+                  <b>No one</b> is the leader
+                </span>
+              )}
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={becomeLeader}
+                className="absolute top-0 right-0"
+              >
+                <UserStar className="text-amber-500" /> Become the leader
+              </Button>
+            </div>
+          </>
+        )}
+        {isLeader ? (
+          <div>
+            <div className="flex gap-4">
+              <div className="w-full">
+                <RollSelect disabled={leader.lockedIn} />
+              </div>
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={() => handleGroupRollLock(name, !leader.lockedIn)}
+                disabled={!rollLeft || !rollRight}
+              >
+                {leader.lockedIn ? (
+                  <LockKeyhole className="text-lime-500" />
+                ) : (
+                  <LockKeyholeOpen className="text-zinc-500" />
+                )}
+              </Button>
+            </div>
+            <div className="mt-4">
+              <BonusDiceSection />
+            </div>
+          </div>
+        ) : leader ? (
+          <GroupRollMemberScoreVisualization member={leader} />
+        ) : null}
+        <Separator />
+        {isLeader ? null : (
+          <span className="italic text-center text-xs text-muted-foreground">
+            One option must be your bond with the leader
+          </span>
+        )}
+        {otherMembers.map((member, idx) => {
+          if (member.charName === name) {
+            return (
+              <div key={member.charName + idx}>
+                <i className="text-xs text-muted-foreground">
+                  <b>{member.charName || "Unnamed character"}</b>
+                </i>
+                <div className="flex flex-col gap-4">
+                  <div className="flex gap-4">
+                    <div className="w-full">
+                      <RollSelect disabled={member.lockedIn} />
+                    </div>
+                    <Button
+                      size="icon"
+                      variant="outline"
+                      onClick={() =>
+                        handleGroupRollLock(name, !member.lockedIn)
+                      }
+                      className="ml-auto"
+                      disabled={!rollLeft || !rollRight}
+                    >
+                      {member.lockedIn ? (
+                        <LockKeyhole className="text-lime-500" />
+                      ) : (
+                        <LockKeyholeOpen className="text-zinc-500" />
+                      )}
+                    </Button>
+                  </div>
+                  <div className="flex items-end gap-4">
+                    <BonusDiceSection />
+                    {/* <Button
+                      size="icon"
+                      variant="outline"
+                      onClick={() =>
+                        handleGroupRollLock(name, !member.lockedIn)
+                      }
+                      className="ml-auto"
+                      disabled={!rollLeft || !rollRight}
+                    >
+                      {member.lockedIn ? (
+                        <LockKeyhole className="text-lime-500" />
+                      ) : (
+                        <LockKeyholeOpen className="text-zinc-500" />
+                      )}
+                    </Button>
+                    <Button size="icon" variant="outline" onClick={() => {}}>
+                      <UserStar className="text-amber-500" />
+                    </Button>
+                    <Button size="icon" variant="outline" onClick={() => {}}>
+                      <UserX className="text-red-500" />
+                    </Button> */}
+                  </div>
+                </div>
+              </div>
+            );
+          } else {
+            return (
+              <div key={member.charName + idx}>
+                <i className="text-xs text-muted-foreground">
+                  <b>{member.charName || "Unnamed character"}</b>
+                </i>
+                <GroupRollMemberScoreVisualization member={member} />
+              </div>
+            );
+          }
+        })}
+
+        {isLeader && (
+          <>
+            <Separator />
+            <div className="flex justify-between items-center">
+              <Button
+                onClick={async () => {
+                  // doRoll("action", rollLeft, rollRight);
+                }}
+                className="flex items-center gap-2"
+                disabled
+              >
+                <Dices /> Action
+              </Button>
+              <Button
+                variant="secondary"
+                onClick={async () => {
+                  // doRoll("project", rollLeft, rollRight);
+                }}
+                disabled
+              >
+                <Cog /> Project
+              </Button>
+            </div>
+          </>
+        )}
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+function RollSelect({ disabled = false }: { disabled?: boolean }) {
+  const { rollLeft, rollRight, setRollLeft, setRollRight, groupRoll } =
+    useRoll();
+
+  const { actions, bonds } = useCharacterSheet();
+
+  const enabledActions = actions.filter(
+    (a) => a.type !== "codex" || a.subscriptionPaid
+  );
+  const leftActions = enabledActions.filter((a) => a.position === "left");
+  const rightActions = enabledActions.filter((a) => a.position === "right");
+
+  return (
+    <div className="flex gap-4">
+      <Select
+        value={rollLeft?.name || ""}
+        onValueChange={(value) => {
+          const foundAction = leftActions.find((a) => a.name === value);
+          const foundBond = bonds.find((b) => b.name === value);
+          if (foundAction) {
+            setRollLeft(foundAction);
+            return;
+          }
+          if (foundBond) {
+            setRollLeft(foundBond);
+            return;
+          }
+          console.error("Could not find action or bond for value", value);
+        }}
+        disabled={disabled}
+      >
+        <SelectTrigger>
+          <SelectValue>
+            {rollLeft?.name || (
+              <span className="text-muted-foreground">Select an action</span>
+            )}
+          </SelectValue>
+        </SelectTrigger>
+        <SelectContent>
+          {leftActions.map((la, i) => (
+            <SelectItem key={la.name + i} value={la.name}>
+              {la.name}
+            </SelectItem>
+          ))}
+          <SelectSeparator />
+          {bonds.map((b, i) => (
+            <SelectItem key={b.name + i} value={b.name}>
+              {b.name}
+            </SelectItem>
+          ))}
+          <SelectSeparator />
+          <Button
+            variant="secondary"
+            size="sm"
+            className="w-full px-2"
+            onClick={(e) => {
+              e.stopPropagation();
+              setRollLeft(undefined);
+            }}
+          >
+            Clear
+          </Button>
+        </SelectContent>
+      </Select>
+      <Select
+        value={rollRight?.name || ""}
+        onValueChange={(value) => {
+          const foundAction = rightActions.find((a) => a.name === value);
+          const foundBond = bonds.find((b) => b.name === value);
+          if (foundAction) {
+            setRollRight(foundAction);
+            return;
+          }
+          if (foundBond) {
+            setRollRight(foundBond);
+            return;
+          }
+          console.error("Could not find action or bond for value", value);
+        }}
+        disabled={disabled}
+      >
+        <SelectTrigger>
+          <SelectValue>
+            {rollRight?.name || (
+              <span className="text-muted-foreground">Select an action</span>
+            )}
+          </SelectValue>
+        </SelectTrigger>
+        <SelectContent>
+          {rightActions.map((la, i) => (
+            <SelectItem key={la.name + i} value={la.name}>
+              {la.name}
+            </SelectItem>
+          ))}
+          <SelectSeparator />
+          {bonds.map((b, i) => (
+            <SelectItem key={b.name + i} value={b.name}>
+              {b.name}
+            </SelectItem>
+          ))}
+          <SelectSeparator />
+          <Button
+            variant="secondary"
+            size="sm"
+            className="w-full px-2"
+            onClick={(e) => {
+              e.stopPropagation();
+              setRollRight(undefined);
+            }}
+          >
+            Clear
+          </Button>
+        </SelectContent>
+      </Select>
+    </div>
+  );
+}
+
+function BonusDiceSection() {
+  const { bonusDiceRed, bonusDiceBlue, setBonusDiceRed, setBonusDiceBlue } =
+    useRoll();
+
+  return (
+    <div className="flex flex-col gap-2">
+      <Label htmlFor="bonus-dice" className="text-center">
+        Bonus Dice
+      </Label>
+      <div className="flex gap-2">
+        <div className="flex gap-2 items-center">
+          <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-red-500" />
+          <Input
+            id="bonus-dice"
+            type="number"
+            className="w-20"
+            min={0}
+            value={bonusDiceRed}
+            onChange={(e) => {
+              setBonusDiceRed(parseInt(e.target.value));
+            }}
+          />
+        </div>
+        <div className="flex gap-2 items-center">
+          <div className="rounded-full border-[1px] border-solid border-primary h-4 w-4 bg-blue-500" />
+          <Input
+            id="bonus-dice"
+            type="number"
+            className="w-20"
+            min={0}
+            value={bonusDiceBlue}
+            onChange={(e) => {
+              setBonusDiceBlue(parseInt(e.target.value));
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function GroupRollMemberScoreVisualization({
+  member,
+}: {
+  member: GroupRollMember;
+}) {
+  if (!member) return null;
+
+  const { rollLeft, rollRight, bonusDiceRed, bonusDiceBlue } = member;
+
+  return (
+    <div className="flex gap-2">
+      <div>{rollLeft?.name}: </div>{" "}
+      <ActionScoreArray
+        red={countScoreEntries(rollLeft?.score, 1)}
+        blue={countScoreEntries(rollLeft?.score, 2)}
+      />
+      |<span>{rollRight?.name}: </span>{" "}
+      <ActionScoreArray
+        red={countScoreEntries(rollRight?.score, 1)}
+        blue={countScoreEntries(rollRight?.score, 2)}
+      />{" "}
+      {bonusDiceRed + bonusDiceBlue > 0 && (
+        <div className="flex gap-2">
+          | <span>Bonus: </span>
+          <ActionScoreArray red={bonusDiceRed} blue={bonusDiceBlue} />
+        </div>
+      )}
+    </div>
   );
 }

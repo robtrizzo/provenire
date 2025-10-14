@@ -199,3 +199,11 @@ export function getActionsFromTag(tag: string): string[] {
   const tokens = tag.split("|");
   return tokens.map((token) => token.trim()).filter((token) => token !== "");
 }
+
+export function countScoreEntries(
+  score: [number, number] | undefined,
+  target: number
+): number {
+  if (!score) return 0;
+  return (score[0] === target ? 1 : 0) + (score[1] === target ? 1 : 0);
+}
