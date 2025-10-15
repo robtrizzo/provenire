@@ -107,6 +107,15 @@ export default function DieAccordian({ roll }: { roll: Roll }) {
                   }`}
                 />
               ))}
+              {roll?.pinkDice?.map((r, i) => (
+                <Die
+                  key={i}
+                  roll={r}
+                  className={`h-8 w-8 ${
+                    roll.type === "fortune" ? "" : "text-pink-800"
+                  }`}
+                />
+              ))}
             </div>
           </div>
         </AccordionContent>
