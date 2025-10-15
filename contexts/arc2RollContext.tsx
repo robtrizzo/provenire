@@ -45,6 +45,7 @@ interface RollContextProps {
   isPrivate: boolean;
   groupRoll: GroupRollMember[];
   groupRollDialogOpen: boolean;
+  groupRollAlert: boolean;
   connectionStatus: "connecting" | "connected" | "disconnected";
   setBonusDiceRed: React.Dispatch<React.SetStateAction<number>>;
   setBonusDiceBlue: React.Dispatch<React.SetStateAction<number>>;
@@ -57,6 +58,8 @@ interface RollContextProps {
   setRollRight: React.Dispatch<React.SetStateAction<Rollable | undefined>>;
   setIsEmotional: React.Dispatch<React.SetStateAction<boolean>>;
   setGroupRollDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setGroupRollAlert: React.Dispatch<React.SetStateAction<boolean>>;
+  handleGroupRollAlert: () => void;
   loadGroupRoll: () => void;
   joinGroupRoll: (charName: string) => void;
   handleChangeGroupRollLeader: (charName: string, leader?: boolean) => void;
@@ -104,6 +107,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   const [isPrivate, setIsPrivate] = useState<boolean>(false);
   const [groupRoll, setGroupRoll] = useState<GroupRollMember[]>([]);
   const [groupRollDialogOpen, setGroupRollDialogOpen] = useState(false);
+  const [groupRollAlert, setGroupRollAlert] = useState(false);
   const [channel, setChannel] = useState<RealtimeChannel>();
 
   const [connectionStatus, setConnectionStatus] = useState<
@@ -557,17 +561,24 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     [doRoll, name]
   );
 
+  const handleGroupRollAlertEvent = useCallback(
+    () => setGroupRollAlert(true),
+    [setGroupRollAlert]
+  );
+
   const handlersRef = useRef({
     handleRoll: handleRollEvent,
     handleGroupRoll: handleGroupRollEvent,
+    handleAlert: handleGroupRollAlertEvent,
   });
 
   useEffect(() => {
     handlersRef.current = {
       handleRoll: handleRollEvent,
       handleGroupRoll: handleGroupRollEvent,
+      handleAlert: handleGroupRollAlertEvent,
     };
-  }, [handleRollEvent, handleGroupRollEvent]);
+  }, [handleRollEvent, handleGroupRollEvent, handleGroupRollAlertEvent]);
 
   useEffect(() => {
     setConnectionStatus("connecting");
@@ -582,6 +593,9 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         const gr = JSON.parse(payload.payload);
         handlersRef.current.handleGroupRoll(gr);
       })
+      .on("broadcast", { event: "group-roll-alert" }, () =>
+        handlersRef.current.handleAlert()
+      )
       .subscribe();
 
     setChannel(rollChannel);
@@ -639,6 +653,15 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     updateGroupRoll(() => []);
     setGroupRollDialogOpen(false);
   };
+
+  function handleGroupRollAlert() {
+    if (channel) {
+      channel.send({
+        type: "broadcast",
+        event: "group-roll-alert",
+      });
+    }
+  }
 
   const loadGroupRoll = async () => {
     console.log("Fetching group roll persistent state");
@@ -820,6 +843,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         isEmotional,
         groupRoll,
         groupRollDialogOpen,
+        groupRollAlert,
         isPrivate,
         connectionStatus,
         setBonusDiceRed,
@@ -835,6 +859,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         setRollRight,
         doRoll,
         setGroupRollDialogOpen,
+        setGroupRollAlert,
+        handleGroupRollAlert,
         loadGroupRoll,
         joinGroupRoll,
         handleChangeGroupRollLeader,

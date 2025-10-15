@@ -12,6 +12,7 @@ import {
   DoorClosed,
   UserMinus,
   UserX,
+  Megaphone,
 } from "lucide-react";
 import { useCharacterSheet } from "@/contexts/arc2CharacterSheetContext";
 import { useRoll } from "@/contexts/arc2RollContext";
@@ -26,7 +27,8 @@ import { GroupRollMember } from "@/types/roll";
 import ActionScoreArray from "@/components/ui/action-score-array";
 import { countScoreEntries } from "@/lib/roll";
 import RollSection from "./roll-section";
-import { FC, ReactNode, useEffect } from "react";
+import { FC, ReactNode, useEffect, useRef } from "react";
+import { cn } from "@/lib/utils";
 
 interface GroupRollDialogProps {
   children: ReactNode;
@@ -40,25 +42,43 @@ type GroupRollDialog = FC<GroupRollDialogProps> & {
   GMMemberSection: FC;
   JoinControl: FC;
   RollControls: FC;
+  AlertControl: FC;
 };
 
 const GroupRollDialog = ({ children }: { children: ReactNode }) => {
-  const { groupRollDialogOpen, setGroupRollDialogOpen, loadGroupRoll } =
-    useRoll();
+  const {
+    groupRollDialogOpen,
+    setGroupRollDialogOpen,
+    setGroupRollAlert,
+    loadGroupRoll,
+    groupRollAlert,
+  } = useRoll();
+
+  const hasLoaded = useRef(false);
 
   useEffect(() => {
-    if (groupRollDialogOpen) {
+    if (groupRollDialogOpen && !hasLoaded.current) {
       loadGroupRoll();
+      hasLoaded.current = true;
+    }
+
+    if (!groupRollDialogOpen) {
+      hasLoaded.current = false;
     }
   }, [groupRollDialogOpen, loadGroupRoll]);
 
+  const handleOpenChange = (open: boolean) => {
+    setGroupRollAlert(false);
+    setGroupRollDialogOpen(open);
+  };
+
   return (
-    <Dialog open={groupRollDialogOpen} onOpenChange={setGroupRollDialogOpen}>
+    <Dialog open={groupRollDialogOpen} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
         <Button size="sm" variant="outline" className="relative">
           <ShineBorder
             shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
-            className="hidden"
+            className={cn(groupRollAlert ? "visible" : "hidden")}
           />
           <Handshake /> Group
         </Button>
@@ -312,6 +332,19 @@ function GroupJoinControl() {
   );
 }
 
+function AlertControl() {
+  const { handleGroupRollAlert } = useRoll();
+  return (
+    <Button
+      variant="destructive"
+      size="sm"
+      onClick={() => handleGroupRollAlert()}
+    >
+      <Megaphone /> Alert
+    </Button>
+  );
+}
+
 function RollControls() {
   const { groupRoll, handleGroupRoll } = useRoll();
 
@@ -351,5 +384,6 @@ GroupRollDialog.MemberInfoSection = MemberInfoSection;
 GroupRollDialog.GMMemberSection = GMMemberSection;
 GroupRollDialog.JoinControl = GroupJoinControl;
 GroupRollDialog.RollControls = RollControls;
+GroupRollDialog.AlertControl = AlertControl;
 
 export default GroupRollDialog;

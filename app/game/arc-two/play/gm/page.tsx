@@ -105,8 +105,11 @@ function GroupRollSection() {
           />
         </div>
       ))}
-      <div className="ml-auto">
-        <GroupRollDialog.RollControls />
+      <div className="flex">
+        <GroupRollDialog.AlertControl />
+        <div className="ml-auto">
+          <GroupRollDialog.RollControls />
+        </div>
       </div>
     </GroupRollDialog>
   );
