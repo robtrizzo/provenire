@@ -10,7 +10,7 @@ export function ActionScore({
 }: {
   score: number[];
   onChange: (s: number[]) => void;
-  disabled: boolean;
+  disabled?: boolean;
   className?: string;
 }) {
   return (
