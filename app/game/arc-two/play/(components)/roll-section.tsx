@@ -23,7 +23,8 @@ import {
   UserStar,
   LockKeyholeOpen,
   LockKeyhole,
-  UserX,
+  DoorOpen,
+  DoorClosed,
 } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { useCharacterSheet } from "@/contexts/arc2CharacterSheetContext";
@@ -44,7 +45,6 @@ import {
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Separator } from "@/components/ui/separator";
 import { GroupRollMember } from "@/types/roll";
-import { ActionScore } from "@/components/action-score";
 import ActionScoreArray from "@/components/ui/action-score-array";
 import { countScoreEntries } from "@/lib/roll";
 
@@ -54,15 +54,6 @@ export default function RollSection() {
     setIsPrivate,
     rollLeft,
     rollRight,
-    bonusDiceRed,
-    bonusDiceBlue,
-    fortuneDice,
-    setBonusDiceRed,
-    setBonusDiceBlue,
-    setFortuneDice,
-    isEmotional,
-    setIsEmotional,
-    handleFortuneRollButton,
     doRoll,
     connectionStatus,
   } = useRoll();
@@ -141,39 +132,42 @@ export default function RollSection() {
           <BonusDicePopover />
         </div>
         <div className="w-full flex justify-between items-end">
-          <div>
-            <Label htmlFor="fortune-dice">Fortune Dice</Label>
-            <div className="flex gap-4">
-              <Input
-                id="fortune-dice"
-                type="number"
-                className="w-20"
-                min={0}
-                value={fortuneDice}
-                onChange={(e) => {
-                  setFortuneDice(parseInt(e.target.value));
-                }}
-              />
-              <Button
-                onClick={async () => {
-                  handleFortuneRollButton(fortuneDice);
-                }}
-              >
-                Fortune Roll
-              </Button>
-            </div>
-          </div>
-          <div className="flex gap-2 items-end">
-            <Checkbox
-              id="emotional"
-              checked={isEmotional}
-              onCheckedChange={(checked) => setIsEmotional(!!checked)}
-            />
-            <Label htmlFor="emotional">I&apos;m feeling emotional</Label>
-          </div>
+          <FortuneSection />
+          <EmotionalSection />
         </div>
       </div>
     </Card>
+  );
+}
+
+function FortuneSection({ disabled = false }: { disabled?: boolean }) {
+  const { fortuneDice, setFortuneDice, handleFortuneRollButton } = useRoll();
+
+  return (
+    <div>
+      <Label htmlFor="fortune-dice">Fortune Dice</Label>
+      <div className="flex gap-4">
+        <Input
+          id="fortune-dice"
+          type="number"
+          className="w-20"
+          min={0}
+          value={fortuneDice}
+          onChange={(e) => {
+            setFortuneDice(parseInt(e.target.value));
+          }}
+          disabled={disabled}
+        />
+        <Button
+          onClick={async () => {
+            handleFortuneRollButton(fortuneDice);
+          }}
+          disabled={disabled}
+        >
+          Fortune Roll
+        </Button>
+      </div>
+    </div>
   );
 }
 
@@ -243,15 +237,9 @@ function GroupRollDialog({
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
 }) {
-  // const [locked, setLocked] = useState(false);
-
   const {
     rollLeft,
     rollRight,
-    setRollLeft,
-    setRollRight,
-    bonusDiceRed,
-    bonusDiceBlue,
     groupRoll,
     joinGroupRoll,
     handleChangeGroupRollLeader,
@@ -259,15 +247,7 @@ function GroupRollDialog({
     handleRemoveGroupRollMember,
   } = useRoll();
 
-  const { actions, bonds, name } = useCharacterSheet();
-
-  console.log("group roll", groupRoll);
-
-  useEffect(() => {
-    if (open) {
-      joinGroupRoll(name);
-    }
-  }, [open, name, joinGroupRoll]);
+  const { name } = useCharacterSheet();
 
   const leader: GroupRollMember | undefined = groupRoll.find(
     (member) => member.leader
@@ -275,10 +255,19 @@ function GroupRollDialog({
   const otherMembers: GroupRollMember[] = groupRoll.filter(
     (member) => !member.leader
   );
+  const isMember = groupRoll.some((member) => member.charName === name);
   const isLeader = !!leader && leader.charName === name;
+  const allLockedIn = groupRoll.every((member) => member.lockedIn);
+
+  useEffect(() => {
+    if (open && !!name && !isMember) {
+      joinGroupRoll(name);
+    }
+  }, [open, name, isMember, joinGroupRoll]);
 
   const becomeLeader = () => handleChangeGroupRollLeader(name);
   const stepDown = () => handleChangeGroupRollLeader(name, false);
+  const leave = () => handleRemoveGroupRollMember(name);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -329,6 +318,7 @@ function GroupRollDialog({
                 variant="outline"
                 onClick={becomeLeader}
                 className="absolute top-0 right-0"
+                disabled={!isMember}
               >
                 <UserStar className="text-amber-500" /> Become the leader
               </Button>
@@ -354,8 +344,9 @@ function GroupRollDialog({
                 )}
               </Button>
             </div>
-            <div className="mt-4">
-              <BonusDiceSection />
+            <div className="mt-4 flex items-center justify-between">
+              <BonusDiceSection disabled={leader.lockedIn} />
+              <EmotionalSection disabled={leader.lockedIn} />
             </div>
           </div>
         ) : leader ? (
@@ -395,29 +386,9 @@ function GroupRollDialog({
                       )}
                     </Button>
                   </div>
-                  <div className="flex items-end gap-4">
-                    <BonusDiceSection />
-                    {/* <Button
-                      size="icon"
-                      variant="outline"
-                      onClick={() =>
-                        handleGroupRollLock(name, !member.lockedIn)
-                      }
-                      className="ml-auto"
-                      disabled={!rollLeft || !rollRight}
-                    >
-                      {member.lockedIn ? (
-                        <LockKeyhole className="text-lime-500" />
-                      ) : (
-                        <LockKeyholeOpen className="text-zinc-500" />
-                      )}
-                    </Button>
-                    <Button size="icon" variant="outline" onClick={() => {}}>
-                      <UserStar className="text-amber-500" />
-                    </Button>
-                    <Button size="icon" variant="outline" onClick={() => {}}>
-                      <UserX className="text-red-500" />
-                    </Button> */}
+                  <div className="flex items-center justify-between gap-4">
+                    <BonusDiceSection disabled={member.lockedIn} />
+                    <EmotionalSection disabled={member.lockedIn} />
                   </div>
                 </div>
               </div>
@@ -428,45 +399,67 @@ function GroupRollDialog({
                 <i className="text-xs text-muted-foreground">
                   <b>{member.charName || "Unnamed character"}</b>
                 </i>
-                <GroupRollMemberScoreVisualization member={member} />
+                <div className="flex justify-between">
+                  <GroupRollMemberScoreVisualization member={member} />
+                  {member.lockedIn ? (
+                    <LockKeyhole size={18} className="text-lime-500" />
+                  ) : (
+                    <LockKeyholeOpen size={18} className="text-slate-500" />
+                  )}
+                </div>
               </div>
             );
           }
         })}
 
-        {isLeader && (
-          <>
-            <Separator />
-            <div className="flex justify-between items-center">
+        <Separator />
+        <div className="flex justify-between items-center">
+          {isMember ? (
+            <Button variant="destructive" size="sm" onClick={leave}>
+              <DoorClosed /> Leave
+            </Button>
+          ) : (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => joinGroupRoll(name)}
+            >
+              <DoorOpen /> Join
+            </Button>
+          )}
+
+          {isLeader && (
+            <div className="flex gap-4">
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={async () => {
+                  // doRoll("project", rollLeft, rollRight);
+                }}
+                disabled={!allLockedIn}
+              >
+                <Cog /> Project
+              </Button>
               <Button
                 onClick={async () => {
                   // doRoll("action", rollLeft, rollRight);
                 }}
+                size="sm"
                 className="flex items-center gap-2"
-                disabled
+                disabled={!allLockedIn}
               >
                 <Dices /> Action
               </Button>
-              <Button
-                variant="secondary"
-                onClick={async () => {
-                  // doRoll("project", rollLeft, rollRight);
-                }}
-                disabled
-              >
-                <Cog /> Project
-              </Button>
             </div>
-          </>
-        )}
+          )}
+        </div>
       </DialogContent>
     </Dialog>
   );
 }
 
 function RollSelect({ disabled = false }: { disabled?: boolean }) {
-  const { rollLeft, rollRight, setRollLeft, setRollRight, groupRoll } =
-    useRoll();
+  const { rollLeft, rollRight, setRollLeft, setRollRight } = useRoll();
 
   const { actions, bonds } = useCharacterSheet();
 
@@ -582,7 +575,7 @@ function RollSelect({ disabled = false }: { disabled?: boolean }) {
   );
 }
 
-function BonusDiceSection() {
+function BonusDiceSection({ disabled = false }: { disabled?: boolean }) {
   const { bonusDiceRed, bonusDiceBlue, setBonusDiceRed, setBonusDiceBlue } =
     useRoll();
 
@@ -603,6 +596,7 @@ function BonusDiceSection() {
             onChange={(e) => {
               setBonusDiceRed(parseInt(e.target.value));
             }}
+            disabled={disabled}
           />
         </div>
         <div className="flex gap-2 items-center">
@@ -616,9 +610,26 @@ function BonusDiceSection() {
             onChange={(e) => {
               setBonusDiceBlue(parseInt(e.target.value));
             }}
+            disabled={disabled}
           />
         </div>
       </div>
+    </div>
+  );
+}
+
+function EmotionalSection({ disabled = false }: { disabled?: boolean }) {
+  const { isEmotional, setIsEmotional } = useRoll();
+
+  return (
+    <div className="flex gap-2 items-end">
+      <Checkbox
+        id="emotional"
+        checked={isEmotional}
+        onCheckedChange={(checked) => setIsEmotional(!!checked)}
+        disabled={disabled}
+      />
+      <Label htmlFor="emotional">I&apos;m feeling emotional</Label>
     </div>
   );
 }
@@ -633,21 +644,29 @@ function GroupRollMemberScoreVisualization({
   const { rollLeft, rollRight, bonusDiceRed, bonusDiceBlue } = member;
 
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-2 flex-wrap">
       <div>{rollLeft?.name}: </div>{" "}
       <ActionScoreArray
         red={countScoreEntries(rollLeft?.score, 1)}
         blue={countScoreEntries(rollLeft?.score, 2)}
+        pink={0}
       />
       |<span>{rollRight?.name}: </span>{" "}
       <ActionScoreArray
         red={countScoreEntries(rollRight?.score, 1)}
         blue={countScoreEntries(rollRight?.score, 2)}
+        pink={0}
       />{" "}
       {bonusDiceRed + bonusDiceBlue > 0 && (
         <div className="flex gap-2">
           | <span>Bonus: </span>
-          <ActionScoreArray red={bonusDiceRed} blue={bonusDiceBlue} />
+          <ActionScoreArray red={bonusDiceRed} blue={bonusDiceBlue} pink={0} />
+        </div>
+      )}
+      {member.emotional && (
+        <div className="flex gap-2">
+          |<span>Emotional:</span>
+          <ActionScoreArray red={0} blue={0} pink={member.emotional ? 1 : 0} />
         </div>
       )}
     </div>

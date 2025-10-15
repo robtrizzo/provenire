@@ -569,6 +569,21 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         }
         setBonusDiceRed(foundMember.bonusDiceRed);
         setBonusDiceBlue(foundMember.bonusDiceBlue);
+      } else {
+        const newMember: GroupRollMember = {
+          charName,
+          lockedIn: false,
+          leader: false,
+          rollLeft,
+          rollRight,
+          bonusDiceRed,
+          bonusDiceBlue,
+          emotional: isEmotional,
+        };
+        await updateGroupRoll((currentGroup) => {
+          const updatedGroup = [...currentGroup, newMember];
+          return updatedGroup;
+        });
       }
     } else {
       console.log("Group roll persistent state not found. Creating entry.");
@@ -694,6 +709,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
             rollRight,
             bonusDiceRed,
             bonusDiceBlue,
+            emotional: isEmotional,
           };
         }
         return member;
