@@ -24,7 +24,7 @@ import { GroupRollMember } from "@/types/roll";
 import ActionScoreArray from "@/components/ui/action-score-array";
 import { countScoreEntries } from "@/lib/roll";
 import RollSection from "./roll-section";
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useEffect } from "react";
 
 interface GroupRollDialogProps {
   children: ReactNode;
@@ -40,7 +40,14 @@ type GroupRollDialog = FC<GroupRollDialogProps> & {
 };
 
 const GroupRollDialog = ({ children }: { children: ReactNode }) => {
-  const { groupRollDialogOpen, setGroupRollDialogOpen } = useRoll();
+  const { groupRollDialogOpen, setGroupRollDialogOpen, loadGroupRoll } =
+    useRoll();
+
+  useEffect(() => {
+    if (groupRollDialogOpen) {
+      loadGroupRoll();
+    }
+  }, [groupRollDialogOpen, loadGroupRoll]);
 
   return (
     <Dialog open={groupRollDialogOpen} onOpenChange={setGroupRollDialogOpen}>
@@ -178,6 +185,9 @@ function MemberRollSection({ member }: { member: GroupRollMember }) {
 
   return (
     <div>
+      <i className="text-xs text-muted-foreground">
+        <b>{member.charName || "Unnamed character"}</b>
+      </i>
       <div className="flex gap-4">
         <div className="w-full">
           <RollSection.RollSelect disabled={member.lockedIn} />

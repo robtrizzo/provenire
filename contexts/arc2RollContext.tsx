@@ -57,6 +57,7 @@ interface RollContextProps {
   setRollRight: React.Dispatch<React.SetStateAction<Rollable | undefined>>;
   setIsEmotional: React.Dispatch<React.SetStateAction<boolean>>;
   setGroupRollDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  loadGroupRoll: () => void;
   joinGroupRoll: (charName: string) => void;
   handleChangeGroupRollLeader: (charName: string, leader?: boolean) => void;
   handleGroupRollLock: (charName: string, lockedIn: boolean) => void;
@@ -635,7 +636,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     setGroupRollDialogOpen(false);
   };
 
-  const joinGroupRoll = async (charName: string) => {
+  const loadGroupRoll = async () => {
     console.log("Fetching group roll persistent state");
     const { data, error } = await supabase
       .from("group_rolls")
@@ -644,16 +645,14 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       .limit(1)
       .maybeSingle();
     if (error) {
-      console.log("Error joining group roll", error);
+      console.log("Error fetching group roll", error);
       return;
     }
     if (data?.state) {
       const members = data.state as GroupRollMember[];
       console.log("Group roll persistent state found.");
       setGroupRoll(members);
-      const foundMember = members.find(
-        (member) => member.charName === charName
-      );
+      const foundMember = members.find((member) => member.charName === name);
       if (foundMember) {
         if (foundMember.rollLeft) {
           setRollLeft(foundMember.rollLeft);
@@ -663,21 +662,6 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         }
         setBonusDiceRed(foundMember.bonusDiceRed);
         setBonusDiceBlue(foundMember.bonusDiceBlue);
-      } else {
-        const newMember: GroupRollMember = {
-          charName,
-          lockedIn: false,
-          leader: false,
-          rollLeft,
-          rollRight,
-          bonusDiceRed,
-          bonusDiceBlue,
-          emotional: isEmotional,
-        };
-        await updateGroupRoll((currentGroup) => {
-          const updatedGroup = [...currentGroup, newMember];
-          return updatedGroup;
-        });
       }
     } else {
       console.log("Group roll persistent state not found. Creating entry.");
@@ -691,6 +675,23 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         return;
       }
     }
+  };
+
+  const joinGroupRoll = async (charName: string) => {
+    const newMember: GroupRollMember = {
+      charName,
+      lockedIn: false,
+      leader: false,
+      rollLeft,
+      rollRight,
+      bonusDiceRed,
+      bonusDiceBlue,
+      emotional: isEmotional,
+    };
+    await updateGroupRoll((currentGroup) => {
+      const updatedGroup = [...currentGroup, newMember];
+      return updatedGroup;
+    });
   };
 
   const updateGroupRoll = async (
@@ -830,6 +831,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         setRollRight,
         doRoll,
         setGroupRollDialogOpen,
+        loadGroupRoll,
         joinGroupRoll,
         handleChangeGroupRollLeader,
         handleGroupRollLock,
