@@ -9,6 +9,9 @@ import Characters from "@/components/gm/characters";
 import { useQuery } from "@tanstack/react-query";
 import { Character as CharacterType, CharacterV2 } from "@/types/game";
 import Character from "@/components/gm/chraracter";
+import GroupRollDialog from "../(components)/group-roll-dialog";
+import { GroupRollMember } from "@/types/roll";
+import { Separator } from "@/components/ui/separator";
 
 export default function Page() {
   const {
@@ -49,24 +52,62 @@ export default function Page() {
         </div>
       </div>
       <TypographyH1>The Crew</TypographyH1>
-      <CharacterFiltersProvider>
-        <FilterCharacters />
-        {!isPending && (
-          <Characters characters={data}>
-            {(character: CharacterType) => {
-              console.log(character);
-              const c = character as unknown as CharacterV2;
-              return (
-                <Character character={character}>
-                  <Character.Baggage character={c} />
-                  <Character.StressV2 character={c} />
-                  <Character.HarmV2 character={c} />
-                </Character>
-              );
-            }}
-          </Characters>
-        )}
-      </CharacterFiltersProvider>
+      <div className="flex flex-col gap-4">
+        <GroupRollSection />
+        <CharacterFiltersProvider>
+          <FilterCharacters />
+          {!isPending && (
+            <Characters characters={data}>
+              {(character: CharacterType) => {
+                console.log(character);
+                const c = character as unknown as CharacterV2;
+                return (
+                  <Character character={character}>
+                    <Character.Baggage character={c} />
+                    <Character.StressV2 character={c} />
+                    <Character.HarmV2 character={c} />
+                  </Character>
+                );
+              }}
+            </Characters>
+          )}
+        </CharacterFiltersProvider>
+      </div>
     </>
+  );
+}
+
+function GroupRollSection() {
+  const { groupRoll } = useRoll();
+
+  const leader: GroupRollMember | undefined = groupRoll.find(
+    (member) => member.leader
+  );
+  const otherMembers: GroupRollMember[] = groupRoll.filter(
+    (member) => !member.leader
+  );
+
+  return (
+    <GroupRollDialog>
+      <div>
+        <GroupRollDialog.GMLeaderSection leader={leader} />
+        {leader && <GroupRollDialog.GMMemberSection member={leader} />}
+      </div>
+      <Separator />
+      {otherMembers.map((member, idx) => (
+        <div key={member.charName + idx}>
+          <i className="text-xs text-muted-foreground">
+            <b>{member.charName || "Unnamed character"}</b>
+          </i>
+          <GroupRollDialog.GMMemberSection
+            key={member.charName + idx}
+            member={member}
+          />
+        </div>
+      ))}
+      <div className="ml-auto">
+        <GroupRollDialog.RollControls />
+      </div>
+    </GroupRollDialog>
   );
 }

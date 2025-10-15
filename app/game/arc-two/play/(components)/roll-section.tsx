@@ -414,7 +414,7 @@ function GroupRollSection() {
       {isLeader ? (
         <GroupRollDialog.MemberRollSection member={leader} />
       ) : leader ? (
-        <GroupRollDialog.MemberScoreVisualization member={leader} />
+        <GroupRollDialog.MemberInfoSection member={leader} />
       ) : null}
       <Separator />
       {isLeader ? null : (
@@ -422,19 +422,18 @@ function GroupRollSection() {
           One option must be your bond with the leader
         </span>
       )}
-      {otherMembers.map((member, idx) =>
-        member.charName === name ? (
-          <GroupRollDialog.MemberRollSection
-            key={member.charName + idx}
-            member={member}
-          />
-        ) : (
-          <GroupRollDialog.MemberInfoSection
-            key={member.charName + idx}
-            member={member}
-          />
-        )
-      )}
+      {otherMembers.map((member, idx) => (
+        <div key={member.charName + idx}>
+          <i className="text-xs text-muted-foreground">
+            <b>{member.charName || "Unnamed character"}</b>
+          </i>
+          {member.charName === name ? (
+            <GroupRollDialog.MemberRollSection member={member} />
+          ) : (
+            <GroupRollDialog.MemberInfoSection member={member} />
+          )}
+        </div>
+      ))}
       <Separator />
       <div className="flex justify-between items-center">
         <GroupRollDialog.JoinControl />

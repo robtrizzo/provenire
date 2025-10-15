@@ -10,6 +10,8 @@ import {
   LockKeyhole,
   DoorOpen,
   DoorClosed,
+  UserMinus,
+  UserX,
 } from "lucide-react";
 import { useCharacterSheet } from "@/contexts/arc2CharacterSheetContext";
 import { useRoll } from "@/contexts/arc2RollContext";
@@ -32,9 +34,10 @@ interface GroupRollDialogProps {
 
 type GroupRollDialog = FC<GroupRollDialogProps> & {
   LeaderSection: FC;
+  GMLeaderSection: FC;
   MemberRollSection: FC;
-  MemberScoreVisualization: FC;
   MemberInfoSection: FC;
+  GMMemberSection: FC;
   JoinControl: FC;
   RollControls: FC;
 };
@@ -113,6 +116,10 @@ function LeaderSection({ leader }: { leader?: GroupRollMember }) {
   );
 }
 
+function GMLeaderSection({ leader }: { leader?: GroupRollMember }) {
+  return <LeaderStatus leader={leader} />;
+}
+
 function LeaderStatus({ leader }: { leader?: GroupRollMember }) {
   if (leader) {
     return (
@@ -132,11 +139,7 @@ function LeaderStatus({ leader }: { leader?: GroupRollMember }) {
   );
 }
 
-function GroupRollMemberScoreVisualization({
-  member,
-}: {
-  member: GroupRollMember;
-}) {
+function MemberDiceBreakdown({ member }: { member: GroupRollMember }) {
   if (!member) return null;
 
   const { rollLeft, rollRight, bonusDiceRed, bonusDiceBlue } = member;
@@ -179,15 +182,66 @@ function GroupRollMemberScoreVisualization({
   );
 }
 
+function MemberInfoSection({ member }: { member: GroupRollMember }) {
+  if (!member) return null;
+
+  return (
+    <div className="flex justify-between">
+      <MemberDiceBreakdown member={member} />
+      <LockButtonIcon isLocked={member.lockedIn} />
+    </div>
+  );
+}
+
+function GMMemberSection({ member }: { member: GroupRollMember }) {
+  if (!member) return null;
+
+  return (
+    <div className="flex items-center justify-between">
+      <MemberDiceBreakdown member={member} />
+      <GMMemberControls member={member} />
+    </div>
+  );
+}
+
+function GMMemberControls({ member }: { member: GroupRollMember }) {
+  const {
+    handleGroupRollLock,
+    handleChangeGroupRollLeader,
+    handleRemoveGroupRollMember,
+  } = useRoll();
+
+  const toggleLeader = () =>
+    handleChangeGroupRollLeader(member.charName, !member.leader);
+
+  const remove = () => handleRemoveGroupRollMember(member.charName);
+
+  const toggleLock = () =>
+    handleGroupRollLock(member.charName, !member.lockedIn);
+
+  return (
+    <div className="flex gap-2">
+      <Button size="icon" variant="outline" onClick={toggleLeader}>
+        {member.leader ? (
+          <UserMinus className="text-amber-500" />
+        ) : (
+          <UserStar className="text-amber-500" />
+        )}
+      </Button>
+      <Button size="icon" variant="outline" onClick={remove}>
+        <UserX className="text-red-500" />
+      </Button>
+      <LockButton isLocked={member.lockedIn} onClick={toggleLock} />
+    </div>
+  );
+}
+
 function MemberRollSection({ member }: { member: GroupRollMember }) {
   const { rollLeft, rollRight, handleGroupRollLock } = useRoll();
   const { name } = useCharacterSheet();
 
   return (
     <div>
-      <i className="text-xs text-muted-foreground">
-        <b>{member.charName || "Unnamed character"}</b>
-      </i>
       <div className="flex gap-4">
         <div className="w-full">
           <RollSection.RollSelect disabled={member.lockedIn} />
@@ -208,11 +262,11 @@ function MemberRollSection({ member }: { member: GroupRollMember }) {
 
 function LockButton({
   isLocked,
-  disabled,
+  disabled = false,
   onClick,
 }: {
   isLocked: boolean;
-  disabled: boolean;
+  disabled?: boolean;
   onClick: () => void;
 }) {
   return (
@@ -227,20 +281,6 @@ function LockButtonIcon({ isLocked }: { isLocked: boolean }) {
     <LockKeyhole size={18} className="text-lime-500" />
   ) : (
     <LockKeyholeOpen size={18} className="text-zinc-500" />
-  );
-}
-
-function MemberInfoSection({ member }: { member: GroupRollMember }) {
-  return (
-    <div>
-      <i className="text-xs text-muted-foreground">
-        <b>{member.charName || "Unnamed character"}</b>
-      </i>
-      <div className="flex justify-between">
-        <GroupRollMemberScoreVisualization member={member} />
-        <LockButtonIcon isLocked={member.lockedIn} />
-      </div>
-    </div>
   );
 }
 
@@ -275,6 +315,7 @@ function GroupJoinControl() {
 function RollControls() {
   const { groupRoll, handleGroupRoll } = useRoll();
 
+  const hasLeader = groupRoll.some((member) => member.leader);
   const allLockedIn = groupRoll.every((member) => member.lockedIn);
 
   return (
@@ -285,7 +326,7 @@ function RollControls() {
         onClick={async () => {
           handleGroupRoll("project");
         }}
-        disabled={!allLockedIn}
+        disabled={!allLockedIn || !hasLeader}
       >
         <Cog /> Project
       </Button>
@@ -295,7 +336,7 @@ function RollControls() {
         }}
         size="sm"
         className="flex items-center gap-2"
-        disabled={!allLockedIn}
+        disabled={!allLockedIn || !hasLeader}
       >
         <Dices /> Action
       </Button>
@@ -304,9 +345,10 @@ function RollControls() {
 }
 
 GroupRollDialog.LeaderSection = LeaderSection;
+GroupRollDialog.GMLeaderSection = GMLeaderSection;
 GroupRollDialog.MemberRollSection = MemberRollSection;
-GroupRollDialog.MemberScoreVisualization = GroupRollMemberScoreVisualization;
 GroupRollDialog.MemberInfoSection = MemberInfoSection;
+GroupRollDialog.GMMemberSection = GMMemberSection;
 GroupRollDialog.JoinControl = GroupJoinControl;
 GroupRollDialog.RollControls = RollControls;
 

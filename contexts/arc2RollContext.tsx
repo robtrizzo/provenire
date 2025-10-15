@@ -624,6 +624,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       type: rollType,
       id: nanoid(),
     };
+
     if (channel) {
       channel.send({
         type: "broadcast",
@@ -631,7 +632,10 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         payload: JSON.stringify(gr),
       });
     }
-    await doRoll(rollType, rollLeft, rollRight, [`gr-${gr.id}`]);
+
+    const isMember = gr.members.some((member) => member.charName === name);
+    if (isMember) await doRoll(rollType, rollLeft, rollRight, [`gr-${gr.id}`]);
+
     updateGroupRoll(() => []);
     setGroupRollDialogOpen(false);
   };
