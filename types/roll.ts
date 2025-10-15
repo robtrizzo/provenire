@@ -29,6 +29,12 @@ export type Roll = {
   metatags?: string[];
 };
 
+export type GroupRoll = {
+  type: RollType;
+  id: string;
+  members: GroupRollMember[];
+};
+
 export type GroupRollMember = {
   charName: string;
   rollLeft: Rollable | undefined;

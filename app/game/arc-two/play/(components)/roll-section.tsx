@@ -42,7 +42,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Separator } from "@/components/ui/separator";
 import { GroupRollMember } from "@/types/roll";
 import ActionScoreArray from "@/components/ui/action-score-array";
@@ -58,7 +57,7 @@ export default function RollSection() {
     connectionStatus,
   } = useRoll();
 
-  const [groupRollOpen, setGroupRollOpen] = useState(false);
+  // const [groupRollOpen, setGroupRollOpen] = useState(false);
 
   return (
     <Card className="mt-4 p-4 flex flex-col gap-4">
@@ -77,7 +76,7 @@ export default function RollSection() {
           </TypographyP>
         )}
 
-        <GroupRollDialog open={groupRollOpen} setOpen={setGroupRollOpen} />
+        <GroupRollDialog />
 
         <div className="flex items-center space-x-2">
           <Label htmlFor="private-rolls">Private</Label>
@@ -230,21 +229,18 @@ function BonusDicePopover() {
   );
 }
 
-function GroupRollDialog({
-  open,
-  setOpen,
-}: {
-  open: boolean;
-  setOpen: Dispatch<SetStateAction<boolean>>;
-}) {
+function GroupRollDialog() {
   const {
     rollLeft,
     rollRight,
     groupRoll,
+    groupRollDialogOpen,
+    setGroupRollDialogOpen,
     joinGroupRoll,
     handleChangeGroupRollLeader,
     handleGroupRollLock,
     handleRemoveGroupRollMember,
+    handleGroupRoll,
   } = useRoll();
 
   const { name } = useCharacterSheet();
@@ -259,18 +255,15 @@ function GroupRollDialog({
   const isLeader = !!leader && leader.charName === name;
   const allLockedIn = groupRoll.every((member) => member.lockedIn);
 
-  useEffect(() => {
-    if (open && !!name && !isMember) {
-      joinGroupRoll(name);
-    }
-  }, [open, name, isMember, joinGroupRoll]);
-
   const becomeLeader = () => handleChangeGroupRollLeader(name);
   const stepDown = () => handleChangeGroupRollLeader(name, false);
-  const leave = () => handleRemoveGroupRollMember(name);
+  const leave = () => {
+    handleRemoveGroupRollMember(name);
+    setGroupRollDialogOpen(false);
+  };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={groupRollDialogOpen} onOpenChange={setGroupRollDialogOpen}>
       <DialogTrigger asChild>
         <Button size="sm" variant="outline" className="relative">
           <ShineBorder
@@ -434,7 +427,7 @@ function GroupRollDialog({
                 variant="secondary"
                 size="sm"
                 onClick={async () => {
-                  // doRoll("project", rollLeft, rollRight);
+                  handleGroupRoll("project");
                 }}
                 disabled={!allLockedIn}
               >
@@ -442,7 +435,7 @@ function GroupRollDialog({
               </Button>
               <Button
                 onClick={async () => {
-                  // doRoll("action", rollLeft, rollRight);
+                  handleGroupRoll("action");
                 }}
                 size="sm"
                 className="flex items-center gap-2"
@@ -645,27 +638,35 @@ function GroupRollMemberScoreVisualization({
 
   return (
     <div className="flex gap-2 flex-wrap">
-      <div>{rollLeft?.name}: </div>{" "}
-      <ActionScoreArray
-        red={countScoreEntries(rollLeft?.score, 1)}
-        blue={countScoreEntries(rollLeft?.score, 2)}
-        pink={0}
-      />
-      |<span>{rollRight?.name}: </span>{" "}
-      <ActionScoreArray
-        red={countScoreEntries(rollRight?.score, 1)}
-        blue={countScoreEntries(rollRight?.score, 2)}
-        pink={0}
-      />{" "}
+      {rollLeft && (
+        <div className="flex gap-2">
+          <div>{rollLeft?.name}: </div>{" "}
+          <ActionScoreArray
+            red={countScoreEntries(rollLeft?.score, 1)}
+            blue={countScoreEntries(rollLeft?.score, 2)}
+            pink={0}
+          />
+        </div>
+      )}
+      {rollRight && (
+        <div className="flex gap-2">
+          <span>{rollRight?.name}: </span>{" "}
+          <ActionScoreArray
+            red={countScoreEntries(rollRight?.score, 1)}
+            blue={countScoreEntries(rollRight?.score, 2)}
+            pink={0}
+          />
+        </div>
+      )}
       {bonusDiceRed + bonusDiceBlue > 0 && (
         <div className="flex gap-2">
-          | <span>Bonus: </span>
+          <span>Bonus: </span>
           <ActionScoreArray red={bonusDiceRed} blue={bonusDiceBlue} pink={0} />
         </div>
       )}
       {member.emotional && (
         <div className="flex gap-2">
-          |<span>Emotional:</span>
+          <span>Emotional:</span>
           <ActionScoreArray red={0} blue={0} pink={member.emotional ? 1 : 0} />
         </div>
       )}

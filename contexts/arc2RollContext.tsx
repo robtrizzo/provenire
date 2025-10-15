@@ -6,10 +6,11 @@ import {
   ReactNode,
   useEffect,
   useCallback,
+  useRef,
 } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Rollable } from "@/types/game";
-import { GroupRollMember, Roll, RollType } from "@/types/roll";
+import { GroupRoll, GroupRollMember, Roll, RollType } from "@/types/roll";
 import {
   blueHigher,
   getHighestRollColor,
@@ -28,6 +29,7 @@ import { Die } from "@/components/die";
 import { useSession } from "next-auth/react";
 import { RealtimeChannel } from "@supabase/supabase-js";
 import supabase from "@/lib/supabase";
+import { nanoid } from "@/lib/nanoid";
 
 interface RollContextProps {
   bonusDiceRed: number;
@@ -42,6 +44,7 @@ interface RollContextProps {
   isEmotional: boolean;
   isPrivate: boolean;
   groupRoll: GroupRollMember[];
+  groupRollDialogOpen: boolean;
   connectionStatus: "connecting" | "connected" | "disconnected";
   setBonusDiceRed: React.Dispatch<React.SetStateAction<number>>;
   setBonusDiceBlue: React.Dispatch<React.SetStateAction<number>>;
@@ -53,10 +56,12 @@ interface RollContextProps {
   setRollLeft: React.Dispatch<React.SetStateAction<Rollable | undefined>>;
   setRollRight: React.Dispatch<React.SetStateAction<Rollable | undefined>>;
   setIsEmotional: React.Dispatch<React.SetStateAction<boolean>>;
+  setGroupRollDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
   joinGroupRoll: (charName: string) => void;
   handleChangeGroupRollLeader: (charName: string, leader?: boolean) => void;
   handleGroupRollLock: (charName: string, lockedIn: boolean) => void;
   handleRemoveGroupRollMember: (charName: string) => void;
+  handleGroupRoll: (rollType: "action" | "project") => void;
   setIsPrivate: React.Dispatch<React.SetStateAction<boolean>>;
   doRoll: (
     type: RollType,
@@ -97,6 +102,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   const [isEmotional, setIsEmotional] = useState<boolean>(false);
   const [isPrivate, setIsPrivate] = useState<boolean>(false);
   const [groupRoll, setGroupRoll] = useState<GroupRollMember[]>([]);
+  const [groupRollDialogOpen, setGroupRollDialogOpen] = useState(false);
   const [channel, setChannel] = useState<RealtimeChannel>();
 
   const [connectionStatus, setConnectionStatus] = useState<
@@ -136,153 +142,10 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     },
   });
 
-  const PINK_DIE_SIDES = [1, 1, 1, 1, 6, 6];
-  function rollPinkDie(): number {
+  const rollPinkDie = useCallback((): number => {
+    const PINK_DIE_SIDES = [1, 1, 1, 1, 6, 6];
     return PINK_DIE_SIDES[Math.floor(Math.random() * 6)];
-  }
-
-  const rollDice = async (
-    type: RollType,
-    numRed: number,
-    numBlue: number,
-    numPink: number,
-    tag?: string
-  ): Promise<Roll> => {
-    numRed += bonusDiceRed;
-    numBlue += bonusDiceBlue;
-
-    const roll: Roll = {
-      type: type,
-      numRed: numRed,
-      numBlue: numBlue,
-      tag: tag,
-    } as Roll;
-
-    roll.redDice = [];
-    roll.blueDice = [];
-    roll.pinkDice = [];
-
-    const takeLower = numRed + numBlue == 0;
-    if (takeLower) {
-      if (type === "fortune") {
-        numBlue = 2;
-      } else {
-        if (numPink > 0) {
-          numRed = Math.max(0, 2 - numPink);
-        } else {
-          numRed = 2;
-        }
-      }
-    }
-
-    // if there are pink dice, they'll randomly replace other dice
-    if (numPink > 0) {
-      for (let i = 0; i < numPink; i++) {
-        const totalDice = numRed + numBlue;
-
-        // Only replace if there are dice to replace
-        if (totalDice > 0) {
-          // Calculate probability based on proportion of red vs blue dice
-          const redProbability = numRed / totalDice;
-
-          if (Math.random() < redProbability) {
-            if (numRed > 0) {
-              numRed--;
-            } else if (numBlue > 0) {
-              numBlue--;
-            }
-          } else {
-            if (numBlue > 0) {
-              numBlue--;
-            } else if (numRed > 0) {
-              numRed--;
-            }
-          }
-        }
-      }
-    }
-
-    for (let i = 0; i < numRed; i++) {
-      roll.redDice.push(Math.floor(Math.random() * 6) + 1);
-    }
-    for (let i = 0; i < numBlue; i++) {
-      roll.blueDice.push(Math.floor(Math.random() * 6) + 1);
-    }
-    for (let i = 0; i < numPink; i++) {
-      roll.pinkDice.push(rollPinkDie());
-    }
-
-    const redSixes = roll.redDice.filter((r) => r === 6).length;
-    const blueSixes = roll.blueDice.filter((r) => r === 6).length;
-    const pinkSixes = roll.pinkDice.filter((r) => r === 6).length;
-    if (redSixes + blueSixes + pinkSixes >= 2) {
-      roll.result = "crit";
-      roll.effect = "improved";
-      roll.resultDie = 6;
-    } else {
-      if (takeLower) {
-        if (type == "fortune") {
-          roll.resultDie = Math.min(...roll.blueDice);
-        } else {
-          roll.resultDie = Math.min(...roll.redDice, ...roll.pinkDice);
-        }
-        roll.effect = "reduced";
-      } else {
-        const bh = blueHigher(roll);
-        roll.resultDie = bh
-          ? Math.max(...roll.blueDice, ...roll.pinkDice) // pink dice count as normal effect
-          : Math.max(...roll.redDice);
-        roll.effect = bh ? "normal" : "reduced";
-      }
-
-      switch (roll.resultDie) {
-        case 1:
-        case 2:
-        case 3:
-          roll.result = "failure";
-          break;
-        case 4:
-        case 5:
-          roll.result = "partial";
-          break;
-        case 6:
-          roll.result = "success";
-          break;
-      }
-    }
-
-    await saveDiceRoll(roll);
-    if (channel) {
-      channel.send({
-        type: "broadcast",
-        event: "roll",
-        payload: JSON.stringify(roll),
-      });
-    }
-    return roll;
-  };
-
-  async function rollActions(
-    type: RollType,
-    action1?: Rollable,
-    action2?: Rollable
-  ): Promise<Roll> {
-    const score1 = action1?.score || [0, 0];
-    const score2 = action2?.score || [0, 0];
-    const redRolls =
-      score1.filter((r) => r === 1).length +
-      score2.filter((r) => r === 1).length;
-    const blueRolls =
-      score1.filter((r) => r === 2).length +
-      score2.filter((r) => r === 2).length;
-    return await rollDice(
-      type,
-      redRolls,
-      blueRolls,
-      type === "action" && isEmotional ? 1 : 0,
-      `${action1?.name}${action2 ? ` | ${action2.name}` : ""}`
-    );
-  }
+  }, []);
 
   const diceToast = useCallback(
     (
@@ -396,6 +259,185 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     [toast]
   );
 
+  const rollDice = useCallback(
+    async (
+      type: RollType,
+      numRed: number,
+      numBlue: number,
+      numPink: number,
+      tag?: string,
+      metatags?: string[]
+    ): Promise<Roll> => {
+      numRed += bonusDiceRed;
+      numBlue += bonusDiceBlue;
+
+      const roll: Roll = {
+        type: type,
+        numRed: numRed,
+        numBlue: numBlue,
+        tag: tag,
+        metatags,
+      } as Roll;
+
+      roll.redDice = [];
+      roll.blueDice = [];
+      roll.pinkDice = [];
+
+      const takeLower = numRed + numBlue == 0;
+      if (takeLower) {
+        if (type === "fortune") {
+          numBlue = 2;
+        } else {
+          if (numPink > 0) {
+            numRed = Math.max(0, 2 - numPink);
+          } else {
+            numRed = 2;
+          }
+        }
+      }
+
+      // if there are pink dice, they'll randomly replace other dice
+      if (numPink > 0) {
+        for (let i = 0; i < numPink; i++) {
+          const totalDice = numRed + numBlue;
+
+          // Only replace if there are dice to replace
+          if (totalDice > 0) {
+            // Calculate probability based on proportion of red vs blue dice
+            const redProbability = numRed / totalDice;
+
+            if (Math.random() < redProbability) {
+              if (numRed > 0) {
+                numRed--;
+              } else if (numBlue > 0) {
+                numBlue--;
+              }
+            } else {
+              if (numBlue > 0) {
+                numBlue--;
+              } else if (numRed > 0) {
+                numRed--;
+              }
+            }
+          }
+        }
+      }
+
+      for (let i = 0; i < numRed; i++) {
+        roll.redDice.push(Math.floor(Math.random() * 6) + 1);
+      }
+      for (let i = 0; i < numBlue; i++) {
+        roll.blueDice.push(Math.floor(Math.random() * 6) + 1);
+      }
+      for (let i = 0; i < numPink; i++) {
+        roll.pinkDice.push(rollPinkDie());
+      }
+
+      const redSixes = roll.redDice.filter((r) => r === 6).length;
+      const blueSixes = roll.blueDice.filter((r) => r === 6).length;
+      const pinkSixes = roll.pinkDice.filter((r) => r === 6).length;
+      if (redSixes + blueSixes + pinkSixes >= 2) {
+        roll.result = "crit";
+        roll.effect = "improved";
+        roll.resultDie = 6;
+      } else {
+        if (takeLower) {
+          if (type == "fortune") {
+            roll.resultDie = Math.min(...roll.blueDice);
+          } else {
+            roll.resultDie = Math.min(...roll.redDice, ...roll.pinkDice);
+          }
+          roll.effect = "reduced";
+        } else {
+          const bh = blueHigher(roll);
+          roll.resultDie = bh
+            ? Math.max(...roll.blueDice, ...roll.pinkDice) // pink dice count as normal effect
+            : Math.max(...roll.redDice);
+          roll.effect = bh ? "normal" : "reduced";
+        }
+
+        switch (roll.resultDie) {
+          case 1:
+          case 2:
+          case 3:
+            roll.result = "failure";
+            break;
+          case 4:
+          case 5:
+            roll.result = "partial";
+            break;
+          case 6:
+            roll.result = "success";
+            break;
+        }
+      }
+
+      await saveDiceRoll(roll);
+      if (channel) {
+        channel.send({
+          type: "broadcast",
+          event: "roll",
+          payload: JSON.stringify(roll),
+        });
+      }
+      return roll;
+    },
+    [bonusDiceRed, bonusDiceBlue, rollPinkDie, saveDiceRoll, channel]
+  );
+
+  const rollActions = useCallback(
+    async (
+      type: RollType,
+      action1?: Rollable,
+      action2?: Rollable,
+      metatags?: string[]
+    ): Promise<Roll> => {
+      const score1 = action1?.score || [0, 0];
+      const score2 = action2?.score || [0, 0];
+      const redRolls =
+        score1.filter((r) => r === 1).length +
+        score2.filter((r) => r === 1).length;
+      const blueRolls =
+        score1.filter((r) => r === 2).length +
+        score2.filter((r) => r === 2).length;
+      return await rollDice(
+        type,
+        redRolls,
+        blueRolls,
+        type === "action" && isEmotional ? 1 : 0,
+        `${action1?.name}${action2 ? ` | ${action2.name}` : ""}`,
+        metatags
+      );
+    },
+    [isEmotional, rollDice]
+  );
+
+  const doRoll = useCallback(
+    async (
+      type: RollType,
+      rollLeft: Rollable | undefined,
+      rollRight: Rollable | undefined,
+      metatags?: string[]
+    ) => {
+      if (!rollLeft && !rollRight) return;
+      if (!rollLeft) {
+        const roll = await rollActions(type, rollRight, undefined, metatags);
+        diceToast(roll, rollRight?.name);
+      } else if (!rollRight) {
+        const roll = await rollActions(type, rollLeft, undefined, metatags);
+        diceToast(roll, rollLeft.name);
+      } else {
+        const roll = await rollActions(type, rollLeft, rollRight, metatags);
+        diceToast(roll, rollLeft.name, rollRight.name);
+      }
+      setRollLeft(undefined);
+      setRollRight(undefined);
+      setBonusDiceRed(0);
+      setBonusDiceBlue(0);
+    },
+    [diceToast, rollActions]
+  );
+
   const buildUrl = (val: string, cursor: number) => {
     const baseUrl = "/api/roll";
     const params = new URLSearchParams({
@@ -496,6 +538,36 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     [currentDiceFilter, setRolls, diceToast]
   );
 
+  const handleGroupRollEvent = useCallback(
+    async (gr: GroupRoll) => {
+      const groupRollMember = gr.members.find(
+        (member) => member.charName === name
+      );
+      if (!groupRollMember) return;
+      if (!groupRollMember.lockedIn) return;
+      setGroupRollDialogOpen(false);
+      await doRoll(
+        gr.type,
+        groupRollMember.rollLeft,
+        groupRollMember.rollRight,
+        [`gr-${gr.id}`]
+      );
+    },
+    [doRoll, name]
+  );
+
+  const handlersRef = useRef({
+    handleRoll: handleRollEvent,
+    handleGroupRoll: handleGroupRollEvent,
+  });
+
+  useEffect(() => {
+    handlersRef.current = {
+      handleRoll: handleRollEvent,
+      handleGroupRoll: handleGroupRollEvent,
+    };
+  }, [handleRollEvent, handleGroupRollEvent]);
+
   useEffect(() => {
     setConnectionStatus("connecting");
     const rollChannel = supabase.channel("rolls");
@@ -503,7 +575,11 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     rollChannel
       .on("broadcast", { event: "roll" }, (payload) => {
         const roll = JSON.parse(payload.payload);
-        handleRollEvent(roll);
+        handlersRef.current.handleRoll(roll);
+      })
+      .on("broadcast", { event: "group-roll" }, (payload) => {
+        const gr = JSON.parse(payload.payload);
+        handlersRef.current.handleGroupRoll(gr);
       })
       .subscribe();
 
@@ -515,7 +591,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       rollChannel.teardown();
       setConnectionStatus("disconnected");
     };
-  }, [handleRollEvent]);
+  }, []);
 
   useEffect(() => {
     const groupRollChannel = supabase
@@ -540,6 +616,24 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       supabase.removeChannel(groupRollChannel);
     };
   }, []);
+
+  const handleGroupRoll = async (rollType: "action" | "project") => {
+    const gr: GroupRoll = {
+      members: groupRoll,
+      type: rollType,
+      id: nanoid(),
+    };
+    if (channel) {
+      channel.send({
+        type: "broadcast",
+        event: "group-roll",
+        payload: JSON.stringify(gr),
+      });
+    }
+    await doRoll(rollType, rollLeft, rollRight, [`gr-${gr.id}`]);
+    updateGroupRoll(() => []);
+    setGroupRollDialogOpen(false);
+  };
 
   const joinGroupRoll = async (charName: string) => {
     console.log("Fetching group roll persistent state");
@@ -621,28 +715,6 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     setCurrentDiceFilter(val);
     localStorage.setItem(DICE_FILTER_LOCAL_STORAGE_KEY, val);
   };
-
-  async function doRoll(
-    type: RollType,
-    rollLeft: Rollable | undefined,
-    rollRight: Rollable | undefined
-  ) {
-    if (!rollLeft && !rollRight) return;
-    if (!rollLeft) {
-      const roll = await rollActions(type, rollRight);
-      diceToast(roll, rollRight?.name);
-    } else if (!rollRight) {
-      const roll = await rollActions(type, rollLeft);
-      diceToast(roll, rollLeft.name);
-    } else {
-      const roll = await rollActions(type, rollLeft, rollRight);
-      diceToast(roll, rollLeft.name, rollRight.name);
-    }
-    setRollLeft(undefined);
-    setRollRight(undefined);
-    setBonusDiceRed(0);
-    setBonusDiceBlue(0);
-  }
 
   async function handleFortuneRollButton(numDice: number) {
     const roll = await rollDice("fortune", 0, numDice, 0);
@@ -742,6 +814,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         rollsArePending,
         isEmotional,
         groupRoll,
+        groupRollDialogOpen,
         isPrivate,
         connectionStatus,
         setBonusDiceRed,
@@ -756,10 +829,12 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         setRollLeft,
         setRollRight,
         doRoll,
+        setGroupRollDialogOpen,
         joinGroupRoll,
         handleChangeGroupRollLeader,
         handleGroupRollLock,
         handleRemoveGroupRollMember,
+        handleGroupRoll,
         handleFortuneRollButton,
       }}
     >
