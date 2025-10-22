@@ -59,7 +59,6 @@ export default function Page() {
           {!isPending && (
             <Characters characters={data}>
               {(character: CharacterType) => {
-                console.log(character);
                 const c = character as unknown as CharacterV2;
                 return (
                   <Character character={character}>

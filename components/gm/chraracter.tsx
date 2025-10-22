@@ -6,6 +6,7 @@ import { TypographyH3 } from "@/components/ui/typography";
 import type { Character as Char, CharacterV2 } from "@/types/game";
 import Image from "next/image";
 import { FC, ReactNode } from "react";
+import XPClocks from "../character-sheet/xp-clocks";
 
 interface CharacterProps {
   character: Char;
@@ -35,6 +36,15 @@ const Character = ({ character, children }: CharacterProps) => {
         )}
       </CardTitle>
       <CardContent>
+        <div className="mt-4 flex gap-4">
+          <span>Experience</span>
+          <XPClocks>
+            <XPClocks.Clocks
+              initial={character.xp}
+              setVal={(n: number) => {}}
+            />
+          </XPClocks>
+        </div>
         <div className="mt-4 flex gap-4 items-start">
           <span>Conditions</span>
           {character.conditions.map((c, i) => (

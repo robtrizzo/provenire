@@ -4,6 +4,7 @@ export interface Character {
   player: string;
   portrait?: string;
   key?: string;
+  xp: number;
   stress: number;
   conditions: string[];
   healing: number;

@@ -7,6 +7,10 @@ import { TypographyH2 } from "@/components/ui/typography";
 import CharacterSheet from "./(components)/character-sheet";
 import DiceSheet from "@/components/character-sheet/dice-history/dice-sheet";
 import { useRoll } from "@/contexts/arc2RollContext";
+import { View } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 const tabs = [
   { name: "Character", value: "character" },
@@ -35,11 +39,21 @@ export default function Page() {
     rollsArePending,
   } = useRoll();
 
+  const session = useSession();
+  const isGM = session.data?.user.role === "admin";
+
   return (
     <>
       <div className="flex justify-between">
         <Breadcrumbs />
         <div className="flex gap-2 mt-5">
+          {isGM && (
+            <Link href="/game/arc-two/play/gm">
+              <Button variant="outline">
+                <View /> GM
+              </Button>
+            </Link>
+          )}
           <DiceSheet
             rolls={rolls}
             currentDiceFilter={currentDiceFilter}
