@@ -13,7 +13,7 @@ import allActions from "@/public/arc2/actions.json";
 import { DictionaryAction } from "@/types/game";
 import ActionDescription from "@/components/character-sheet/action-description";
 import { AddActionCombobox } from "./add-action-combobox";
-import ActionWidget from "./action-widget";
+import Action from "./action";
 
 const ALL_ACTIONS: DictionaryAction[] = [
   ...allActions.Basic,
@@ -48,7 +48,10 @@ export default function EditActions() {
           Configure Actions <AddActionCombobox />
         </TypographyH3>
         {actions.map((a, i) => (
-          <ActionWidget action={a} key={a.name + i} mode="edit" />
+          <Action.GridWrapper key={a.name + i}>
+            <Action.HeaderContent.Detailed action={a} />
+            <Action.EditControls action={a} />
+          </Action.GridWrapper>
         ))}
         <TypographyH3 className="font-cyber">Starting Actions</TypographyH3>
         <TypographyH4 className="font-cyber text-amber-500 text-center">

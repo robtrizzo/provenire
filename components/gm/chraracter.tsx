@@ -3,10 +3,11 @@ import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { TypographyH3 } from "@/components/ui/typography";
-import type { Character as Char, CharacterV2 } from "@/types/game";
+import type { ActionV2, Character as Char, CharacterV2 } from "@/types/game";
 import Image from "next/image";
 import { FC, ReactNode } from "react";
 import XPClocks from "../character-sheet/xp-clocks";
+import Action from "@/app/game/arc-two/play/(components)/action";
 
 interface CharacterProps {
   character: Char;
@@ -14,16 +15,19 @@ interface CharacterProps {
 }
 
 type Character = FC<CharacterProps> & {
+  XP: FC<CharacterProps>;
+  Conditions: FC<CharacterProps>;
   HarmV1: FC<CharacterProps>;
   HarmV2: FC<CharacterProps>;
   StressV1: FC<CharacterProps>;
   StressV2: FC<CharacterProps>;
   Baggage: FC<CharacterProps>;
+  ActionsV2: FC<CharacterProps>;
 };
 
 const Character = ({ character, children }: CharacterProps) => {
   return (
-    <Card className="p-4 min-w-64 mx-auto">
+    <Card className="p-4 min-w-64">
       <CardTitle className="flex items-end justify-between">
         <TypographyH3>{character.name}</TypographyH3>
         {character.portrait && (
@@ -35,32 +39,37 @@ const Character = ({ character, children }: CharacterProps) => {
           />
         )}
       </CardTitle>
-      <CardContent>
-        <div className="mt-4 flex gap-4">
-          <span>Experience</span>
-          <XPClocks>
-            <XPClocks.Clocks
-              initial={character.xp}
-              setVal={(n: number) => {}}
-            />
-          </XPClocks>
-        </div>
-        <div className="mt-4 flex gap-4 items-start">
-          <span>Conditions</span>
-          {character.conditions.map((c, i) => (
-            <div
-              key={character.name + c + i}
-              className="py-1 px-2 border-[1px] rounded-md"
-            >
-              <span className="text-sm">{c}</span>
-            </div>
-          ))}
-        </div>
-        {children}
-      </CardContent>
+      <CardContent>{children}</CardContent>
     </Card>
   );
 };
+
+function XP({ character }: { character: Char }) {
+  return (
+    <div className="mt-4 flex gap-4">
+      <span>Experience</span>
+      <XPClocks>
+        <XPClocks.Clocks initial={character.xp} setVal={() => {}} />
+      </XPClocks>
+    </div>
+  );
+}
+
+function Conditions({ character }: { character: Char }) {
+  return (
+    <div className="mt-4 flex gap-4 items-start">
+      <span>Conditions</span>
+      {character.conditions.map((c, i) => (
+        <div
+          key={character.name + c + i}
+          className="py-1 px-2 border-[1px] rounded-md"
+        >
+          <span className="text-sm">{c}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 function HarmV1({ character }: { character: Char }) {
   const { healing, harm3, harm2, harm1, armor, sArmor, hArmor, abilities } =
@@ -293,9 +302,43 @@ function Baggage({ character }: { character: CharacterV2 }) {
   );
 }
 
+function ActionsV2({ character }: { character: CharacterV2 }) {
+  const { left, right } = character.actions.reduce<{
+    left: ActionV2[];
+    right: ActionV2[];
+  }>(
+    (acc, action) => ({
+      left: action.position === "left" ? [...acc.left, action] : acc.left,
+      right: action.position === "right" ? [...acc.right, action] : acc.right,
+    }),
+    { left: [], right: [] }
+  );
+  return (
+    <div className="flex gap-4">
+      <div className="flex-1">
+        {left.map((a, i) => (
+          <Action.GridWrapper key={a.name + i}>
+            <Action.HeaderContent.Simple action={a} />
+          </Action.GridWrapper>
+        ))}
+      </div>
+      <div className="flex-1">
+        {right.map((a, i) => (
+          <Action.GridWrapper key={a.name + i}>
+            <Action.HeaderContent.Simple action={a} />
+          </Action.GridWrapper>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+Character.XP = XP;
+Character.Conditions = Conditions;
 Character.HarmV1 = HarmV1;
 Character.HarmV2 = HarmV2;
 Character.StressV1 = StressV1;
 Character.StressV2 = StressV2;
 Character.Baggage = Baggage;
+Character.ActionsV2 = ActionsV2;
 export default Character;

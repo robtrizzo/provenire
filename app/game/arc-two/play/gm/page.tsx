@@ -62,8 +62,17 @@ export default function Page() {
                 const c = character as unknown as CharacterV2;
                 return (
                   <Character character={character}>
-                    <Character.Baggage character={c} />
-                    <Character.StressV2 character={c} />
+                    <div className="grid grid-cols-12">
+                      <div className="col-span-4 flex flex-col">
+                        <Character.XP character={character} />
+                        <Character.Conditions character={character} />
+                        <Character.StressV2 character={c} />
+                        <Character.Baggage character={c} />
+                      </div>
+                      <div className="col-span-8">
+                        <Character.ActionsV2 character={c} />
+                      </div>
+                    </div>
                     <Character.HarmV2 character={c} />
                   </Character>
                 );
