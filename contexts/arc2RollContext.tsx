@@ -30,6 +30,7 @@ import { useSession } from "next-auth/react";
 import { RealtimeChannel } from "@supabase/supabase-js";
 import supabase from "@/lib/supabase";
 import { nanoid } from "@/lib/nanoid";
+import { capitalizeFirstLetter } from "@/lib/utils";
 
 interface RollContextProps {
   bonusDiceRed: number;
@@ -288,7 +289,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       roll.blueDice = [];
       roll.pinkDice = [];
 
-      const takeLower = numRed + numBlue == 0;
+      const takeLower = numRed + numBlue === 0;
       if (takeLower) {
         if (type === "fortune") {
           numBlue = 2;
@@ -417,6 +418,13 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     [isEmotional, rollDice]
   );
 
+  const cleanupDice = useCallback(() => {
+    setRollLeft(undefined);
+    setRollRight(undefined);
+    setBonusDiceRed(0);
+    setBonusDiceBlue(0);
+  }, []);
+
   const doRoll = useCallback(
     async (
       type: RollType,
@@ -424,7 +432,17 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       rollRight: Rollable | undefined,
       metatags?: string[]
     ) => {
-      if (!rollLeft && !rollRight) return;
+      if (!rollLeft && !rollRight) {
+        const roll = await rollDice(
+          type,
+          0,
+          0,
+          type === "action" && isEmotional ? 1 : 0
+        );
+        diceToast(roll, capitalizeFirstLetter(type));
+        cleanupDice();
+        return;
+      }
       if (!rollLeft) {
         const roll = await rollActions(type, rollRight, undefined, metatags);
         diceToast(roll, rollRight?.name);
@@ -435,12 +453,9 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         const roll = await rollActions(type, rollLeft, rollRight, metatags);
         diceToast(roll, rollLeft.name, rollRight.name);
       }
-      setRollLeft(undefined);
-      setRollRight(undefined);
-      setBonusDiceRed(0);
-      setBonusDiceBlue(0);
+      cleanupDice();
     },
-    [diceToast, rollActions]
+    [diceToast, rollActions, rollDice, isEmotional, cleanupDice]
   );
 
   const buildUrl = (val: string, cursor: number) => {

@@ -84,3 +84,7 @@ export function saveCharacterToDevice(filename: string) {
   a.download = `${filename}.json`;
   a.click();
 }
+
+export function capitalizeFirstLetter(string: string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
