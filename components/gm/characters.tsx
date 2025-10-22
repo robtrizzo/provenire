@@ -28,7 +28,7 @@ export default function Characters({
       charactersToDisplay = getEnabledCharacters(characters);
     }
     return (
-      <div className="mt-4 flex flex-wrap gap-4">
+      <div className="mt-4 flex flex-col gap-4">
         {charactersToDisplay.map((character: CharacterType, index: number) => (
           <div key={character.name + index}>{children(character)}</div>
         ))}

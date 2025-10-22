@@ -4,6 +4,7 @@ export interface Character {
   player: string;
   portrait?: string;
   key?: string;
+  xp: number;
   stress: number;
   conditions: string[];
   healing: number;
@@ -359,10 +360,7 @@ export interface CharacterV2 {
   sArmor: boolean;
   hArmor: boolean;
   abilities: string[];
-  actions: {
-    left: ActionV2[];
-    right: ActionV2[];
-  };
+  actions: ActionV2[];
   memory?: number;
   unlockedBaggage?: Baggage[];
 }

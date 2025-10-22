@@ -1,7 +1,7 @@
 import { TypographyH2 } from "@/components/ui/typography";
 import EditActions from "./edit-actions";
 import { useCharacterSheet } from "@/contexts/arc2CharacterSheetContext";
-import ActionWidget from "./action-widget";
+import Action from "./action";
 import { cn } from "@/lib/utils";
 
 export default function ActionSection() {
@@ -57,14 +57,26 @@ export default function ActionSection() {
           {leftActions.map((action) => {
             if (action.type === "codex" && !action.subscriptionPaid)
               return null;
-            return <ActionWidget key={action.name} action={action} />;
+            return (
+              <Action.MenuWrapper action={action} key={action.name}>
+                <Action.RollableWrapper action={action}>
+                  <Action.HeaderContent.Simple action={action} />
+                </Action.RollableWrapper>
+              </Action.MenuWrapper>
+            );
           })}
         </div>
         <div className="flex-1">
           {rightActions.map((action) => {
             if (action.type === "codex" && !action.subscriptionPaid)
               return null;
-            return <ActionWidget key={action.name} action={action} />;
+            return (
+              <Action.MenuWrapper action={action} key={action.name}>
+                <Action.RollableWrapper action={action}>
+                  <Action.HeaderContent.Simple action={action} />
+                </Action.RollableWrapper>
+              </Action.MenuWrapper>
+            );
           })}
         </div>
       </div>
