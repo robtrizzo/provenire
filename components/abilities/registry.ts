@@ -267,13 +267,13 @@ import FlowingSurge from "./fighting-styles/arc2/lotarlin/flowing-surge";
 // donums
 // arc2
 // leo
-import DonumLeo from "./donums/arc2/leo/donum-leo";
-import GlimpseOfPrey from "./donums/arc2/leo/glimpse-of-prey";
-import PredatorsRest from "./donums/arc2/leo/predators-rest";
-import WeaponsOfTheLion from "./donums/arc2/leo/weapons-of-the-lion";
-import SturdyHideLeo from "./donums/arc2/leo/sturdy-hide";
-import SkillfulShiftingLeo from "./donums/arc2/leo/skillful-shifting";
-import GrandAppetiteLeo from "./donums/arc2/leo/grand-appetite";
+import DonumLeo from "./donums/arc2/donum-leo/donum-leo";
+import GlimpseOfPrey from "./donums/arc2/donum-leo/glimpse-of-prey";
+import PredatorsRest from "./donums/arc2/donum-leo/predators-rest";
+import WeaponsOfTheLion from "./donums/arc2/donum-leo/weapons-of-the-lion";
+import SturdyHide from "./donums/arc2/donum-leo/sturdy-hide";
+import SkillfulShiftingLeo from "./donums/arc2/donum-leo/skillful-shifting";
+import GrandAppetiteLeo from "./donums/arc2/donum-leo/grand-appetite";
 
 export type AbilityRegistryType = {
   [category: string]: {
@@ -607,12 +607,12 @@ export const abilityRegistry = {
   },
   donums: {
     arc2: {
-      leo: {
+      "donum-leo": {
         "donum-leo": DonumLeo,
         "glimpse-of-prey": GlimpseOfPrey,
         "predators-rest": PredatorsRest,
         "weapons-of-the-lion": WeaponsOfTheLion,
-        "sturdy-hide": SturdyHideLeo,
+        "sturdy-hide": SturdyHide,
         "skillful-shifting": SkillfulShiftingLeo,
         "grand-appetite": GrandAppetiteLeo,
       },

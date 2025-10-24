@@ -47,45 +47,6 @@
     ]
   },
   {
-    "name": "Donum Leo",
-    "translation": "Gift of the King",
-    "description": "",
-    "provenire": "",
-    "metamorphosis": "",
-    "type": "transformation",
-    "abilities": [
-      {
-        "name": "Donum Leo",
-        "slug": "donum-leo",
-        "keystone": true
-      },
-      {
-        "name": "Glimpse of Prey",
-        "slug": "glimpse-of-prey"
-      },
-      {
-        "name": "Predator's Rest",
-        "slug": "predators-rest"
-      },
-      {
-        "name": "Weapons of the Lion",
-        "slug": "weapons-of-the-lion"
-      },
-      {
-        "name": "Sturdy Skin",
-        "slug": "sturdy-skin"
-      },
-      {
-        "name": "Skillful Shifting",
-        "slug": "skillful-shifting"
-      },
-      {
-        "name": "Grand Appetite",
-        "slug": "grand-appetite"
-      }
-    ]
-  },
-  {
     "name": "Donum Ursa",
     "translation": "Gift of the Bear",
     "description": "",

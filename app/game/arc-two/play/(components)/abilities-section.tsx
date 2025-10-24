@@ -23,7 +23,7 @@ const abilityVariants = cva("", {
       archetype: "text-amber-500",
       operative: "text-indigo-500",
       fightingStyle: "text-emerald-500",
-      transformation: "text-orange-500",
+      donum: "text-orange-500",
       default: "text-primary",
     },
   },
@@ -66,7 +66,7 @@ export default function AbilitiesSection() {
                       | "archetype"
                       | "operative"
                       | "fightingStyle"
-                      | "transformation",
+                      | "donum",
                   }),
                   "text-sm"
                 )}
@@ -116,7 +116,7 @@ export default function AbilitiesSection() {
           </div>
         ))}
       </div>
-      <div className="mt-1 flex items-center justify-between">
+      <div className="mt-1 flex flex-wrap items-center justify-between">
         <AbilityPanel
           trigger={
             <Button size="sm" variant="outline" disabled={!selectedArchetype}>
@@ -283,14 +283,14 @@ export default function AbilitiesSection() {
               variant="outline"
               disabled={!selectedTransformation}
             >
-              <span className="text-indigo-500">
+              <span className="text-orange-500">
                 <Plus className="inline-block" /> transformation
               </span>
             </Button>
           }
         >
-          <TypographyH3 className="text-indigo-500">
-            {selectedTransformation?.name || "Archetype"}&apos;s Abilities
+          <TypographyH3 className="text-orange-500">
+            {selectedTransformation?.name || "Transformation"}&apos;s Abilities
           </TypographyH3>
           {selectedTransformation?.abilities.map((ability, idx) => {
             const unlocked = !!abilities.find((a) => a.name === ability.name);
@@ -305,7 +305,7 @@ export default function AbilitiesSection() {
                     onClick={() =>
                       handleAddOrRemoveAbility({
                         ...ability,
-                        type: "operative",
+                        type: "donum",
                         source: selectedTransformation.name,
                       })
                     }
@@ -323,9 +323,11 @@ export default function AbilitiesSection() {
                 </div>
                 <AbilityComponent
                   ability={ability}
-                  category="operatives"
+                  category="donums"
                   arc="arc2"
-                  type={selectedTransformation.name.toLocaleLowerCase()}
+                  type={selectedTransformation.name
+                    .toLocaleLowerCase()
+                    .replace(/\s/g, "-")}
                 />
               </div>
             );
