@@ -10,6 +10,7 @@ import Options from "./options";
 import ProfileSection from "./profile-section";
 import RollSection from "./roll-section";
 import StressSection from "./stress-section";
+import TransformationSection from "./transformation-section";
 import WealthSection from "./wealth-section";
 import XPSection from "./xp-section";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -37,6 +38,7 @@ export default function CharacterSheet() {
             <div className="flex flex-col my-6 md:mt-4">
               <StressSection />
               <BaggageSection />
+              <TransformationSection />
               <HarmSection />
               <RollSection />
               <LoadoutSection />

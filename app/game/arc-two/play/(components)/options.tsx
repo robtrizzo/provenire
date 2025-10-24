@@ -287,7 +287,13 @@ export default function Options() {
                   (b) => b.name === value
                 ) as Transformation | undefined;
                 if (foundTransformation) {
-                  setSelectedTransformation(foundTransformation);
+                  const newTransformation: Transformation = {
+                    name: foundTransformation.name,
+                    abilities: foundTransformation.abilities,
+                    phase: "Nascence",
+                    progress: 0,
+                  };
+                  setSelectedTransformation(newTransformation);
                   setChanges(true);
                 }
               }}

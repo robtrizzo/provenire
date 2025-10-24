@@ -14,6 +14,9 @@ export default function Ability(props: AbilityProps) {
   const AbilityComponent =
     abilityRegistry?.[category]?.[arc]?.[type]?.[ability.slug];
   if (!AbilityComponent) {
+    console.error(
+      `Ability not found: ${category}/${arc}/${type}/${ability.slug}`
+    );
     return (
       <div>
         <span className="text-red-500">Ability not found: {ability.name}</span>
