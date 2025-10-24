@@ -264,6 +264,15 @@ import Permeate from "./fighting-styles/arc2/lotarlin/permeate";
 import CutTheSky from "./fighting-styles/arc2/lotarlin/cut-the-sky";
 import RipplesReturn from "./fighting-styles/arc2/lotarlin/ripples-return";
 import FlowingSurge from "./fighting-styles/arc2/lotarlin/flowing-surge";
+// donums
+// arc2
+// leo
+import GlimpseOfPrey from "./donums/arc2/leo/glimpse-of-prey";
+import PredatorsRest from "./donums/arc2/leo/predators-rest";
+import WeaponsOfTheLion from "./donums/arc2/leo/weapons-of-the-lion";
+import SturdyHideLeo from "./donums/arc2/leo/sturdy-hide";
+import SkillfulShiftingLeo from "./donums/arc2/leo/skillful-shifting";
+import GrandAppetiteLeo from "./donums/arc2/leo/grand-appetite";
 
 export type AbilityRegistryType = {
   [category: string]: {
@@ -592,6 +601,18 @@ export const abilityRegistry = {
         "cut-the-sky": CutTheSky,
         "ripples-return": RipplesReturn,
         "flowing-surge": FlowingSurge,
+      },
+    },
+  },
+  donums: {
+    arc2: {
+      leo: {
+        "glimpse-of-prey": GlimpseOfPrey,
+        "predators-rest": PredatorsRest,
+        "weapons-of-the-lion": WeaponsOfTheLion,
+        "sturdy-hide": SturdyHideLeo,
+        "skillful-shifting": SkillfulShiftingLeo,
+        "grand-appetite": GrandAppetiteLeo,
       },
     },
   },

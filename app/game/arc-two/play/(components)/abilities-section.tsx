@@ -23,6 +23,7 @@ const abilityVariants = cva("", {
       archetype: "text-amber-500",
       operative: "text-indigo-500",
       fightingStyle: "text-emerald-500",
+      transformation: "text-orange-500",
       default: "text-primary",
     },
   },
@@ -33,6 +34,7 @@ export default function AbilitiesSection() {
     selectedArchetype,
     selectedOperative,
     selectedFightingStyle,
+    selectedTransformation,
     abilities,
     setAbilities,
     setChanges,
@@ -60,7 +62,11 @@ export default function AbilitiesSection() {
               <span
                 className={cn(
                   abilityVariants({
-                    type: a.type as "archetype" | "operative" | "fightingStyle",
+                    type: a.type as
+                      | "archetype"
+                      | "operative"
+                      | "fightingStyle"
+                      | "transformation",
                   }),
                   "text-sm"
                 )}
@@ -265,6 +271,61 @@ export default function AbilitiesSection() {
                   type={selectedFightingStyle.name
                     .split(" ")[0]
                     .toLocaleLowerCase()}
+                />
+              </div>
+            );
+          })}
+        </AbilityPanel>
+        <AbilityPanel
+          trigger={
+            <Button
+              size="sm"
+              variant="outline"
+              disabled={!selectedTransformation}
+            >
+              <span className="text-indigo-500">
+                <Plus className="inline-block" /> transformation
+              </span>
+            </Button>
+          }
+        >
+          <TypographyH3 className="text-indigo-500">
+            {selectedTransformation?.name || "Archetype"}&apos;s Abilities
+          </TypographyH3>
+          {selectedTransformation?.abilities.map((ability, idx) => {
+            const unlocked = !!abilities.find((a) => a.name === ability.name);
+            return (
+              <div key={ability.name + "arc" + idx}>
+                <div className="flex items-center gap-4 flex-wrap">
+                  <TypographyH4>{ability.name}</TypographyH4>
+                  <ClockCost num={ability.keystone ? 0 : ability.cost || 2} />
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() =>
+                      handleAddOrRemoveAbility({
+                        ...ability,
+                        type: "operative",
+                        source: selectedTransformation.name,
+                      })
+                    }
+                  >
+                    {unlocked ? (
+                      <Trash size={10} className="inline-block text-red-500" />
+                    ) : (
+                      <LockKeyholeOpen size={10} className="inline-block" />
+                    )}
+
+                    <span className={cn("text-xs", unlocked && "text-red-500")}>
+                      {unlocked ? "remove" : "unlock"}
+                    </span>
+                  </Button>
+                </div>
+                <AbilityComponent
+                  ability={ability}
+                  category="operatives"
+                  arc="arc2"
+                  type={selectedTransformation.name.toLocaleLowerCase()}
                 />
               </div>
             );
