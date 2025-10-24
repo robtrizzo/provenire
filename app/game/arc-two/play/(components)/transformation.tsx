@@ -88,7 +88,9 @@ function TransformationClock() {
   const { selectedTransformation, setSelectedTransformation } =
     useCharacterSheet();
 
-  const max = clockMax(selectedTransformation?.phase!);
+  if (!selectedTransformation) return null;
+
+  const max = clockMax(selectedTransformation?.phase);
 
   const handleSetProgress = (n: number) => {
     setSelectedTransformation((prev) =>

@@ -71,7 +71,7 @@ export default function ItemsTable({
   handleRemoveItem: (index: number) => void;
   handleEditItem: (updatedItem: ItemV2, index: number) => void;
 }) {
-  const usedSlots = items?.reduce((acc, item) => acc + item.slots, 0);
+  const usedSlots = items?.reduce((acc, item) => acc + Number(item.slots), 0);
 
   const addItem = (item: ItemV2) => {
     handleAddItem(item);
