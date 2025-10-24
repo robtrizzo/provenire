@@ -78,6 +78,8 @@ interface CharacterSheetContextProps {
   conditions: string[];
   memory: number;
   unlockedBaggage: Baggage[];
+  blood: number;
+  maxBlood: number;
   harm: CharacterHarm;
   effectiveHarm: CharacterHarm;
   armor: boolean;
@@ -130,6 +132,8 @@ interface CharacterSheetContextProps {
   setConditions: React.Dispatch<React.SetStateAction<string[]>>;
   setMemory: React.Dispatch<React.SetStateAction<number>>;
   setUnlockedBaggage: React.Dispatch<React.SetStateAction<Baggage[]>>;
+  setBlood: React.Dispatch<React.SetStateAction<number>>;
+  setMaxBlood: React.Dispatch<React.SetStateAction<number>>;
   setHarm: React.Dispatch<React.SetStateAction<CharacterHarm>>;
   setArmor: React.Dispatch<React.SetStateAction<boolean>>;
   setHArmor: React.Dispatch<React.SetStateAction<boolean>>;
@@ -233,6 +237,9 @@ export default function CharacterSheetProvider({
   const [memory, setMemory] = useState(0);
   const [unlockedBaggage, setUnlockedBaggage] = useState<Baggage[]>([]);
 
+  const [blood, setBlood] = useState<number>(0);
+  const [maxBlood, setMaxBlood] = useState<number>(2);
+
   const [harm, setHarm] = useState<CharacterHarm>(
     JSON.parse(JSON.stringify(DEFAULT_HARM))
   );
@@ -285,6 +292,8 @@ export default function CharacterSheetProvider({
     setMaxStress(0);
     setMemory(0);
     setUnlockedBaggage([]);
+    setBlood(0);
+    setMaxBlood(2);
     setHarm(JSON.parse(JSON.stringify(DEFAULT_HARM)));
     setArmor(false);
     setHArmor(false);
@@ -340,6 +349,8 @@ export default function CharacterSheetProvider({
         setMaxStress(parsed.maxStress || 9);
         setStress(parsed.stress || 0);
         setMemory(parsed.memory || 0);
+        setBlood(parsed.blood || 0);
+        setMaxBlood(parsed.maxBlood || 2);
         setUnlockedBaggage(parsed.unlockedBaggage || []);
         setHarm(parsed.harm || JSON.parse(JSON.stringify(DEFAULT_HARM)));
         setArmor(parsed.armor || false);
@@ -390,6 +401,8 @@ export default function CharacterSheetProvider({
           conditions,
           memory,
           unlockedBaggage,
+          blood,
+          maxBlood,
           harm,
           armor,
           hArmor,
@@ -443,6 +456,8 @@ export default function CharacterSheetProvider({
         conditions,
         memory,
         unlockedBaggage,
+        blood,
+        maxBlood,
         harm,
         armor,
         hArmor,
@@ -851,6 +866,8 @@ export default function CharacterSheetProvider({
         conditions,
         memory,
         unlockedBaggage,
+        blood,
+        maxBlood,
         harm,
         effectiveHarm,
         armor,
@@ -890,6 +907,8 @@ export default function CharacterSheetProvider({
         setConditions,
         setMemory,
         setUnlockedBaggage,
+        setBlood,
+        setMaxBlood,
         setHarm,
         setArmor,
         setHArmor,
