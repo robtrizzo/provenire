@@ -341,10 +341,12 @@ export type FightingStyleV2 = {
 
 export type Transformation = {
   name: string;
+  abilities: Ability[];
+  phase: DonumPhase;
+  progress: number;
   translation?: string;
   description?: string;
   provenire?: string;
-  abilities: Ability[];
 };
 
 export interface CharacterV2 {
