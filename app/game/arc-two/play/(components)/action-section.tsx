@@ -58,11 +58,13 @@ export default function ActionSection() {
             if (action.type === "codex" && !action.subscriptionPaid)
               return null;
             return (
-              <Action.MenuWrapper action={action} key={action.name}>
-                <Action.RollableWrapper action={action}>
-                  <Action.HeaderContent.Simple action={action} />
-                </Action.RollableWrapper>
-              </Action.MenuWrapper>
+              <Action.TooltipWrapper action={action} key={action.name}>
+                <Action.MenuWrapper action={action}>
+                  <Action.RollableWrapper action={action}>
+                    <Action.HeaderContent.Simple action={action} />
+                  </Action.RollableWrapper>
+                </Action.MenuWrapper>
+              </Action.TooltipWrapper>
             );
           })}
         </div>
@@ -71,11 +73,13 @@ export default function ActionSection() {
             if (action.type === "codex" && !action.subscriptionPaid)
               return null;
             return (
-              <Action.MenuWrapper action={action} key={action.name}>
-                <Action.RollableWrapper action={action}>
-                  <Action.HeaderContent.Simple action={action} />
-                </Action.RollableWrapper>
-              </Action.MenuWrapper>
+              <Action.TooltipWrapper action={action} key={action.name}>
+                <Action.MenuWrapper action={action}>
+                  <Action.RollableWrapper action={action}>
+                    <Action.HeaderContent.Simple action={action} />
+                  </Action.RollableWrapper>
+                </Action.MenuWrapper>
+              </Action.TooltipWrapper>
             );
           })}
         </div>

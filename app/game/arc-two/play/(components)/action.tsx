@@ -48,12 +48,18 @@ type MenuWrapperProps = {
   children: ReactNode;
 } & React.HTMLAttributes<HTMLDivElement>;
 
+type TooltipWrapperProps = {
+  action: ActionV2;
+  children: ReactNode;
+};
+
 type Action = {
   GridWrapper: FC<GridWrapperProps>;
   RollableWrapper: FC<ActionProps & { children: ReactNode }>;
   HeaderContent: HeaderContent;
   EditControls: FC<ActionProps>;
   MenuWrapper: FC<MenuWrapperProps>;
+  TooltipWrapper: FC<TooltipWrapperProps>;
 };
 
 function useActionWidget(action: ActionV2) {
@@ -327,6 +333,19 @@ function MenuWrapper({ action, children, ...props }: MenuWrapperProps) {
   );
 }
 
+function TooltipWrapper({ action, children }: TooltipWrapperProps) {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <div>{children}</div>
+      </TooltipTrigger>
+      <TooltipContent className="border-border border-[1px]">
+        {action.description}
+      </TooltipContent>
+    </Tooltip>
+  );
+}
+
 const Action: Action = {
   GridWrapper,
   RollableWrapper,
@@ -336,6 +355,7 @@ const Action: Action = {
   },
   EditControls,
   MenuWrapper,
+  TooltipWrapper,
 };
 
 export default Action;

@@ -317,16 +317,20 @@ function ActionsV2({ character }: { character: CharacterV2 }) {
     <div className="flex gap-4">
       <div className="flex-1">
         {left.map((a, i) => (
-          <Action.GridWrapper key={a.name + i}>
-            <Action.HeaderContent.Simple action={a} />
-          </Action.GridWrapper>
+          <Action.TooltipWrapper action={a} key={a.name + i}>
+            <Action.GridWrapper>
+              <Action.HeaderContent.Simple action={a} />
+            </Action.GridWrapper>
+          </Action.TooltipWrapper>
         ))}
       </div>
       <div className="flex-1">
         {right.map((a, i) => (
-          <Action.GridWrapper key={a.name + i}>
-            <Action.HeaderContent.Simple action={a} />
-          </Action.GridWrapper>
+          <Action.TooltipWrapper action={a} key={a.name + i}>
+            <Action.GridWrapper>
+              <Action.HeaderContent.Simple action={a} />
+            </Action.GridWrapper>
+          </Action.TooltipWrapper>
         ))}
       </div>
     </div>
