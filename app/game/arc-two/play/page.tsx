@@ -55,7 +55,10 @@ export default function Page() {
               </Button>
             </Link>
           )}
-          <EngagementRollDialog>TODO</EngagementRollDialog>
+          <EngagementRollDialog>
+            <EngagementRollDialog.Questions />
+            <EngagementRollDialog.RollControls />
+          </EngagementRollDialog>
           <DiceSheet
             rolls={rolls}
             currentDiceFilter={currentDiceFilter}
