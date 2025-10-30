@@ -12,6 +12,7 @@ import Character from "@/components/gm/chraracter";
 import GroupRollDialog from "../(components)/group-roll-dialog";
 import { GroupRollMember } from "@/types/roll";
 import { Separator } from "@/components/ui/separator";
+import EngagementRoll from "../(components)/engagement-roll";
 
 export default function Page() {
   const {
@@ -54,6 +55,9 @@ export default function Page() {
       <TypographyH1>The Crew</TypographyH1>
       <div className="flex flex-col gap-4">
         <GroupRollSection />
+        <EngagementRoll.Configure.Dialog>
+          <EngagementRoll.Configure.Content />
+        </EngagementRoll.Configure.Dialog>
         <CharacterFiltersProvider>
           <FilterCharacters />
           {!isPending && (

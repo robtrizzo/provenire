@@ -10,7 +10,14 @@ import {
 } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Rollable } from "@/types/game";
-import { GroupRoll, GroupRollMember, Roll, RollType } from "@/types/roll";
+import {
+  EngagementRollQuestion,
+  EngagementRollState,
+  GroupRoll,
+  GroupRollMember,
+  Roll,
+  RollType,
+} from "@/types/roll";
 import {
   blueHigher,
   getHighestRollColor,
@@ -47,6 +54,9 @@ interface RollContextProps {
   groupRoll: GroupRollMember[];
   groupRollDialogOpen: boolean;
   groupRollAlert: boolean;
+  engagementRoll: EngagementRollState;
+  engagementRollDialogOpen: boolean;
+  engagementRollAlert: boolean;
   connectionStatus: "connecting" | "connected" | "disconnected";
   setBonusDiceRed: React.Dispatch<React.SetStateAction<number>>;
   setBonusDiceBlue: React.Dispatch<React.SetStateAction<number>>;
@@ -67,6 +77,13 @@ interface RollContextProps {
   handleGroupRollLock: (charName: string, lockedIn: boolean) => void;
   handleRemoveGroupRollMember: (charName: string) => void;
   handleGroupRoll: (rollType: "action" | "project") => void;
+  setEngagementRollDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setEngagementRollAlert: React.Dispatch<React.SetStateAction<boolean>>;
+  handleEngagementRollAlert: () => void;
+  loadEngagementRoll: () => void;
+  configureEngagementRoll: (questions: EngagementRollQuestion[]) => void;
+  engagementRollQuestionVote: (idx: number, vote: "yes" | "no") => void;
+  handleEngagementRoll: () => void;
   setIsPrivate: React.Dispatch<React.SetStateAction<boolean>>;
   doRoll: (
     type: RollType,
@@ -81,6 +98,7 @@ const PAGE_SIZE = 40;
 const DICE_FILTER_LOCAL_STORAGE_KEY = "dicehistory.selectedfilter";
 
 const GROUP_ROLL_ID = "arc2";
+const ENGAGEMENT_ROLL_ID = "arc2-eng";
 
 export const useRoll = () => {
   const context = useContext(RollContext);
@@ -109,6 +127,10 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   const [groupRoll, setGroupRoll] = useState<GroupRollMember[]>([]);
   const [groupRollDialogOpen, setGroupRollDialogOpen] = useState(false);
   const [groupRollAlert, setGroupRollAlert] = useState(false);
+  const [engagementRoll, setEngagementRoll] = useState<EngagementRollState>([]);
+  const [engagementRollDialogOpen, setEngagementRollDialogOpen] =
+    useState(false);
+  const [engagementRollAlert, setEngagementRollAlert] = useState(false);
   const [channel, setChannel] = useState<RealtimeChannel>();
 
   const [connectionStatus, setConnectionStatus] = useState<
@@ -581,19 +603,39 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     [setGroupRollAlert]
   );
 
+  const handleEngagementRollEvent = useCallback(() => {
+    setEngagementRollDialogOpen(false);
+    setEngagementRollAlert(false);
+  }, [setEngagementRollDialogOpen, setEngagementRollAlert]);
+
+  const handleEngagementRollAlertEvent = useCallback(
+    () => setEngagementRollAlert(true),
+    [setEngagementRollAlert]
+  );
+
   const handlersRef = useRef({
     handleRoll: handleRollEvent,
     handleGroupRoll: handleGroupRollEvent,
-    handleAlert: handleGroupRollAlertEvent,
+    handleGroupRollAlert: handleGroupRollAlertEvent,
+    handleEngagementRoll: handleEngagementRollEvent,
+    handleEngagementRollAlert: handleEngagementRollAlertEvent,
   });
 
   useEffect(() => {
     handlersRef.current = {
       handleRoll: handleRollEvent,
       handleGroupRoll: handleGroupRollEvent,
-      handleAlert: handleGroupRollAlertEvent,
+      handleGroupRollAlert: handleGroupRollAlertEvent,
+      handleEngagementRoll: handleEngagementRollEvent,
+      handleEngagementRollAlert: handleEngagementRollAlertEvent,
     };
-  }, [handleRollEvent, handleGroupRollEvent, handleGroupRollAlertEvent]);
+  }, [
+    handleRollEvent,
+    handleGroupRollEvent,
+    handleGroupRollAlertEvent,
+    handleEngagementRollEvent,
+    handleEngagementRollAlertEvent,
+  ]);
 
   useEffect(() => {
     setConnectionStatus("connecting");
@@ -609,7 +651,13 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         handlersRef.current.handleGroupRoll(gr);
       })
       .on("broadcast", { event: "group-roll-alert" }, () =>
-        handlersRef.current.handleAlert()
+        handlersRef.current.handleGroupRollAlert()
+      )
+      .on("broadcast", { event: "engagement-roll" }, () => {
+        handlersRef.current.handleEngagementRoll();
+      })
+      .on("broadcast", { event: "engagement-roll-alert" }, () =>
+        handlersRef.current.handleEngagementRollAlert()
       )
       .subscribe();
 
@@ -677,6 +725,33 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       });
     }
   }
+
+  const handleEngagementRoll = async () => {
+    if (channel) {
+      channel.send({
+        type: "broadcast",
+        event: "engagement-roll",
+      });
+    }
+
+    // whoever clicked the button makes a fortune roll
+    // setFortuneDice(2)
+    // await doRoll("fortune", undefined, undefined, ["engagement"])
+
+    updateEngagementRoll(() => []);
+    setEngagementRollDialogOpen(false);
+  };
+
+  function handleEngagementRollAlert() {
+    if (channel) {
+      channel.send({
+        type: "broadcast",
+        event: "engagement-roll-alert",
+      });
+    }
+  }
+
+  const loadEngagementRoll = async () => {};
 
   const loadGroupRoll = async () => {
     console.log("Fetching group roll persistent state");
@@ -751,6 +826,66 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     }
 
     setGroupRoll(newState);
+  };
+
+  const configureEngagementRoll = async (
+    questions: EngagementRollQuestion[]
+  ) => {
+    const newState: EngagementRollState = questions.map((q) => ({
+      ...q,
+      yesVotes: [],
+      noVotes: [],
+    }));
+    await updateEngagementRoll(() => {
+      return newState;
+    });
+  };
+
+  const engagementRollQuestionVote = async (
+    idx: number,
+    vote: "yes" | "no"
+  ) => {
+    const username = session.data?.user.name;
+    if (!username) {
+      console.error("Cannot vote unless signed in");
+      return;
+    }
+
+    const question = engagementRoll[idx];
+
+    if (vote === "yes") {
+      question.noVotes = question.noVotes.filter((u) => u !== username);
+      question.yesVotes = [...new Set([...question.yesVotes, username])];
+    } else if (vote === "no") {
+      question.yesVotes = question.yesVotes.filter((u) => u !== username);
+      question.noVotes = [...new Set([...question.noVotes, username])];
+    } else {
+      console.error("Invalid vote option: ", vote);
+      return;
+    }
+
+    const newState: EngagementRollState = engagementRoll.map((q, i) =>
+      i === idx ? question : q
+    );
+
+    await updateEngagementRoll(() => newState);
+  };
+
+  const updateEngagementRoll = async (
+    updater: (current: EngagementRollState) => EngagementRollState
+  ) => {
+    const newState = updater(engagementRoll);
+
+    const { error } = await supabase
+      .from("group_rolls")
+      .update({ state: newState, updated_at: new Date().toISOString() })
+      .eq("id", ENGAGEMENT_ROLL_ID);
+
+    if (error) {
+      console.error("Error updating persistent group_roll state", error);
+    }
+
+    setEngagementRoll(newState);
   };
 
   const handleCurrentDiceFilterChange = (val: string) => {
@@ -859,6 +994,9 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         groupRoll,
         groupRollDialogOpen,
         groupRollAlert,
+        engagementRoll,
+        engagementRollDialogOpen,
+        engagementRollAlert,
         isPrivate,
         connectionStatus,
         setBonusDiceRed,
@@ -882,6 +1020,13 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         handleGroupRollLock,
         handleRemoveGroupRollMember,
         handleGroupRoll,
+        setEngagementRollDialogOpen,
+        setEngagementRollAlert,
+        handleEngagementRollAlert,
+        loadEngagementRoll,
+        handleEngagementRoll,
+        configureEngagementRoll,
+        engagementRollQuestionVote,
         handleFortuneRollButton,
       }}
     >

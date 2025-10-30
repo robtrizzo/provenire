@@ -7,11 +7,11 @@ import { TypographyH2 } from "@/components/ui/typography";
 import CharacterSheet from "./(components)/character-sheet";
 import DiceSheet from "@/components/character-sheet/dice-history/dice-sheet";
 import { useRoll } from "@/contexts/arc2RollContext";
-import { View, Zap } from "lucide-react";
+import { View } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import EngagementRollDialog from "./(components)/engagement-roll-dialog";
+import EngagementRoll from "./(components)/engagement-roll";
 
 const tabs = [
   { name: "Character", value: "character" },
@@ -55,10 +55,10 @@ export default function Page() {
               </Button>
             </Link>
           )}
-          <EngagementRollDialog>
-            <EngagementRollDialog.Questions />
-            <EngagementRollDialog.RollControls />
-          </EngagementRollDialog>
+          <EngagementRoll.Dialog>
+            <EngagementRoll.Dialog.Questions />
+            <EngagementRoll.Dialog.RollControls />
+          </EngagementRoll.Dialog>
           <DiceSheet
             rolls={rolls}
             currentDiceFilter={currentDiceFilter}
