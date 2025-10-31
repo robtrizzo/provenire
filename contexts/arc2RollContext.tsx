@@ -83,6 +83,9 @@ interface RollContextProps {
   loadEngagementRoll: () => void;
   configureEngagementRoll: (questions: EngagementRollQuestion[]) => void;
   engagementRollQuestionVote: (idx: number, vote: "yes" | "no") => void;
+  numEngagementRollDice: (
+    engagementRollStateOverride?: EngagementRollState
+  ) => number;
   handleEngagementRoll: () => void;
   setIsPrivate: React.Dispatch<React.SetStateAction<boolean>>;
   doRoll: (
@@ -688,6 +691,20 @@ export default function RollProvider({ children }: { children: ReactNode }) {
           }
         }
       )
+      .on(
+        "postgres_changes",
+        {
+          event: "*",
+          schema: "public",
+          table: "group_rolls",
+          filter: `id=eq.${ENGAGEMENT_ROLL_ID}`,
+        },
+        (payload) => {
+          if (payload.new && "state" in payload.new) {
+            setEngagementRoll(payload.new.state as EngagementRollState);
+          }
+        }
+      )
       .subscribe();
 
     return () => {
@@ -726,6 +743,34 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  function numEngagementRollDice(
+    engagementRollStateOverride?: EngagementRollState
+  ) {
+    let state = engagementRoll;
+    if (engagementRollStateOverride) {
+      state = engagementRollStateOverride;
+    }
+
+    return Math.max(
+      state.reduce((acc, question) => {
+        if (question.yesVotes.length > question.noVotes.length) {
+          return acc + question.weight;
+        }
+        return acc;
+      }, 0),
+      0
+    );
+  }
+
+  const clearEngagementRollVotes = () => {
+    return engagementRoll.map(({ question, weight }) => ({
+      question,
+      weight,
+      yesVotes: [],
+      noVotes: [],
+    }));
+  };
+
   const handleEngagementRoll = async () => {
     if (channel) {
       channel.send({
@@ -735,10 +780,10 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     }
 
     // whoever clicked the button makes a fortune roll
-    // setFortuneDice(2)
-    // await doRoll("fortune", undefined, undefined, ["engagement"])
+    const roll = await handleFortuneRoll(numEngagementRollDice());
+    diceToast(roll);
 
-    updateEngagementRoll(() => []);
+    updateEngagementRoll(clearEngagementRollVotes);
     setEngagementRollDialogOpen(false);
   };
 
@@ -751,16 +796,46 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     }
   }
 
-  const loadEngagementRoll = async () => {};
+  const loadEngagementRoll = async () => {
+    console.log("Fetching engagement roll persistent state");
+    const { data, error } = await supabase
+      .from("group_rolls")
+      .select()
+      .eq("id", ENGAGEMENT_ROLL_ID)
+      .limit(1)
+      .single();
+    if (error) {
+      console.log("Error fetching engagement roll", error);
+      return;
+    }
+    if (data?.state) {
+      const engRoll = data.state as EngagementRollState;
+      console.log("Engagement roll persistent state found.");
+      setEngagementRoll(engRoll);
+    } else {
+      console.log(
+        "Engagement roll persistent state not found. Creating entry."
+      );
+      const { error } = await supabase
+        .from("group_rolls")
+        .insert({ id: ENGAGEMENT_ROLL_ID, state: [] })
+        .select()
+        .single();
+      if (error) {
+        console.error("Error creating engagement roll:", error);
+        return;
+      }
+    }
+  };
 
   const loadGroupRoll = async () => {
     console.log("Fetching group roll persistent state");
     const { data, error } = await supabase
       .from("group_rolls")
       .select()
-      .order("created_at", { ascending: false })
+      .eq("id", GROUP_ROLL_ID)
       .limit(1)
-      .maybeSingle();
+      .single();
     if (error) {
       console.log("Error fetching group roll", error);
       return;
@@ -854,11 +929,25 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     const question = engagementRoll[idx];
 
     if (vote === "yes") {
+      // remove from no
       question.noVotes = question.noVotes.filter((u) => u !== username);
-      question.yesVotes = [...new Set([...question.yesVotes, username])];
+      if (question.yesVotes.includes(username)) {
+        // if already in yes, remove
+        question.yesVotes = question.yesVotes.filter((u) => u !== username);
+      } else {
+        // otherwise add to yes
+        question.yesVotes = [...new Set([...question.yesVotes, username])];
+      }
     } else if (vote === "no") {
+      // remove from yes
       question.yesVotes = question.yesVotes.filter((u) => u !== username);
-      question.noVotes = [...new Set([...question.noVotes, username])];
+      if (question.noVotes.includes(username)) {
+        // if already in no, remove
+        question.noVotes = question.noVotes.filter((u) => u !== username);
+      } else {
+        // otherwise add to no
+        question.noVotes = [...new Set([...question.noVotes, username])];
+      }
     } else {
       console.error("Invalid vote option: ", vote);
       return;
@@ -894,8 +983,15 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     localStorage.setItem(DICE_FILTER_LOCAL_STORAGE_KEY, val);
   };
 
+  async function handleFortuneRoll(
+    numDice: number,
+    metatags?: string[]
+  ): Promise<Roll> {
+    return await rollDice("fortune", 0, numDice, 0, undefined, metatags);
+  }
+
   async function handleFortuneRollButton(numDice: number) {
-    const roll = await rollDice("fortune", 0, numDice, 0);
+    const roll = await handleFortuneRoll(numDice);
     diceToast(roll);
     setFortuneDice(0);
   }
@@ -1024,6 +1120,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         setEngagementRollAlert,
         handleEngagementRollAlert,
         loadEngagementRoll,
+        numEngagementRollDice,
         handleEngagementRoll,
         configureEngagementRoll,
         engagementRollQuestionVote,

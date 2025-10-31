@@ -55,10 +55,12 @@ export default function Page() {
               </Button>
             </Link>
           )}
-          <EngagementRoll.Dialog>
-            <EngagementRoll.Dialog.Questions />
-            <EngagementRoll.Dialog.RollControls />
-          </EngagementRoll.Dialog>
+          <EngagementRoll.Dialog.Wrapper>
+            <EngagementRoll.Dialog.VoteBase>
+              <EngagementRoll.Vote.Questions />
+              <EngagementRoll.Vote.RollControls />
+            </EngagementRoll.Dialog.VoteBase>
+          </EngagementRoll.Dialog.Wrapper>
           <DiceSheet
             rolls={rolls}
             currentDiceFilter={currentDiceFilter}

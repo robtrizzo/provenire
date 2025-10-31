@@ -55,9 +55,11 @@ export default function Page() {
       <TypographyH1>The Crew</TypographyH1>
       <div className="flex flex-col gap-4">
         <GroupRollSection />
-        <EngagementRoll.Configure.Dialog>
-          <EngagementRoll.Configure.Content />
-        </EngagementRoll.Configure.Dialog>
+        <EngagementRoll.Dialog.Wrapper>
+          <EngagementRoll.Dialog.ConfigureBase>
+            <EngagementRoll.Configure />
+          </EngagementRoll.Dialog.ConfigureBase>
+        </EngagementRoll.Dialog.Wrapper>
         <CharacterFiltersProvider>
           <FilterCharacters />
           {!isPending && (
