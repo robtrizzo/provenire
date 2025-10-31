@@ -23,6 +23,7 @@ interface EngagementRollContextProps {
   loadEngagementRoll: () => void;
   configureEngagementRoll: (questions: EngagementRollQuestion[]) => void;
   engagementRollQuestionVote: (idx: number, vote: "yes" | "no") => void;
+  removeVoter: (idx: number, username: string) => void;
   numEngagementRollDice: (
     engagementRollStateOverride?: EngagementRollState
   ) => number;
@@ -267,6 +268,23 @@ export default function EngagementRollProvider({
     await updateEngagementRoll(() => newState);
   };
 
+  const removeVoter = async (idx: number, username: string) => {
+    if (idx < 0 || idx > engagementRoll.length - 1) {
+      console.log("Cannot remove voter. Index out of bounds: ", idx);
+      return;
+    }
+
+    const question = engagementRoll[idx];
+    question.yesVotes = question.yesVotes.filter((u) => u !== username);
+    question.noVotes = question.noVotes.filter((u) => u !== username);
+
+    const newState: EngagementRollState = engagementRoll.map((q, i) =>
+      i === idx ? question : q
+    );
+
+    await updateEngagementRoll(() => newState);
+  };
+
   const updateEngagementRoll = async (
     updater: (current: EngagementRollState) => EngagementRollState
   ) => {
@@ -298,6 +316,7 @@ export default function EngagementRollProvider({
         handleEngagementRoll,
         configureEngagementRoll,
         engagementRollQuestionVote,
+        removeVoter,
       }}
     >
       {children}

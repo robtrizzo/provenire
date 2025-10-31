@@ -57,7 +57,12 @@ export default function Page() {
           )}
           <EngagementRoll.Dialog.Wrapper>
             <EngagementRoll.Dialog.VoteBase>
-              <EngagementRoll.Vote.Questions />
+              {isGM ? (
+                <EngagementRoll.Vote.GMQuestions />
+              ) : (
+                <EngagementRoll.Vote.Questions />
+              )}
+
               <EngagementRoll.Vote.RollControls />
             </EngagementRoll.Dialog.VoteBase>
           </EngagementRoll.Dialog.Wrapper>

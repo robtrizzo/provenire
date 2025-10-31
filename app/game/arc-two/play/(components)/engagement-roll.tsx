@@ -38,12 +38,20 @@ interface VoteControlProps {
   votes: string[];
   color: string;
   handleVote: () => void;
+  handleRemoveVote: () => void;
+  VoteTooltipContent: FC<VoteTooltipContentProps>;
   children: ReactNode;
+}
+
+interface VoteTooltipContentProps {
+  votes: string[];
+  handleRemoveVote?: () => void;
 }
 
 type VoteComponents = {
   DiceDisplay: FC;
   Questions: FC;
+  GMQuestions: FC;
   VoteControl: FC<VoteControlProps>;
   RollControls: FC;
   ConfigureEngagementRollButton: FC;
@@ -80,9 +88,18 @@ const VoteDialogBase = ({ children }: { children: ReactNode }) => {
   );
 };
 
-function Questions() {
-  const { engagementRoll, loadEngagementRoll, engagementRollQuestionVote } =
-    useEngagementRoll();
+function QuestionsBase({
+  VoteTooltipContent,
+}: {
+  VoteTooltipContent: FC<VoteTooltipContentProps>;
+}) {
+  const session = useSession();
+  const {
+    engagementRoll,
+    loadEngagementRoll,
+    engagementRollQuestionVote,
+    removeVoter,
+  } = useEngagementRoll();
 
   const hasLoaded = useRef(false);
 
@@ -95,6 +112,12 @@ function Questions() {
 
   const handleVote = (idx: number, vote: "yes" | "no") => () => {
     engagementRollQuestionVote(idx, vote);
+  };
+
+  const handleRemoveVote = (idx: number) => () => {
+    const username = session.data?.user.name;
+    if (!username) return;
+    removeVoter(idx, username);
   };
 
   return (
@@ -113,6 +136,8 @@ function Questions() {
                 votes={q.yesVotes}
                 color="green"
                 handleVote={handleVote(idx, "yes")}
+                handleRemoveVote={handleRemoveVote(idx)}
+                VoteTooltipContent={VoteTooltipContent}
               >
                 <Check />
               </VoteControl>
@@ -120,6 +145,8 @@ function Questions() {
                 votes={q.noVotes}
                 color="red"
                 handleVote={handleVote(idx, "no")}
+                handleRemoveVote={handleRemoveVote(idx)}
+                VoteTooltipContent={VoteTooltipContent}
               >
                 <X />
               </VoteControl>
@@ -132,7 +159,22 @@ function Questions() {
   );
 }
 
-function VoteControl({ votes, color, handleVote, children }: VoteControlProps) {
+function Questions() {
+  return <QuestionsBase VoteTooltipContent={VoteTooltipContent} />;
+}
+
+function GMQuestions() {
+  return <QuestionsBase VoteTooltipContent={GMVoteTooltipContent} />;
+}
+
+function VoteControl({
+  votes,
+  color,
+  handleVote,
+  handleRemoveVote,
+  VoteTooltipContent,
+  children,
+}: VoteControlProps) {
   const numVotes = votes.length;
 
   const session = useSession();
@@ -150,15 +192,10 @@ function VoteControl({ votes, color, handleVote, children }: VoteControlProps) {
           </Button>
         </TooltipTrigger>
         <TooltipContent className={cn(`border-${color}-500`, "border-[1px]")}>
-          {numVotes > 0 ? (
-            <div className="flex flex-col">
-              {votes.map((u, idx) => (
-                <span key={u + idx}>{u}</span>
-              ))}
-            </div>
-          ) : (
-            <span>no votes</span>
-          )}
+          <VoteTooltipContent
+            votes={votes}
+            handleRemoveVote={handleRemoveVote}
+          />
         </TooltipContent>
       </Tooltip>
       {numVotes > 0 && (
@@ -172,6 +209,51 @@ function VoteControl({ votes, color, handleVote, children }: VoteControlProps) {
         </Badge>
       )}
     </div>
+  );
+}
+
+function VoteTooltipContent({ votes }: VoteTooltipContentProps) {
+  const numVotes = votes.length;
+  return (
+    <>
+      {numVotes > 0 ? (
+        <div className="flex flex-col">
+          {votes.map((u, idx) => (
+            <span key={u + idx} className="font-mono">
+              {u}
+            </span>
+          ))}
+        </div>
+      ) : (
+        <span>no votes</span>
+      )}
+    </>
+  );
+}
+
+function GMVoteTooltipContent({
+  votes,
+  handleRemoveVote,
+}: VoteTooltipContentProps) {
+  const numVotes = votes.length;
+  return (
+    <>
+      {numVotes > 0 ? (
+        <div className="flex flex-col">
+          {votes.map((u, idx) => (
+            <span
+              key={u + idx}
+              className="font-mono pointer-events-auto hover:cursor-pointer hover:line-through hover:text-red-500"
+              onClick={handleRemoveVote}
+            >
+              {u}
+            </span>
+          ))}
+        </div>
+      ) : (
+        <span>no votes</span>
+      )}
+    </>
   );
 }
 
@@ -347,6 +429,7 @@ const EngagementRoll = {
   Configure: ConfigureContent,
   Vote: {
     Questions,
+    GMQuestions,
     VoteControl,
     RollControls,
     ConfigureEngagementRollButton,
