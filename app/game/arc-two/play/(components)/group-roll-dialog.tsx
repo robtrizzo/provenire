@@ -29,6 +29,7 @@ import { countScoreEntries } from "@/lib/roll";
 import RollSection from "./roll-section";
 import { FC, ReactNode, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
+import { useGroupRoll } from "@/contexts/groupRollContext";
 
 interface GroupRollDialogProps {
   children: ReactNode;
@@ -52,7 +53,7 @@ const GroupRollDialog = ({ children }: { children: ReactNode }) => {
     setGroupRollAlert,
     loadGroupRoll,
     groupRollAlert,
-  } = useRoll();
+  } = useGroupRoll();
 
   const hasLoaded = useRef(false);
 
@@ -92,7 +93,7 @@ const GroupRollDialog = ({ children }: { children: ReactNode }) => {
 };
 
 function LeaderSection({ leader }: { leader?: GroupRollMember }) {
-  const { groupRoll, handleChangeGroupRollLeader } = useRoll();
+  const { groupRoll, handleChangeGroupRollLeader } = useGroupRoll();
 
   const { name } = useCharacterSheet();
 
@@ -229,7 +230,7 @@ function GMMemberControls({ member }: { member: GroupRollMember }) {
     handleGroupRollLock,
     handleChangeGroupRollLeader,
     handleRemoveGroupRollMember,
-  } = useRoll();
+  } = useGroupRoll();
 
   const toggleLeader = () =>
     handleChangeGroupRollLeader(member.charName, !member.leader);
@@ -257,7 +258,8 @@ function GMMemberControls({ member }: { member: GroupRollMember }) {
 }
 
 function MemberRollSection({ member }: { member: GroupRollMember }) {
-  const { rollLeft, rollRight, handleGroupRollLock } = useRoll();
+  const { rollLeft, rollRight } = useRoll();
+  const { handleGroupRollLock } = useGroupRoll();
   const { name } = useCharacterSheet();
 
   return (
@@ -310,7 +312,7 @@ function GroupJoinControl() {
     setGroupRollDialogOpen,
     joinGroupRoll,
     handleRemoveGroupRollMember,
-  } = useRoll();
+  } = useGroupRoll();
 
   const { name } = useCharacterSheet();
 
@@ -333,7 +335,7 @@ function GroupJoinControl() {
 }
 
 function AlertControl() {
-  const { handleGroupRollAlert } = useRoll();
+  const { handleGroupRollAlert } = useGroupRoll();
   return (
     <Button
       variant="destructive"
@@ -346,7 +348,7 @@ function AlertControl() {
 }
 
 function RollControls() {
-  const { groupRoll, handleGroupRoll } = useRoll();
+  const { groupRoll, handleGroupRoll } = useGroupRoll();
 
   const hasLeader = groupRoll.some((member) => member.leader);
   const allLockedIn = groupRoll.every((member) => member.lockedIn);

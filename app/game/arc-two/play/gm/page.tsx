@@ -12,6 +12,8 @@ import Character from "@/components/gm/chraracter";
 import GroupRollDialog from "../(components)/group-roll-dialog";
 import { GroupRollMember } from "@/types/roll";
 import { Separator } from "@/components/ui/separator";
+import EngagementRoll from "../(components)/engagement-roll";
+import { useGroupRoll } from "@/contexts/groupRollContext";
 
 export default function Page() {
   const {
@@ -54,6 +56,11 @@ export default function Page() {
       <TypographyH1>The Crew</TypographyH1>
       <div className="flex flex-col gap-4">
         <GroupRollSection />
+        <EngagementRoll.Dialog.Wrapper>
+          <EngagementRoll.Dialog.ConfigureBase>
+            <EngagementRoll.Configure />
+          </EngagementRoll.Dialog.ConfigureBase>
+        </EngagementRoll.Dialog.Wrapper>
         <CharacterFiltersProvider>
           <FilterCharacters />
           {!isPending && (
@@ -86,7 +93,7 @@ export default function Page() {
 }
 
 function GroupRollSection() {
-  const { groupRoll } = useRoll();
+  const { groupRoll } = useGroupRoll();
 
   const leader: GroupRollMember | undefined = groupRoll.find(
     (member) => member.leader

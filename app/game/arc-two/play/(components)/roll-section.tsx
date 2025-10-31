@@ -28,6 +28,7 @@ import GroupRollDialog from "./group-roll-dialog";
 import { FC } from "react";
 import { Separator } from "@/components/ui/separator";
 import { GroupRollMember } from "@/types/roll";
+import { useGroupRoll } from "@/contexts/groupRollContext";
 
 type RollSection = FC & {
   RollSelect: FC;
@@ -395,7 +396,7 @@ function EmotionalSection({ disabled = false }: { disabled?: boolean }) {
 }
 
 function GroupRollSection() {
-  const { groupRoll } = useRoll();
+  const { groupRoll } = useGroupRoll();
 
   const { name } = useCharacterSheet();
 

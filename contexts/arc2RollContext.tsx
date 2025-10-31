@@ -10,7 +10,7 @@ import {
 } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Rollable } from "@/types/game";
-import { GroupRoll, GroupRollMember, Roll, RollType } from "@/types/roll";
+import { Roll, RollType } from "@/types/roll";
 import {
   blueHigher,
   getHighestRollColor,
@@ -29,7 +29,6 @@ import { Die } from "@/components/die";
 import { useSession } from "next-auth/react";
 import { RealtimeChannel } from "@supabase/supabase-js";
 import supabase from "@/lib/supabase";
-import { nanoid } from "@/lib/nanoid";
 import { capitalizeFirstLetter } from "@/lib/utils";
 
 interface RollContextProps {
@@ -44,9 +43,6 @@ interface RollContextProps {
   rollsArePending: boolean;
   isEmotional: boolean;
   isPrivate: boolean;
-  groupRoll: GroupRollMember[];
-  groupRollDialogOpen: boolean;
-  groupRollAlert: boolean;
   connectionStatus: "connecting" | "connected" | "disconnected";
   setBonusDiceRed: React.Dispatch<React.SetStateAction<number>>;
   setBonusDiceBlue: React.Dispatch<React.SetStateAction<number>>;
@@ -58,29 +54,20 @@ interface RollContextProps {
   setRollLeft: React.Dispatch<React.SetStateAction<Rollable | undefined>>;
   setRollRight: React.Dispatch<React.SetStateAction<Rollable | undefined>>;
   setIsEmotional: React.Dispatch<React.SetStateAction<boolean>>;
-  setGroupRollDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setGroupRollAlert: React.Dispatch<React.SetStateAction<boolean>>;
-  handleGroupRollAlert: () => void;
-  loadGroupRoll: () => void;
-  joinGroupRoll: (charName: string) => void;
-  handleChangeGroupRollLeader: (charName: string, leader?: boolean) => void;
-  handleGroupRollLock: (charName: string, lockedIn: boolean) => void;
-  handleRemoveGroupRollMember: (charName: string) => void;
-  handleGroupRoll: (rollType: "action" | "project") => void;
   setIsPrivate: React.Dispatch<React.SetStateAction<boolean>>;
   doRoll: (
-    type: RollType,
+    type: "action" | "project" | "fortune" | "resist",
     rollLeft: Rollable | undefined,
-    rollRight: Rollable | undefined
+    rollRight: Rollable | undefined,
+    metatags?: string[]
   ) => void;
   handleFortuneRollButton: (numDice: number) => void;
+  handleFortuneRoll: (numDice: number, metatags?: string[]) => void;
 }
 
 const RollContext = createContext<RollContextProps | undefined>(undefined);
 const PAGE_SIZE = 40;
 const DICE_FILTER_LOCAL_STORAGE_KEY = "dicehistory.selectedfilter";
-
-const GROUP_ROLL_ID = "arc2";
 
 export const useRoll = () => {
   const context = useContext(RollContext);
@@ -106,9 +93,6 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   const [rollRight, setRollRight] = useState<Rollable>();
   const [isEmotional, setIsEmotional] = useState<boolean>(false);
   const [isPrivate, setIsPrivate] = useState<boolean>(false);
-  const [groupRoll, setGroupRoll] = useState<GroupRollMember[]>([]);
-  const [groupRollDialogOpen, setGroupRollDialogOpen] = useState(false);
-  const [groupRollAlert, setGroupRollAlert] = useState(false);
   const [channel, setChannel] = useState<RealtimeChannel>();
 
   const [connectionStatus, setConnectionStatus] = useState<
@@ -558,42 +542,15 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     [currentDiceFilter, setRolls, diceToast]
   );
 
-  const handleGroupRollEvent = useCallback(
-    async (gr: GroupRoll) => {
-      const groupRollMember = gr.members.find(
-        (member) => member.charName === name
-      );
-      if (!groupRollMember) return;
-      if (!groupRollMember.lockedIn) return;
-      setGroupRollDialogOpen(false);
-      await doRoll(
-        gr.type,
-        groupRollMember.rollLeft,
-        groupRollMember.rollRight,
-        [`gr-${gr.id}`]
-      );
-    },
-    [doRoll, name]
-  );
-
-  const handleGroupRollAlertEvent = useCallback(
-    () => setGroupRollAlert(true),
-    [setGroupRollAlert]
-  );
-
   const handlersRef = useRef({
     handleRoll: handleRollEvent,
-    handleGroupRoll: handleGroupRollEvent,
-    handleAlert: handleGroupRollAlertEvent,
   });
 
   useEffect(() => {
     handlersRef.current = {
       handleRoll: handleRollEvent,
-      handleGroupRoll: handleGroupRollEvent,
-      handleAlert: handleGroupRollAlertEvent,
     };
-  }, [handleRollEvent, handleGroupRollEvent, handleGroupRollAlertEvent]);
+  }, [handleRollEvent]);
 
   useEffect(() => {
     setConnectionStatus("connecting");
@@ -604,13 +561,6 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         const roll = JSON.parse(payload.payload);
         handlersRef.current.handleRoll(roll);
       })
-      .on("broadcast", { event: "group-roll" }, (payload) => {
-        const gr = JSON.parse(payload.payload);
-        handlersRef.current.handleGroupRoll(gr);
-      })
-      .on("broadcast", { event: "group-roll-alert" }, () =>
-        handlersRef.current.handleAlert()
-      )
       .subscribe();
 
     setChannel(rollChannel);
@@ -623,224 +573,20 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     };
   }, []);
 
-  useEffect(() => {
-    const groupRollChannel = supabase
-      .channel(`group_roll:${GROUP_ROLL_ID}`)
-      .on(
-        "postgres_changes",
-        {
-          event: "*",
-          schema: "public",
-          table: "group_rolls",
-          filter: `id=eq.${GROUP_ROLL_ID}`,
-        },
-        (payload) => {
-          if (payload.new && "state" in payload.new) {
-            setGroupRoll(payload.new.state as GroupRollMember[]);
-          }
-        }
-      )
-      .subscribe();
-
-    return () => {
-      supabase.removeChannel(groupRollChannel);
-    };
-  }, []);
-
-  const handleGroupRoll = async (rollType: "action" | "project") => {
-    const gr: GroupRoll = {
-      members: groupRoll,
-      type: rollType,
-      id: nanoid(),
-    };
-
-    if (channel) {
-      channel.send({
-        type: "broadcast",
-        event: "group-roll",
-        payload: JSON.stringify(gr),
-      });
-    }
-
-    const isMember = gr.members.some((member) => member.charName === name);
-    if (isMember) await doRoll(rollType, rollLeft, rollRight, [`gr-${gr.id}`]);
-
-    updateGroupRoll(() => []);
-    setGroupRollDialogOpen(false);
-  };
-
-  function handleGroupRollAlert() {
-    if (channel) {
-      channel.send({
-        type: "broadcast",
-        event: "group-roll-alert",
-      });
-    }
-  }
-
-  const loadGroupRoll = async () => {
-    console.log("Fetching group roll persistent state");
-    const { data, error } = await supabase
-      .from("group_rolls")
-      .select()
-      .order("created_at", { ascending: false })
-      .limit(1)
-      .maybeSingle();
-    if (error) {
-      console.log("Error fetching group roll", error);
-      return;
-    }
-    if (data?.state) {
-      const members = data.state as GroupRollMember[];
-      console.log("Group roll persistent state found.");
-      setGroupRoll(members);
-      const foundMember = members.find((member) => member.charName === name);
-      if (foundMember) {
-        if (foundMember.rollLeft) {
-          setRollLeft(foundMember.rollLeft);
-        }
-        if (foundMember.rollRight) {
-          setRollRight(foundMember.rollRight);
-        }
-        setBonusDiceRed(foundMember.bonusDiceRed);
-        setBonusDiceBlue(foundMember.bonusDiceBlue);
-      }
-    } else {
-      console.log("Group roll persistent state not found. Creating entry.");
-      const { error } = await supabase
-        .from("group_rolls")
-        .insert({ id: GROUP_ROLL_ID, state: [] })
-        .select()
-        .single();
-      if (error) {
-        console.error("Error creating group roll:", error);
-        return;
-      }
-    }
-  };
-
-  const joinGroupRoll = async (charName: string) => {
-    const newMember: GroupRollMember = {
-      charName,
-      lockedIn: false,
-      leader: false,
-      rollLeft,
-      rollRight,
-      bonusDiceRed,
-      bonusDiceBlue,
-      emotional: isEmotional,
-    };
-    await updateGroupRoll((currentGroup) => {
-      const updatedGroup = [...currentGroup, newMember];
-      return updatedGroup;
-    });
-  };
-
-  const updateGroupRoll = async (
-    updater: (current: GroupRollMember[]) => GroupRollMember[]
-  ) => {
-    const newState = updater(groupRoll);
-
-    const { error } = await supabase
-      .from("group_rolls")
-      .update({ state: newState, updated_at: new Date().toISOString() })
-      .eq("id", GROUP_ROLL_ID);
-
-    if (error) {
-      console.error("Error updating persistent group_roll state", error);
-    }
-
-    setGroupRoll(newState);
-  };
-
   const handleCurrentDiceFilterChange = (val: string) => {
     queryClient.invalidateQueries({ queryKey: ["rolls", val] });
     setCurrentDiceFilter(val);
     localStorage.setItem(DICE_FILTER_LOCAL_STORAGE_KEY, val);
   };
 
-  async function handleFortuneRollButton(numDice: number) {
-    const roll = await rollDice("fortune", 0, numDice, 0);
+  async function handleFortuneRoll(numDice: number, metatags?: string[]) {
+    const roll = await rollDice("fortune", 0, numDice, 0, undefined, metatags);
     diceToast(roll);
+  }
+
+  async function handleFortuneRollButton(numDice: number) {
+    await handleFortuneRoll(numDice);
     setFortuneDice(0);
-  }
-
-  async function handleChangeGroupRollLeader(
-    charName: string,
-    leader: boolean = true
-  ) {
-    const newLeader: GroupRollMember = {
-      charName,
-      leader: leader,
-      // only relelvant if member not in group roll yet
-      rollLeft,
-      rollRight,
-      bonusDiceRed,
-      bonusDiceBlue,
-      emotional: isEmotional,
-      lockedIn: false,
-    };
-
-    await updateGroupRoll((currentGroup) => {
-      const updatedGroup = currentGroup.map((member) => ({
-        ...member,
-        leader:
-          member.charName === charName
-            ? leader
-            : !!leader
-            ? false
-            : member.leader,
-        // undo lock if member gets swapped in or out of leader role
-        lockedIn: member.charName === charName ? false : member.lockedIn,
-      }));
-      const newLeaderExists = currentGroup.some(
-        (member) => member.charName === charName
-      );
-      if (!newLeaderExists) updatedGroup.push(newLeader);
-      return updatedGroup;
-    });
-  }
-
-  async function handleGroupRollLock(charName: string, lockedIn: boolean) {
-    const modifiedMember: GroupRollMember = {
-      charName,
-      lockedIn,
-      rollLeft,
-      rollRight,
-      bonusDiceRed,
-      bonusDiceBlue,
-      // only relelvant if member not in group roll yet
-      emotional: isEmotional,
-      leader: false,
-    };
-
-    await updateGroupRoll((currentGroup) => {
-      const updatedGroup = currentGroup.map((member) => {
-        if (member.charName === charName) {
-          return {
-            ...member,
-            lockedIn,
-            rollLeft,
-            rollRight,
-            bonusDiceRed,
-            bonusDiceBlue,
-            emotional: isEmotional,
-          };
-        }
-        return member;
-      });
-      const modifiedMemberExists = currentGroup.some(
-        (member) => member.charName === charName
-      );
-      if (!modifiedMemberExists) updatedGroup.push(modifiedMember);
-      return updatedGroup;
-    });
-  }
-
-  async function handleRemoveGroupRollMember(charName: string) {
-    await updateGroupRoll((currentGroup) =>
-      currentGroup.filter((member) => member.charName !== charName)
-    );
   }
 
   return (
@@ -856,9 +602,6 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         rolls,
         rollsArePending,
         isEmotional,
-        groupRoll,
-        groupRollDialogOpen,
-        groupRollAlert,
         isPrivate,
         connectionStatus,
         setBonusDiceRed,
@@ -873,16 +616,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         setRollLeft,
         setRollRight,
         doRoll,
-        setGroupRollDialogOpen,
-        setGroupRollAlert,
-        handleGroupRollAlert,
-        loadGroupRoll,
-        joinGroupRoll,
-        handleChangeGroupRollLeader,
-        handleGroupRollLock,
-        handleRemoveGroupRollMember,
-        handleGroupRoll,
         handleFortuneRollButton,
+        handleFortuneRoll,
       }}
     >
       {children}

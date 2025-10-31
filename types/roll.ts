@@ -46,6 +46,18 @@ export type GroupRollMember = {
   lockedIn: boolean;
 };
 
+export type EngagementRollQuestion = {
+  weight: number;
+  question: string;
+};
+
+export type MultiplayerEngagementRollQuestion = EngagementRollQuestion & {
+  yesVotes: string[];
+  noVotes: string[];
+};
+
+export type EngagementRollState = MultiplayerEngagementRollQuestion[];
+
 export function validateRoll(roll: Roll) {
   let valid =
     (roll.redDice && roll.redDice.length > 0) ||

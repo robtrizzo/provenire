@@ -11,6 +11,7 @@ import { View } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import EngagementRoll from "./(components)/engagement-roll";
 
 const tabs = [
   { name: "Character", value: "character" },
@@ -54,6 +55,17 @@ export default function Page() {
               </Button>
             </Link>
           )}
+          <EngagementRoll.Dialog.Wrapper>
+            <EngagementRoll.Dialog.VoteBase>
+              {isGM ? (
+                <EngagementRoll.Vote.GMQuestions />
+              ) : (
+                <EngagementRoll.Vote.Questions />
+              )}
+
+              <EngagementRoll.Vote.RollControls />
+            </EngagementRoll.Dialog.VoteBase>
+          </EngagementRoll.Dialog.Wrapper>
           <DiceSheet
             rolls={rolls}
             currentDiceFilter={currentDiceFilter}
