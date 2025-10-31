@@ -16,7 +16,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { useRoll } from "@/contexts/arc2RollContext";
+import { useEngagementRoll } from "@/contexts/engagementRollContext";
 import { cn } from "@/lib/utils";
 import { EngagementRollQuestion } from "@/types/roll";
 import { Check, Cog, Dices, Plus, Save, Trash2, X, Zap } from "lucide-react";
@@ -60,7 +60,7 @@ type EngagementRoll = {
 };
 
 const VoteDialogBase = ({ children }: { children: ReactNode }) => {
-  const { engagementRollAlert } = useRoll();
+  const { engagementRollAlert } = useEngagementRoll();
   return (
     <>
       <DialogTrigger asChild>
@@ -82,7 +82,7 @@ const VoteDialogBase = ({ children }: { children: ReactNode }) => {
 
 function Questions() {
   const { engagementRoll, loadEngagementRoll, engagementRollQuestionVote } =
-    useRoll();
+    useEngagementRoll();
 
   const hasLoaded = useRef(false);
 
@@ -176,7 +176,7 @@ function VoteControl({ votes, color, handleVote, children }: VoteControlProps) {
 }
 
 function RollControls() {
-  const { numEngagementRollDice, handleEngagementRoll } = useRoll();
+  const { numEngagementRollDice, handleEngagementRoll } = useEngagementRoll();
   const numDice = numEngagementRollDice();
   return (
     <Button onClick={handleEngagementRoll}>
@@ -194,7 +194,7 @@ function DialogWrapper({ children }: { children: ReactNode }) {
     engagementRollDialogOpen,
     setEngagementRollDialogOpen,
     setEngagementRollAlert,
-  } = useRoll();
+  } = useEngagementRoll();
 
   const handleOpenChange = (open: boolean) => {
     setEngagementRollAlert(false);
@@ -226,7 +226,7 @@ function ConfigureDialogBase({ children }: { children: ReactNode }) {
 
 function ConfigureContent({}) {
   const { engagementRoll, configureEngagementRoll, loadEngagementRoll } =
-    useRoll();
+    useEngagementRoll();
 
   const engRollQuestions = engagementRoll.map((q) => ({
     question: q.question,

@@ -10,14 +10,7 @@ import {
 } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Rollable } from "@/types/game";
-import {
-  EngagementRollQuestion,
-  EngagementRollState,
-  GroupRoll,
-  GroupRollMember,
-  Roll,
-  RollType,
-} from "@/types/roll";
+import { GroupRoll, GroupRollMember, Roll, RollType } from "@/types/roll";
 import {
   blueHigher,
   getHighestRollColor,
@@ -54,9 +47,6 @@ interface RollContextProps {
   groupRoll: GroupRollMember[];
   groupRollDialogOpen: boolean;
   groupRollAlert: boolean;
-  engagementRoll: EngagementRollState;
-  engagementRollDialogOpen: boolean;
-  engagementRollAlert: boolean;
   connectionStatus: "connecting" | "connected" | "disconnected";
   setBonusDiceRed: React.Dispatch<React.SetStateAction<number>>;
   setBonusDiceBlue: React.Dispatch<React.SetStateAction<number>>;
@@ -77,16 +67,6 @@ interface RollContextProps {
   handleGroupRollLock: (charName: string, lockedIn: boolean) => void;
   handleRemoveGroupRollMember: (charName: string) => void;
   handleGroupRoll: (rollType: "action" | "project") => void;
-  setEngagementRollDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  setEngagementRollAlert: React.Dispatch<React.SetStateAction<boolean>>;
-  handleEngagementRollAlert: () => void;
-  loadEngagementRoll: () => void;
-  configureEngagementRoll: (questions: EngagementRollQuestion[]) => void;
-  engagementRollQuestionVote: (idx: number, vote: "yes" | "no") => void;
-  numEngagementRollDice: (
-    engagementRollStateOverride?: EngagementRollState
-  ) => number;
-  handleEngagementRoll: () => void;
   setIsPrivate: React.Dispatch<React.SetStateAction<boolean>>;
   doRoll: (
     type: RollType,
@@ -94,6 +74,7 @@ interface RollContextProps {
     rollRight: Rollable | undefined
   ) => void;
   handleFortuneRollButton: (numDice: number) => void;
+  handleFortuneRoll: (numDice: number, metatags?: string[]) => void;
 }
 
 const RollContext = createContext<RollContextProps | undefined>(undefined);
@@ -101,7 +82,6 @@ const PAGE_SIZE = 40;
 const DICE_FILTER_LOCAL_STORAGE_KEY = "dicehistory.selectedfilter";
 
 const GROUP_ROLL_ID = "arc2";
-const ENGAGEMENT_ROLL_ID = "arc2-eng";
 
 export const useRoll = () => {
   const context = useContext(RollContext);
@@ -130,10 +110,6 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   const [groupRoll, setGroupRoll] = useState<GroupRollMember[]>([]);
   const [groupRollDialogOpen, setGroupRollDialogOpen] = useState(false);
   const [groupRollAlert, setGroupRollAlert] = useState(false);
-  const [engagementRoll, setEngagementRoll] = useState<EngagementRollState>([]);
-  const [engagementRollDialogOpen, setEngagementRollDialogOpen] =
-    useState(false);
-  const [engagementRollAlert, setEngagementRollAlert] = useState(false);
   const [channel, setChannel] = useState<RealtimeChannel>();
 
   const [connectionStatus, setConnectionStatus] = useState<
@@ -606,22 +582,10 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     [setGroupRollAlert]
   );
 
-  const handleEngagementRollEvent = useCallback(() => {
-    setEngagementRollDialogOpen(false);
-    setEngagementRollAlert(false);
-  }, [setEngagementRollDialogOpen, setEngagementRollAlert]);
-
-  const handleEngagementRollAlertEvent = useCallback(
-    () => setEngagementRollAlert(true),
-    [setEngagementRollAlert]
-  );
-
   const handlersRef = useRef({
     handleRoll: handleRollEvent,
     handleGroupRoll: handleGroupRollEvent,
     handleGroupRollAlert: handleGroupRollAlertEvent,
-    handleEngagementRoll: handleEngagementRollEvent,
-    handleEngagementRollAlert: handleEngagementRollAlertEvent,
   });
 
   useEffect(() => {
@@ -629,16 +593,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       handleRoll: handleRollEvent,
       handleGroupRoll: handleGroupRollEvent,
       handleGroupRollAlert: handleGroupRollAlertEvent,
-      handleEngagementRoll: handleEngagementRollEvent,
-      handleEngagementRollAlert: handleEngagementRollAlertEvent,
     };
-  }, [
-    handleRollEvent,
-    handleGroupRollEvent,
-    handleGroupRollAlertEvent,
-    handleEngagementRollEvent,
-    handleEngagementRollAlertEvent,
-  ]);
+  }, [handleRollEvent, handleGroupRollEvent, handleGroupRollAlertEvent]);
 
   useEffect(() => {
     setConnectionStatus("connecting");
@@ -655,12 +611,6 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       })
       .on("broadcast", { event: "group-roll-alert" }, () =>
         handlersRef.current.handleGroupRollAlert()
-      )
-      .on("broadcast", { event: "engagement-roll" }, () => {
-        handlersRef.current.handleEngagementRoll();
-      })
-      .on("broadcast", { event: "engagement-roll-alert" }, () =>
-        handlersRef.current.handleEngagementRollAlert()
       )
       .subscribe();
 
@@ -688,20 +638,6 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         (payload) => {
           if (payload.new && "state" in payload.new) {
             setGroupRoll(payload.new.state as GroupRollMember[]);
-          }
-        }
-      )
-      .on(
-        "postgres_changes",
-        {
-          event: "*",
-          schema: "public",
-          table: "group_rolls",
-          filter: `id=eq.${ENGAGEMENT_ROLL_ID}`,
-        },
-        (payload) => {
-          if (payload.new && "state" in payload.new) {
-            setEngagementRoll(payload.new.state as EngagementRollState);
           }
         }
       )
@@ -742,91 +678,6 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       });
     }
   }
-
-  function numEngagementRollDice(
-    engagementRollStateOverride?: EngagementRollState
-  ) {
-    let state = engagementRoll;
-    if (engagementRollStateOverride) {
-      state = engagementRollStateOverride;
-    }
-
-    return Math.max(
-      state.reduce((acc, question) => {
-        if (question.yesVotes.length > question.noVotes.length) {
-          return acc + question.weight;
-        }
-        return acc;
-      }, 0),
-      0
-    );
-  }
-
-  const clearEngagementRollVotes = () => {
-    return engagementRoll.map(({ question, weight }) => ({
-      question,
-      weight,
-      yesVotes: [],
-      noVotes: [],
-    }));
-  };
-
-  const handleEngagementRoll = async () => {
-    if (channel) {
-      channel.send({
-        type: "broadcast",
-        event: "engagement-roll",
-      });
-    }
-
-    // whoever clicked the button makes a fortune roll
-    const roll = await handleFortuneRoll(numEngagementRollDice());
-    diceToast(roll);
-
-    updateEngagementRoll(clearEngagementRollVotes);
-    setEngagementRollDialogOpen(false);
-  };
-
-  function handleEngagementRollAlert() {
-    if (channel) {
-      channel.send({
-        type: "broadcast",
-        event: "engagement-roll-alert",
-      });
-    }
-  }
-
-  const loadEngagementRoll = async () => {
-    console.log("Fetching engagement roll persistent state");
-    const { data, error } = await supabase
-      .from("group_rolls")
-      .select()
-      .eq("id", ENGAGEMENT_ROLL_ID)
-      .limit(1)
-      .single();
-    if (error) {
-      console.log("Error fetching engagement roll", error);
-      return;
-    }
-    if (data?.state) {
-      const engRoll = data.state as EngagementRollState;
-      console.log("Engagement roll persistent state found.");
-      setEngagementRoll(engRoll);
-    } else {
-      console.log(
-        "Engagement roll persistent state not found. Creating entry."
-      );
-      const { error } = await supabase
-        .from("group_rolls")
-        .insert({ id: ENGAGEMENT_ROLL_ID, state: [] })
-        .select()
-        .single();
-      if (error) {
-        console.error("Error creating engagement roll:", error);
-        return;
-      }
-    }
-  };
 
   const loadGroupRoll = async () => {
     console.log("Fetching group roll persistent state");
@@ -903,96 +754,19 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     setGroupRoll(newState);
   };
 
-  const configureEngagementRoll = async (
-    questions: EngagementRollQuestion[]
-  ) => {
-    const newState: EngagementRollState = questions.map((q) => ({
-      ...q,
-      yesVotes: [],
-      noVotes: [],
-    }));
-    await updateEngagementRoll(() => {
-      return newState;
-    });
-  };
-
-  const engagementRollQuestionVote = async (
-    idx: number,
-    vote: "yes" | "no"
-  ) => {
-    const username = session.data?.user.name;
-    if (!username) {
-      console.error("Cannot vote unless signed in");
-      return;
-    }
-
-    const question = engagementRoll[idx];
-
-    if (vote === "yes") {
-      // remove from no
-      question.noVotes = question.noVotes.filter((u) => u !== username);
-      if (question.yesVotes.includes(username)) {
-        // if already in yes, remove
-        question.yesVotes = question.yesVotes.filter((u) => u !== username);
-      } else {
-        // otherwise add to yes
-        question.yesVotes = [...new Set([...question.yesVotes, username])];
-      }
-    } else if (vote === "no") {
-      // remove from yes
-      question.yesVotes = question.yesVotes.filter((u) => u !== username);
-      if (question.noVotes.includes(username)) {
-        // if already in no, remove
-        question.noVotes = question.noVotes.filter((u) => u !== username);
-      } else {
-        // otherwise add to no
-        question.noVotes = [...new Set([...question.noVotes, username])];
-      }
-    } else {
-      console.error("Invalid vote option: ", vote);
-      return;
-    }
-
-    const newState: EngagementRollState = engagementRoll.map((q, i) =>
-      i === idx ? question : q
-    );
-
-    await updateEngagementRoll(() => newState);
-  };
-
-  const updateEngagementRoll = async (
-    updater: (current: EngagementRollState) => EngagementRollState
-  ) => {
-    const newState = updater(engagementRoll);
-
-    const { error } = await supabase
-      .from("group_rolls")
-      .update({ state: newState, updated_at: new Date().toISOString() })
-      .eq("id", ENGAGEMENT_ROLL_ID);
-
-    if (error) {
-      console.error("Error updating persistent group_roll state", error);
-    }
-
-    setEngagementRoll(newState);
-  };
-
   const handleCurrentDiceFilterChange = (val: string) => {
     queryClient.invalidateQueries({ queryKey: ["rolls", val] });
     setCurrentDiceFilter(val);
     localStorage.setItem(DICE_FILTER_LOCAL_STORAGE_KEY, val);
   };
 
-  async function handleFortuneRoll(
-    numDice: number,
-    metatags?: string[]
-  ): Promise<Roll> {
-    return await rollDice("fortune", 0, numDice, 0, undefined, metatags);
+  async function handleFortuneRoll(numDice: number, metatags?: string[]) {
+    const roll = await rollDice("fortune", 0, numDice, 0, undefined, metatags);
+    diceToast(roll);
   }
 
   async function handleFortuneRollButton(numDice: number) {
-    const roll = await handleFortuneRoll(numDice);
-    diceToast(roll);
+    await handleFortuneRoll(numDice);
     setFortuneDice(0);
   }
 
@@ -1090,9 +864,6 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         groupRoll,
         groupRollDialogOpen,
         groupRollAlert,
-        engagementRoll,
-        engagementRollDialogOpen,
-        engagementRollAlert,
         isPrivate,
         connectionStatus,
         setBonusDiceRed,
@@ -1116,15 +887,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         handleGroupRollLock,
         handleRemoveGroupRollMember,
         handleGroupRoll,
-        setEngagementRollDialogOpen,
-        setEngagementRollAlert,
-        handleEngagementRollAlert,
-        loadEngagementRoll,
-        numEngagementRollDice,
-        handleEngagementRoll,
-        configureEngagementRoll,
-        engagementRollQuestionVote,
         handleFortuneRollButton,
+        handleFortuneRoll,
       }}
     >
       {children}
