@@ -13,6 +13,7 @@ import GroupRollDialog from "../(components)/group-roll-dialog";
 import { GroupRollMember } from "@/types/roll";
 import { Separator } from "@/components/ui/separator";
 import EngagementRoll from "../(components)/engagement-roll";
+import { useGroupRoll } from "@/contexts/groupRollContext";
 
 export default function Page() {
   const {
@@ -92,7 +93,7 @@ export default function Page() {
 }
 
 function GroupRollSection() {
-  const { groupRoll } = useRoll();
+  const { groupRoll } = useGroupRoll();
 
   const leader: GroupRollMember | undefined = groupRoll.find(
     (member) => member.leader
