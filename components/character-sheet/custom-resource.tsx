@@ -39,16 +39,16 @@ export default function CustomResource({
 function CustomXpClock({ resource, value, onUpdate }: CustomResourceProps) {
   const config = resource.config as XPClockConfig;
   const currentValue = (value ?? config.default) as number;
-  const updateXP = (n: number) => onUpdate(n);
+  const key = `xp-clock-${currentValue}`;
 
   return (
     <>
       <TypographyH2 className="text-md text-muted-foreground">
         {resource.name}
       </TypographyH2>
-      <XPClocks>
-        <XPClocks.Clocks initial={currentValue} setVal={updateXP} />
-        <XPClocks.Controls initial={currentValue} setVal={updateXP} />
+      <XPClocks key={key}>
+        <XPClocks.Clocks initial={currentValue} setVal={onUpdate} />
+        <XPClocks.Controls initial={currentValue} setVal={onUpdate} />
       </XPClocks>
     </>
   );
