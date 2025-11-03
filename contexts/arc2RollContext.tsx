@@ -363,6 +363,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
       }
 
       await saveDiceRoll(roll);
+      setRolls((prevRolls) => [roll, ...prevRolls]);
       if (channel) {
         channel.send({
           type: "broadcast",

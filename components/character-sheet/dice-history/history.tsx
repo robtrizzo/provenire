@@ -38,9 +38,9 @@ export default function DiceHistory({
 
   return (
     <div className="space-y-4 mt-4">
-      {rolls?.map((roll, index) => (
+      {rolls.map((roll, index) => (
         <div
-          key={index}
+          key={(roll?.timestamp ?? "") + index}
           className="border rounded-lg p-2"
           ref={refIsObserverTarget(index) ? observerTarget : null}
         >
