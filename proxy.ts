@@ -7,7 +7,7 @@ export const config = {
   ],
 };
 
-export default auth((req) => {
+const authMiddleware = auth((req) => {
   try {
     const reqUrl = new URL(req.url);
 
@@ -35,3 +35,5 @@ export default auth((req) => {
     return NextResponse.redirect(new URL("/signin", req.url));
   }
 });
+
+export default authMiddleware;
