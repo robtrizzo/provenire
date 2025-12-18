@@ -1,4 +1,5 @@
 import { clsx, type ClassValue } from "clsx";
+import { Session } from "next-auth";
 import { NextRequest } from "next/server";
 import { twMerge } from "tailwind-merge";
 
@@ -87,4 +88,20 @@ export function saveCharacterToDevice(filename: string) {
 
 export function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+export function clientCheckPermission(
+  session: Session | null,
+  permission: string
+) {
+  if (!session?.user) {
+    return false;
+  }
+  if (session.user.role === "admin") {
+    return true;
+  }
+  if (!session.user.permissions) {
+    return false;
+  }
+  return session.user.permissions.includes(permission);
 }

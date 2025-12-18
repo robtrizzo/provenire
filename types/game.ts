@@ -63,6 +63,7 @@ export interface Ability {
   cost?: number;
   type?: string;
   source?: string;
+  permission?: string;
 }
 
 export type Attribute = "Heart" | "Instinct" | "Machina";

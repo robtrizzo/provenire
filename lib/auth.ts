@@ -3,7 +3,7 @@ import { auth } from "@/auth";
 
 export const RoleLevel = {
   banned: -1,
-  user:0,
+  user: 0,
   player: 1,
   admin: 2,
 } as const;
@@ -33,7 +33,7 @@ export async function checkAuth(
     };
   }
 
-  if (RoleLevel[userRole] === MAX_ROLE){
+  if (RoleLevel[userRole] === MAX_ROLE) {
     return { session: session, error: null };
   }
 

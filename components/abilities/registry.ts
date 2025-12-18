@@ -274,6 +274,15 @@ import WeaponsOfTheLion from "./donums/arc2/donum-leo/weapons-of-the-lion";
 import SturdyHide from "./donums/arc2/donum-leo/sturdy-hide";
 import SkillfulShiftingLeo from "./donums/arc2/donum-leo/skillful-shifting";
 import GrandAppetiteLeo from "./donums/arc2/donum-leo/grand-appetite";
+// portentum
+// lars
+import DonumPortentumLars from "./donums/arc2/donum-portentum/donum-portentum-lars";
+import KeenScent from "./donums/arc2/donum-portentum/keen-scent";
+import FlamesPulse from "./donums/arc2/donum-portentum/flames-pulse";
+import WeaponsOfTheBoar from "./donums/arc2/donum-portentum/weapons-of-the-boar";
+import SturdyHideLars from "./donums/arc2/donum-portentum/sturdy-hide";
+import UrgentShifting from "./donums/arc2/donum-portentum/urgent-shifting";
+import DemiIjeta from "./donums/arc2/donum-portentum/demi-ijeta";
 
 export type AbilityRegistryType = {
   [category: string]: {
@@ -615,6 +624,15 @@ export const abilityRegistry = {
         "sturdy-hide": SturdyHide,
         "skillful-shifting": SkillfulShiftingLeo,
         "grand-appetite": GrandAppetiteLeo,
+      },
+      "donum-portentum": {
+        "donum-portentum-lars": DonumPortentumLars,
+        "keen-scent": KeenScent,
+        "flames-pulse": FlamesPulse,
+        "weapons-of-the-boar": WeaponsOfTheBoar,
+        "sturdy-hide": SturdyHideLars,
+        "urgent-shifting": UrgentShifting,
+        "demi-ijeta": DemiIjeta,
       },
     },
   },
