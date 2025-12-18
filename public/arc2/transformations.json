@@ -26,27 +26,33 @@
       },
       {
         "name": "Glimpse of Prey",
-        "slug": "glimpse-of-prey"
+        "slug": "glimpse-of-prey",
+        "cost": 3
       },
       {
         "name": "Predator's Rest",
-        "slug": "predators-rest"
+        "slug": "predators-rest",
+        "cost": 3
       },
       {
         "name": "Weapons of the Lion",
-        "slug": "weapons-of-the-lion"
+        "slug": "weapons-of-the-lion",
+        "cost": 3
       },
       {
         "name": "Sturdy Hide",
-        "slug": "sturdy-hide"
+        "slug": "sturdy-hide",
+        "cost": 3
       },
       {
         "name": "Skillful Shifting",
-        "slug": "skillful-shifting"
+        "slug": "skillful-shifting",
+        "cost": 3
       },
       {
         "name": "Grand Appetite",
-        "slug": "grand-appetite"
+        "slug": "grand-appetite",
+        "cost": 3
       }
     ]
   },
@@ -96,10 +102,53 @@
     "abilities": []
   },
   {
-    "name": "Exsecratus Portentum",
-    "translation": "Accursed Monster",
+    "name": "Donum Portentum",
+    "translation": "Gift of the Monster",
     "description": "",
     "provenire": "The curse of the monster. An ancient blight of the bloodline that has haunted Rath since time immemorium. Your body contorts and writhes with horrid power. You will be an outcast. You will be hunted.",
-    "abilities": []
+    "abilities": [
+      {
+        "name": "Donum Portentum",
+        "slug": "donum-portentum-lars",
+        "keystone": true,
+        "permission": "donum-portentum-lars"
+      },
+      {
+        "name": "Keen Scent",
+        "slug": "keen-scent",
+        "permission": "donum-portentum-lars",
+        "cost": 3
+      },
+      {
+        "name": "Flame's Pulse",
+        "slug": "flames-pulse",
+        "permission": "donum-portentum-lars",
+        "cost": 3
+      },
+      {
+        "name": "Weapons of the Boar",
+        "slug": "weapons-of-the-boar",
+        "permission": "donum-portentum-lars",
+        "cost": 3
+      },
+      {
+        "name": "Sturdy Hide",
+        "slug": "sturdy-hide",
+        "permission": "donum-portentum-lars",
+        "cost": 3
+      },
+      {
+        "name": "Urgent Shifting",
+        "slug": "urgent-shifting",
+        "permission": "donum-portentum-lars",
+        "cost": 3
+      },
+      {
+        "name": "Demi Ijeta",
+        "slug": "demi-ijeta",
+        "permission": "donum-portentum-lars",
+        "cost": 3
+      }
+    ]
   }
 ]

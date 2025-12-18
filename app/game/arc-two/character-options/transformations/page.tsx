@@ -103,7 +103,9 @@ export default async function Page() {
       <TypographyH2 className="font-cyber">Transformation Types</TypographyH2>
       <TypographyH3>
         Donum Accipiter{" "}
-        <span className="text-muted-foreground">(Gift of the Crow)</span>
+        <span className="text-muted-foreground">
+          (Gift of the Bird of Prey)
+        </span>
       </TypographyH3>
       <TypographyH3>
         Donum Corvus{" "}
@@ -131,10 +133,15 @@ export default async function Page() {
         Donum Ursa{" "}
         <span className="text-muted-foreground">(Gift of the Bear)</span>
       </TypographyH3>
-      <TypographyH3>
-        Exsecratus Portentum{" "}
-        <span className="text-muted-foreground">(Accursed Monster)</span>
-      </TypographyH3>
+      <ConditionalLink
+        href="/game/arc-two/character-options/transformations/donum-portentum"
+        perm="donum-portentum"
+      >
+        <TypographyH3>
+          Exsecratus Portentum{" "}
+          <span className="text-muted-foreground">(Accursed Monster)</span>
+        </TypographyH3>
+      </ConditionalLink>
     </>
   );
 }

@@ -14,8 +14,9 @@ import {
 } from "@/components/ui/popover";
 import ClockCost from "../../character-options/operatives/(components)/clock-cost";
 import AbilityComponent from "@/components/abilities/ability";
-import { cn } from "@/lib/utils";
+import { clientCheckPermission, cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
+import { useSession } from "next-auth/react";
 
 const abilityVariants = cva("", {
   variants: {
@@ -30,6 +31,8 @@ const abilityVariants = cva("", {
 });
 
 export default function AbilitiesSection() {
+  const session = useSession();
+
   const {
     selectedArchetype,
     selectedOperative,
@@ -99,7 +102,7 @@ export default function AbilitiesSection() {
                   ability={a}
                   category={a.type + "s"}
                   arc="arc2"
-                  type={a.source?.toLocaleLowerCase() || ""}
+                  type={a.source?.toLocaleLowerCase().replace(/\s/g, "-") || ""}
                 />
               </AbilityPanel>
             </div>
@@ -293,6 +296,12 @@ export default function AbilitiesSection() {
             {selectedTransformation?.name || "Transformation"}&apos;s Abilities
           </TypographyH3>
           {selectedTransformation?.abilities.map((ability, idx) => {
+            if (
+              ability.permission &&
+              !clientCheckPermission(session.data, ability.permission)
+            ) {
+              return null;
+            }
             const unlocked = !!abilities.find((a) => a.name === ability.name);
             return (
               <div key={ability.name + "arc" + idx}>
