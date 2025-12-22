@@ -126,6 +126,16 @@ const data = {
         },
       ],
     },
+    {
+      title: "Surveys",
+      url: "#",
+      items: [
+        {
+          title: "Arc Two State of the Game",
+          url: "/game/arc-two/surveys/state-of-the-game",
+        },
+      ],
+    },
   ],
 };
 
