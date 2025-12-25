@@ -26,6 +26,13 @@ export default async function Page() {
       >
         arc one survey results
       </Link>
+      <br />
+      <Link
+        href="/game/arc-two/surveys/state-of-the-game/results"
+        className="ml-2 underline text-red-500"
+      >
+        arc two state of the game survey results
+      </Link>
     </>
   );
 }

@@ -1,4 +1,24 @@
-import { Survey } from "@/types/survey";
+import { AggregatedAnswer, Survey } from "@/types/survey";
+
+export const aggregateAnswers = (
+  surveys: Survey[],
+  category: string,
+  questionId: number
+): AggregatedAnswer[] => {
+  const answers = surveys
+    .flatMap((survey) => {
+      const cat = survey.categories.find((c) => c.title === category);
+      if (!cat) return [];
+      const question = cat.questions.find((q) => q.id === questionId);
+      if (!question || !question.answer) return [];
+      return {
+        user: survey.user || "Unknown User",
+        answer: question.answer,
+      } as AggregatedAnswer;
+    })
+    .filter((a) => a.answer); // Filter out empty answers
+  return answers;
+};
 
 export const arcOneSurvey: Survey = {
   title: "Arc One Player Survey",
@@ -1550,6 +1570,40 @@ export const arcTwoSurvey: Survey = {
           type: "text",
         },
         {
+          id: 64,
+          title:
+            "Do you think Baggage was effective at tying your character into the narrative?",
+          type: "multiple-choice",
+          options: [
+            {
+              text: "Yes, absolutely!",
+              value: "yes",
+              color: "text-green-500",
+            },
+            {
+              text: "Somewhat, but I would have liked it to be more tied in.",
+              value: "somewhat-more",
+              color: "text-amber-500",
+            },
+            {
+              text: "Somewhat, but I would have liked it to be less tied in.",
+              value: "somewhat-less",
+              color: "text-violet-500",
+            },
+            {
+              text: "No, I don't think so.",
+              value: "no",
+              color: "text-red-500",
+            },
+          ],
+        },
+        {
+          id: 65,
+          title:
+            "Do you have any feedback about the use of Baggage in the narrative?",
+          type: "text",
+        },
+        {
           id: 14,
           title:
             "Arc Two is 20 sessions long so far and likely to be 30 by the end. Do you think that is the right length for the story?",
@@ -2167,7 +2221,7 @@ export const arcTwoSurvey: Survey = {
         {
           id: 43,
           title:
-            "Did you feel like there are enough things to do in the Prelude?",
+            "Did you feel like dedicated time for the Prelude was valuable?",
           type: "multiple-choice",
           options: [
             {
@@ -2176,17 +2230,17 @@ export const arcTwoSurvey: Survey = {
               value: "yes",
             },
             {
-              text: "Yes, but I would have liked less options.",
+              text: "Yes, but I would have liked less time in the Prelude.",
               color: "text-lime-500",
               value: "less",
             },
             {
-              text: "Yes, but I would have liked more options.",
+              text: "Yes, but I would have liked more time in the Prelude.",
               color: "text-rose-500",
               value: "more",
             },
             {
-              text: "No. I frequently didn't know what to do.",
+              text: "No. I frequently felt like the Prelude was a waste of time.",
               color: "text-red-500",
               value: "no",
             },
@@ -2195,20 +2249,28 @@ export const arcTwoSurvey: Survey = {
         {
           id: 44,
           title:
-            "How do you feel about the amount of time spent in the Prelude?",
+            "How do you feel about the single shared action and single individual action in the Prelude?",
           type: "multiple-choice",
           options: [
             {
-              text: "I would have preferred more time.",
+              text: "Loved it!",
+              color: "text-green-500",
+              value: "loved",
+            },
+            {
+              text: "I liked it, but I would have preferred more actions.",
+              color: "text-amber-500",
               value: "more",
             },
             {
-              text: "It felt like the right amount.",
-              value: "same",
+              text: "I liked it, but would prefer less decisions in the Prelude.",
+              color: "text-indigo-500",
+              value: "less",
             },
             {
-              text: "I would have preferred less time.",
-              value: "less",
+              text: "Hated it, please rework it.",
+              color: "text-red-500",
+              value: "hate",
             },
           ],
         },
@@ -2292,9 +2354,9 @@ export const arcTwoSurvey: Survey = {
           ],
         },
         {
-          id: 49,
+          id: 67,
           title:
-            "Some sessions were spent in a more fluid traditional TTRPG style. How did it feel to have a split between the two session structures?",
+            "Some sessions were spent in a more rigid and structured delegated mission style. How did it feel to play through this style?",
           type: "multiple-choice",
           options: [
             {
@@ -2303,17 +2365,73 @@ export const arcTwoSurvey: Survey = {
               value: "loved",
             },
             {
-              text: "I liked it, but I prefer the fast-paced mission structure.",
+              text: "I liked it, everything is good in moderation.",
               color: "text-amber-500",
               value: "more",
             },
             {
-              text: "I liked it, but I prefer the slower, open-ended structure.",
+              text: "I liked it, but I prefer it be an infrequent occurrence.",
               color: "text-indigo-500",
               value: "less",
             },
             {
-              text: "Hated it, please pick one and stick with it.",
+              text: "Hated it, I'd prefer not to play this style again.",
+              color: "text-red-500",
+              value: "hated",
+            },
+          ],
+        },
+        {
+          id: 49,
+          title:
+            "Some sessions were spent in a more fluid traditional TTRPG style. How did it feel to play through this style?",
+          type: "multiple-choice",
+          options: [
+            {
+              text: "Loved it!",
+              color: "text-green-500",
+              value: "loved",
+            },
+            {
+              text: "I liked it, everything is good in moderation.",
+              color: "text-amber-500",
+              value: "more",
+            },
+            {
+              text: "I liked it, but I prefer it be an infrequent occurrence.",
+              color: "text-indigo-500",
+              value: "less",
+            },
+            {
+              text: "Hated it, I'd prefer not to play this style again.",
+              color: "text-red-500",
+              value: "hated",
+            },
+          ],
+        },
+        {
+          id: 68,
+          title:
+            "How did it feel to play through an arc which switched between the two styles?",
+          type: "multiple-choice",
+          options: [
+            {
+              text: "Loved it!",
+              color: "text-green-500",
+              value: "loved",
+            },
+            {
+              text: "I liked it and I'd prefer even more mixing it up.",
+              color: "text-amber-500",
+              value: "more",
+            },
+            {
+              text: "I liked it, but I'd prefer more consistency.",
+              color: "text-indigo-500",
+              value: "less",
+            },
+            {
+              text: "Hated it, please pick one style and stick with it.",
               color: "text-red-500",
               value: "hated",
             },
@@ -2491,12 +2609,6 @@ export const arcTwoSurvey: Survey = {
         {
           id: 62,
           title: "Do you have any cool or fun pages you'd like to see added?",
-          type: "text",
-        },
-        {
-          id: 63,
-          title:
-            "What stats would you like to see added to the next arc's stats page?",
           type: "text",
         },
         {
