@@ -81,6 +81,7 @@ interface CharacterSheetContextProps {
   blood: number;
   maxBlood: number;
   harm: CharacterHarm;
+  healing: number;
   effectiveHarm: CharacterHarm;
   armor: boolean;
   hArmor: boolean;
@@ -135,6 +136,7 @@ interface CharacterSheetContextProps {
   setBlood: React.Dispatch<React.SetStateAction<number>>;
   setMaxBlood: React.Dispatch<React.SetStateAction<number>>;
   setHarm: React.Dispatch<React.SetStateAction<CharacterHarm>>;
+  setHealing: React.Dispatch<React.SetStateAction<number>>;
   setArmor: React.Dispatch<React.SetStateAction<boolean>>;
   setHArmor: React.Dispatch<React.SetStateAction<boolean>>;
   setSArmor: React.Dispatch<React.SetStateAction<boolean>>;
@@ -243,6 +245,7 @@ export default function CharacterSheetProvider({
   const [harm, setHarm] = useState<CharacterHarm>(
     JSON.parse(JSON.stringify(DEFAULT_HARM))
   );
+  const [healing, setHealing] = useState<number>(0);
 
   const [armor, setArmor] = useState<boolean>(false);
   const [hArmor, setHArmor] = useState<boolean>(false);
@@ -295,6 +298,7 @@ export default function CharacterSheetProvider({
     setBlood(0);
     setMaxBlood(2);
     setHarm(JSON.parse(JSON.stringify(DEFAULT_HARM)));
+    setHealing(0);
     setArmor(false);
     setHArmor(false);
     setSArmor(false);
@@ -353,6 +357,7 @@ export default function CharacterSheetProvider({
         setMaxBlood(parsed.maxBlood || 2);
         setUnlockedBaggage(parsed.unlockedBaggage || []);
         setHarm(parsed.harm || JSON.parse(JSON.stringify(DEFAULT_HARM)));
+        setHealing(parsed.healing || 0);
         setArmor(parsed.armor || false);
         setHArmor(parsed.hArmor || false);
         setSArmor(parsed.sArmor || false);
@@ -404,6 +409,7 @@ export default function CharacterSheetProvider({
           blood,
           maxBlood,
           harm,
+          healing,
           armor,
           hArmor,
           sArmor,
@@ -459,6 +465,7 @@ export default function CharacterSheetProvider({
         blood,
         maxBlood,
         harm,
+        healing,
         armor,
         hArmor,
         sArmor,
@@ -869,6 +876,7 @@ export default function CharacterSheetProvider({
         blood,
         maxBlood,
         harm,
+        healing,
         effectiveHarm,
         armor,
         hArmor,
@@ -910,6 +918,7 @@ export default function CharacterSheetProvider({
         setBlood,
         setMaxBlood,
         setHarm,
+        setHealing,
         setArmor,
         setHArmor,
         setSArmor,

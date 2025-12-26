@@ -1,3 +1,4 @@
+import Clock from "@/components/clock";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { TypographyH3 } from "@/components/ui/typography";
@@ -13,6 +14,9 @@ export default function HarmSection() {
     setHArmor,
     setSArmor,
     handleUpdateHarmSlot,
+    healing,
+    setHealing,
+    selectedTransformation,
     setChanges,
   } = useCharacterSheet();
 
@@ -24,6 +28,8 @@ export default function HarmSection() {
   const effectiveHarmLevels = Object.keys(effectiveHarm).sort(
     (a, b) => Number(b) - Number(a)
   );
+
+  const hasTransformation = !!selectedTransformation;
 
   return (
     <>
@@ -66,6 +72,21 @@ export default function HarmSection() {
             );
           })}
         </div>
+        {hasTransformation && (
+          <div className="flex flex-col items-center justify-center gap-0.5 p-0.5 border-border border-[1px] h-full">
+            <Clock
+              max={4}
+              current={healing}
+              setVal={(n: number) => {
+                setHealing(n);
+                setChanges(true);
+              }}
+              height={35}
+              width={35}
+            />
+            <span className="text-xs">healing</span>
+          </div>
+        )}
       </div>
       <div className="border-[1px] border-border rounded-b-md py-1.5 px-4 select-none flex items-center justify-between text-sm">
         <div className="flex items-center gap-2">
