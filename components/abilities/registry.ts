@@ -266,6 +266,15 @@ import RipplesReturn from "./fighting-styles/arc2/lotarlin/ripples-return";
 import FlowingSurge from "./fighting-styles/arc2/lotarlin/flowing-surge";
 // donums
 // arc2
+// accipiter
+// buzz
+import DonumAccipiter from "./donums/arc2/donum-accipiter/donum-accipiter-buzz";
+import GlimpseOfPreyBuzz from "./donums/arc2/donum-accipiter/glimpse-of-prey";
+import RaptorsRest from "./donums/arc2/donum-accipiter/raptors-rest";
+import WeaponsOfTheHawk from "./donums/arc2/donum-accipiter/weapons-of-the-hawk";
+import SturdyQuills from "./donums/arc2/donum-accipiter/sturdy-quills";
+import SuddenShifting from "./donums/arc2/donum-accipiter/sudden-shifting";
+import GrandAppetiteBuzz from "./donums/arc2/donum-accipiter/grand-appetite";
 // leo
 import DonumLeo from "./donums/arc2/donum-leo/donum-leo";
 import GlimpseOfPrey from "./donums/arc2/donum-leo/glimpse-of-prey";
@@ -616,6 +625,15 @@ export const abilityRegistry = {
   },
   donums: {
     arc2: {
+      "donum-accipiter": {
+        "donum-accipiter-buzz": DonumAccipiter,
+        "glimpse-of-prey": GlimpseOfPreyBuzz,
+        "raptors-rest": RaptorsRest,
+        "weapons-of-the-hawk": WeaponsOfTheHawk,
+        "sturdy-quills": SturdyQuills,
+        "sudden-shifting": SuddenShifting,
+        "grand-appetite": GrandAppetiteBuzz,
+      },
       "donum-leo": {
         "donum-leo": DonumLeo,
         "glimpse-of-prey": GlimpseOfPrey,

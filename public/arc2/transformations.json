@@ -1,10 +1,53 @@
 [
   {
     "name": "Donum Accipiter",
-    "translation": "Gift of the Hawk",
+    "translation": "Gift of the Bird of Prey",
     "description": "",
     "provenire": "",
-    "abilities": []
+    "abilities": [
+      {
+        "name": "Donum Accipiter",
+        "slug": "donum-accipiter-buzz",
+        "keystone": true,
+        "permission": "donum-accipiter-buzz"
+      },
+      {
+        "name": "Glimpse of Prey",
+        "slug": "glimpse-of-prey",
+        "permission": "donum-accipiter-buzz",
+        "cost": 3
+      },
+      {
+        "name": "Raptor's Rest",
+        "slug": "raptors-rest",
+        "permission": "donum-accipiter-buzz",
+        "cost": 3
+      },
+      {
+        "name": "Weapons of the Hawk",
+        "slug": "weapons-of-the-hawk",
+        "permission": "donum-accipiter-buzz",
+        "cost": 3
+      },
+      {
+        "name": "Sturdy Quills",
+        "slug": "sturdy-quills",
+        "permission": "donum-accipiter-buzz",
+        "cost": 3
+      },
+      {
+        "name": "Sudden Shifting",
+        "slug": "sudden-shifting",
+        "permission": "donum-accipiter-buzz",
+        "cost": 3
+      },
+      {
+        "name": "Grand Appetite",
+        "slug": "grand-appetite",
+        "permission": "donum-accipiter-buzz",
+        "cost": 3
+      }
+    ]
   },
   {
     "name": "Donum Corvus",
@@ -150,5 +193,5 @@
         "cost": 3
       }
     ]
-  }
+  } 
 ]
