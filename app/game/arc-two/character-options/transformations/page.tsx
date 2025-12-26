@@ -101,12 +101,17 @@ export default async function Page() {
         reiciendis, incidunt nemo ad perspiciatis voluptatem?
       </p>
       <TypographyH2 className="font-cyber">Transformation Types</TypographyH2>
-      <TypographyH3>
-        Donum Accipiter{" "}
-        <span className="text-muted-foreground">
-          (Gift of the Bird of Prey)
-        </span>
-      </TypographyH3>
+      <ConditionalLink
+        href="/game/arc-two/character-options/transformations/donum-accipiter"
+        perm="donum-accipiter"
+      >
+        <TypographyH3>
+          Donum Accipiter{" "}
+          <span className="text-muted-foreground">
+            (Gift of the Bird of Prey)
+          </span>
+        </TypographyH3>
+      </ConditionalLink>
       <TypographyH3>
         Donum Corvus{" "}
         <span className="text-muted-foreground">(Gift of the Crow)</span>
