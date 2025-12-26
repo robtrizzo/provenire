@@ -10,7 +10,7 @@ import { checkAuth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
 export default async function Page() {
-  const { error } = await checkAuth("user", ["donum-rex"]);
+  const { error } = await checkAuth("user", ["donum-accipiter"]);
   if (error) redirect("/game/arc-two/character-options/transformations");
 
   return (
