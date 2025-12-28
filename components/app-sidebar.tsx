@@ -22,62 +22,18 @@ import {
 import Link from "next/link";
 import { ShieldUser } from "lucide-react";
 
-const data = {
-  navMain: [
-    {
-      title: "Introduction",
-      url: "/game/crucible",
-    },
-    {
-      title: "Legends",
-      url: "#",
-      items: [
-        {
-          title: "Dunstan",
-          url: "/game/crucible/legends/dunstan",
-        },
-        {
-          title: "Engel",
-          url: "/game/crucible/legends/engel",
-        },
-        {
-          title: "Issa",
-          url: "/game/crucible/legends/issa",
-        },
-        {
-          title: "Luciana",
-          url: "/game/crucible/legends/luciana",
-        },
-        {
-          title: "Makino",
-          url: "/game/crucible/legends/makino",
-        },
-        {
-          title: "Matteo",
-          url: "/game/crucible/legends/matteo",
-        },
-        {
-          title: "Takota",
-          url: "/game/crucible/legends/takota",
-        },
-        {
-          title: "Velda",
-          url: "/game/crucible/legends/velda",
-        },
-        {
-          title: "Ygg",
-          url: "/game/crucible/legends/ygg",
-        },
-        {
-          title: "Zephyr",
-          url: "/game/crucible/legends/zephyr",
-        },
-      ],
-    },
-  ],
+type NavItem = {
+  title: string;
+  url: string;
+  items?: { title: string; url: string }[];
 };
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+type AppSidebarProps = React.ComponentProps<typeof Sidebar> & {
+  data?: NavItem[];
+  children?: React.ReactNode;
+};
+
+export function AppSidebar({ data, children, ...props }: AppSidebarProps) {
   const pathname = usePathname();
   const session = useSession();
   const isAdmin = session?.data?.user.role === "admin";
@@ -100,7 +56,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <SidebarGroup>
           <SidebarMenu className="gap-3">
-            {data.navMain.map((item) => (
+            {data?.map((item) => (
               <SidebarMenuItem key={item.title}>
                 {item.url === "#" ? (
                   <span className="ml-2">{item.title}</span>
@@ -127,6 +83,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 ) : null}
               </SidebarMenuItem>
             ))}
+          </SidebarMenu>
+        </SidebarGroup>
+        <SidebarGroup>
+          <SidebarMenu>
+            <SidebarMenuItem>{children}</SidebarMenuItem>
           </SidebarMenu>
         </SidebarGroup>
         <SidebarGroup className="mt-auto">
