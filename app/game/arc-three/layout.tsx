@@ -7,7 +7,7 @@ import { ReactNode } from "react";
 const navigationData = [
   {
     title: "Introduction",
-    url: "/game/arc-three/introduction",
+    url: "/game/arc-three",
   },
   {
     title: "Setting",
@@ -25,6 +25,10 @@ const navigationData = [
     title: "Character Options",
     url: "#",
     items: [
+      {
+        title: "Remembrances",
+        url: "/game/arc-three/character-options/remembrances",
+      },
       {
         title: "Roles",
         url: "/game/arc-three/character-options/roles",
