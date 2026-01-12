@@ -1,298 +1,259 @@
 "use client";
-import { Line, LineChart, CartesianGrid, XAxis, YAxis } from "recharts";
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-  ChartLegend,
-  ChartLegendContent,
-} from "@/components/ui/chart";
 import { TypographyH1, TypographyH3 } from "@/components/ui/typography";
 import {
+  AbilityDice,
+  BondDice,
   calculateAdvantageProbability,
   calculateCritProbability,
   calculateEffectProbability,
   calculateThreatProbability,
-  DieFace,
+  Die,
+  PushDie,
+  SkillDice,
 } from "@/lib/dice";
+import { DiceDataEntry, DiceStatsChart } from "./(components)/chart";
 
-// Example usage:
-const dice1: DieFace[][] = [
-  ["t", "t", "t", "t", "t:r", "e:r"],
-  ["t", "_", "ta", "ta", "t:s", "e:s"],
-  ["t", "_", "ta", "ta", "t:s", "e:s"],
-];
+interface DiceConfig {
+  label: string;
+  dice: Die[];
+}
 
-const result1 = calculateThreatProbability(dice1);
-const result1a = calculateAdvantageProbability(dice1);
-const result1c = calculateCritProbability(dice1);
-const result1e = calculateEffectProbability(dice1);
-console.log(`Threat: ${result1.threatProbability.toFixed(2)}%`); // 57.87%
-console.log(`No Threat: ${result1.noThreatProbability.toFixed(2)}%`); // 42.13%
-console.log(`Advantage: ${result1a.advantageProbability.toFixed(2)}%`);
-console.log(`Crit: ${result1c.critProbability.toFixed(2)}%`);
-console.log(`Success: ${result1e.anyEffectProbability.toFixed(2)}%`);
-console.log(`ReducedEffect: ${result1e.reducedEffectProbability.toFixed(2)}%`);
-console.log(
-  `StandardEffect: ${result1e.standardEffectProbability.toFixed(2)}%`
-);
-console.log(
-  `EnhancedEffect: ${result1e.enhancedEffectProbability.toFixed(2)}%`
-);
+/**
+ * Generate dice statistics data from an array of dice configurations
+ */
+function generateDiceData(configs: DiceConfig[]): DiceDataEntry[] {
+  return configs.map(({ label, dice }) => {
+    const threat = calculateThreatProbability(dice);
+    const advantage = calculateAdvantageProbability(dice);
+    const crit = calculateCritProbability(dice);
+    const effect = calculateEffectProbability(dice);
 
-const dice2: DieFace[][] = [
-  ["t", "t", "t", "t", "t:r", "e:r"],
-  ["t", "_", "ta", "ta", "t:s", "e:s"],
-  ["t", "_", "ta", "ta", "a:s", "e:e"],
-];
+    return {
+      dice: label,
+      threat: parseFloat(threat.threatProbability.toFixed(2)),
+      success: parseFloat(effect.anyEffectProbability.toFixed(2)),
+      crit: parseFloat(crit.critProbability.toFixed(2)),
+      advantage: parseFloat(advantage.advantageProbability.toFixed(2)),
+      reducedEffect: parseFloat(effect.reducedEffectProbability.toFixed(2)),
+      standardEffect: parseFloat(effect.standardEffectProbability.toFixed(2)),
+      enhancedEffect: parseFloat(effect.enhancedEffectProbability.toFixed(2)),
+    };
+  });
+}
 
-const result2 = calculateThreatProbability(dice2);
-const result2a = calculateAdvantageProbability(dice2);
-const result2c = calculateCritProbability(dice2);
-const result2e = calculateEffectProbability(dice2);
-console.log(`Threat: ${result2.threatProbability.toFixed(2)}%`); // 46.30%
-console.log(`No Threat: ${result2.noThreatProbability.toFixed(2)}%`); // 53.70%
-console.log(`Advantage: ${result2a.advantageProbability.toFixed(2)}%`);
-console.log(`Crit: ${result2c.critProbability.toFixed(2)}%`);
-console.log(`Success: ${result2e.anyEffectProbability.toFixed(2)}%`);
-console.log(`ReducedEffect: ${result2e.reducedEffectProbability.toFixed(2)}%`);
-console.log(
-  `StandardEffect: ${result2e.standardEffectProbability.toFixed(2)}%`
-);
-console.log(
-  `EnhancedEffect: ${result2e.enhancedEffectProbability.toFixed(2)}%`
-);
-
-// Sample data - replace this with your actual data
-const currentDiceData = [
-  { dice: 0, threat: 97.22, success: 25, crit: 0 },
-  { dice: 1, threat: 83.33, success: 50, crit: 0 },
-  { dice: 2, threat: 69.44, success: 75, crit: 2.78 },
-  { dice: 3, threat: 57.86, success: 87.5, crit: 7.41 },
-  { dice: 4, threat: 48.22, success: 93.75, crit: 13.19 },
-  { dice: 5, threat: 40.18, success: 96.88, crit: 19.62 },
-  { dice: 6, threat: 33.48, success: 98.44, crit: 26.32 },
-];
-
-const level1DiceData = [
+const currentDiceData: DiceDataEntry[] = [
   {
-    dice: "1A₀",
-    threat: 100,
-    success: 33.33,
+    dice: "0",
+    threat: 97.22,
+    success: 25,
     crit: 0,
     advantage: 0,
-  },
-  {
-    dice: "1A₁",
-    threat: 83.33,
-    success: 33.33,
-    crit: 0,
-    advantage: 0,
-  },
-  {
-    dice: "1A₁1S₁",
-    threat: 69.44,
-    success: 55.56,
-    crit: 2.78,
-    advantage: 16.67,
-  },
-  {
-    dice: "2A₁1S₁",
-    threat: 57.86,
-    success: 70.73,
-    crit: 7.41,
-    advantage: 16.67,
-  },
-  {
-    dice: "2A₁2S₁",
-    threat: 48.22,
-    success: 80.25,
-    crit: 13.19,
-    advantage: 30.56,
-  },
-  {
-    dice: "2A₁2S₁P",
-    threat: 40.18,
-    success: 86.83,
-    crit: 19.62,
-    advantage: 42.13,
-  },
-  {
-    dice: "2A₁2S₁P1B₁",
-    threat: 33.48,
-    success: 89.03,
-    crit: 26.32,
-    advantage: 51.77,
-  },
-];
-
-const upgradePathAbilityDiceData = [
-  {
-    dice: "2A₁1S₁",
-    threat: 57.86,
-    success: 70.73,
-    crit: 7.41,
-    advantage: 16.67,
-    reducedEffect: 54.06,
-    standardEffect: 16.67,
-    enhancedffect: 0,
-  },
-  {
-    dice: "1A₁1A₂1S₁",
-    threat: 57.86,
-    success: 77.78,
-    crit: 7.41,
-    advantage: 16.67,
-    reducedEffect: 47.22,
-    standardEffect: 30.56,
-    enhancedffect: 0,
-  },
-  {
-    dice: "1A₁1A₃1S₁",
-    threat: 57.86,
-    success: 77.78,
-    crit: 7.41,
-    advantage: 16.67,
-    reducedEffect: 19.45,
-    standardEffect: 58.33,
-    enhancedffect: 0,
-  },
-  {
-    dice: "2A₂1S₁",
-    threat: 57.86,
-    success: 83.33,
-    crit: 7.41,
-    advantage: 16.67,
-    reducedEffect: 41.2,
-    standardEffect: 42.13,
-    enhancedffect: 0,
-  },
-  {
-    dice: "1A₂1A₃1S₁",
-    threat: 57.86,
-    success: 83.33,
-    crit: 7.41,
-    advantage: 16.67,
-    reducedEffect: 18.05,
-    standardEffect: 65.28,
-    enhancedffect: 0,
-  },
-  {
-    dice: "2A₃1S₁",
-    threat: 57.86,
-    success: 83.33,
-    crit: 7.41,
-    advantage: 16.67,
-    reducedEffect: 4.16,
-    standardEffect: 79.17,
-    enhancedffect: 0,
-  },
-];
-
-const upgradePathSkillDiceData = [
-  {
-    dice: "1A₁2S₁",
-    threat: 57.86,
-    success: 70.73,
-    crit: 7.41,
-    advantage: 30.56,
-    reducedEffect: 39.81,
-    standardEffect: 30.56,
-    enhancedEffect: 0,
-  },
-  {
-    dice: "1A₁1S₁1S₂",
-    threat: 57.86,
-    success: 70.73,
-    crit: 7.41,
-    advantage: 44.44,
-    reducedEffect: 25.93,
-    standardEffect: 44.44,
-    enhancedEffect: 0,
-  },
-  {
-    dice: "1A₁2S₂",
-    threat: 57.86,
-    success: 70.73,
-    crit: 7.41,
-    advantage: 55.56,
-    reducedEffect: 14.81,
-    standardEffect: 55.56,
-    enhancedEffect: 0,
-  },
-  {
-    dice: "1A₁1S₂1S₃",
-    threat: 46.3,
-    success: 70.37,
-    crit: 7.41,
-    advantage: 66.67,
-    reducedEffect: 14.81,
-    standardEffect: 38.89,
-    enhancedEffect: 16.67,
-  },
-  {
-    dice: "1A₁2S₃",
-    threat: 37.04,
-    success: 70.37,
-    crit: 7.41,
-    advantage: 75,
-    reducedEffect: 14.81,
-    standardEffect: 25,
-    enhancedEffect: 30.56,
-  },
-  {
-    dice: "1A₁1S₃1S₄",
-    threat: 27.78,
-    success: 70.37,
-    crit: 7.41,
-    advantage: 83.33,
-    reducedEffect: 14.81,
-    standardEffect: 11.12,
-    enhancedEffect: 44.44,
-  },
-  {
-    dice: "1A₁2S₄",
-    threat: 27.78,
-    success: 70.37,
-    crit: 7.41,
-    advantage: 88.89,
-    reducedEffect: 14.81,
+    reducedEffect: 0,
     standardEffect: 0,
-    enhancedEffect: 55.56,
+    enhancedEffect: 0,
+  },
+  {
+    dice: "1",
+    threat: 83.33,
+    success: 50,
+    crit: 0,
+    advantage: 0,
+    reducedEffect: 0,
+    standardEffect: 0,
+    enhancedEffect: 0,
+  },
+  {
+    dice: "2",
+    threat: 69.44,
+    success: 75,
+    crit: 2.78,
+    advantage: 0,
+    reducedEffect: 0,
+    standardEffect: 0,
+    enhancedEffect: 0,
+  },
+  {
+    dice: "3",
+    threat: 57.86,
+    success: 87.5,
+    crit: 7.41,
+    advantage: 0,
+    reducedEffect: 0,
+    standardEffect: 0,
+    enhancedEffect: 0,
+  },
+  {
+    dice: "4",
+    threat: 48.22,
+    success: 93.75,
+    crit: 13.19,
+    advantage: 0,
+    reducedEffect: 0,
+    standardEffect: 0,
+    enhancedEffect: 0,
+  },
+  {
+    dice: "5",
+    threat: 40.18,
+    success: 96.88,
+    crit: 19.62,
+    advantage: 0,
+    reducedEffect: 0,
+    standardEffect: 0,
+    enhancedEffect: 0,
+  },
+  {
+    dice: "6",
+    threat: 33.48,
+    success: 98.44,
+    crit: 26.32,
+    advantage: 0,
+    reducedEffect: 0,
+    standardEffect: 0,
+    enhancedEffect: 0,
   },
 ];
 
-const chartConfig = {
-  threat: {
-    label: "Threat",
-    color: "oklch(70.4% 0.191 22.216)",
+const level1DiceConfigs: DiceConfig[] = [
+  { label: "1A₀", dice: [AbilityDice[0]] },
+  { label: "1A₁", dice: [AbilityDice[1]] },
+  { label: "1A₁1S₁", dice: [AbilityDice[1], SkillDice[1]] },
+  { label: "2A₁1S₁", dice: [AbilityDice[1], AbilityDice[1], SkillDice[1]] },
+  {
+    label: "2A₁2S₁",
+    dice: [AbilityDice[1], AbilityDice[1], SkillDice[1], SkillDice[1]],
   },
-  success: {
-    label: "Success",
-    color: "oklch(74.6% 0.16 232.661)",
+  {
+    label: "2A₁2S₁P",
+    dice: [AbilityDice[1], AbilityDice[1], SkillDice[1], SkillDice[1], PushDie],
   },
-  reducedEffect: {
-    label: "Reduced Effect",
-    color: "oklch(67.3% 0.182 276.935)",
+  {
+    label: "2A₁2S₁P1B₁",
+    dice: [
+      AbilityDice[1],
+      AbilityDice[1],
+      SkillDice[1],
+      SkillDice[1],
+      PushDie,
+      BondDice[1],
+    ],
   },
-  standardEffect: {
-    label: "Standard Effect",
-    color: "oklch(71.4% 0.203 305.504)",
+];
+
+const level1DiceData = generateDiceData(level1DiceConfigs);
+
+const upgradePathAbilityDiceConfigs: DiceConfig[] = [
+  { label: "2A₁1S₁", dice: [AbilityDice[1], AbilityDice[1], SkillDice[1]] },
+  { label: "1A₁1A₂1S₁", dice: [AbilityDice[1], AbilityDice[2], SkillDice[1]] },
+  { label: "1A₁1A₃1S₁", dice: [AbilityDice[1], AbilityDice[3], SkillDice[1]] },
+  { label: "2A₂1S₁", dice: [AbilityDice[2], AbilityDice[2], SkillDice[1]] },
+  { label: "1A₂1A₃1S₁", dice: [AbilityDice[2], AbilityDice[3], SkillDice[1]] },
+  { label: "2A₃1S₁", dice: [AbilityDice[3], AbilityDice[3], SkillDice[1]] },
+];
+
+const upgradePathAbilityDiceData = generateDiceData(
+  upgradePathAbilityDiceConfigs
+);
+
+const upgradePathSkillDiceConfigs: DiceConfig[] = [
+  { label: "1A₁2S₁", dice: [AbilityDice[1], SkillDice[1], SkillDice[1]] },
+  { label: "1A₁1S₁1S₂", dice: [AbilityDice[1], SkillDice[1], SkillDice[2]] },
+  { label: "1A₁2S₂", dice: [AbilityDice[1], SkillDice[2], SkillDice[2]] },
+  { label: "1A₁1S₂1S₃", dice: [AbilityDice[1], SkillDice[2], SkillDice[3]] },
+  { label: "1A₁2S₃", dice: [AbilityDice[1], SkillDice[3], SkillDice[3]] },
+  { label: "1A₁1S₃1S₄", dice: [AbilityDice[1], SkillDice[3], SkillDice[4]] },
+  { label: "1A₁2S₄", dice: [AbilityDice[1], SkillDice[4], SkillDice[4]] },
+];
+
+const upgradePathSkillDiceData = generateDiceData(upgradePathSkillDiceConfigs);
+
+const upgradePathBondDiceConfigs: DiceConfig[] = [
+  { label: "1A₁1S₁1B₀", dice: [AbilityDice[1], SkillDice[1], BondDice[0]] },
+  { label: "1A₁1S₁1B₁", dice: [AbilityDice[1], SkillDice[1], BondDice[1]] },
+  { label: "1A₁1S₁1B₂", dice: [AbilityDice[1], SkillDice[1], BondDice[2]] },
+  { label: "1A₁1S₁1B₃", dice: [AbilityDice[1], SkillDice[1], BondDice[3]] },
+  { label: "1A₁1S₁1B₄", dice: [AbilityDice[1], SkillDice[1], BondDice[4]] },
+];
+
+const upgradePathBondDiceData = generateDiceData(upgradePathBondDiceConfigs);
+
+const upgradePathIndividualDiceConfigs: DiceConfig[] = [
+  { label: "1A₀1S₁1B₀", dice: [AbilityDice[0], SkillDice[1], BondDice[0]] },
+  { label: "1A₁1S₂1B₁", dice: [AbilityDice[1], SkillDice[2], BondDice[1]] },
+  { label: "1A₂1S₃1B₂", dice: [AbilityDice[2], SkillDice[3], BondDice[2]] },
+  { label: "1A₃1S₄1B₃", dice: [AbilityDice[3], SkillDice[4], BondDice[3]] },
+  { label: "1A₃1S₄1B₄", dice: [AbilityDice[3], SkillDice[4], BondDice[4]] },
+];
+
+const upgradePathIndividualDiceData = generateDiceData(
+  upgradePathIndividualDiceConfigs
+);
+
+const upgradePathMoreDiceConfigs: DiceConfig[] = [
+  { label: "1A₁1S₁1B₁", dice: [AbilityDice[1], SkillDice[1], BondDice[1]] },
+  {
+    label: "2A₁1S₁1B₁",
+    dice: [AbilityDice[1], AbilityDice[1], SkillDice[1], BondDice[1]],
   },
-  enhancedEffect: {
-    label: "Enhanced Effect",
-    color: "oklch(71.8% 0.202 349.761)",
+  {
+    label: "2A₁2S₁1B₁",
+    dice: [
+      AbilityDice[1],
+      AbilityDice[1],
+      SkillDice[1],
+      SkillDice[1],
+      BondDice[1],
+    ],
   },
-  crit: {
-    label: "Crit",
-    color: "oklch(79.2% 0.209 151.711)",
+];
+const upgradePathMoreDiceData = generateDiceData(upgradePathMoreDiceConfigs);
+
+const upgradePathFullConfigs: DiceConfig[] = [
+  { label: "1A₀", dice: [AbilityDice[0]] },
+  { label: "1A₀1S₁", dice: [AbilityDice[0], SkillDice[1]] },
+  { label: "1A₁1S₁", dice: [AbilityDice[1], SkillDice[1]] },
+  { label: "1A₁1S₂", dice: [AbilityDice[1], SkillDice[2]] },
+  { label: "1A₂1S₂", dice: [AbilityDice[2], SkillDice[2]] },
+  { label: "1A₂1A₁1S₂", dice: [AbilityDice[2], AbilityDice[1], SkillDice[2]] },
+  { label: "2A₂1S₂", dice: [AbilityDice[2], AbilityDice[2], SkillDice[2]] },
+  { label: "2A₂1S₃", dice: [AbilityDice[2], AbilityDice[2], SkillDice[3]] },
+  {
+    label: "2A₂1S₃1S₁",
+    dice: [AbilityDice[2], AbilityDice[2], SkillDice[3], SkillDice[1]],
   },
-  advantage: {
-    label: "Advantage",
-    color: "oklch(82.8% 0.189 84.429)",
+  {
+    label: "2A₂2S₃",
+    dice: [AbilityDice[2], AbilityDice[2], SkillDice[3], SkillDice[3]],
   },
-} satisfies ChartConfig;
+  {
+    label: "1A₂1A₃2S₃",
+    dice: [AbilityDice[2], AbilityDice[3], SkillDice[3], SkillDice[3]],
+  },
+  {
+    label: "1A₂1A₃1S₃1S₄",
+    dice: [AbilityDice[2], AbilityDice[3], SkillDice[3], SkillDice[4]],
+  },
+  {
+    label: "2A₃1S₃1S₄",
+    dice: [AbilityDice[3], AbilityDice[3], SkillDice[3], SkillDice[4]],
+  },
+  {
+    label: "2A₃2S₄",
+    dice: [AbilityDice[3], AbilityDice[3], SkillDice[4], SkillDice[4]],
+  },
+];
+
+const upgradePathFullDiceData = generateDiceData(upgradePathFullConfigs);
+
+const allMetrics = [
+  "threat",
+  "success",
+  "crit",
+  "advantage",
+  "reducedEffect",
+  "standardEffect",
+  "enhancedEffect",
+] as const;
 
 export default function Page() {
   return (
@@ -302,240 +263,69 @@ export default function Page() {
       <div className="py-8">
         <TypographyH3>Current Dice System</TypographyH3>
       </div>
-
-      <ChartContainer config={chartConfig} className="min-h-[400px] w-full">
-        <LineChart accessibilityLayer data={currentDiceData}>
-          <CartesianGrid vertical={false} />
-          <XAxis
-            dataKey="dice"
-            tickLine={false}
-            tickMargin={10}
-            axisLine={false}
-          />
-          <YAxis tickLine={false} tickMargin={10} axisLine={false} />
-          <ChartTooltip content={<ChartTooltipContent />} />
-          <ChartLegend content={<ChartLegendContent />} />
-          <Line
-            type="monotone"
-            dataKey="threat"
-            stroke="var(--color-threat)"
-            strokeWidth={2}
-            dot={{ fill: "var(--color-threat)" }}
-          />
-          <Line
-            type="monotone"
-            dataKey="success"
-            stroke="var(--color-success)"
-            strokeWidth={2}
-            dot={{ fill: "var(--color-success)" }}
-          />
-          <Line
-            type="monotone"
-            dataKey="crit"
-            stroke="var(--color-crit)"
-            strokeWidth={2}
-            dot={{ fill: "var(--color-crit)" }}
-          />
-        </LineChart>
-      </ChartContainer>
+      <DiceStatsChart
+        data={currentDiceData}
+        metrics={["threat", "success", "crit"]}
+      />
 
       <div className="py-8">
         <TypographyH3>Level 1 Dice - New System</TypographyH3>
       </div>
-
-      <ChartContainer config={chartConfig} className="min-h-[400px] w-full">
-        <LineChart accessibilityLayer data={level1DiceData}>
-          <CartesianGrid vertical={false} />
-          <XAxis
-            dataKey="dice"
-            tickLine={false}
-            tickMargin={10}
-            axisLine={false}
-          />
-          <YAxis
-            tickLine={false}
-            tickMargin={10}
-            axisLine={false}
-            domain={[0, 100]}
-          />
-          <ChartTooltip content={<ChartTooltipContent />} />
-          <ChartLegend content={<ChartLegendContent />} />
-          <Line
-            type="monotone"
-            dataKey="threat"
-            stroke="var(--color-threat)"
-            strokeWidth={2}
-            dot={{ fill: "var(--color-threat)" }}
-          />
-          <Line
-            type="monotone"
-            dataKey="success"
-            stroke="var(--color-success)"
-            strokeWidth={2}
-            dot={{ fill: "var(--color-success)" }}
-          />
-          <Line
-            type="monotone"
-            dataKey="crit"
-            stroke="var(--color-crit)"
-            strokeWidth={2}
-            dot={{ fill: "var(--color-crit)" }}
-          />
-          <Line
-            type="monotone"
-            dataKey="advantage"
-            stroke="var(--color-advantage)"
-            strokeWidth={2}
-            dot={{ fill: "var(--color-advantage)" }}
-          />
-        </LineChart>
-      </ChartContainer>
+      <DiceStatsChart data={level1DiceData} yAxisDomain={[0, 100]} />
 
       <div className="py-8">
         <TypographyH3>Case Study - Upgrade Ability Dice</TypographyH3>
       </div>
-
-      <ChartContainer config={chartConfig} className="min-h-[400px] w-full">
-        <LineChart accessibilityLayer data={upgradePathAbilityDiceData}>
-          <CartesianGrid vertical={false} />
-          <XAxis
-            dataKey="dice"
-            tickLine={false}
-            tickMargin={10}
-            axisLine={false}
-          />
-          <YAxis
-            tickLine={false}
-            tickMargin={10}
-            axisLine={false}
-            domain={[0, 100]}
-          />
-          <ChartTooltip content={<ChartTooltipContent />} />
-          <ChartLegend content={<ChartLegendContent />} />
-          <Line
-            type="monotone"
-            dataKey="threat"
-            stroke="var(--color-threat)"
-            strokeWidth={2}
-            dot={{ fill: "var(--color-threat)" }}
-          />
-          <Line
-            type="monotone"
-            dataKey="success"
-            stroke="var(--color-success)"
-            strokeWidth={2}
-            dot={{ fill: "var(--color-success)" }}
-          />
-          <Line
-            type="monotone"
-            dataKey="crit"
-            stroke="var(--color-crit)"
-            strokeWidth={2}
-            dot={{ fill: "var(--color-crit)" }}
-          />
-          <Line
-            type="monotone"
-            dataKey="advantage"
-            stroke="var(--color-advantage)"
-            strokeWidth={2}
-            dot={{ fill: "var(--color-advantage)" }}
-          />
-          <Line
-            type="monotone"
-            dataKey="reducedEffect"
-            stroke="var(--color-reducedEffect)"
-            strokeWidth={2}
-            dot={{ fill: "var(--color-reducedEffect)" }}
-          />
-          <Line
-            type="monotone"
-            dataKey="standardEffect"
-            stroke="var(--color-standardEffect)"
-            strokeWidth={2}
-            dot={{ fill: "var(--color-standardEffect)" }}
-          />
-          <Line
-            type="monotone"
-            dataKey="enhancedEffect"
-            stroke="var(--color-enhancedEffect)"
-            strokeWidth={2}
-            dot={{ fill: "var(--color-enhancedEffect)" }}
-          />
-        </LineChart>
-      </ChartContainer>
+      <DiceStatsChart
+        data={upgradePathAbilityDiceData}
+        metrics={[...allMetrics]}
+        yAxisDomain={[0, 100]}
+      />
 
       <div className="py-8">
         <TypographyH3>Case Study - Upgrade Skill Dice</TypographyH3>
       </div>
+      <DiceStatsChart
+        data={upgradePathSkillDiceData}
+        metrics={[...allMetrics]}
+        yAxisDomain={[0, 100]}
+      />
 
-      <ChartContainer config={chartConfig} className="min-h-[400px] w-full">
-        <LineChart accessibilityLayer data={upgradePathSkillDiceData}>
-          <CartesianGrid vertical={false} />
-          <XAxis
-            dataKey="dice"
-            tickLine={false}
-            tickMargin={10}
-            axisLine={false}
-          />
-          <YAxis
-            tickLine={false}
-            tickMargin={10}
-            axisLine={false}
-            domain={[0, 100]}
-          />
-          <ChartTooltip content={<ChartTooltipContent />} />
-          <ChartLegend content={<ChartLegendContent />} />
-          <Line
-            type="monotone"
-            dataKey="threat"
-            stroke="var(--color-threat)"
-            strokeWidth={2}
-            dot={{ fill: "var(--color-threat)" }}
-          />
-          <Line
-            type="monotone"
-            dataKey="success"
-            stroke="var(--color-success)"
-            strokeWidth={2}
-            dot={{ fill: "var(--color-success)" }}
-          />
-          <Line
-            type="monotone"
-            dataKey="crit"
-            stroke="var(--color-crit)"
-            strokeWidth={2}
-            dot={{ fill: "var(--color-crit)" }}
-          />
-          <Line
-            type="monotone"
-            dataKey="advantage"
-            stroke="var(--color-advantage)"
-            strokeWidth={2}
-            dot={{ fill: "var(--color-advantage)" }}
-          />
-          <Line
-            type="monotone"
-            dataKey="reducedEffect"
-            stroke="var(--color-reducedEffect)"
-            strokeWidth={2}
-            dot={{ fill: "var(--color-reducedEffect)" }}
-          />
-          <Line
-            type="monotone"
-            dataKey="standardEffect"
-            stroke="var(--color-standardEffect)"
-            strokeWidth={2}
-            dot={{ fill: "var(--color-standardEffect)" }}
-          />
-          <Line
-            type="monotone"
-            dataKey="enhancedEffect"
-            stroke="var(--color-enhancedEffect)"
-            strokeWidth={2}
-            dot={{ fill: "var(--color-enhancedEffect)" }}
-          />
-        </LineChart>
-      </ChartContainer>
+      <div className="py-8">
+        <TypographyH3>Case Study - Upgrade Bond Dice</TypographyH3>
+      </div>
+      <DiceStatsChart
+        data={upgradePathBondDiceData}
+        metrics={[...allMetrics]}
+        yAxisDomain={[0, 100]}
+      />
+
+      <div className="py-8">
+        <TypographyH3>Case Study - Upgrade Dice Levels</TypographyH3>
+      </div>
+      <DiceStatsChart
+        data={upgradePathIndividualDiceData}
+        metrics={[...allMetrics]}
+        yAxisDomain={[0, 100]}
+      />
+
+      <div className="py-8">
+        <TypographyH3>Case Study - Upgrade Dice Number</TypographyH3>
+      </div>
+      <DiceStatsChart
+        data={upgradePathMoreDiceData}
+        metrics={[...allMetrics]}
+        yAxisDomain={[0, 100]}
+      />
+
+      <div className="py-8">
+        <TypographyH3>Case Study - Upgrade Dice Fully</TypographyH3>
+      </div>
+      <DiceStatsChart
+        data={upgradePathFullDiceData}
+        metrics={[...allMetrics]}
+        yAxisDomain={[0, 100]}
+      />
     </div>
   );
 }
