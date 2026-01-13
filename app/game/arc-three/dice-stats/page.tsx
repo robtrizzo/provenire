@@ -28,6 +28,14 @@ function generateDiceData(configs: DiceConfig[]): DiceDataEntry[] {
     const crit = calculateCritProbability(dice);
     const effect = calculateEffectProbability(dice);
 
+    // Build threat face distribution entries
+    const threatFaceEntries: Record<`threat${number}Faces`, number> = {};
+    threat.threatCountDistribution.forEach((probability, count) => {
+      threatFaceEntries[`threat${count}Faces`] = parseFloat(
+        probability.toFixed(2)
+      );
+    });
+
     return {
       dice: label,
       threat: parseFloat(threat.threatProbability.toFixed(2)),
@@ -37,6 +45,7 @@ function generateDiceData(configs: DiceConfig[]): DiceDataEntry[] {
       reducedEffect: parseFloat(effect.reducedEffectProbability.toFixed(2)),
       standardEffect: parseFloat(effect.standardEffectProbability.toFixed(2)),
       enhancedEffect: parseFloat(effect.enhancedEffectProbability.toFixed(2)),
+      ...threatFaceEntries,
     };
   });
 }
@@ -245,7 +254,182 @@ const upgradePathFullConfigs: DiceConfig[] = [
 
 const upgradePathFullDiceData = generateDiceData(upgradePathFullConfigs);
 
-const allMetrics = [
+const diceGremlinConfigs: DiceConfig[] = [
+  {
+    label: "1A₀1S₁1B₀P",
+    dice: [AbilityDice[0], SkillDice[1], BondDice[0], PushDie],
+  },
+  {
+    label: "1A₁1S₁1B₀P",
+    dice: [AbilityDice[1], SkillDice[1], BondDice[0], PushDie],
+  },
+  {
+    label: "1A₁1S₁1B₁P",
+    dice: [AbilityDice[1], SkillDice[1], BondDice[1], PushDie],
+  },
+  {
+    label: "1A₁2S₁1B₁P",
+    dice: [AbilityDice[1], SkillDice[1], SkillDice[1], BondDice[1], PushDie],
+  },
+  {
+    label: "2A₁2S₁1B₁P",
+    dice: [
+      AbilityDice[1],
+      AbilityDice[1],
+      SkillDice[1],
+      SkillDice[1],
+      BondDice[1],
+      PushDie,
+    ],
+  },
+  {
+    label: "2A₁1S₂1S₁1B₁P",
+    dice: [
+      AbilityDice[1],
+      AbilityDice[1],
+      SkillDice[2],
+      SkillDice[1],
+      BondDice[1],
+      PushDie,
+    ],
+  },
+  {
+    label: "2A₁1S₂1S₁1B₂P",
+    dice: [
+      AbilityDice[1],
+      AbilityDice[1],
+      SkillDice[2],
+      SkillDice[1],
+      BondDice[2],
+      PushDie,
+    ],
+  },
+  {
+    label: "1A₂1A₁1S₂1S₁1B₂P",
+    dice: [
+      AbilityDice[2],
+      AbilityDice[1],
+      SkillDice[2],
+      SkillDice[1],
+      BondDice[2],
+      PushDie,
+    ],
+  },
+  {
+    label: "1A₂1A₁2S₂1B₂P",
+    dice: [
+      AbilityDice[2],
+      AbilityDice[1],
+      SkillDice[2],
+      SkillDice[2],
+      BondDice[2],
+      PushDie,
+    ],
+  },
+  {
+    label: "2A₂2S₂1B₂P",
+    dice: [
+      AbilityDice[2],
+      AbilityDice[2],
+      SkillDice[2],
+      SkillDice[2],
+      BondDice[2],
+      PushDie,
+    ],
+  },
+  {
+    label: "2A₂1S₂1S₃1B₂P",
+    dice: [
+      AbilityDice[2],
+      AbilityDice[2],
+      SkillDice[2],
+      SkillDice[3],
+      BondDice[2],
+      PushDie,
+    ],
+  },
+  {
+    label: "2A₂1S₂1S₃1B₃P",
+    dice: [
+      AbilityDice[2],
+      AbilityDice[2],
+      SkillDice[2],
+      SkillDice[3],
+      BondDice[3],
+      PushDie,
+    ],
+  },
+  {
+    label: "2A₂2S₃1B₃P",
+    dice: [
+      AbilityDice[2],
+      AbilityDice[2],
+      SkillDice[3],
+      SkillDice[3],
+      BondDice[3],
+      PushDie,
+    ],
+  },
+  {
+    label: "1A₂1A₃2S₃1B₃P",
+    dice: [
+      AbilityDice[2],
+      AbilityDice[3],
+      SkillDice[3],
+      SkillDice[3],
+      BondDice[3],
+      PushDie,
+    ],
+  },
+  {
+    label: "1A₂1A₃1S₃1S₄1B₃P",
+    dice: [
+      AbilityDice[2],
+      AbilityDice[3],
+      SkillDice[4],
+      SkillDice[3],
+      BondDice[3],
+      PushDie,
+    ],
+  },
+  {
+    label: "1A₂1A₃1S₃1S₄1B₄P",
+    dice: [
+      AbilityDice[2],
+      AbilityDice[3],
+      SkillDice[4],
+      SkillDice[3],
+      BondDice[4],
+      PushDie,
+    ],
+  },
+  {
+    label: "1A₂1A₃2S₄1B₄P",
+    dice: [
+      AbilityDice[2],
+      AbilityDice[3],
+      SkillDice[4],
+      SkillDice[4],
+      BondDice[4],
+      PushDie,
+    ],
+  },
+  {
+    label: "2A₃2S₄1B₄P",
+    dice: [
+      AbilityDice[3],
+      AbilityDice[3],
+      SkillDice[4],
+      SkillDice[4],
+      BondDice[4],
+      PushDie,
+    ],
+  },
+];
+
+const diceGremlinDiceData = generateDiceData(diceGremlinConfigs);
+
+const standardMetrics = [
   "threat",
   "success",
   "crit",
@@ -253,6 +437,16 @@ const allMetrics = [
   "reducedEffect",
   "standardEffect",
   "enhancedEffect",
+] as const;
+
+const threatMetrics = [
+  "threat",
+  "threat1Faces",
+  "threat2Faces",
+  "threat3Faces",
+  "threat4Faces",
+  "threat5Faces",
+  "threat6Faces",
 ] as const;
 
 export default function Page() {
@@ -278,7 +472,7 @@ export default function Page() {
       </div>
       <DiceStatsChart
         data={upgradePathAbilityDiceData}
-        metrics={[...allMetrics]}
+        metrics={[...standardMetrics]}
         yAxisDomain={[0, 100]}
       />
 
@@ -287,7 +481,7 @@ export default function Page() {
       </div>
       <DiceStatsChart
         data={upgradePathSkillDiceData}
-        metrics={[...allMetrics]}
+        metrics={[...standardMetrics]}
         yAxisDomain={[0, 100]}
       />
 
@@ -296,7 +490,7 @@ export default function Page() {
       </div>
       <DiceStatsChart
         data={upgradePathBondDiceData}
-        metrics={[...allMetrics]}
+        metrics={[...standardMetrics]}
         yAxisDomain={[0, 100]}
       />
 
@@ -305,7 +499,15 @@ export default function Page() {
       </div>
       <DiceStatsChart
         data={upgradePathIndividualDiceData}
-        metrics={[...allMetrics]}
+        metrics={[...standardMetrics]}
+        yAxisDomain={[0, 100]}
+      />
+      <div className="py-8">
+        <TypographyH3>Case Study - Upgrade Dice Levels - Threats</TypographyH3>
+      </div>
+      <DiceStatsChart
+        data={upgradePathIndividualDiceData}
+        metrics={[...threatMetrics]}
         yAxisDomain={[0, 100]}
       />
 
@@ -314,7 +516,15 @@ export default function Page() {
       </div>
       <DiceStatsChart
         data={upgradePathMoreDiceData}
-        metrics={[...allMetrics]}
+        metrics={[...standardMetrics]}
+        yAxisDomain={[0, 100]}
+      />
+      <div className="py-8">
+        <TypographyH3>Case Study - Upgrade Dice Number - Threats</TypographyH3>
+      </div>
+      <DiceStatsChart
+        data={upgradePathMoreDiceData}
+        metrics={[...threatMetrics]}
         yAxisDomain={[0, 100]}
       />
 
@@ -323,7 +533,33 @@ export default function Page() {
       </div>
       <DiceStatsChart
         data={upgradePathFullDiceData}
-        metrics={[...allMetrics]}
+        metrics={[...standardMetrics]}
+        yAxisDomain={[0, 100]}
+      />
+
+      <div className="py-8">
+        <TypographyH3>Case Study - Upgrade Dice Fully - Threats</TypographyH3>
+      </div>
+      <DiceStatsChart
+        data={upgradePathFullDiceData}
+        metrics={[...threatMetrics]}
+        yAxisDomain={[0, 100]}
+      />
+
+      <div className="py-8">
+        <TypographyH3>Case Study - Dice Gremlin</TypographyH3>
+      </div>
+      <DiceStatsChart
+        data={diceGremlinDiceData}
+        metrics={[...standardMetrics]}
+        yAxisDomain={[0, 100]}
+      />
+      <div className="py-8">
+        <TypographyH3>Case Study - Dice Gremlin - Threats</TypographyH3>
+      </div>
+      <DiceStatsChart
+        data={diceGremlinDiceData}
+        metrics={[...threatMetrics]}
         yAxisDomain={[0, 100]}
       />
     </div>

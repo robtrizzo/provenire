@@ -6,11 +6,11 @@ const d6Variants = cva("", {
   variants: {
     variant: {
       default: "text-[oklch(0.3485_0_0)]",
-      bond: "text-teal-700/30",
+      bond: "text-cyan-700/30",
       ability: "text-yellow-500/30",
-      skill: "text-purple-700/30",
-      emotion: "text-fuchsia-700",
-      push: "text-emerald-700",
+      skill: "text-violet-700/30",
+      emotion: "text-pink-700/30",
+      push: "text-green-700/30",
     },
     crit: {
       true: "",

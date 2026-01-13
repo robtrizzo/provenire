@@ -21,7 +21,7 @@ export type DieFace =
   | `e:${EffectDegree}`
   | `e${CritMarker}:${EffectDegree}`;
 
-export type Die = DieFace[];
+export type Die = { faces: DieFace[]; variant: DieVariant };
 
 export type DieVariant =
   | "default"
@@ -32,28 +32,36 @@ export type DieVariant =
   | "push";
 
 export const AbilityDice: Record<0 | 1 | 2 | 3, Die> = {
-  0: ["t", "t", "t", "t", "t:r", "t:r"],
-  1: ["t", "t", "t", "t", "t:r", "ec:r"],
-  2: ["t", "t", "t", "t:r", "t:r", "ec:s"],
-  3: ["t", "t", "t", "t:s", "t:s", "ec:s"],
+  0: { faces: ["t", "t", "t", "t", "t:r", "t:r"], variant: "ability" },
+  1: { faces: ["t", "t", "t", "t", "t:r", "ec:r"], variant: "ability" },
+  2: { faces: ["t", "t", "t", "t:r", "t:r", "ec:s"], variant: "ability" },
+  3: { faces: ["t", "t", "t", "t:s", "t:s", "ec:s"], variant: "ability" },
 };
 
 export const SkillDice: Record<1 | 2 | 3 | 4, Die> = {
-  1: ["t", "t", "_", "ta", "t:r", "ec:s"],
-  2: ["t", "_", "ta", "ta", "t:s", "ec:s"],
-  3: ["t", "_", "ta", "ta", "a:s", "ec:e"],
-  4: ["t", "_", "ta", "a", "a:e", "ac:e"],
+  1: { faces: ["t", "t", "_", "ta", "t:r", "ec:s"], variant: "skill" },
+  2: { faces: ["t", "_", "ta", "ta", "t:s", "ec:s"], variant: "skill" },
+  3: { faces: ["t", "_", "ta", "ta", "ta:s", "ec:e"], variant: "skill" },
+  4: { faces: ["t", "_", "ta", "ta", "a:e", "ac:e"], variant: "skill" },
 };
 
 export const BondDice: Record<0 | 1 | 2 | 3 | 4, Die> = {
-  0: ["t", "t", "_", "_", "a", "t:r"],
-  1: ["t", "_", "_", "_", "a", "ec:r"],
-  2: ["t", "_", "_", "a", "a", "ac:r"],
-  3: ["t", "_", "a", "a", "a", "ac:s"],
-  4: ["t", "a", "a", "a", "a", "ac:e"],
+  0: { faces: ["t", "t", "_", "_", "a", "t:r"], variant: "bond" },
+  1: { faces: ["t", "_", "_", "_", "a", "ec:r"], variant: "bond" },
+  2: { faces: ["t", "_", "_", "a", "a", "ac:r"], variant: "bond" },
+  3: { faces: ["t", "_", "a", "a", "a", "ac:s"], variant: "bond" },
+  4: { faces: ["_", "a", "a", "a", "a", "ac:e"], variant: "bond" },
 };
 
-export const PushDie: Die = ["t", "t", "t", "t", "ta:r", "ec:e"];
+export const PushDie: Die = {
+  faces: ["t", "t", "t", "t", "ta:r", "ec:e"],
+  variant: "push",
+};
+
+export const EmotionDie: Die = {
+  faces: ["t", "t", "t", "t", "t", "ac"],
+  variant: "emotion",
+};
 
 // Helper functions for working with faces
 export const hasEffect = (face: DieFace): boolean => face.includes(":");
@@ -89,15 +97,19 @@ export const cancelsThreats = (face: DieFace): boolean => {
  * Calculate total outcomes for a set of dice based on each die's number of faces
  */
 export const calculateTotalOutcomes = (dice: Die[]): number => {
-  return dice.reduce((product, die) => product * die.length, 1);
+  return dice.reduce((product, die) => product * die.faces.length, 1);
 };
 
-interface DiceResult {
+interface ThreatResult {
   threatProbability: number;
   noThreatProbability: number;
   totalOutcomes: number;
   threatOutcomes: number;
   noThreatOutcomes: number;
+  /** Distribution of threat face counts: index = number of threat faces, value = probability percentage */
+  threatCountDistribution: number[];
+  /** Raw outcome counts for each threat face count */
+  threatCountOutcomes: number[];
 }
 
 /**
@@ -106,7 +118,7 @@ interface DiceResult {
  * 1. At least one die shows a face with threat (t, ta, or their effect variants like t:r, t:s, ta:e)
  * 2. AND no die shows a threat-canceling effect (a face with an effect that doesn't have threat)
  */
-export function calculateThreatProbability(dice: Die[]): DiceResult {
+export function calculateThreatProbability(dice: Die[]): ThreatResult {
   if (dice.length === 0) {
     throw new Error("At least one die is required");
   }
@@ -117,8 +129,15 @@ export function calculateThreatProbability(dice: Die[]): DiceResult {
   // Threat occurs when: at least one threat face AND no threat-canceling effect
   let threatOutcomes = 0;
 
+  // Track outcomes by number of threat faces rolled (ignoring cancellation)
+  const threatCountOutcomes: number[] = new Array(dice.length + 1).fill(0);
+
   function generateOutcomes(diceIndex: number, currentRoll: DieFace[]): void {
     if (diceIndex === dice.length) {
+      // Count the number of threat faces in this roll
+      const threatFaceCount = currentRoll.filter(hasThreat).length;
+      threatCountOutcomes[threatFaceCount]++;
+
       // Check if any face has a threat-canceling effect
       const hasThreactCancelingEffect = currentRoll.some(cancelsThreats);
 
@@ -128,7 +147,7 @@ export function calculateThreatProbability(dice: Die[]): DiceResult {
       }
 
       // Check if at least one face has threat
-      const hasAnyThreat = currentRoll.some(hasThreat);
+      const hasAnyThreat = threatFaceCount > 0;
 
       if (hasAnyThreat) {
         threatOutcomes++;
@@ -136,7 +155,7 @@ export function calculateThreatProbability(dice: Die[]): DiceResult {
       return;
     }
 
-    for (const face of dice[diceIndex]) {
+    for (const face of dice[diceIndex].faces) {
       generateOutcomes(diceIndex + 1, [...currentRoll, face]);
     }
   }
@@ -145,12 +164,19 @@ export function calculateThreatProbability(dice: Die[]): DiceResult {
 
   const noThreatOutcomes = totalOutcomes - threatOutcomes;
 
+  // Convert threat count outcomes to probabilities
+  const threatCountDistribution = threatCountOutcomes.map(
+    (count) => (count / totalOutcomes) * 100
+  );
+
   return {
     threatProbability: (threatOutcomes / totalOutcomes) * 100,
     noThreatProbability: (noThreatOutcomes / totalOutcomes) * 100,
     totalOutcomes,
     threatOutcomes,
     noThreatOutcomes,
+    threatCountDistribution,
+    threatCountOutcomes,
   };
 }
 
@@ -175,8 +201,8 @@ export function calculateAdvantageProbability(dice: Die[]): AdvantageResult {
   // Calculate P(no advantage rolled on any die)
   let probNoAdvantage = 1;
   for (const die of dice) {
-    const advantageCount = die.filter(hasAdvantage).length;
-    probNoAdvantage *= (6 - advantageCount) / 6;
+    const advantageCount = die.faces.filter(hasAdvantage).length;
+    probNoAdvantage *= (die.faces.length - advantageCount) / die.faces.length;
   }
 
   const noAdvantageOutcomes = Math.round(probNoAdvantage * totalOutcomes);
@@ -204,7 +230,7 @@ interface CritResult {
  */
 export function calculateCritProbability(dice: Die[]): CritResult {
   if (dice.length <= 1) {
-    const totalOutcomes = dice.length === 0 ? 0 : dice[0].length;
+    const totalOutcomes = dice.length === 0 ? 0 : dice[0].faces.length;
     return {
       critProbability: 0,
       noCritProbability: 100,
@@ -222,8 +248,8 @@ export function calculateCritProbability(dice: Die[]): CritResult {
 
   // Calculate probability of showing a crit candidate for each die
   const critProbs = dice.map((die) => {
-    const critFaces = die.filter(isCritCandidate).length;
-    return critFaces / die.length;
+    const critFaces = die.faces.filter(isCritCandidate).length;
+    return critFaces / die.faces.length;
   });
 
   // P(no dice show crit candidate)
@@ -318,7 +344,7 @@ export function calculateEffectProbability(dice: Die[]): EffectResult {
     }
 
     // Recurse through all faces of current die
-    for (const face of dice[diceIndex]) {
+    for (const face of dice[diceIndex].faces) {
       generateOutcomes(diceIndex + 1, [...currentRoll, face]);
     }
   }

@@ -1,7 +1,6 @@
 import { Separator } from "@/components/ui/separator";
 import { TypographyH3, TypographyH4 } from "@/components/ui/typography";
-import { ReactNode } from "react";
-import { CritBorderGradient, D6 } from "./(components)/dice-borders";
+import { D6 } from "./(components)/dice-borders";
 import {
   ArrowDouble,
   Theta,
@@ -13,14 +12,11 @@ import {
 import {
   AbilityDice,
   BondDice,
-  type DieFace,
-  DieVariant,
-  EffectDegree,
-  getBaseFace,
-  getEffectDegree,
-  isCritCandidate,
+  EmotionDie,
+  PushDie,
   SkillDice,
 } from "@/lib/dice";
+import { Die } from "./(components)/dice";
 
 export default async function Page() {
   return (
@@ -116,191 +112,51 @@ export default async function Page() {
       </div>
 
       <TypographyH4>Emotion Die</TypographyH4>
-      <div className="flex gap-1">
-        <D6 size={84}>
-          <Threat />
-        </D6>
-        <D6 size={84}>
-          <Threat />
-        </D6>
-        <D6 size={84}>
-          <Threat />
-        </D6>
-        <D6 size={84}>
-          <Threat />
-        </D6>
-        <D6 size={84}>
-          <Threat />
-        </D6>
-        <D6 size={84}>
-          <ThetaDouble />
-        </D6>
-      </div>
+      <Die die={EmotionDie} />
+
       <TypographyH4>Push Die</TypographyH4>
-      <div className="flex gap-1">
-        <D6 size={84}>
-          <Threat />
-        </D6>
-        <D6 size={84}>
-          <Threat />
-        </D6>
-        <D6 size={84}>
-          <Threat />
-        </D6>
-        <D6 size={84}>
-          <Threat />
-        </D6>
-        <D6 size={84}>
-          <>
-            <ArrowDouble />
-            <Theta />
-            <ThreatSpread />
-          </>
-        </D6>
-        <D6 size={84}>
-          <ThetaTriple />
-        </D6>
-      </div>
+      <Die die={PushDie} />
 
       <Separator className="mt-4" />
 
       <TypographyH3>Ability Dice</TypographyH3>
       <TypographyH4>Level 0</TypographyH4>
 
-      <Die die={AbilityDice[0]} variant="ability" />
+      <Die die={AbilityDice[0]} />
       <TypographyH4>Level 1</TypographyH4>
-      <Die die={AbilityDice[1]} variant="ability" />
+      <Die die={AbilityDice[1]} />
       <TypographyH4>Level 2</TypographyH4>
-      <Die die={AbilityDice[2]} variant="ability" />
+      <Die die={AbilityDice[2]} />
       <TypographyH4>Level 3</TypographyH4>
-      <Die die={AbilityDice[3]} variant="ability" />
+      <Die die={AbilityDice[3]} />
 
       <Separator className="mt-4" />
 
       <TypographyH3>Skill Die</TypographyH3>
       <TypographyH4>Level 1</TypographyH4>
-      <Die die={SkillDice[1]} variant="skill" />
+      <Die die={SkillDice[1]} />
 
       <TypographyH4>Level 2</TypographyH4>
-      <Die die={SkillDice[2]} variant="skill" />
+      <Die die={SkillDice[2]} />
 
       <TypographyH4>Level 3</TypographyH4>
-      <Die die={SkillDice[3]} variant="skill" />
+      <Die die={SkillDice[3]} />
 
       <TypographyH4>Level 4</TypographyH4>
-      <Die die={SkillDice[4]} variant="skill" />
+      <Die die={SkillDice[4]} />
 
       <Separator className="mt-4" />
 
       <TypographyH4>Bond Die (Level 0)</TypographyH4>
-      <Die die={BondDice[0]} variant="bond" />
+      <Die die={BondDice[0]} />
       <TypographyH4>Bond Die (Level 1)</TypographyH4>
-      <Die die={BondDice[1]} variant="bond" />
+      <Die die={BondDice[1]} />
       <TypographyH4>Bond Die (Level 2)</TypographyH4>
-      <Die die={BondDice[2]} variant="bond" />
+      <Die die={BondDice[2]} />
       <TypographyH4>Bond Die (Level 3)</TypographyH4>
-      <Die die={BondDice[3]} variant="bond" />
+      <Die die={BondDice[3]} />
       <TypographyH4>Bond Die (Level 4)</TypographyH4>
-      <Die die={BondDice[4]} variant="bond" />
-    </div>
-  );
-}
-
-// Get the effect symbol based on degree
-const getEffectSymbol = (effectDegree: EffectDegree | null) => {
-  switch (effectDegree) {
-    case "r":
-      return <Theta />;
-    case "s":
-      return <ThetaDouble />;
-    case "e":
-      return <ThetaTriple />;
-    default:
-      return null;
-  }
-};
-
-/**
- * Renders the inner symbols for a die face
- */
-export function renderFaceSymbols(face: DieFace): ReactNode {
-  const base = getBaseFace(face);
-  const effectDegree = getEffectDegree(face);
-
-  // Pure effect face (e:r, e:s, e:e)
-  if (base === "e") {
-    return getEffectSymbol(effectDegree);
-  }
-
-  // Blank face
-  if (base === "_") {
-    return null;
-  }
-
-  const hasThreat = base.includes("t");
-  const hasAdvantage = base.includes("a");
-  const hasEffect = effectDegree !== null;
-
-  // If face has effect, threats are "spread" (use ThreatSpread instead of Threat)
-  const threatSymbol =
-    hasEffect || hasAdvantage ? <ThreatSpread /> : <Threat />;
-
-  return (
-    <>
-      {hasThreat && threatSymbol}
-      {hasAdvantage && <ArrowDouble />}
-      {getEffectSymbol(effectDegree)}
-    </>
-  );
-}
-
-interface DieFaceProps {
-  face: DieFace;
-  size?: number;
-  variant?: DieVariant;
-  className?: string;
-}
-
-export function DieFace({
-  face,
-  size = 84,
-  variant = "ability",
-  className,
-}: DieFaceProps) {
-  return (
-    <D6 size={size} variant={variant} className={className}>
-      {isCritCandidate(face) && <CritBorderGradient />}
-      {renderFaceSymbols(face)}
-    </D6>
-  );
-}
-
-interface DieProps {
-  die: DieFace[];
-  size?: number;
-  variant?: DieVariant;
-  className?: string;
-  gap?: number;
-}
-
-export function Die({
-  die,
-  size = 84,
-  variant = "ability",
-  className,
-  gap = 1,
-}: DieProps) {
-  return (
-    <div className={`flex gap-${gap}`}>
-      {die.map((face, index) => (
-        <DieFace
-          key={index}
-          face={face}
-          size={size}
-          variant={variant}
-          className={className}
-        />
-      ))}
+      <Die die={BondDice[4]} />
     </div>
   );
 }
