@@ -21,7 +21,7 @@ interface DiceConfig {
 /**
  * Generate dice statistics data from an array of dice configurations
  */
-function generateDiceData(configs: DiceConfig[]): DiceDataEntry[] {
+export function generateDiceData(configs: DiceConfig[]): DiceDataEntry[] {
   return configs.map(({ label, dice }) => {
     const threat = calculateThreatProbability(dice);
     const advantage = calculateAdvantageProbability(dice);

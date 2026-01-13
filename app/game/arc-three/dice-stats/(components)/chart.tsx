@@ -119,15 +119,26 @@ export function DiceStatsChart({
           tickLine={false}
           tickMargin={10}
           axisLine={false}
+          label={{ value: "Dice Pool", position: "insideBottom", offset: -15 }}
         />
         <YAxis
           tickLine={false}
           tickMargin={10}
           axisLine={false}
           domain={yAxisDomain}
+          label={{
+            value: "Probability / Frequency",
+            angle: -90,
+            position: "insideLeft",
+            offset: 0,
+          }}
         />
         <ChartTooltip content={<ChartTooltipContent />} />
-        <ChartLegend content={<ChartLegendContent />} />
+        <ChartLegend
+          content={<ChartLegendContent />}
+          wrapperStyle={{ marginTop: 40 }}
+          className="mt-4"
+        />
         {metrics.map((metric) => (
           <Line
             key={metric}

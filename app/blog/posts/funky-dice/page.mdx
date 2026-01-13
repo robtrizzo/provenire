@@ -1,0 +1,510 @@
+import SampleActions from "@/app/blog/posts/funky-dice/(components)/sample-actions";
+import ActionDot from "@/app/blog/posts/funky-dice/(components)/action-dot";
+import {CurrentDice, UpgradeFully, UpgradeFullyThreat, MaxDice, MaxDiceThreat} from "@/app/blog/posts/funky-dice/(components)/charts";
+import { D6 } from "@/app/game/arc-three/test-dice/(components)/dice-borders";
+import {
+  ArrowDouble,
+  Theta,
+  ThetaDouble,
+  ThetaTriple,
+  Threat,
+  ThreatSpread,
+} from "@/app/game/arc-three/test-dice/(components)/dice-symbols";
+import { Die, DieFace } from "@/app/game/arc-three/test-dice/(components)/dice";
+import { TypographyP } from "@/components/ui/typography";
+import {
+  AbilityDice,
+  BondDice,
+  EmotionDie,
+  PushDie,
+  SkillDice,
+} from "@/lib/dice";
+
+
+[back to all posts](/blog)
+
+# Funky Dice
+
+For anyone following along, I have already spoken at length about [dice](/blog/picking-action-dice) on this very blog. And I'm incredibly happy with my choices. The **`Xd6`** dice pool works nearly flawlessly. In my opinion, there are a few key features it does best.
+
+### What `Xd6` does well
+
+**One:** success, failure, and criticals are possible at all stages of advancement. With the caveat that having **`0d`** in a stat requires **pushing yourself** and an additional source of a bonus die to be capable of critting. What's so good about this in my opinion, is that every die roll has the drama of possibility.
+
+**Two:** successes and consequences are separate. The most likely outcome at many levels is to both succeed *and* be faced with complications. This creates compelling gameplay and keeps everyone on the edge of their seat.
+
+**Three:** it's very easy to determine what the result of a die roll is, despite rolling lots of dice sometimes. Just find the highest die, easy! Especially valuable in-person.
+
+### What `Xd6` could do better <span className='text-muted-foreground'>(in my game)</span>
+
+So now that I've talked about what this system does well, I'd like to talk about some of its weaknesses. I want to stipulate that these are weaknesses *in the game I run* and are not objective flaws that apply to every game.
+
+**One:** it's fairly constrained on advancement. The only way to create further progression is to create more skills for your players to invest xp into. In my own game, I took a fairly extreme approach to exactly that. This looks like splitting actions across two sides of the character sheet, only allowing 2 dice per skill, and color coding dice so they could be upgraded for better effect. If you're not familiar with FitD dice, that likely makes no sense to you; I must apologize but push on ahead!
+
+**Two:** very limited mechanical texture. What I mean by this is how many dimensions of interaction a character's playbook abilities can have with the dice. We can add bonus dice, increase/decrease effect, and tinker with the cost of pushing yourself. That's about it. Not that you can't do plenty with that, but for *the game that I'm running*, I'm left wanting more.
+
+**Three:** once players are rolling 4 to 6 dice, success is nigh-guaranteed. This is the big one. And I feel I must add another caveat. I *want* players to have awesome moments where they roll 5 dice and feel good about how powerful they are. What I've encountered is that players get to this 4 die threshold by the middle of advancement and then throw in a bonus die from an ability, a bonus die from an assist, and let's get one more from pushing yourself and, well, you have a **`>98%`** chance of success. And **`>26%`** chance that's a crit!
+
+<div className="my-8 px-4">
+    <CurrentDice />
+</div>
+
+As I suggested before, in my ideal of a die system this would be a more special occasion.
+
+## How this game's dice work
+
+If you're one of my players (*hello!* 👋), you can probably skip this part because this will be old hat to you. For anyone else curious, I'll explain how dice are currently set up in this game so that you have the full context for how future modifications will work.
+
+Earlier in this post I referenced splitting actions across two sides of the character sheet. It looks like this:
+
+<div className="p-6">
+    <SampleActions />
+</div>
+
+What the dots represent is the color of die you roll when you use that action. <ActionDot className="bg-red-500" /> represents rolling a die with reduced effect on a success where <ActionDot className="bg-blue-500" /> has full effect. A <ActionDot /> means you have **`0d`** in that action and you roll **`2d6`** with disadvantage and reduced effect. When rolling, players pick up to two actions, one from each side of the sheet. <ActionDot /> are ignored if there are other red or blue dice in the pool.
+
+This does a few things for us. One: it raises the earlygame number of dice players have access to. They roll **`0d`** less often. Two: it grants more room for advancement because each action has 5 discrete levels. Third: it allows narrative flexibility for the characters. For the purposes of my game so far, this has worked really well.
+
+Other than the action scores, using an ability or getting an assist can add either a <ActionDot className="bg-red-500" /> or <ActionDot className="bg-blue-500" /> circumstantially. Pushing yourself or taking *the devil's bargain* always grants a <ActionDot className="bg-blue-500" />. And that's it. More complicated than *Blades in the Dark* but the players caught on fast and overall they enjoyed it.
+
+## Genesys of an idea 🥁
+
+I am a relentless rewriter / refactorer. When I see something that gives me pause, my gut instinct is to redo it from scratch. Where this is fine in my own personal projects, this is *not* ideal for my players who sometimes wish I'd chill for a second and stop changing the game. The **`>98%`** success chance / **`>26%`** crit chance in my game was very much on my mind. I could feel the urge to refactor building! And then I thought of my poor players and took a step back. Perhaps it would be best to understand the dice deeper before I took it all apart.
+
+When you boil FitD dice down to their basic parts, each die face can indicate up to two things: **did you succeed?** and **is there a consequence?** I thought to myself, "*What if there were only two symbols instead of 1-6?*" That would be simplifying instead of complicating... right?
+
+When I have a problem I'm turning over in my head, I'm often talking about it to the people around me. Lucky for me, I'm surrounded by smart folks who have given me incredible advice and feedback. One friend, the very same friend referenced in [this post]("/blog/game-design-that-inspires-me") directed my attention to [Genesys RPG](https://www.fantasyflightgames.com/en/products/genesys/). When he heard that I was thinking about dice in the context of symbols and faces, he felt this would be a good resource for inspiration. And he was correct! I went off on a dice bender.
+
+To my players: all I can say is I tried to fight my inner refactor-demon
+and I lost. Sorry!
+
+### What I liked from Genesys dice
+
+Genesys uses a system of narrative dice. These dice are your classic TTRPG shapes, but instead of numbers on the faces, you have a collection of symbols. When you roll a pool of dice, you must consult the runes!
+
+The fact that the dice were no longer constrained to numbers untethers them from linear math. Sure, you could fiddle with the numbers on dice, but then I think there would be a bit of an awkward disconnect. Besides, going with symbols means you can put multiple on a single die face and it makes sense! From a game design perspective, this grants full control of the probabilities. Very exciting!
+
+Another aspect of Genesys dice I latched onto was their concept of Advantage. In their system, Advantage is meant to be a counterbalance to Threat. Think of Threat like a consequence in a FitD game and think of Advantage as an extra opportunity or stroke of luck which isn't related to the success of your current action. While I had been thinking about how to reduce my players' chance of success in large dice pools, I felt kind of bad about it. I didn't want to just... nerf them. That could feel bad. I was in pursuit of something I could give back to them in exchange. Advantage!
+
+### What I chose not to adopt from Genesys dice
+
+In Genesys, the player contributes dice from their character sheet to represent how good at something they are. Their dice have Success, Advantage, and Triumph faces on them (Triumph is a crit). Then the GM gives them more dice to represent how difficult the task is. These dice have Failures, Threats, and Dispairs (the counterpoints to all of the player die symbols). When rolled, Successes and Failures cancel out; so do Advantages and Threats; same with Triumph and Dispair. Once all the cancelling out is done, you see what's left and determine how the roll went.
+
+I think that for a pool of 3-6 dice this is fine, but I see the dice pools growing over the course of play. That could get tedious and error prone. Enough that plenty of forum posts I found had GMs recommending a digital tool which will do all of that for you. So I decided that whatever I take from Genesys, cancelling out symbols would not be one.
+
+While I was at it, I decided that the Failure symbol along with the crit symbols didn't really belong. **`Xd6`** already has a system for crits, though I'm still considering how to pare it down. And since I'm not cancelling dice out, this means that Success, Advantage and Threat can coexist in a roll. I like this.
+
+Lastly, I decided to attempt to keep the dice as **`d6s`**. It's just a hunch, but I think the players will have an easier time adopting a new standard if at least some things stay the same. But I'm open to changing the number of faces if necessary!
+
+## The new system
+
+Where it looks radically different at first, this new system adopts (what are in my opinion) the best parts of FitD, Genesys, and my own system. So let's go step by step!
+
+### How to read the runes
+
+<div className="my-2 flex gap-4">
+<D6 size={84}>
+<Theta />
+</D6>
+<D6 size={84}>
+<ThetaDouble />
+</D6>
+<D6 size={84}>
+<ThetaTriple />
+</D6>
+<TypographyP className="font-serif text-md"><b>Success (Reduced / Standard / Enhanced Effect)</b></TypographyP>
+</div>
+These symbols represent the character succeeding at what they were doing. The fact that there are three versions of success allows for a continuity with the red/blue die system the players are already familiar with. As a reminder, a success on a red die results in reduced effect where success on a blue die results in standard effect. So the last success symbol (Enhanced Effect) is a new addition.
+
+<div className="my-2 flex gap-4">
+<D6 size={84}>
+<Threat />
+</D6>
+<TypographyP className="font-serif text-md"><b>Threat</b></TypographyP>
+</div>
+This represents a consequence or complication occurring, identical to how FitD handles rolling a **`1-5`**.
+
+<div className="my-2 flex gap-4">
+<D6 size={84}>
+<ArrowDouble />
+</D6>
+<TypographyP className="font-serif text-md"><b>Advantage</b></TypographyP>
+</div>
+This represents an additional benefit, stroke of luck, or generated resource for a player - but always tangential to success!
+
+All of these symbols can be combined as well so that a single face could even indicate a success, threat, and advantage all at once! Here's a complete set of the possible die faces.
+
+<div className="flex my-4">
+<div className="flex gap-2 mx-auto">
+        <div className="flex flex-col gap-2">
+          <D6 size={84}></D6>
+          <D6 size={84}>
+            <Theta />
+          </D6>
+          <D6 size={84}>
+            <ThetaDouble />
+          </D6>
+          <D6 size={84}>
+            <ThetaTriple />
+          </D6>
+        </div>
+        <div className="flex flex-col gap-2">
+          <D6 size={84}>
+            <Threat />
+          </D6>
+          <D6 size={84}>
+            <>
+              <ThreatSpread />
+              <Theta />
+            </>
+          </D6>
+          <D6 size={84}>
+            <>
+              <ThreatSpread />
+              <ThetaDouble />
+            </>
+          </D6>
+          <D6 size={84}>
+            <>
+              <ThreatSpread />
+              <ThetaTriple />
+            </>
+          </D6>
+        </div>
+        <div className="flex flex-col gap-2">
+          <D6 size={84}>
+            <ArrowDouble />
+          </D6>
+          <D6 size={84}>
+            <>
+              <ArrowDouble />
+              <Theta />
+            </>
+          </D6>
+          <D6 size={84}>
+            <>
+              <ArrowDouble />
+              <ThetaDouble />
+            </>
+          </D6>
+          <D6 size={84}>
+            <>
+              <ArrowDouble />
+              <ThetaTriple />
+            </>
+          </D6>
+        </div>
+        <div className="flex flex-col gap-2">
+          <D6 size={84}>
+            <>
+              <ThreatSpread />
+              <ArrowDouble />
+            </>
+          </D6>
+          <D6 size={84}>
+            <>
+              <ThreatSpread />
+              <ArrowDouble />
+              <Theta />
+            </>
+          </D6>
+          <D6 size={84}>
+            <>
+              <ThreatSpread />
+              <ArrowDouble />
+              <ThetaDouble />
+            </>
+          </D6>
+          <D6 size={84}>
+            <>
+              <ThreatSpread />
+              <ArrowDouble />
+              <ThetaTriple />
+            </>
+          </D6>
+        </div>
+</div>
+      </div>
+
+I'm pretty pleased with how these turned out. It was with a substantial amount of help!
+
+### The dice
+
+Okay so we've gone over the symbols that can be on the dice, but what are the dice actually? Let's start with what the dice are in the original system with red/blue dice that range from **`1-6`**.
+
+#### Original dice
+
+Say we were just using the symbols to replicate our original system's red die. We'd only need 3 of the 16 symbols.
+
+<div className="mt-2 px-4">
+<Die die={{variant: "default", faces: ["t", "t", "t", "t:r", "t:r", "ce:r"]}} />
+</div>
+Let's walk throught it! In our original system (which mimics FitD), faces **`1-5`** indicate a consequence and faces **`4-6`** indicate a success. My own modification was the red die - that causes any success to have reduced effect, hence that symbol!
+
+So a blue die would be...
+
+<div className="mt-2 px-4">
+<Die die={{variant: "default", faces: ["t", "t", "t", "t:s", "t:s", "ce:s"]}} />
+</div>
+
+Right now you might be wondering - *"Hey what's that glimmering border on the last face?"* That's a good question. That indicates the die is a crit candidate - meaning you need to roll at least two of those to crit. This works the same way as needing to roll at least two **`6s`** worked before.
+
+#### So what's actually new?
+
+I've demonstrated how the new symbols could be used to achieve the dice we already use, but we won't be using those dice. Instead, we'll be creating distinctions between die **`type`** and die **`level`**.
+
+Let's get into it, starting with die **`level`**. Just as before, players can upgrade their dice rather than just accumulating more. Except instead of upgrading from <ActionDot/> to <ActionDot className="bg-red-500" /> to <ActionDot className="bg-blue-500" />, players can level their actions from **`level 0`** to **`level 4`**.
+
+What does a die level mean? Well, it means the die gets some or more of: better odds of success, higher effects of success, higher chance of advantage, or lower odds of threats.
+
+Let's begin with <code className="text-amber-900 dark:text-amber-200">ability dice</code>. We'll get into what the <code className="text-amber-900 dark:text-amber-200">ability</code> **`type`** means later.
+
+This is the **`level 0`** <code className="text-amber-900 dark:text-amber-200">ability die</code>:
+
+<Die die={AbilityDice[0]} />
+
+You'll notice a few things about it right off the bat.
+
+1. there's a threat on every face
+2. there are only two success faces
+3. there's no crit border
+
+That's right. This die is **bad**! With a single die it represents what it's like to roll **`0d`** in FitD (**`2d6`** with disadvantage). Don't worry, you won't have to do this often (I hope!)
+
+Instead, you'll often be rolling a **`level 1`** <code className="text-yellow-900 dark:text-yellow-200">ability die</code>:
+
+<Die die={AbilityDice[1]} />
+
+As you can see, this one is *still* worse than a red die. That's true, but fear not, you can go higher.
+
+**`level 2`** <code className="text-yellow-900 dark:text-yellow-200">ability die</code>:
+
+<Die die={AbilityDice[2]} />
+
+**`level 3`** <code className="text-yellow-900 dark:text-yellow-200">ability die</code>:
+
+<Die die={AbilityDice[3]} />
+
+Okay, so by the time you max out your <code className="text-yellow-900 dark:text-yellow-200">ability die</code>, you have the equivalent of a blue die in the original system. What is this, if not just a nerf?!
+
+Don't get your pitchforks and torches yet, stay with me.
+
+Let's talk about die **`type`** now. <code className="text-yellow-900 dark:text-yellow-200">Ability dice</code> will come from actions (now coined <code className="text-yellow-900 dark:text-yellow-200">abilities</code>) on the left-hand side of your character sheet. <code className="text-yellow-900 dark:text-yellow-200">Abilities</code> will be generally applicable to situations.
+
+You won't often run into a circumstance where none of your <code className="text-yellow-900 dark:text-yellow-200">abilities</code> apply. But sometimes you will, and in that case you'll roll a **`level 0`** <code className="text-yellow-900 dark:text-yellow-200">ability die</code>.
+
+Characters will start the game with **`5`** <code className="text-yellow-900 dark:text-yellow-200">abilities</code> they share in common and **`1`** that is unique to them.
+
+Next are <code className="text-violet-900 dark:text-violet-300">skill dice</code>. These will be on the right-hand side of your character sheet and will be more specifically applicable to situations. <code className="text-violet-900 dark:text-violet-300">Skill dice</code> can only be rolled when combined with an <code className="text-yellow-900 dark:text-yellow-200">ability die</code> or <code className="text-green-900 dark:text-green-300">push die</code> (more on that later), so there's no such thing as a **`level 0`** <code className="text-violet-900 dark:text-violet-300">skill die</code>.
+
+Each character will likely have a unique set of <code className="text-violet-900 dark:text-violet-300">skills</code>
+that give them distinct advantages from one another. Speaking of advantages, <code className="text-violet-900 dark:text-violet-300">skill dice</code> are where we first encounter the **Advantage** symbol.
+
+**`level 1`** <code className="text-violet-900 dark:text-violet-300">skill die</code>:
+
+<Die die={SkillDice[1]} />
+
+You may have noticed a few distinctions between this die and its **`level 1`** counterpart in the <code className="text-yellow-900 dark:text-yellow-200">ability dice</code>.
+
+1. there's a blank face
+2. there's a face with an advantage
+3. there's already a full success face
+
+Are <code className="text-violet-900 dark:text-violet-300">skill dice</code> just stronger than <code className="text-yellow-900 dark:text-yellow-200">ability dice</code>? Yes and no. Let's look at the progression for <code className="text-violet-900 dark:text-violet-300">skill dice</code>.
+
+**`level 2`** <code className="text-violet-900 dark:text-violet-300">skill die</code>:
+
+<Die die={SkillDice[2]} />
+
+**`level 3`** <code className="text-violet-900 dark:text-violet-300">skill die</code>:
+
+<Die die={SkillDice[3]} />
+
+**`level 4`** <code className="text-violet-900 dark:text-violet-300">skill die</code>:
+
+<Die die={SkillDice[4]} />
+
+**`level 4`** is looking pretty awesome: enhanced effect, advantages, less threat faces. But it never gains a third success face. This is the counterbalance and what will keep progression feeling powerful without skewing the odds of success too high.
+
+Let's talk about the <code className="text-green-900 dark:text-green-300">push die</code> now. You can gain it by pushing yourself (costing 2 stress) or taking *the devil's bargain*! It doesn't have levels.
+
+<Die die={PushDie} />
+
+In the original system, pushing yourself granted a bonus blue die. So, what's with this one? Well, it's better and worse. But importantly, it doesn't have three success faces - which would make higher success chance more accessible than is healthy for the game. Instead, enjoy your access to advantage and enhanced effect!
+
+Next up, let's talk about a system which has always been worth tinkering with in this game: bonds. They've always been a tad awkward. So we're taking another crack at it with the <code className="text-cyan-900 dark:text-cyan-300">bond die</code>. This one can range from **`level 0`**, representing someone you don't really like who's helping you out, all the way to **`level 4`**, which is someone you're probably a big fan of. And I hope talking about the **`level`** sounds natural, because just like how actions are no longer <ActionDot/> / <ActionDot className="bg-red-500" /> / <ActionDot className="bg-blue-500" />, it's the same deal for bonds.
+
+**`level 0`** <code className="text-cyan-900 dark:text-cyan-300">bond die</code>:
+
+<Die die={BondDice[0]} />
+
+**`level 1`** <code className="text-cyan-900 dark:text-cyan-300">bond die</code>:
+
+<Die die={BondDice[1]} />
+
+**`level 2`** <code className="text-cyan-900 dark:text-cyan-300">bond die</code>:
+
+<Die die={BondDice[2]} />
+
+**`level 3`** <code className="text-cyan-900 dark:text-cyan-300">bond die</code>:
+
+<Die die={BondDice[3]} />
+
+**`level 4`** <code className="text-cyan-900 dark:text-cyan-300">bond die</code>:
+
+<Die die={BondDice[4]} />
+
+As you can probably tell, <code className="text-cyan-900 dark:text-cyan-300">bond dice</code> primarily grant **Advantage**, but with a small chance of causing a **Threat** or granting success.
+
+You might be left with a few questions like *"What do the blank faces actually do?"* *"What is **Advantage** for?"* *"What does advancement look like?"*
+
+Let's get into all that, starting with the blank faces.
+
+#### Resistance
+
+In FitD, players can choose to **resist** consequences, rolling some dice and paying a stress cost. In our original system, players choose what two actions they use to make their resistance roll. That's worked out quite well, but I've noticed two patterns.
+
+1. rolling the same two actions for the **action roll** and the **resistance roll**
+2. wondering how proactive actions fit into **resistance rolls**
+
+Neither of these are too big a deal in the end, but it makes me want more simplicity. So now instead of ever needing a **resistance roll**, the stress cost of **resisting** is the number of **Threat** faces they rolled. Which brings us back to those blank faces! Where it doesn't improve your odds of success, it isn't a stress you'd have to pay in the event of a consequence you want to **resist**.
+
+As always, **resisting** is optional. And in certain circumstances (like desperate positions), I may increase the cost by 1. But overall, this should streamline things.
+
+Let's walk through a few examples.
+
+**<u>Example one</u>**
+
+<div className="p-4 flex gap-1">
+    <DieFace face="t" variant="ability" />
+    <DieFace face="t:r" variant="ability" />
+    <DieFace face="ta" variant="skill" />
+    <DieFace face="_" variant="bond" />
+</div>
+
+In this case the player rolled two <code className="text-yellow-900 dark:text-yellow-200">ability dice</code>, a <code className="text-violet-900 dark:text-violet-300">skill die</code>, and a <code className="text-cyan-900 dark:text-cyan-300">bond die</code>. The character does succeed with reduced effect! Though they suffer a consequence. The player decides they'd like to **resist** this consequence, so they count the number of **Threat** faces they rolled. In this case: 3, so it costs them 3 stress to **resist**.
+
+**<u>Example two</u>**
+
+<div className="p-4 flex gap-1">
+    <DieFace face="t" variant="ability" />
+    <DieFace face="ce:s" variant="skill" />
+    <DieFace face="ta" variant="skill" />
+    <DieFace face="a" variant="bond" />
+</div>
+
+In this case the player rolled an <code className="text-yellow-900 dark:text-yellow-200">ability die</code>, two <code className="text-violet-900 dark:text-violet-300">skill dice</code>, and a <code className="text-cyan-900 dark:text-cyan-300">bond die</code>. The character succeeds with standard effect and there are no consequences. No need to **resist**!
+
+**<u>Example three</u>**
+
+<div className="p-4 flex gap-1">
+    <DieFace face="ce:r" variant="ability" />
+    <DieFace face="t:s" variant="skill" />
+    <DieFace face="ta" variant="skill" />
+    <DieFace face="_" variant="bond" />
+    <DieFace face="ta:r" variant="push" />
+</div>
+
+In this case the player rolled an <code className="text-yellow-900 dark:text-yellow-200">ability die</code>, two <code className="text-violet-900 dark:text-violet-300">skill dice</code>, a <code className="text-cyan-900 dark:text-cyan-300">bond die</code>, and a <code className="text-green-900 dark:text-green-300">push die</code>. The player is left with an interesting choice. They can choose the <code className="text-yellow-900 dark:text-yellow-200">ability die</code> face with reduced effect and no threat, *or* they could decide they'd rather pick the skill die face with standard effect but a consequence. The player knows in advance they'd have to pay 3 stress if they want to **resist** whatever the consequence may be. But the Narrator won't divulge the consequence until the player has made their choice of die.
+
+#### Advantage
+
+What is it?
+
+**Advantage** is a resource your character can have. They can either have it or not have it, meaning they can hold onto only 1 **Advantage**. If they would gain **Advantage** while they already have it, the new **Advantage** is wasted. For those of you familiar with [Spheres of Might](http://spheresofpower.wikidot.com/spheres-of-might), this may remind you of Martial Focus.
+
+How do I get it?
+
+Whenever you roll a die face with **Advantage**, you gain **Advantage**. This doesn't need to be a die face you select for success; any face that comes up **Advantage** grants it. For example,
+
+<div className="p-4 flex gap-1">
+    <DieFace face="t" variant="ability" />
+    <DieFace face="ce:s" variant="skill" />
+    <DieFace face="ta" variant="skill" />
+    <DieFace face="a" variant="bond" />
+</div>
+
+in this scenario your character succeeds with standard effect *and* gains **Advantage** because at least one face was marked with it. The fact that two faces were marked **Advantage** is just bragging points - only one matters.
+
+What can I do with it?
+
+**Advantage** being a binary resource creates a few ways you can use it. Primarily it will fuel your character's abilities. You'll see ability text like:
+
+- *while you have **Advantage** you may...*
+- *if you would gain **Advantage** while you already have it, you may...*
+- *you may spend **Advantage** to...*
+
+Characters may also spend **Advantage** to:
+
+- assist a teammate
+- reduce the cost of **resisting** by 1 stress
+- reduce the resource cost of an ability by 1
+- gain a narrative edge
+
+## Let's talk stats
+
+I frequently repeat the mantra *"You can't improve what you can't measure,"* so of course it's important to me that I take a data driven approach to determining if I've actually achieved my goals with this new system. So let me restate them:
+
+1. reduce the odds of success for large dice pools
+2. reduce the odds of crits for large dice pools
+3. success, failure, and crits are all possible at all levels
+4. roughly maintian odds of success and consequence for smaller dice pools
+5. grant something exciting to players to compensate for lowering odds of success
+
+Now that there are different die **`types`** and **`levels`**, the graphs are going to be far busier than the one at the top of this post. It's inevitable, because we're tracking far more. So instead of one graph, we'll be walking through a series and discussing what we can take away from them.
+
+> The X axis labels dice pools as NTₗ where N is the number of dice, T is the type of die (A for ability, S for skill, B for bond, P for push), and ₗ is level
+
+<div className="my-8 px-4">
+    <UpgradeFully />
+</div>
+
+There's a lot going on here, but these are my key takeaways:
+
+1. On the bottom end (0 dice), characters have higher odds of success and slightly higher odds of consequences than before
+2. On the high end (4 dice), characters have slightly lower odds of success and the same odds of a crit as before
+3. On the high end, characters have slightly lower odds of consequences as well - or at least once they upgrade their dice fully
+4. Odds of an **Advantage** are relatively linear
+
+There's one more dimension to consider which is the frequency of *how many* threat faces get rolled, since that determines how costly **resists** are.
+
+This chart breaks down how likely a **Threat** is to happen (pink), then the odds (summing to 100) of each number of faces occurring (yellow to red).
+
+<div className="my-8 px-4">
+    <UpgradeFullyThreat />
+</div>
+
+My takeaways are:
+
+1. The average amount of stress required to **resist** doesn't get too out of hand, though theoretically it could be 4 if you're unlucky
+2. `1A₂1A₃2S₃` is the riskiest die pool with a `0.4823*(1*0.0432 + 2*0.213 + 3*0.4321 + 4*0.3086) ~= 1.45` stress each roll assuming you **resist** everything
+
+So the last two charts were examining what it looks like for a character to roll with just their <code className="text-yellow-900 dark:text-yellow-200">ability dice</code> and <code className="text-violet-900 dark:text-violet-300">skill dice</code>. This next chart takes into account that players can add a <code className="text-cyan-900 dark:text-cyan-300">bond die</code> and a <code className="text-green-900 dark:text-green-300">push die</code> if they want to.
+
+<div className="my-8 px-4">
+    <MaxDice />
+</div>
+
+Overall, this chart paints a pretty clear picture: more dice is still far more impactful than better dice. I doubt that would change unless more success faces are only unlocked in higher-level dice. But my key takeaways are:
+
+1. Success chance caps out at `93.83%` rather than `98.44%`. That might not seem significant, but I feel it is.
+2. Crit chance is the exact same as before the system change.
+3. Upgrading dice grants diminishing returns in **Success** chance but accellerating returns in **Advantage** and effect.
+
+Let's take a look at the **Threats-per-roll** graph.
+
+<div className="my-8 px-4">
+    <MaxDiceThreat />
+</div>
+
+1. Rolling a large number of low level dice is risky with a much higher number of average **Threats** rolled: `0.6944*(1*0.0287 + 2*0.2222 + 3*0.4722 + 4*0.2778) ~= 2.08`
+2. `2A₁2S₁1B₁P` through `1A₂1A₃2S₃1B₃P` all have the same average **Threats** rolled of `0.3349*(1*0.0082 + 2*0.0612 + 3*0.2198 + 4*0.3845 + 5*0.2829 + 6*0.0429) ~= 1.34`
+3. Overall, the more dice you roll, roughly the higher average stress you're going to have to take to **resist**. Rolling a large number of **Threats** can roughly be treated like a critical fail.
+
+### To sum it up
+
+This new system does achieve most of my goals going into this. It also simplifies some systems while we're at it, that's a nice bonus!
+
+But it *doesn't* fix one of my core issues, crit chance in larger dice pools. I will be experimenting with ways to address this - feedback is welcome!
+
+<div className="mt-8" />

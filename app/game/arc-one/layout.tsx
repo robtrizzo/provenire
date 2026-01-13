@@ -121,10 +121,6 @@ const navigationData = [
     url: "/game/crucible",
   },
   {
-    title: "Blog",
-    url: "/game/blog",
-  },
-  {
     title: "Stats",
     url: "#",
     items: [{ title: "Arc One", url: "/game/arc-one/stats" }],
