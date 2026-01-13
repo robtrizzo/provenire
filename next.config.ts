@@ -32,17 +32,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  redirects: async () => {
-    return [
-      {
-        // Match any /game/* except /game/arc-one, /game/arc-two, /game/blog, or /game/crucible
-        // and redirect to /game/arc-one/:path
-        source: "/game/:path((?!arc-one|arc-two|blog|crucible).+)",
-        destination: "/game/arc-one/:path",
-        permanent: true,
-      },
-    ];
-  },
 };
 
 const withMDX = createMDX({

@@ -1,0 +1,103 @@
+B: 0 \ # of bond die \
+A: 0 \ # of ability level 1 die \
+AA: 1 \ # of ability level 2 die \
+AAA: 1 \ # of ability level 3 die \
+S: 0 \ # of skill level 1 die \
+SS: 0 \ # of skill level 1 die \
+SSS: 0 \ # of skill level 1 die \
+SSSS: 0 \ # of skill level 1 die \
+P: 0 \ # of push die \
+
+\ Success Faces \
+BONDS: {0, 0, 0, 0, 0, 1}
+ABILS: {0, 0, 0, 0, 1, 1}
+AABILS: {0, 0, 0, 1, 1, 1}
+AAABILS: {0, 0, 0, 1, 1, 1}
+SKILS: {0, 0, 0, 0, 1, 1}
+SSKILS: {0, 0, 0, 0, 1, 1}
+SSSKILS: {0, 0, 0, 0, 1, 1}
+SSSSKILS: {0, 0, 0, 0, 1, 1}
+PUSHS: {0, 0, 0, 0, 1, 1}
+
+\ Reduced Effect Faces \
+BONDRE: {0, 0, 0, 0, 0, 1}
+ABILRE: {0, 0, 0, 0, 1, 1}
+AABILRE: {0, 0, 0, 1, 1, 0}
+AAABILRE: {0, 0, 0, 0, 0, 0}
+SKILRE: {0, 0, 0, 0, 1, 0}
+SSKILRE: {0, 0, 0, 0, 0, 0}
+SSSKILRE: {0, 0, 0, 0, 0, 0}
+SSSSKILRE: {0, 0, 0, 0, 0, 0}
+PUSHRE: {0, 0, 0, 0, 1, 0}
+
+\ Standard Effect Faces \
+BONDSE: {0, 0, 0, 0, 0, 0}
+ABILSE: {0, 0, 0, 0, 0, 0}
+AABILSE: {0, 0, 0, 0, 0, 1}
+AAABILSE: {0, 0, 0, 1, 1, 1}
+SKILSE: {0, 0, 0, 0, 0, 1}
+SSKILSE: {0, 0, 0, 0, 1, 1}
+SSSKILSE: {0, 0, 0, 0, 1, 0}
+SSSSKILSE: {0, 0, 0, 0, 0, 0}
+PUSHSE: {0, 0, 0, 0, 0, 0}
+
+\ Enhanced Effect Faces \
+BONDEE: {0, 0, 0, 0, 0, 0}
+ABILEE: {0, 0, 0, 0, 0, 0}
+AABILEE: {0, 0, 0, 0, 0, 0}
+AAABILEE: {0, 0, 0, 0, 0, 0}
+SKILEE: {0, 0, 0, 0, 0, 0}
+SSKILEE: {0, 0, 0, 0, 0, 0}
+SSSKILEE: {0, 0, 0, 0, 0, 1}
+SSSSKILEE: {0, 0, 0, 0, 1, 1}
+PUSHEE: {0, 0, 0, 0, 0, 1}
+
+\ Advantage Faces \
+BONDA: {0, 0, 0, 0, 1, 0}
+ABILA: {0, 0, 0, 0, 0, 0}
+AABILA: {0, 0, 0, 0, 0, 0}
+AAABILA: {0, 0, 0, 0, 0, 0}
+SKILA: {0, 0, 0, 1, 0, 0}
+SSKILA: {0, 0, 0, 1, 1, 0}
+SSSKILA: {0, 0, 1, 1, 1, 0}
+SSSSKILA: {0, 0, 1, 1, 1, 1}
+PUSHA: {0, 0, 0, 0, 1, 0}
+
+\ Threat Faces \
+BONDT: {1, 1, 0, 0, 0, 0}
+ABILT: {1, 1, 1, 1, 1, 0}
+AABILT: {1, 1, 1, 1, 1, 0}
+AAABILT: {1, 1, 1, 1, 1, 0}
+SKILT: {1, 1, 0, 1, 1, 0}
+SSKILT: {1, 1, 0, 1, 1, 0}
+SSSKILT: {1, 1, 0, 1, 0, 0}
+SSSSKILT: {1, 1, 0, 0, 0, 0}
+PUSHT: {1, 1, 1, 1, 1, 0}
+
+\ Crit Faces \
+BONDC: {0, 0, 0, 0, 0, 1}
+ABILC: {0, 0, 0, 0, 0, 1}
+AABILC: {0, 0, 0, 0, 0, 1}
+AAABILC: {0, 0, 0, 0, 0, 1}
+SKILC: {0, 0, 0, 0, 0, 1}
+SSKILC: {0, 0, 0, 0, 0, 1}
+SSSKILC: {0, 0, 0, 0, 0, 1}
+SSSSKILC: {0, 0, 0, 0, 0, 1}
+PUSHC: {0, 0, 0, 0, 0, 1}
+
+SUCCESSES: (BdBONDS + AdABILS + AAdAABILS + AAAdAAABILS + SdSKILS + SSdSSKILS + SSSdSSSKILS + SSSSdSSSSKILS + PdPUSHS) > 0
+REDUCEDEFFECT: (BdBONDRE + AdABILRE + AAdAABILRE + AAAdAAABILRE + SdSKILRE + SSdSSKILRE + SSSdSSSKILRE + SSSSdSSSSKILRE + PdPUSHRE) > 0
+STANDARDEFFECT: (BdBONDSE + AdABILSE + AAdAABILSE + AAAdAAABILSE + SdSKILSE + SSdSSKILSE + SSSdSSSKILSE + SSSSdSSSSKILSE + PdPUSHSE) > 0
+ENHANCEDEFFECT: (BdBONDEE + AdABILEE + AAdAABILEE + AAAdAAABILEE + SdSKILEE + SSdSSKILEE + SSSdSSSKILEE + SSSSdSSSSKILEE + PdPUSHEE) > 0
+ADVANTAGES: (BdBONDA + AdABILA + AAdAABILA + AAAdAAABILA + SdSKILA + SSdSSKILA + SSSdSSSKILA + SSSSdSSSSKILA + PdPUSHA) > 0
+THREATS: BdBONDT + AdABILT + AAdAABILT + AAAdAAABILT + SdSKILT + SSdSSKILT + SSSdSSSKILT + SSSSdSSSSKILT + PdPUSHT
+CRITS: (BdBONDC + AdABILC + AAdAABILC + AAAdAAABILC + SdSKILC + SSdSSKILC + SSSdSSSKILC + SSSSdSSSSKILC + PdPUSHC) >= 2
+
+
+output SUCCESSES named "Successes"
+output REDUCEDEFFECT named "Reduced Effect"
+output STANDARDEFFECT named "Standard Effect"
+output ENHANCEDEFFECT named "Enhanced Effect"
+output ADVANTAGES named "Advantages"
+output THREATS named "Threat"
+output CRITS named "Crit"

@@ -1,4 +1,4 @@
-import type { MDXComponents } from 'mdx/types';
+import type { MDXComponents } from "mdx/types";
 import {
   TypographyH1,
   TypographyH2,
@@ -9,8 +9,8 @@ import {
   TypographyP,
   TypographyUnorderedList,
   TypographyOrderedList,
-} from '@/components/ui/typography';
-import Link from 'next/link';
+} from "@/components/ui/typography";
+import Link from "next/link";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
