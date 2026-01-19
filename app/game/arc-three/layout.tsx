@@ -35,6 +35,16 @@ const navigationData = [
       },
     ],
   },
+  {
+    title: "Demo",
+    url: "#",
+    items: [
+      {
+        title: "Test Dice",
+        url: "/game/arc-three/test-dice",
+      },
+    ],
+  },
 ];
 
 export default function Layout({ children }: { children: ReactNode }) {
