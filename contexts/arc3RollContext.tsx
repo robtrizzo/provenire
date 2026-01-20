@@ -7,6 +7,8 @@ import { createContext, ReactNode, useContext, useState } from "react";
 
 interface RollContextProps {
   dice: Die[];
+  rollLeft: ActionV3 | undefined;
+  rollRight: ActionV3 | undefined;
   currentDiceFilter: string;
   fetchNextPage: () => void;
   handleCurrentDiceFilterChange: (val: string) => void;
@@ -17,6 +19,8 @@ interface RollContextProps {
   refetchRolls: () => void;
   setIsPrivate: React.Dispatch<React.SetStateAction<boolean>>;
   setDice: React.Dispatch<React.SetStateAction<Die[]>>;
+  setRollLeft: React.Dispatch<React.SetStateAction<ActionV3 | undefined>>;
+  setRollRight: React.Dispatch<React.SetStateAction<ActionV3 | undefined>>;
   swapDice: (remove: ActionV3 | undefined, add: ActionV3) => void;
   addDice: (dice: Die[]) => void;
   removeDiceByLabel: (labelToRemove: string) => void;
@@ -45,6 +49,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   const [connectionStatus, setConnectionStatus] = useState<
     "connecting" | "connected" | "disconnected"
   >("disconnected");
+  const [rollLeft, setRollLeft] = useState<ActionV3 | undefined>();
+  const [rollRight, setRollRight] = useState<ActionV3 | undefined>();
   const [dice, setDice] = useState<Die[]>([]);
 
   const buildUrl = (val: string, cursor: number) => {
@@ -137,7 +143,17 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   }
 
   function addDice(add: Die[]) {
-    setDice([...dice, ...add]);
+    setDice([
+      ...dice,
+      ...add.filter(
+        (newDie) =>
+          !dice.some((existingDie) =>
+            Object.keys(newDie).every(
+              (key) => (existingDie as any)[key] === (newDie as any)[key],
+            ),
+          ),
+      ),
+    ]);
   }
 
   function removeDiceByLabel(labelToRemove: string) {
@@ -155,9 +171,13 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         isPrivate,
         connectionStatus,
         dice,
+        rollLeft,
+        rollRight,
         setIsPrivate,
         refetchRolls,
         setDice,
+        setRollLeft,
+        setRollRight,
         swapDice,
         addDice,
         removeDiceByLabel,

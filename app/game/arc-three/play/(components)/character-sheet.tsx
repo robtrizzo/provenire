@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { Activity, useEffect, useState } from "react";
 import RollSection from "./sections/roll-section";
+import ActionSection from "./sections/action-section";
 
 export default function CharacterSheet() {
   const is2xl = useMediaQuery("(min-width: 96rem)");
@@ -21,6 +22,7 @@ export default function CharacterSheet() {
             <div className="my-3 grid grid-cols-1 md:grid-cols-2 gap-6 focus-visible:outline-hidden">
               <div className="mt-4">
                 <MissionContent1 />
+                <ActionSection />
               </div>
               <div className="mt-4">
                 <MissionContent2 />

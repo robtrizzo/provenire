@@ -27,10 +27,10 @@ import {
   SkillDice,
 } from "@/lib/dice";
 import { ActionV3 } from "@/types/arc3";
-import { Die, DieVariant } from "@/types/dice";
+import type { DieVariant } from "@/types/dice";
 import { ChevronsUpDown, Eye, EyeClosed } from "lucide-react";
 import { FC, useState } from "react";
-import { DieFace } from "../../../../../../components/dice/dice";
+import { Die, DieFace } from "../../../../../../components/dice/dice";
 import AnimatedDie from "@/components/dice/animated-die";
 import { cn } from "@/lib/utils";
 
@@ -82,35 +82,7 @@ const RollSection = () => {
     removeDiceByLabel,
   } = useRoll();
 
-  const [showPreview, setShowPreview] = useState(false);
-
-  const sortedDice = () => {
-    // Define the order for each type
-    const typeOrder: Record<DieVariant, number> = {
-      ability: 0,
-      skill: 1,
-      bond: 2,
-      push: 3,
-      default: 0,
-      emotion: 0,
-    };
-
-    // If your dice have a 'type' or 'variant' property, adjust accordingly
-    return [...dice].sort((a, b) => {
-      // Use 'variant' or 'type' as appropriate for your dice objects
-      const aType = typeOrder[a.variant] ?? 99;
-      const bType = typeOrder[b.variant] ?? 99;
-      return aType - bType;
-    });
-  };
-
   const containsPushDie = dice.some((d) => d.variant === "push");
-
-  const successStats = calculateEffectProbability(dice);
-  console.log("successStats", successStats);
-  const threatStats = calculateThreatProbability(dice);
-  const advantageStats = calculateAdvantageProbability(dice);
-  const critStats = calculateCritProbability(dice);
 
   return (
     <Card className="mt-4 p-4 flex flex-col gap-4">
@@ -142,62 +114,7 @@ const RollSection = () => {
       </div>
       <RollSelect />
       <Button variant="secondary">Roll</Button>
-      <Collapsible
-        className="relative"
-        open={showPreview}
-        onOpenChange={setShowPreview}
-      >
-        <Separator />
-        <div className="flex justify-center mt-4">
-          <span className="uppercase text-xs text-muted-foreground">
-            Preview
-          </span>
-        </div>
-        <CollapsibleTrigger className="absolute top-1 right-0">
-          <Button variant="ghost" size="icon">
-            {showPreview ? <Eye /> : <EyeClosed />}
-          </Button>
-        </CollapsibleTrigger>
-        <CollapsibleContent>
-          <div className="flex gap-1">
-            {sortedDice().map((d, idx) => (
-              <AnimatedDie die={d} key={idx} />
-            ))}
-          </div>
-          <div className="mt-2 flex flex-col text-sm gap-1">
-            <code className="text-sky-600 font-bold">
-              Success: {successStats.anyEffectProbability.toFixed(2)}%{" | "}
-              <span className="text-sky-700">
-                Reduced: {successStats.reducedEffectProbability.toFixed(2)}%
-              </span>{" "}
-              <span className="text-sky-500">
-                Standard: {successStats.standardEffectProbability.toFixed(2)}%
-              </span>{" "}
-              <span className="text-sky-300">
-                Enhanced: {successStats.enhancedEffectProbability.toFixed(2)}%
-              </span>
-            </code>
-            <code className="text-red-600 font-bold">
-              Threat: {threatStats.threatProbability.toFixed(2)}%{" | "}
-              {threatStats.threatCountDistribution.slice(1).map((tp, idx) => {
-                const prob =
-                  (tp / 100) * (threatStats.threatProbability / 100) * 100;
-                return (
-                  <span className={`text-red-${400 + idx * 100}`}>
-                    {idx + 1} Threat{idx >= 1 ? "s" : ""}: {prob.toFixed(2)}%{" "}
-                  </span>
-                );
-              })}
-            </code>
-            <code className="text-yellow-600 font-bold">
-              Advantage: {advantageStats.advantageProbability.toFixed(2)}%
-            </code>
-            <code className="text-emerald-600 font-bold">
-              Crit: {critStats.critProbability.toFixed(2)}%
-            </code>
-          </div>
-        </CollapsibleContent>
-      </Collapsible>
+      <DetailsSection />
       <Separator />
       <span className="text-center uppercase text-xs text-muted-foreground">
         Bonds
@@ -238,14 +155,13 @@ const RollSection = () => {
 };
 
 function RollSelect({ disabled = false }: { disabled?: boolean }) {
-  const [rollLeft, setRollLeft] = useState<ActionV3>();
-  const [rollRight, setRollRight] = useState<ActionV3>();
-
-  const { swapDice } = useRoll();
+  const { rollLeft, rollRight, swapDice, setRollLeft, setRollRight } =
+    useRoll();
 
   return (
     <div className="flex gap-4">
       <Select
+        value={rollLeft?.name || ""}
         disabled={disabled}
         onValueChange={(value) => {
           const foundAction = testLeft.find((a) => a.name === value);
@@ -274,6 +190,7 @@ function RollSelect({ disabled = false }: { disabled?: boolean }) {
         </SelectContent>
       </Select>
       <Select
+        value={rollRight?.name || ""}
         disabled={disabled}
         onValueChange={(value) => {
           const foundAction = testRight.find((a) => a.name === value);
@@ -302,6 +219,94 @@ function RollSelect({ disabled = false }: { disabled?: boolean }) {
         </SelectContent>
       </Select>
     </div>
+  );
+}
+
+function DetailsSection() {
+  const { dice } = useRoll();
+
+  const [showDetails, setShowDetails] = useState(false);
+
+  const sortedDice = () => {
+    // Define the order for each type
+    const typeOrder: Record<DieVariant, number> = {
+      ability: 0,
+      skill: 1,
+      bond: 2,
+      push: 3,
+      default: 0,
+      emotion: 0,
+    };
+
+    // If your dice have a 'type' or 'variant' property, adjust accordingly
+    return [...dice].sort((a, b) => {
+      // Use 'variant' or 'type' as appropriate for your dice objects
+      const aType = typeOrder[a.variant] ?? 99;
+      const bType = typeOrder[b.variant] ?? 99;
+      return aType - bType;
+    });
+  };
+
+  const successStats = calculateEffectProbability(dice);
+  const threatStats = calculateThreatProbability(dice);
+  const advantageStats = calculateAdvantageProbability(dice);
+  const critStats = calculateCritProbability(dice);
+
+  return (
+    <Collapsible
+      className="relative"
+      open={showDetails}
+      onOpenChange={setShowDetails}
+    >
+      <Separator />
+      <div className="flex justify-center mt-4">
+        <span className="uppercase text-xs text-muted-foreground">Details</span>
+      </div>
+      <CollapsibleTrigger className="absolute top-1 right-0">
+        <Button variant="ghost" size="icon">
+          {showDetails ? <Eye /> : <EyeClosed />}
+        </Button>
+      </CollapsibleTrigger>
+      <CollapsibleContent>
+        <div className="mt-2 flex flex-col gap-1">
+          {sortedDice().map((d, idx) => (
+            <div className="mx-auto" key={idx + (d.label || "")}>
+              <Die die={d} size={64} />
+            </div>
+          ))}
+        </div>
+        <div className="mt-2 flex flex-col text-sm gap-1">
+          <code className="text-sky-600 font-bold">
+            Success: {successStats.anyEffectProbability.toFixed(2)}%{" | "}
+            <span className="text-sky-700">
+              Reduced: {successStats.reducedEffectProbability.toFixed(2)}%
+            </span>{" "}
+            <span className="text-sky-500">
+              Standard: {successStats.standardEffectProbability.toFixed(2)}%
+            </span>{" "}
+            <span className="text-sky-300">
+              Enhanced: {successStats.enhancedEffectProbability.toFixed(2)}%
+            </span>
+          </code>
+          <code className="text-red-600 font-bold">
+            Threat: {threatStats.threatProbability.toFixed(2)}%{" | "}
+            {threatStats.threatCountDistribution.map((tp, idx) => {
+              return (
+                <span className={`text-red-${400 + idx * 100}`}>
+                  {idx} Threat{idx !== 1 ? "s" : ""}: {tp.toFixed(2)}%{" "}
+                </span>
+              );
+            })}
+          </code>
+          <code className="text-yellow-600 font-bold">
+            Advantage: {advantageStats.advantageProbability.toFixed(2)}%
+          </code>
+          <code className="text-emerald-600 font-bold">
+            Crit: {critStats.critProbability.toFixed(2)}%
+          </code>
+        </div>
+      </CollapsibleContent>
+    </Collapsible>
   );
 }
 

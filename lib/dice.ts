@@ -89,7 +89,15 @@ interface ThreatResult {
  */
 export function calculateThreatProbability(dice: Die[]): ThreatResult {
   if (dice.length === 0) {
-    throw new Error("At least one die is required");
+    return {
+      threatProbability: 0,
+      noThreatProbability: 100,
+      totalOutcomes: 0,
+      threatOutcomes: 0,
+      noThreatOutcomes: 0,
+      threatCountDistribution: [],
+      threatCountOutcomes: [],
+    };
   }
 
   const totalOutcomes = calculateTotalOutcomes(dice);
@@ -135,7 +143,7 @@ export function calculateThreatProbability(dice: Die[]): ThreatResult {
 
   // Convert threat count outcomes to probabilities
   const threatCountDistribution = threatCountOutcomes.map(
-    (count) => (count / totalOutcomes) * 100
+    (count) => (count / totalOutcomes) * 100,
   );
 
   return {
@@ -162,7 +170,13 @@ interface AdvantageResult {
  */
 export function calculateAdvantageProbability(dice: Die[]): AdvantageResult {
   if (dice.length === 0) {
-    throw new Error("At least one die is required");
+    return {
+      advantageProbability: 0,
+      noAdvantageProbability: 100,
+      totalOutcomes: 0,
+      advantageOutcomes: 0,
+      noAdvantageOutcomes: 0,
+    };
   }
 
   const totalOutcomes = calculateTotalOutcomes(dice);
@@ -199,7 +213,7 @@ interface CritResult {
  */
 export function calculateCritProbability(
   dice: Die[],
-  critCountRequired: number = 3
+  critCountRequired: number = 3,
 ): CritResult {
   if (dice.length < critCountRequired) {
     const totalOutcomes = dice.length === 0 ? 0 : dice[0].faces.length;
@@ -266,7 +280,19 @@ interface EffectResult {
  */
 export function calculateEffectProbability(dice: Die[]): EffectResult {
   if (dice.length === 0) {
-    throw new Error("At least one die is required");
+    return {
+      anyEffectProbability: 0,
+      noEffectProbability: 100,
+      reducedEffectProbability: 0,
+      standardEffectProbability: 0,
+      enhancedEffectProbability: 0,
+      totalOutcomes: 0,
+      anyEffectOutcomes: 0,
+      noEffectOutcomes: 0,
+      reducedEffectOutcomes: 0,
+      standardEffectOutcomes: 0,
+      enhancedEffectOutcomes: 0,
+    };
   }
 
   // Calculate total outcomes (product of all die sizes)

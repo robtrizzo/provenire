@@ -22,7 +22,7 @@ export default function AnimatedDie({ die }: { die: Die }) {
         // Random delay between 2700ms and 3300ms
         const nextDelay = 4500 + Math.random() * 1000;
         animationTimeoutId = setTimeout(animateDie, nextDelay);
-      }, 400); // match your transition duration
+      }, 600); // match your transition duration
     }
 
     animateDie();
@@ -36,7 +36,7 @@ export default function AnimatedDie({ die }: { die: Die }) {
 
   return (
     <span
-      className={`inline-block transition-all duration-400
+      className={`inline-block transition-all duration-600
         ${animating ? "opacity-0" : "opacity-100"}
       `}
     >
