@@ -4,7 +4,8 @@ import {
   DiceStatsChart,
 } from "@/app/game/arc-three/dice-stats/(components)/chart";
 import { generateDiceData } from "@/app/game/arc-three/dice-stats/page";
-import { AbilityDice, BondDice, Die, PushDie, SkillDice } from "@/lib/dice";
+import { AbilityDice, BondDice, PushDie, SkillDice } from "@/lib/dice";
+import { Die } from "@/types/dice";
 
 interface DiceConfig {
   label: string;
