@@ -7,11 +7,11 @@ import {
   calculateCritProbability,
   calculateEffectProbability,
   calculateThreatProbability,
-  Die,
   PushDie,
   SkillDice,
 } from "@/lib/dice";
 import { DiceDataEntry, DiceStatsChart } from "./(components)/chart";
+import { Die } from "@/types/dice";
 
 interface DiceConfig {
   label: string;
@@ -32,7 +32,7 @@ export function generateDiceData(configs: DiceConfig[]): DiceDataEntry[] {
     const threatFaceEntries: Record<`threat${number}Faces`, number> = {};
     threat.threatCountDistribution.forEach((probability, count) => {
       threatFaceEntries[`threat${count}Faces`] = parseFloat(
-        probability.toFixed(2)
+        probability.toFixed(2),
       );
     });
 
@@ -161,7 +161,7 @@ const upgradePathAbilityDiceConfigs: DiceConfig[] = [
 ];
 
 const upgradePathAbilityDiceData = generateDiceData(
-  upgradePathAbilityDiceConfigs
+  upgradePathAbilityDiceConfigs,
 );
 
 const upgradePathSkillDiceConfigs: DiceConfig[] = [
@@ -195,7 +195,7 @@ const upgradePathIndividualDiceConfigs: DiceConfig[] = [
 ];
 
 const upgradePathIndividualDiceData = generateDiceData(
-  upgradePathIndividualDiceConfigs
+  upgradePathIndividualDiceConfigs,
 );
 
 const upgradePathMoreDiceConfigs: DiceConfig[] = [
