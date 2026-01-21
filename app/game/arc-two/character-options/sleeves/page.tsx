@@ -7,7 +7,7 @@ import {
   TypographyP,
 } from "@/components/ui/typography";
 import { Repeat } from "lucide-react";
-import SleeveChart from "./(components)/sleeveChart";
+import SleeveChart, { DonumSleeveChart } from "./(components)/sleeveChart";
 
 export default async function Page() {
   return (
@@ -353,6 +353,42 @@ export default async function Page() {
           </TypographyP>
         </div>
         <SleeveChart dur={0} bea={0} mod={2} sen={1} int={5} com={1} />
+      </div>
+      <SleeveHeader
+        name="Project: Charity"
+        manufacturer="Vantro Enterprises"
+        tech="Gentech, Neurotech, Archaeotech"
+        codex={2}
+        price="???"
+      />
+      <div className="grid grid-cols-1 lg:grid-cols-2">
+        <div>
+          <TypographyP>
+            A relic of antiquity, sealed away in the deepest chambers of ancient
+            Helix&apos;s vaults. Time had not touched the polish of its stone or
+            the chill of its ice. A haunting reminder of an ancient foe, and a
+            priceless trophy.
+          </TypographyP>
+          <TypographyP>
+            House after house have proudly displayed the artifact and forgotten
+            about it in dusty warehouses. One after another, those houses fall;
+            the artifact outliving them all.
+          </TypographyP>
+          <TypographyP>
+            Now Vantro Enterprises has it. Decades of research and dozens of the
+            greatest minds in gentech have achieved the impossible. An elegant
+            fusion of Rathi biology and ancient technology.
+          </TypographyP>
+        </div>
+        <DonumSleeveChart
+          dur={3}
+          bea={0}
+          mod={0}
+          sen={2}
+          int={2}
+          com={2}
+          don={5}
+        />
       </div>
     </>
   );

@@ -204,5 +204,29 @@
         "maxSlots": 1
       }
     }
+  },
+  {
+    "name": "Project: Charity",
+    "codexSlots": 2,
+    "manufacturer": "Vantro Enterprises",
+    "tech": ["Gentech", "Neurotech", "Archaeotech"],
+    "harm": {
+      "1": {
+        "slots": ["dehydrated", ""],
+        "maxSlots": 2
+      },
+      "2": {
+        "slots": ["", ""],
+        "maxSlots": 2
+      },
+      "3": {
+        "slots": ["rejection"],
+        "maxSlots": 1
+      },
+      "4": {
+        "slots": [""],
+        "maxSlots": 1
+      }
+    }
   }
 ]
