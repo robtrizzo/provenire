@@ -14,25 +14,22 @@ export default function ActionSection() {
       </TypographyH2>
       <div className="col-span-1">
         {abilities.map((a, idx) => (
-          <Action.Wrapper.Rollable
-            key={idx + a.name}
-            position="left"
-            action={a}
-          >
+          <Action.Wrapper.Rollable key={idx + a.name} action={a}>
             <Action.HeaderContent.Simple action={a} />
           </Action.Wrapper.Rollable>
         ))}
       </div>
       <div className="col-span-1">
         {skills.map((a, idx) => (
-          <Action.Wrapper.Rollable
-            key={idx + a.name}
-            position="right"
-            action={a}
-          >
+          <Action.Wrapper.Rollable key={idx + a.name} action={a}>
             <Action.HeaderContent.Simple action={a} />
           </Action.Wrapper.Rollable>
         ))}
+      </div>
+      <div className="col-span-2 flex justify-center">
+        <span className="text-xs text-muted-foreground">
+          Left click to level up. Right click to level down.
+        </span>
       </div>
     </div>
   );

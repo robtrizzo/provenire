@@ -1,5 +1,8 @@
 import { Die, DieFace, EffectDegree } from "@/types/dice";
 
+export const MAX_ACTION_DICE = 2;
+export const MAX_BOND_DICE = 1;
+
 export const AbilityDice: Record<0 | 1 | 2 | 3, Die> = {
   0: { faces: ["tc", "t", "t", "t", "t:r", "t:r"], variant: "ability" },
   1: { faces: ["tc", "t", "t", "t", "t:r", "ec:r"], variant: "ability" },
@@ -31,6 +34,16 @@ export const EmotionDie: Die = {
   faces: ["t", "t", "t", "t", "tc", "ac"],
   variant: "emotion",
 };
+
+// Helper to get max die level from a dice set
+export function getMaxDieLevel(diceSet: Record<number, Die>): number {
+  return Math.max(...Object.keys(diceSet).map(Number));
+}
+
+// Helper to get min die level from a dice set
+export function getMinDieLevel(diceSet: Record<number, Die>): number {
+  return Math.min(...Object.keys(diceSet).map(Number));
+}
 
 // Helper functions for working with faces
 export const hasEffect = (face: DieFace): boolean => face.includes(":");

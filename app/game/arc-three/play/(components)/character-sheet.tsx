@@ -5,6 +5,8 @@ import { useMediaQuery } from "@/hooks/use-media-query";
 import { Activity, useEffect, useState } from "react";
 import RollSection from "./sections/roll-section";
 import ActionSection from "./sections/action-section";
+import BondsSection from "./sections/bonds-section";
+import XPSection from "./sections/xp-section";
 
 export default function CharacterSheet() {
   const is2xl = useMediaQuery("(min-width: 96rem)");
@@ -21,11 +23,16 @@ export default function CharacterSheet() {
           <TabsContent value="mission">
             <div className="my-3 grid grid-cols-1 md:grid-cols-2 gap-6 focus-visible:outline-hidden">
               <div className="mt-4">
-                <MissionContent1 />
+                <XPSection />
+                <div className="mt-8 flex justify-center">
+                  <span className="text-red-700 text-sm">
+                    ALL ACTIONS AND SKILLS ARE PLACEHOLDERS
+                  </span>
+                </div>
                 <ActionSection />
+                <BondsSection />
               </div>
               <div className="mt-4">
-                <MissionContent2 />
                 <RollSection />
               </div>
             </div>
@@ -42,10 +49,11 @@ export default function CharacterSheet() {
       <Activity mode={columnsMode === "tabs" ? "hidden" : "visible"}>
         <div className="my-3 grid grid-cols-3 gap-6 focus-visible:outline-hidden">
           <div className="mt-4">
-            <MissionContent1 />
+            <ActionSection />
+            <BondsSection />
           </div>
           <div className="mt-4">
-            <MissionContent2 />
+            <RollSection />
           </div>
           <div className="mt-4">
             <ProfileContent />
@@ -56,12 +64,6 @@ export default function CharacterSheet() {
   );
 }
 
-function MissionContent1() {
-  return <>CONTENT</>;
-}
-function MissionContent2() {
-  return <>CONTENT</>;
-}
 function ProfileContent() {
   return <>CONTENT</>;
 }

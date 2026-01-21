@@ -33,6 +33,7 @@ import { FC, useState } from "react";
 import { Die, DieFace } from "../../../../../../components/dice/dice";
 import AnimatedDie from "@/components/dice/animated-die";
 import { cn } from "@/lib/utils";
+import { useCharacterSheet } from "@/contexts/arc3CharacterSheetContext";
 
 const testLeft: ActionV3[] = [
   {
@@ -80,6 +81,7 @@ const RollSection = () => {
     dice,
     addDice,
     removeDiceByLabel,
+    doRoll,
   } = useRoll();
 
   const containsPushDie = dice.some((d) => d.variant === "push");
@@ -113,12 +115,15 @@ const RollSection = () => {
         </div>
       </div>
       <RollSelect />
-      <Button variant="secondary">Roll</Button>
+      <Button variant="secondary" onClick={() => doRoll()}>
+        Roll
+      </Button>
       <DetailsSection />
       <Separator />
       <span className="text-center uppercase text-xs text-muted-foreground">
         Bonds
       </span>
+      <BondDiceSection />
       <Separator />
       <span className="text-center uppercase text-xs text-muted-foreground">
         Bonus Dice
@@ -157,6 +162,7 @@ const RollSection = () => {
 function RollSelect({ disabled = false }: { disabled?: boolean }) {
   const { rollLeft, rollRight, swapDice, setRollLeft, setRollRight } =
     useRoll();
+  const { abilities, skills } = useCharacterSheet();
 
   return (
     <div className="flex gap-4">
@@ -164,7 +170,7 @@ function RollSelect({ disabled = false }: { disabled?: boolean }) {
         value={rollLeft?.name || ""}
         disabled={disabled}
         onValueChange={(value) => {
-          const foundAction = testLeft.find((a) => a.name === value);
+          const foundAction = abilities.find((a) => a.name === value);
           if (!foundAction) {
             console.error("Could not find action or bond for value", value);
             return;
@@ -182,8 +188,8 @@ function RollSelect({ disabled = false }: { disabled?: boolean }) {
           </SelectValue>
         </SelectTrigger>
         <SelectContent>
-          {testLeft.map(({ name }) => (
-            <SelectItem key={name} value={name}>
+          {abilities.map(({ name }, idx) => (
+            <SelectItem key={name + idx} value={name}>
               {name}
             </SelectItem>
           ))}
@@ -193,7 +199,7 @@ function RollSelect({ disabled = false }: { disabled?: boolean }) {
         value={rollRight?.name || ""}
         disabled={disabled}
         onValueChange={(value) => {
-          const foundAction = testRight.find((a) => a.name === value);
+          const foundAction = skills.find((a) => a.name === value);
           if (!foundAction) {
             console.error("Could not find action or bond for value", value);
             return;
@@ -211,8 +217,8 @@ function RollSelect({ disabled = false }: { disabled?: boolean }) {
           </SelectValue>
         </SelectTrigger>
         <SelectContent>
-          {testRight.map(({ name }) => (
-            <SelectItem key={name} value={name}>
+          {skills.map(({ name }, idx) => (
+            <SelectItem key={name + idx} value={name}>
               {name}
             </SelectItem>
           ))}
@@ -291,8 +297,10 @@ function DetailsSection() {
           <code className="text-red-600 font-bold">
             Threat: {threatStats.threatProbability.toFixed(2)}%{" | "}
             {threatStats.threatCountDistribution.map((tp, idx) => {
+              const colorValue = Math.min(400 + idx * 100, 900);
+              const color = `text-red-${colorValue}`;
               return (
-                <span className={`text-red-${400 + idx * 100}`}>
+                <span className={color}>
                   {idx} Threat{idx !== 1 ? "s" : ""}: {tp.toFixed(2)}%{" "}
                 </span>
               );
@@ -307,6 +315,27 @@ function DetailsSection() {
         </div>
       </CollapsibleContent>
     </Collapsible>
+  );
+}
+
+function BondDiceSection() {
+  const { dice } = useRoll();
+  const bonds = dice.reduce(
+    (acc: string[], d) =>
+      d.variant === "bond" && !!d.label ? [...acc, d.label] : acc,
+    [],
+  );
+  return (
+    <div className="grid grid-cols-3">
+      {bonds.map((b, idx) => (
+        <div
+          key={b + idx}
+          className="col-span-1 flex justify-center border-sky-600/50 border-[1px] rounded-sm"
+        >
+          <span className="text-sky-500">{b}</span>
+        </div>
+      ))}
+    </div>
   );
 }
 

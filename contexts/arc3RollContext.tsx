@@ -1,9 +1,11 @@
-import { AbilityDice, SkillDice } from "@/lib/dice";
+import { AbilityDice, BondDice, SkillDice } from "@/lib/dice";
 import { ActionV3 } from "@/types/arc3";
-import { Die } from "@/types/dice";
+import type { Die } from "@/types/dice";
 import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import { createContext, ReactNode, useContext, useState } from "react";
+import { useToast } from "@/hooks/use-toast";
+import { DieFace } from "@/components/dice/dice";
 
 interface RollContextProps {
   dice: Die[];
@@ -24,6 +26,7 @@ interface RollContextProps {
   swapDice: (remove: ActionV3 | undefined, add: ActionV3) => void;
   addDice: (dice: Die[]) => void;
   removeDiceByLabel: (labelToRemove: string) => void;
+  doRoll: () => void;
 }
 
 const RollContext = createContext<RollContextProps | undefined>(undefined);
@@ -41,8 +44,10 @@ export const useRoll = () => {
 export default function RollProvider({ children }: { children: ReactNode }) {
   const queryClient = useQueryClient();
   const session = useSession();
+  const { toast } = useToast();
 
   const isAuthenticated = !!session?.data?.user?.id;
+  const username = session?.data?.user.name || "";
 
   const [currentDiceFilter, setCurrentDiceFilter] = useState<string>("all");
   const [isPrivate, setIsPrivate] = useState<boolean>(false);
@@ -132,6 +137,12 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         label: action.name,
       }));
     }
+    if (action.type === "bond") {
+      return action.level.map((lvl) => ({
+        ...BondDice[lvl as 0 | 1 | 2 | 3 | 4],
+        label: action.name,
+      }));
+    }
     return [];
   }
 
@@ -160,6 +171,48 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     setDice([...dice.filter((die) => die.label !== labelToRemove)]);
   }
 
+  function doRoll() {
+    const rolledFaces: number[] = dice.reduce(
+      (acc: number[], die) => [
+        ...acc,
+        Math.floor(Math.random() * die.faces.length),
+      ],
+      [],
+    );
+    toast({
+      variant: "grid",
+      // @ts-expect-error todo
+      title: (
+        <div className="w-full border-b border-border pt-1">
+          {username && (
+            <span className="absolute top-1 right-1 text-xs text-muted-foreground">
+              {username}
+            </span>
+          )}
+          <div>
+            Rolled {rollLeft?.name}
+            {rollRight ? ` + ${rollRight.name}` : ""}
+          </div>
+        </div>
+      ),
+      description: (
+        <div className="mt-2 flex items-center gap-2 flex-wrap">
+          {rolledFaces.map((f, idx) => (
+            <DieFace
+              key={`${f}-${idx}`}
+              size={84}
+              face={dice[idx].faces[f]}
+              variant={dice[idx].variant}
+            />
+          ))}
+        </div>
+      ),
+    });
+    setDice([]);
+    setRollLeft(undefined);
+    setRollRight(undefined);
+  }
+
   return (
     <RollContext.Provider
       value={{
@@ -181,6 +234,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         swapDice,
         addDice,
         removeDiceByLabel,
+        doRoll,
       }}
     >
       {children}
