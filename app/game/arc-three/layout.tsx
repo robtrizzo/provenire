@@ -9,32 +9,32 @@ const navigationData = [
     title: "Introduction",
     url: "/game/arc-three",
   },
-  {
-    title: "Setting",
-    url: "#",
-  },
-  {
-    title: "Rules",
-    url: "#",
-  },
-  {
-    title: "Cycle of Play",
-    url: "#",
-  },
-  {
-    title: "Character Options",
-    url: "#",
-    items: [
-      {
-        title: "Remembrances",
-        url: "/game/arc-three/character-options/remembrances",
-      },
-      {
-        title: "Roles",
-        url: "/game/arc-three/character-options/roles",
-      },
-    ],
-  },
+  // {
+  //   title: "Setting",
+  //   url: "#",
+  // },
+  // {
+  //   title: "Rules",
+  //   url: "#",
+  // },
+  // {
+  //   title: "Cycle of Play",
+  //   url: "#",
+  // },
+  // {
+  //   title: "Character Options",
+  //   url: "#",
+  //   items: [
+  //     {
+  //       title: "Remembrances",
+  //       url: "/game/arc-three/character-options/remembrances",
+  //     },
+  //     {
+  //       title: "Roles",
+  //       url: "/game/arc-three/character-options/roles",
+  //     },
+  //   ],
+  // },
   {
     title: "Demo",
     url: "#",

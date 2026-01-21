@@ -29,12 +29,6 @@ export default async function Page() {
       <Breadcrumbs />
       <TypographyH1>Test Dice</TypographyH1>
 
-      <div className="grid grid-cols-2">
-        <div className="col-span-1 border-[1px] border-border p-1">
-          <b className="col-span-1 text-md text-muted-foreground">Roll</b>
-        </div>
-      </div>
-
       <Separator className="my-4" />
       <div className="flex gap-2">
         <div className="flex flex-col gap-2">
