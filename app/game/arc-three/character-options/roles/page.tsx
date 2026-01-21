@@ -58,12 +58,11 @@ export default async function Page() {
       <TypographyH3>Scouting</TypographyH3>
       <TypographyH3>Equipment</TypographyH3>
       <TypographyH3>Espionage</TypographyH3>
-      <TypographyH3>Patroling</TypographyH3>
+      <TypographyH3>Security</TypographyH3>
       <TypographyH3>Food</TypographyH3>
       <TypographyH3>Research</TypographyH3>
       <TypographyH3>Diplomacy</TypographyH3>
       <TypographyH3>Construction</TypographyH3>
-      <TypographyH3>Fighting</TypographyH3>
     </>
   );
 }

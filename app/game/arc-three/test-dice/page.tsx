@@ -1,6 +1,10 @@
 import { Separator } from "@/components/ui/separator";
-import { TypographyH3, TypographyH4 } from "@/components/ui/typography";
-import { D6 } from "./(components)/dice-borders";
+import {
+  TypographyH1,
+  TypographyH3,
+  TypographyH4,
+} from "@/components/ui/typography";
+import { D6 } from "../../../../components/dice/dice-borders";
 import {
   ArrowDouble,
   Theta,
@@ -8,7 +12,7 @@ import {
   ThetaTriple,
   Threat,
   ThreatSpread,
-} from "./(components)/dice-symbols";
+} from "../../../../components/dice/dice-symbols";
 import {
   AbilityDice,
   BondDice,
@@ -16,11 +20,22 @@ import {
   PushDie,
   SkillDice,
 } from "@/lib/dice";
-import { Die } from "./(components)/dice";
+import { Die } from "../../../../components/dice/dice";
+import Breadcrumbs from "@/components/ui/breadcrumbs";
 
 export default async function Page() {
   return (
     <div>
+      <Breadcrumbs />
+      <TypographyH1>Test Dice</TypographyH1>
+
+      <div className="grid grid-cols-2">
+        <div className="col-span-1 border-[1px] border-border p-1">
+          <b className="col-span-1 text-md text-muted-foreground">Roll</b>
+        </div>
+      </div>
+
+      <Separator className="my-4" />
       <div className="flex gap-2">
         <div className="flex flex-col gap-2">
           <D6 size={128}></D6>
@@ -111,7 +126,7 @@ export default async function Page() {
         </div>
       </div>
 
-      <TypographyH4>Emotion Die</TypographyH4>
+      <TypographyH4>Emotion Die (WIP)</TypographyH4>
       <Die die={EmotionDie} />
 
       <TypographyH4>Push Die</TypographyH4>
@@ -147,15 +162,16 @@ export default async function Page() {
 
       <Separator className="mt-4" />
 
-      <TypographyH4>Bond Die (Level 0)</TypographyH4>
+      <TypographyH3>Bond Die</TypographyH3>
+      <TypographyH4>Level 0</TypographyH4>
       <Die die={BondDice[0]} />
-      <TypographyH4>Bond Die (Level 1)</TypographyH4>
+      <TypographyH4>Level 1</TypographyH4>
       <Die die={BondDice[1]} />
-      <TypographyH4>Bond Die (Level 2)</TypographyH4>
+      <TypographyH4>Level 2</TypographyH4>
       <Die die={BondDice[2]} />
-      <TypographyH4>Bond Die (Level 3)</TypographyH4>
+      <TypographyH4>Level 3</TypographyH4>
       <Die die={BondDice[3]} />
-      <TypographyH4>Bond Die (Level 4)</TypographyH4>
+      <TypographyH4>Level 4</TypographyH4>
       <Die die={BondDice[4]} />
     </div>
   );

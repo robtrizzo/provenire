@@ -77,7 +77,11 @@ export default function Page() {
           />
         </div>
       </div>
-      <Tabs defaultValue="crew" value={tab} className="w-full my-3 mx-auto">
+      <Tabs
+        defaultValue="character"
+        value={tab}
+        className="w-full my-3 mx-auto"
+      >
         <TabsList className="grid w-full grid-cols-2">
           {tabs.map((tab) => (
             <TabsTrigger

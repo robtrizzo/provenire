@@ -1,12 +1,4 @@
-import {
-  type Die,
-  type DieFace,
-  DieVariant,
-  EffectDegree,
-  getBaseFace,
-  getEffectDegree,
-  isCritCandidate,
-} from "@/lib/dice";
+import { getBaseFace, getEffectDegree, isCritCandidate } from "@/lib/dice";
 import { CritBorderGradient, D6 } from "./dice-borders";
 import {
   ArrowDouble,
@@ -17,6 +9,7 @@ import {
   ThreatSpread,
 } from "./dice-symbols";
 import { ReactNode } from "react";
+import type { Die, DieFace, DieVariant, EffectDegree } from "@/types/dice";
 
 // Get the effect symbol based on degree
 const getEffectSymbol = (effectDegree: EffectDegree | null) => {
