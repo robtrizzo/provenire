@@ -28,12 +28,24 @@ import {
 } from "@/lib/dice";
 import { ActionV3 } from "@/types/arc3";
 import type { DieVariant } from "@/types/dice";
-import { ChevronsUpDown, Eye, EyeClosed } from "lucide-react";
+import {
+  ChevronsUpDown,
+  Eye,
+  EyeClosed,
+  MousePointer2,
+  MousePointerClick,
+  X,
+} from "lucide-react";
 import { FC, useState } from "react";
 import { Die, DieFace } from "../../../../../../components/dice/dice";
 import AnimatedDie from "@/components/dice/animated-die";
 import { cn } from "@/lib/utils";
 import { useCharacterSheet } from "@/contexts/arc3CharacterSheetContext";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const testLeft: ActionV3[] = [
   {
@@ -74,17 +86,7 @@ const testRight: ActionV3[] = [
 type RollSection = FC & {};
 
 const RollSection = () => {
-  const {
-    isPrivate,
-    setIsPrivate,
-    connectionStatus,
-    dice,
-    addDice,
-    removeDiceByLabel,
-    doRoll,
-  } = useRoll();
-
-  const containsPushDie = dice.some((d) => d.variant === "push");
+  const { isPrivate, setIsPrivate, connectionStatus, doRoll } = useRoll();
 
   return (
     <Card className="mt-4 p-4 flex flex-col gap-4">
@@ -125,36 +127,7 @@ const RollSection = () => {
       </span>
       <BondDiceSection />
       <Separator />
-      <span className="text-center uppercase text-xs text-muted-foreground">
-        Bonus Dice
-      </span>
-      <div className="grid grid-cols-2 gap-1">
-        <Button
-          variant="outline"
-          className={cn(containsPushDie && "!border-emerald-600")}
-          onClick={() => {
-            if (containsPushDie) {
-              removeDiceByLabel("push");
-            } else {
-              addDice([{ ...PushDie, label: "push" }]);
-            }
-          }}
-        >
-          <b className="uppercase text-emerald-600">Push</b>
-        </Button>
-        <Button variant="outline" disabled>
-          {" "}
-          <b className="uppercase text-orange-600">Transformation</b>
-        </Button>
-        <Button variant="outline" disabled>
-          {" "}
-          <b className="uppercase text-red-600">Aldam</b>
-        </Button>
-        <Button variant="outline" disabled>
-          {" "}
-          <b className="uppercase text-fuchsia-600">Donum</b>
-        </Button>
-      </div>
+      <BonusDiceSection />
     </Card>
   );
 };
@@ -268,7 +241,7 @@ function DetailsSection() {
       <div className="flex justify-center mt-4">
         <span className="uppercase text-xs text-muted-foreground">Details</span>
       </div>
-      <CollapsibleTrigger className="absolute top-1 right-0">
+      <CollapsibleTrigger className="absolute top-1 right-0" asChild>
         <Button variant="ghost" size="icon">
           {showDetails ? <Eye /> : <EyeClosed />}
         </Button>
@@ -319,7 +292,7 @@ function DetailsSection() {
 }
 
 function BondDiceSection() {
-  const { dice } = useRoll();
+  const { dice, removeDiceByLabel } = useRoll();
   const bonds = dice.reduce(
     (acc: string[], d) =>
       d.variant === "bond" && !!d.label ? [...acc, d.label] : acc,
@@ -330,12 +303,82 @@ function BondDiceSection() {
       {bonds.map((b, idx) => (
         <div
           key={b + idx}
-          className="col-span-1 flex justify-center border-sky-600/50 border-[1px] rounded-sm"
+          className="group col-span-1 flex justify-center border-sky-600/50 hover:bg-sky-600/10 hover:cursor-pointer border-[1px] rounded-sm"
+          onClick={() => {
+            removeDiceByLabel(b);
+          }}
         >
-          <span className="text-sky-500">{b}</span>
+          <span className="text-sky-500 group-hover:line-through group-hover:text-red-600 transition-all duration-200">
+            {b}
+          </span>
         </div>
       ))}
     </div>
+  );
+}
+
+function BonusDiceSection() {
+  const { dice, addDice, removeDieByLabel } = useRoll();
+
+  const numPushDie = dice.reduce(
+    (acc, d) => (d.variant === "push" ? acc + 1 : acc),
+    0,
+  );
+  const containsPushDie = numPushDie > 0;
+
+  return (
+    <>
+      <span className="text-center uppercase text-xs text-muted-foreground">
+        Bonus Dice
+      </span>
+      <div className="grid grid-cols-2 gap-1">
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              variant="outline"
+              className={cn(
+                containsPushDie && "!border-emerald-600",
+                "flex items-center justify-center",
+              )}
+              onClick={() => {
+                addDice([{ ...PushDie, label: "push" }]);
+              }}
+              onContextMenu={(e) => {
+                e.preventDefault();
+                removeDieByLabel("push");
+              }}
+            >
+              <b className="uppercase text-emerald-600 h-4">Push</b>{" "}
+              <div className="rounded-full bg-emerald-600 text-white dark:text-black font-extrabold w-4 h-4 flex items-center justify-center">
+                <code>{numPushDie}</code>
+              </div>
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent className="flex flex-col items-start gap-1">
+            <span className="flex items-center gap-1">
+              <MousePointerClick size={16} className="text-emerald-600" />
+              <b>Left-click</b> to <span className="text-emerald-600">add</span>
+            </span>
+            <span className="flex items-center gap-1">
+              <MousePointer2 size={16} className="text-red-600" />
+              <b>Right-click</b> to <span className="text-red-600">remove</span>
+            </span>
+          </TooltipContent>
+        </Tooltip>
+        <Button variant="outline" disabled>
+          {" "}
+          <b className="uppercase text-orange-600">Transformation</b>
+        </Button>
+        <Button variant="outline" disabled>
+          {" "}
+          <b className="uppercase text-red-600">Aldam</b>
+        </Button>
+        <Button variant="outline" disabled>
+          {" "}
+          <b className="uppercase text-fuchsia-600">Donum</b>
+        </Button>
+      </div>
+    </>
   );
 }
 

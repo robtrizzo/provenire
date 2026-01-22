@@ -26,12 +26,14 @@ interface RollContextProps {
   swapDice: (remove: ActionV3 | undefined, add: ActionV3) => void;
   addDice: (dice: Die[]) => void;
   removeDiceByLabel: (labelToRemove: string) => void;
+  removeDieByLabel: (labelToRemove: string) => void;
   doRoll: () => void;
 }
 
 const RollContext = createContext<RollContextProps | undefined>(undefined);
 const PAGE_SIZE = 40;
 const DICE_FILTER_LOCAL_STORAGE_KEY = "dicehistory.selectedfilter";
+const MAX_PUSH_DICE = 1;
 
 export const useRoll = () => {
   const context = useContext(RollContext);
@@ -154,21 +156,18 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   }
 
   function addDice(add: Die[]) {
-    setDice([
-      ...dice,
-      ...add.filter(
-        (newDie) =>
-          !dice.some((existingDie) =>
-            Object.keys(newDie).every(
-              (key) => (existingDie as any)[key] === (newDie as any)[key],
-            ),
-          ),
-      ),
-    ]);
+    setDice([...dice, ...add]);
   }
 
   function removeDiceByLabel(labelToRemove: string) {
     setDice([...dice.filter((die) => die.label !== labelToRemove)]);
+  }
+
+  function removeDieByLabel(labelToRemove: string) {
+    const idx = dice.findIndex((die) => die.label === labelToRemove);
+    if (idx !== -1) {
+      setDice([...dice.slice(0, idx), ...dice.slice(idx + 1)]);
+    }
   }
 
   function doRoll() {
@@ -234,6 +233,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         swapDice,
         addDice,
         removeDiceByLabel,
+        removeDieByLabel,
         doRoll,
       }}
     >
