@@ -245,7 +245,7 @@ async function InnerSanctum() {
       <TypographyH3 className="text-lg">Donum Aquae</TypographyH3>
       <span className="text-muted-foreground">the gift of Water</span>
       <TypographyP>
-        Manipulate or create water, ice, snow, steam, and blood.
+        Manipulate or create water, ice, snow, and steam.
       </TypographyP>
       <TypographyH3 className="text-lg">Donum Dolus</TypographyH3>
       <span className="text-muted-foreground">the gift of Deceit</span>

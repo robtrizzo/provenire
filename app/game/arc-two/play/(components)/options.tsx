@@ -13,6 +13,7 @@ import { useCharacterSheet } from "@/contexts/arc2CharacterSheetContext";
 import {
   ArchetypeV2,
   BackgroundV2,
+  DonumV2,
   FightingStyleV2,
   Operative,
   Sleeve,
@@ -23,6 +24,7 @@ import archetypes from "@/public/arc2/archetypes.json";
 import sleeves from "@/public/arc2/sleeves.json";
 import operatives from "@/public/arc2/operatives.json";
 import transformations from "@/public/arc2/transformations.json";
+import donums from "@/public/arc2/donums.json";
 import fightingStyles from "@/public/arc2/fighting-styles.json";
 import Portrait from "@/components/character-sheet/portrait";
 import ChangeSleeveAlertDialog from "./change-sleeve-alert-dialog";
@@ -38,6 +40,7 @@ export default function Options() {
     selectedSleeve,
     selectedOperative,
     selectedTransformation,
+    selectedDonum,
     selectedFightingStyle,
     setPortrait,
     setName,
@@ -48,6 +51,7 @@ export default function Options() {
     harmsEmpty,
     setSelectedOperative,
     setSelectedTransformation,
+    setSelectedDonum,
     setSelectedFightingStyle,
     setChanges,
     handleDebounceChange,
@@ -101,7 +105,7 @@ export default function Options() {
               value={selectedBackground?.name}
               onValueChange={(value) => {
                 const foundBackground = backgrounds.find(
-                  (b) => b.name === value
+                  (b) => b.name === value,
                 ) as BackgroundV2 | undefined;
                 if (foundBackground) {
                   setSelectedBackground(foundBackground);
@@ -140,7 +144,7 @@ export default function Options() {
               value={selectedArchetype?.name}
               onValueChange={(value) => {
                 const foundArchetype = archetypes.find(
-                  (a) => a.name === value
+                  (a) => a.name === value,
                 ) as ArchetypeV2 | undefined;
                 if (foundArchetype) {
                   setSelectedArchetype(foundArchetype);
@@ -243,7 +247,7 @@ export default function Options() {
               value={selectedOperative?.name}
               onValueChange={(value) => {
                 const foundOperative = operatives.find(
-                  (b) => b.name === value
+                  (b) => b.name === value,
                 ) as Operative | undefined;
                 if (foundOperative) {
                   setSelectedOperative(foundOperative);
@@ -284,7 +288,7 @@ export default function Options() {
               value={selectedTransformation?.name}
               onValueChange={(value) => {
                 const foundTransformation = transformations.find(
-                  (b) => b.name === value
+                  (b) => b.name === value,
                 ) as Transformation | undefined;
                 if (foundTransformation) {
                   const newTransformation: Transformation = {
@@ -332,7 +336,7 @@ export default function Options() {
               value={selectedFightingStyle?.name}
               onValueChange={(value) => {
                 const foundFightingStyle = fightingStyles.find(
-                  (b) => b.name === value
+                  (b) => b.name === value,
                 ) as FightingStyleV2 | undefined;
                 if (foundFightingStyle) {
                   setSelectedFightingStyle(foundFightingStyle);
@@ -357,6 +361,51 @@ export default function Options() {
                   onClick={(e) => {
                     e.stopPropagation();
                     setSelectedFightingStyle(undefined);
+                    setChanges(true);
+                  }}
+                >
+                  Clear
+                </Button>
+              </SelectContent>
+            </Select>
+          </div>
+          <div>
+            <Select
+              key={selectedDonum?.name || "empty"}
+              value={selectedDonum?.name}
+              onValueChange={(value) => {
+                const foundDonum = donums.find((b) => b.name === value) as
+                  | DonumV2
+                  | undefined;
+                if (foundDonum) {
+                  const newDonum: DonumV2 = {
+                    name: foundDonum.name,
+                    abilities: foundDonum.abilities,
+                    phase: "Nascence",
+                    progress: 0,
+                  };
+                  setSelectedDonum(newDonum);
+                  setChanges(true);
+                }
+              }}
+            >
+              <SelectTrigger className="font-bold text-fuchsia-500">
+                <SelectValue placeholder="Select a donum" />
+              </SelectTrigger>
+              <SelectContent>
+                {donums.map((donum) => (
+                  <SelectItem key={donum.name} value={donum.name}>
+                    {donum.name}
+                  </SelectItem>
+                ))}
+                <SelectSeparator />
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  className="w-full px-2"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedDonum(undefined);
                     setChanges(true);
                   }}
                 >

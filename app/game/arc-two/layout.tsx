@@ -98,6 +98,10 @@ const navigationData = [
         url: "/game/arc-two/character-options/transformations",
       },
       {
+        title: "Donums",
+        url: "/game/arc-two/character-options/donums",
+      },
+      {
         title: "Actions",
         url: "/game/arc-two/character-options/actions",
       },

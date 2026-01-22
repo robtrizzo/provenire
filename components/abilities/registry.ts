@@ -292,6 +292,14 @@ import WeaponsOfTheBoar from "./donums/arc2/donum-portentum/weapons-of-the-boar"
 import SturdyHideLars from "./donums/arc2/donum-portentum/sturdy-hide";
 import UrgentShifting from "./donums/arc2/donum-portentum/urgent-shifting";
 import DemiIjeta from "./donums/arc2/donum-portentum/demi-ijeta";
+// aquae
+import DonumAquae from "./donums/arc2/donum-aquae/donum-aquae";
+import Flow from "./donums/arc2/donum-aquae/flow";
+import Form from "./donums/arc2/donum-aquae/form";
+import Finesse from "./donums/arc2/donum-aquae/finesse";
+import Fabricate from "./donums/arc2/donum-aquae/fabricate";
+import Force from "./donums/arc2/donum-aquae/force";
+import Fill from "./donums/arc2/donum-aquae/fill";
 
 export type AbilityRegistryType = {
   [category: string]: {
@@ -651,6 +659,15 @@ export const abilityRegistry = {
         "sturdy-hide": SturdyHideLars,
         "urgent-shifting": UrgentShifting,
         "demi-ijeta": DemiIjeta,
+      },
+      "donum-aquae": {
+        "donum-aquae": DonumAquae,
+        flow: Flow,
+        form: Form,
+        finesse: Finesse,
+        fabricate: Fabricate,
+        force: Force,
+        fill: Fill,
       },
     },
   },

@@ -350,6 +350,14 @@ export type Transformation = {
   provenire?: string;
 };
 
+export type DonumV2 = {
+  name: string;
+  translation?: string;
+  abilities: Ability[];
+  phase: DonumPhase;
+  progress: number;
+};
+
 export interface CharacterV2 {
   name: string;
   updatedAt: Date;
@@ -427,7 +435,7 @@ export type ItemV2 = {
       subscription?: number;
       dangerous?: boolean;
       codexExpansion?: number;
-    }
+    },
   ];
   codexExpansion?: number;
 };

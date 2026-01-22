@@ -22,6 +22,7 @@ import {
   Baggage,
   BondV2,
   Note,
+  DonumV2,
 } from "@/types/game";
 import { debounce } from "@/lib/utils";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -58,6 +59,7 @@ interface CharacterSheetContextProps {
   selectedSleeve: Sleeve | undefined;
   selectedOperative: Operative | undefined;
   selectedTransformation: Transformation | undefined;
+  selectedDonum: DonumV2 | undefined;
   selectedFightingStyle: FightingStyleV2 | undefined;
   questions: Map<string, string>;
   notes: Note[];
@@ -80,6 +82,8 @@ interface CharacterSheetContextProps {
   unlockedBaggage: Baggage[];
   blood: number;
   maxBlood: number;
+  water: number;
+  maxWater: number;
   harm: CharacterHarm;
   healing: number;
   effectiveHarm: CharacterHarm;
@@ -110,6 +114,7 @@ interface CharacterSheetContextProps {
   setSelectedTransformation: React.Dispatch<
     React.SetStateAction<Transformation | undefined>
   >;
+  setSelectedDonum: React.Dispatch<React.SetStateAction<DonumV2 | undefined>>;
   setSelectedFightingStyle: React.Dispatch<
     React.SetStateAction<FightingStyleV2 | undefined>
   >;
@@ -135,6 +140,8 @@ interface CharacterSheetContextProps {
   setUnlockedBaggage: React.Dispatch<React.SetStateAction<Baggage[]>>;
   setBlood: React.Dispatch<React.SetStateAction<number>>;
   setMaxBlood: React.Dispatch<React.SetStateAction<number>>;
+  setWater: React.Dispatch<React.SetStateAction<number>>;
+  setMaxWater: React.Dispatch<React.SetStateAction<number>>;
   setHarm: React.Dispatch<React.SetStateAction<CharacterHarm>>;
   setHealing: React.Dispatch<React.SetStateAction<number>>;
   setArmor: React.Dispatch<React.SetStateAction<boolean>>;
@@ -149,14 +156,14 @@ interface CharacterSheetContextProps {
   handleUpdateHarmSlot: (
     level: number,
     slotIndex: number,
-    description: string
+    description: string,
   ) => void;
   handleToggleItemSubscription: (index: number) => void;
   setItems: React.Dispatch<React.SetStateAction<ItemV2[]>>;
   handleUpdateArchetypeQuestion: (
     horizon: boolean,
     questionIdx: number,
-    newQuestion: string
+    newQuestion: string,
   ) => void;
   handleAddAvailableAction: (action: ActionV2) => void;
   handleRemoveAvailableAction: (actionName: string) => void;
@@ -176,7 +183,7 @@ export const useCharacterSheet = () => {
   const context = useContext(CharacterSheetContext);
   if (!context) {
     throw new Error(
-      "useCharacterSheet must be used within a CharacterSheetProvider"
+      "useCharacterSheet must be used within a CharacterSheetProvider",
     );
   }
   return context;
@@ -196,6 +203,7 @@ export default function CharacterSheetProvider({
   const [selectedOperative, setSelectedOperative] = useState<Operative>();
   const [selectedTransformation, setSelectedTransformation] =
     useState<Transformation>();
+  const [selectedDonum, setSelectedDonum] = useState<DonumV2>();
   const [selectedFightingStyle, setSelectedFightingStyle] =
     useState<FightingStyleV2>();
 
@@ -241,9 +249,11 @@ export default function CharacterSheetProvider({
 
   const [blood, setBlood] = useState<number>(0);
   const [maxBlood, setMaxBlood] = useState<number>(2);
+  const [water, setWater] = useState<number>(0);
+  const [maxWater, setMaxWater] = useState<number>(2);
 
   const [harm, setHarm] = useState<CharacterHarm>(
-    JSON.parse(JSON.stringify(DEFAULT_HARM))
+    JSON.parse(JSON.stringify(DEFAULT_HARM)),
   );
   const [healing, setHealing] = useState<number>(0);
 
@@ -276,6 +286,7 @@ export default function CharacterSheetProvider({
     setSelectedSleeve(undefined);
     setSelectedOperative(undefined);
     setSelectedTransformation(undefined);
+    setSelectedDonum(undefined);
     setSelectedFightingStyle(undefined);
     setQuestions(new Map());
     setNotes([]);
@@ -297,6 +308,8 @@ export default function CharacterSheetProvider({
     setUnlockedBaggage([]);
     setBlood(0);
     setMaxBlood(2);
+    setWater(0);
+    setMaxWater(2);
     setHarm(JSON.parse(JSON.stringify(DEFAULT_HARM)));
     setHealing(0);
     setArmor(false);
@@ -326,6 +339,7 @@ export default function CharacterSheetProvider({
         setSelectedBackground(parsed.selectedBackground);
         setSelectedSleeve(parsed.selectedSleeve);
         setSelectedOperative(parsed.selectedOperative);
+        setSelectedDonum(parsed.selectedDonum);
         setSelectedTransformation(parsed.selectedTransformation);
         setSelectedFightingStyle(parsed.selectedFightingStyle);
 
@@ -355,6 +369,8 @@ export default function CharacterSheetProvider({
         setMemory(parsed.memory || 0);
         setBlood(parsed.blood || 0);
         setMaxBlood(parsed.maxBlood || 2);
+        setWater(parsed.water || 0);
+        setMaxWater(parsed.maxWater || 2);
         setUnlockedBaggage(parsed.unlockedBaggage || []);
         setHarm(parsed.harm || JSON.parse(JSON.stringify(DEFAULT_HARM)));
         setHealing(parsed.healing || 0);
@@ -387,6 +403,7 @@ export default function CharacterSheetProvider({
           selectedSleeve,
           selectedOperative,
           selectedTransformation,
+          selectedDonum,
           selectedFightingStyle,
           questions: Array.from(questions),
           notes,
@@ -408,6 +425,8 @@ export default function CharacterSheetProvider({
           unlockedBaggage,
           blood,
           maxBlood,
+          water,
+          maxWater,
           harm,
           healing,
           armor,
@@ -444,6 +463,7 @@ export default function CharacterSheetProvider({
         selectedSleeve,
         selectedOperative,
         selectedTransformation,
+        selectedDonum,
         selectedFightingStyle,
         questions: Array.from(questions),
         notes,
@@ -464,6 +484,8 @@ export default function CharacterSheetProvider({
         unlockedBaggage,
         blood,
         maxBlood,
+        water,
+        maxWater,
         harm,
         healing,
         armor,
@@ -555,15 +577,18 @@ export default function CharacterSheetProvider({
   });
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (
-        !!localUpdatedAt &&
-        !!cloudUpdatedAt &&
-        new Date(localUpdatedAt) <= new Date(cloudUpdatedAt)
-      ) {
-        refetch();
-      }
-    }, 5 * 60 * 1000 /** 5 minutes */);
+    const interval = setInterval(
+      () => {
+        if (
+          !!localUpdatedAt &&
+          !!cloudUpdatedAt &&
+          new Date(localUpdatedAt) <= new Date(cloudUpdatedAt)
+        ) {
+          refetch();
+        }
+      },
+      5 * 60 * 1000 /** 5 minutes */,
+    );
     return () => clearInterval(interval);
   }, [localUpdatedAt, cloudUpdatedAt, refetch]);
 
@@ -584,7 +609,7 @@ export default function CharacterSheetProvider({
     debounce(() => {
       setChanges(true);
     }, 300),
-    []
+    [],
   );
 
   function handleUpdateQuestion(key: string, value: string) {
@@ -600,7 +625,7 @@ export default function CharacterSheetProvider({
   function handleUpdateArchetypeQuestion(
     horizon: boolean,
     questionIdx: number,
-    newQuestion: string
+    newQuestion: string,
   ) {
     if (!selectedArchetype?.questions) {
       console.error("can't update archetype question: archetype not selected");
@@ -636,7 +661,7 @@ export default function CharacterSheetProvider({
 
   function harmsEmpty() {
     return Object.values(harm).every((level) =>
-      level.slots.every((slot) => slot === "" || slot === undefined)
+      level.slots.every((slot) => slot === "" || slot === undefined),
     );
   }
 
@@ -661,7 +686,7 @@ export default function CharacterSheetProvider({
   function handleUpdateHarmSlot(
     level: number,
     slotIndex: number,
-    description: string
+    description: string,
   ) {
     const updatedHarm: CharacterHarm = {};
 
@@ -725,7 +750,7 @@ export default function CharacterSheetProvider({
       if (baseHarm[modLevel]) {
         const newMaxSlots = Math.max(
           0,
-          baseHarm[modLevel].maxSlots + mod.slotChange
+          baseHarm[modLevel].maxSlots + mod.slotChange,
         );
 
         const currentSlots = [...baseHarm[modLevel].slots];
@@ -795,7 +820,7 @@ export default function CharacterSheetProvider({
           (favorBankMember ? 1 : 0) +
           (selectedSleeve?.subscription || 0) +
           lifestyleCost -
-          lifestyleSupports
+          lifestyleSupports,
       ) - favorBankInterest
     );
   }
@@ -825,8 +850,8 @@ export default function CharacterSheetProvider({
   function handleEditAction(newAction: ActionV2) {
     setActions(
       actions.map((action) =>
-        action.name === newAction.name ? newAction : action
-      )
+        action.name === newAction.name ? newAction : action,
+      ),
     );
 
     setChanges(true);
@@ -834,7 +859,7 @@ export default function CharacterSheetProvider({
 
   function handleUpdateCustomResource(resourceId: string, value: unknown) {
     setCustomResourceValues(
-      new Map(customResourceValues.set(resourceId, value))
+      new Map(customResourceValues.set(resourceId, value)),
     );
     handleDebounceChange();
   }
@@ -853,6 +878,7 @@ export default function CharacterSheetProvider({
         selectedSleeve,
         selectedOperative,
         selectedTransformation,
+        selectedDonum,
         selectedFightingStyle,
         questions,
         notes,
@@ -875,6 +901,8 @@ export default function CharacterSheetProvider({
         unlockedBaggage,
         blood,
         maxBlood,
+        water,
+        maxWater,
         harm,
         healing,
         effectiveHarm,
@@ -896,6 +924,7 @@ export default function CharacterSheetProvider({
         setSelectedBackground,
         setSelectedOperative,
         setSelectedTransformation,
+        setSelectedDonum,
         setSelectedFightingStyle,
         setQuestions,
         setNotes,
@@ -917,6 +946,8 @@ export default function CharacterSheetProvider({
         setUnlockedBaggage,
         setBlood,
         setMaxBlood,
+        setWater,
+        setMaxWater,
         setHarm,
         setHealing,
         setArmor,
