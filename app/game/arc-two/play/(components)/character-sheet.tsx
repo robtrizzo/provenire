@@ -4,6 +4,7 @@ import BaggageSection from "./baggage-section";
 import BondsSection from "./bonds-section";
 import Controls from "./controls";
 import CustomResources from "./custom-resources-section";
+import DonumSection from "./donum-section";
 import HarmSection from "./harm-section";
 import LoadoutSection from "./loadout-section";
 import Options from "./options";
@@ -39,6 +40,7 @@ export default function CharacterSheet() {
               <StressSection />
               <BaggageSection />
               <TransformationSection />
+              <DonumSection />
               <HarmSection />
               <RollSection />
               <LoadoutSection />

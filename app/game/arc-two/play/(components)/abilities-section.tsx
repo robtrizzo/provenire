@@ -24,7 +24,8 @@ const abilityVariants = cva("", {
       archetype: "text-amber-500",
       operative: "text-indigo-500",
       fightingStyle: "text-emerald-500",
-      donum: "text-orange-500",
+      transformation: "text-orange-500",
+      donum: "text-fuchsia-500",
       default: "text-primary",
     },
   },
@@ -38,6 +39,7 @@ export default function AbilitiesSection() {
     selectedOperative,
     selectedFightingStyle,
     selectedTransformation,
+    selectedDonum,
     abilities,
     setAbilities,
     setChanges,
@@ -71,7 +73,7 @@ export default function AbilitiesSection() {
                       | "fightingStyle"
                       | "donum",
                   }),
-                  "text-sm"
+                  "text-sm",
                 )}
               >
                 {a.source}
@@ -314,7 +316,7 @@ export default function AbilitiesSection() {
                     onClick={() =>
                       handleAddOrRemoveAbility({
                         ...ability,
-                        type: "donum",
+                        type: "transformation",
                         source: selectedTransformation.name,
                       })
                     }
@@ -335,6 +337,65 @@ export default function AbilitiesSection() {
                   category="donums"
                   arc="arc2"
                   type={selectedTransformation.name
+                    .toLocaleLowerCase()
+                    .replace(/\s/g, "-")}
+                />
+              </div>
+            );
+          })}
+        </AbilityPanel>
+        <AbilityPanel
+          trigger={
+            <Button size="sm" variant="outline" disabled={!selectedDonum}>
+              <span className="text-fuchsia-500">
+                <Plus className="inline-block" /> donum
+              </span>
+            </Button>
+          }
+        >
+          <TypographyH3 className="text-fuchsia-500">
+            {selectedDonum?.name || "Donum"}&apos;s Abilities
+          </TypographyH3>
+          {selectedDonum?.abilities.map((ability, idx) => {
+            if (
+              ability.permission &&
+              !clientCheckPermission(session.data, ability.permission)
+            ) {
+              return null;
+            }
+            const unlocked = !!abilities.find((a) => a.name === ability.name);
+            return (
+              <div key={ability.name + "arc" + idx}>
+                <div className="flex items-center gap-4 flex-wrap">
+                  <TypographyH4>{ability.name}</TypographyH4>
+                  <ClockCost num={ability.keystone ? 0 : ability.cost || 2} />
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() =>
+                      handleAddOrRemoveAbility({
+                        ...ability,
+                        type: "donum",
+                        source: selectedDonum.name,
+                      })
+                    }
+                  >
+                    {unlocked ? (
+                      <Trash size={10} className="inline-block text-red-500" />
+                    ) : (
+                      <LockKeyholeOpen size={10} className="inline-block" />
+                    )}
+
+                    <span className={cn("text-xs", unlocked && "text-red-500")}>
+                      {unlocked ? "remove" : "unlock"}
+                    </span>
+                  </Button>
+                </div>
+                <AbilityComponent
+                  ability={ability}
+                  category="donums"
+                  arc="arc2"
+                  type={selectedDonum.name
                     .toLocaleLowerCase()
                     .replace(/\s/g, "-")}
                 />

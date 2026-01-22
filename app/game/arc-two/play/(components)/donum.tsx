@@ -1,41 +1,40 @@
-import { FC } from "react";
-import Clock from "@/components/clock";
-import { useCharacterSheet } from "@/contexts/arc2CharacterSheetContext";
-import { Button } from "@/components/ui/button";
 import { BuildupCheckboxes } from "@/components/buildup-checkboxes";
+import Clock from "@/components/clock";
+import { Button } from "@/components/ui/button";
+import { useCharacterSheet } from "@/contexts/arc2CharacterSheetContext";
 import { advanceDonum, clockMax } from "@/lib/donums";
+import { FC } from "react";
 
-type TransformationComponents = {
+type DonumComponents = {
   Clock: FC;
   Advance: FC;
-  Blood: FC;
-  MaxBloodControls: FC;
+  Water: FC;
+  MaxWaterControls: FC;
 };
 
 function Advance() {
-  const { selectedTransformation, setSelectedTransformation } =
-    useCharacterSheet();
+  const { selectedDonum, setSelectedDonum } = useCharacterSheet();
 
   const canAdvance = () => {
-    const phase = selectedTransformation?.phase;
+    const phase = selectedDonum?.phase;
     if (!phase) return false;
 
     if (phase === "Dominance") return false;
 
     const progressMax = clockMax(phase);
-    if (selectedTransformation?.progress < progressMax) return false;
+    if (selectedDonum?.progress < progressMax) return false;
 
     return true;
   };
 
   const handleAdvance = () => {
-    const phase = selectedTransformation?.phase;
+    const phase = selectedDonum?.phase;
     if (!phase) return;
 
     if (!canAdvance()) return;
 
     const nextPhase = advanceDonum(phase);
-    setSelectedTransformation((prev) =>
+    setSelectedDonum((prev) =>
       prev
         ? {
             ...prev,
@@ -58,16 +57,15 @@ function Advance() {
   );
 }
 
-function TransformationClock() {
-  const { selectedTransformation, setSelectedTransformation } =
-    useCharacterSheet();
+function DonumClock() {
+  const { selectedDonum, setSelectedDonum } = useCharacterSheet();
 
-  if (!selectedTransformation) return null;
+  if (!selectedDonum) return null;
 
-  const max = clockMax(selectedTransformation?.phase);
+  const max = clockMax(selectedDonum?.phase);
 
   const handleSetProgress = (n: number) => {
-    setSelectedTransformation((prev) =>
+    setSelectedDonum((prev) =>
       prev
         ? {
             ...prev,
@@ -83,44 +81,44 @@ function TransformationClock() {
         width={35}
         height={35}
         max={max}
-        current={selectedTransformation?.progress || 0}
+        current={selectedDonum?.progress || 0}
         setVal={handleSetProgress}
       />
     </>
   );
 }
 
-function Blood() {
-  const { blood, maxBlood, setBlood, setChanges } = useCharacterSheet();
+function Water() {
+  const { water, maxWater, setWater, setChanges } = useCharacterSheet();
 
-  const handleChangeBlood = (n: number) => {
-    setBlood(n);
+  const handleChangeWater = (n: number) => {
+    setWater(n);
     setChanges(true);
   };
 
   return (
     <BuildupCheckboxes
       max={4}
-      numDisabled={4 - maxBlood}
-      current={blood}
-      onChange={handleChangeBlood}
+      numDisabled={4 - maxWater}
+      current={water}
+      onChange={handleChangeWater}
     />
   );
 }
 
-function MaxBloodControls() {
-  const { blood, maxBlood, setBlood, setMaxBlood, setChanges } =
+function MaxWaterControls() {
+  const { water, maxWater, setWater, setMaxWater, setChanges } =
     useCharacterSheet();
   const updateMax = (n: number) => {
     if (n < 0 || n > 4) return;
-    setMaxBlood(n);
-    if (n < blood) {
-      setBlood(n);
+    setMaxWater(n);
+    if (n < water) {
+      setWater(n);
     }
     setChanges(true);
   };
-  const handleIncrement = () => updateMax(maxBlood + 1);
-  const handleDecrement = () => updateMax(maxBlood - 1);
+  const handleIncrement = () => updateMax(maxWater + 1);
+  const handleDecrement = () => updateMax(maxWater - 1);
 
   return (
     <div className="flex items-center">
@@ -128,7 +126,7 @@ function MaxBloodControls() {
         size="icon"
         variant="ghost"
         onClick={handleDecrement}
-        disabled={maxBlood <= 0}
+        disabled={maxWater <= 0}
       >
         -
       </Button>
@@ -137,7 +135,7 @@ function MaxBloodControls() {
         size="icon"
         variant="ghost"
         onClick={handleIncrement}
-        disabled={maxBlood >= 4}
+        disabled={maxWater >= 4}
       >
         +
       </Button>
@@ -145,11 +143,11 @@ function MaxBloodControls() {
   );
 }
 
-const Transformation: TransformationComponents = {
+const Donum: DonumComponents = {
   Advance,
-  Blood,
-  Clock: TransformationClock,
-  MaxBloodControls,
+  Water,
+  Clock: DonumClock,
+  MaxWaterControls,
 };
 
-export default Transformation;
+export default Donum;
