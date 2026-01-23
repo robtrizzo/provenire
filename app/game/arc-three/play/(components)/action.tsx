@@ -24,10 +24,12 @@ import {
 import { cn } from "@/lib/utils";
 import { ActionV3, ActionVariantV3 } from "@/types/arc3";
 import {
+  Dices,
   LockKeyholeOpen,
   MousePointer2,
   MousePointerClick,
   Plus,
+  Trash,
 } from "lucide-react";
 import { FC, ReactNode, useState } from "react";
 import actions_list from "@/public/arc3/actions.json";
@@ -38,6 +40,12 @@ import {
 } from "@/components/ui/tooltip";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuTrigger,
+} from "@/components/ui/context-menu";
 
 interface ActionProps {
   action: ActionV3;
@@ -57,15 +65,21 @@ type HeaderContent = {
 interface RollableWrapperProps extends ActionProps {
   children: ReactNode;
 }
+
+interface MenuWrapperProps
+  extends ActionProps, React.HTMLAttributes<HTMLDivElement> {
+  children: ReactNode;
+}
+
 type Wrapper = {
   Grid: FC<GridWrapperProps>;
   Rollable: FC<RollableWrapperProps>;
+  Menu: FC<MenuWrapperProps>;
 };
 
 interface GridWrapperProps {
   className?: string;
   children: ReactNode;
-  onClick?: () => void;
 }
 
 type Action = {
@@ -73,12 +87,9 @@ type Action = {
   Wrapper: Wrapper;
 };
 
-function GridWrapper({ className, children, onClick }: GridWrapperProps) {
+function GridWrapper({ className, children }: GridWrapperProps) {
   return (
-    <div
-      className={cn("p-2 grid grid-cols-8 gap-2", className)}
-      onClick={onClick}
-    >
+    <div className={cn("p-2 grid grid-cols-8 gap-2", className)}>
       {children}
     </div>
   );
@@ -89,13 +100,7 @@ function RollableWrapper({ action, children }: RollableWrapperProps) {
     useRoll();
   const { bonds } = useCharacterSheet();
   return (
-    <GridWrapper
-      className={cn(
-        "hover:bg-input/50",
-        action.type === "ability" && "hover:bg-yellow-500/20",
-        action.type === "skill" && "hover:bg-violet-500/20",
-        action.type === "bond" && "hover:bg-sky-500/20",
-      )}
+    <div
       onClick={() => {
         switch (action.type) {
           case "ability": {
@@ -125,8 +130,39 @@ function RollableWrapper({ action, children }: RollableWrapperProps) {
         }
       }}
     >
-      {children}
-    </GridWrapper>
+      <GridWrapper
+        className={cn(
+          "hover:bg-input/50",
+          action.type === "ability" && "hover:bg-yellow-500/20",
+          action.type === "skill" && "hover:bg-violet-500/20",
+          action.type === "bond" && "hover:bg-sky-500/20",
+        )}
+      >
+        {children}
+      </GridWrapper>
+    </div>
+  );
+}
+
+function MenuWrapper({ action, children, ...props }: MenuWrapperProps) {
+  const { actions, setActions } = useCharacterSheet();
+  const handleRemoveAction = () => {
+    setActions(actions.filter((a) => a.name !== action.name));
+  };
+  return (
+    <ContextMenu>
+      <ContextMenuTrigger asChild>
+        <div {...props}>{children}</div>
+      </ContextMenuTrigger>
+      <ContextMenuContent>
+        <ContextMenuItem
+          className="bg-destructive"
+          onClick={handleRemoveAction}
+        >
+          <Trash className="text-destructive-foreground" /> Remove
+        </ContextMenuItem>
+      </ContextMenuContent>
+    </ContextMenu>
   );
 }
 
@@ -293,6 +329,8 @@ function UnlockHeaderContent({ className, type }: UnlockActionProps) {
   const { actions, setActions } = useCharacterSheet();
   const [open, setOpen] = useState(false);
 
+  const allActions = [...actions_list.Abilities, ...actions_list.Skills];
+
   const actionNames = new Set(actions.map((a) => a.name));
 
   function handleAddAction(action: { name: string; description: string }) {
@@ -349,7 +387,7 @@ function UnlockHeaderContent({ className, type }: UnlockActionProps) {
             <CommandInput placeholder="Search actions..." className="h-9" />
             <CommandList>
               <CommandEmpty>No action found.</CommandEmpty>
-              {actions_list.Skills.map((action, i) => {
+              {allActions.map((action, i) => {
                 const skillUnlocked = actionNames.has(action.name);
                 return (
                   <CommandItem
@@ -383,6 +421,7 @@ const Action: Action = {
   Wrapper: {
     Grid: GridWrapper,
     Rollable: RollableWrapper,
+    Menu: MenuWrapper,
   },
   HeaderContent: {
     Simple: SimpleHeaderContent,

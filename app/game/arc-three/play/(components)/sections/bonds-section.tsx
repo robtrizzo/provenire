@@ -11,9 +11,11 @@ export default function BondsSection() {
       </TypographyH2>
       <div className="mt-1" />
       {bonds.map((b, idx) => (
-        <Action.Wrapper.Rollable key={idx + b.name} action={b}>
-          <Action.HeaderContent.Simple action={b} />
-        </Action.Wrapper.Rollable>
+        <Action.Wrapper.Menu key={idx + b.name} action={b}>
+          <Action.Wrapper.Rollable key={idx + b.name} action={b}>
+            <Action.HeaderContent.Simple action={b} />
+          </Action.Wrapper.Rollable>
+        </Action.Wrapper.Menu>
       ))}
       <Action.Wrapper.Grid className="p-0">
         <Action.HeaderContent.Unlock type="bond" className="p-2" />
