@@ -1,0 +1,262 @@
+{
+  "Abilities": [
+    {
+      "name": "Charge",
+      "description": "Directly engage your obstacles."
+    },
+    {
+      "name": "Defy",
+      "description": "Stand strong in the face of a higher authority or insurmountable odds."
+    },
+    {
+      "name": "Stealth",
+      "description": "Skirt the edges of danger or avoid notice."
+    },
+    {
+      "name": "Survey",
+      "description": "Watch your environment and notice details others may miss."
+    },
+    {
+      "name": "Sway",
+      "description": "Convince or manipulate someone into doing what you want."
+    }
+  ],
+  "Skills": [
+    {
+      "name": "Acrobatics",
+      "description": "Traverse your surroundings with grace and speed."
+    },
+    {
+      "name": "Analyze",
+      "description": "Examine something to understand its function or purpose."
+    },
+    {
+      "name": "Ambush",
+      "description": "Exploit surprise for frightful or violent ends."
+    },
+    {
+      "name": "Authority",
+      "description": "Let your position of power do the talking."
+    },
+    {
+      "name": "Assess",
+      "description": "Think before acting. Catalog the possible advantages and consequences of a course of action."
+    },
+    {
+      "name": "Backsnap",
+      "description": "Overwhelming aggression"
+    },
+    {
+      "name": "Berate",
+      "description": "Use your words to make someone feel small"
+    },
+    {
+      "name": "Bleedout",
+      "description": "Small, precise strikes in vital regions"
+    },
+    {
+      "name": "Brawl",
+      "description": "Engage in unstructured close combat."
+    },
+    {
+      "name": "Candor",
+      "description": "Get someone to view you favorably or reveal a secret."
+    },
+    {
+      "name": "Challenge",
+      "description": "Confront someone in a way that demands a response."
+    },
+    {
+      "name": "Cobble",
+      "description": "Rapidly make an improvised tool or weapon from available tech."
+    },
+    {
+      "name": "Comfort",
+      "description": "Provide emotional support to someone in need"
+    },
+    {
+      "name": "Command",
+      "description": "Wield authority to get things done"
+    },
+    {
+      "name": "Connect",
+      "description": "Open up to someone so that they reciprocate"
+    },
+    {
+      "name": "Consort",
+      "description": "Meet with others to gain information or favors."
+    },
+    {
+      "name": "Coordinate",
+      "description": "Direct multiple unique entities to act as one."
+    },
+    {
+      "name": "Crowdbreaking",
+      "description": "Maximize damage to groups of surrounding foes"
+    },
+    {
+      "name": "Deal",
+      "description": "Negotiate a mutually beneficial agreement with someone."
+    },
+    {
+      "name": "Drama",
+      "description": "Appeal to emotions to elicit a response."
+    },
+    {
+      "name": "Eavesdrop",
+      "description": "Listen in on a conversation without being noticed."
+    },
+    {
+      "name": "Encourage",
+      "description": "Aid someone to feel confident in their own strengths"
+    },
+    {
+      "name": "Frighten",
+      "description": "Use fear as a blunt instrument."
+    },
+    {
+      "name": "Galvanize",
+      "description": "Stoke positive energy; inspire confidence in yourself and others."
+    },
+    {
+      "name": "Hide",
+      "description": "Conceal yourself or something else from view."
+    },
+    {
+      "name": "Ignite",
+      "description": "Incite action from an individual or group on the brink of conflict."
+    },
+    {
+      "name": "Impersonate",
+      "description": "Pass yourself off as someone who you aren't."
+    },
+    {
+      "name": "Initiate",
+      "description": "Start something dangerous or take the first step into the unknown"
+    },
+    {
+      "name": "Inspire",
+      "description": "Motivate others to take action"
+    },
+    {
+      "name": "Interface",
+      "description": "Work with tech the way it was intended to accomplish a task."
+    },
+    {
+      "name": "Lift",
+      "description": "Take something from someone without them noticing."
+    },
+    {
+      "name": "Logic",
+      "description": "Analyze something to understand where its axioms lead"
+    },
+    {
+      "name": "Loyalty",
+      "description": "Use your commitment to something as a source of strength."
+    },
+    {
+      "name": "Lurk",
+      "description": "Remain unnoticed while observing your surroundings."
+    },
+    {
+      "name": "Manipulate",
+      "description": "Deceive or coerce someone into doing what you want."
+    },
+    {
+      "name": "Mirado",
+      "description": "Observe, then act."
+    },
+    {
+      "name": "Navigate",
+      "description": "Find your way through complex environments."
+    },
+    {
+      "name": "Persuade",
+      "description": "Convince someone to do something without misleading them."
+    },
+    {
+      "name": "Obfuscate",
+      "description": "Hide your true intentions or confound someone's understanding."
+    },
+    {
+      "name": "Observe",
+      "description": "Watch and learn. Gain insight into a person or situation."
+    },
+    {
+      "name": "Organize",
+      "description": "Arrange meetings, get people on the same page, or create understanding from chaos."
+    },
+    {
+      "name": "Pull",
+      "description": "Move something heavy or difficult."
+    },
+    {
+      "name": "Pretense",
+      "description": "Present a false front or disguise your true intentions."
+    },
+    {
+      "name": "Rally",
+      "description": "Inspire others to come together and act as one."
+    },
+    {
+      "name": "Read",
+      "description": "Understand the emotions of others"
+    },
+    {
+      "name": "Relate",
+      "description": "Establish a connection or understanding with someone."
+    },
+    {
+      "name": "Rhetoric",
+      "description": "Persuade or manipulate others with the way your words make them feel"
+    },
+    {
+      "name": "Rummage",
+      "description": "Search through refuse for something useful."
+    },
+    {
+      "name": "Sabotage",
+      "description": "Tamper with or damage a machine or device."
+    },
+    {
+      "name": "Scheme",
+      "description": "Make a complicated plan to do something underhanded or immoral"
+    },
+    {
+      "name": "Smash",
+      "description": "Hurt someone or damage something with brute force."
+    },
+    {
+      "name": "Spin",
+      "description": "Twist the truth or redirect conversation to your advantage."
+    },
+    {
+      "name": "Stalk",
+      "description": "Follow someone or something without being noticed."
+    },
+    {
+      "name": "Step",
+      "description": "Move carefully through dangerous terrain."
+    },
+    {
+      "name": "Stubborn",
+      "description": "Resist change or pressure"
+    },
+    {
+      "name": "Study",
+      "description": "Research a topic or item. Gain insight into its function or history."
+    },
+    {
+      "name": "Suggest",
+      "description": "Plant an idea in someone's mind without them realizing it."
+    },
+    {
+      "name": "Tinker",
+      "description": "Work to understand or improve a machine or device"
+    },
+    {
+      "name": "Throatgore",
+      "description": "Pack tactics, go for the throat"
+    }
+  ]
+}

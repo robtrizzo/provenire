@@ -9,13 +9,18 @@ import {
   useContext,
   useState,
 } from "react";
+import actions from "@/public/arc3/actions.json";
 
 const SUPPORTED_VERSION = 3;
+const MAX_ABILITIES = 6;
+const MAX_SKILLS = 6;
 
 interface CharacterSheetContextProps {
   actions: ActionV3[];
   abilities: ActionV3[];
+  MAX_ABILITIES: number;
   skills: ActionV3[];
+  MAX_SKILLS: number;
   bonds: ActionV3[];
   xpSpent: number;
   setActions: Dispatch<SetStateAction<ActionV3[]>>;
@@ -37,80 +42,19 @@ export const useCharacterSheet = () => {
   return context;
 };
 
-const DEFAULT_ACTIONS: ActionV3[] = [
-  {
-    name: "Charge",
-    level: [0],
-    type: "ability",
-  },
-  {
-    name: "Consort",
-    level: [0],
-    type: "ability",
-  },
-  {
-    name: "Prowl",
-    level: [0],
-    type: "ability",
-  },
-  {
-    name: "Survey",
-    level: [0],
-    type: "ability",
-  },
-  {
-    name: "Sway",
-    level: [0],
-    type: "ability",
-  },
-  {
-    name: "Assess",
-    level: [1],
-    type: "skill",
-  },
-  {
-    name: "Obfuscate",
-    level: [1],
-    type: "skill",
-  },
-  {
-    name: "Inspire",
-    level: [1],
-    type: "skill",
-  },
-  {
-    name: "Throatgore",
-    level: [1],
-    type: "skill",
-  },
-  {
-    name: "Wreck",
-    level: [1],
-    type: "skill",
-  },
-];
-const DEFAULT_BONDS: ActionV3[] = [
-  {
-    name: "Best Friend",
-    level: [0],
-    type: "bond",
-  },
-  {
-    name: "Mom",
-    level: [0],
-    type: "bond",
-  },
-];
+const DEFAULT_ACTIONS: ActionV3[] = actions.Abilities.map((a) => ({
+  name: a.name,
+  description: a.description,
+  type: "ability",
+  level: [0],
+}));
 
 export default function CharacterSheetProvider({
   children,
 }: {
   children: ReactNode;
 }) {
-  const [actions, setActions] = useState<ActionV3[]>([
-    ...DEFAULT_ACTIONS,
-    ...DEFAULT_BONDS,
-  ]);
+  const [actions, setActions] = useState<ActionV3[]>(DEFAULT_ACTIONS);
   const [xpSpent, setXpSpent] = useState(0);
 
   const abilities: ActionV3[] = actions.filter((a) => a.type === "ability");
@@ -130,7 +74,9 @@ export default function CharacterSheetProvider({
       value={{
         actions,
         abilities,
+        MAX_ABILITIES,
         skills,
+        MAX_SKILLS,
         bonds,
         setActions,
         updateAction,

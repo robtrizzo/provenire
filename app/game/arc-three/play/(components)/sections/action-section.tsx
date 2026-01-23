@@ -3,7 +3,7 @@ import { useCharacterSheet } from "@/contexts/arc3CharacterSheetContext";
 import Action from "../action";
 
 export default function ActionSection() {
-  const { abilities, skills } = useCharacterSheet();
+  const { abilities, skills, MAX_ABILITIES, MAX_SKILLS } = useCharacterSheet();
   return (
     <div className="mt-4 grid grid-cols-2 gap-1">
       <TypographyH2 className="text-md mt-0 uppercase text-muted-foreground">
@@ -12,24 +12,35 @@ export default function ActionSection() {
       <TypographyH2 className="text-md mt-0 uppercase text-muted-foreground">
         Skills
       </TypographyH2>
-      <div className="col-span-1">
+      <div className="col-span-1 flex flex-col gap-0.5">
         {abilities.map((a, idx) => (
-          <Action.Wrapper.Rollable key={idx + a.name} action={a}>
-            <Action.HeaderContent.Simple action={a} />
-          </Action.Wrapper.Rollable>
+          <Action.Wrapper.Menu key={idx + a.name} action={a}>
+            <Action.Wrapper.Rollable action={a}>
+              <Action.HeaderContent.Simple action={a} />
+            </Action.Wrapper.Rollable>
+          </Action.Wrapper.Menu>
         ))}
+        {Array.from({ length: MAX_ABILITIES - abilities.length }).map(
+          (_, idx) => (
+            <Action.Wrapper.Grid className="p-0" key={`unlock-ability-${idx}`}>
+              <Action.HeaderContent.Unlock type="ability" className="p-2" />
+            </Action.Wrapper.Grid>
+          ),
+        )}
       </div>
-      <div className="col-span-1">
+      <div className="col-span-1 flex flex-col gap-0.5">
         {skills.map((a, idx) => (
-          <Action.Wrapper.Rollable key={idx + a.name} action={a}>
-            <Action.HeaderContent.Simple action={a} />
-          </Action.Wrapper.Rollable>
+          <Action.Wrapper.Menu key={idx + a.name} action={a}>
+            <Action.Wrapper.Rollable action={a}>
+              <Action.HeaderContent.Simple action={a} />
+            </Action.Wrapper.Rollable>
+          </Action.Wrapper.Menu>
         ))}
-      </div>
-      <div className="col-span-2 flex justify-center">
-        <span className="text-xs text-muted-foreground">
-          Left click to level up. Right click to level down.
-        </span>
+        {Array.from({ length: MAX_SKILLS - skills.length }).map((_, idx) => (
+          <Action.Wrapper.Grid className="p-0" key={`unlock-skill-${idx}`}>
+            <Action.HeaderContent.Unlock type="skill" className="p-2" />
+          </Action.Wrapper.Grid>
+        ))}
       </div>
     </div>
   );
