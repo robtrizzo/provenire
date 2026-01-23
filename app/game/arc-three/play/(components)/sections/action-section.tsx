@@ -12,24 +12,29 @@ export default function ActionSection() {
       <TypographyH2 className="text-md mt-0 uppercase text-muted-foreground">
         Skills
       </TypographyH2>
-      <div className="col-span-1">
+      <div className="col-span-1 flex flex-col gap-0.5">
         {abilities.map((a, idx) => (
           <Action.Wrapper.Rollable key={idx + a.name} action={a}>
             <Action.HeaderContent.Simple action={a} />
           </Action.Wrapper.Rollable>
         ))}
+        {abilities.length < 6 && (
+          <Action.Wrapper.Grid className="p-0">
+            <Action.HeaderContent.Unlock type="ability" className="p-2" />
+          </Action.Wrapper.Grid>
+        )}
       </div>
-      <div className="col-span-1">
+      <div className="col-span-1 flex flex-col gap-0.5">
         {skills.map((a, idx) => (
           <Action.Wrapper.Rollable key={idx + a.name} action={a}>
             <Action.HeaderContent.Simple action={a} />
           </Action.Wrapper.Rollable>
         ))}
-      </div>
-      <div className="col-span-2 flex justify-center">
-        <span className="text-xs text-muted-foreground">
-          Left click to level up. Right click to level down.
-        </span>
+        {Array.from({ length: 6 - skills.length }).map((_, idx) => (
+          <Action.Wrapper.Grid className="p-0" key={`unlock-skill-${idx}`}>
+            <Action.HeaderContent.Unlock type="skill" className="p-2" />
+          </Action.Wrapper.Grid>
+        ))}
       </div>
     </div>
   );

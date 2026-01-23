@@ -47,42 +47,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-const testLeft: ActionV3[] = [
-  {
-    name: "Charge",
-    level: [1],
-    type: "ability",
-  },
-  {
-    name: "Defy",
-    level: [0],
-    type: "ability",
-  },
-  {
-    name: "Wreck",
-    level: [2, 0],
-    type: "ability",
-  },
-];
-
-const testRight: ActionV3[] = [
-  {
-    name: "Acrobatics",
-    level: [1, 1],
-    type: "skill",
-  },
-  {
-    name: "Bluster",
-    level: [1],
-    type: "skill",
-  },
-  {
-    name: "Thoatgore",
-    level: [3],
-    type: "skill",
-  },
-];
-
 type RollSection = FC & {};
 
 const RollSection = () => {
@@ -354,7 +318,7 @@ function BonusDiceSection() {
               </div>
             </Button>
           </TooltipTrigger>
-          <TooltipContent className="flex flex-col items-start gap-1">
+          <TooltipContent className="flex flex-col items-start gap-1 border-border border-[1px]">
             <span className="flex items-center gap-1">
               <MousePointerClick size={16} className="text-emerald-600" />
               <b>Left-click</b> to <span className="text-emerald-600">add</span>

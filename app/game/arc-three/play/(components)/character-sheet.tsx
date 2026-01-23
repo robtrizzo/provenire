@@ -24,11 +24,6 @@ export default function CharacterSheet() {
             <div className="my-3 grid grid-cols-1 md:grid-cols-2 gap-6 focus-visible:outline-hidden">
               <div className="mt-4">
                 <XPSection />
-                <div className="mt-8 flex justify-center">
-                  <span className="text-red-700 text-sm">
-                    ALL ACTIONS AND SKILLS ARE PLACEHOLDERS
-                  </span>
-                </div>
                 <ActionSection />
                 <BondsSection />
               </div>
