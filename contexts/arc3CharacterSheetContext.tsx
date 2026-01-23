@@ -12,11 +12,15 @@ import {
 import actions from "@/public/arc3/actions.json";
 
 const SUPPORTED_VERSION = 3;
+const MAX_ABILITIES = 6;
+const MAX_SKILLS = 6;
 
 interface CharacterSheetContextProps {
   actions: ActionV3[];
   abilities: ActionV3[];
+  MAX_ABILITIES: number;
   skills: ActionV3[];
+  MAX_SKILLS: number;
   bonds: ActionV3[];
   xpSpent: number;
   setActions: Dispatch<SetStateAction<ActionV3[]>>;
@@ -70,7 +74,9 @@ export default function CharacterSheetProvider({
       value={{
         actions,
         abilities,
+        MAX_ABILITIES,
         skills,
+        MAX_SKILLS,
         bonds,
         setActions,
         updateAction,

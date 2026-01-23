@@ -293,6 +293,8 @@ function UnlockHeaderContent({ className, type }: UnlockActionProps) {
   const { actions, setActions } = useCharacterSheet();
   const [open, setOpen] = useState(false);
 
+  const actionNames = new Set(actions.map((a) => a.name));
+
   function handleAddAction(action: { name: string; description: string }) {
     console.log("add action", action);
     const foundAction = actions.find((a) => a.name === action.name);
@@ -347,21 +349,28 @@ function UnlockHeaderContent({ className, type }: UnlockActionProps) {
             <CommandInput placeholder="Search actions..." className="h-9" />
             <CommandList>
               <CommandEmpty>No action found.</CommandEmpty>
-              {actions_list.Skills.map((action, i) => (
-                <CommandItem
-                  key={action.name + i}
-                  value={action.name}
-                  onSelect={() => {
-                    handleAddAction(action);
-                  }}
-                  className="hover:cursor-pointer"
-                >
-                  <div className="grid grid-cols-8 w-full">
-                    <span className="col-span-2">{action.name}</span>
-                    <span className="col-span-6">{action.description}</span>
-                  </div>
-                </CommandItem>
-              ))}
+              {actions_list.Skills.map((action, i) => {
+                const skillUnlocked = actionNames.has(action.name);
+                return (
+                  <CommandItem
+                    key={action.name + i}
+                    value={action.name}
+                    onSelect={() => {
+                      handleAddAction(action);
+                    }}
+                    className={cn(
+                      "hover:cursor-pointer",
+                      skillUnlocked &&
+                        "text-muted-foreground bg-accent/50 hover:cursor-auto data-[selected=true]:bg-accent/50 data-[selected=true]:text-muted-foreground",
+                    )}
+                  >
+                    <div className="grid grid-cols-8 w-full">
+                      <span className="col-span-2">{action.name}</span>
+                      <span className="col-span-6">{action.description}</span>
+                    </div>
+                  </CommandItem>
+                );
+              })}
             </CommandList>
           </Command>
         )}
