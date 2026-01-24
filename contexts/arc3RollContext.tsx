@@ -27,7 +27,7 @@ interface RollContextProps {
   addDice: (dice: Die[]) => void;
   removeDiceByLabel: (labelToRemove: string) => void;
   removeDieByLabel: (labelToRemove: string) => void;
-  doRoll: () => void;
+  doRoll: (diceOverride?: Die[]) => void;
 }
 
 const RollContext = createContext<RollContextProps | undefined>(undefined);
@@ -170,8 +170,9 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     }
   }
 
-  function doRoll() {
-    const rolledFaces: number[] = dice.reduce(
+  function doRoll(diceOverride?: Die[]) {
+    const diceToRoll = !!diceOverride ? diceOverride : dice;
+    const rolledFaces: number[] = diceToRoll.reduce(
       (acc: number[], die) => [
         ...acc,
         Math.floor(Math.random() * die.faces.length),
@@ -200,16 +201,18 @@ export default function RollProvider({ children }: { children: ReactNode }) {
             <DieFace
               key={`${f}-${idx}`}
               size={84}
-              face={dice[idx].faces[f]}
-              variant={dice[idx].variant}
+              face={diceToRoll[idx].faces[f]}
+              variant={diceToRoll[idx].variant}
             />
           ))}
         </div>
       ),
     });
-    setDice([]);
-    setRollLeft(undefined);
-    setRollRight(undefined);
+    if (!diceOverride) {
+      setDice([]);
+      setRollLeft(undefined);
+      setRollRight(undefined);
+    }
   }
 
   return (

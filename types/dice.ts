@@ -29,4 +29,5 @@ export type DieVariant =
   | "ability"
   | "skill"
   | "emotion"
-  | "push";
+  | "push"
+  | "fortune";

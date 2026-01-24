@@ -10,6 +10,7 @@ import {
   Select,
   SelectContent,
   SelectItem,
+  SelectSeparator,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -18,27 +19,27 @@ import { Switch } from "@/components/ui/switch";
 import { TypographyP } from "@/components/ui/typography";
 import { useRoll } from "@/contexts/arc3RollContext";
 import {
-  AbilityDice,
   calculateAdvantageProbability,
   calculateCritProbability,
   calculateEffectProbability,
   calculateThreatProbability,
+  FortuneDice,
   PushDie,
-  SkillDice,
 } from "@/lib/dice";
-import { ActionV3 } from "@/types/arc3";
 import type { DieVariant } from "@/types/dice";
 import {
-  ChevronsUpDown,
+  Clover,
+  Dices,
   Eye,
   EyeClosed,
+  Minus,
   MousePointer2,
   MousePointerClick,
+  Plus,
   X,
 } from "lucide-react";
 import { FC, useState } from "react";
-import { Die, DieFace } from "../../../../../../components/dice/dice";
-import AnimatedDie from "@/components/dice/animated-die";
+import { Die } from "../../../../../../components/dice/dice";
 import { cn } from "@/lib/utils";
 import { useCharacterSheet } from "@/contexts/arc3CharacterSheetContext";
 import {
@@ -46,11 +47,20 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { Input } from "@/components/ui/input";
 
 type RollSection = FC & {};
 
 const RollSection = () => {
-  const { isPrivate, setIsPrivate, connectionStatus, doRoll } = useRoll();
+  const {
+    isPrivate,
+    setIsPrivate,
+    connectionStatus,
+    doRoll,
+    setRollLeft,
+    setRollRight,
+    setDice,
+  } = useRoll();
 
   return (
     <Card className="mt-4 p-4 flex flex-col gap-4">
@@ -81,17 +91,31 @@ const RollSection = () => {
         </div>
       </div>
       <RollSelect />
-      <Button variant="secondary" onClick={() => doRoll()}>
-        Roll
-      </Button>
-      <DetailsSection />
-      <Separator />
-      <span className="text-center uppercase text-xs text-muted-foreground">
-        Bonds
-      </span>
+      <div className="w-full grid grid-cols-4 gap-2">
+        <Button
+          variant="secondary"
+          onClick={() => doRoll()}
+          className="col-span-3"
+        >
+          <Dices /> Roll
+        </Button>
+        <Button
+          variant="outline"
+          onClick={() => {
+            setDice([]);
+            setRollLeft(undefined);
+            setRollRight(undefined);
+          }}
+        >
+          <X /> Clear
+        </Button>
+      </div>
       <BondDiceSection />
       <Separator />
       <BonusDiceSection />
+      <Separator />
+      <FortuneSection />
+      <DetailsSection />
     </Card>
   );
 };
@@ -130,6 +154,18 @@ function RollSelect({ disabled = false }: { disabled?: boolean }) {
               {name}
             </SelectItem>
           ))}
+          <SelectSeparator />
+          <Button
+            variant="secondary"
+            size="sm"
+            className="w-full px-2"
+            onClick={(e) => {
+              e.stopPropagation();
+              setRollLeft(undefined);
+            }}
+          >
+            Clear
+          </Button>
         </SelectContent>
       </Select>
       <Select
@@ -159,6 +195,18 @@ function RollSelect({ disabled = false }: { disabled?: boolean }) {
               {name}
             </SelectItem>
           ))}
+          <SelectSeparator />
+          <Button
+            variant="secondary"
+            size="sm"
+            className="w-full px-2"
+            onClick={(e) => {
+              e.stopPropagation();
+              setRollRight(undefined);
+            }}
+          >
+            Clear
+          </Button>
         </SelectContent>
       </Select>
     </div>
@@ -179,6 +227,7 @@ function DetailsSection() {
       push: 3,
       default: 0,
       emotion: 0,
+      fortune: 0,
     };
 
     // If your dice have a 'type' or 'variant' property, adjust accordingly
@@ -263,21 +312,28 @@ function BondDiceSection() {
     [],
   );
   return (
-    <div className="grid grid-cols-3">
-      {bonds.map((b, idx) => (
-        <div
-          key={b + idx}
-          className="group col-span-1 flex justify-center border-sky-600/50 hover:bg-sky-600/10 hover:cursor-pointer border-[1px] rounded-sm"
-          onClick={() => {
-            removeDiceByLabel(b);
-          }}
-        >
-          <span className="text-sky-500 group-hover:line-through group-hover:text-red-600 transition-all duration-200">
-            {b}
-          </span>
+    <>
+      <span className="text-center uppercase text-xs text-muted-foreground">
+        Bonds
+      </span>
+      {bonds.length > 0 && (
+        <div className="grid grid-cols-3">
+          {bonds.map((b, idx) => (
+            <div
+              key={b + idx}
+              className="group col-span-1 flex justify-center border-sky-600/50 hover:bg-sky-600/10 hover:cursor-pointer border-[1px] rounded-sm"
+              onClick={() => {
+                removeDiceByLabel(b);
+              }}
+            >
+              <span className="text-sky-500 group-hover:line-through group-hover:text-red-600 transition-all duration-200">
+                {b}
+              </span>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
+      )}
+    </>
   );
 }
 
@@ -343,6 +399,77 @@ function BonusDiceSection() {
         </Button>
       </div>
     </>
+  );
+}
+
+function FortuneSection() {
+  const { doRoll } = useRoll();
+
+  const [showFortune, setShowFortune] = useState(false);
+  const [fortuneDice, setFortuneDice] = useState(0);
+
+  const handleFortuneRoll = () => {
+    const dice =
+      fortuneDice === 0
+        ? [{ ...FortuneDice[0], label: "fortune" }]
+        : Array.from({ length: fortuneDice }, (_, i) => ({
+            ...FortuneDice[1],
+            label: `fortune-${i + 1}`,
+          }));
+    doRoll(dice);
+    setFortuneDice(0);
+  };
+
+  return (
+    <Collapsible
+      className="relative"
+      open={showFortune}
+      onOpenChange={setShowFortune}
+    >
+      <div className="flex justify-center">
+        <span className="uppercase text-xs text-muted-foreground">Fortune</span>
+      </div>
+      <CollapsibleTrigger className="absolute top-[-12px] right-0" asChild>
+        <Button variant="ghost" size="icon">
+          {showFortune ? <Eye /> : <EyeClosed />}
+        </Button>
+      </CollapsibleTrigger>
+      <CollapsibleContent>
+        <div className="flex items-center justify-center gap-1">
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => {
+              setFortuneDice(Math.max(0, fortuneDice - 1));
+            }}
+          >
+            <Minus />
+          </Button>
+          <Input
+            type="number"
+            className="w-18"
+            defaultValue={0}
+            value={fortuneDice}
+            onChange={(e) => {
+              e.preventDefault();
+              setFortuneDice(parseInt(e.target.value));
+            }}
+          />
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => {
+              setFortuneDice(fortuneDice + 1);
+            }}
+          >
+            <Plus />
+          </Button>
+          <Button variant="secondary" onClick={handleFortuneRoll}>
+            <Clover /> Roll
+          </Button>
+        </div>
+      </CollapsibleContent>
+    </Collapsible>
   );
 }
 
