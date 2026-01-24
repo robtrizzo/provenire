@@ -11,6 +11,7 @@ const d6Variants = cva("", {
       skill: "text-violet-700/30",
       emotion: "text-pink-700/30",
       push: "text-green-700/30",
+      fortune: "text-[oklch(0.3485_0_0)]",
     },
     crit: {
       true: "",
