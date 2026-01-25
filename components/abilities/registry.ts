@@ -165,6 +165,12 @@ import AvoidConflict1 from "./archetypes/arc1/entertainer/avoid-conflict";
 
 // operatives
 // arc2
+// bladewind
+import Bladeclad from "./operatives/arc2/bladewind/bladeclad";
+import BladeArt from "./operatives/arc2/bladewind/blade-art";
+import Transfusion from "./operatives/arc2/bladewind/transfusion";
+import BloodyAegis from "./operatives/arc2/bladewind/bloody-aegis";
+import BladeWind from "./operatives/arc2/bladewind/blade-wind";
 // canon
 import Overkill from "./operatives/arc2/canon/overkill";
 import WarmupRoutine from "./operatives/arc2/canon/warmup-routine";
@@ -512,6 +518,13 @@ export const abilityRegistry = {
   },
   operatives: {
     arc2: {
+      bladewind: {
+        bladeclad: Bladeclad,
+        "blade-art": BladeArt,
+        transfusion: Transfusion,
+        "bloody-aegis": BloodyAegis,
+        "blade-wind": BladeWind,
+      },
       canon: {
         overkill: Overkill,
         "warmup-routine": WarmupRoutine,
