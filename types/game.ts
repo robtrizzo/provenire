@@ -302,7 +302,7 @@ export interface HarmModifier {
   sourceId: string;
 }
 
-export type CustomResourceType = "xp-clock" | "heat-track";
+export type CustomResourceType = "xp-clock" | "clock" | "heat-track";
 
 export interface CustomResource {
   id: string;
@@ -312,11 +312,20 @@ export interface CustomResource {
   config: CustomResourceConfig;
 }
 
-export type CustomResourceConfig = XPClockConfig | HeatTrackConfig;
+export type CustomResourceConfig =
+  | XPClockConfig
+  | ClockConfig
+  | HeatTrackConfig;
 
 export interface XPClockConfig {
   xp: number;
   default: 0;
+}
+
+export interface ClockConfig {
+  value: number;
+  default: number;
+  max: number;
 }
 
 export interface HeatTrackConfig {

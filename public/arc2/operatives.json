@@ -1,5 +1,27 @@
 [
   {
+    "name": "Bladewind",
+    "action": "Ignite",
+    "abilities": [
+      { "name": "Bladeclad", "keystone": true, "slug": "bladeclad", "cost": 0 },
+      { "name": "Blade Art", "slug": "blade-art", "cost": 2 },
+      { "name": "Transfusion", "slug": "transfusion", "cost": 3 },
+      { "name": "Bloody Aegis", "slug": "bloody-aegis", "cost": 3 },
+      { "name": "Blade Wind", "slug": "blade-wind", "cost": 5 }
+    ],
+    "customResources": [
+      {
+        "id": "blades",
+        "name": "Blades",
+        "type": "clock",
+        "config": {
+          "max": 5,
+          "default": 3
+        }
+      }
+    ]
+  },
+  {
     "name": "Canon",
     "action": "Smolder",
     "abilities": [

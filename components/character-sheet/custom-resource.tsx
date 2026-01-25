@@ -1,4 +1,5 @@
 import type {
+  ClockConfig,
   CustomResource,
   HeatTrackConfig,
   XPClockConfig,
@@ -6,6 +7,7 @@ import type {
 import XPClocks from "./xp-clocks";
 import { TypographyH2 } from "@/components/ui/typography";
 import { BuildupCheckboxes } from "../buildup-checkboxes";
+import Clock from "../clock";
 
 interface CustomResourceProps {
   resource: CustomResource;
@@ -31,6 +33,10 @@ export default function CustomResource({
           onUpdate={onUpdate}
         />
       );
+    case "clock":
+      return (
+        <CustomClock resource={resource} value={value} onUpdate={onUpdate} />
+      );
     default:
       return null;
   }
@@ -50,6 +56,28 @@ function CustomXpClock({ resource, value, onUpdate }: CustomResourceProps) {
         <XPClocks.Clocks initial={currentValue} setVal={onUpdate} />
         <XPClocks.Controls initial={currentValue} setVal={onUpdate} />
       </XPClocks>
+    </>
+  );
+}
+
+function CustomClock({ resource, value, onUpdate }: CustomResourceProps) {
+  const config = resource.config as ClockConfig;
+  const currentValue = (value ?? config.default) as number;
+  const key = `${resource.name}-clock-${currentValue}`;
+
+  return (
+    <>
+      <TypographyH2 className="text-md text-muted-foreground flex items-end justify-between">
+        {resource.name}
+        <Clock
+          key={key}
+          current={currentValue}
+          setVal={onUpdate}
+          max={config.max}
+          height={35}
+          width={35}
+        />
+      </TypographyH2>
     </>
   );
 }

@@ -51,6 +51,28 @@ export default async function Page() {
       </TypographyP>
 
       <div className="flex flex-col gap-2 mt-4">
+        <OperativeCard name="Bladewind">
+          <span className="text-sm text-muted-foreground font-cyber">
+            Unclassified operative. Apprehend on sight.
+          </span>
+          <TypographyP>
+            <b className="font-cyber text-red-500">Ignite</b> Incite action from
+            an individual or group on the brink of conflict.
+          </TypographyP>
+          <TypographyP>
+            <b className="font-cyber text-fuchsia-500">
+              Directed Ferrokinetic Field &quot;Deathknell&quot;
+            </b>
+          </TypographyP>
+          <TypographyP>
+            <span className="font-cyber">Bladewind</span> is <i>not</i> on{" "}
+            <span className="font-cyber">Root&apos;s</span> roster, but they
+            seem to be cooperating with other{" "}
+            <span className="font-cyber">Root</span> assets. Operatives are
+            advised to treat <span className="font-cyber">Bladewind</span> with
+            caution and use them for an antagonistic scene partner.
+          </TypographyP>
+        </OperativeCard>
         <OperativeCard name="Canon">
           <span className="text-sm text-muted-foreground font-cyber">
             Silent, simmering, sexy type. Explosive power.
