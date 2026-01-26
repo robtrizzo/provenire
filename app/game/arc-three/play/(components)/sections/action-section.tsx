@@ -14,11 +14,13 @@ export default function ActionSection() {
       </TypographyH2>
       <div className="col-span-1 flex flex-col gap-0.5">
         {abilities.map((a, idx) => (
-          <Action.Wrapper.Menu key={idx + a.name} action={a}>
-            <Action.Wrapper.Rollable action={a}>
-              <Action.HeaderContent.Simple action={a} />
-            </Action.Wrapper.Rollable>
-          </Action.Wrapper.Menu>
+          <Action.Wrapper.Tooltip action={a} key={idx + a.name}>
+            <Action.Wrapper.Menu action={a}>
+              <Action.Wrapper.Rollable action={a}>
+                <Action.HeaderContent.Simple action={a} />
+              </Action.Wrapper.Rollable>
+            </Action.Wrapper.Menu>
+          </Action.Wrapper.Tooltip>
         ))}
         {Array.from({ length: MAX_ABILITIES - abilities.length }).map(
           (_, idx) => (
@@ -30,11 +32,13 @@ export default function ActionSection() {
       </div>
       <div className="col-span-1 flex flex-col gap-0.5">
         {skills.map((a, idx) => (
-          <Action.Wrapper.Menu key={idx + a.name} action={a}>
-            <Action.Wrapper.Rollable action={a}>
-              <Action.HeaderContent.Simple action={a} />
-            </Action.Wrapper.Rollable>
-          </Action.Wrapper.Menu>
+          <Action.Wrapper.Tooltip action={a} key={idx + a.name}>
+            <Action.Wrapper.Menu action={a}>
+              <Action.Wrapper.Rollable action={a}>
+                <Action.HeaderContent.Simple action={a} />
+              </Action.Wrapper.Rollable>
+            </Action.Wrapper.Menu>
+          </Action.Wrapper.Tooltip>
         ))}
         {Array.from({ length: MAX_SKILLS - skills.length }).map((_, idx) => (
           <Action.Wrapper.Grid className="p-0" key={`unlock-skill-${idx}`}>

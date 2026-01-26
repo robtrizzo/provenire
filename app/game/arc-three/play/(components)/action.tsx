@@ -24,7 +24,6 @@ import {
 import { cn } from "@/lib/utils";
 import { ActionV3, ActionVariantV3 } from "@/types/arc3";
 import {
-  Dices,
   LockKeyholeOpen,
   MousePointer2,
   MousePointerClick,
@@ -62,6 +61,11 @@ type HeaderContent = {
   Unlock: FC<UnlockActionProps>;
 };
 
+interface GridWrapperProps {
+  className?: string;
+  children: ReactNode;
+}
+
 interface RollableWrapperProps extends ActionProps {
   children: ReactNode;
 }
@@ -71,16 +75,16 @@ interface MenuWrapperProps
   children: ReactNode;
 }
 
+interface TooltipWrapperProps extends ActionProps {
+  children: ReactNode;
+}
+
 type Wrapper = {
   Grid: FC<GridWrapperProps>;
   Rollable: FC<RollableWrapperProps>;
   Menu: FC<MenuWrapperProps>;
+  Tooltip: FC<TooltipWrapperProps>;
 };
-
-interface GridWrapperProps {
-  className?: string;
-  children: ReactNode;
-}
 
 type Action = {
   HeaderContent: HeaderContent;
@@ -334,9 +338,7 @@ function UnlockHeaderContent({ className, type }: UnlockActionProps) {
   const actionNames = new Set(actions.map((a) => a.name));
 
   function handleAddAction(action: { name: string; description: string }) {
-    console.log("add action", action);
     const foundAction = actions.find((a) => a.name === action.name);
-    console.log("foundAction", foundAction);
     if (!!foundAction) return;
     const newAction: ActionV3 = {
       name: action.name,
@@ -417,11 +419,23 @@ function UnlockHeaderContent({ className, type }: UnlockActionProps) {
   );
 }
 
+function TooltipWrapper({ action, children }: TooltipWrapperProps) {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>{children}</TooltipTrigger>
+      <TooltipContent className="flex flex-col items-start gap-1 border-border border-[1px]">
+        {action.description}
+      </TooltipContent>
+    </Tooltip>
+  );
+}
+
 const Action: Action = {
   Wrapper: {
     Grid: GridWrapper,
     Rollable: RollableWrapper,
     Menu: MenuWrapper,
+    Tooltip: TooltipWrapper,
   },
   HeaderContent: {
     Simple: SimpleHeaderContent,
