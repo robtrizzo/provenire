@@ -37,7 +37,7 @@ export const EmotionDie: Die = {
 
 export const FortuneDice: Record<0 | 1, Die> = {
   0: { faces: ["tc", "t", "t", "t", "t:r", "t:r"], variant: "fortune" },
-  1: { faces: ["t", "t", "t", "t:r", "t:r", "ec:s"], variant: "fortune" },
+  1: { faces: ["tc", "t", "t", "t:r", "t:r", "ec:s"], variant: "fortune" },
 };
 
 // Helper to get max die level from a dice set
