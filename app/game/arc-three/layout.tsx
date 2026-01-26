@@ -21,20 +21,20 @@ const navigationData = [
   //   title: "Cycle of Play",
   //   url: "#",
   // },
-  // {
-  //   title: "Character Options",
-  //   url: "#",
-  //   items: [
-  //     {
-  //       title: "Remembrances",
-  //       url: "/game/arc-three/character-options/remembrances",
-  //     },
-  //     {
-  //       title: "Roles",
-  //       url: "/game/arc-three/character-options/roles",
-  //     },
-  //   ],
-  // },
+  {
+    title: "Character Options",
+    url: "#",
+    items: [
+      {
+        title: "Remembrances",
+        url: "/game/arc-three/character-options/remembrances",
+      },
+      {
+        title: "Roles",
+        url: "/game/arc-three/character-options/roles",
+      },
+    ],
+  },
   {
     title: "Demo",
     url: "#",

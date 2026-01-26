@@ -55,14 +55,14 @@ export default async function Page() {
         <b>What you give:</b> a chance to shape the coalition and communities
       </TypographyP>
       <TypographyH2>Responsibilities</TypographyH2>
-      <TypographyH3>Scouting</TypographyH3>
-      <TypographyH3>Equipment</TypographyH3>
-      <TypographyH3>Espionage</TypographyH3>
-      <TypographyH3>Security</TypographyH3>
-      <TypographyH3>Food</TypographyH3>
-      <TypographyH3>Research</TypographyH3>
-      <TypographyH3>Diplomacy</TypographyH3>
-      <TypographyH3>Construction</TypographyH3>
+      <TypographyH3>Seeker</TypographyH3>
+      <TypographyH3>Wright</TypographyH3>
+      <TypographyH3>Shade</TypographyH3>
+      <TypographyH3>Lock</TypographyH3>
+      <TypographyH3>Vault</TypographyH3>
+      <TypographyH3>Cipher</TypographyH3>
+      <TypographyH3>Pact</TypographyH3>
+      <TypographyH3>Scaffold</TypographyH3>
     </>
   );
 }

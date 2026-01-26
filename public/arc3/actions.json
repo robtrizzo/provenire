@@ -10,7 +10,7 @@
     },
     {
       "name": "Stealth",
-      "description": "Skirt the edges of danger or avoid notice."
+      "description": "Employ subtlety; avoid notice."
     },
     {
       "name": "Survey",
@@ -195,6 +195,10 @@
       "description": "Present a false front or disguise your true intentions."
     },
     {
+      "name": "Prowl",
+      "description": "Skirt the edges of danger unnoticed."
+    },
+    {
       "name": "Rally",
       "description": "Inspire others to come together and act as one."
     },
@@ -221,6 +225,10 @@
     {
       "name": "Scheme",
       "description": "Make a complicated plan to do something underhanded or immoral"
+    },
+    {
+      "name": "Skirmish",
+      "description": "Cautiously engage your obstacles."
     },
     {
       "name": "Smash",

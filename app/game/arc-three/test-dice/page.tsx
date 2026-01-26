@@ -17,6 +17,7 @@ import {
   AbilityDice,
   BondDice,
   EmotionDie,
+  FortuneDice,
   PushDie,
   SkillDice,
 } from "@/lib/dice";
@@ -128,9 +129,16 @@ export default async function Page() {
 
       <Separator className="mt-4" />
 
+      <TypographyH3>Fortune Dice</TypographyH3>
+      <TypographyH4>Level 0</TypographyH4>
+      <Die die={FortuneDice[0]} />
+      <TypographyH4>Level 1</TypographyH4>
+      <Die die={FortuneDice[1]} />
+
+      <Separator className="mt-4" />
+
       <TypographyH3>Ability Dice</TypographyH3>
       <TypographyH4>Level 0</TypographyH4>
-
       <Die die={AbilityDice[0]} />
       <TypographyH4>Level 1</TypographyH4>
       <Die die={AbilityDice[1]} />
