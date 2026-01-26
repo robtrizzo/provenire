@@ -448,7 +448,6 @@ function FortuneSection() {
           <Input
             type="number"
             className="w-18"
-            defaultValue={0}
             value={fortuneDice}
             onChange={(e) => {
               e.preventDefault();
