@@ -210,7 +210,7 @@ function ActionLevel({ action }: { action: ActionV3 }) {
     }
     if (newLevel > maxLevel) return;
     if (newLevel < minLevel) {
-      setXpSpent(Math.max(0, xpSpent - 5));
+      setXpSpent(xpSpent - 5);
       handleLockLevel(index);
       return;
     }
