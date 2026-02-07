@@ -14,6 +14,13 @@ import actions from "@/public/arc3/actions.json";
 const SUPPORTED_VERSION = 3;
 const MAX_ABILITIES = 6;
 const MAX_SKILLS = 6;
+const DEFAULT_CONDITIONS = [
+  "Insecure",
+  "Afraid",
+  "Angry",
+  "Hopeless",
+  "Guilty",
+];
 
 interface CharacterSheetContextProps {
   actions: ActionV3[];
@@ -22,10 +29,19 @@ interface CharacterSheetContextProps {
   skills: ActionV3[];
   MAX_SKILLS: number;
   bonds: ActionV3[];
+  xp: number;
   xpSpent: number;
+  stress: number;
+  maxStress: number;
+  conditions: string[];
+  DEFAULT_CONDITIONS: string[];
   setActions: Dispatch<SetStateAction<ActionV3[]>>;
   updateAction: (updatedAction: ActionV3) => void;
+  setXp: Dispatch<SetStateAction<number>>;
   setXpSpent: Dispatch<SetStateAction<number>>;
+  setStress: Dispatch<SetStateAction<number>>;
+  setMaxStress: Dispatch<SetStateAction<number>>;
+  setConditions: Dispatch<SetStateAction<string[]>>;
 }
 
 const CharacterSheetContext = createContext<
@@ -55,7 +71,13 @@ export default function CharacterSheetProvider({
   children: ReactNode;
 }) {
   const [actions, setActions] = useState<ActionV3[]>(DEFAULT_ACTIONS);
+
+  const [xp, setXp] = useState(0);
   const [xpSpent, setXpSpent] = useState(0);
+
+  const [stress, setStress] = useState(0);
+  const [maxStress, setMaxStress] = useState(9);
+  const [conditions, setConditions] = useState<string[]>([]);
 
   const abilities: ActionV3[] = actions.filter((a) => a.type === "ability");
   const skills: ActionV3[] = actions.filter((a) => a.type === "skill");
@@ -78,10 +100,19 @@ export default function CharacterSheetProvider({
         skills,
         MAX_SKILLS,
         bonds,
+        xpSpent,
+        xp,
+        stress,
+        maxStress,
+        conditions,
+        DEFAULT_CONDITIONS,
         setActions,
         updateAction,
-        xpSpent,
         setXpSpent,
+        setXp,
+        setStress,
+        setMaxStress,
+        setConditions,
       }}
     >
       {children}
