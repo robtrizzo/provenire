@@ -2,8 +2,9 @@ import redis from "@/lib/redis";
 import { Roll } from "@/types/roll";
 import { client, Bucket } from "@/lib/s3";
 import { GetObjectCommand } from "@aws-sdk/client-s3";
+import { UserId } from "@/types/brand";
 
-export async function addRoll(userId: string, roll: Roll): Promise<void> {
+export async function addRoll(userId: UserId, roll: Roll): Promise<void> {
   const key = `user:${userId}:rolls`;
   roll.timestamp = new Date().toISOString();
   await redis.lpush(key, JSON.stringify(roll));
@@ -14,15 +15,15 @@ export async function addRoll(userId: string, roll: Roll): Promise<void> {
 }
 
 export async function getRolls(
-  userId: string,
+  userId: UserId,
   cursor = 0,
-  pageSize = 20
+  pageSize = 20,
 ): Promise<Roll[]> {
   const key = `user:${userId}:rolls`;
   return await redis.lrange(key, cursor, cursor + pageSize - 1);
 }
 
-export async function clearRolls(userId: string): Promise<void> {
+export async function clearRolls(userId: UserId): Promise<void> {
   const key = `user:${userId}:rolls`;
   await redis.del(key);
 
@@ -41,7 +42,7 @@ export async function clearRolls(userId: string): Promise<void> {
 
 export async function getAllRolls(
   cursor: number,
-  pageSize: number
+  pageSize: number,
 ): Promise<Roll[]> {
   return await redis.lrange("rolls", cursor, cursor + pageSize - 1);
 }

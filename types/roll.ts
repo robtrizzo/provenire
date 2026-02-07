@@ -1,5 +1,6 @@
 import { StringUnion } from "@/lib/utils";
 import { Rollable } from "./game";
+import { UserId } from "./brand";
 
 export const RollType = StringUnion("action", "fortune", "resist", "project");
 export type RollType = typeof RollType.type;
@@ -12,7 +13,7 @@ export type RollEffect = typeof RollEffect.type;
 
 export type Roll = {
   charName: string;
-  userid: string;
+  userid: UserId;
   redDice: number[];
   blueDice: number[];
   pinkDice?: number[];

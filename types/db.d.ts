@@ -2,7 +2,7 @@ interface User {
   name: string;
   email: string;
   image: string;
-  id: string;
+  id: UserId;
   role?: string;
   permissions?: string[];
 }
