@@ -2,6 +2,7 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { Button } from "@/components/ui/button";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/toaster";
+import Link from "next/link";
 import { ReactNode } from "react";
 
 const navigationData = [
@@ -58,9 +59,11 @@ export default function Layout({ children }: { children: ReactNode }) {
     >
       <Toaster />
       <AppSidebar data={navigationData}>
-        <Button variant="secondary" className="w-full text-lg py-6" disabled>
-          Play
-        </Button>
+        <Link href="/game/arc-three/play">
+          <Button variant="secondary" className="w-full text-lg py-6">
+            Play
+          </Button>
+        </Link>
       </AppSidebar>
       <SidebarInset>
         <div className="relative p-4 box-border max-w-full">
