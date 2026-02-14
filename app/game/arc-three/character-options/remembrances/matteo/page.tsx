@@ -83,7 +83,7 @@ export default function Page() {
       </div>
       <span className="text-red-500 text-sm font-old">Aldam</span>
       <div className="mt-2 flex items-center gap-4">
-        <TypographyH3 className="mt-0">Darkspear Style</TypographyH3>
+        <TypographyH3 className="mt-0">Shadespear</TypographyH3>
         <ClockCost num={3} ticks={5} />
       </div>
       <span className="text-emerald-500 text-sm font-old">Fighting Style</span>

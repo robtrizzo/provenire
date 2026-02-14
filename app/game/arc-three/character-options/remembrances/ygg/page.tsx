@@ -59,10 +59,8 @@ export default function Page() {
         <div className="col-span-5">
           <TypographyH2 className="font-old">Histories</TypographyH2>
           <div className="mt-2 flex items-center gap-4">
-            <TypographyH3 className="mt-0">
-              Way of the Jungle (Era One)
-            </TypographyH3>
-            <ClockCost num={1} ticks={5} />
+            <TypographyH3 className="mt-0">The Bwarhein</TypographyH3>
+            <ClockCost num={3} ticks={5} />
           </div>
           <div className="mt-2 flex items-center gap-4">
             <TypographyH3 className="mt-0">Kingwulf&apos;s Jaws</TypographyH3>

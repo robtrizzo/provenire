@@ -91,7 +91,7 @@ export default function Page() {
         <ClockCost num={5} ticks={5} />
       </div>
       <span className="text-fuchsia-500 text-sm font-old">
-        The Gift of the King
+        Gift of the King
       </span>
       <div className="mt-2 flex items-center gap-4">
         <TypographyH3 className="mt-0">Donum Ignis</TypographyH3>

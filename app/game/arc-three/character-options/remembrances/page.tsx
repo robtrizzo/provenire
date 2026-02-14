@@ -144,8 +144,8 @@ export default async function Page() {
           <TypographyP>
             <b className="text-lg">Abilities:</b> survival, hunting, music,{" "}
             <b className="text-red-500">Narscillian Aldams</b>,{" "}
-            <b className="text-emerald-500">Darkspear Style</b>, knowledge of
-            ancient Narscillia.
+            <b className="text-emerald-500">Shadespear</b>, knowledge of ancient
+            Narscillia.
           </TypographyP>
         </RemembranceCard>
         <RemembranceCard name="Takota" img="volcano">
