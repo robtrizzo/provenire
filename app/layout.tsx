@@ -4,6 +4,7 @@ import {
   Josefin_Sans as FontSans,
   Caudex as FontSerif,
   Orbitron as FontCyber,
+  Eagle_Lake as FontAntique,
 } from "next/font/google";
 import Providers from "@/providers/providers";
 import { cn } from "@/lib/utils";
@@ -30,6 +31,13 @@ const fontCyber = FontCyber({
   variable: "--font-cyber",
 });
 
+const fontAntique = FontAntique({
+  weight: ["400"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-old",
+});
+
 // Kotta One would be good for script
 
 export const metadata: Metadata = {
@@ -52,7 +60,8 @@ export default function RootLayout({
           "min-h-screen bg-background font-sans antialiased",
           fontSans.variable,
           fontSerif.variable,
-          fontCyber.variable
+          fontCyber.variable,
+          fontAntique.variable,
         )}
       >
         <Providers>{children}</Providers>

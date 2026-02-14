@@ -58,6 +58,7 @@ interface UnlockActionProps {
 type HeaderContent = {
   Detailed: FC<ActionProps>;
   Simple: FC<ActionProps>;
+  Static: FC<ActionProps>;
   Unlock: FC<UnlockActionProps>;
 };
 
@@ -181,6 +182,17 @@ function SimpleHeaderContent({ action }: { action: ActionV3 }) {
   );
 }
 
+function SimpleHeaderContentStatic({ action }: { action: ActionV3 }) {
+  return (
+    <>
+      <div className="flex items-center col-span-6">
+        <span className="text-lg">{action.name}</span>
+      </div>
+      <ActionLevelStatic action={action} />
+    </>
+  );
+}
+
 function DetailedHeaderContent({ action }: { action: ActionV3 }) {
   return <></>;
 }
@@ -259,6 +271,29 @@ function ActionLevel({ action }: { action: ActionV3 }) {
         ) : (
           <div className="col-span-1" key={idx}>
             <UnlockLevelBubble handleUnlock={handleUnlockLevel} />
+          </div>
+        ),
+      )}
+    </>
+  );
+}
+
+function ActionLevelStatic({ action }: { action: ActionV3 }) {
+  const diceLength = action.type === "bond" ? MAX_BOND_DICE : MAX_ACTION_DICE;
+  return (
+    <>
+      {Array.from({ length: diceLength }).map((_, idx) =>
+        idx < action.level.length ? (
+          <div className="col-span-1" key={idx}>
+            <div className="border-border border-[1px] rounded-full w-6 h-6 flex items-center justify-center select-none">
+              <code>{action.level[idx]}</code>
+            </div>
+          </div>
+        ) : (
+          <div className="col-span-1" key={idx}>
+            <div className="border-border border-[1px] rounded-full w-6 h-6 flex items-center justify-center select-none">
+              <LockKeyholeOpen size={16} />
+            </div>
           </div>
         ),
       )}
@@ -441,6 +476,7 @@ const Action: Action = {
     Simple: SimpleHeaderContent,
     Detailed: DetailedHeaderContent,
     Unlock: UnlockHeaderContent,
+    Static: SimpleHeaderContentStatic,
   },
 };
 

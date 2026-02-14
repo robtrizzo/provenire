@@ -8,6 +8,7 @@
   --font-sans: var(--font-sans);
   --font-serif: var(--font-serif);
   --font-cyber: var(--font-cyber);
+  --font-old: var(--font-old);
 
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));

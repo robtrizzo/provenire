@@ -8,6 +8,8 @@ import {
   TypographyP,
   TypographyUnorderedList,
 } from "@/components/ui/typography";
+import RemembranceCard from "./(components)/remembrance-card";
+import Link from "next/link";
 
 export default async function Page() {
   return (
@@ -15,208 +17,213 @@ export default async function Page() {
       <Breadcrumbs />
       <TypographyH1>Remembrances</TypographyH1>
       <TypographyP>
-        These options will determine the manner of integration with the memories
-        your character experienced in the <i>Crucibles</i>.
+        Each remembrance represents a life your character experienced in the{" "}
+        <i className="font-old">Crucible</i>. Each remembrance makes a set of{" "}
+        <b>skills</b>, <b>abilities</b>, and <b>histories</b> available. The
+        manner of learning or accessing these options is determined by your{" "}
+        <Link
+          href="/game/arc-three/character-options/integrations"
+          className="text-red-500 underline font-bold"
+        >
+          integration
+        </Link>
+        .
       </TypographyP>
-      <TypographyH2 className="mt-8">Observation</TypographyH2>
-      <TypographyP>
-        Your dream was an out-of-body experience. Whoever&apos;s life this was,
-        you were there for it all. You saw their mother&apos;s face when they
-        were born. You caught rivals rolling eyes behind their back. You sat
-        with them when they were low. You watched them die. In the end, you may
-        know them better than they knew themselves.
-      </TypographyP>
-      <TypographyH4>Abilities & Skills</TypographyH4>
-      <TypographyP>
-        Though you didn&apos;t do it yourself, you were right there as the other
-        psyche learned everything. With effort, you can teach yourself what they
-        could do. You may spend <b>xp</b> to unlock or advance crucible{" "}
-        <b>abilities</b> and <b>skills</b> as you would any other.
-      </TypographyP>
-      <TypographyBlockquote>
-        You do <b>not</b> have access to crucible <b>Donums</b>.
-      </TypographyBlockquote>
-      <TypographyH4>Histories</TypographyH4>
-      <TypographyP>
-        You begin with all crucible <b>Histories</b> unlocked.
-      </TypographyP>
-      <TypographyH2 className="mt-8">Exploitation</TypographyH2>
-      <TypographyP>
-        Like some dreams go, you don&apos;t remember yours. But you do remember
-        one thing: it&apos;s important that you don&apos;t let <i>them</i> out.
-        They scream and curse and pound on the prison you&apos;ve constructed
-        for them. All of their experiences and potential are sealed with them.
-        Perhaps a few gaps in the cage would let you harness just enough of
-        it...
-      </TypographyP>
-      <TypographyH4>Abilities & Skills</TypographyH4>
-      <TypographyP>
-        You can forcibly pull experiences from the other psyche when you need
-        them, but it requires slackening their restraints. While you have{" "}
-        <i>the upper hand</i>, you have access to all crucible skills and
-        abilities. To use them for a scene, make a <b>condition roll</b>,
-        representing the other psyche trying to escape. On a full success, they{" "}
-        <i>gain the upper hand</i>. On a partial success, you may pay{" "}
-        <b>stress</b> equal to the <b>threats</b> rolled to prevent them from
-        taking <i>the upper hand</i>.
-      </TypographyP>
-      <TypographyBlockquote>
-        A <b>condition roll</b> is a <b>fortune roll</b> with dice equal to the
-        number of conditions you have marked.
-      </TypographyBlockquote>
-      <TypographyH4>Histories</TypographyH4>
-      <TypographyBlockquote>
-        You do not have access to crucible <b>Histories</b>
-      </TypographyBlockquote>
-      <TypographyH4>Special</TypographyH4>
-      <TypographyBlockquote>
-        <b>The upper hand</b> indicates who is in control and who is imprisoned.
-        Be prepared to roleplay as the other psyche if/when they gain{" "}
-        <b>the upper hand</b>.
-      </TypographyBlockquote>
-      <TypographyP>
-        If you mark your final <b>condition</b> or your final <b>harm slot</b>,
-        the other psyche escapes its cage and acts freely. Once they clear a{" "}
-        <b>condition</b> or <b>harm</b> you regain conciousness, but the other
-        psyche has the upper hand.
-      </TypographyP>
-      <TypographyH2 className="mt-8">Cooperation</TypographyH2>
-      <TypographyP>
-        When you wake up, you&apos;re not alone in your mind.{" "}
-        <i>They&apos;re</i> here too, though more of a passenger in your life.{" "}
-        <i>They</i> still have their wants and dreams, but they respect that you
-        also have your own. Together you&apos;ll find a way to navigate the life
-        you share.
-      </TypographyP>
-      <TypographyH4>Abilities & Skills</TypographyH4>
-      <TypographyP>
-        Each time you level up your <b>bond</b> with the other psyche, you may
-        choose a crucible <b>ability</b> or <b>skill</b> which they become
-        willing to teach you. Unlocking and avancing crucible <b>abilities</b>{" "}
-        and <b>skills</b> costs <b>1 xp clock</b> less.
-      </TypographyP>
-      <TypographyBlockquote>
-        You do <b>not</b> have access to crucible <b>Donums</b>.
-      </TypographyBlockquote>
-      <TypographyH4>Bonds</TypographyH4>
-      <TypographyP>
-        You gain a{" "}
-        <b>
-          <code>level 0</code> bond
-        </b>{" "}
-        with the other psyche. You can spend <b>1 stress</b> to add this{" "}
-        <b>bond</b> to a roll.
-      </TypographyP>
-      <TypographyH4>Histories</TypographyH4>
-      <TypographyP>
-        You can always ask the other psyche about their life and the world they
-        knew. Their answers will be colored by their memory, biases,
-        perspectives, and agendas.
-      </TypographyP>
-      <TypographyH4>Special</TypographyH4>
-      <TypographyP>
-        If the other psyche feels that you&apos;ve completely disrespected them,
-        your relationship may become <b>Opposition</b>.
-      </TypographyP>
-      <TypographyH2 className="mt-8">Suppression</TypographyH2>
-      <TypographyP>
-        Nothing has changed. Maybe the machine didn&apos;t work on you. Life
-        goes on; that is, until a sudden recollection comes over you. A
-        flashback of a moment or years play out in a heartbeat. You lived those
-        experiences just as certainly as you&apos;re living right now. And you
-        wouldn&apos;t be human if they didn&apos;t change you.
-      </TypographyP>
-      <TypographyH4>Abilities, Skills, & Histories</TypographyH4>
-      <TypographyP>
-        You begin with no access to any crucible options. You gain a five-piece{" "}
-        <b>Trauma clock</b>. Whenever you mark a <b>condition</b> or{" "}
-        <b>level 3+ harm</b>, tick the <b>Trauma clock</b>. When it becomes
-        full, you may select a crucible option and reset the clock.
-      </TypographyP>
-      <TypographyH4>Special</TypographyH4>
-      <TypographyP>
-        During a <b>Desperate Position</b> you may choose to have an intense
-        flashback when you take an action. This counts as critically failing,
-        but ticks the <b>Trauma clock</b> by <b>5</b>.
-      </TypographyP>
-      <TypographyH2 className="mt-8">Opposition</TypographyH2>
-      <TypographyP>
-        In your dream you experienced birth, childhood, love, life, strife, and
-        death. The only separation between you and them was that you remember
-        your old life. Over the years, that gap grew. You (<i>they</i>) would
-        look in the mirror and know something was wrong. You (<i>them</i>) would
-        feel watched. And you (<i>they</i>) would grow to hate the watcher,
-        whoever that is. When you (<i>they</i>) wake up, you find yourselves
-        sharing a body and mind with a rival.
-      </TypographyP>
-      <TypographyH4>Abilities & Skills</TypographyH4>
-      <TypographyP>
-        You have access to all crucible skills and abilities. The catch is that
-        in order to use any of them, it must be with the permission of the other
-        psyche. They will demand concessions, favors, or outright
-        self-destructive tasks in return. If not placated, they may deny you
-        entirely.
-      </TypographyP>
-      <TypographyH4>Histories</TypographyH4>
-      <TypographyP>
-        You experienced their life just as sure as your own. All of that
-        information is difficult to process though. You can spend time
-        intentionally dreaming and remoniscing about it to unlock it. To do so,
-        spend <b>3 xp clocks</b> during the <b>Train</b> downtime activity.
-      </TypographyP>
-      <TypographyH4>Special</TypographyH4>
-      <TypographyP>
-        If you end up befriending the other psyche, your relationship can become{" "}
-        <b>Cooperative</b>. Alternatively if you mentally overpower them, you
-        can change the relationship to <b>Exploitation</b>. Vice-versa, if the
-        psyche mentally overpowers <i>you</i>, the relationship becomes{" "}
-        <b>Exploitation</b> but they begin with the upper hand.
-      </TypographyP>
-      <TypographyH2 className="mt-8">Synthesis</TypographyH2>
-      <TypographyP>
-        You experienced another lifetime, and with no recollection of your own.
-        Waking up doesn&apos;t feel like coming to your senses, it feels like
-        being in someone else&apos;s skin. You know who they were. You are who
-        they were, but somehow still yourself. Or both? Neither? Someone new.
-      </TypographyP>
-      <TypographyH4>Abilities</TypographyH4>
-      <TypographyP>
-        There is no difference between you and them; but the union is
-        uncomfortable and you lose clarity in your memories. You lose half of
-        your abilities, though you gain <b>xp clocks</b> to make up the
-        difference. Those <b>xp clocks</b> can only be spent on crucible
-        abilities.
-      </TypographyP>
-      <TypographyP>
-        You may unlock further crucible abilities with <b>xp clocks</b>.
-      </TypographyP>
-      <TypographyH4>Bonds</TypographyH4>
-      <TypographyP>
-        It&apos;s difficult for you to relate to the people here and now, if you
-        remember them at all. You become alienated from your bonds. Reset all
-        bonds to{" "}
-        <b>
-          <code>level 0</code>
-        </b>
-        . You gain a number of <b>xp clocks</b> to make up the difference.
-      </TypographyP>
-      <TypographyH4>Histories</TypographyH4>
-      <TypographyP>
-        The memories are hazy and mixed up between both of your lives. It takes
-        time for your mind sort through them. You gain a three-piece{" "}
-        <b>Clarity clock</b>. Whenever <b>Time Passes</b>, tick the{" "}
-        <b>Clarity clock</b>. When it becomes full, select a <b>History</b> from
-        your crucible and reset the clock.
-      </TypographyP>
-      <TypographyH4>Skills</TypographyH4>
-      <TypographyP>
-        You start with two pools of <b>xp clocks</b> to spend on <b>skills</b>.
-        One pool can only be spent on what your character would have; the other
-        can only be spent on what the crucible character would have.
-      </TypographyP>
-      <TypographyP>
-        You may unlock further crucible skills with <b>xp clocks</b>
-      </TypographyP>
+
+      <div className="flex flex-col gap-2 mt-4">
+        <RemembranceCard name="Dunstan" img="flower">
+          <span className="text-muted-foreground">
+            Argos, post the cataclysm (OSG) and pre Fenrir&apos;s rise.
+          </span>
+          <TypographyP>
+            A peaceful soul disinterested in duty or strife - instead fostering
+            a love for art and growing things. A heartbreaking betrayal forces
+            him to pursue familial ambitions. After years of conditioning, he
+            demonstrates to all that he cannot be made into someone he is not.
+          </TypographyP>
+          <TypographyP>
+            <b className="text-lg">Abilities:</b> art, gardening, education,
+            espionage, <b className="text-fuchsia-500">Donum Dolus</b>, fleeting
+            knowledge of Helix.
+          </TypographyP>
+        </RemembranceCard>
+        <RemembranceCard name="Engel" img="chain">
+          <span className="text-muted-foreground">
+            Ulgatia, post the cataclysm (OSG) and pre Fenrir&apos;s rise.
+          </span>
+          <TypographyP>
+            A boy with humble beginnings discovers his generational talent with
+            the sword. Arrogance overtakes him with a meteoric rise of
+            reputation. A humbling moment changes his heart, shaping him into a
+            dedicated mentor. When Rath finally comes for his city, his sword
+            skills spare his life, though he spent the rest of his days a slave
+            in the Steel Trap.
+          </TypographyP>
+          <TypographyP>
+            <b className="text-lg">Abilities:</b> leadership, mentorship,
+            military tactics, <b className="text-red-500">Ulgatian Aldams</b>,{" "}
+            <b className="text-emerald-500">Swordstyles</b>, knowledge of
+            Ulgatia and the early Steel Trap.
+          </TypographyP>
+        </RemembranceCard>
+        <RemembranceCard name="Issa" img="wolves">
+          <span className="text-muted-foreground">Era One, Gredora.</span>
+          <TypographyP>
+            An unwilling inheritor of the power to forge war machines. A man at
+            odds with his family and society for his beliefs. Beliefs which
+            ultimately lead to his violent death, as well as the death of his
+            caravan at the hands of Rathi hounds.
+          </TypographyP>
+          <TypographyP>
+            <b className="text-lg">Abilities:</b> art, forging, survival,{" "}
+            <b className="text-fuchsia-500">Donum Fornax</b>,{" "}
+            <b className="text-red-500">Gredoran Aldams</b>, knowledge of
+            ancient Gredora.
+          </TypographyP>
+        </RemembranceCard>
+        <RemembranceCard name="Luciana" img="gate">
+          <span className="text-muted-foreground">
+            Yama, during the cataclysm (OSG)
+          </span>
+          <TypographyP>
+            A Heian girl with the unexpected power to animate the dead. Cast out
+            from her home she subsists and ventures to the Hidden City in hope
+            for a better life. Her search nearly kills her, but she&apos;s saved
+            by women who can animate the dead: just like her.
+          </TypographyP>
+          <TypographyP>
+            She enjoys a brief span of tutilage and sisterhood before
+            Order&apos;s armies march into Yama to conquer. Luciana and twelve
+            sisters hold a narrow pass against thousands. She suffers grievous
+            injury and loses everyone she loves, but she lives. And if only her
+            strife ended there...
+          </TypographyP>
+          <TypographyP>
+            <b className="text-lg">Abilities:</b> survival, labor, education,{" "}
+            <b className="text-fuchsia-500">Donum Ossis</b>,{" "}
+            <b className="text-red-500">Heian Aldams</b>, knowledge of Heia,
+            Yama, and the Cataclysm.
+          </TypographyP>
+        </RemembranceCard>
+        <RemembranceCard name="Makino" img="skeletons">
+          <span className="text-muted-foreground">
+            Era Two, the Hidden City.
+          </span>
+          <TypographyP>
+            A surreptitious vigilante within the Hidden City undergoes profane
+            rituals to murder evildoers sheltering within the walls. A
+            particularly wretched warlord gets to his loved ones; and the ritual
+            goes awry. For fourteen days, the assassin and his two closest
+            friends are trapped in a cycle of heartbreak and vengeance. During
+            their reign of terror they exact torturous vengeance on wrongdoers.
+            On the fourteenth day, they see themselves for what they are and ask
+            the moon to take them somwehere else.
+          </TypographyP>
+          <TypographyP>
+            <b className="text-lg">Abilities:</b> theft, stealth,{" "}
+            <b className="text-fuchsia-500">Donum Cinis</b>,{" "}
+            <b className="text-red-500">Heian Aldams</b>,{" "}
+            <b className="text-emerald-500">Long-knife Style</b>, knowledge of
+            the Hidden City.
+          </TypographyP>
+        </RemembranceCard>
+        <RemembranceCard name="Matteo" img="desert">
+          <span className="text-muted-foreground">Era One, Narscillia.</span>
+          <TypographyP>
+            A kindhearted soul unfit to live a lonesome life is damned to be a
+            Relict by cruel chance. Forbidden from close bonds, he metes out a
+            miserable existence doing his duty - until life has other plans. By
+            sheer chance, he finds a new family and a love. His duty takes him
+            away from her time and time again but they always meet again.
+          </TypographyP>
+          <TypographyP>
+            And then life takes her from him. Brutally. Violently. No, it
+            wasn&apos;t life that did this. People did this. To his dying day,
+            Matteo made it his mission to kill every last person he could.
+          </TypographyP>
+          <TypographyP>
+            <b className="text-lg">Abilities:</b> survival, hunting, music,{" "}
+            <b className="text-red-500">Narscillian Aldams</b>,{" "}
+            <b className="text-emerald-500">Darkspear Style</b>, knowledge of
+            ancient Narscillia.
+          </TypographyP>
+        </RemembranceCard>
+        <RemembranceCard name="Takota" img="volcano">
+          <span className="text-muted-foreground">Era One, Gredora.</span>
+          <TypographyP>
+            An adopted son of a Gredoran Duke, ever prideful, even patriotic,
+            ever ready to prove himself. A lifetime of ambition and burned
+            bridges culminates in a choice between country and family. A choice
+            which the Gredoran Son rejects, instead sacrificing himself for a
+            chance to save it all - for a chance at redemption.
+          </TypographyP>
+          <TypographyP>
+            <b className="text-lg">Abilities:</b> military tactics, diplomacy,
+            espionage, <b className="text-red-500">Gredoran Aldams</b>,{" "}
+            <b className="text-emerald-500">Phalanx Style</b>, knowledge of
+            ancient Gredora.
+          </TypographyP>
+        </RemembranceCard>
+        <RemembranceCard name="Velda" img="crow">
+          <span className="text-muted-foreground">
+            Fenrir, post the cataclysm (OSG) and pre Fenrir&apos;s rise.
+          </span>
+          <TypographyP>
+            A wolf desperate to save her infant son from the Owl. The foul
+            creature sends her on a journey to steal Kingwulf&apos;s flame.
+            Protected by her burning love for her son, she consumes the flame
+            and returns to the Owl, who returns her son to her. But victory is
+            short lived. Kingwulf rampages through the jungle, kills the foul
+            Owl, and seals Velda away in the deepest, darkest dungeon in his
+            empire.
+          </TypographyP>
+          <TypographyP>
+            <b className="text-lg">Abilities:</b> hunting, survival,{" "}
+            <b className="text-fuchsia-500">Donum Rex</b>,{" "}
+            <b className="text-fuchsia-500">Donum Ignis</b>,{" "}
+            <b className="text-emerald-500">Throatgore</b>, knowledge of Fenrir,
+            Kingwulf, and the early days of the Steel Trap.
+          </TypographyP>
+        </RemembranceCard>
+        <RemembranceCard name="Ygg" img="noose">
+          <span className="text-muted-foreground">Rath, Era One.</span>
+          <TypographyBlockquote className="text-red-500 mb-0 mt-1">
+            Content warning
+          </TypographyBlockquote>
+          <TypographyP>
+            Birthed of a mother hung from a noose after suffering a most awful
+            fate. A creature boy more like a calamity roamed the wilderness.
+            Misunderstood, feared, and often betrayed, Ygg develops a disdain
+            for people - preferring the law of the jungle.
+          </TypographyP>
+          <TypographyP>
+            Rathi warrior after Rathi warrior venture out into Ygg&apos;s jungle
+            to slay the beast for glory, never to return. Superstition builds.
+            Mosters flock to Ygg&apos;s safety.
+          </TypographyP>
+          <TypographyP>
+            <b className="text-lg">Abilities:</b> hunting, survival,{" "}
+            <b className="text-fuchsia-500">Donum Portentum</b>, knowledge of
+            Kingwulf.
+          </TypographyP>
+        </RemembranceCard>
+        <RemembranceCard name="Zephyr" img="stars">
+          <span className="text-muted-foreground">Era One, Narscillia.</span>
+          <TypographyP>
+            A young girl with power over the wind; and also stalked by tragedy.
+            As her power grows, so too do the attacks on her and those near her
+            by creatures of the night. A half decade of escalating conflict
+            culminates in a final confrontation with the God of Night and Stars
+            which altered the very terrain of her home.
+          </TypographyP>
+          <TypographyP>
+            <b className="text-lg">Abilities:</b> hunting, survival, music,{" "}
+            <b className="text-red-500">Narscillian Aldams</b>,{" "}
+            <b className="text-fuchsia-500">Donum Ventus</b>, knowledge of
+            ancient Narscillia and the God of Night and Stars.
+          </TypographyP>
+        </RemembranceCard>
+      </div>
 
       <div className="mt-8" />
     </>

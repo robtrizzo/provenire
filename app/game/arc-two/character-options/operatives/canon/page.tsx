@@ -8,7 +8,7 @@ import {
   TypographyUnorderedList,
 } from "@/components/ui/typography";
 import OpPortrait from "../(components)/operative-portrait";
-import ClockCost from "../(components)/clock-cost";
+import ClockCost from "../../../../../../components/clock-cost";
 import { Card } from "@/components/ui/card";
 
 export default async function Page() {

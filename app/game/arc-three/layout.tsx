@@ -27,6 +27,10 @@ const navigationData = [
     url: "#",
     items: [
       {
+        title: "Integrations",
+        url: "/game/arc-three/character-options/integrations",
+      },
+      {
         title: "Remembrances",
         url: "/game/arc-three/character-options/remembrances",
       },
