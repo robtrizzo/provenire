@@ -1,6 +1,7 @@
 "use client";
 import Breadcrumbs from "@/components/ui/breadcrumbs";
 import {
+  TypographyBlockquote,
   TypographyH1,
   TypographyH2,
   TypographyH3,
@@ -14,12 +15,12 @@ import { getActions } from "@/lib/actions";
 
 const actions: ActionV3[] = getActions(
   [
-    { name: "Botany", level: [1] },
-    { name: "Drama", level: [1] },
+    { name: "Botany", level: [3, 1] },
+    { name: "Drama", level: [2] },
     { name: "Mathematics", level: [1] },
-    { name: "Music (Sing)", level: [1] },
-    { name: "Obfuscate", level: [1] },
-    { name: "Poetry", level: [1] },
+    { name: "Obfuscate", level: [2, 1] },
+    { name: "Poetry", level: [2] },
+    { name: "Stubborn", level: [2, 2] },
   ],
   "skill",
 );
@@ -30,7 +31,7 @@ export default function Page() {
       <Breadcrumbs />
       <div className="flex flex-col lg:flex-row items-start justify-between gap-4">
         <div>
-          <TypographyH1 className="font-old">Dunstan the Deceiver</TypographyH1>
+          <TypographyH1 className="font-old">Dunstan Prisca</TypographyH1>
           <span className="text-muted-foreground">
             Argos, post the cataclysm (OSG) and pre Fenrir&apos;s rise.
           </span>
@@ -83,6 +84,14 @@ export default function Page() {
         <ClockCost num={3} ticks={5} />
       </div>
       <span className="text-red-500 text-sm font-old">Aldam</span>
+      <TypographyP>
+        The other Argosi great houses jeer and shame Prisca for debasing
+        themselves so low to drinking blood. So the House Prisca heads spent
+        considerable effort to dress up and civilize the use of barbaric
+        techniques. They even named the Aldam{" "}
+        <i>&quot;Might of Civilization&quot;</i> to appeal to noble
+        sensibilities.
+      </TypographyP>
       <div className="mt-2 flex items-center gap-4">
         <TypographyH3 className="mt-0">Donum Dolus</TypographyH3>
         <ClockCost num={5} ticks={5} />
@@ -90,11 +99,38 @@ export default function Page() {
       <span className="text-fuchsia-500 text-sm font-old">
         The Gift of Deception
       </span>
+      <TypographyP>
+        <b>Donum Dolus</b> is a unique power in its many aspects. Some
+        contribute more than others to House Prisca&apos;s frightening
+        reputation. Dunstan isn&apos;t skilled at those dimensions, nor is he
+        interested in changing that. Instead, he has honed his skills
+        exclusively in <i>glammers</i>.
+      </TypographyP>
       <div className="mt-2 flex items-center gap-4">
         <TypographyH3 className="mt-0">Mason&apos;s Method</TypographyH3>
         <ClockCost num={3} ticks={5} />
       </div>
       <span className="text-emerald-500 text-sm font-old">Fighting Style</span>
+      <TypographyP>
+        A school of combat centered around heavy sledges and hammers. Far too
+        much effort for Dunstan; he never participated in lessons, though he was
+        forced to watch some.
+      </TypographyP>
+      <div className="mt-2 flex items-center gap-4">
+        <TypographyH3 className="mt-0">Dilettante&apos;s Ego</TypographyH3>
+        <ClockCost num={2} ticks={5} />
+      </div>
+      <span className="text-amber-500 text-sm font-old">Psyche</span>
+      <TypographyP>
+        You cannot be made to doubt your sense of identity or what you want.
+        Replace the <b>Insecure</b> condition with <b>Disinterested</b>. You
+        gain an <b>xp trigger:</b>{" "}
+        <i>Did you unapolagetically pursue your desires?</i>
+      </TypographyP>
+      <TypographyBlockquote>
+        <b>Disinterested:</b> clear with <b>1 Food</b> or <b>1 Material</b>, and
+        by refusing to do something important asked of you.
+      </TypographyBlockquote>
     </>
   );
 }

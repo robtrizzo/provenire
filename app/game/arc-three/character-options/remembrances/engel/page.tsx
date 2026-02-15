@@ -14,12 +14,12 @@ import { getActions } from "@/lib/actions";
 
 const actions: ActionV3[] = getActions(
   [
-    { name: "Coordinate", level: [1] },
-    { name: "Command", level: [1] },
-    { name: "Disconnect", level: [1] },
-    { name: "Encourage", level: [1] },
-    { name: "Rally", level: [1] },
-    { name: "Relate", level: [1] },
+    { name: "Coordinate", level: [2, 1] },
+    { name: "Command", level: [3] },
+    { name: "Disconnect", level: [2] },
+    { name: "Encourage", level: [2, 1] },
+    { name: "Rally", level: [1, 1] },
+    { name: "Relate", level: [2] },
   ],
   "skill",
 );
@@ -86,21 +86,43 @@ export default function Page() {
         <ClockCost num={4} ticks={5} />
       </div>
       <span className="text-red-500 text-sm font-old">Aldam</span>
+      <TypographyP>
+        Rooted in ancient Gredoran Aldams and deeply influenced by{" "}
+        <b>Donum Sangius</b>, the Ulgatian Aldams are uniquely capable of
+        altering the properties of blood. Additionally, Ulgatians all
+        contributed to a blood tithe; and so out of necessity, learned to use
+        their Aldams efficiently.
+      </TypographyP>
       <div className="mt-2 flex items-center gap-4">
         <TypographyH3 className="mt-0">Kiss of the Viper</TypographyH3>
         <ClockCost num={3} ticks={5} />
       </div>
       <span className="text-emerald-500 text-sm font-old">Fighting Style</span>
+      <TypographyP>
+        Proximity and close alliegances to Bwarhei brough together two disparate
+        combat arts into something unique and new. Practitioners are as much
+        alchemist as they are warrior, seeking vital regions to deliver deadly
+        poisons harvested from the jungle.
+      </TypographyP>
       <div className="mt-2 flex items-center gap-4">
         <TypographyH3 className="mt-0">Desert Fan</TypographyH3>
         <ClockCost num={3} ticks={5} />
       </div>
       <span className="text-emerald-500 text-sm font-old">Fighting Style</span>
+      <TypographyP>
+        A swordstyle inspired by Narscillian dances popular in Ulgatia. Warriors
+        twirl their weapons in a perpetual dance that is fairly immobile but
+        found to be effective at holding ground.
+      </TypographyP>
       <div className="mt-2 flex items-center gap-4">
         <TypographyH3 className="mt-0">Horizon&apos;s Edge</TypographyH3>
         <ClockCost num={3} ticks={5} />
       </div>
       <span className="text-emerald-500 text-sm font-old">Fighting Style</span>
+      <TypographyP>
+        This fighting style is quintessentially Ulgatian. It relies on heavy use
+        of Aldams to end a battle in a single decisive strike.
+      </TypographyP>
     </>
   );
 }

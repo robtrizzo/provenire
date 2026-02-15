@@ -5,6 +5,7 @@ import {
   TypographyH2,
   TypographyH3,
   TypographyP,
+  TypographyUnorderedList,
 } from "@/components/ui/typography";
 import RemembrancePortrait from "../(components)/remembrance-portrait";
 import ClockCost from "@/components/clock-cost";
@@ -14,12 +15,12 @@ import { getActions } from "@/lib/actions";
 
 const actions: ActionV3[] = getActions(
   [
-    { name: "Metallurgy", level: [1] },
-    { name: "Pretense", level: [1] },
-    { name: "Sabotage", level: [1] },
-    { name: "Study", level: [1] },
+    { name: "Metallurgy", level: [3, 1] },
+    { name: "Pretense", level: [2] },
+    { name: "Sabotage", level: [2] },
+    { name: "Study", level: [1, 1] },
     { name: "Survival (Mesa)", level: [1] },
-    { name: "Tinker", level: [1] },
+    { name: "Tinker", level: [2] },
   ],
   "skill",
 );
@@ -88,6 +89,51 @@ export default function Page() {
       <span className="text-fuchsia-500 text-sm font-old">
         Gift of the Forge
       </span>
+      <div className="mt-2 flex items-center gap-4">
+        <TypographyH3 className="mt-0">Art or War</TypographyH3>
+        <ClockCost num={3} ticks={5} />
+      </div>
+      <span className="text-amber-500 text-sm font-old">Psyche</span>
+      <TypographyP>
+        Issa&apos;s mind is at war with itself. In his heart of hearts he
+        believes that weapons of war are not the answer to the world&apos;s
+        problems. The world seems determined to prove otherwise.
+      </TypographyP>
+      <TypographyP>
+        Issa has a six-piece <b>Dissonance clock</b> which starts with{" "}
+        <b>three ticks</b>. If the clock ever becomes full, Issa&apos;s
+        worldview is shattered and he gives in to the necessity of weaponry.
+      </TypographyP>
+      <TypographyP>
+        You gain a post-mission question:{" "}
+        <i>
+          Were weapons (or would they have been) the answer to people&apos;s
+          problems?
+        </i>{" "}
+        If yes, tick the <b>Dissonance clock</b>. Otherwise, clear a tick.
+      </TypographyP>
+      <div className="mt-2 flex items-center gap-4">
+        <TypographyH3 className="mt-0">[Art/War]-Works</TypographyH3>
+        <ClockCost num={3} ticks={5} />
+      </div>
+      <span className="text-amber-500 text-sm font-old">Psyche</span>
+      <TypographyP>
+        <b>Art</b>
+      </TypographyP>
+      <TypographyP>
+        As a <b>downtime activity</b>, you may spend <b>2 Materials</b> and
+        create a beautiful piece of art for someone. If you do,{" "}
+        <b>clear a condition</b> and clear a tick from the{" "}
+        <b>Dissonance clock</b> (if unlocked).
+      </TypographyP>
+      <TypographyP>
+        <b>War</b>
+      </TypographyP>
+      <TypographyP>
+        As a <b>downtime activity</b>, you may spend <b>2 Materials</b> and
+        create a creatively effective weapon for someone. It can have a trait
+        selected from <i>flashy, sadistic,</i> or <i>symbolic</i>.
+      </TypographyP>
     </>
   );
 }
