@@ -55,6 +55,10 @@
       "description": "Small, precise strikes in vital regions"
     },
     {
+      "name": "Botany",
+      "description": "Grow and tend to plants."
+    },
+    {
       "name": "Brawl",
       "description": "Engage in unstructured close combat."
     },
@@ -72,7 +76,7 @@
     },
     {
       "name": "Comfort",
-      "description": "Provide emotional support to someone in need"
+      "description": "Provide emotional support to someone in need."
     },
     {
       "name": "Command",
@@ -163,12 +167,28 @@
       "description": "Remain unnoticed while observing your surroundings."
     },
     {
+      "name": "Mathematics",
+      "description": "Use math to understand something or solve a problem."
+    },
+    {
       "name": "Manipulate",
       "description": "Deceive or coerce someone into doing what you want."
     },
     {
+      "name": "Metallurgy",
+      "description": "Work with metals to create or repair something."
+    },
+    {
       "name": "Mirado",
       "description": "Observe, then act."
+    },
+    {
+      "name": "Music (Sing)",
+      "description": "Create music with your voice."
+    },
+    {
+      "name": "Music (Flute)",
+      "description": "Create music with a flute."
     },
     {
       "name": "Navigate",
@@ -177,6 +197,10 @@
     {
       "name": "Persuade",
       "description": "Convince someone to do something without misleading them."
+    },
+    {
+      "name": "Poetry",
+      "description": "Translate emotions into flowery words."
     },
     {
       "name": "Obfuscate",
@@ -261,6 +285,26 @@
     {
       "name": "Suggest",
       "description": "Plant an idea in someone's mind without them realizing it."
+    },
+    {
+      "name": "Survival (Desert)",
+      "description": "Use your knowledge of the environment to stay alive."
+    },
+    {
+      "name": "Survival (Jungle)",
+      "description": "Use your knowledge of the environment to stay alive."
+    },
+    {
+      "name": "Survival (Mesa)",
+      "description": "Use your knowledge of the environment to stay alive."
+    },
+    {
+      "name": "Survival (Mountains)",
+      "description": "Use your knowledge of the environment to stay alive."
+    },
+    {
+      "name": "Survival (Plains)",
+      "description": "Use your knowledge of the environment to stay alive."
     },
     {
       "name": "Tinker",

@@ -12,7 +12,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import ClockCost from "../../character-options/operatives/(components)/clock-cost";
+import ClockCost from "../../../../../components/clock-cost";
 import AbilityComponent from "@/components/abilities/ability";
 import { clientCheckPermission, cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";

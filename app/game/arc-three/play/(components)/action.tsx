@@ -58,6 +58,7 @@ interface UnlockActionProps {
 type HeaderContent = {
   Detailed: FC<ActionProps>;
   Simple: FC<ActionProps>;
+  Static: FC<ActionProps>;
   Unlock: FC<UnlockActionProps>;
 };
 
@@ -71,7 +72,8 @@ interface RollableWrapperProps extends ActionProps {
 }
 
 interface MenuWrapperProps
-  extends ActionProps, React.HTMLAttributes<HTMLDivElement> {
+  extends ActionProps,
+    React.HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
 }
 
@@ -139,7 +141,7 @@ function RollableWrapper({ action, children }: RollableWrapperProps) {
           "hover:bg-input/50",
           action.type === "ability" && "hover:bg-yellow-500/20",
           action.type === "skill" && "hover:bg-violet-500/20",
-          action.type === "bond" && "hover:bg-sky-500/20",
+          action.type === "bond" && "hover:bg-sky-500/20"
         )}
       >
         {children}
@@ -181,6 +183,17 @@ function SimpleHeaderContent({ action }: { action: ActionV3 }) {
   );
 }
 
+function SimpleHeaderContentStatic({ action }: { action: ActionV3 }) {
+  return (
+    <>
+      <div className="flex items-center col-span-6">
+        <span className="text-lg">{action.name}</span>
+      </div>
+      <ActionLevelStatic action={action} />
+    </>
+  );
+}
+
 function DetailedHeaderContent({ action }: { action: ActionV3 }) {
   return <></>;
 }
@@ -215,8 +228,13 @@ function ActionLevel({ action }: { action: ActionV3 }) {
       return;
     }
     const newAction = { ...action };
+    const oldLevel = action.level[index];
     newAction.level[index] = newLevel;
-    setXpSpent(xpSpent + newLevel);
+    if (newLevel > oldLevel) {
+      setXpSpent(xpSpent + newLevel);
+    } else if (newLevel < oldLevel) {
+      setXpSpent(xpSpent - oldLevel);
+    }
     updateAction(newAction);
   };
   const handleUnlockLevel = () => {
@@ -260,7 +278,30 @@ function ActionLevel({ action }: { action: ActionV3 }) {
           <div className="col-span-1" key={idx}>
             <UnlockLevelBubble handleUnlock={handleUnlockLevel} />
           </div>
-        ),
+        )
+      )}
+    </>
+  );
+}
+
+function ActionLevelStatic({ action }: { action: ActionV3 }) {
+  const diceLength = action.type === "bond" ? MAX_BOND_DICE : MAX_ACTION_DICE;
+  return (
+    <>
+      {Array.from({ length: diceLength }).map((_, idx) =>
+        idx < action.level.length ? (
+          <div className="col-span-1" key={idx}>
+            <div className="border-border border-[1px] rounded-full w-6 h-6 flex items-center justify-center select-none">
+              <code>{action.level[idx]}</code>
+            </div>
+          </div>
+        ) : (
+          <div className="col-span-1" key={idx}>
+            <div className="border-border border-[1px] rounded-full w-6 h-6 flex items-center justify-center select-none">
+              <LockKeyholeOpen size={16} />
+            </div>
+          </div>
+        )
       )}
     </>
   );
@@ -356,7 +397,7 @@ function UnlockHeaderContent({ className, type }: UnlockActionProps) {
         <div
           className={cn(
             "col-span-8 flex justify-center border-border border-dashed border-[1px] rounded-sm hover:bg-secondary/50 hover:cursor-pointer",
-            className,
+            className
           )}
         >
           <div className="h-[26px] flex items-center">
@@ -401,7 +442,7 @@ function UnlockHeaderContent({ className, type }: UnlockActionProps) {
                     className={cn(
                       "hover:cursor-pointer",
                       skillUnlocked &&
-                        "text-muted-foreground bg-accent/50 hover:cursor-auto data-[selected=true]:bg-accent/50 data-[selected=true]:text-muted-foreground",
+                        "text-muted-foreground bg-accent/50 hover:cursor-auto data-[selected=true]:bg-accent/50 data-[selected=true]:text-muted-foreground"
                     )}
                   >
                     <div className="grid grid-cols-8 w-full">
@@ -441,6 +482,7 @@ const Action: Action = {
     Simple: SimpleHeaderContent,
     Detailed: DetailedHeaderContent,
     Unlock: UnlockHeaderContent,
+    Static: SimpleHeaderContentStatic,
   },
 };
 
