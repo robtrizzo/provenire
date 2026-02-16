@@ -14,12 +14,12 @@ import { getActions } from "@/lib/actions";
 
 const actions: ActionV3[] = getActions(
   [
-    { name: "Authority", level: [1] },
-    { name: "Candor", level: [1] },
-    { name: "Consort", level: [1] },
-    { name: "Coordinate", level: [1] },
-    { name: "Loyalty", level: [1] },
-    { name: "Manipulate", level: [1] },
+    { name: "Authority", level: [2] },
+    { name: "Candor", level: [1, 1] },
+    { name: "Consort", level: [3] },
+    { name: "Coordinate", level: [3] },
+    { name: "Loyalty", level: [2, 1] },
+    { name: "Manipulate", level: [2, 2] },
   ],
   "skill",
 );
@@ -82,11 +82,50 @@ export default function Page() {
         <ClockCost num={4} ticks={5} />
       </div>
       <span className="text-red-500 text-sm font-old">Aldam</span>
+      <TypographyP>
+        A dedicated student, Takota mastered the fundamentals of all three
+        points of his divine triangle from an early age. It&apos;s easy for some
+        to scoff at tradition, but faithfully maintaining a balance between the
+        three points unlocks a higher potential in all aspects.
+      </TypographyP>
       <div className="mt-2 flex items-center gap-4">
         <TypographyH3 className="mt-0">Phalanx</TypographyH3>
         <ClockCost num={3} ticks={5} />
       </div>
       <span className="text-emerald-500 text-sm font-old">Fighting Style</span>
+      <TypographyP>
+        Shield-spear formations require intense training and fundamental trust
+        in your flankmates. When coordinated precisely, Gredoran phalanxes have
+        ground much larger forces to dust.
+      </TypographyP>
+      <div className="mt-2 flex items-center gap-4">
+        <TypographyH3 className="mt-0">Ambition</TypographyH3>
+        <ClockCost num={3} ticks={5} />
+      </div>
+      <span className="text-amber-500 text-sm font-old">Psyche</span>
+      <TypographyP>
+        Name an <i>ambition to greatness</i> for yourself. When in direct
+        pursuit of your ambition, you may seek <b>the devil&apos;s bargain</b>{" "}
+        in addition to <b>pushing yourself</b>.
+      </TypographyP>
+      <TypographyP>
+        You gain an <b>xp trigger:</b> <i>Did you receive personal glory?</i>
+      </TypographyP>
+      <div className="mt-2 flex items-center gap-4">
+        <TypographyH3 className="mt-0">Cutthroat Politics</TypographyH3>
+        <ClockCost num={3} ticks={5} />
+      </div>
+      <span className="text-amber-500 text-sm font-old">Psyche</span>
+      <TypographyP>
+        Some run away from politics. Some lack the necessary constitution to
+        sieze what they want. Takota never balked when an opportunity presented
+        itself.
+      </TypographyP>
+      <TypographyP>
+        When you want to force someone to do what you want, you may burn a
+        mutual <b>bond</b>. You receive <b>xp clocks</b> to compensate. Tell us
+        how your long-running manipulation or betrayal gets you what you want.
+      </TypographyP>
     </>
   );
 }

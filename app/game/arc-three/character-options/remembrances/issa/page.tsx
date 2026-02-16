@@ -82,6 +82,13 @@ export default function Page() {
         <ClockCost num={4} ticks={5} />
       </div>
       <span className="text-red-500 text-sm font-old">Aldam</span>
+      <TypographyP>
+        Mystics preach the importance of a balanced divine triangle, but this
+        was never Issa&apos;s strong suit. He spent near every waking hour
+        channeling <b>Mercurial Skull</b>. The brashness that the blood brings
+        out of others never seemed to touch Issa. And so he pushed the technique
+        to new heights.
+      </TypographyP>
       <div className="mt-2 flex items-center gap-4">
         <TypographyH3 className="mt-0">Donum Fornax</TypographyH3>
         <ClockCost num={5} ticks={5} />
@@ -89,6 +96,12 @@ export default function Page() {
       <span className="text-fuchsia-500 text-sm font-old">
         Gift of the Forge
       </span>
+      <TypographyP>
+        Of all the worldly gifts, <b>Donum Fornax</b> is second only to{" "}
+        <b>Donum Duellum</b> in rarity and power. It is a power which is shaped
+        by its wielder; a tool which can be used to build upon itself. The only
+        limit is the ingenuity and longevity of the smith.
+      </TypographyP>
       <div className="mt-2 flex items-center gap-4">
         <TypographyH3 className="mt-0">Art or War</TypographyH3>
         <ClockCost num={3} ticks={5} />

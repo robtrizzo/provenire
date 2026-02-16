@@ -14,12 +14,12 @@ import { getActions } from "@/lib/actions";
 
 const actions: ActionV3[] = getActions(
   [
-    { name: "Berate", level: [1] },
-    { name: "Challenge", level: [1] },
-    { name: "Comfort", level: [1] },
-    { name: "Frighten", level: [1] },
-    { name: "Prowl", level: [1] },
-    { name: "Survival (Jungle)", level: [1] },
+    { name: "Berate", level: [1, 1] },
+    { name: "Challenge", level: [3] },
+    { name: "Comfort", level: [2, 1] },
+    { name: "Frighten", level: [2] },
+    { name: "Prowl", level: [2] },
+    { name: "Survival (Jungle)", level: [2, 1] },
   ],
   "skill",
 );
@@ -93,6 +93,11 @@ export default function Page() {
       <span className="text-fuchsia-500 text-sm font-old">
         Gift of the King
       </span>
+      <TypographyP>
+        Not only a wolf, but a child of <b>Kingwulf</b> himself. Velda never met
+        her father before nearly dying to his rampage, but the power of his
+        blood runs through her veins.
+      </TypographyP>
       <div className="mt-2 flex items-center gap-4">
         <TypographyH3 className="mt-0">Donum Ignis</TypographyH3>
         <ClockCost num={5} ticks={5} />
@@ -100,11 +105,41 @@ export default function Page() {
       <span className="text-fuchsia-500 text-sm font-old">
         The Gift of Fire
       </span>
+      <TypographyP>
+        Consuming <b>Kingwulf&apos;s</b> flame endowed Velda with an incredible
+        power, though one which threatens to consume her. Love is her bastion
+        against the sweltering fire. And now that she has passed the flame on to
+        you, love must be your shield too.
+      </TypographyP>
+      <TypographyP>
+        Whenever <b>time passes</b> and whenever you run out of{" "}
+        <b className="text-red-500">blood</b>, you take a{" "}
+        <b>level 2 harm: heartburn</b>. You may only <b>resist</b> this with{" "}
+        <b>bonds</b>.
+      </TypographyP>
       <div className="mt-2 flex items-center gap-4">
         <TypographyH3 className="mt-0">Throatgore</TypographyH3>
         <ClockCost num={3} ticks={5} />
       </div>
       <span className="text-emerald-500 text-sm font-old">Fighting Style</span>
+      <TypographyP>
+        Any self-respecting mother teaches her pups to hunt in the pack. And
+        Velda comes from a long line of powerful mothers. They also taught her
+        that there&apos;s more to <b>Throatgore</b> than the hunt.
+      </TypographyP>
+      <div className="mt-2 flex items-center gap-4">
+        <TypographyH3 className="mt-0">Ferocious Protector</TypographyH3>
+        <ClockCost num={3} ticks={5} />
+      </div>
+      <span className="text-amber-500 text-sm font-old">Psyche</span>
+      <TypographyP>
+        When protecting children, you may <b>push yourself</b> for free and no
+        amount of <b>harms</b> can take you out of the fight.
+      </TypographyP>
+      <TypographyP>
+        You gain an <b>xp trigger:</b>{" "}
+        <i>Did you save children from monsters?</i>
+      </TypographyP>
     </>
   );
 }

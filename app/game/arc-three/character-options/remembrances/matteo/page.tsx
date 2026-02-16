@@ -14,12 +14,12 @@ import { getActions } from "@/lib/actions";
 
 const actions: ActionV3[] = getActions(
   [
-    { name: "Frighten", level: [1] },
+    { name: "Frighten", level: [2] },
     { name: "Music (Flute)", level: [1] },
-    { name: "Navigate", level: [1] },
-    { name: "Stalk", level: [1] },
-    { name: "Stubborn", level: [1] },
-    { name: "Survival (Desert)", level: [1] },
+    { name: "Navigate", level: [3, 1] },
+    { name: "Stalk", level: [2] },
+    { name: "Stubborn", level: [1, 1] },
+    { name: "Survival (Desert)", level: [4, 1] },
   ],
   "skill",
 );
@@ -82,11 +82,25 @@ export default function Page() {
         <ClockCost num={4} ticks={5} />
       </div>
       <span className="text-red-500 text-sm font-old">Aldam</span>
+      <TypographyP>
+        Every Narscillian caravan performs a perpetual song. To outsiders it may
+        sound like chaotic nonsense. To a child of the music, they never need to
+        see in order to know the goings-ons of their company. Narscillian Aldams
+        refine this ability even farther, allowing incredible dexterity on
+        instruments and keen senses to detect the faintest syncopations to the
+        rhythm.
+      </TypographyP>
       <div className="mt-2 flex items-center gap-4">
         <TypographyH3 className="mt-0">Shadespear</TypographyH3>
         <ClockCost num={3} ticks={5} />
       </div>
       <span className="text-emerald-500 text-sm font-old">Fighting Style</span>
+      <TypographyP>
+        Narscillian hunting and combat is a phenomenon of extremes. Shadespear
+        is a specialization of one of those extremities; the ability to fight in
+        pitch darkness. Not just by using sound, but by weaponizing uncertainty
+        itself in the chaos of battle.
+      </TypographyP>
       <div className="mt-2 flex items-center gap-4">
         <TypographyH3 className="mt-0">Nihilism</TypographyH3>
         <ClockCost num={2} ticks={5} />
@@ -100,6 +114,23 @@ export default function Page() {
       <TypographyP>
         Gain an <b>xp trigger</b>:{" "}
         <i>Did you witness evidence of humanity&apos;s intrinsic evil?</i>
+      </TypographyP>
+      <div className="mt-2 flex items-center gap-4">
+        <TypographyH3 className="mt-0">Mantle of Duty</TypographyH3>
+        <ClockCost num={3} ticks={5} />
+      </div>
+      <span className="text-amber-500 text-sm font-old">Psyche</span>
+      <TypographyP>
+        As cruel and unfair as the Mantle is to the one wearing it, it is a
+        generationally sacred rite. Matteo may have cast his off, but not before
+        he lived with it for decades. Duty before Death.
+      </TypographyP>
+      <TypographyP>
+        Name your community and your duty. Remove all of your <b>bonds</b>. You
+        are refunded <b>xp clocks</b> to compensate. While doing your duty to
+        your community, <b>resisting</b> and <b>pushing yourself</b> costs{" "}
+        <b>1 stress</b> less. If you ever form a bond or neglect your duty, you
+        lose this ability.
       </TypographyP>
     </>
   );

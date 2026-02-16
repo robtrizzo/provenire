@@ -15,12 +15,12 @@ import { getActions } from "@/lib/actions";
 
 const actions: ActionV3[] = getActions(
   [
-    { name: "Brawl", level: [1] },
-    { name: "Challenge", level: [1] },
-    { name: "Frighten", level: [1] },
-    { name: "Initiate", level: [1] },
-    { name: "Smash", level: [1] },
-    { name: "Survival (Jungle)", level: [1] },
+    { name: "Brawl", level: [3] },
+    { name: "Challenge", level: [1, 1] },
+    { name: "Frighten", level: [2] },
+    { name: "Initiate", level: [2] },
+    { name: "Smash", level: [3] },
+    { name: "Survival (Jungle)", level: [2, 1] },
   ],
   "skill",
 );
@@ -45,7 +45,7 @@ export default function Page() {
           <TypographyP>
             Rathi warrior after Rathi warrior venture out into Ygg's jungle to
             slay the beast for glory, never to return. Superstition builds.
-            Mosters flock to Ygg's safety.
+            Monsters flock to Ygg's safety.
           </TypographyP>
           <TypographyH3>Psyche</TypographyH3>
           <TypographyP>
@@ -90,11 +90,49 @@ export default function Page() {
       <span className="text-fuchsia-500 text-sm font-old">
         Gift of the Monster
       </span>
+      <TypographyP>
+        The definition of <b>Donum Portentum</b> has changed over the millenia.
+        Its edges are more determined by <b>Kingwulf&apos;s</b> arbitrary
+        exclusion than any sort of meaningful category to attribute. But if
+        there were one, Ygg would fit. His shape is not recognizably animal or
+        beast like they are commonly understood. He is a knot of primal flesh
+        bent on destruction.
+      </TypographyP>
       <div className="mt-2 flex items-center gap-4">
         <TypographyH3 className="mt-0">Backsnap</TypographyH3>
         <ClockCost num={3} ticks={5} />
       </div>
       <span className="text-emerald-500 text-sm font-old">Fighting Style</span>
+      <TypographyP>
+        Far before the fighting style was ever coined or practiced, it existed
+        in nature. It is the brute strength predators rip their quarry apart
+        with. This is the only way Ygg understands combat. Two things smash into
+        each other, and he emerges with a full belly.
+      </TypographyP>
+      <div className="mt-2 flex items-center gap-4">
+        <TypographyH3 className="mt-0">Lonely</TypographyH3>
+        <ClockCost num={3} ticks={5} />
+      </div>
+      <span className="text-amber-500 text-sm font-old">Psyche</span>
+      <TypographyP>
+        Solitude is survival. Others are threats. Especially close ones.
+        They&apos;re just clever predators waiting for their chance to pounce.
+        Replace the <b>Afraid</b> condition with <b>Lonely</b>. As a{" "}
+        <b>downtime activity</b> you may drive others away from you. If you do,
+        mark <b>Lonely</b> to clear two other conditions.
+      </TypographyP>
+      <TypographyBlockquote>
+        <b>Lonely:</b> clear by advancing a <b>bond</b>.
+      </TypographyBlockquote>
+      <div className="mt-2 flex items-center gap-4">
+        <TypographyH3 className="mt-0">Savage Instinct</TypographyH3>
+        <ClockCost num={3} ticks={5} />
+      </div>
+      <span className="text-amber-500 text-sm font-old">Psyche</span>
+      <TypographyP>
+        You may overcome any source of coersion or deception by marking the{" "}
+        <b>Angry</b> condition and attacking the source of the effect.
+      </TypographyP>
     </>
   );
 }
