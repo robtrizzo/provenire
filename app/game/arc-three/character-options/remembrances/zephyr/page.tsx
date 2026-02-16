@@ -14,14 +14,14 @@ import { getActions } from "@/lib/actions";
 
 const actions: ActionV3[] = getActions(
   [
-    { name: "Connect", level: [1] },
-    { name: "Galvanize", level: [1] },
-    { name: "Initiate", level: [1] },
-    { name: "Music (Sing)", level: [1] },
-    { name: "Skirmish", level: [1] },
-    { name: "Survival (Desert)", level: [1] },
+    { name: "Connect", level: [2, 2] },
+    { name: "Galvanize", level: [1, 1] },
+    { name: "Initiate", level: [2] },
+    { name: "Music (Sing)", level: [3] },
+    { name: "Skirmish", level: [2] },
+    { name: "Survival (Desert)", level: [2] },
   ],
-  "skill",
+  "skill"
 );
 
 export default function Page() {
@@ -82,6 +82,13 @@ export default function Page() {
         <ClockCost num={4} ticks={5} />
       </div>
       <span className="text-red-500 text-sm font-old">Aldam</span>
+      <TypographyP>
+        The perpetual song isn&apos;t just an act of pragmatism. It&apos;s a way
+        of life. It tells the ever-evolving story of a caravan&apos;s hopes and
+        dreams and strifes. Narscillian Aldams keep the ears keen to the nuances
+        of the rhythm, yes. But they can also open the heart to the raw emotions
+        of your fellows&apos; music.
+      </TypographyP>
       <div className="mt-2 flex items-center gap-4">
         <TypographyH3 className="mt-0">Donum Ventus</TypographyH3>
         <ClockCost num={5} ticks={5} />
@@ -89,11 +96,35 @@ export default function Page() {
       <span className="text-fuchsia-500 text-sm font-old">
         The Gift of Wind
       </span>
+      <TypographyP>
+        A rare power, and never before seen with the strength which Zephyr
+        wielded it. Desert wind is a spiteful spirit turned capable and
+        especially cruel by gusts and torrents. Taming this force of nature is
+        far harder a task than stoking it into a storm.
+      </TypographyP>
       <div className="mt-2 flex items-center gap-4">
         <TypographyH3 className="mt-0">Blazing Arrow</TypographyH3>
         <ClockCost num={3} ticks={5} />
       </div>
       <span className="text-emerald-500 text-sm font-old">Fighting Style</span>
+      <TypographyP>
+        There is an art to following Mother Sun&apos;s warmth. She paints lines
+        to quarry, though you must turn your back on her to see them. She warms
+        your shelter though she must go before you rest.
+      </TypographyP>
+      <div className="mt-2 flex items-center gap-4">
+        <TypographyH3 className="mt-0">Animal Empath</TypographyH3>
+        <ClockCost num={3} ticks={5} />
+      </div>
+      <span className="text-amber-500 text-sm font-old">Psyche</span>
+      <TypographyP>
+        As a <b>downtime activity</b> you can spend <b>1 Food</b> and care for
+        an animal. If you do, <b>clear a condition</b>.
+      </TypographyP>
+      <TypographyP>
+        You may form <b>bonds</b> with animals. When you do, you form an
+        empathic connection with which emotions can be transmitted.
+      </TypographyP>
     </>
   );
 }
