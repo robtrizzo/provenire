@@ -15,7 +15,7 @@ import { getActions } from "@/lib/actions";
 const actions: ActionV3[] = getActions(
   [
     { name: "Authority", level: [2] },
-    { name: "Candor", level: [1, 1] },
+    { name: "Candor", level: [2] },
     { name: "Consort", level: [3] },
     { name: "Coordinate", level: [3] },
     { name: "Loyalty", level: [2, 1] },

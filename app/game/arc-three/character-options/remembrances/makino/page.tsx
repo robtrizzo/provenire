@@ -17,7 +17,7 @@ const actions: ActionV3[] = getActions(
     { name: "Acrobatics", level: [2] },
     { name: "Ambush", level: [3] },
     { name: "Lift", level: [2, 1] },
-    { name: "Lurk", level: [2] },
+    { name: "Lurk", level: [1] },
     { name: "Scheme", level: [1, 1] },
     { name: "Stubborn", level: [1, 1] },
   ],

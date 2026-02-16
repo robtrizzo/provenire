@@ -15,7 +15,7 @@ import { getActions } from "@/lib/actions";
 
 const actions: ActionV3[] = getActions(
   [
-    { name: "Brawl", level: [3] },
+    { name: "Brawl", level: [4] },
     { name: "Challenge", level: [1, 1] },
     { name: "Frighten", level: [2] },
     { name: "Initiate", level: [2] },

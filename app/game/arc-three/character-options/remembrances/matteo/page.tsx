@@ -16,7 +16,7 @@ const actions: ActionV3[] = getActions(
   [
     { name: "Frighten", level: [2] },
     { name: "Music (Flute)", level: [1] },
-    { name: "Navigate", level: [3, 1] },
+    { name: "Navigate", level: [2, 1] },
     { name: "Stalk", level: [2] },
     { name: "Stubborn", level: [1, 1] },
     { name: "Survival (Desert)", level: [4, 1] },

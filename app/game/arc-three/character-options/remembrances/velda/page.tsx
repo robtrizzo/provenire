@@ -19,7 +19,7 @@ const actions: ActionV3[] = getActions(
     { name: "Comfort", level: [2, 1] },
     { name: "Frighten", level: [2] },
     { name: "Prowl", level: [2] },
-    { name: "Survival (Jungle)", level: [2, 1] },
+    { name: "Survival (Jungle)", level: [2, 2] },
   ],
   "skill",
 );

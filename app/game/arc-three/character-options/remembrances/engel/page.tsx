@@ -17,7 +17,7 @@ const actions: ActionV3[] = getActions(
     { name: "Coordinate", level: [2, 1] },
     { name: "Command", level: [3] },
     { name: "Disconnect", level: [2] },
-    { name: "Encourage", level: [2, 1] },
+    { name: "Encourage", level: [2, 2] },
     { name: "Rally", level: [1, 1] },
     { name: "Relate", level: [2] },
   ],
