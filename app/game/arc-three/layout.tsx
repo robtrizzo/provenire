@@ -41,6 +41,16 @@ const navigationData = [
     ],
   },
   {
+    title: "Neighborhoods",
+    url: "#",
+    items: [
+      {
+        title: "The Bends",
+        url: "/game/arc-three/neighborhoods/the-bends",
+      },
+    ],
+  },
+  {
     title: "Demo",
     url: "#",
     items: [
