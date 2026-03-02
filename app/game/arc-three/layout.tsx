@@ -14,10 +14,16 @@ const navigationData = [
   //   title: "Setting",
   //   url: "#",
   // },
-  // {
-  //   title: "Rules",
-  //   url: "#",
-  // },
+  {
+    title: "Rules",
+    url: "#",
+    items: [
+      {
+        title: "Downtime",
+        url: "/game/arc-three/rules/downtime",
+      },
+    ],
+  },
   // {
   //   title: "Cycle of Play",
   //   url: "#",
