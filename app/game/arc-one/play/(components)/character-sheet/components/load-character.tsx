@@ -118,7 +118,7 @@ function LoadFromCloud({ closePopover }: { closePopover: () => void }) {
         </DialogHeader>
         {isPending && <div>Loading...</div>}
         {data?.error && <div>Error: {data.error}</div>}
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 w-[480px] max-h-100 overflow-y-auto">
           {data?.characters?.map((char: any, idx: number) => (
             <LoadCharacterButton
               key={idx}
