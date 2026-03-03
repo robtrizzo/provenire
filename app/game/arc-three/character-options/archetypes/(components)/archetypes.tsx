@@ -4,7 +4,6 @@ import {
   TypographyBlockquote,
   TypographyH2,
   TypographyH3,
-  TypographyP,
 } from "@/components/ui/typography";
 import { Separator } from "@/components/ui/separator";
 import Ability from "@/components/abilities/ability";

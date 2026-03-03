@@ -13,9 +13,12 @@ export default function TheChessGameOfLife() {
         <b>Foes</b>: overseer, abuser, rival, doubter.
       </TypographyP>
       <TypographyP>
-        At the start of each mission, pick one friend or foe.
-        <b>+1d</b> to any action that helps shift their view of you in the
-        direction you want.
+        At the start of each mission, pick one friend or foe.{" "}
+        <code>
+          <b className="text-emerald-500">+1 push</b>
+        </code>{" "}
+        to any action that helps shift their view of you in the direction you
+        want.
       </TypographyP>
     </div>
   );

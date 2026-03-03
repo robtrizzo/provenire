@@ -1,6 +1,5 @@
 import Breadcrumbs from "@/components/ui/breadcrumbs";
-import { Separator } from "@/components/ui/separator";
-import { TypographyH1, TypographyH2 } from "@/components/ui/typography";
+import { TypographyH1 } from "@/components/ui/typography";
 import Archetypes from "./(components)/archetypes";
 
 export default async function Page() {

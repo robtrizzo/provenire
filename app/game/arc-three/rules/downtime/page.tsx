@@ -259,9 +259,9 @@ export default function Page() {
             On a{" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              viewBox="4 4 16 16"
-              width={50}
-              height={50}
+              viewBox="6 6 12 12"
+              width={30}
+              height={30}
               fill="white"
               stroke="white"
               strokeWidth={0.8}
