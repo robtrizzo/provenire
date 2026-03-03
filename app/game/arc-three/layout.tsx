@@ -33,6 +33,10 @@ const navigationData = [
     url: "#",
     items: [
       {
+        title: "Archetypes",
+        url: "/game/arc-three/character-options/archetypes",
+      },
+      {
         title: "Integrations",
         url: "/game/arc-three/character-options/integrations",
       },

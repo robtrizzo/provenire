@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Strategist",
+    "shortDescription": "Intense, inquisitive, perceptive.",
+    "questions": [
+      "Whose life have you saved in the Steel Trap because of your decisive action and split second ingenuity?",
+      "Who would you love to date, to give your all, if only you could figure out a good way to ... whatever people do to start dating?",
+      "Which one of the overseers gave you a brutal beating after your correct, but irreverent, nay, scathing contrarianism?",
+      "Which one of the overseers do you have dirt on? How might they be exploited for your advantage?",
+      "Whose romantic advances have you ruined with brutal honesty and tactless criticism?"
+    ],
+    "abilities": [
+        {
+          "name": "The Chess Game of Life",
+          "slug": "the-chess-game-of-life",
+          "cost": 0
+        },
+        {
+          "name": "My Body is My Machine",
+          "slug": "my-body-is-my-machine",
+          "cost": 2
+        },
+        {
+          "name": "Villainous Intellect",
+          "slug": "villainous-intellect",
+          "cost": 2
+        },
+        {
+          "name": "Thirst for Knowledge",
+          "slug": "thirst-for-knowledge",
+          "cost": 2
+        }
+    ]
+  }
+]

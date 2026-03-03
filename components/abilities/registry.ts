@@ -162,6 +162,12 @@ import ASpontaneousSpirit1 from "./archetypes/arc1/entertainer/a-spontaneous-spi
 import SituationalAwareness1 from "./archetypes/arc1/entertainer/situational-awareness";
 import LivingWithPassion1 from "./archetypes/arc1/entertainer/living-with-passion";
 import AvoidConflict1 from "./archetypes/arc1/entertainer/avoid-conflict";
+// arc 3
+// strategist
+import TheChessGameOfLife3 from "./archetypes/arc3/strategist/the-chess-game-of-life";
+import MyBodyIsMyMachine3 from "./archetypes/arc3/strategist/my-body-is-my-machine";
+import VillainousIntellect3 from "./archetypes/arc3/strategist/villainous-intellect";
+import ThirstForKnowledge3 from "./archetypes/arc3/strategist/thirst-for-knowledge";
 
 // operatives
 // arc2
@@ -513,6 +519,14 @@ export const abilityRegistry = {
         "situational-awareness": SituationalAwareness2,
         "living-with-passion": LivingWithPassion2,
         "avoid-conflict": AvoidConflict2,
+      },
+    },
+    arc3: {
+      strategist: {
+        "the-chess-game-of-life": TheChessGameOfLife3,
+        "my-body-is-my-machine": MyBodyIsMyMachine3,
+        "villainous-intellect": VillainousIntellect3,
+        "thirst-for-knowledge": ThirstForKnowledge3,
       },
     },
   },

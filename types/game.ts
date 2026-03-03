@@ -461,3 +461,12 @@ export type Note = {
   content: string;
   clock?: Clock;
 };
+
+// ARC THREE ------------------ //
+
+export type ArchetypeV3 = {
+  name: string;
+  questions: string[];
+  shortDescription: string;
+  abilities: Ability[];
+};
