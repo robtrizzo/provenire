@@ -1,7 +1,7 @@
 import { getBaseFace, getEffectDegree, isCritCandidate } from "@/lib/dice";
 import { CritBorderGradient, D6 } from "./dice-borders";
 import {
-  ArrowDouble,
+  Advantage,
   Theta,
   ThetaDouble,
   ThetaTriple,
@@ -53,7 +53,7 @@ export function renderFaceSymbols(face: DieFace): ReactNode {
   return (
     <>
       {hasThreat && threatSymbol}
-      {hasAdvantage && <ArrowDouble />}
+      {hasAdvantage && <Advantage />}
       {getEffectSymbol(effectDegree)}
     </>
   );

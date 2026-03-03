@@ -1,5 +1,5 @@
 import { InlineSymbol } from "@/components/dice/dice-borders";
-import { ArrowDouble } from "@/components/dice/dice-symbols";
+import { Advantage } from "@/components/dice/dice-symbols";
 import { TypographyP } from "@/components/ui/typography";
 export default function Empathize() {
   return (
@@ -16,7 +16,7 @@ export default function Empathize() {
         If they reject it, the Idealist marks <b>1 stress</b> and the character
         they were trying to <b>comfort</b> gains{" "}
         <InlineSymbol>
-          <ArrowDouble />
+          <Advantage />
         </InlineSymbol>
         .
       </TypographyP>

@@ -1,5 +1,5 @@
 import { InlineSymbol } from "@/components/dice/dice-borders";
-import { ArrowDouble } from "@/components/dice/dice-symbols";
+import { Advantage } from "@/components/dice/dice-symbols";
 import { TypographyP } from "@/components/ui/typography";
 export default function TheGiftOfLoyalty() {
   return (
@@ -8,7 +8,7 @@ export default function TheGiftOfLoyalty() {
         Magical or cybernetic means can never cause you to hurt or sabotage your
         crew or loved ones. When this happens, gain{" "}
         <InlineSymbol>
-          <ArrowDouble />
+          <Advantage />
         </InlineSymbol>
         .
       </TypographyP>

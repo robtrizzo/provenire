@@ -1,5 +1,5 @@
 import { InlineSymbol } from "@/components/dice/dice-borders";
-import { ArrowDouble } from "@/components/dice/dice-symbols";
+import { Advantage } from "@/components/dice/dice-symbols";
 import { TypographyP } from "@/components/ui/typography";
 export default function ThirstForKnowledge() {
   return (
@@ -9,7 +9,7 @@ export default function ThirstForKnowledge() {
         instructors. When they <b>train</b> with one of these instructors while
         they have{" "}
         <InlineSymbol>
-          <ArrowDouble />
+          <Advantage />
         </InlineSymbol>
         , they mark <b>1 xp</b>.
       </TypographyP>
