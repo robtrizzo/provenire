@@ -28,8 +28,8 @@ function Archetype({ archetype }: { archetype: ArchetypeV3 }) {
         {archetype.shortDescription}
       </span>
       <Separator />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pr-6">
-        <div className="col-span-1">
+      <div className="grid grid-cols-8 gap-6 pr-6">
+        <div className="col-span-8 md:col-span-5">
           {archetype.abilities.map((ability, idx) => (
             <Fragment key={idx}>
               <TypographyH3 className="flex items-end gap-2">
@@ -44,7 +44,7 @@ function Archetype({ archetype }: { archetype: ArchetypeV3 }) {
             </Fragment>
           ))}
         </div>
-        <div className="col-span-1 mt-6 flex flex-col gap-4">
+        <div className="col-span-8 md:col-span-3 mt-6 flex flex-col gap-4">
           {archetype.questions.map((q, idx) => (
             <TypographyBlockquote key={idx} className="text-lg">
               {q}

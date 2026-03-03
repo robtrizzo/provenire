@@ -18,7 +18,7 @@
         {
           "name": "My Body is My Machine",
           "slug": "my-body-is-my-machine",
-          "cost": 2
+          "cost": 3
         },
         {
           "name": "Villainous Intellect",
@@ -30,6 +30,105 @@
           "slug": "thirst-for-knowledge",
           "cost": 2
         }
+    ]
+  },
+  {
+    "name": "Idealist",
+    "shortDescription": "Imaginative, empathetic, compassionate.",
+    "questions": [
+      "Who is your best friend? Someone you've inspired with grand visions of the future and who you've always helped out of bad spots?",
+      "Who would you love to date despite all of their superficial flaws? Why are they your soul-mate?",
+      "Which one of the overseers threatens your best friend in order to get you to be an informant to The Master?",
+      "The overseers work to sow discord and conflict among the workers. You've mediated and mended hatred between two of your community's leaders. Who are they?",
+      "Who broke your heart because dating them wasn't everything you'd imagined it would be?"
+    ],
+    "abilities": [
+      {
+        "name": "In Search of a Calling",
+        "cost": 0,
+        "slug": "in-search-of-a-calling"
+      },
+      {
+        "name": "Open Heart",
+        "cost": 3,
+        "slug": "open-heart"
+      },
+      {
+        "name": "Speaking their Truth",
+        "cost": 2,
+        "slug": "speaking-their-truth"
+      },
+      {
+        "name": "Empathize",
+        "cost": 2,
+        "slug": "empathize"
+      }
+    ]
+  },
+  {
+    "name": "Defender",
+    "shortDescription": "Steady, responsible, understanding.",
+    "questions": [
+      "You've been giving every spare scrap of your food to your fellow shift workers. What toll on your body has this taken?",
+      "Who do you have a crush on; who you jump to the defense of, even when it doesn't make sense? Why haven't you expressed your feelings?",
+      "Which one of the overseers loves tormenting you, beating you, watching you suffer as you quietly work in order to support your family?",
+      "One of the overseers nearly killed one of your fellow shift workers last week. Rather than sit by, you shoved his head into a piston and killed him. Who have you gotten to pose as the overseer?",
+      "Who broke up with you because you never let them fight their own battles?"
+    ],
+    "abilities": [
+      {
+        "name": "Showing Up",
+        "cost": 0,
+        "slug": "showing-up"
+      },
+      {
+        "name": "The Gift of Loyalty",
+        "cost": 3,
+        "slug": "the-gift-of-loyalty"
+      },
+      {
+        "name": "The Highest Standard",
+        "cost": 2,
+        "slug": "the-highest-standard"
+      },
+      {
+        "name": "Humble Dedication",
+        "cost": 2,
+        "slug": "humble-dedication"
+      }
+    ]
+  },
+  {
+    "name": "Virtuoso",
+    "shortDescription": "Solitary, exploratory, direct.",
+    "questions": [
+      "Who is your mentor? A fellow tinkerer who has helped you learn the multitude of your interests?",
+      "Who is the latest flame to catch your eye? What's your novel plan to initiate love?",
+      "Which one of the overseers gets a little too close? Breathes down your neck? Is visible from the corner of your eye as you walk home at night?",
+      "You've found a place deep underneath the factory floor. Something massive lives down there. What's your plan to use it to your advantage?",
+      "Who did you break up with because they wanted to get serious too quickly?"
+    ],
+    "abilities": [
+      {
+        "name": "Personal Project",
+        "cost": 0,
+        "slug": "personal-project"
+      },
+      {
+        "name": "Defying the Rules",
+        "cost": 2,
+        "slug": "defying-the-rules"
+      },
+      {
+        "name": "Dare to Differ",
+        "cost": 2,
+        "slug": "dare-to-differ"
+      },
+      {
+        "name": "All Fair Play",
+        "cost": 3,
+        "slug": "all-fair-play"
+      }
     ]
   }
 ]

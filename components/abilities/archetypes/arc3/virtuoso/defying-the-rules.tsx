@@ -1,17 +1,16 @@
 import { InlineSymbol } from "@/components/dice/dice-borders";
 import { ArrowDouble } from "@/components/dice/dice-symbols";
 import { TypographyP } from "@/components/ui/typography";
-export default function ThirstForKnowledge() {
+export default function DefyingTheRules() {
   return (
     <div>
       <TypographyP>
-        The Strategist is a lifelong student and has a network of expert
-        instructors. When they <b>train</b> with one of these instructors while
-        they have{" "}
+        The Virtuoso can <b>push themself</b> and spend{" "}
         <InlineSymbol>
           <ArrowDouble />
-        </InlineSymbol>
-        , they mark <b>1 xp</b>.
+        </InlineSymbol>{" "}
+        to explain an out-of-the-box solution. If they do, they can roll with
+        any action they choose with <b>standard effect</b>.
       </TypographyP>
     </div>
   );
