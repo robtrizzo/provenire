@@ -14,10 +14,16 @@ const navigationData = [
   //   title: "Setting",
   //   url: "#",
   // },
-  // {
-  //   title: "Rules",
-  //   url: "#",
-  // },
+  {
+    title: "Rules",
+    url: "#",
+    items: [
+      {
+        title: "Downtime",
+        url: "/game/arc-three/rules/downtime",
+      },
+    ],
+  },
   // {
   //   title: "Cycle of Play",
   //   url: "#",
@@ -26,6 +32,10 @@ const navigationData = [
     title: "Character Options",
     url: "#",
     items: [
+      {
+        title: "Archetypes",
+        url: "/game/arc-three/character-options/archetypes",
+      },
       {
         title: "Integrations",
         url: "/game/arc-three/character-options/integrations",
@@ -37,6 +47,16 @@ const navigationData = [
       {
         title: "Roles",
         url: "/game/arc-three/character-options/roles",
+      },
+    ],
+  },
+  {
+    title: "Neighborhoods",
+    url: "#",
+    items: [
+      {
+        title: "The Bends",
+        url: "/game/arc-three/neighborhoods/the-bends",
       },
     ],
   },

@@ -156,7 +156,7 @@ export const ThetaGlow = () => {
   );
 };
 
-export const ArrowDouble = () => {
+export const Advantage = () => {
   return (
     <>
       <path

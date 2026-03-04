@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/typography";
 import { D6 } from "../../../../components/dice/dice-borders";
 import {
-  ArrowDouble,
+  Advantage,
   Theta,
   ThetaDouble,
   ThetaTriple,
@@ -69,23 +69,23 @@ export default async function Page() {
         </div>
         <div className="flex flex-col gap-2">
           <D6 size={128}>
-            <ArrowDouble />
+            <Advantage />
           </D6>
           <D6 size={128}>
             <>
-              <ArrowDouble />
+              <Advantage />
               <Theta />
             </>
           </D6>
           <D6 size={128}>
             <>
-              <ArrowDouble />
+              <Advantage />
               <ThetaDouble />
             </>
           </D6>
           <D6 size={128}>
             <>
-              <ArrowDouble />
+              <Advantage />
               <ThetaTriple />
             </>
           </D6>
@@ -94,27 +94,27 @@ export default async function Page() {
           <D6 size={128}>
             <>
               <ThreatSpread />
-              <ArrowDouble />
+              <Advantage />
             </>
           </D6>
           <D6 size={128}>
             <>
               <ThreatSpread />
-              <ArrowDouble />
+              <Advantage />
               <Theta />
             </>
           </D6>
           <D6 size={128}>
             <>
               <ThreatSpread />
-              <ArrowDouble />
+              <Advantage />
               <ThetaDouble />
             </>
           </D6>
           <D6 size={128}>
             <>
               <ThreatSpread />
-              <ArrowDouble />
+              <Advantage />
               <ThetaTriple />
             </>
           </D6>

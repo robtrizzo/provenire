@@ -117,3 +117,28 @@ export const D8 = ({
     {children}
   </svg>
 );
+
+export const InlineSymbol = ({
+  size = 30,
+  children,
+}: {
+  size?: number;
+  children: ReactNode;
+}) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="6 6 12 12"
+      width={size}
+      height={size}
+      fill="white"
+      stroke="white"
+      strokeWidth={0.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="inline align-bottom"
+    >
+      {children}
+    </svg>
+  );
+};

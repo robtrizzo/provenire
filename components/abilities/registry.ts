@@ -127,7 +127,7 @@ import DutifulServantOfTheKing1 from "./archetypes/arc1/logistician/dutiful-serv
 import ByTheBookIsPractical1 from "./archetypes/arc1/logistician/by-the-book-is-practical";
 import StructureAndOrder1 from "./archetypes/arc1/logistician/structure-and-order";
 import PickingUpTheSlack1 from "./archetypes/arc1/logistician/picking-up-the-slack";
-// logistician
+// defender
 import ShowingUp1 from "./archetypes/arc1/defender/showing-up";
 import TheGiftOfLoyalty1 from "./archetypes/arc1/defender/the-gift-of-loyalty";
 import TheHighestStandard1 from "./archetypes/arc1/defender/the-highest-standard";
@@ -162,6 +162,27 @@ import ASpontaneousSpirit1 from "./archetypes/arc1/entertainer/a-spontaneous-spi
 import SituationalAwareness1 from "./archetypes/arc1/entertainer/situational-awareness";
 import LivingWithPassion1 from "./archetypes/arc1/entertainer/living-with-passion";
 import AvoidConflict1 from "./archetypes/arc1/entertainer/avoid-conflict";
+// arc 3
+// strategist
+import TheChessGameOfLife3 from "./archetypes/arc3/strategist/the-chess-game-of-life";
+import MyBodyIsMyMachine3 from "./archetypes/arc3/strategist/my-body-is-my-machine";
+import VillainousIntellect3 from "./archetypes/arc3/strategist/villainous-intellect";
+import ThirstForKnowledge3 from "./archetypes/arc3/strategist/thirst-for-knowledge";
+// idealist
+import InSearchOfACalling3 from "./archetypes/arc3/idealist/in-search-of-a-calling";
+import OpenHeart3 from "./archetypes/arc3/idealist/open-heart";
+import SpeakingTheirTruth3 from "./archetypes/arc3/idealist/speaking-their-truth";
+import Empathize3 from "./archetypes/arc3/idealist/empathize";
+// defender
+import ShowingUp3 from "./archetypes/arc3/defender/showing-up";
+import TheGiftOfLoyalty3 from "./archetypes/arc3/defender/the-gift-of-loyalty";
+import TheHighestStandard3 from "./archetypes/arc3/defender/the-highest-standard";
+import HumbleDedication3 from "./archetypes/arc3/defender/humble-dedication";
+// virtuoso
+import PersonalProject3 from "./archetypes/arc3/virtuoso/personal-project";
+import DefyingTheRules3 from "./archetypes/arc3/virtuoso/defying-the-rules";
+import DareToDiffer3 from "./archetypes/arc3/virtuoso/dare-to-differ";
+import AllFairPlay3 from "./archetypes/arc3/virtuoso/all-fair-play";
 
 // operatives
 // arc2
@@ -513,6 +534,32 @@ export const abilityRegistry = {
         "situational-awareness": SituationalAwareness2,
         "living-with-passion": LivingWithPassion2,
         "avoid-conflict": AvoidConflict2,
+      },
+    },
+    arc3: {
+      strategist: {
+        "the-chess-game-of-life": TheChessGameOfLife3,
+        "my-body-is-my-machine": MyBodyIsMyMachine3,
+        "villainous-intellect": VillainousIntellect3,
+        "thirst-for-knowledge": ThirstForKnowledge3,
+      },
+      idealist: {
+        "in-search-of-a-calling": InSearchOfACalling3,
+        "open-heart": OpenHeart3,
+        "speaking-their-truth": SpeakingTheirTruth3,
+        empathize: Empathize3,
+      },
+      defender: {
+        "showing-up": ShowingUp3,
+        "the-gift-of-loyalty": TheGiftOfLoyalty3,
+        "the-highest-standard": TheHighestStandard3,
+        "humble-dedication": HumbleDedication3,
+      },
+      virtuoso: {
+        "personal-project": PersonalProject3,
+        "defying-the-rules": DefyingTheRules3,
+        "dare-to-differ": DareToDiffer3,
+        "all-fair-play": AllFairPlay3,
       },
     },
   },
