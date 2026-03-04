@@ -102,7 +102,9 @@ export default function AbilitiesSection() {
                 />
                 <AbilityComponent
                   ability={a}
-                  category={a.type + "s"}
+                  category={
+                    a.type === "transformation" ? "donums" : a.type + "s"
+                  }
                   arc="arc2"
                   type={a.source?.toLocaleLowerCase().replace(/\s/g, "-") || ""}
                 />
@@ -271,7 +273,7 @@ export default function AbilitiesSection() {
                 </div>
                 <AbilityComponent
                   ability={ability}
-                  category="fightingStyles"
+                  category="fighting-styles"
                   arc="arc2"
                   type={selectedFightingStyle.name
                     .split(" ")[0]
