@@ -1,6 +1,7 @@
 "use client";
 import type { Ability } from "@/types/game";
-import { abilityRegistry } from "./registry";
+import dynamic from "next/dynamic";
+import { useMemo } from "react";
 
 interface AbilityProps {
   ability: Ability;
@@ -11,18 +12,33 @@ interface AbilityProps {
 
 export default function Ability(props: AbilityProps) {
   const { ability, category, arc, type } = props;
-  const AbilityComponent =
-    abilityRegistry?.[category]?.[arc]?.[type]?.[ability.slug];
-  if (!AbilityComponent) {
-    console.error(
-      `Ability not found: ${category}/${arc}/${type}/${ability.slug}`
+
+  const AbilityComponent = useMemo(() => {
+    // Derives path: e.g. archetypes/arc2/strategist/the-chess-game-of-life
+    return dynamic(
+      () =>
+        import(`./${category}/${arc}/${type}/${ability.slug}`).catch(() => {
+          console.error(
+            `Ability not found: ${category}/${arc}/${type}/${ability.slug}`,
+          );
+          return {
+            default: () => (
+              <span className="text-red-500">
+                Ability not found: {ability.name}
+              </span>
+            ),
+          };
+        }),
+      {
+        ssr: false,
+        loading: () => (
+          <span className="text-muted-foreground animate-pulse">
+            Loading {ability.name}...
+          </span>
+        ),
+      },
     );
-    return (
-      <div>
-        <span className="text-red-500">Ability not found: {ability.name}</span>
-      </div>
-    );
-  }
+  }, [category, arc, type, ability.slug, ability.name]);
 
   return <AbilityComponent />;
 }
