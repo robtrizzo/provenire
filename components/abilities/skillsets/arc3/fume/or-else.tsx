@@ -9,21 +9,24 @@ import {
   TypographyP,
   TypographyUnorderedList,
 } from "@/components/ui/typography";
-export default function SpeakingUpForWhatsRight() {
+export default function OrElse() {
   return (
     <>
       <TypographyP>
-        During downtime, Leaders can spend a <b>downtime</b> activity speaking
-        out and letting the overseers know that <i>you are not afraid</i>. Make
-        an <b>action roll</b>.
+        You may spend a <b>downtime</b> activity to{" "}
+        <i>pit the oppressors against each other</i>. When you do, you may tick
+        any <b>Faction clock</b> that you are aware of up or down. Make an{" "}
+        <b>action roll</b>.
       </TypographyP>
       <div className="grid grid-cols-1 sm:grid-cols-2 border-1 rounded-md border-border p-2">
         <div className="col-span-1">
           <TypographyP>
             <InlineSymbol>
               <Theta />
-            </InlineSymbol>
-            ,{" "}
+            </InlineSymbol>{" "}
+            : choose two
+          </TypographyP>
+          <TypographyP>
             <InlineSymbol>
               <ThetaDouble />
             </InlineSymbol>{" "}
@@ -33,16 +36,19 @@ export default function SpeakingUpForWhatsRight() {
             <InlineSymbol>
               <ThetaTriple />
             </InlineSymbol>{" "}
-            : choose two
+            : tick another <b>Faction clock</b> up or down
           </TypographyP>
         </div>
         <div className="col-span-1">
           <TypographyUnorderedList>
             <li>
-              <b>+1 rep</b>
+              <b>-1 goodwill</b>
             </li>
             <li>
-              <b>+1 goodwill</b>
+              <b>+1 spite</b>
+            </li>
+            <li>
+              <b>+2 heat</b>
             </li>
           </TypographyUnorderedList>
           <TypographyP>
@@ -50,7 +56,7 @@ export default function SpeakingUpForWhatsRight() {
             <InlineSymbol>
               <Threat />
             </InlineSymbol>
-            , <b>resist</b> or the crew gains <b>+3 heat</b>.
+            , <b>resist</b> or pick another option.
           </TypographyP>
         </div>
       </div>
