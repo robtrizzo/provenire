@@ -1,0 +1,153 @@
+[
+  {
+    "name": "Flywheel",
+    "shortDescription": "A daring scoundrel and acrobat",
+    "description": "The Steel Trap is part factory, part prison, part fortress. Many of its rooms and corridors were never desinged to be traversed by humans. Flywheels are one of the few nimble enough to navigate the parts of the factory made only for crows, wolves, and bears.",
+    "questions": [
+      "The Beast Lanes are dangerous places, and not everyone is as talented as you are. What tragedy has befallen someone who followed you there?",
+      "Your abilities have allowed you to climb to the top of the factory and see the sky. How did seeing the wider world and starry cosmos affect you?"
+    ],
+    "abilities": [
+      {
+        "name": "Devil's Footsteps",
+        "slug": "devils-footsteps",
+        "cost": 4
+      },
+      {
+        "name": "Focused",
+        "slug": "focused",
+        "cost": 4
+      },
+      {
+        "name": "Scout",
+        "slug": "scout",
+        "cost": 3
+      },
+      {
+        "name": "A Breath of Fresh Air",
+        "slug": "a-breath-of-fresh-air",
+        "cost": 3
+      }
+    ]
+  },
+  {
+    "name": "Fume",
+    "shortDescription": "A manipulative and intimidating schemer",
+    "description": "The Steel Trap is a place of isolation and loneliness amongst the masses. Fumes pierce people's veneers and glimpse the pain behind their eyes.",
+    "questions": [
+      "You've seen the worst of the Steel Trap's workers. What is the most desperate thing you've seen someone do?",
+      "You got too close to one of your informats once. What happened?"
+    ],
+    "abilities": [
+      {
+        "name": "Ambush",
+        "slug": "ambush",
+        "cost": 4
+      },
+      {
+        "name": "Trust in Me",
+        "slug": "trust-in-me",
+        "cost": 3
+      },
+      { "name": "Savage", "slug": "savage", "cost": 3 },
+      {
+        "name": "Or Else",
+        "slug": "or-else",
+        "cost": 4
+      }
+    ]
+  },
+  {
+    "name": "Hammer",
+    "shortDescription": "A strong and fearless brawler",
+    "description": "The Steel Trap's overseers are brutal and cruel. They have no qualms rounding up stray workers and forcing them to fight in the pits in the factory's underbelly. Most don't last long. Hammers are one of the few who show potential to survive.",
+    "questions": [
+      "You were forced to fight a friend in the pits. Only one of you got to leave. What happened?",
+      "Which one of the overseers is nervous around you?"
+    ],
+    "abilities": [
+      {
+        "name": "Battleborn",
+        "slug": "battleborn",
+        "cost": 3
+      },
+      {
+        "name": "Tough as Nails",
+        "slug": "tough-as-nails",
+        "cost": 4
+      },
+      {
+        "name": "Not to be Trifled With",
+        "slug": "not-to-be-trifled-with",
+        "cost": 4
+      },
+      {
+        "name": "Vigorous",
+        "slug": "vigorous",
+        "cost": 3
+      }
+    ]
+  },
+  {
+    "name": "Spark",
+    "shortDescription": "A quick-witted and charming protector",
+    "description": "Tension in the Steel Trap is palpable. Tension between overseer and worker. Tension between friends and family. Tension at the foot of fickle machines. Sparks dare to ignite that tension and deal with the consequences.",
+    "questions": [
+      "You incited an incident between workers and an overseer. It turned ugly. Who couldn't you protect?",
+      "You convinced two factions with a grudge to settle the score. How well has it turned out?"
+    ],
+    "abilities": [
+      {
+        "name": "Reflexes",
+        "slug": "reflexes",
+        "cost": 4
+      },
+      {
+        "name": "Mastermind",
+        "slug": "mastermind",
+        "cost": 3
+      },
+      {
+        "name": "That Good",
+        "slug": "that-good",
+        "cost": 4
+      },
+      {
+        "name": "In the Good Times",
+        "slug": "in-the-good-times",
+        "cost": 3
+      }
+    ]
+  },
+  {
+    "name": "Vapor",
+    "shortDescription": "An elusive infiltrator and thief",
+    "description": "The overseers of the Steel Trap frequently deputize workers to spy and beat down their fellows. Vapors use their own tactics against them, posing as an informant to gather information and resources for the crew.",
+    "questions": [
+      "You were caught in the act of stealing from the overseers. Who did you throw under the bus to get out of trouble?",
+      "One of the overseers knows what you're up to, but instead of reporting you, they're using you. What do they want?"
+    ],
+    "abilities": [
+      {
+        "name": "Cloak and Dagger",
+        "slug": "cloak-and-dagger",
+        "cost": 4
+      },
+      {
+        "name": "Shadow",
+        "slug": "shadow",
+        "cost": 3
+      },
+      {
+        "name": "Infiltrator",
+        "slug": "infiltrator",
+        "cost": 4
+      },
+      {
+        "name": "A Little Something on the Side",
+        "slug": "a-little-something-on-the-side",
+        "cost": 3
+      }
+    ]
+  }
+]

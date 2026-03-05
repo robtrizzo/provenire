@@ -1,35 +1,134 @@
 [
   {
-    "name": "Strategist",
-    "shortDescription": "Intense, inquisitive, perceptive.",
+    "name": "Adventurer",
+    "shortDescription": "Energetic, enthusiastic, impulsive.",
     "questions": [
-      "Whose life have you saved in the Steel Trap because of your decisive action and split second ingenuity?",
-      "Who would you love to date, to give your all, if only you could figure out a good way to ... whatever people do to start dating?",
-      "Which one of the overseers gave you a brutal beating after your correct, but irreverent, nay, scathing contrarianism?",
-      "Which one of the overseers do you have dirt on? How might they be exploited for your advantage?",
-      "Whose romantic advances have you ruined with brutal honesty and tactless criticism?"
+      "Who is your partner in crime? Your confidant and close friend who you adventure with?",
+      "Who would you love to introduce to all of your hobbies? To explore and have fun with?",
+      "Which one of the overseers locked you and your best friend up into solitary confinement for months? Why did they let you out but not your friend?",
+      "You've been using your large social circle to spread rumors amongst the workers. What are the rumors and how will they work to your crew's advantage?",
+      "Who broke up with you because they were looking for something not just fun, but deeper?"
     ],
     "abilities": [
-        {
-          "name": "The Chess Game of Life",
-          "slug": "the-chess-game-of-life",
-          "cost": 0
-        },
-        {
-          "name": "My Body is My Machine",
-          "slug": "my-body-is-my-machine",
-          "cost": 3
-        },
-        {
-          "name": "Villainous Intellect",
-          "slug": "villainous-intellect",
-          "cost": 2
-        },
-        {
-          "name": "Thirst for Knowledge",
-          "slug": "thirst-for-knowledge",
-          "cost": 2
-        }
+      {
+        "name": "Dive Right In",
+        "cost": 0,
+        "slug": "dive-right-in"
+      },
+      {
+        "name": "Call Them Out",
+        "cost": 2,
+        "slug": "call-them-out"
+      },
+      {
+        "name": "Socialite",
+        "cost": 3,
+        "slug": "socialite"
+      },
+      {
+        "name": "The Path Less Traveled",
+        "cost": 2,
+        "slug": "the-path-less-traveled"
+      }
+    ]
+  },
+  {
+    "name": "Artist",
+    "shortDescription": "Centered, interested, openminded.",
+    "questions": [
+      "You and a close friend relax by acrobatics in and around the equipment. Who are they? Which region of the Steel Trap is it?",
+      "Who do you delight in surprising in little ways? Why haven't they asked you out yet?",
+      "Which one of the overseers takes delight in working to control you? To break you of your resolve and small acts of defiance?",
+      "You've been working on a passion project, some form of creativity and insight to express your bold ideas and speak to your fellows' hearts. What is it?",
+      "Who did you mutually break up with due to their pushiness and your guarded emotions?"
+    ],
+    "abilities": [
+      {
+        "name": "Read Emotions",
+        "cost": 0,
+        "slug": "read-emotions"
+      },
+      {
+        "name": "Many Passions",
+        "cost": 3,
+        "slug": "many-passions"
+      },
+      {
+        "name": "Pain to Rage",
+        "cost": 2,
+        "slug": "pain-to-rage"
+      },
+      {
+        "name": "Overwhelmed",
+        "cost": 2,
+        "slug": "overwhelmed"
+      }
+    ]
+  },
+  {
+    "name": "Defender",
+    "shortDescription": "Steady, responsible, understanding.",
+    "questions": [
+      "You've been giving every spare scrap of your food to your fellow shift workers. What toll on your body has this taken?",
+      "Who do you have a crush on; who you jump to the defense of, even when it doesn't make sense? Why haven't you expressed your feelings?",
+      "Which one of the overseers loves tormenting you, beating you, watching you suffer as you quietly work in order to support your family?",
+      "One of the overseers nearly killed one of your fellow shift workers last week. Rather than sit by, you shoved his head into a piston and killed him. Who have you gotten to pose as the overseer?",
+      "Who broke up with you because you never let them fight their own battles?"
+    ],
+    "abilities": [
+      {
+        "name": "Showing Up",
+        "cost": 0,
+        "slug": "showing-up"
+      },
+      {
+        "name": "The Gift of Loyalty",
+        "cost": 3,
+        "slug": "the-gift-of-loyalty"
+      },
+      {
+        "name": "The Highest Standard",
+        "cost": 2,
+        "slug": "the-highest-standard"
+      },
+      {
+        "name": "Humble Dedication",
+        "cost": 2,
+        "slug": "humble-dedication"
+      }
+    ]
+  },
+  {
+    "name": "Dreamer",
+    "shortDescription": "Hopeful, openhearted, carefree.",
+    "questions": [
+      "Your dreams are vivid, almost ... real? What scheme have you crafted in your dreams to bring freedom to your brethren?",
+      "Who's your ex who you would love to date again? Why does it seem like too much work?",
+      "Which one of the overseers watches your each and every move, punishing you immediately if you so much as toe the line of the box they've defined for you?",
+      "You had found a win-win relationship between your former overseer and your work pod. Who are they? Why did they get fired?",
+      "Who did you break up with after an intense honeymoon phase because the flames of romance started to flicker?"
+    ],
+    "abilities": [
+      {
+        "name": "The Magic of Everyday Life",
+        "cost": 0,
+        "slug": "the-magic-of-everyday-life"
+      },
+      {
+        "name": "Burst of Enthusiasm",
+        "cost": 2,
+        "slug": "burst-of-enthusiasm"
+      },
+      {
+        "name": "People Pleaser",
+        "cost": 2,
+        "slug": "people-pleaser"
+      },
+      {
+        "name": "Emotionally Perceptive",
+        "cost": 3,
+        "slug": "emotionally-perceptive"
+      }
     ]
   },
   {
@@ -66,35 +165,101 @@
     ]
   },
   {
-    "name": "Defender",
-    "shortDescription": "Steady, responsible, understanding.",
+    "name": "Leader",
+    "shortDescription": "Warm, passionate, optimistic.",
     "questions": [
-      "You've been giving every spare scrap of your food to your fellow shift workers. What toll on your body has this taken?",
-      "Who do you have a crush on; who you jump to the defense of, even when it doesn't make sense? Why haven't you expressed your feelings?",
-      "Which one of the overseers loves tormenting you, beating you, watching you suffer as you quietly work in order to support your family?",
-      "One of the overseers nearly killed one of your fellow shift workers last week. Rather than sit by, you shoved his head into a piston and killed him. Who have you gotten to pose as the overseer?",
-      "Who broke up with you because you never let them fight their own battles?"
+      "When your community leader passed away, who advocated for you to take their place? How is filling their shoes going?",
+      "Who's the one who got away? Where are they now, and what's your plan to win them back?",
+      "Which one of the overseers poisoned food meant for you, resulting in the death of one of your loved ones? Who?",
+      "You have lead the way in forming secret fight clubs to train for rebellion one day. Absent an instructor, you've worked to master the area you train in. Where?",
+      "Who rejected you after what seemed to them as a sudden declaration of your love?"
     ],
     "abilities": [
       {
-        "name": "Showing Up",
+        "name": "Lead the Way",
         "cost": 0,
-        "slug": "showing-up"
+        "slug": "lead-the-way"
       },
       {
-        "name": "The Gift of Loyalty",
+        "name": "Intense and Receptive",
         "cost": 3,
-        "slug": "the-gift-of-loyalty"
+        "slug": "intense-and-receptive"
       },
       {
-        "name": "The Highest Standard",
+        "name": "Speaking Up for What's Right",
         "cost": 2,
-        "slug": "the-highest-standard"
+        "slug": "speaking-up-for-whats-right"
       },
       {
-        "name": "Humble Dedication",
+        "name": "Getting Involved",
         "cost": 2,
-        "slug": "humble-dedication"
+        "slug": "getting-involved"
+      }
+    ]
+  },
+  {
+    "name": "Logistician",
+    "shortDescription": "Willful, rational, methodical.",
+    "questions": [
+      "Whose life have you saved by doing their work in addition to your own while they were hurt?",
+      "Who do you have feelings for, who just makes sense for you? How long have you been waiting for them to make a move?",
+      "Which one of the overseers noticed how hard you worked and then doubled your shift's duties because of it?",
+      "You've been invited to meetings between the overseers and The Master; they consulted you about how to rework the factory for the new project. What have you learned that will help your crew ruin The Master's plans?",
+      "Who broke up with you despite you being the one who won every argument?"
+    ],
+    "abilities": [
+      {
+        "name": "Dutiful Servant of the King",
+        "cost": 0,
+        "slug": "dutiful-servant-of-the-king"
+      },
+      {
+        "name": "By the Book is Practical",
+        "cost": 2,
+        "slug": "by-the-book-is-practical"
+      },
+      {
+        "name": "Structure and Order",
+        "cost": 3,
+        "slug": "structure-and-order"
+      },
+      {
+        "name": "Picking Up the Slack",
+        "cost": 2,
+        "slug": "picking-up-the-slack"
+      }
+    ]
+  },
+  {
+    "name": "Strategist",
+    "shortDescription": "Intense, inquisitive, perceptive.",
+    "questions": [
+      "Whose life have you saved in the Steel Trap because of your decisive action and split second ingenuity?",
+      "Who would you love to date, to give your all, if only you could figure out a good way to ... whatever people do to start dating?",
+      "Which one of the overseers gave you a brutal beating after your correct, but irreverent, nay, scathing contrarianism?",
+      "Which one of the overseers do you have dirt on? How might they be exploited for your advantage?",
+      "Whose romantic advances have you ruined with brutal honesty and tactless criticism?"
+    ],
+    "abilities": [
+      {
+        "name": "The Chess Game of Life",
+        "slug": "the-chess-game-of-life",
+        "cost": 0
+      },
+      {
+        "name": "My Body is My Machine",
+        "slug": "my-body-is-my-machine",
+        "cost": 3
+      },
+      {
+        "name": "Villainous Intellect",
+        "slug": "villainous-intellect",
+        "cost": 2
+      },
+      {
+        "name": "Thirst for Knowledge",
+        "slug": "thirst-for-knowledge",
+        "cost": 2
       }
     ]
   },

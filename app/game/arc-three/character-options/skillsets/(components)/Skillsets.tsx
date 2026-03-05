@@ -1,51 +1,55 @@
-import { ArchetypeV3 } from "@/types/game";
-import archetypes from "@/public/arc3/archetypes.json";
+import ClockCost from "@/components/clock-cost";
+import { Separator } from "@/components/ui/separator";
 import {
   TypographyBlockquote,
   TypographyH2,
   TypographyH3,
+  TypographyP,
 } from "@/components/ui/typography";
-import { Separator } from "@/components/ui/separator";
-import Ability from "@/components/abilities/ability";
+import skillsets from "@/public/arc3/skillsets.json";
+import { SkillsetV3 } from "@/types/game";
 import { Fragment } from "react/jsx-runtime";
-import ClockCost from "@/components/clock-cost";
+import Ability from "@/components/abilities/ability";
 
-export default function Archetypes() {
+export default function Skillsets() {
   return (
     <div className="flex flex-col gap-8">
-      {archetypes.map((a, idx) => (
-        <Archetype key={idx} archetype={a} />
+      {skillsets.map((s, idx) => (
+        <Skillset key={idx} skillset={s} />
       ))}
     </div>
   );
 }
 
-function Archetype({ archetype }: { archetype: ArchetypeV3 }) {
+function Skillset({ skillset }: { skillset: SkillsetV3 }) {
   return (
     <div>
-      <TypographyH2 className="border-b-0 pb-0">{archetype.name}</TypographyH2>
+      <TypographyH2 className="border-b-0 pb-0">{skillset.name}</TypographyH2>
       <span className="text-muted-foreground text-md">
-        {archetype.shortDescription}
+        {skillset.shortDescription}
       </span>
       <Separator />
       <div className="grid grid-cols-8 gap-6 pr-6">
         <div className="col-span-8 md:col-span-5">
-          {archetype.abilities.map((ability, idx) => (
+          {skillset.abilities.map((ability, idx) => (
             <Fragment key={idx}>
               <TypographyH3 className="flex items-end gap-2">
                 {ability.name} <ClockCost num={ability.cost ?? 2} ticks={5} />
               </TypographyH3>
               <Ability
-                category="archetypes"
+                category="skillsets"
                 arc="arc3"
-                type={archetype.name.toLocaleLowerCase()}
+                type={skillset.name.toLocaleLowerCase()}
                 ability={ability}
               />
             </Fragment>
           ))}
         </div>
         <div className="col-span-8 md:col-span-3 mt-6 flex flex-col gap-4">
-          {archetype.questions.map((q, idx) => (
+          <TypographyP className="text-lg text-muted-foreground italic">
+            {skillset.description}
+          </TypographyP>
+          {skillset.questions.map((q, idx) => (
             <TypographyBlockquote key={idx} className="text-lg">
               {q}
             </TypographyBlockquote>

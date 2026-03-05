@@ -470,3 +470,11 @@ export type ArchetypeV3 = {
   shortDescription: string;
   abilities: Ability[];
 };
+
+export type SkillsetV3 = {
+  name: string;
+  shortDescription: string;
+  questions: string[];
+  description: string;
+  abilities: Ability[];
+};

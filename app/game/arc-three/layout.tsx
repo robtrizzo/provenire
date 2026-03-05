@@ -37,6 +37,10 @@ const navigationData = [
         url: "/game/arc-three/character-options/archetypes",
       },
       {
+        title: "Skillsets",
+        url: "/game/arc-three/character-options/skillsets",
+      },
+      {
         title: "Integrations",
         url: "/game/arc-three/character-options/integrations",
       },

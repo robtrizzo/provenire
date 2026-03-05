@@ -1,14 +1,14 @@
 import Breadcrumbs from "@/components/ui/breadcrumbs";
 import { TypographyH1 } from "@/components/ui/typography";
-import Archetypes from "./(components)/archetypes";
+import Skillsets from "./(components)/Skillsets";
 
 export default async function Page() {
   return (
     <>
       <Breadcrumbs />
-      <TypographyH1>Archetypes</TypographyH1>
+      <TypographyH1>Skillsets</TypographyH1>
       <div className="mt-8">
-        <Archetypes />
+        <Skillsets />
       </div>
     </>
   );
