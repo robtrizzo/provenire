@@ -7,6 +7,7 @@ import {
   TypographyP,
 } from "@/components/ui/typography";
 import skillsets from "@/public/arc3/skillsets.json";
+import universal from "@/public/arc3/universal.json";
 import { SkillsetV3 } from "@/types/game";
 import { Fragment } from "react/jsx-runtime";
 import Ability from "@/components/abilities/ability";
@@ -17,6 +18,22 @@ export default function Skillsets() {
       {skillsets.map((s, idx) => (
         <Skillset key={idx} skillset={s} />
       ))}
+      <TypographyH2>Universal</TypographyH2>
+      <div>
+        {universal.map((a, idx) => (
+          <Fragment key={"universal" + idx}>
+            <TypographyH3 className="flex items-end gap-2">
+              {a.name} <ClockCost num={a.cost ?? 2} ticks={5} />
+            </TypographyH3>
+            <Ability
+              category="skillsets"
+              arc="arc3"
+              type="universal"
+              ability={a}
+            />
+          </Fragment>
+        ))}
+      </div>
     </div>
   );
 }

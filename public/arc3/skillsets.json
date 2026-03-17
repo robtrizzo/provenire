@@ -85,6 +85,11 @@
         "name": "Vigorous",
         "slug": "vigorous",
         "cost": 3
+      },
+      {
+        "name": "Tempered",
+        "slug": "tempered",
+        "cost": 5
       }
     ]
   },

@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Press the Advantage",
+    "slug": "press-the-advantage",
+    "cost": 5
+  },
+  {
+    "name": "Resilient",
+    "slug": "resilient",
+    "cost": 5
+  },
+  {
+    "name": "Strain",
+    "slug": "strain",
+    "cost": 5
+  }
+]
