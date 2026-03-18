@@ -28,6 +28,20 @@
         "slug": "a-breath-of-fresh-air",
         "cost": 3
       }
+    ],
+    "subclasses": [
+      {
+        "name": "Delver",
+        "shortDescription": "A resourceful and stealthy explorer",
+        "description": "",
+        "abilities": []
+      },
+      {
+        "name": "Redline",
+        "shortDescription": "A reckless and adrenaline-fueled daredevil",
+        "description": "",
+        "abilities": []
+      }
     ]
   },
   {
@@ -85,11 +99,42 @@
         "name": "Vigorous",
         "slug": "vigorous",
         "cost": 3
+      }
+    ],
+    "subclasses": [
+      {
+        "name": "Bulkhead",
+        "shortDescription": "A stalwart force in the midst of hardship",
+        "description": "",
+        "abilities": [
+          {
+            "name": "Steely Eyed",
+            "slug": "steely-eyed",
+            "cost": 5
+          },
+          {
+            "name": "Iron Spine",
+            "slug": "iron-spine",
+            "cost": 6
+          }
+        ]
       },
       {
-        "name": "Tempered",
-        "slug": "tempered",
-        "cost": 5
+        "name": "Slag",
+        "shortDescription": "A relentless survivor who thrives in the strife",
+        "description": "",
+        "abilities": [
+          {
+            "name": "Grind",
+            "slug": "grind",
+            "cost": 5
+          },
+          {
+            "name": "Tempered",
+            "slug": "tempered",
+            "cost": 6
+          }
+        ]
       }
     ]
   },
@@ -121,6 +166,20 @@
         "name": "In the Good Times",
         "slug": "in-the-good-times",
         "cost": 3
+      }
+    ],
+    "subclasses": [
+      {
+        "name": "Flashpoint",
+        "shortDescription": "A charismatic instigator and habitual troublemaker",
+        "description": "",
+        "abilities": []
+      },
+      {
+        "name": "Fuse",
+        "shortDescription": "A selfless mediator and community anchor",
+        "description": "",
+        "abilities": []
       }
     ]
   },

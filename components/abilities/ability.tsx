@@ -8,18 +8,21 @@ interface AbilityProps {
   category: string;
   arc: string;
   type: string;
+  subtype?: string;
 }
 
 export default function Ability(props: AbilityProps) {
-  const { ability, category, arc, type } = props;
+  const { ability, category, arc, type, subtype } = props;
 
   const AbilityComponent = useMemo(() => {
     // Derives path: e.g. archetypes/arc2/strategist/the-chess-game-of-life
     return dynamic(
       () =>
-        import(`./${category}/${arc}/${type}/${ability.slug}`).catch(() => {
+        import(
+          `./${category}/${arc}/${type}/${subtype ? subtype + "/" : ""}${ability.slug}`
+        ).catch(() => {
           console.error(
-            `Ability not found: ${category}/${arc}/${type}/${ability.slug}`,
+            `Ability not found: ${category}/${arc}/${type}/${subtype ? subtype + "/" : ""}${ability.slug}`,
           );
           return {
             default: () => (

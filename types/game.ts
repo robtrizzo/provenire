@@ -477,4 +477,12 @@ export type SkillsetV3 = {
   questions: string[];
   description: string;
   abilities: Ability[];
+  subclasses?: SkillsetSubclass[];
+};
+
+export type SkillsetSubclass = {
+  name: string;
+  shortDescription: string;
+  description: string;
+  abilities: Ability[];
 };
