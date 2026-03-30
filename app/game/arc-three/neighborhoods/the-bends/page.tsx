@@ -7,7 +7,6 @@ import {
   TypographyP,
   TypographyUnorderedList,
 } from "@/components/ui/typography";
-import { Dot } from "lucide-react";
 
 export default async function Page() {
   return (

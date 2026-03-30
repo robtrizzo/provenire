@@ -59,8 +59,20 @@ const navigationData = [
     url: "#",
     items: [
       {
+        title: "Lofts",
+        url: "/game/arc-three/neighborhoods/lofts",
+      },
+      {
         title: "The Bends",
         url: "/game/arc-three/neighborhoods/the-bends",
+      },
+      {
+        title: "Fab Floor",
+        url: "/game/arc-three/neighborhoods/fab-floor",
+      },
+      {
+        title: "Stairwell",
+        url: "/game/arc-three/neighborhoods/stairwell",
       },
     ],
   },
