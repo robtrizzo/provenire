@@ -5,16 +5,19 @@ import {
   createContext,
   Dispatch,
   ReactNode,
-  SetStateAction,
+  useCallback,
   useContext,
-  useState,
+  useEffect,
+  useReducer,
+  useRef,
 } from "react";
 import actions from "@/public/arc3/actions.json";
 
-const SUPPORTED_VERSION = 3;
-const MAX_ABILITIES = 6;
-const MAX_SKILLS = 6;
-const DEFAULT_CONDITIONS = [
+export const LOCAL_STORAGE_KEY = "charsheet-arc3";
+export const SUPPORTED_VERSION = 3;
+export const MAX_ABILITIES = 6;
+export const MAX_SKILLS = 6;
+export const DEFAULT_CONDITIONS = [
   "Insecure",
   "Afraid",
   "Angry",
@@ -22,26 +25,50 @@ const DEFAULT_CONDITIONS = [
   "Guilty",
 ];
 
-interface CharacterSheetContextProps {
+interface CharacterSheetState {
   actions: ActionV3[];
-  abilities: ActionV3[];
-  MAX_ABILITIES: number;
-  skills: ActionV3[];
-  MAX_SKILLS: number;
-  bonds: ActionV3[];
   xp: number;
   xpSpent: number;
   stress: number;
   maxStress: number;
   conditions: string[];
-  DEFAULT_CONDITIONS: string[];
-  setActions: Dispatch<SetStateAction<ActionV3[]>>;
-  updateAction: (updatedAction: ActionV3) => void;
-  setXp: Dispatch<SetStateAction<number>>;
-  setXpSpent: Dispatch<SetStateAction<number>>;
-  setStress: Dispatch<SetStateAction<number>>;
-  setMaxStress: Dispatch<SetStateAction<number>>;
-  setConditions: Dispatch<SetStateAction<string[]>>;
+}
+
+// Actions — add new cases here
+type CharacterSheetAction =
+  | { type: "SET_ACTIONS"; payload: ActionV3[] }
+  | { type: "UPDATE_ACTION"; payload: ActionV3 }
+  | { type: "SET_FIELD"; field: keyof CharacterSheetState; value: any }
+  | { type: "SET_FIELDS"; payload: Partial<CharacterSheetState> };
+
+interface CharacterSheetContextProps {
+  state: CharacterSheetState;
+  dispatch: Dispatch<CharacterSheetAction>;
+  // derived values
+  aptitudes: ActionV3[];
+  skills: ActionV3[];
+  bonds: ActionV3[];
+}
+
+function reducer(
+  state: CharacterSheetState,
+  action: CharacterSheetAction,
+): CharacterSheetState {
+  switch (action.type) {
+    case "SET_ACTIONS":
+      return { ...state, actions: action.payload };
+    case "UPDATE_ACTION":
+      return {
+        ...state,
+        actions: state.actions.map((a) =>
+          a.name === action.payload.name ? action.payload : a,
+        ),
+      };
+    case "SET_FIELD":
+      return { ...state, [action.field]: action.value };
+    case "SET_FIELDS":
+      return { ...state, ...action.payload };
+  }
 }
 
 const CharacterSheetContext = createContext<
@@ -58,10 +85,10 @@ export const useCharacterSheet = () => {
   return context;
 };
 
-const DEFAULT_ACTIONS: ActionV3[] = actions.Abilities.map((a) => ({
+const DEFAULT_ACTIONS: ActionV3[] = actions.Aptitudes.map((a) => ({
   name: a.name,
   description: a.description,
-  type: "ability",
+  type: "aptitude",
   level: [0],
 }));
 
@@ -70,52 +97,90 @@ export default function CharacterSheetProvider({
 }: {
   children: ReactNode;
 }) {
-  const [actions, setActions] = useState<ActionV3[]>(DEFAULT_ACTIONS);
+  const [state, dispatch] = useReducer(reducer, {
+    actions: DEFAULT_ACTIONS,
+    xp: 0,
+    xpSpent: 0,
+    stress: 0,
+    maxStress: 9,
+    conditions: [],
+  });
 
-  const [xp, setXp] = useState(0);
-  const [xpSpent, setXpSpent] = useState(0);
+  const aptitudes = state.actions.filter((a) => a.type === "aptitude");
+  const skills = state.actions.filter((a) => a.type === "skill");
+  const bonds = state.actions.filter((a) => a.type === "bond");
 
-  const [stress, setStress] = useState(0);
-  const [maxStress, setMaxStress] = useState(9);
-  const [conditions, setConditions] = useState<string[]>([]);
+  const loaded = useRef(false);
 
-  const abilities: ActionV3[] = actions.filter((a) => a.type === "ability");
-  const skills: ActionV3[] = actions.filter((a) => a.type === "skill");
-  const bonds: ActionV3[] = actions.filter((a) => a.type === "bond");
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const data = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (data) {
+      try {
+        const parsed = JSON.parse(data) as Partial<CharacterSheetState>;
+        dispatch({ type: "SET_FIELDS", payload: parsed });
+      } catch {
+        // ignore corrupt data
+      }
+    }
+    loaded.current = true;
+  }, []);
 
-  function updateAction(updatedAction: ActionV3) {
-    setActions((prevActions) =>
-      prevActions.map((action) =>
-        action.name === updatedAction.name ? updatedAction : action,
-      ),
-    );
-  }
+  useEffect(() => {
+    if (typeof window === "undefined" || !loaded.current) return;
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state));
+  }, [state]);
 
   return (
     <CharacterSheetContext.Provider
       value={{
-        actions,
-        abilities,
-        MAX_ABILITIES,
+        state,
+        dispatch,
+        aptitudes,
         skills,
-        MAX_SKILLS,
         bonds,
-        xpSpent,
-        xp,
-        stress,
-        maxStress,
-        conditions,
-        DEFAULT_CONDITIONS,
-        setActions,
-        updateAction,
-        setXpSpent,
-        setXp,
-        setStress,
-        setMaxStress,
-        setConditions,
       }}
     >
       {children}
     </CharacterSheetContext.Provider>
   );
+}
+
+export function useField<K extends keyof CharacterSheetState>(field: K) {
+  const { state, dispatch } = useCharacterSheet();
+  const setValue = useCallback(
+    (value: CharacterSheetState[K]) => {
+      dispatch({ type: "SET_FIELD", field, value });
+    },
+    [dispatch, field],
+  );
+  return [state[field], setValue] as const;
+}
+
+export function useFields() {
+  const { state, dispatch } = useCharacterSheet();
+  const set = useCallback(
+    (partial: Partial<CharacterSheetState>) => {
+      dispatch({ type: "SET_FIELDS", payload: partial });
+    },
+    [dispatch],
+  );
+  return [state, set] as const;
+}
+
+export function useActions() {
+  const { state, dispatch } = useCharacterSheet();
+  return {
+    actions: state.actions,
+    setActions: useCallback(
+      (actions: ActionV3[]) =>
+        dispatch({ type: "SET_ACTIONS", payload: actions }),
+      [dispatch],
+    ),
+    updateAction: useCallback(
+      (action: ActionV3) =>
+        dispatch({ type: "UPDATE_ACTION", payload: action }),
+      [dispatch],
+    ),
+  };
 }

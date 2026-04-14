@@ -1,17 +1,12 @@
 import { BuildupCheckboxes } from "@/components/buildup-checkboxes";
 import { Condition } from "@/components/condition";
 import { TypographyH2 } from "@/components/ui/typography";
-import { useCharacterSheet } from "@/contexts/arc3CharacterSheetContext";
+import { useFields } from "@/contexts/arc3CharacterSheetContext";
+import { DEFAULT_CONDITIONS } from "@/contexts/arc3CharacterSheetContext";
 
 export default function StressSection() {
-  const {
-    stress,
-    maxStress,
-    setStress,
-    conditions,
-    DEFAULT_CONDITIONS,
-    setConditions,
-  } = useCharacterSheet();
+  const [{ stress, maxStress, conditions }, set] = useFields();
+
   return (
     <div className="flex flex-col gap-2">
       <TypographyH2 className="text-md text-muted-foreground flex items-end justify-between">
@@ -23,7 +18,7 @@ export default function StressSection() {
           numDisabled={conditions.length}
           current={stress}
           onChange={(n) => {
-            setStress(n);
+            set({ stress: n });
             //   setChanges(true);
           }}
         />
@@ -54,9 +49,11 @@ export default function StressSection() {
                   }
                   onClick={() => {
                     if (conditions.includes(c)) {
-                      setConditions(conditions.filter((con) => con !== c));
+                      set({
+                        conditions: conditions.filter((con) => con !== c),
+                      });
                     } else if (conditions.length <= maxStress) {
-                      setConditions([...conditions, c]);
+                      set({ conditions: [...conditions, c] });
                     }
                     //   setChanges(true);
                   }}

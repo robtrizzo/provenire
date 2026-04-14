@@ -123,7 +123,7 @@ const RollSection = () => {
 function RollSelect({ disabled = false }: { disabled?: boolean }) {
   const { rollLeft, rollRight, swapDice, setRollLeft, setRollRight } =
     useRoll();
-  const { abilities, skills } = useCharacterSheet();
+  const { aptitudes, skills } = useCharacterSheet();
 
   return (
     <div className="flex gap-4">
@@ -131,7 +131,7 @@ function RollSelect({ disabled = false }: { disabled?: boolean }) {
         value={rollLeft?.name || ""}
         disabled={disabled}
         onValueChange={(value) => {
-          const foundAction = abilities.find((a) => a.name === value);
+          const foundAction = aptitudes.find((a) => a.name === value);
           if (!foundAction) {
             console.error("Could not find action or bond for value", value);
             return;
@@ -149,7 +149,7 @@ function RollSelect({ disabled = false }: { disabled?: boolean }) {
           </SelectValue>
         </SelectTrigger>
         <SelectContent>
-          {abilities.map(({ name }, idx) => (
+          {aptitudes.map(({ name }, idx) => (
             <SelectItem key={name + idx} value={name}>
               {name}
             </SelectItem>

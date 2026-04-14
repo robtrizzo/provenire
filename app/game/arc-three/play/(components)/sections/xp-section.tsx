@@ -1,12 +1,12 @@
 import XPClocks from "@/components/character-sheet/xp-clocks";
 import LoadingWrapper from "@/components/loading-wrapper";
 import { TypographyH2 } from "@/components/ui/typography";
-import { useCharacterSheet } from "@/contexts/arc3CharacterSheetContext";
+import { useFields } from "@/contexts/arc3CharacterSheetContext";
 
 export default function XPSection() {
-  const { xpSpent, xp, setXp } = useCharacterSheet();
+  const [{ xp, xpSpent }, set] = useFields();
   const handleSetXP = (n: number) => {
-    setXp(n);
+    set({ xp: n });
     // setChanges(true);
   };
   return (

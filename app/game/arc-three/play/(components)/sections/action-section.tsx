@@ -1,9 +1,13 @@
 import { TypographyH2 } from "@/components/ui/typography";
-import { useCharacterSheet } from "@/contexts/arc3CharacterSheetContext";
+import {
+  MAX_ABILITIES,
+  MAX_SKILLS,
+  useCharacterSheet,
+} from "@/contexts/arc3CharacterSheetContext";
 import Action from "../action";
 
 export default function ActionSection() {
-  const { abilities, skills, MAX_ABILITIES, MAX_SKILLS } = useCharacterSheet();
+  const { aptitudes, skills } = useCharacterSheet();
   return (
     <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-1">
       <TypographyH2 className="text-md mt-0 uppercase text-muted-foreground order-1">
@@ -13,7 +17,7 @@ export default function ActionSection() {
         Skills
       </TypographyH2>
       <div className="col-span-1 flex flex-col gap-0.5 order-1">
-        {abilities.map((a, idx) => (
+        {aptitudes.map((a, idx) => (
           <Action.Wrapper.Tooltip action={a} key={idx + a.name}>
             <Action.Wrapper.Menu action={a}>
               <Action.Wrapper.Rollable action={a}>
@@ -22,12 +26,12 @@ export default function ActionSection() {
             </Action.Wrapper.Menu>
           </Action.Wrapper.Tooltip>
         ))}
-        {Array.from({ length: MAX_ABILITIES - abilities.length }).map(
+        {Array.from({ length: MAX_ABILITIES - aptitudes.length }).map(
           (_, idx) => (
             <Action.HeaderContent.Unlock
-              type="ability"
+              type="aptitude"
               className="p-2"
-              key={`unlock-ability-${idx}`}
+              key={`unlock-aptitude-${idx}`}
             />
           ),
         )}

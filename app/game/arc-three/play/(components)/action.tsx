@@ -10,7 +10,11 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { useCharacterSheet } from "@/contexts/arc3CharacterSheetContext";
+import {
+  useActions,
+  useCharacterSheet,
+  useField,
+} from "@/contexts/arc3CharacterSheetContext";
 import { useRoll } from "@/contexts/arc3RollContext";
 import {
   AbilityDice,
@@ -72,8 +76,7 @@ interface RollableWrapperProps extends ActionProps {
 }
 
 interface MenuWrapperProps
-  extends ActionProps,
-    React.HTMLAttributes<HTMLDivElement> {
+  extends ActionProps, React.HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
 }
 
@@ -109,7 +112,7 @@ function RollableWrapper({ action, children }: RollableWrapperProps) {
     <div
       onClick={() => {
         switch (action.type) {
-          case "ability": {
+          case "aptitude": {
             const prevAction = rollLeft;
             setRollLeft(action);
             swapDice(prevAction, action);
@@ -139,9 +142,9 @@ function RollableWrapper({ action, children }: RollableWrapperProps) {
       <GridWrapper
         className={cn(
           "hover:bg-input/50",
-          action.type === "ability" && "hover:bg-yellow-500/20",
+          action.type === "aptitude" && "hover:bg-yellow-500/20",
           action.type === "skill" && "hover:bg-violet-500/20",
-          action.type === "bond" && "hover:bg-sky-500/20"
+          action.type === "bond" && "hover:bg-sky-500/20",
         )}
       >
         {children}
@@ -151,7 +154,7 @@ function RollableWrapper({ action, children }: RollableWrapperProps) {
 }
 
 function MenuWrapper({ action, children, ...props }: MenuWrapperProps) {
-  const { actions, setActions } = useCharacterSheet();
+  const { actions, setActions } = useActions();
   const handleRemoveAction = () => {
     setActions(actions.filter((a) => a.name !== action.name));
   };
@@ -199,13 +202,14 @@ function DetailedHeaderContent({ action }: { action: ActionV3 }) {
 }
 
 function ActionLevel({ action }: { action: ActionV3 }) {
-  const { updateAction, xpSpent, setXpSpent } = useCharacterSheet();
+  const { updateAction } = useActions();
+  const [xpSpent, setXpSpent] = useField("xpSpent");
   const diceLength = action.type === "bond" ? MAX_BOND_DICE : MAX_ACTION_DICE;
   const handleActionLevelChange = (index: number) => (newLevel: number) => {
     let maxLevel = 0;
     let minLevel = 0;
     switch (action.type) {
-      case "ability":
+      case "aptitude":
         maxLevel = getMaxDieLevel(AbilityDice);
         minLevel = getMinDieLevel(AbilityDice);
         break;
@@ -240,7 +244,7 @@ function ActionLevel({ action }: { action: ActionV3 }) {
   const handleUnlockLevel = () => {
     let minLevel = 0;
     switch (action.type) {
-      case "ability":
+      case "aptitude":
         minLevel = getMinDieLevel(AbilityDice);
         break;
       case "skill":
@@ -278,7 +282,7 @@ function ActionLevel({ action }: { action: ActionV3 }) {
           <div className="col-span-1" key={idx}>
             <UnlockLevelBubble handleUnlock={handleUnlockLevel} />
           </div>
-        )
+        ),
       )}
     </>
   );
@@ -301,7 +305,7 @@ function ActionLevelStatic({ action }: { action: ActionV3 }) {
               <LockKeyholeOpen size={16} />
             </div>
           </div>
-        )
+        ),
       )}
     </>
   );
@@ -371,10 +375,10 @@ function UnlockLevelBubble({ handleUnlock }: { handleUnlock: () => void }) {
 }
 
 function UnlockHeaderContent({ className, type }: UnlockActionProps) {
-  const { actions, setActions } = useCharacterSheet();
+  const { actions, setActions } = useActions();
   const [open, setOpen] = useState(false);
 
-  const allActions = [...actions_list.Abilities, ...actions_list.Skills];
+  const allActions = [...actions_list.Aptitudes, ...actions_list.Skills];
 
   const actionNames = new Set(actions.map((a) => a.name));
 
@@ -397,7 +401,7 @@ function UnlockHeaderContent({ className, type }: UnlockActionProps) {
         <div
           className={cn(
             "col-span-8 flex justify-center border-border border-dashed border-[1px] rounded-sm hover:bg-secondary/50 hover:cursor-pointer",
-            className
+            className,
           )}
         >
           <div className="h-[26px] flex items-center">
@@ -442,7 +446,7 @@ function UnlockHeaderContent({ className, type }: UnlockActionProps) {
                     className={cn(
                       "hover:cursor-pointer",
                       skillUnlocked &&
-                        "text-muted-foreground bg-accent/50 hover:cursor-auto data-[selected=true]:bg-accent/50 data-[selected=true]:text-muted-foreground"
+                        "text-muted-foreground bg-accent/50 hover:cursor-auto data-[selected=true]:bg-accent/50 data-[selected=true]:text-muted-foreground",
                     )}
                   >
                     <div className="grid grid-cols-8 w-full">

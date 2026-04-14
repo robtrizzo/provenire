@@ -5,4 +5,4 @@ export type ActionV3 = {
   description?: string;
 };
 
-export type ActionVariantV3 = "ability" | "skill" | "bond";
+export type ActionVariantV3 = "aptitude" | "skill" | "bond";
