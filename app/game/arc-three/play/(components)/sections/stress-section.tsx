@@ -2,10 +2,10 @@ import { BuildupCheckboxes } from "@/components/buildup-checkboxes";
 import { Condition } from "@/components/condition";
 import { TypographyH2 } from "@/components/ui/typography";
 import { useFields } from "@/contexts/arc3CharacterSheetContext";
-import { DEFAULT_CONDITIONS } from "@/contexts/arc3CharacterSheetContext";
 
 export default function StressSection() {
-  const [{ stress, maxStress, conditions }, set] = useFields();
+  const [{ stress, maxStress, conditions, currentConditions }, set] =
+    useFields();
 
   return (
     <div className="flex flex-col gap-2">
@@ -15,17 +15,16 @@ export default function StressSection() {
       <div className="flex justify-between">
         <BuildupCheckboxes
           max={maxStress}
-          numDisabled={conditions.length}
+          numDisabled={currentConditions.length}
           current={stress}
           onChange={(n) => {
             set({ stress: n });
-            //   setChanges(true);
           }}
         />
       </div>
       <div className="flex gap-4 flex-wrap mt-2">
         {false // TODO set to isFetching
-          ? DEFAULT_CONDITIONS.map((c) => {
+          ? conditions.map((c) => {
               if (!c) return null;
               return (
                 <Condition
@@ -37,25 +36,27 @@ export default function StressSection() {
                 />
               );
             })
-          : DEFAULT_CONDITIONS.map((c, idx) => {
+          : conditions.map((c, idx) => {
               if (!c) return null;
               return (
                 <Condition
                   key={c + idx}
                   name={c}
-                  active={conditions.includes(c)}
+                  active={currentConditions.includes(c)}
                   disabled={
-                    conditions.length >= maxStress && !conditions.includes(c)
+                    currentConditions.length >= maxStress &&
+                    !currentConditions.includes(c)
                   }
                   onClick={() => {
-                    if (conditions.includes(c)) {
+                    if (currentConditions.includes(c)) {
                       set({
-                        conditions: conditions.filter((con) => con !== c),
+                        currentConditions: currentConditions.filter(
+                          (con) => con !== c,
+                        ),
                       });
-                    } else if (conditions.length <= maxStress) {
-                      set({ conditions: [...conditions, c] });
+                    } else if (currentConditions.length <= maxStress) {
+                      set({ currentConditions: [...currentConditions, c] });
                     }
-                    //   setChanges(true);
                   }}
                 />
               );

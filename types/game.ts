@@ -486,3 +486,40 @@ export type SkillsetSubclass = {
   description: string;
   abilities: Ability[];
 };
+
+export type BackgroundV3 = {
+  name: string;
+  shortDescription: string;
+  questions: string[];
+  subsistenceClock: string;
+};
+
+export type FightingStyleV3 = {
+  name: string;
+  shortDescription: string;
+  abilities: Ability[];
+};
+
+export type AldamV3 = {
+  name: string;
+  shortDescription: string;
+  abilities: Ability[];
+};
+
+export type TransformationV3 = {
+  name: string;
+  abilities: Ability[];
+  phase?: DonumPhase;
+  progress?: number;
+  shortDescription?: string;
+  description?: string;
+  provenire?: string;
+};
+
+export type DonumV3 = {
+  name: string;
+  shortDescription?: string;
+  abilities: Ability[];
+  phase?: DonumPhase;
+  progress?: number;
+};

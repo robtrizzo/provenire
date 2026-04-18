@@ -8,6 +8,7 @@ import ActionSection from "./sections/action-section";
 import BondsSection from "./sections/bonds-section";
 import XPSection from "./sections/xp-section";
 import StressSection from "./sections/stress-section";
+import SummarySection from "./sections/summary-section";
 
 export default function CharacterSheet() {
   const is2xl = useMediaQuery("(min-width: 96rem)");
@@ -16,6 +17,7 @@ export default function CharacterSheet() {
   return (
     <>
       <Activity mode={columnsMode === "tabs" ? "visible" : "hidden"}>
+        <SummarySection />
         <Tabs defaultValue="mission" className="w-full my-3 mx-auto">
           <TabsList className="w-full grid grid-cols-2">
             <TabsTrigger value="mission">Mission</TabsTrigger>

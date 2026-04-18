@@ -10,8 +10,27 @@ import {
   useEffect,
   useReducer,
   useRef,
+  useState,
 } from "react";
 import actions from "@/public/arc3/actions.json";
+import { nanoid } from "@/lib/nanoid";
+import backgrounds from "@/public/arc3/backgrounds.json";
+import archetypes from "@/public/arc3/archetypes.json";
+import skillsets from "@/public/arc3/skillsets.json";
+import fightingStyles from "@/public/arc3/fighting_styles.json";
+import aldams from "@/public/arc3/aldams.json";
+import transformations from "@/public/arc3/transformations.json";
+import donums from "@/public/arc3/donums.json";
+import {
+  AldamV3,
+  ArchetypeV3,
+  BackgroundV3,
+  DonumV3,
+  FightingStyleV3,
+  SkillsetSubclass,
+  SkillsetV3,
+  TransformationV3,
+} from "@/types/game";
 
 export const LOCAL_STORAGE_KEY = "charsheet-arc3";
 export const SUPPORTED_VERSION = 3;
@@ -24,14 +43,63 @@ export const DEFAULT_CONDITIONS = [
   "Hopeless",
   "Guilty",
 ];
+export const ALL_BACKGROUNDS = backgrounds;
+export const ALL_ARCHETYPES = archetypes;
+export const ALL_SKILLSETS = skillsets;
+export const ALL_FIGHTING_STYLES = fightingStyles;
+export const ALL_ALDAMS = aldams;
+export const ALL_TRANSFORMATIONS = transformations;
+export const ALL_DONUMS = donums;
+
+const DEFAULT_ACTIONS: ActionV3[] = actions.Aptitudes.map((a) => ({
+  name: a.name,
+  description: a.description,
+  type: "aptitude",
+  level: [0],
+}));
+
+const DEFAULT_STATE = {
+  id: nanoid(),
+  name: "",
+  alias: "",
+  portrait: "",
+  archtype: undefined,
+  background: undefined,
+  skillset: undefined,
+  skillsetSubclass: undefined,
+  fightingStyles: [],
+  aldams: [],
+  transformations: [],
+  donums: [],
+  actions: DEFAULT_ACTIONS,
+  xp: 0,
+  xpSpent: 0,
+  stress: 0,
+  maxStress: 9,
+  conditions: DEFAULT_CONDITIONS,
+  currentConditions: [],
+};
 
 interface CharacterSheetState {
+  id: string;
+  name: string;
+  alias: string;
+  portrait: string;
+  archetype?: ArchetypeV3;
+  background?: BackgroundV3;
+  skillset?: SkillsetV3;
+  skillsetSubclass?: SkillsetSubclass;
+  fightingStyles: FightingStyleV3[];
+  aldams: AldamV3[];
+  transformations: TransformationV3[];
+  donums: DonumV3[];
   actions: ActionV3[];
   xp: number;
   xpSpent: number;
   stress: number;
   maxStress: number;
   conditions: string[];
+  currentConditions: string[];
 }
 
 // Actions — add new cases here
@@ -85,49 +153,29 @@ export const useCharacterSheet = () => {
   return context;
 };
 
-const DEFAULT_ACTIONS: ActionV3[] = actions.Aptitudes.map((a) => ({
-  name: a.name,
-  description: a.description,
-  type: "aptitude",
-  level: [0],
-}));
-
 export default function CharacterSheetProvider({
   children,
 }: {
   children: ReactNode;
 }) {
-  const [state, dispatch] = useReducer(reducer, {
-    actions: DEFAULT_ACTIONS,
-    xp: 0,
-    xpSpent: 0,
-    stress: 0,
-    maxStress: 9,
-    conditions: [],
+  const [state, dispatch] = useReducer(reducer, null, () => {
+    if (typeof window === "undefined") return DEFAULT_STATE;
+    const data = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (!data) return DEFAULT_STATE;
+    try {
+      const parsed = JSON.parse(data) as Partial<CharacterSheetState>;
+      return { ...DEFAULT_STATE, ...parsed };
+    } catch {
+      return DEFAULT_STATE;
+    }
   });
 
   const aptitudes = state.actions.filter((a) => a.type === "aptitude");
   const skills = state.actions.filter((a) => a.type === "skill");
   const bonds = state.actions.filter((a) => a.type === "bond");
 
-  const loaded = useRef(false);
-
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const data = localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (data) {
-      try {
-        const parsed = JSON.parse(data) as Partial<CharacterSheetState>;
-        dispatch({ type: "SET_FIELDS", payload: parsed });
-      } catch {
-        // ignore corrupt data
-      }
-    }
-    loaded.current = true;
-  }, []);
-
-  useEffect(() => {
-    if (typeof window === "undefined" || !loaded.current) return;
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state));
   }, [state]);
 
@@ -146,26 +194,106 @@ export default function CharacterSheetProvider({
   );
 }
 
-export function useField<K extends keyof CharacterSheetState>(field: K) {
+export function useField<K extends keyof CharacterSheetState>(
+  field: K,
+  { debounceMs }: { debounceMs?: number } = {},
+) {
   const { state, dispatch } = useCharacterSheet();
+  const [localValue, setLocalValue] = useState(state[field]);
+  const pendingRef = useRef<CharacterSheetState[K] | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined,
+  );
+
+  // Sync from external state when no debounce is pending
+  useEffect(() => {
+    if (pendingRef.current === null) {
+      setLocalValue(state[field]);
+    }
+  }, [state[field]]);
+
   const setValue = useCallback(
     (value: CharacterSheetState[K]) => {
-      dispatch({ type: "SET_FIELD", field, value });
+      if (!debounceMs) {
+        dispatch({ type: "SET_FIELD", field, value });
+        return;
+      }
+      setLocalValue(value as typeof localValue);
+      pendingRef.current = value;
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = setTimeout(() => {
+        pendingRef.current = null;
+        timeoutRef.current = undefined;
+        dispatch({ type: "SET_FIELD", field, value });
+      }, debounceMs);
     },
-    [dispatch, field],
+    [dispatch, field, debounceMs],
   );
-  return [state[field], setValue] as const;
+
+  // Flush pending value on unmount so data isn't lost
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        if (pendingRef.current !== null) {
+          dispatch({ type: "SET_FIELD", field, value: pendingRef.current });
+        }
+      }
+    };
+  }, [dispatch, field]);
+
+  return [debounceMs ? localValue : state[field], setValue] as const;
 }
 
-export function useFields() {
+export function useFields({ debounceMs }: { debounceMs?: number } = {}) {
   const { state, dispatch } = useCharacterSheet();
+  const [localState, setLocalState] = useState(state);
+  const pendingRef = useRef<Partial<CharacterSheetState> | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(
+    undefined,
+  );
+
+  // Sync from external state when no debounce is pending
+  useEffect(() => {
+    if (pendingRef.current === null) {
+      setLocalState(state);
+    }
+  }, [state]);
+
   const set = useCallback(
     (partial: Partial<CharacterSheetState>) => {
-      dispatch({ type: "SET_FIELDS", payload: partial });
+      if (!debounceMs) {
+        dispatch({ type: "SET_FIELDS", payload: partial });
+        return;
+      }
+      setLocalState((prev) => ({ ...prev, ...partial }));
+      pendingRef.current = { ...pendingRef.current, ...partial };
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = setTimeout(() => {
+        const accumulated = pendingRef.current;
+        pendingRef.current = null;
+        timeoutRef.current = undefined;
+        if (accumulated) {
+          dispatch({ type: "SET_FIELDS", payload: accumulated });
+        }
+      }, debounceMs);
     },
-    [dispatch],
+    [dispatch, debounceMs],
   );
-  return [state, set] as const;
+
+  // Flush on unmount
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        if (pendingRef.current) {
+          dispatch({ type: "SET_FIELDS", payload: pendingRef.current });
+        }
+      }
+    };
+  }, [dispatch]);
+
+  return [debounceMs ? localState : state, set] as const;
 }
 
 export function useActions() {

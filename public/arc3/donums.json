@@ -1,0 +1,13 @@
+[
+  {
+    "name": "Donum Vitae",
+    "shortDescription": "Gift of Life",
+    "abilities": [
+      {
+        "name": "Donum Vitae",
+        "slug": "donum-vitae",
+        "keystone": true
+      }
+    ]
+  }
+]

@@ -11,7 +11,7 @@ export default function ActionSection() {
   return (
     <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-1">
       <TypographyH2 className="text-md mt-0 uppercase text-muted-foreground order-1">
-        Abilities
+        Aptitudes
       </TypographyH2>
       <TypographyH2 className="text-md mt-0 uppercase text-muted-foreground order-2 md:order-1">
         Skills
