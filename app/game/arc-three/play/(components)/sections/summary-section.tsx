@@ -10,6 +10,7 @@ import {
   ALL_BACKGROUNDS,
   ALL_DONUMS,
   ALL_FIGHTING_STYLES,
+  ALL_HERITAGES,
   ALL_SKILLSETS,
   ALL_TRANSFORMATIONS,
   useFields,
@@ -19,6 +20,7 @@ export default function SummarySection() {
   const [
     {
       alias,
+      heritage,
       archetype,
       background,
       skillset,
@@ -70,7 +72,16 @@ export default function SummarySection() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 w-full my-1">
+        <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-4 gap-1 w-full my-1">
+          <ClearableSelect
+            items={ALL_HERITAGES}
+            value={heritage?.name}
+            placeholder="Select a heritage"
+            triggerClassName="font-bold text-sky-500"
+            showDescription
+            onSelect={(b) => set({ heritage: b })}
+            onClear={() => set({ heritage: undefined })}
+          />
           <ClearableSelect
             items={ALL_BACKGROUNDS}
             value={background?.name}
@@ -151,7 +162,7 @@ export default function SummarySection() {
             items={ALL_TRANSFORMATIONS}
             values={transformations.map((t) => t.name)}
             placeholder={
-              <b className="text-orange-500">Select Transformations</b>
+              <b className="text-orange-500">Select transformations</b>
             }
             triggerClassName="font-bold text-orange-500 w-full bg-background!"
             badgeLabel={(t) => <b className="text-orange-500">{t.name}</b>}
