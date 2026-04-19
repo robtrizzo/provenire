@@ -14,6 +14,7 @@ import {
 } from "react";
 import actions from "@/public/arc3/actions.json";
 import { nanoid } from "@/lib/nanoid";
+import heritages from "@/public/heritages.json";
 import backgrounds from "@/public/arc3/backgrounds.json";
 import archetypes from "@/public/arc3/archetypes.json";
 import skillsets from "@/public/arc3/skillsets.json";
@@ -21,12 +22,15 @@ import fightingStyles from "@/public/arc3/fighting_styles.json";
 import aldams from "@/public/arc3/aldams.json";
 import transformations from "@/public/arc3/transformations.json";
 import donums from "@/public/arc3/donums.json";
+import conditions from "@/public/arc3/conditions.json";
 import {
   AldamV3,
   ArchetypeV3,
   BackgroundV3,
+  Condition,
   DonumV3,
   FightingStyleV3,
+  Heritage,
   SkillsetSubclass,
   SkillsetV3,
   TransformationV3,
@@ -36,13 +40,10 @@ export const LOCAL_STORAGE_KEY = "charsheet-arc3";
 export const SUPPORTED_VERSION = 3;
 export const MAX_ABILITIES = 6;
 export const MAX_SKILLS = 6;
-export const DEFAULT_CONDITIONS = [
-  "Insecure",
-  "Afraid",
-  "Angry",
-  "Hopeless",
-  "Guilty",
-];
+export const ALL_CONDITIONS = conditions;
+export const DEFAULT_CONDITIONS = conditions.default;
+export const OPTIONAL_CONDITONS = conditions.optional;
+export const ALL_HERITAGES = heritages;
 export const ALL_BACKGROUNDS = backgrounds;
 export const ALL_ARCHETYPES = archetypes;
 export const ALL_SKILLSETS = skillsets;
@@ -63,6 +64,7 @@ const DEFAULT_STATE = {
   name: "",
   alias: "",
   portrait: "",
+  heritage: undefined,
   archtype: undefined,
   background: undefined,
   skillset: undefined,
@@ -85,6 +87,7 @@ interface CharacterSheetState {
   name: string;
   alias: string;
   portrait: string;
+  heritage?: Heritage;
   archetype?: ArchetypeV3;
   background?: BackgroundV3;
   skillset?: SkillsetV3;
@@ -98,8 +101,8 @@ interface CharacterSheetState {
   xpSpent: number;
   stress: number;
   maxStress: number;
-  conditions: string[];
-  currentConditions: string[];
+  conditions: Condition[];
+  currentConditions: Condition[];
 }
 
 // Actions — add new cases here

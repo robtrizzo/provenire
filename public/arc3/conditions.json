@@ -1,0 +1,46 @@
+{
+  "default": [
+    {
+      "name": "Afraid",
+      "slug": "afraid"
+    },
+    {
+      "name": "Angry",
+      "slug": "angry"
+    },
+    {
+      "name": "Guilty",
+      "slug": "guilty"
+    },
+    {
+      "name": "Hopeless",
+      "slug": "hopeless"
+    },
+    {
+      "name": "Insecure",
+      "slug": "insecure"
+    }
+  ],
+  "optional": [
+    {
+      "name": "Disinterested",
+      "slug": "disinterested"
+    },
+    {
+      "name": "Enraged",
+      "slug": "enraged"
+    },
+    {
+      "name": "Lonely",
+      "slug": "lonely"
+    },
+    {
+      "name": "Overwhelmed",
+      "slug": "overwhelmed"
+    },
+    {
+      "name": "Scarred",
+      "slug": "scarred"
+    }
+  ]
+}

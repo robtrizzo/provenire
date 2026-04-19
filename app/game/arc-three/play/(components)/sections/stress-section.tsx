@@ -1,7 +1,10 @@
+"use client";
+
 import { BuildupCheckboxes } from "@/components/buildup-checkboxes";
 import { Condition } from "@/components/condition";
 import { TypographyH2 } from "@/components/ui/typography";
 import { useFields } from "@/contexts/arc3CharacterSheetContext";
+import ConditionOptions from "./condition-options";
 
 export default function StressSection() {
   const [{ stress, maxStress, conditions, currentConditions }, set] =
@@ -10,7 +13,7 @@ export default function StressSection() {
   return (
     <div className="flex flex-col gap-2">
       <TypographyH2 className="text-md text-muted-foreground flex items-end justify-between">
-        Stress & Conditions {/*<ConditionsInfo />*/}
+        Stress & Conditions <ConditionOptions />
       </TypographyH2>
       <div className="flex justify-between">
         <BuildupCheckboxes
@@ -28,8 +31,8 @@ export default function StressSection() {
               if (!c) return null;
               return (
                 <Condition
-                  key={c}
-                  name={c}
+                  key={c.name}
+                  name={c.name}
                   active={false}
                   disabled={true}
                   onClick={() => {}}
@@ -40,8 +43,8 @@ export default function StressSection() {
               if (!c) return null;
               return (
                 <Condition
-                  key={c + idx}
-                  name={c}
+                  key={c.name + idx}
+                  name={c.name}
                   active={currentConditions.includes(c)}
                   disabled={
                     currentConditions.length >= maxStress &&
@@ -51,7 +54,7 @@ export default function StressSection() {
                     if (currentConditions.includes(c)) {
                       set({
                         currentConditions: currentConditions.filter(
-                          (con) => con !== c,
+                          (con) => con.name !== c.name,
                         ),
                       });
                     } else if (currentConditions.length <= maxStress) {

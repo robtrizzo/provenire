@@ -523,3 +523,8 @@ export type DonumV3 = {
   phase?: DonumPhase;
   progress?: number;
 };
+
+export type Condition = {
+  name: string;
+  slug: string;
+};
