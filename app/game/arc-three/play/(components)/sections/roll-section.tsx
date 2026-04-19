@@ -115,7 +115,7 @@ const RollSection = () => {
       <BonusDiceSection />
       <Separator />
       <FortuneSection />
-      <DetailsSection />
+      {/* <DetailsSection /> */}
     </Card>
   );
 };
@@ -213,6 +213,10 @@ function RollSelect({ disabled = false }: { disabled?: boolean }) {
   );
 }
 
+/**
+ * Only use this for debugging. Currently the calculations are fairly poorly optimized
+ * and will lock out the browser at ~9 dice
+ */
 function DetailsSection() {
   const { dice } = useRoll();
 
