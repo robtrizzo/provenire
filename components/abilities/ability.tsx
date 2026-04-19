@@ -1,7 +1,6 @@
 "use client";
 import type { Ability } from "@/types/game";
 import dynamic from "next/dynamic";
-import { useMemo } from "react";
 
 interface AbilityProps {
   ability: Ability;
@@ -11,37 +10,50 @@ interface AbilityProps {
   subtype?: string;
 }
 
-export default function Ability(props: AbilityProps) {
-  const { ability, category, arc, type, subtype } = props;
+const componentCache = new Map<string, ReturnType<typeof dynamic>>();
 
-  const AbilityComponent = useMemo(() => {
-    // Derives path: e.g. archetypes/arc2/strategist/the-chess-game-of-life
-    return dynamic(
-      () =>
-        import(
-          `./${category}/${arc}/${type}/${subtype ? subtype + "/" : ""}${ability.slug}`
-        ).catch(() => {
-          console.error(
-            `Ability not found: ${category}/${arc}/${type}/${subtype ? subtype + "/" : ""}${ability.slug}`,
-          );
-          return {
+function getAbilityComponent(
+  ability: Ability,
+  category: string,
+  arc: string,
+  type: string,
+  subtype?: string,
+) {
+  const path = `${category}/${arc}/${type}/${subtype ? subtype + "/" : ""}${ability.slug}`;
+  if (!componentCache.has(path)) {
+    componentCache.set(
+      path,
+      dynamic(
+        () =>
+          import(`./${path}`).catch(() => ({
             default: () => (
               <span className="text-red-500">
                 Ability not found: {ability.name}
               </span>
             ),
-          };
-        }),
-      {
-        ssr: false,
-        loading: () => (
-          <span className="text-muted-foreground animate-pulse">
-            Loading {ability.name}...
-          </span>
-        ),
-      },
+          })),
+        {
+          ssr: false,
+          loading: () => (
+            <span className="text-muted-foreground animate-pulse">
+              Loading {ability.name}...
+            </span>
+          ),
+        },
+      ),
     );
-  }, [category, arc, type, ability.slug, ability.name]);
+  }
+  return componentCache.get(path)!;
+}
 
+export default function Ability(props: AbilityProps) {
+  const { ability, category, arc, type, subtype } = props;
+  const AbilityComponent = getAbilityComponent(
+    ability,
+    category,
+    arc,
+    type,
+    subtype,
+  );
   return <AbilityComponent />;
 }
