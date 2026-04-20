@@ -9,6 +9,7 @@ import BondsSection from "./sections/bonds-section";
 import XPSection from "./sections/xp-section";
 import StressSection from "./sections/stress-section";
 import SummarySection from "./sections/summary-section";
+import Controls from "./sections/controls-section";
 
 export default function CharacterSheet() {
   const is2xl = useMediaQuery("(min-width: 96rem)");

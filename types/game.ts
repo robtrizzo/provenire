@@ -464,6 +464,14 @@ export type Note = {
 
 // ARC THREE ------------------ //
 
+export interface CharacterV3 {
+  id: string;
+  name: string;
+  updatedAt: Date;
+  player: { id: string; name: string };
+  version: 3;
+}
+
 export type ArchetypeV3 = {
   name: string;
   questions: string[];

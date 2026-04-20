@@ -35,6 +35,7 @@ import {
   SkillsetV3,
   TransformationV3,
 } from "@/types/game";
+import { useMutation } from "@tanstack/react-query";
 
 export const LOCAL_STORAGE_KEY = "charsheet-arc3";
 export const SUPPORTED_VERSION = 3;
@@ -62,10 +63,9 @@ const DEFAULT_ACTIONS: ActionV3[] = actions.Aptitudes.map((a) => ({
 const DEFAULT_STATE = {
   id: nanoid(),
   name: "",
-  alias: "",
   portrait: "",
   heritage: undefined,
-  archtype: undefined,
+  archetype: undefined,
   background: undefined,
   skillset: undefined,
   skillsetSubclass: undefined,
@@ -85,7 +85,6 @@ const DEFAULT_STATE = {
 interface CharacterSheetState {
   id: string;
   name: string;
-  alias: string;
   portrait: string;
   heritage?: Heritage;
   archetype?: ArchetypeV3;
@@ -115,6 +114,17 @@ type CharacterSheetAction =
 interface CharacterSheetContextProps {
   state: CharacterSheetState;
   dispatch: Dispatch<CharacterSheetAction>;
+  // metadata
+  localUpdatedAt: string | null;
+  cloudUpdatedAt: string | null;
+  saved: boolean;
+  isSaving: boolean;
+  isSavingAs: boolean;
+  // controls
+  save: () => Promise<void>;
+  saveAs: (options?: { name?: string; switchToNew?: boolean }) => Promise<void>;
+  newCharacter: () => void;
+  loadCharacter: (data: string) => void;
   // derived values
   aptitudes: ActionV3[];
   skills: ActionV3[];
@@ -162,32 +172,207 @@ export default function CharacterSheetProvider({
   children: ReactNode;
 }) {
   const [state, dispatch] = useReducer(reducer, DEFAULT_STATE);
+  const [localUpdatedAt, setLocalUpdatedAt] = useState<string | null>(null);
+  const [cloudUpdatedAt, setCloudUpdatedAt] = useState<string | null>(null);
+  const cloudUpdatedAtRef = useRef<string | null>(null);
+  const [saved, setSaved] = useState(false);
+  const suppressLocalSaveRef = useRef<boolean>(false);
 
+  // load
   useEffect(() => {
     const data = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (!data) return;
     try {
-      const parsed = JSON.parse(data) as Partial<CharacterSheetState>;
+      const {
+        localUpdatedAt: savedAt,
+        cloudUpdatedAt: savedCloudAt,
+        ...parsed
+      } = JSON.parse(data);
+      if (savedAt) setLocalUpdatedAt(savedAt);
+      if (savedCloudAt) {
+        setCloudUpdatedAt(savedCloudAt);
+        cloudUpdatedAtRef.current = savedCloudAt;
+      }
       dispatch({ type: "SET_FIELDS", payload: parsed });
+      if (savedAt) setLocalUpdatedAt(savedAt);
     } catch {
       // ignore malformed data
     }
   }, []);
 
+  const loadCharacter = useCallback(
+    (jsonString: string) => {
+      try {
+        const {
+          localUpdatedAt: _local,
+          cloudUpdatedAt: savedCloud, // keep this instead of discarding
+          ...parsed
+        } = JSON.parse(jsonString);
+
+        // Suppress the auto-save effect so it doesn't stamp a new localUpdatedAt
+        suppressLocalSaveRef.current = true;
+
+        // Restore timestamps — local matches cloud so hasUnsavedChanges is false
+        cloudUpdatedAtRef.current = savedCloud ?? null;
+        setCloudUpdatedAt(savedCloud ?? null);
+        setLocalUpdatedAt(savedCloud ?? null);
+
+        dispatch({
+          type: "SET_FIELDS",
+          payload: { ...DEFAULT_STATE, ...parsed },
+        });
+
+        // Write localStorage manually since we suppressed the effect
+        localStorage.setItem(
+          LOCAL_STORAGE_KEY,
+          JSON.stringify({
+            ...DEFAULT_STATE,
+            ...parsed,
+            localUpdatedAt: savedCloud ?? null,
+            cloudUpdatedAt: savedCloud ?? null,
+          }),
+        );
+      } catch {
+        // ignore malformed data
+      }
+    },
+    [dispatch],
+  );
+
+  // save
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (suppressLocalSaveRef.current) {
+      suppressLocalSaveRef.current = false;
+      return; // skip — localUpdatedAt was already set by recordCloudSave
+    }
+    const timestamp = new Date().toISOString();
+    localStorage.setItem(
+      LOCAL_STORAGE_KEY,
+      JSON.stringify({
+        ...state,
+        localUpdatedAt: timestamp,
+        cloudUpdatedAt: cloudUpdatedAtRef.current,
+      }),
+    );
+    setLocalUpdatedAt(timestamp);
+  }, [state]);
+
+  const recordCloudSave = useCallback((timestamp: string) => {
+    cloudUpdatedAtRef.current = timestamp;
+    setCloudUpdatedAt(timestamp);
+    // Patch localStorage immediately so it persists without waiting for a state change
+    const data = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (data) {
+      try {
+        const parsed = JSON.parse(data);
+        localStorage.setItem(
+          LOCAL_STORAGE_KEY,
+          JSON.stringify({ ...parsed, cloudUpdatedAt: timestamp }),
+        );
+      } catch {}
+    }
+  }, []);
+
+  const { mutateAsync: save, isPending: isSaving } = useMutation({
+    mutationFn: async () => {
+      const data = localStorage.getItem(LOCAL_STORAGE_KEY);
+      if (!data) return;
+      const response = await fetch(`/api/characters/arc3`, {
+        method: "POST",
+        body: JSON.stringify({ character: data }),
+      });
+      return response.json();
+    },
+    onError: (error) => {
+      console.error("Error saving character to cloud", error);
+    },
+    onSuccess: (data) => {
+      if (data?.updatedAt) recordCloudSave(data.updatedAt);
+      setSaved(true);
+      setTimeout(() => setSaved(false), 2000);
+    },
+  });
+
+  const { mutateAsync: saveAsMutation, isPending: isSavingAs } = useMutation({
+    mutationFn: async ({
+      name,
+      switchToNew = true,
+    }: {
+      name?: string;
+      switchToNew?: boolean;
+    }) => {
+      const newId = nanoid();
+      const newName = name ?? state.name;
+      const snapshot = JSON.stringify({
+        ...state,
+        id: newId,
+        name: newName,
+        localUpdatedAt: new Date().toISOString(),
+        cloudUpdatedAt: cloudUpdatedAtRef.current,
+      });
+      const response = await fetch(`/api/characters/arc3`, {
+        method: "POST",
+        body: JSON.stringify({ character: snapshot }),
+      });
+      const data = await response.json();
+      return { data, newId, newName, switchToNew };
+    },
+    onError: (error) => {
+      console.error("Error saving character copy to cloud", error);
+    },
+    onSuccess: ({ data, newId, newName, switchToNew }) => {
+      if (switchToNew) {
+        suppressLocalSaveRef.current = true;
+        dispatch({ type: "SET_FIELDS", payload: { id: newId, name: newName } });
+        if (data?.updatedAt) recordCloudSave(data.updatedAt);
+      }
+      setSaved(true);
+      setTimeout(() => setSaved(false), 2000);
+    },
+  });
+
+  const saveAs = useCallback(
+    async (options?: {
+      name?: string;
+      switchToNew?: boolean;
+    }): Promise<void> => {
+      await saveAsMutation(options ?? {});
+    },
+    [saveAsMutation],
+  );
+
+  // new
+  const newCharacter = useCallback(() => {
+    localStorage.removeItem(LOCAL_STORAGE_KEY);
+    setLocalUpdatedAt(null);
+    setCloudUpdatedAt(null);
+    cloudUpdatedAtRef.current = null;
+    suppressLocalSaveRef.current = true;
+    dispatch({
+      type: "SET_FIELDS",
+      payload: { ...DEFAULT_STATE, id: nanoid() },
+    });
+  }, [dispatch]);
+
   const aptitudes = state.actions.filter((a) => a.type === "aptitude");
   const skills = state.actions.filter((a) => a.type === "skill");
   const bonds = state.actions.filter((a) => a.type === "bond");
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state));
-  }, [state]);
 
   return (
     <CharacterSheetContext.Provider
       value={{
         state,
         dispatch,
+        localUpdatedAt,
+        cloudUpdatedAt,
+        saved,
+        isSaving,
+        isSavingAs,
+        save,
+        saveAs,
+        newCharacter,
+        loadCharacter,
         aptitudes,
         skills,
         bonds,

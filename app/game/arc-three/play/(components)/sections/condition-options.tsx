@@ -19,7 +19,6 @@ import {
   FieldDescription,
   FieldGroup,
   FieldLabel,
-  FieldLegend,
   FieldSeparator,
   FieldSet,
 } from "@/components/ui/field";
@@ -70,9 +69,6 @@ export default function ConditionOptions() {
         </Close>
         <TypographyH3>Conditions</TypographyH3>
         <FieldSet>
-          <FieldLegend variant="label">
-            <TypographyP>The basic conditions are:</TypographyP>
-          </FieldLegend>
           <FieldDescription>
             Select the conditions you want enabled for your character
           </FieldDescription>

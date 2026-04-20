@@ -25,7 +25,7 @@ export default function StressSection() {
           }}
         />
       </div>
-      <div className="flex gap-4 flex-wrap mt-2">
+      <div className="flex gap-2 flex-wrap mt-2">
         {false // TODO set to isFetching
           ? conditions.map((c) => {
               if (!c) return null;

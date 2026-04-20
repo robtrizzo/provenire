@@ -15,11 +15,11 @@ import {
   ALL_TRANSFORMATIONS,
   useFields,
 } from "@/contexts/arc3CharacterSheetContext";
+import Controls from "./controls-section";
 
 export default function SummarySection() {
   const [
     {
-      alias,
       heritage,
       archetype,
       background,
@@ -38,41 +38,28 @@ export default function SummarySection() {
   });
 
   return (
-    <div className="flex flex-col md:flex-row mt-1 items-start gap-1">
+    <div className="flex flex-col md:flex-row items-start gap-1">
       <Portrait
-        className="mb-1 mt-6"
+        className="mb-1 w-[156px] h-[156px]"
         portrait={portrait}
         name={name}
         onPortraitChange={(newPortrait) => set({ portrait: newPortrait })}
         onChanges={() => {}}
       />
       <div className="w-full">
-        <div className="flex gap-1 w-full">
-          <div className="grow">
-            <Label htmlFor="name">Name</Label>
-            <Input
-              id="name"
-              placeholder="Name"
-              value={name}
-              onChange={(e) => {
-                set({ name: e.target.value });
-              }}
-            />
-          </div>
-          <div>
-            <Label htmlFor="alias">Alias</Label>
-            <Input
-              id="alias"
-              placeholder="Alias"
-              value={alias}
-              onChange={(e) => {
-                set({ alias: e.target.value });
-              }}
-            />
-          </div>
+        <div className="flex gap-1 mb-1">
+          <Input
+            id="name"
+            placeholder="Name"
+            value={name}
+            onChange={(e) => {
+              set({ name: e.target.value });
+            }}
+            className="grow"
+          />
+          <Controls />
         </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-4 gap-1 w-full my-1">
+        <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-4 gap-1 w-full mb-1">
           <ClearableSelect
             items={ALL_HERITAGES}
             value={heritage?.name}

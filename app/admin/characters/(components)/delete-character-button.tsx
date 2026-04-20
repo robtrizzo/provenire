@@ -61,7 +61,7 @@ export default function DeleteCharacterButton({
         </div>
         <Button
           variant="outline"
-          onClick={() => saveCharacterToDevice(character.name)}
+          onClick={() => saveCharacterToDevice("charsheet", character.name)}
           className="mt-2"
         >
           <HardDriveDownload />
