@@ -1,6 +1,7 @@
 import {
   MultiSelect,
   MultiSelectContent,
+  MultiSelectGroup,
   MultiSelectItem,
   MultiSelectSeparator,
   MultiSelectTrigger,
@@ -36,20 +37,22 @@ export function ClearableMultiSelect<
         <MultiSelectValue placeholder={placeholder} />
       </MultiSelectTrigger>
       <MultiSelectContent>
-        {items.map((item) => (
-          <MultiSelectItem
-            key={item.name}
-            value={item.name}
-            badgeLabel={badgeLabel?.(item)}
-          >
-            {item.name}
-            {showDescription && item.shortDescription && (
-              <span className="text-muted-foreground ml-4">
-                {item.shortDescription}
-              </span>
-            )}
-          </MultiSelectItem>
-        ))}
+        <MultiSelectGroup>
+          {items.map((item) => (
+            <MultiSelectItem
+              key={item.name}
+              value={item.name}
+              badgeLabel={badgeLabel?.(item)}
+            >
+              {item.name}
+              {showDescription && item.shortDescription && (
+                <span className="text-muted-foreground ml-4">
+                  {item.shortDescription}
+                </span>
+              )}
+            </MultiSelectItem>
+          ))}
+        </MultiSelectGroup>
         <MultiSelectSeparator />
         <Button
           variant="secondary"

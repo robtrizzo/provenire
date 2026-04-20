@@ -16,7 +16,11 @@ export default function Clock({
   setVal?: (n: number) => void;
   clickable?: boolean;
 }) {
-  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  const { resolvedTheme } = useTheme();
+  const dark = mounted && resolvedTheme === "dark";
 
   const [time, setTime] = useState<number>(current);
 
@@ -24,7 +28,7 @@ export default function Clock({
     setTime(current);
   }, [current]);
 
-  const dark = theme === "dark";
+  // const dark = theme === "dark";
 
   const conicGradient = `conic-gradient(red ${time / max}turn, ${
     dark ? "black" : "white"
@@ -59,38 +63,36 @@ export default function Clock({
   });
 
   return (
-    theme && (
-      <div
-        className="border-solid border-2 border-muted-foreground relative"
-        style={{
-          backgroundImage: conicGradient,
-          borderRadius: "50%",
-          width: `${width}px`,
-          height: `${height}px`,
-        }}
-        onClick={() => {
-          if (!clickable) return;
-          if (time >= max) return;
-          setTime(time + 1);
-          setVal(time + 1);
-        }}
-        onContextMenu={(e) => {
-          if (!clickable) return;
-          e.preventDefault();
-          if (time <= 0) return;
-          setTime(time - 1);
-          setVal(time - 1);
-        }}
+    <div
+      className="border-solid border-2 border-muted-foreground relative"
+      style={{
+        backgroundImage: conicGradient,
+        borderRadius: "50%",
+        width: `${width}px`,
+        height: `${height}px`,
+      }}
+      onClick={() => {
+        if (!clickable) return;
+        if (time >= max) return;
+        setTime(time + 1);
+        setVal(time + 1);
+      }}
+      onContextMenu={(e) => {
+        if (!clickable) return;
+        e.preventDefault();
+        if (time <= 0) return;
+        setTime(time - 1);
+        setVal(time - 1);
+      }}
+    >
+      <svg
+        width={width}
+        height={height}
+        viewBox={`0 0 ${width} ${height}`}
+        className="absolute"
       >
-        <svg
-          width={width}
-          height={height}
-          viewBox={`0 0 ${width} ${height}`}
-          className="absolute"
-        >
-          <g>{spokes}</g>
-        </svg>
-      </div>
-    )
+        <g>{spokes}</g>
+      </svg>
+    </div>
   );
 }

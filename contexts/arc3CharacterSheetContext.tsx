@@ -161,17 +161,18 @@ export default function CharacterSheetProvider({
 }: {
   children: ReactNode;
 }) {
-  const [state, dispatch] = useReducer(reducer, null, () => {
-    if (typeof window === "undefined") return DEFAULT_STATE;
+  const [state, dispatch] = useReducer(reducer, DEFAULT_STATE);
+
+  useEffect(() => {
     const data = localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (!data) return DEFAULT_STATE;
+    if (!data) return;
     try {
       const parsed = JSON.parse(data) as Partial<CharacterSheetState>;
-      return { ...DEFAULT_STATE, ...parsed };
+      dispatch({ type: "SET_FIELDS", payload: parsed });
     } catch {
-      return DEFAULT_STATE;
+      // ignore malformed data
     }
-  });
+  }, []);
 
   const aptitudes = state.actions.filter((a) => a.type === "aptitude");
   const skills = state.actions.filter((a) => a.type === "skill");

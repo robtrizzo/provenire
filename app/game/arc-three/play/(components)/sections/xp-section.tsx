@@ -7,7 +7,6 @@ export default function XPSection() {
   const [{ xp, xpSpent }, set] = useFields();
   const handleSetXP = (n: number) => {
     set({ xp: n });
-    // setChanges(true);
   };
   return (
     <>
@@ -20,7 +19,7 @@ export default function XPSection() {
           isLoading={false}
           fallback={<XPClocks.Clocks.Skeleton />}
         >
-          <XPClocks.Clocks initial={xp} setVal={handleSetXP} />
+          <XPClocks.Clocks initial={xp} max={5} setVal={handleSetXP} />
         </LoadingWrapper>
         <LoadingWrapper
           isLoading={false}

@@ -51,7 +51,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning data-scroll-behaviro="smooth">
       <Head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </Head>

@@ -179,7 +179,12 @@ export function MultiSelectValue({
   }, []);
 
   const handleResize = useCallback(
-    (node: HTMLDivElement) => {
+    (node: HTMLDivElement | null) => {
+      if (!node) {
+        valueRef.current = null;
+        return;
+      }
+
       valueRef.current = node;
 
       const mutationObserver = new MutationObserver(checkOverflow);
@@ -191,12 +196,6 @@ export function MultiSelectValue({
         attributeFilter: ["class", "style"],
       });
       observer.observe(node);
-
-      return () => {
-        observer.disconnect();
-        mutationObserver.disconnect();
-        valueRef.current = null;
-      };
     },
     [checkOverflow],
   );
