@@ -144,6 +144,7 @@ export default function SummarySection() {
               })
             }
             onClear={() => set({ fightingStyles: [] })}
+            showDescription
           />
           <ClearableMultiSelect
             items={ALL_ALDAMS}
@@ -174,6 +175,7 @@ export default function SummarySection() {
               })
             }
             onClear={() => set({ transformations: [] })}
+            showDescription
           />
           <ClearableMultiSelect
             items={ALL_DONUMS}
@@ -187,6 +189,7 @@ export default function SummarySection() {
               })
             }
             onClear={() => set({ donums: [] })}
+            showDescription
           />
         </div>
       </div>
