@@ -4,7 +4,8 @@ import { BuildupCheckboxes } from "@/components/buildup-checkboxes";
 import { Condition } from "@/components/condition";
 import { TypographyH2 } from "@/components/ui/typography";
 import { useFields } from "@/contexts/arc3CharacterSheetContext";
-import ConditionOptions from "./condition-options";
+import ConditionOptions from "../configs/condition-options";
+import StressOptions from "../configs/stress-options";
 
 export default function StressSection() {
   const [{ stress, maxStress, conditions, currentConditions }, set] =
@@ -16,14 +17,17 @@ export default function StressSection() {
         Stress & Conditions <ConditionOptions />
       </TypographyH2>
       <div className="flex justify-between">
-        <BuildupCheckboxes
-          max={maxStress}
-          numDisabled={currentConditions.length}
-          current={stress}
-          onChange={(n) => {
-            set({ stress: n });
-          }}
-        />
+        <div className="flex justify-between">
+          <BuildupCheckboxes
+            max={maxStress}
+            numDisabled={currentConditions.length}
+            current={stress}
+            onChange={(n) => {
+              set({ stress: n });
+            }}
+          />
+        </div>
+        <StressOptions />
       </div>
       <div className="flex gap-2 flex-wrap mt-2">
         {false // TODO set to isFetching

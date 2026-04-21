@@ -41,6 +41,7 @@ export const LOCAL_STORAGE_KEY = "charsheet-arc3";
 export const SUPPORTED_VERSION = 3;
 export const MAX_ABILITIES = 6;
 export const MAX_SKILLS = 6;
+export const DEFAULT_MAX_STRESS = 9;
 export const ALL_CONDITIONS = conditions;
 export const DEFAULT_CONDITIONS = conditions.default;
 export const OPTIONAL_CONDITONS = conditions.optional;

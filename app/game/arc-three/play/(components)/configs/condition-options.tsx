@@ -8,7 +8,7 @@ import {
 import { Close } from "@radix-ui/react-popover";
 import { Button } from "@/components/ui/button";
 import { X, Settings2 } from "lucide-react";
-import { TypographyH3, TypographyP } from "@/components/ui/typography";
+import { TypographyH3 } from "@/components/ui/typography";
 import {
   Tooltip,
   TooltipContent,
@@ -31,7 +31,6 @@ import {
 import ConditionDescription from "@/components/condition-description";
 import { CheckedState } from "@radix-ui/react-checkbox";
 import { Condition } from "@/types/game";
-import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const sourceTypeColors: Record<string, string> = {
