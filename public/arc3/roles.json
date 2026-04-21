@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Seeker",
+    "shortDescription": "Explore the Steel Trap",
+    "abilities": []
+  },
+  {
+    "name": "Wright",
+    "shortDescription": "Manufacture gear for the resistance",
+    "abilities": []
+  },
+  {
+    "name": "Shade",
+    "shortDescription": "Infiltrate your enemies",
+    "abilities": []
+  },
+  {
+    "name": "Lock",
+    "shortDescription": "Protect the resistance from threats",
+    "abilities": []
+  },
+  {
+    "name": "Vault",
+    "shortDescription": "Manage critical resources",
+    "abilities": []
+  },
+  {
+    "name": "Cipher",
+    "shortDescription": "Gain mastery of the machines",
+    "abilities": []
+  },
+  {
+    "name": "Pact",
+    "shortDescription": "Keep the factions from turning on each other",
+    "abilities": []
+  },
+  {
+    "name": "Scaffold",
+    "shortDescription": "Turn this wretched factory into a home",
+    "abilities": []
+  },
+  {
+    "name": "Auger",
+    "shortDescription": "Strike into enemy territory",
+    "abilities": []
+  }
+]

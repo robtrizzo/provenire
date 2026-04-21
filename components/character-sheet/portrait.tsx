@@ -16,6 +16,7 @@ interface PortraitProps {
   className?: string;
   portrait: string;
   name: string;
+  sizes?: string;
   onPortraitChange: (portrait: string) => void;
   onChanges: (hasChanges: boolean) => void;
 }
@@ -24,6 +25,7 @@ export default function Portrait({
   className,
   portrait,
   name,
+  sizes = "156px",
   onPortraitChange,
   onChanges,
 }: PortraitProps) {
@@ -83,13 +85,13 @@ export default function Portrait({
       <Popover open={open} onOpenChange={setOpen}>
         {portrait ? (
           <PopoverTrigger asChild>
-            <div className="relative w-[152px] h-[152px]">
+            <div className="relative w-full h-full">
               <Image
                 src={`${portrait}?rf=${fetchTime}`}
                 alt="character portrait"
                 fill
                 priority
-                sizes="(max-width: 152px) 100vw, 50vw"
+                sizes={sizes}
                 className="object-cover object-center rounded-md hover:cursor-pointer"
               />
             </div>

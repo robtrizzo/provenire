@@ -14,6 +14,8 @@ import {
   Ellipsis,
   FileDown,
   FileUp,
+  Maximize2,
+  Minimize2,
   Plus,
 } from "lucide-react";
 import {
@@ -28,7 +30,13 @@ import SaveAsCharacterDialog from "../dialogs/save-character-dialog";
 import ImportCharacterDialog from "../dialogs/import-character.dialog";
 import { saveCharacterToDevice } from "@/lib/utils";
 
-export default function Controls() {
+export default function Controls({
+  isCompact,
+  onToggleView,
+}: {
+  isCompact?: boolean;
+  onToggleView?: () => void;
+}) {
   const [newDialogOpen, setNewDialogOpen] = useState(false);
   const [saveAsDialogOpen, setSaveAsDialogOpen] = useState(false);
   const [importDialogOpen, setImportDialogOpen] = useState(false);
@@ -58,6 +66,15 @@ export default function Controls() {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-48" align="start">
+          {onToggleView && (
+            <>
+              <DropdownMenuItem onSelect={onToggleView}>
+                {isCompact ? <Maximize2 /> : <Minimize2 />}
+                {isCompact ? "Expanded view" : "Compact view"}
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+            </>
+          )}
           <DropdownMenuItem onSelect={save}>
             <CloudUpload />
             Save

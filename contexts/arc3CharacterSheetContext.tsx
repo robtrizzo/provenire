@@ -25,6 +25,8 @@ import donums from "@/public/arc3/donums.json";
 import conditions from "@/public/arc3/conditions.json";
 import remembrances from "@/public/arc3/remembrances.json";
 import integrations from "@/public/arc3/integrations.json";
+import responsibilities from "@/public/arc3/responsibilities.json";
+import roles from "@/public/arc3/roles.json";
 import {
   AldamV3,
   ArchetypeV3,
@@ -35,6 +37,8 @@ import {
   Heritage,
   Integration,
   Remembrance,
+  Responsibility,
+  Role,
   SkillsetSubclass,
   SkillsetV3,
   TransformationV3,
@@ -59,6 +63,8 @@ export const ALL_TRANSFORMATIONS = transformations;
 export const ALL_DONUMS = donums;
 export const ALL_REMEMBRANCES = remembrances;
 export const ALL_INTEGRATIONS = integrations;
+export const ALL_RESPONSIBILITIES = responsibilities;
+export const ALL_ROLES = roles;
 
 const DEFAULT_ACTIONS: ActionV3[] = actions.Aptitudes.map((a) => ({
   name: a.name,
@@ -82,6 +88,8 @@ const DEFAULT_STATE = {
   donums: [],
   remembrance: undefined,
   integration: undefined,
+  responsibility: undefined,
+  role: undefined,
   actions: DEFAULT_ACTIONS,
   xp: 0,
   xpSpent: 0,
@@ -107,6 +115,8 @@ interface CharacterSheetState {
   remembrance?: Remembrance;
   integration?: Integration;
   actions: ActionV3[];
+  responsibility?: Responsibility;
+  role?: Role;
   xp: number;
   xpSpent: number;
   stress: number;

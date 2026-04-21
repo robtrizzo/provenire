@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Councilor",
+    "shortDescription": "Political influence, access to coalition resources"
+  },
+  {
+    "name": "Advisor",
+    "shortDescription": "Deeply influential in a single community"
+  },
+  {
+    "name": "Operative",
+    "shortDescription": "Complete independence, focus on what you choose"
+  }
+]

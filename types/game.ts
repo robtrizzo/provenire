@@ -464,6 +464,11 @@ export type Note = {
 
 // ARC THREE ------------------ //
 
+export type Described = {
+  name: string;
+  shortDescription: string;
+};
+
 export interface CharacterV3 {
   id: string;
   name: string;
@@ -472,61 +477,46 @@ export interface CharacterV3 {
   version: 3;
 }
 
-export type ArchetypeV3 = {
-  name: string;
+export type ArchetypeV3 = Described & {
   questions: string[];
-  shortDescription: string;
   abilities: Ability[];
 };
 
-export type SkillsetV3 = {
-  name: string;
-  shortDescription: string;
+export type SkillsetV3 = Described & {
   questions: string[];
   description: string;
   abilities: Ability[];
   subclasses?: SkillsetSubclass[];
 };
 
-export type SkillsetSubclass = {
-  name: string;
-  shortDescription: string;
+export type SkillsetSubclass = Described & {
   description: string;
   abilities: Ability[];
 };
 
-export type BackgroundV3 = {
-  name: string;
-  shortDescription: string;
+export type BackgroundV3 = Described & {
   questions: string[];
   subsistenceClock: string;
 };
 
-export type FightingStyleV3 = {
-  name: string;
+export type FightingStyleV3 = Described & {
+  abilities: Ability[];
+};
+
+export type AldamV3 = Described & {
   shortDescription: string;
   abilities: Ability[];
 };
 
-export type AldamV3 = {
-  name: string;
-  shortDescription: string;
-  abilities: Ability[];
-};
-
-export type TransformationV3 = {
-  name: string;
+export type TransformationV3 = Described & {
   abilities: Ability[];
   phase?: DonumPhase;
   progress?: number;
-  shortDescription?: string;
   description?: string;
   provenire?: string;
 };
 
-export type DonumV3 = {
-  name: string;
-  shortDescription?: string;
+export type DonumV3 = Described & {
   abilities: Ability[];
   phase?: DonumPhase;
   progress?: number;
@@ -545,14 +535,15 @@ export type History = {
   cost: number;
 };
 
-export type Remembrance = {
-  name: string;
-  shortDescription: string;
+export type Remembrance = Described & {
   histories: History[];
   abilities: Ability[];
 };
 
-export type Integration = {
-  name: string;
-  shortDescription: string;
+export type Integration = Described;
+
+export type Responsibility = Described;
+
+export type Role = Described & {
+  abilities: Ability[];
 };
