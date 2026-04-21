@@ -28,5 +28,25 @@
         "slug": "mercurial-skull"
       }
     ]
+  },
+  {
+    "name": "Potentia Humanitas",
+    "shortDescription": "",
+    "abilities": []
+  },
+  {
+    "name": "Blood of the Body",
+    "shortDescription": "",
+    "abilities": []
+  },
+  {
+    "name": "Ghost of the Grasses",
+    "shortDescription": "",
+    "abilities": []
+  },
+  {
+    "name": "Inner Rhythm",
+    "shortDescription": "",
+    "abilities": []
   }
 ]

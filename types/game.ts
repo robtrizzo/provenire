@@ -538,3 +538,21 @@ export type Condition = {
   source?: string;
   sourceType?: "remembrance" | "archetype" | "skillset" | "donum";
 };
+
+export type History = {
+  name: string;
+  slug: string;
+  cost: number;
+};
+
+export type Remembrance = {
+  name: string;
+  shortDescription: string;
+  histories: History[];
+  abilities: Ability[];
+};
+
+export type Integration = {
+  name: string;
+  shortDescription: string;
+};

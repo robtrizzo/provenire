@@ -1,0 +1,387 @@
+[
+  {
+    "name": "Dunstan Prisca",
+    "shortDescription": "A peaceful soul disinterested in duty",
+    "histories": [
+      {
+        "name": "Argos (Post Cataclysm)",
+        "slug": "argos-post-cataclysm",
+        "cost": 3
+      },
+      {
+        "name": "Helix",
+        "slug": "helix",
+        "cost": 3
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Potentia Humanitas",
+        "slug": "potentia-humanitas",
+        "cost": 3
+      },
+      {
+        "name": "Donum Dolus",
+        "slug": "donum-dolus",
+        "cost": 5
+      },
+      {
+        "name": "Mason's Method",
+        "slug": "masons-method",
+        "cost": 3
+      },
+      {
+        "name": "Dilettante's Ego",
+        "slug": "dilettantes-ego",
+        "cost": 2
+      }
+    ]
+  },
+  {
+    "name": "Engel Otto",
+    "shortDescription": "A wise, learned mentor",
+    "histories": [
+      {
+        "name": "Ulgatia (Post Cataclysm)",
+        "slug": "ulgatia-post-cataclysm",
+        "cost": 3
+      },
+      {
+        "name": "The Steel Trap",
+        "slug": "the-steel-trap",
+        "cost": 3
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Blood of the Body",
+        "slug": "blood-of-the-body",
+        "cost": 3
+      },
+      {
+        "name": "Kiss of the Viper",
+        "slug": "kiss-of-the-viper",
+        "cost": 3
+      },
+      {
+        "name": "Desert Fan",
+        "slug": "desert-fan",
+        "cost": 3
+      },
+      {
+        "name": "Horizon's Edge",
+        "slug": "horizons-edge",
+        "cost": 3
+      }
+    ]
+  },
+  {
+    "name": "Issa",
+    "shortDescription": "Conviction in art over war",
+    "histories": [
+      {
+        "name": "Gredora (Ancient)",
+        "slug": "gredora-ancient",
+        "cost": 3
+      },
+      {
+        "name": "Fornax Masterworks",
+        "slug": "fornax-masterworks",
+        "cost": 3
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Gredoran Aldams",
+        "slug": "gredoran-aldams",
+        "cost": 3
+      },
+      {
+        "name": "Donum Fornax",
+        "slug": "donum-fornax",
+        "cost": 5
+      },
+      {
+        "name": "Art or War",
+        "slug": "art-or-war",
+        "cost": 3
+      },
+      {
+        "name": "[Art/War]-Works",
+        "slug": "art-war-works",
+        "cost": 3
+      }
+    ]
+  },
+  {
+    "name": "Luciana",
+    "shortDescription": "Antisocial and lonely",
+    "histories": [
+      {
+        "name": "Heia (Pre-Cataclysm)",
+        "slug": "heia-pre-cataclysm",
+        "cost": 3
+      },
+      {
+        "name": "Yama (Pre-Cataclysm)",
+        "slug": "yama-pre-cataclysm",
+        "cost": 3
+      },
+      {
+        "name": "The War of Madness",
+        "slug": "the-war-of-madness",
+        "cost": 3
+      },
+      {
+        "name": "The Cataclysm",
+        "slug": "the-cataclysm",
+        "cost": 10
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Ghost of the Grasses",
+        "slug": "ghost-of-the-grasses",
+        "cost": 4
+      },
+      {
+        "name": "Donum Ossis",
+        "slug": "donum-ossis",
+        "cost": 5
+      },
+      {
+        "name": "Scars",
+        "slug": "scars",
+        "cost": 2
+      },
+      {
+        "name": "Archive at the Edge of the World",
+        "slug": "archive-at-the-edge-of-the-world",
+        "cost": 2
+      }
+    ]
+  },
+  {
+    "name": "Makino",
+    "shortDescription": "Fueled by rage and half mad with grief",
+    "histories": [
+      {
+        "name": "The Hidden City",
+        "slug": "the-hidden-city",
+        "cost": 3
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Ghost of the Grasses",
+        "slug": "ghost-of-the-grasses",
+        "cost": 4
+      },
+      {
+        "name": "Donum Cinis",
+        "slug": "donum-cinis",
+        "cost": 5
+      },
+      {
+        "name": "Long-knife Style",
+        "slug": "long-knife-style",
+        "cost": 3
+      },
+      {
+        "name": "Punish the Wrongdoers",
+        "slug": "punish-the-wrongdoers",
+        "cost": 3
+      }
+    ]
+  },
+  {
+    "name": "Matteo",
+    "shortDescription": "A twisted, blackened soul",
+    "histories": [
+      {
+        "name": "Narscillia (Ancient)",
+        "slug": "narscillia-ancient",
+        "cost": 3
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Inner Rhythm",
+        "slug": "inner-rhythm",
+        "cost": 3
+      },
+      {
+        "name": "Shadespear",
+        "slug": "shadespear",
+        "cost": 3
+      },
+      {
+        "name": "Nihilism",
+        "slug": "nihilism",
+        "cost": 2
+      },
+      {
+        "name": "Mantle of Duty",
+        "slug": "mantle-of-duty",
+        "cost": 3
+      }
+    ]
+  },
+  {
+    "name": "Takota",
+    "shortDescription": "Driven. Capable. Arrogant.",
+    "histories": [
+      {
+        "name": "Gredora (Ancient)",
+        "slug": "gredora-ancient",
+        "cost": 3
+      },
+      {
+        "name": "Ghodbane's Campaign",
+        "slug": "ghodbanes-campaign",
+        "cost": 6
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Gredoran Aldams",
+        "slug": "gredoran-aldams",
+        "cost": 4
+      },
+      {
+        "name": "Phalanx",
+        "slug": "phalanx",
+        "cost": 3
+      },
+      {
+        "name": "Ambition",
+        "slug": "ambition",
+        "cost": 3
+      },
+      {
+        "name": "Cutthroat Politics",
+        "slug": "cutthroat-politics",
+        "cost": 3
+      }
+    ]
+  },
+  {
+    "name": "Velda",
+    "shortDescription": "Heartbreak, loneliness, and a deep capacity for sacrifice.",
+    "histories": [
+      {
+        "name": "Fenrir (Post Cataclysm)",
+        "slug": "fenrir-post-cataclysm",
+        "cost": 3
+      },
+      {
+        "name": "Kingwulf's Court (Post Cataclysm)",
+        "slug": "kingwulfs-court-post-cataclysm",
+        "cost": 3
+      },
+      {
+        "name": "The Steel Trap",
+        "slug": "the-steel-trap",
+        "cost": 3
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Donum Rex",
+        "slug": "donum-rex",
+        "cost": 5
+      },
+      {
+        "name": "Donum Ignis",
+        "slug": "donum-ignis",
+        "cost": 5
+      },
+      {
+        "name": "Throatgore",
+        "slug": "throatgore",
+        "cost": 3
+      },
+      {
+        "name": "Ferocious Protector",
+        "slug": "ferocious-protector",
+        "cost": 3
+      }
+    ]
+  },
+  {
+    "name": "Ygg",
+    "shortDescription": "Bestial and primal. Wounded and lonely.",
+    "histories": [
+      {
+        "name": "The Bwarhein (Ancient)",
+        "slug": "the-bwarhein-ancient",
+        "cost": 3
+      },
+      {
+        "name": "Kingwulf's Jaws",
+        "slug": "kingwulfs-jaws",
+        "cost": 2
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Donum Portentum",
+        "slug": "donum-portentum",
+        "cost": 5
+      },
+      {
+        "name": "Backsnap",
+        "slug": "backsnap",
+        "cost": 3
+      },
+      {
+        "name": "Lonely",
+        "slug": "lonely",
+        "cost": 3
+      },
+      {
+        "name": "Savage Instinct",
+        "slug": "savage-instinct",
+        "cost": 3
+      }
+    ]
+  },
+  {
+    "name": "Zephyr",
+    "shortDescription": "Adventurous and restless.",
+    "histories": [
+      {
+        "name": "Narscillia (Ancient)",
+        "slug": "narscillia-ancient",
+        "cost": 3
+      },
+      {
+        "name": "God of Night and Stars",
+        "slug": "god-of-night-and-stars",
+        "cost": 6
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Inner Rhythm",
+        "slug": "inner-rhythm",
+        "cost": 4
+      },
+      {
+        "name": "Donum Ventus",
+        "slug": "donum-ventus",
+        "cost": 5
+      },
+      {
+        "name": "Blazing Arrow",
+        "slug": "blazing-arrow",
+        "cost": 3
+      },
+      {
+        "name": "Animal Empath",
+        "slug": "animal-empath",
+        "cost": 3
+      }
+    ]
+  }
+]

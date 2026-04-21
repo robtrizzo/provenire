@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Observation",
+    "shortDescription": "You witnessed their life over their shoulder"
+  },
+  {
+    "name": "Exploitation",
+    "shortDescription": "Keep them in the box"
+  },
+  {
+    "name": "Cooperation",
+    "shortDescription": "A willing companion in your mind"
+  },
+  {
+    "name": "Suppression",
+    "shortDescription": "It's slowly coming back to you"
+  },
+  {
+    "name": "Opposition",
+    "shortDescription": "Struggle for control"
+  },
+  {
+    "name": "Synthesis",
+    "shortDescription": "A harmonious blending of psyches"
+  }
+]

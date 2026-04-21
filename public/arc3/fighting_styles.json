@@ -153,5 +153,45 @@
         "cost": 3
       }
     ]
+  },
+  {
+    "name": "Blazing Arrow",
+    "shortDescription": "",
+    "abilities": []
+  },
+  {
+    "name": "Phalanx",
+    "shortDescription": "",
+    "abilities": []
+  },
+  {
+    "name": "Shadespear",
+    "shortDescription": "",
+    "abilities": []
+  },
+  {
+    "name": "Long-knife Style",
+    "shortDescription": "",
+    "abilities": []
+  },
+  {
+    "name": "Kiss of the Viper",
+    "shortDescription": "",
+    "abilities": []
+  },
+  {
+    "name": "Desert Fan",
+    "shortDescription": "",
+    "abilities": []
+  },
+  {
+    "name": "Horizon's Edge",
+    "shortDescription": "",
+    "abilities": []
+  },
+  {
+    "name": "Mason's Method",
+    "shortDescription": "",
+    "abilities": []
   }
 ]

@@ -9,5 +9,71 @@
         "keystone": true
       }
     ]
+  },
+  {
+    "name": "Donum Dolus",
+    "shortDescription": "Gift of Deception",
+    "abilities": [
+      {
+        "name": "Donum Dolus",
+        "slug": "donum-dolus",
+        "keystone": true
+      }
+    ]
+  },
+  {
+    "name": "Donum Fornax",
+    "shortDescription": "Gift of the Forge",
+    "abilities": [
+      {
+        "name": "Donum Fornax",
+        "slug": "donum-fornax",
+        "keystone": true
+      }
+    ]
+  },
+  {
+    "name": "Donum Ossis",
+    "shortDescription": "Gift of Bones",
+    "abilities": [
+      {
+        "name": "Donum Ossis",
+        "slug": "donum-ossis",
+        "keystone": true
+      }
+    ]
+  },
+  {
+    "name": "Donum Cinis",
+    "shortDescription": "Gift of Ash",
+    "abilities": [
+      {
+        "name": "Donum Cinis",
+        "slug": "donum-cinis",
+        "keystone": true
+      }
+    ]
+  },
+  {
+    "name": "Donum Ignis",
+    "shortDescription": "Gift of Fire",
+    "abilities": [
+      {
+        "name": "Donum Ignis",
+        "slug": "donum-ignis",
+        "keystone": true
+      }
+    ]
+  },
+  {
+    "name": "Donum Ventus",
+    "shortDescription": "Gift of Wind",
+    "abilities": [
+      {
+        "name": "Donum Ventus",
+        "slug": "donum-ventus",
+        "keystone": true
+      }
+    ]
   }
 ]

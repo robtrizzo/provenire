@@ -11,6 +11,8 @@ import {
   ALL_DONUMS,
   ALL_FIGHTING_STYLES,
   ALL_HERITAGES,
+  ALL_INTEGRATIONS,
+  ALL_REMEMBRANCES,
   ALL_SKILLSETS,
   ALL_TRANSFORMATIONS,
   useFields,
@@ -31,6 +33,8 @@ export default function SummarySection() {
       donums,
       name,
       portrait,
+      remembrance,
+      integration,
     },
     set,
   ] = useFields({
@@ -177,6 +181,24 @@ export default function SummarySection() {
             }
             onClear={() => set({ donums: [] })}
             showDescription
+          />
+          <ClearableSelect
+            items={ALL_REMEMBRANCES}
+            value={remembrance?.name}
+            placeholder="Select a remembrance"
+            triggerClassName="font-bold text-indigo-500"
+            showDescription
+            onSelect={(r) => set({ remembrance: r })}
+            onClear={() => set({ remembrance: undefined })}
+          />
+          <ClearableSelect
+            items={ALL_INTEGRATIONS}
+            value={integration?.name}
+            placeholder="Select an integration"
+            triggerClassName="font-bold text-cyan-500"
+            showDescription
+            onSelect={(r) => set({ integration: r })}
+            onClear={() => set({ integration: undefined })}
           />
         </div>
       </div>
