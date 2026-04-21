@@ -24,23 +24,33 @@
   "optional": [
     {
       "name": "Disinterested",
-      "slug": "disinterested"
+      "slug": "disinterested",
+      "source": "Dunstan",
+      "sourceType": "remembrance"
     },
     {
       "name": "Enraged",
-      "slug": "enraged"
+      "slug": "enraged",
+      "source": "Donum Ira",
+      "sourceType": "donum"
     },
     {
       "name": "Lonely",
-      "slug": "lonely"
+      "slug": "lonely",
+      "source": "Ygg",
+      "sourceType": "remembrance"
     },
     {
       "name": "Overwhelmed",
-      "slug": "overwhelmed"
+      "slug": "overwhelmed",
+      "source": "Artist",
+      "sourceType": "archetype"
     },
     {
       "name": "Scarred",
-      "slug": "scarred"
+      "slug": "scarred",
+      "source": "Bulkhead",
+      "sourceType": "skillset"
     }
   ]
 }

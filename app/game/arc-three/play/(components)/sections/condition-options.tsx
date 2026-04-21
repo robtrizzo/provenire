@@ -31,6 +31,15 @@ import {
 import ConditionDescription from "@/components/condition-description";
 import { CheckedState } from "@radix-ui/react-checkbox";
 import { Condition } from "@/types/game";
+import { cva } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+
+const sourceTypeColors: Record<string, string> = {
+  remembrance: "text-purple-600",
+  archetype: "text-amber-600",
+  skillset: "text-violet-600",
+  donum: "text-fuchsia-600",
+};
 
 export default function ConditionOptions() {
   const [{ conditions, currentConditions }, set] = useFields();
@@ -102,14 +111,32 @@ export default function ConditionOptions() {
                 id={`finder-pref-9k2-${c}-ljj-checkbox`}
                 name={`finder-pref-9k2-${c}-ljj-checkbox`}
                 checked={!!conditions.find((cond) => cond.name === c.name)}
-                onCheckedChange={(checked) => handleCheckedChanged(c, checked)}
+                onCheckedChange={(checked) =>
+                  handleCheckedChanged(c as Condition, checked)
+                }
               />
               <FieldLabel
                 htmlFor={`finder-pref-9k2-${c}-ljj-checkbox`}
                 className="font-normal flex flex-col gap-0.5"
               >
-                {c.name}
-                <ConditionDescription condition={c} />
+                <span className="flex gap-1">
+                  {c.name}
+                  {c.source && (
+                    <span className="text-muted-foreground">
+                      (
+                      <span
+                        className={cn(
+                          "text-muted-foreground opacity-90",
+                          sourceTypeColors[c.sourceType ?? ""],
+                        )}
+                      >
+                        {c.source}
+                      </span>
+                      )
+                    </span>
+                  )}{" "}
+                </span>
+                <ConditionDescription condition={c as Condition} />
               </FieldLabel>
             </Field>
           ))}

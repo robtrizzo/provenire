@@ -535,4 +535,6 @@ export type DonumV3 = {
 export type Condition = {
   name: string;
   slug: string;
+  source?: string;
+  sourceType?: "remembrance" | "archetype" | "skillset" | "donum";
 };
