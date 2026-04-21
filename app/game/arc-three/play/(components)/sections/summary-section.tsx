@@ -50,6 +50,7 @@ export default function SummarySection() {
       integration,
       responsibility,
       role,
+      id,
     },
     set,
   ] = useFields({ debounceMs: 300 });
@@ -70,7 +71,7 @@ export default function SummarySection() {
           <Portrait
             className="mb-1 w-[108px] h-[108px]"
             portrait={portrait}
-            name={name}
+            name={name || id}
             onPortraitChange={(newPortrait) => set({ portrait: newPortrait })}
             onChanges={() => {}}
           />
@@ -228,7 +229,7 @@ export default function SummarySection() {
       <Portrait
         className="mb-1 w-[156px] h-[156px]"
         portrait={portrait}
-        name={name}
+        name={name || id}
         onPortraitChange={(newPortrait) => set({ portrait: newPortrait })}
         onChanges={() => {}}
       />
