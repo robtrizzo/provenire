@@ -15,7 +15,7 @@ export function getActionSubscription(
   return codexSubscriptions[category][Math.max(0, score[0] + score[1] - 1)];
 }
 
-const all_actions_v3 = [...actionsArc3.Abilities, ...actionsArc3.Skills];
+const all_actions_v3 = [...actionsArc3.Aptitudes, ...actionsArc3.Skills];
 
 export function getActions(
   names: (string | { name: string; level: number[] })[],

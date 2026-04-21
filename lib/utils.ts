@@ -14,7 +14,7 @@ type DebouncedFunction<T extends (...args: unknown[]) => unknown> = (
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function debounce<T extends (...args: any[]) => unknown>(
   func: T,
-  wait: number
+  wait: number,
 ): DebouncedFunction<T> {
   let timeout: ReturnType<typeof setTimeout>;
   return function (...args: Parameters<T>) {
@@ -42,7 +42,7 @@ export const StringUnion = <UnionType extends string>(
       const actual = JSON.stringify(value);
       const expected = values.map((s) => JSON.stringify(s)).join(" | ");
       throw new TypeError(
-        `Value '${actual}' is not assignable to type '${expected}'.`
+        `Value '${actual}' is not assignable to type '${expected}'.`,
       );
     }
     return value;
@@ -50,7 +50,7 @@ export const StringUnion = <UnionType extends string>(
 
   const unionNamespace = { assert, check, values };
   return Object.freeze(
-    unionNamespace as typeof unionNamespace & { type: UnionType }
+    unionNamespace as typeof unionNamespace & { type: UnionType },
   );
 };
 
@@ -62,7 +62,7 @@ export function getQSParamFromURL(key: string, request: NextRequest) {
 // split one array into 2, based on the provided func
 export function partition<T>(
   array: T[],
-  filter: (value: T, index: number, array: T[]) => boolean
+  filter: (value: T, index: number, array: T[]) => boolean,
 ): [T[], T[]] {
   const pass: T[] = [],
     fail: T[] = [];
@@ -70,11 +70,11 @@ export function partition<T>(
   return [pass, fail];
 }
 
-export function saveCharacterToDevice(filename: string) {
+export function saveCharacterToDevice(key: string, filename?: string) {
   if (!localStorage) {
     return;
   }
-  const data = localStorage.getItem("charsheet");
+  const data = localStorage.getItem(key);
   if (!data) {
     return;
   }
@@ -82,7 +82,7 @@ export function saveCharacterToDevice(filename: string) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = `${filename}.json`;
+  a.download = filename ? `${filename}.json` : "character.json";
   a.click();
 }
 
@@ -92,7 +92,7 @@ export function capitalizeFirstLetter(string: string) {
 
 export function clientCheckPermission(
   session: Session | null,
-  permission: string
+  permission: string,
 ) {
   if (!session?.user) {
     return false;

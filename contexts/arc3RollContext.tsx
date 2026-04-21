@@ -127,7 +127,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   };
 
   function getDiceFromAction(action: ActionV3): Die[] {
-    if (action.type === "ability") {
+    if (action.type === "aptitude") {
       return action.level.map((lvl) => ({
         ...AbilityDice[lvl as 0 | 1 | 2 | 3],
         label: action.name,

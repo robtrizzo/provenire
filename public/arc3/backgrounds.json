@@ -1,0 +1,65 @@
+[
+  {
+    "name": "Archivist",
+    "shortDescription": "Read manuals and catalog inventory",
+    "subsistenceClock": "Ritiger's Whispers",
+    "questions": [
+      "You've been having strange dreams about the factory's machinery. What do you see?",
+      "You've been noticing discrepancies in the factory's inventory. What's missing?"
+    ]
+  },
+  {
+    "name": "Enforcer",
+    "shortDescription": "Keep the fear and enforce the rules",
+    "subsistenceClock": "Threat to your family",
+    "questions": [
+      "Why do you do the overseers' bidding? What happened to you?",
+      "You know a flaw in the overseers' penal pen security. What is it?"
+    ]
+  },
+  {
+    "name": "Machinist",
+    "shortDescription": "Living replacement for broken parts",
+    "subsistenceClock": "Belly of the Beast",
+    "questions": [
+      "You've found a hidden compartment in the machinery. What's inside?",
+      "A friend got lost in the matrix and you had to leave them behind. What happened?"
+    ]
+  },
+  {
+    "name": "Operator",
+    "shortDescription": "Pull levers and crank wheels",
+    "subsistenceClock": "Wear and Tear",
+    "questions": [
+      "What form of meditation have you learned to stave off the boredom?",
+      "A fellow worker hasn't been meeting quotas and you're not strong enough to cover for them. Who are they?"
+    ]
+  },
+  {
+    "name": "Runner",
+    "shortDescription": "Carry messages and transport crates",
+    "subsistenceClock": "Dreadful Cargo",
+    "questions": [
+      "Two overseers are plotting against each other. What are they planning?",
+      "An overseer took a shipment from you and framed you for it. What was in the shipment?"
+    ]
+  },
+  {
+    "name": "Scrapper",
+    "shortDescription": "Sort broken parts and salvage scrap",
+    "subsistenceClock": "Scrapyard Curse",
+    "questions": [
+      "You've found a nearly functional weapon meant for Fenrir's soldiers. What is it?",
+      "All your life you've heard whispered stories about the curse of the scrapyard. What have you experienced that makes you think they're right?"
+    ]
+  },
+  {
+    "name": "Stoker",
+    "shortDescription": "Shovel tar and stoke the fires",
+    "subsistenceClock": "Detonation",
+    "questions": [
+      "You see something in the smoke and flames no one else does. What is it?",
+      "The overseers thought it would be funny to lock you all in the furnace room. Who did you lose that day?"
+    ]
+  }
+]

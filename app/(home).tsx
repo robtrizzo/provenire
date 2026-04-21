@@ -21,6 +21,7 @@ export default async function Home() {
             alt="logo-dark"
             width={320}
             height={320}
+            loading="eager"
             src="https://provenire.s3.amazonaws.com/logo_3_alpha.png"
             className="bg-inherit top-0 left-0  rounded-2xl transition-all duration-200  w-80 h-80 object-cover"
           />

@@ -2,12 +2,14 @@
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useMediaQuery } from "@/hooks/use-media-query";
-import { Activity, useEffect, useState } from "react";
+import { Activity } from "react";
 import RollSection from "./sections/roll-section";
 import ActionSection from "./sections/action-section";
 import BondsSection from "./sections/bonds-section";
 import XPSection from "./sections/xp-section";
 import StressSection from "./sections/stress-section";
+import SummarySection from "./sections/summary-section";
+import Controls from "./sections/controls-section";
 
 export default function CharacterSheet() {
   const is2xl = useMediaQuery("(min-width: 96rem)");
@@ -16,6 +18,7 @@ export default function CharacterSheet() {
   return (
     <>
       <Activity mode={columnsMode === "tabs" ? "visible" : "hidden"}>
+        <SummarySection />
         <Tabs defaultValue="mission" className="w-full my-3 mx-auto">
           <TabsList className="w-full grid grid-cols-2">
             <TabsTrigger value="mission">Mission</TabsTrigger>
@@ -44,16 +47,19 @@ export default function CharacterSheet() {
         </Tabs>
       </Activity>
       <Activity mode={columnsMode === "tabs" ? "hidden" : "visible"}>
-        <div className="my-3 grid grid-cols-3 gap-6 focus-visible:outline-hidden">
-          <div className="mt-4">
-            <ActionSection />
-            <BondsSection />
-          </div>
-          <div className="mt-4">
-            <RollSection />
-          </div>
-          <div className="mt-4">
-            <ProfileContent />
+        <div className="px-0 xl:px-8">
+          <SummarySection />
+          <div className="my-3 grid grid-cols-3 gap-6 focus-visible:outline-hidden">
+            <div className="mt-4">
+              <ActionSection />
+              <BondsSection />
+            </div>
+            <div className="mt-4">
+              <RollSection />
+            </div>
+            <div className="mt-4">
+              <ProfileContent />
+            </div>
           </div>
         </div>
       </Activity>

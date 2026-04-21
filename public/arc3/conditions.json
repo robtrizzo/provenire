@@ -1,0 +1,56 @@
+{
+  "default": [
+    {
+      "name": "Afraid",
+      "slug": "afraid"
+    },
+    {
+      "name": "Angry",
+      "slug": "angry"
+    },
+    {
+      "name": "Guilty",
+      "slug": "guilty"
+    },
+    {
+      "name": "Hopeless",
+      "slug": "hopeless"
+    },
+    {
+      "name": "Insecure",
+      "slug": "insecure"
+    }
+  ],
+  "optional": [
+    {
+      "name": "Disinterested",
+      "slug": "disinterested",
+      "source": "Dunstan",
+      "sourceType": "remembrance"
+    },
+    {
+      "name": "Enraged",
+      "slug": "enraged",
+      "source": "Donum Ira",
+      "sourceType": "donum"
+    },
+    {
+      "name": "Lonely",
+      "slug": "lonely",
+      "source": "Ygg",
+      "sourceType": "remembrance"
+    },
+    {
+      "name": "Overwhelmed",
+      "slug": "overwhelmed",
+      "source": "Artist",
+      "sourceType": "archetype"
+    },
+    {
+      "name": "Scarred",
+      "slug": "scarred",
+      "source": "Bulkhead",
+      "sourceType": "skillset"
+    }
+  ]
+}

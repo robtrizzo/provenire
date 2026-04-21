@@ -16,6 +16,7 @@ interface PortraitProps {
   className?: string;
   portrait: string;
   name: string;
+  sizes?: string;
   onPortraitChange: (portrait: string) => void;
   onChanges: (hasChanges: boolean) => void;
 }
@@ -24,6 +25,7 @@ export default function Portrait({
   className,
   portrait,
   name,
+  sizes = "156px",
   onPortraitChange,
   onChanges,
 }: PortraitProps) {
@@ -41,7 +43,7 @@ export default function Portrait({
 
       const presigned_response = await fetch(
         `/api/avatar/sign_post?name=${name}`,
-        { cache: "no-cache" }
+        { cache: "no-cache" },
       );
       if (!presigned_response.ok) {
         throw new Error("Presigned link network response was not ok");
@@ -77,19 +79,19 @@ export default function Portrait({
     <div
       className={cn(
         "shrink-0 w-[116px] h-[116px] border-solid border-text-secondary border-[1px] box-border p-1 rounded-md flex items-center justify-center",
-        className
+        className,
       )}
     >
       <Popover open={open} onOpenChange={setOpen}>
         {portrait ? (
           <PopoverTrigger asChild>
-            <div className="relative w-28 h-28">
+            <div className="relative w-full h-full">
               <Image
                 src={`${portrait}?rf=${fetchTime}`}
                 alt="character portrait"
                 fill
                 priority
-                sizes="(max-width: 112px) 100vw, 50vw"
+                sizes={sizes}
                 className="object-cover object-center rounded-md hover:cursor-pointer"
               />
             </div>

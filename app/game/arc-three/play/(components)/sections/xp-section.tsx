@@ -1,18 +1,21 @@
 import XPClocks from "@/components/character-sheet/xp-clocks";
+import ClockCost from "@/components/clock-cost";
 import LoadingWrapper from "@/components/loading-wrapper";
 import { TypographyH2 } from "@/components/ui/typography";
-import { useCharacterSheet } from "@/contexts/arc3CharacterSheetContext";
+import { useFields } from "@/contexts/arc3CharacterSheetContext";
 
 export default function XPSection() {
-  const { xpSpent, xp, setXp } = useCharacterSheet();
+  const [{ xp, xpSpent }, set] = useFields();
   const handleSetXP = (n: number) => {
-    setXp(n);
-    // setChanges(true);
+    set({ xp: n });
   };
   return (
     <>
       <TypographyH2 className="text-md text-muted-foreground flex items-end justify-between">
-        Experience {/*<XPInfo />*/}
+        Experience{" "}
+        <span className="inline-flex items-end gap-2">
+          spent: <ClockCost num={xpSpent} ticks={5} r={28} />
+        </span>
       </TypographyH2>
       <XPClocks key={`xpclocks-${new Date().getTime()}`}>
         {/* TODO update to isLoading={isFetching} */}
@@ -20,7 +23,7 @@ export default function XPSection() {
           isLoading={false}
           fallback={<XPClocks.Clocks.Skeleton />}
         >
-          <XPClocks.Clocks initial={xp} setVal={handleSetXP} />
+          <XPClocks.Clocks initial={xp} max={5} setVal={handleSetXP} />
         </LoadingWrapper>
         <LoadingWrapper
           isLoading={false}
@@ -29,9 +32,6 @@ export default function XPSection() {
           <XPClocks.Controls initial={xp} setVal={handleSetXP} />
         </LoadingWrapper>
       </XPClocks>
-      <TypographyH2 className="text-md uppercase text-muted-foreground">
-        XP Clocks Spent: <code className="text-xl text-primary">{xpSpent}</code>
-      </TypographyH2>
     </>
   );
 }

@@ -1,5 +1,5 @@
 "use client";
-import { FC, ReactNode, useState } from "react";
+import { FC, ReactNode, useEffect, useState } from "react";
 import Clock from "@/components/clock";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
@@ -11,11 +11,7 @@ interface XPClocksProps {
 
 interface ClocksProps {
   initial: number;
-  setVal: (n: number) => void;
-}
-
-interface ControlsProps {
-  initial: number;
+  max?: number;
   setVal: (n: number) => void;
 }
 
@@ -23,7 +19,7 @@ type Clocks = FC<ClocksProps> & {
   Skeleton: FC;
 };
 
-type Controls = FC<ControlsProps> & {
+type Controls = FC<ClocksProps> & {
   Skeleton: FC;
 };
 
@@ -32,7 +28,11 @@ type XPClocks = FC<XPClocksProps> & {
   Controls: Controls;
 };
 
-function useXPClocks(initial: number, setVal: (n: number) => void) {
+function useXPClocks(
+  initial: number,
+  max: number,
+  setVal: (n: number) => void,
+) {
   const [xp, setXp] = useState<number>(initial);
 
   const addXP = () => {
@@ -48,9 +48,9 @@ function useXPClocks(initial: number, setVal: (n: number) => void) {
   };
 
   const spendClock = () => {
-    if (xp >= 6) {
-      setXp(xp - 6);
-      setVal(xp - 6);
+    if (xp >= max) {
+      setXp(xp - max);
+      setVal(xp - max);
     }
   };
 
@@ -59,8 +59,8 @@ function useXPClocks(initial: number, setVal: (n: number) => void) {
     addXP,
     removeXP,
     spendClock,
-    clocks: Math.floor(xp / 6) || 0,
-    segments: xp % 6,
+    clocks: Math.floor(xp / max) || 0,
+    segments: xp % max,
   };
 }
 
@@ -72,11 +72,13 @@ const XPClocks: XPClocks = ({ children }: XPClocksProps) => {
   );
 };
 
-const Clocks: Clocks = ({ initial, setVal }: ClocksProps) => {
-  const { theme } = useTheme();
-  const { clocks, segments } = useXPClocks(initial, setVal);
+const Clocks: Clocks = ({ initial, max = 6, setVal }: ClocksProps) => {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const { resolvedTheme } = useTheme();
+  const dark = mounted && resolvedTheme === "dark";
 
-  const dark = theme === "dark";
+  const { clocks, segments } = useXPClocks(initial, max, setVal);
 
   const borderThickness = 2;
 
@@ -87,8 +89,8 @@ const Clocks: Clocks = ({ initial, setVal }: ClocksProps) => {
   const cy = adjustedHeight / 2;
   const outerRadius = Math.min(adjustedWidth, adjustedHeight) / 2;
 
-  const spokes = Array.from({ length: 6 }, (_, i) => {
-    const angle = (360 / 6) * i - 90;
+  const spokes = Array.from({ length: max }, (_, i) => {
+    const angle = (360 / max) * i - 90;
     const x = cx + outerRadius * Math.cos((angle * Math.PI) / 180);
     const y = cy + outerRadius * Math.sin((angle * Math.PI) / 180);
     return (
@@ -109,7 +111,7 @@ const Clocks: Clocks = ({ initial, setVal }: ClocksProps) => {
       <Clock
         width={35}
         height={35}
-        max={6}
+        max={max}
         current={segments}
         clickable={false}
       />
@@ -147,8 +149,8 @@ const ClocksSkeleton: FC = () => {
   );
 };
 
-const Controls: Controls = ({ initial, setVal }: ControlsProps) => {
-  const { xp, addXP, removeXP, spendClock } = useXPClocks(initial, setVal);
+const Controls: Controls = ({ initial, max = 6, setVal }: ClocksProps) => {
+  const { xp, addXP, removeXP, spendClock } = useXPClocks(initial, max, setVal);
   return (
     <div className="flex flex-wrap">
       <Button

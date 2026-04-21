@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Gredoran Aldam",
+    "shortDescription": "",
+    "abilities": [
+      {
+        "name": "Bronze Bones",
+        "slug": "bronze-bones"
+      },
+      {
+        "name": "Brass Coils",
+        "slug": "brass-coils"
+      },
+      {
+        "name": "Zinc Pulse",
+        "slug": "zinc-pulse"
+      },
+      {
+        "name": "Nickel Vessel",
+        "slug": "nickel-vessel"
+      },
+      {
+        "name": "Silver Sight",
+        "slug": "silver-sight"
+      },
+      {
+        "name": "Mercurial Skull",
+        "slug": "mercurial-skull"
+      }
+    ]
+  },
+  {
+    "name": "Potentia Humanitas",
+    "shortDescription": "",
+    "abilities": []
+  },
+  {
+    "name": "Blood of the Body",
+    "shortDescription": "",
+    "abilities": []
+  },
+  {
+    "name": "Ghost of the Grasses",
+    "shortDescription": "",
+    "abilities": []
+  },
+  {
+    "name": "Inner Rhythm",
+    "shortDescription": "",
+    "abilities": []
+  }
+]
