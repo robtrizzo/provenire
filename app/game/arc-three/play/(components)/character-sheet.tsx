@@ -9,7 +9,7 @@ import BondsSection from "./sections/bonds-section";
 import XPSection from "./sections/xp-section";
 import StressSection from "./sections/stress-section";
 import SummarySection from "./sections/summary-section";
-import Controls from "./sections/controls-section";
+import ResourcesSection from "./sections/resources-section";
 
 export default function CharacterSheet() {
   const is2xl = useMediaQuery("(min-width: 96rem)");
@@ -28,6 +28,7 @@ export default function CharacterSheet() {
             <div className="my-3 grid grid-cols-1 md:grid-cols-2 gap-6 focus-visible:outline-hidden">
               <div className="mt-4">
                 <XPSection />
+                <ResourcesSection />
                 <ActionSection />
                 <BondsSection />
               </div>
@@ -51,10 +52,13 @@ export default function CharacterSheet() {
           <SummarySection />
           <div className="my-3 grid grid-cols-3 gap-6 focus-visible:outline-hidden">
             <div className="mt-4">
+              <XPSection />
+              <ResourcesSection />
               <ActionSection />
               <BondsSection />
             </div>
             <div className="mt-4">
+              <StressSection />
               <RollSection />
             </div>
             <div className="mt-4">

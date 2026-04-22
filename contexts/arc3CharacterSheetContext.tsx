@@ -47,12 +47,24 @@ import { useMutation } from "@tanstack/react-query";
 
 export const LOCAL_STORAGE_KEY = "charsheet-arc3";
 export const SUPPORTED_VERSION = 3;
+
 export const MAX_ABILITIES = 6;
 export const MAX_SKILLS = 6;
 export const DEFAULT_MAX_STRESS = 9;
-export const ALL_CONDITIONS = conditions;
 export const DEFAULT_CONDITIONS = conditions.default;
+export const DEFAULT_MAX_ADVANTAGE = 1;
+export const DEFAULT_MAX_BLOOD = 2;
+export const DEFAULT_MAX_WATER = 2;
+export const DEFAULT_MAX_FOOD = 1;
+export const DEFAULT_MAX_MATERIALS = 1;
+export const DEFAULT_MAX_REP = 1;
+export const DEFAULT_MAX_GOODWILL = 1;
+export const DEFAULT_MAX_INTEL = 1;
+export const DEFAULT_MAX_MANPOWER = 1;
+
 export const OPTIONAL_CONDITONS = conditions.optional;
+
+export const ALL_CONDITIONS = conditions;
 export const ALL_HERITAGES = heritages;
 export const ALL_BACKGROUNDS = backgrounds;
 export const ALL_ARCHETYPES = archetypes;
@@ -72,6 +84,12 @@ const DEFAULT_ACTIONS: ActionV3[] = actions.Aptitudes.map((a) => ({
   type: "aptitude",
   level: [0],
 }));
+
+interface Resource {
+  current: number;
+  max: number;
+  default: number;
+}
 
 const DEFAULT_STATE = {
   id: nanoid(),
@@ -97,6 +115,33 @@ const DEFAULT_STATE = {
   maxStress: 9,
   conditions: DEFAULT_CONDITIONS,
   currentConditions: [],
+  resources: {
+    advantage: {
+      current: 0,
+      max: DEFAULT_MAX_ADVANTAGE,
+      default: DEFAULT_MAX_ADVANTAGE,
+    },
+    blood: { current: 0, max: DEFAULT_MAX_BLOOD, default: DEFAULT_MAX_BLOOD },
+    water: { current: 0, max: DEFAULT_MAX_WATER, default: DEFAULT_MAX_WATER },
+    food: { current: 0, max: DEFAULT_MAX_FOOD, default: DEFAULT_MAX_FOOD },
+    materials: {
+      current: 0,
+      max: DEFAULT_MAX_MATERIALS,
+      default: DEFAULT_MAX_MATERIALS,
+    },
+    rep: { current: 0, max: DEFAULT_MAX_REP, default: DEFAULT_MAX_REP },
+    goodwill: {
+      current: 0,
+      max: DEFAULT_MAX_GOODWILL,
+      default: DEFAULT_MAX_GOODWILL,
+    },
+    intel: { current: 0, max: DEFAULT_MAX_INTEL, default: DEFAULT_MAX_INTEL },
+    manpower: {
+      current: 0,
+      max: DEFAULT_MAX_MANPOWER,
+      default: DEFAULT_MAX_MANPOWER,
+    },
+  },
 };
 
 interface CharacterSheetState {
@@ -123,6 +168,7 @@ interface CharacterSheetState {
   maxStress: number;
   conditions: Condition[];
   currentConditions: Condition[];
+  resources: Record<string, Resource>;
 }
 
 // Actions — add new cases here
@@ -130,7 +176,13 @@ type CharacterSheetAction =
   | { type: "SET_ACTIONS"; payload: ActionV3[] }
   | { type: "UPDATE_ACTION"; payload: ActionV3 }
   | { type: "SET_FIELD"; field: keyof CharacterSheetState; value: any }
-  | { type: "SET_FIELDS"; payload: Partial<CharacterSheetState> };
+  | { type: "SET_FIELDS"; payload: Partial<CharacterSheetState> }
+  | {
+      type: "UPDATE_RESOURCE";
+      resource: string;
+      field: "current" | "max";
+      value: number;
+    };
 
 interface CharacterSheetContextProps {
   state: CharacterSheetState;
@@ -170,6 +222,19 @@ function reducer(
       return { ...state, [action.field]: action.value };
     case "SET_FIELDS":
       return { ...state, ...action.payload };
+    case "UPDATE_RESOURCE": {
+      const res = state.resources[action.resource];
+      const max = action.field === "max" ? Math.max(0, action.value) : res.max;
+      const current =
+        action.field === "current" ? Math.max(0, action.value) : res.current;
+      return {
+        ...state,
+        resources: {
+          ...state.resources,
+          [action.resource]: { current, max, default: res.default },
+        },
+      };
+    }
   }
 }
 
@@ -521,4 +586,15 @@ export function useActions() {
       [dispatch],
     ),
   };
+}
+
+export function useResource(resource: string) {
+  const { state, dispatch } = useCharacterSheet();
+  const res = state.resources[resource];
+  const set = useCallback(
+    (field: "current" | "max", value: number) =>
+      dispatch({ type: "UPDATE_RESOURCE", resource, field, value }),
+    [dispatch, resource],
+  );
+  return [res, set] as const;
 }
