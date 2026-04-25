@@ -105,10 +105,34 @@ interface Armor {
   special: boolean;
 }
 
+export interface UnlockedAbilities {
+  archetype: Record<string, string[]>;
+  skillset: Record<string, string[]>;
+  skillsetSubclass: Record<string, string[]>;
+  remembrance: Record<string, string[]>;
+  role: Record<string, string[]>;
+  fightingStyles: Record<string, string[]>;
+  aldams: Record<string, string[]>;
+  donums: Record<string, string[]>;
+  transformations: Record<string, string[]>;
+}
+
 const DEFAULT_ARMOR = {
   light: false,
   heavy: false,
   special: false,
+};
+
+const DEFAULT_UNLOCKED_ABILITIES: UnlockedAbilities = {
+  archetype: {},
+  skillset: {},
+  skillsetSubclass: {},
+  remembrance: {},
+  role: {},
+  fightingStyles: {},
+  aldams: {},
+  donums: {},
+  transformations: {},
 };
 
 const DEFAULT_STATE = {
@@ -166,6 +190,7 @@ const DEFAULT_STATE = {
   maxHealing: DEFAULT_MAX_HEALING,
   healing: 0,
   armor: DEFAULT_ARMOR,
+  unlockedAbilities: DEFAULT_UNLOCKED_ABILITIES,
 };
 
 interface CharacterSheetState {
@@ -197,6 +222,7 @@ interface CharacterSheetState {
   healing: number;
   maxHealing: number;
   armor: Armor;
+  unlockedAbilities: UnlockedAbilities;
 }
 
 // Actions — add new cases here
@@ -214,7 +240,14 @@ type CharacterSheetAction =
   | { type: "UPDATE_HARM"; level: number; slotIndex: number; value: string }
   | { type: "SET_HARM_MAX_SLOTS"; level: number; maxSlots: number }
   | { type: "SET_HARM_LEVEL_COUNT"; count: number; defaultSlots?: number }
-  | { type: "UPDATE_ARMOR"; field: keyof Armor; value: boolean };
+  | { type: "UPDATE_ARMOR"; field: keyof Armor; value: boolean }
+  | {
+      type: "TOGGLE_ABILITY";
+      source: keyof UnlockedAbilities;
+      sourceKey: string;
+      slug: string;
+      cost?: number;
+    };
 
 interface CharacterSheetContextProps {
   state: CharacterSheetState;
@@ -309,6 +342,29 @@ function reducer(
         ...state,
         armor: { ...state.armor, [action.field]: action.value },
       };
+    case "TOGGLE_ABILITY": {
+      const ua = state.unlockedAbilities;
+      const existing = ua[action.source][action.sourceKey] ?? [];
+      const isCurrentlyUnlocked = existing.includes(action.slug);
+      const updated = isCurrentlyUnlocked
+        ? existing.filter((s) => s !== action.slug)
+        : [...existing, action.slug];
+      const costDelta = action.cost ?? 0;
+      return {
+        ...state,
+        xpSpent: Math.max(
+          0,
+          state.xpSpent + (isCurrentlyUnlocked ? -costDelta : costDelta),
+        ),
+        unlockedAbilities: {
+          ...ua,
+          [action.source]: {
+            ...ua[action.source],
+            [action.sourceKey]: updated,
+          },
+        },
+      };
+    }
   }
 }
 
@@ -703,4 +759,30 @@ export function useArmor() {
     [dispatch],
   );
   return [state.armor, set] as const;
+}
+
+export function useUnlockedAbilities() {
+  const { state, dispatch } = useCharacterSheet();
+
+  const toggle = useCallback(
+    (
+      source: keyof UnlockedAbilities,
+      sourceKey: string,
+      slug: string,
+      cost?: number,
+    ) => dispatch({ type: "TOGGLE_ABILITY", source, sourceKey, slug, cost }),
+    [dispatch],
+  );
+
+  const isUnlocked = useCallback(
+    (
+      source: keyof UnlockedAbilities,
+      sourceKey: string,
+      slug: string,
+    ): boolean =>
+      (state.unlockedAbilities[source][sourceKey] ?? []).includes(slug),
+    [state.unlockedAbilities],
+  );
+
+  return { unlockedAbilities: state.unlockedAbilities, toggle, isUnlocked };
 }

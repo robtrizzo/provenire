@@ -11,6 +11,7 @@ import StressSection from "./sections/stress-section";
 import SummarySection from "./sections/summary-section";
 import ResourcesSection from "./sections/resources-section";
 import HarmSection from "./sections/harm-section";
+import AbilitySection from "./sections/ability-section";
 
 export default function CharacterSheet() {
   const is2xl = useMediaQuery("(min-width: 96rem)");
@@ -32,6 +33,7 @@ export default function CharacterSheet() {
                 <ResourcesSection />
                 <ActionSection />
                 <BondsSection />
+                <AbilitySection />
               </div>
               <div className="mt-4">
                 <StressSection />
@@ -58,6 +60,7 @@ export default function CharacterSheet() {
               <ResourcesSection />
               <ActionSection />
               <BondsSection />
+              <AbilitySection />
             </div>
             <div className="mt-4">
               <StressSection />
