@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import {
   DEFAULT_MAX_STRESS,
-  useField,
   useFields,
 } from "@/contexts/arc3CharacterSheetContext";
 

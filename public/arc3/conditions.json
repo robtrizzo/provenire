@@ -35,6 +35,12 @@
       "sourceType": "donum"
     },
     {
+      "name": "Frantic",
+      "slug": "frantic",
+      "source": "Adventurer",
+      "sourceType": "archetype"
+    },
+    {
       "name": "Lonely",
       "slug": "lonely",
       "source": "Ygg",

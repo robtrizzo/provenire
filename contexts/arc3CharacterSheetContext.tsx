@@ -31,6 +31,7 @@ import {
   AldamV3,
   ArchetypeV3,
   BackgroundV3,
+  CharacterHarm,
   Condition,
   DonumV3,
   FightingStyleV3,
@@ -47,12 +48,25 @@ import { useMutation } from "@tanstack/react-query";
 
 export const LOCAL_STORAGE_KEY = "charsheet-arc3";
 export const SUPPORTED_VERSION = 3;
+
 export const MAX_ABILITIES = 6;
 export const MAX_SKILLS = 6;
 export const DEFAULT_MAX_STRESS = 9;
-export const ALL_CONDITIONS = conditions;
 export const DEFAULT_CONDITIONS = conditions.default;
+export const DEFAULT_MAX_ADVANTAGE = 1;
+export const DEFAULT_MAX_BLOOD = 2;
+export const DEFAULT_MAX_WATER = 2;
+export const DEFAULT_MAX_FOOD = 1;
+export const DEFAULT_MAX_MATERIALS = 1;
+export const DEFAULT_MAX_REP = 1;
+export const DEFAULT_MAX_GOODWILL = 1;
+export const DEFAULT_MAX_INTEL = 1;
+export const DEFAULT_MAX_MANPOWER = 1;
+export const DEFAULT_MAX_HEALING = 4;
+
 export const OPTIONAL_CONDITONS = conditions.optional;
+
+export const ALL_CONDITIONS = conditions;
 export const ALL_HERITAGES = heritages;
 export const ALL_BACKGROUNDS = backgrounds;
 export const ALL_ARCHETYPES = archetypes;
@@ -72,6 +86,54 @@ const DEFAULT_ACTIONS: ActionV3[] = actions.Aptitudes.map((a) => ({
   type: "aptitude",
   level: [0],
 }));
+
+const DEFAULT_HARMS: CharacterHarm = {
+  1: { slots: ["", ""], maxSlots: 2 },
+  2: { slots: ["", ""], maxSlots: 2 },
+  3: { slots: [""], maxSlots: 1 },
+};
+
+interface Resource {
+  current: number;
+  max: number;
+  default: number;
+}
+
+interface Armor {
+  light: boolean;
+  heavy: boolean;
+  special: boolean;
+}
+
+export interface UnlockedAbilities {
+  archetype: Record<string, string[]>;
+  skillset: Record<string, string[]>;
+  skillsetSubclass: Record<string, string[]>;
+  remembrance: Record<string, string[]>;
+  role: Record<string, string[]>;
+  fightingStyles: Record<string, string[]>;
+  aldams: Record<string, string[]>;
+  donums: Record<string, string[]>;
+  transformations: Record<string, string[]>;
+}
+
+const DEFAULT_ARMOR = {
+  light: false,
+  heavy: false,
+  special: false,
+};
+
+const DEFAULT_UNLOCKED_ABILITIES: UnlockedAbilities = {
+  archetype: {},
+  skillset: {},
+  skillsetSubclass: {},
+  remembrance: {},
+  role: {},
+  fightingStyles: {},
+  aldams: {},
+  donums: {},
+  transformations: {},
+};
 
 const DEFAULT_STATE = {
   id: nanoid(),
@@ -94,9 +156,41 @@ const DEFAULT_STATE = {
   xp: 0,
   xpSpent: 0,
   stress: 0,
-  maxStress: 9,
+  maxStress: DEFAULT_MAX_STRESS,
   conditions: DEFAULT_CONDITIONS,
   currentConditions: [],
+  resources: {
+    advantage: {
+      current: 0,
+      max: DEFAULT_MAX_ADVANTAGE,
+      default: DEFAULT_MAX_ADVANTAGE,
+    },
+    blood: { current: 0, max: DEFAULT_MAX_BLOOD, default: DEFAULT_MAX_BLOOD },
+    water: { current: 0, max: DEFAULT_MAX_WATER, default: DEFAULT_MAX_WATER },
+    food: { current: 0, max: DEFAULT_MAX_FOOD, default: DEFAULT_MAX_FOOD },
+    materials: {
+      current: 0,
+      max: DEFAULT_MAX_MATERIALS,
+      default: DEFAULT_MAX_MATERIALS,
+    },
+    rep: { current: 0, max: DEFAULT_MAX_REP, default: DEFAULT_MAX_REP },
+    goodwill: {
+      current: 0,
+      max: DEFAULT_MAX_GOODWILL,
+      default: DEFAULT_MAX_GOODWILL,
+    },
+    intel: { current: 0, max: DEFAULT_MAX_INTEL, default: DEFAULT_MAX_INTEL },
+    manpower: {
+      current: 0,
+      max: DEFAULT_MAX_MANPOWER,
+      default: DEFAULT_MAX_MANPOWER,
+    },
+  },
+  harms: DEFAULT_HARMS,
+  maxHealing: DEFAULT_MAX_HEALING,
+  healing: 0,
+  armor: DEFAULT_ARMOR,
+  unlockedAbilities: DEFAULT_UNLOCKED_ABILITIES,
 };
 
 interface CharacterSheetState {
@@ -123,6 +217,12 @@ interface CharacterSheetState {
   maxStress: number;
   conditions: Condition[];
   currentConditions: Condition[];
+  resources: Record<string, Resource>;
+  harms: CharacterHarm;
+  healing: number;
+  maxHealing: number;
+  armor: Armor;
+  unlockedAbilities: UnlockedAbilities;
 }
 
 // Actions — add new cases here
@@ -130,7 +230,24 @@ type CharacterSheetAction =
   | { type: "SET_ACTIONS"; payload: ActionV3[] }
   | { type: "UPDATE_ACTION"; payload: ActionV3 }
   | { type: "SET_FIELD"; field: keyof CharacterSheetState; value: any }
-  | { type: "SET_FIELDS"; payload: Partial<CharacterSheetState> };
+  | { type: "SET_FIELDS"; payload: Partial<CharacterSheetState> }
+  | {
+      type: "UPDATE_RESOURCE";
+      resource: string;
+      field: "current" | "max";
+      value: number;
+    }
+  | { type: "UPDATE_HARM"; level: number; slotIndex: number; value: string }
+  | { type: "SET_HARM_MAX_SLOTS"; level: number; maxSlots: number }
+  | { type: "SET_HARM_LEVEL_COUNT"; count: number; defaultSlots?: number }
+  | { type: "UPDATE_ARMOR"; field: keyof Armor; value: boolean }
+  | {
+      type: "TOGGLE_ABILITY";
+      source: keyof UnlockedAbilities;
+      sourceKey: string;
+      slug: string;
+      cost?: number;
+    };
 
 interface CharacterSheetContextProps {
   state: CharacterSheetState;
@@ -170,6 +287,84 @@ function reducer(
       return { ...state, [action.field]: action.value };
     case "SET_FIELDS":
       return { ...state, ...action.payload };
+    case "UPDATE_RESOURCE": {
+      const res = state.resources[action.resource];
+      const max = action.field === "max" ? Math.max(0, action.value) : res.max;
+      const current =
+        action.field === "current" ? Math.max(0, action.value) : res.current;
+      return {
+        ...state,
+        resources: {
+          ...state.resources,
+          [action.resource]: { current, max, default: res.default },
+        },
+      };
+    }
+    case "UPDATE_HARM": {
+      const lvl = state.harms[action.level];
+      if (!lvl) return state;
+      const newSlots = [...lvl.slots];
+      newSlots[action.slotIndex] = action.value;
+      return {
+        ...state,
+        harms: { ...state.harms, [action.level]: { ...lvl, slots: newSlots } },
+      };
+    }
+    case "SET_HARM_MAX_SLOTS": {
+      const lvl = state.harms[action.level] ?? { slots: [], maxSlots: 0 };
+      const newMax = Math.max(0, action.maxSlots);
+      const newSlots = Array.from(
+        { length: newMax },
+        (_, i) => lvl.slots[i] ?? "",
+      );
+      return {
+        ...state,
+        harms: {
+          ...state.harms,
+          [action.level]: { slots: newSlots, maxSlots: newMax },
+        },
+      };
+    }
+    case "SET_HARM_LEVEL_COUNT": {
+      const newCount = Math.max(0, action.count);
+      const defaultSlots = action.defaultSlots ?? 1;
+      const newHarms: CharacterHarm = {};
+      for (let i = 1; i <= newCount; i++) {
+        newHarms[i] = state.harms[i] ?? {
+          slots: Array(defaultSlots).fill(""),
+          maxSlots: defaultSlots,
+        };
+      }
+      return { ...state, harms: newHarms };
+    }
+    case "UPDATE_ARMOR":
+      return {
+        ...state,
+        armor: { ...state.armor, [action.field]: action.value },
+      };
+    case "TOGGLE_ABILITY": {
+      const ua = state.unlockedAbilities;
+      const existing = ua[action.source][action.sourceKey] ?? [];
+      const isCurrentlyUnlocked = existing.includes(action.slug);
+      const updated = isCurrentlyUnlocked
+        ? existing.filter((s) => s !== action.slug)
+        : [...existing, action.slug];
+      const costDelta = action.cost ?? 0;
+      return {
+        ...state,
+        xpSpent: Math.max(
+          0,
+          state.xpSpent + (isCurrentlyUnlocked ? -costDelta : costDelta),
+        ),
+        unlockedAbilities: {
+          ...ua,
+          [action.source]: {
+            ...ua[action.source],
+            [action.sourceKey]: updated,
+          },
+        },
+      };
+    }
   }
 }
 
@@ -521,4 +716,73 @@ export function useActions() {
       [dispatch],
     ),
   };
+}
+
+export function useResource(resource: string) {
+  const { state, dispatch } = useCharacterSheet();
+  const res = state.resources[resource];
+  const set = useCallback(
+    (field: "current" | "max", value: number) =>
+      dispatch({ type: "UPDATE_RESOURCE", resource, field, value }),
+    [dispatch, resource],
+  );
+  return [res, set] as const;
+}
+
+export function useHarms() {
+  const { state, dispatch } = useCharacterSheet();
+  return {
+    harms: state.harms,
+    updateHarm: useCallback(
+      (level: number, slotIndex: number, value: string) =>
+        dispatch({ type: "UPDATE_HARM", level, slotIndex, value }),
+      [dispatch],
+    ),
+    setMaxSlots: useCallback(
+      (level: number, maxSlots: number) =>
+        dispatch({ type: "SET_HARM_MAX_SLOTS", level, maxSlots }),
+      [dispatch],
+    ),
+    setLevelCount: useCallback(
+      (count: number, defaultSlots?: number) =>
+        dispatch({ type: "SET_HARM_LEVEL_COUNT", count, defaultSlots }),
+      [dispatch],
+    ),
+  };
+}
+
+export function useArmor() {
+  const { state, dispatch } = useCharacterSheet();
+  const set = useCallback(
+    (field: keyof Armor, value: boolean) =>
+      dispatch({ type: "UPDATE_ARMOR", field, value }),
+    [dispatch],
+  );
+  return [state.armor, set] as const;
+}
+
+export function useUnlockedAbilities() {
+  const { state, dispatch } = useCharacterSheet();
+
+  const toggle = useCallback(
+    (
+      source: keyof UnlockedAbilities,
+      sourceKey: string,
+      slug: string,
+      cost?: number,
+    ) => dispatch({ type: "TOGGLE_ABILITY", source, sourceKey, slug, cost }),
+    [dispatch],
+  );
+
+  const isUnlocked = useCallback(
+    (
+      source: keyof UnlockedAbilities,
+      sourceKey: string,
+      slug: string,
+    ): boolean =>
+      (state.unlockedAbilities[source][sourceKey] ?? []).includes(slug),
+    [state.unlockedAbilities],
+  );
+
+  return { unlockedAbilities: state.unlockedAbilities, toggle, isUnlocked };
 }

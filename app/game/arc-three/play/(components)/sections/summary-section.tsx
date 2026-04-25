@@ -1,7 +1,6 @@
 "use client";
 
 import { ReactNode, useState } from "react";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { ClearableMultiSelect } from "@/components/character-sheet/clearable-multiselect";
 import ClearableSelect from "@/components/character-sheet/clearable-select";
