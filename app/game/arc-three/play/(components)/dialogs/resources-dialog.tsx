@@ -46,10 +46,14 @@ const RESOURCES: Resource[] = [
           <InlineSymbol size={24}>
             <Advantage />
           </InlineSymbol>{" "}
-          on a die face or via various abilities. Some abilities are enabled by
-          having Advantage, when you would gain it while you already have it, or
-          when you spend it.
+          on a die face or via various abilities. Some special abilities are
+          enabled by:
         </p>
+        <ul className="mx-4 mt-1 list-disc">
+          <li>having Advantage</li>
+          <li>spending Advantage</li>
+          <li>gaining Advantage while you already have it</li>
+        </ul>
         <p className="mt-2">You can also spend Advantage to:</p>
         <ul className="mx-4 mt-1 list-disc">
           <li>

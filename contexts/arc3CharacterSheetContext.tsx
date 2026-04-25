@@ -31,6 +31,7 @@ import {
   AldamV3,
   ArchetypeV3,
   BackgroundV3,
+  CharacterHarm,
   Condition,
   DonumV3,
   FightingStyleV3,
@@ -61,6 +62,7 @@ export const DEFAULT_MAX_REP = 1;
 export const DEFAULT_MAX_GOODWILL = 1;
 export const DEFAULT_MAX_INTEL = 1;
 export const DEFAULT_MAX_MANPOWER = 1;
+export const DEFAULT_MAX_HEALING = 4;
 
 export const OPTIONAL_CONDITONS = conditions.optional;
 
@@ -85,11 +87,29 @@ const DEFAULT_ACTIONS: ActionV3[] = actions.Aptitudes.map((a) => ({
   level: [0],
 }));
 
+const DEFAULT_HARMS: CharacterHarm = {
+  1: { slots: ["", ""], maxSlots: 2 },
+  2: { slots: ["", ""], maxSlots: 2 },
+  3: { slots: [""], maxSlots: 1 },
+};
+
 interface Resource {
   current: number;
   max: number;
   default: number;
 }
+
+interface Armor {
+  light: boolean;
+  heavy: boolean;
+  special: boolean;
+}
+
+const DEFAULT_ARMOR = {
+  light: false,
+  heavy: false,
+  special: false,
+};
 
 const DEFAULT_STATE = {
   id: nanoid(),
@@ -112,7 +132,7 @@ const DEFAULT_STATE = {
   xp: 0,
   xpSpent: 0,
   stress: 0,
-  maxStress: 9,
+  maxStress: DEFAULT_MAX_STRESS,
   conditions: DEFAULT_CONDITIONS,
   currentConditions: [],
   resources: {
@@ -142,6 +162,10 @@ const DEFAULT_STATE = {
       default: DEFAULT_MAX_MANPOWER,
     },
   },
+  harms: DEFAULT_HARMS,
+  maxHealing: DEFAULT_MAX_HEALING,
+  healing: 0,
+  armor: DEFAULT_ARMOR,
 };
 
 interface CharacterSheetState {
@@ -169,6 +193,10 @@ interface CharacterSheetState {
   conditions: Condition[];
   currentConditions: Condition[];
   resources: Record<string, Resource>;
+  harms: CharacterHarm;
+  healing: number;
+  maxHealing: number;
+  armor: Armor;
 }
 
 // Actions — add new cases here
@@ -182,7 +210,11 @@ type CharacterSheetAction =
       resource: string;
       field: "current" | "max";
       value: number;
-    };
+    }
+  | { type: "UPDATE_HARM"; level: number; slotIndex: number; value: string }
+  | { type: "SET_HARM_MAX_SLOTS"; level: number; maxSlots: number }
+  | { type: "SET_HARM_LEVEL_COUNT"; count: number; defaultSlots?: number }
+  | { type: "UPDATE_ARMOR"; field: keyof Armor; value: boolean };
 
 interface CharacterSheetContextProps {
   state: CharacterSheetState;
@@ -235,6 +267,48 @@ function reducer(
         },
       };
     }
+    case "UPDATE_HARM": {
+      const lvl = state.harms[action.level];
+      if (!lvl) return state;
+      const newSlots = [...lvl.slots];
+      newSlots[action.slotIndex] = action.value;
+      return {
+        ...state,
+        harms: { ...state.harms, [action.level]: { ...lvl, slots: newSlots } },
+      };
+    }
+    case "SET_HARM_MAX_SLOTS": {
+      const lvl = state.harms[action.level] ?? { slots: [], maxSlots: 0 };
+      const newMax = Math.max(0, action.maxSlots);
+      const newSlots = Array.from(
+        { length: newMax },
+        (_, i) => lvl.slots[i] ?? "",
+      );
+      return {
+        ...state,
+        harms: {
+          ...state.harms,
+          [action.level]: { slots: newSlots, maxSlots: newMax },
+        },
+      };
+    }
+    case "SET_HARM_LEVEL_COUNT": {
+      const newCount = Math.max(0, action.count);
+      const defaultSlots = action.defaultSlots ?? 1;
+      const newHarms: CharacterHarm = {};
+      for (let i = 1; i <= newCount; i++) {
+        newHarms[i] = state.harms[i] ?? {
+          slots: Array(defaultSlots).fill(""),
+          maxSlots: defaultSlots,
+        };
+      }
+      return { ...state, harms: newHarms };
+    }
+    case "UPDATE_ARMOR":
+      return {
+        ...state,
+        armor: { ...state.armor, [action.field]: action.value },
+      };
   }
 }
 
@@ -597,4 +671,36 @@ export function useResource(resource: string) {
     [dispatch, resource],
   );
   return [res, set] as const;
+}
+
+export function useHarms() {
+  const { state, dispatch } = useCharacterSheet();
+  return {
+    harms: state.harms,
+    updateHarm: useCallback(
+      (level: number, slotIndex: number, value: string) =>
+        dispatch({ type: "UPDATE_HARM", level, slotIndex, value }),
+      [dispatch],
+    ),
+    setMaxSlots: useCallback(
+      (level: number, maxSlots: number) =>
+        dispatch({ type: "SET_HARM_MAX_SLOTS", level, maxSlots }),
+      [dispatch],
+    ),
+    setLevelCount: useCallback(
+      (count: number, defaultSlots?: number) =>
+        dispatch({ type: "SET_HARM_LEVEL_COUNT", count, defaultSlots }),
+      [dispatch],
+    ),
+  };
+}
+
+export function useArmor() {
+  const { state, dispatch } = useCharacterSheet();
+  const set = useCallback(
+    (field: keyof Armor, value: boolean) =>
+      dispatch({ type: "UPDATE_ARMOR", field, value }),
+    [dispatch],
+  );
+  return [state.armor, set] as const;
 }
