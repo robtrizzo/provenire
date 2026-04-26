@@ -16,7 +16,7 @@
       {
         "name": "Fatal Opening",
         "slug": "fatal-opening",
-        "cost": 3
+        "cost": 4
       },
       {
         "name": "Isolating Counter",
@@ -26,7 +26,7 @@
       {
         "name": "Fatal Finisher",
         "slug": "fatal-finisher",
-        "cost": 3
+        "cost": 5
       }
     ]
   },
@@ -47,7 +47,7 @@
       {
         "name": "Predatory Focus",
         "slug": "predatory-focus",
-        "cost": 3
+        "cost": 4
       },
       {
         "name": "Combat Canny",
@@ -57,7 +57,7 @@
       {
         "name": "Deceiver's Surge",
         "slug": "deceivers-surge",
-        "cost": 3
+        "cost": 5
       }
     ]
   },
@@ -78,7 +78,7 @@
       {
         "name": "Bloody Counter",
         "slug": "bloody-counter",
-        "cost": 3
+        "cost": 4
       },
       {
         "name": "Reaper's Surge",
@@ -88,7 +88,7 @@
       {
         "name": "Unstoppable",
         "slug": "unstoppable",
-        "cost": 3
+        "cost": 5
       }
     ]
   },
@@ -109,17 +109,48 @@
       {
         "name": "Follow Through",
         "slug": "follow-through",
-        "cost": 3
+        "cost": 4
       },
       {
         "name": "Clear a Path",
         "slug": "clear-a-path",
+        "cost": 4
+      },
+      {
+        "name": "Sweeping Surge",
+        "slug": "sweeping-surge",
+        "cost": 4
+      }
+    ]
+  },
+  {
+    "name": "Pipedancing",
+    "shortDescription": "Maneuver through the machinery and use it to your advantage",
+    "abilities": [
+      {
+        "name": "Basic Movements",
+        "slug": "basic-movements",
         "cost": 3
       },
       {
-        "name": "Muscular Surge",
-        "slug": "muscular-surge",
+        "name": "Improvised Weaponry",
+        "slug": "improvised-weaponry",
         "cost": 3
+      },
+      {
+        "name": "Opportunist",
+        "slug": "opportunist",
+        "cost": 4
+      },
+      {
+        "name": "The Dance",
+        "slug": "the-dance",
+        "cost": 4
+      },
+      {
+        "name": "Acrobatic Surge",
+        "slug": "acrobatic-surge",
+        "cost": 4
       }
     ]
   },
@@ -140,17 +171,17 @@
       {
         "name": "Six Edged Intersection",
         "slug": "six-edged-intersection",
-        "cost": 3
+        "cost": 4
       },
       {
         "name": "Third Eye",
         "slug": "third-eye",
-        "cost": 3
+        "cost": 4
       },
       {
         "name": "Mirado Surge",
         "slug": "mirado-surge",
-        "cost": 3
+        "cost": 4
       }
     ]
   },

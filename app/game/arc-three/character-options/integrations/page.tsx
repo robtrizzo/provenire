@@ -3,9 +3,12 @@ import {
   TypographyBlockquote,
   TypographyH1,
   TypographyH2,
+  TypographyH3,
   TypographyH4,
   TypographyP,
 } from "@/components/ui/typography";
+import Link from "next/link";
+import integrations from "@/public/arc3/integrations.json";
 
 export default async function Page() {
   return (
@@ -16,7 +19,23 @@ export default async function Page() {
         These options will determine the manner of integration with the memories
         your character experienced in the <i>Crucibles</i>.
       </TypographyP>
-      <TypographyH2 className="mt-8">Observation</TypographyH2>
+      <div className="flex flex-col">
+        <TypographyH3>Table of Contents</TypographyH3>
+        <nav className="flex flex-wrap gap-2">
+          {integrations.map((i, idx) => (
+            <Link
+              key={idx}
+              href={`#${i.name}`}
+              className="text-sm px-3 py-1 rounded-full border border-border hover:bg-accent hover:text-accent-foreground transition-colors"
+            >
+              {i.name}
+            </Link>
+          ))}
+        </nav>
+      </div>
+      <TypographyH2 className="mt-8" id="Observation">
+        Observation
+      </TypographyH2>
       <TypographyP>
         Your dream was an out-of-body experience. Whoever&apos;s life this was,
         you were there for it all. You saw their mother&apos;s face when they
@@ -38,7 +57,9 @@ export default async function Page() {
       <TypographyP>
         You begin with all crucible <b>Histories</b> unlocked.
       </TypographyP>
-      <TypographyH2 className="mt-8">Exploitation</TypographyH2>
+      <TypographyH2 className="mt-8" id="Exploitation">
+        Exploitation
+      </TypographyH2>
       <TypographyP>
         Like some dreams go, you don&apos;t remember yours. But you do remember
         one thing: it&apos;s important that you don&apos;t let <i>them</i> out.
@@ -78,7 +99,9 @@ export default async function Page() {
         <b>condition</b> or <b>harm</b> you regain conciousness, but the other
         psyche has the upper hand.
       </TypographyP>
-      <TypographyH2 className="mt-8">Cooperation</TypographyH2>
+      <TypographyH2 className="mt-8" id="Cooperation">
+        Cooperation
+      </TypographyH2>
       <TypographyP>
         When you wake up, you&apos;re not alone in your mind.{" "}
         <i>They&apos;re</i> here too, though more of a passenger in your life.{" "}
@@ -116,7 +139,9 @@ export default async function Page() {
         If the other psyche feels that you&apos;ve completely disrespected them,
         your relationship may become <b>Opposition</b>.
       </TypographyP>
-      <TypographyH2 className="mt-8">Suppression</TypographyH2>
+      <TypographyH2 className="mt-8" id="Suppression">
+        Suppression
+      </TypographyH2>
       <TypographyP>
         Nothing has changed. Maybe the machine didn&apos;t work on you. Life
         goes on; that is, until a sudden recollection comes over you. A
@@ -137,7 +162,9 @@ export default async function Page() {
         flashback when you take an action. This counts as critically failing,
         but ticks the <b>Trauma clock</b> by <b>5</b>.
       </TypographyP>
-      <TypographyH2 className="mt-8">Opposition</TypographyH2>
+      <TypographyH2 className="mt-8" id="Opposition">
+        Opposition
+      </TypographyH2>
       <TypographyP>
         In your dream you experienced birth, childhood, love, life, strife, and
         death. The only separation between you and them was that you remember
@@ -170,7 +197,9 @@ export default async function Page() {
         psyche mentally overpowers <i>you</i>, the relationship becomes{" "}
         <b>Exploitation</b> but they begin with the upper hand.
       </TypographyP>
-      <TypographyH2 className="mt-8">Synthesis</TypographyH2>
+      <TypographyH2 className="mt-8" id="Synthesis">
+        Synthesis
+      </TypographyH2>
       <TypographyP>
         You experienced another lifetime, and with no recollection of your own.
         Waking up doesn&apos;t feel like coming to your senses, it feels like

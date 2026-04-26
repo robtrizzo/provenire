@@ -11,14 +11,35 @@ import universal from "@/public/arc3/universal.json";
 import { SkillsetSubclass, SkillsetV3 } from "@/types/game";
 import { Fragment } from "react/jsx-runtime";
 import Ability from "@/components/abilities/ability";
+import Link from "next/link";
 
 export default function Skillsets() {
   return (
     <div className="flex flex-col gap-8">
+      <div className="flex flex-col">
+        <TypographyH3>Table of Contents</TypographyH3>
+        <nav className="flex flex-wrap gap-2">
+          {skillsets.map((s, idx) => (
+            <Link
+              key={idx}
+              href={`#${s.name}`}
+              className="text-sm px-3 py-1 rounded-full border border-border hover:bg-accent hover:text-accent-foreground transition-colors"
+            >
+              {s.name}
+            </Link>
+          ))}
+          <Link
+            href={"#Universal"}
+            className="text-sm px-3 py-1 rounded-full border border-border hover:bg-accent hover:text-accent-foreground transition-colors"
+          >
+            Universal
+          </Link>
+        </nav>
+      </div>
       {skillsets.map((s, idx) => (
         <Skillset key={idx} skillset={s} />
       ))}
-      <TypographyH2>Universal</TypographyH2>
+      <TypographyH2 id="Universal">Universal</TypographyH2>
       <div>
         {universal.map((a, idx) => (
           <Fragment key={"universal" + idx}>
@@ -41,7 +62,9 @@ export default function Skillsets() {
 function Skillset({ skillset }: { skillset: SkillsetV3 }) {
   return (
     <div>
-      <TypographyH2 className="border-b-0 pb-0">{skillset.name}</TypographyH2>
+      <TypographyH2 className="border-b-0 pb-0" id={skillset.name}>
+        {skillset.name}
+      </TypographyH2>
       <span className="text-muted-foreground text-md">
         {skillset.shortDescription}
       </span>
