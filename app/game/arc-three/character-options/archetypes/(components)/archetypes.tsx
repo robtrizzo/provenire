@@ -9,10 +9,25 @@ import { Separator } from "@/components/ui/separator";
 import Ability from "@/components/abilities/ability";
 import { Fragment } from "react/jsx-runtime";
 import ClockCost from "@/components/clock-cost";
+import Link from "next/link";
 
 export default function Archetypes() {
   return (
     <div className="flex flex-col gap-8">
+      <div className="flex flex-col">
+        <TypographyH3>Table of Contents</TypographyH3>
+        <nav className="flex flex-wrap gap-2">
+          {archetypes.map((a, idx) => (
+            <Link
+              key={idx}
+              href={`#${a.name}`}
+              className="text-sm px-3 py-1 rounded-full border border-border hover:bg-accent hover:text-accent-foreground transition-colors"
+            >
+              {a.name}
+            </Link>
+          ))}
+        </nav>
+      </div>
       {archetypes.map((a, idx) => (
         <Archetype key={idx} archetype={a} />
       ))}
@@ -23,7 +38,9 @@ export default function Archetypes() {
 function Archetype({ archetype }: { archetype: ArchetypeV3 }) {
   return (
     <div>
-      <TypographyH2 className="border-b-0 pb-0">{archetype.name}</TypographyH2>
+      <TypographyH2 className="border-b-0 pb-0" id={archetype.name}>
+        {archetype.name}
+      </TypographyH2>
       <span className="text-muted-foreground text-md">
         {archetype.shortDescription}
       </span>

@@ -9,16 +9,15 @@ import {
   TypographyP,
   TypographyUnorderedList,
 } from "@/components/ui/typography";
-export default function Grind() {
+export default function BuyingTime() {
   return (
     <>
       <span className="text-muted-foreground">
-        <u>Prerequisite:</u> become influential in the fighting pits
+        <u>Prerequisite:</u> de-escalate a violent conflict
       </span>
       <TypographyP>
-        You may spend a downtime activity to <i>fight for glory</i>. When you
-        do, a random <b>faction</b> loses <b>1 manpower</b>. Make an{" "}
-        <b>action roll</b>.
+        You can delay violent conflict between two factions by putting yourself
+        between them, sometimes at the very last second.
       </TypographyP>
       <div className="grid grid-cols-1 sm:grid-cols-2 border-1 rounded-md border-border p-2">
         <div className="col-span-1">
@@ -26,31 +25,31 @@ export default function Grind() {
             <InlineSymbol>
               <Theta />
             </InlineSymbol>{" "}
-            : choose one; <b>level 2 harm</b>
+            : choose three
           </TypographyP>
           <TypographyP>
             <InlineSymbol>
               <ThetaDouble />
             </InlineSymbol>{" "}
-            : choose two; <b>level 2 harm</b>
+            : choose two
           </TypographyP>
           <TypographyP>
             <InlineSymbol>
               <ThetaTriple />
             </InlineSymbol>{" "}
-            : choose three
+            : <b>+1 rep</b>
           </TypographyP>
         </div>
         <div className="col-span-1">
           <TypographyUnorderedList>
             <li>
-              <b>+1 food</b>
+              <b>2 stress</b>
             </li>
             <li>
-              <b>+1 blood</b>
+              <b>level 2 harm</b>
             </li>
             <li>
-              <b>choose the faction</b>
+              <b>-1 intel</b>
             </li>
           </TypographyUnorderedList>
           <TypographyP>
