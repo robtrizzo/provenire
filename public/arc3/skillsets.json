@@ -34,13 +34,35 @@
         "name": "Delver",
         "shortDescription": "A resourceful and stealthy explorer",
         "description": "",
-        "abilities": []
+        "abilities": [
+          {
+            "name": "Intrepid",
+            "slug": "intrepid",
+            "cost": 2
+          },
+          {
+            "name": "Into the Unknown",
+            "slug": "into-the-unknown",
+            "cost": 2
+          }
+        ]
       },
       {
         "name": "Redline",
-        "shortDescription": "A reckless and adrenaline-fueled daredevil",
+        "shortDescription": "A reckless, adrenaline-fueled daredevil",
         "description": "",
-        "abilities": []
+        "abilities": [
+          {
+            "name": "Octane",
+            "slug": "octane",
+            "cost": 2
+          },
+          {
+            "name": "Heat of the Moment",
+            "slug": "heat-of-the-moment",
+            "cost": 2
+          }
+        ]
       }
     ]
   },
@@ -68,6 +90,16 @@
         "name": "Or Else",
         "slug": "or-else",
         "cost": 4
+      },
+      {
+        "name": "Eyes Everywhere",
+        "slug": "eyes-everywhere",
+        "cost": 2
+      },
+      {
+        "name": "Forked Tongue",
+        "slug": "forked-tongue",
+        "cost": 2
       }
     ]
   },
@@ -110,12 +142,12 @@
           {
             "name": "Steely Eyed",
             "slug": "steely-eyed",
-            "cost": 5
+            "cost": 2
           },
           {
             "name": "Iron Spine",
             "slug": "iron-spine",
-            "cost": 6
+            "cost": 2
           }
         ]
       },
@@ -127,12 +159,12 @@
           {
             "name": "Grind",
             "slug": "grind",
-            "cost": 5
+            "cost": 2
           },
           {
             "name": "Tempered",
             "slug": "tempered",
-            "cost": 6
+            "cost": 2
           }
         ]
       }
@@ -173,13 +205,35 @@
         "name": "Flashpoint",
         "shortDescription": "A charismatic instigator and habitual troublemaker",
         "description": "",
-        "abilities": []
+        "abilities": [
+          {
+            "name": "Buying Time",
+            "slug": "buying-time",
+            "cost": 2
+          },
+          {
+            "name": "Fuck This",
+            "slug": "fuck-this",
+            "cost": 2
+          }
+        ]
       },
       {
         "name": "Fuse",
         "shortDescription": "A selfless mediator and community anchor",
         "description": "",
-        "abilities": []
+        "abilities": [
+          {
+            "name": "Stake it on the Name",
+            "slug": "stake-it-on-the-name",
+            "cost": 2
+          },
+          {
+            "name": "Icon",
+            "slug": "icon",
+            "cost": 2
+          }
+        ]
       }
     ]
   },
@@ -211,6 +265,16 @@
         "name": "A Little Something on the Side",
         "slug": "a-little-something-on-the-side",
         "cost": 3
+      },
+      {
+        "name": "Filcher",
+        "slug": "filcher",
+        "cost": 2
+      },
+      {
+        "name": "Shapeshifter",
+        "slug": "shapeshifter",
+        "cost": 2
       }
     ]
   }

@@ -1,23 +1,27 @@
 import { InlineSymbol } from "@/components/dice/dice-borders";
 import { Advantage } from "@/components/dice/dice-symbols";
 import { TypographyP } from "@/components/ui/typography";
-export default function SteelyEyed() {
+export default function Filcher() {
   return (
     <>
       <span className="text-muted-foreground">
-        <u>Prerequisite:</u> survive an encounter with an insurmountable foe
+        <u>Prerequisite:</u> pickpocket while the stakes are lethal
       </span>
       <TypographyP>
-        Magical or cybernetic means can never cause you to back down or flee
-        from a fight. When this happens, gain{" "}
+        Whenever something dramatic happens which captures everyone&apos;s
+        attention, gain{" "}
         <InlineSymbol>
           <Advantage />
         </InlineSymbol>
         .
       </TypographyP>
       <TypographyP>
-        If you would get into a fight with an insurmountable foe, clear the{" "}
-        <b>Afraid condition</b> if it is marked.
+        If you would gain{" "}
+        <InlineSymbol>
+          <Advantage />
+        </InlineSymbol>{" "}
+        while you already have it, you may steal any object in the scene which
+        is not held, worn, or tied down.
       </TypographyP>
     </>
   );

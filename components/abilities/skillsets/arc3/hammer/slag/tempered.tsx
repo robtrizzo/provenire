@@ -4,6 +4,9 @@ import { TypographyP } from "@/components/ui/typography";
 export default function Tempered() {
   return (
     <>
+      <span className="text-muted-foreground">
+        <u>Prerequisite:</u> survive all your <b>harm slots</b> being filled
+      </span>
       <TypographyP>
         Whenever the Hammer marks a <b>level 3 harm</b>, they gain{" "}
         <InlineSymbol>

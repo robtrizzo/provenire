@@ -1,23 +1,26 @@
 import { InlineSymbol } from "@/components/dice/dice-borders";
 import { Advantage } from "@/components/dice/dice-symbols";
 import { TypographyP } from "@/components/ui/typography";
-export default function SteelyEyed() {
+export default function Intrepid() {
   return (
     <>
       <span className="text-muted-foreground">
-        <u>Prerequisite:</u> survive an encounter with an insurmountable foe
+        <u>Prerequisite:</u> survive a hostile labyrinth
       </span>
       <TypographyP>
-        Magical or cybernetic means can never cause you to back down or flee
-        from a fight. When this happens, gain{" "}
+        When thrust into an unfamiliar place, gain{" "}
         <InlineSymbol>
           <Advantage />
         </InlineSymbol>
         .
       </TypographyP>
       <TypographyP>
-        If you would get into a fight with an insurmountable foe, clear the{" "}
-        <b>Afraid condition</b> if it is marked.
+        While you have{" "}
+        <InlineSymbol>
+          <Advantage />
+        </InlineSymbol>
+        , magical or cybernetic means can never cause you to become disoriented
+        or lost.
       </TypographyP>
     </>
   );

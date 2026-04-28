@@ -57,6 +57,12 @@
       "slug": "scarred",
       "source": "Bulkhead",
       "sourceType": "skillset"
+    },
+    {
+      "name": "Spread Thin",
+      "slug": "spread-thin",
+      "source": "Vapor",
+      "sourceType": "skillset"
     }
   ]
 }
