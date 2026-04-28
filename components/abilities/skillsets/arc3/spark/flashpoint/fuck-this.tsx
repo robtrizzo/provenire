@@ -9,7 +9,7 @@ export default function FuckThis() {
       </span>
       <TypographyP>
         When backed into a corner or faced with a treacherous dilemma, you may
-        react with thoughtless violence. If you do, clear the <b>Hopeless</b>{" "}
+        react with impulsive violence. If you do, clear the <b>Hopeless</b>{" "}
         condition and the crew gains{" "}
         <InlineSymbol>
           <Advantage />
