@@ -4,6 +4,12 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/toaster";
 import Link from "next/link";
 import { ReactNode } from "react";
+import archetypes from "@/public/arc3/archetypes.json";
+import skillsets from "@/public/arc3/skillsets.json";
+import fightingStyles from "@/public/arc3/fighting_styles.json";
+import integrations from "@/public/arc3/integrations.json";
+import remembrances from "@/public/arc3/remembrances.json";
+import { slugify } from "@/lib/utils";
 
 const navigationData = [
   {
@@ -35,26 +41,64 @@ const navigationData = [
       {
         title: "Archetypes",
         url: "/game/arc-three/character-options/archetypes",
+        items: archetypes.map((a) => ({
+          title: a.name,
+          url: `/game/arc-three/character-options/archetypes#${a.name}`,
+        })),
       },
       {
-        title: "Skillsets",
-        url: "/game/arc-three/character-options/skillsets",
+        title: "Aldams",
+        url: "/game/arc-three/character-options/aldams",
+        items: [
+          {
+            title: "test",
+            url: "/game/arc-three/character-options/aldams/test",
+          },
+        ],
+      },
+      {
+        title: "Donums",
+        url: "/game/arc-three/character-options/donums",
       },
       {
         title: "Fighting Styles",
         url: "/game/arc-three/character-options/fighting-styles",
+        items: fightingStyles.map((f) => ({
+          title: f.name,
+          url: `/game/arc-three/character-options/fighting-styles#${f.name}`,
+        })),
       },
       {
         title: "Integrations",
         url: "/game/arc-three/character-options/integrations",
+        items: integrations.map((i) => ({
+          title: i.name,
+          url: `/game/arc-three/character-options/integrations#${i.name}`,
+        })),
       },
       {
         title: "Remembrances",
         url: "/game/arc-three/character-options/remembrances",
+        items: remembrances.map((r) => ({
+          title: r.name,
+          url: `/game/arc-three/character-options/remembrances/${slugify(r.name)}`,
+        })),
       },
       {
         title: "Roles",
         url: "/game/arc-three/character-options/roles",
+      },
+      {
+        title: "Skillsets",
+        url: "/game/arc-three/character-options/skillsets",
+        items: skillsets.map((s) => ({
+          title: s.name,
+          url: `/game/arc-three/character-options/skillsets#${s.name}`,
+        })),
+      },
+      {
+        title: "Transformations",
+        url: "/game/arc-three/character-options/transformations",
       },
     ],
   },
