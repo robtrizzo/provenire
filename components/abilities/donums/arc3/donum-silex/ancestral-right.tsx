@@ -1,3 +1,5 @@
+import { InlineSymbol } from "@/components/dice/dice-borders";
+import { Threat } from "@/components/dice/dice-symbols";
 import { TypographyP } from "@/components/ui/typography";
 export default function FractalGrowth() {
   return (
@@ -12,8 +14,11 @@ export default function FractalGrowth() {
       <TypographyP>
         When you use another <b>Donum Silex</b> ability, you may spend an
         additional <b className="text-blue-500">1 Water</b> to affect ten times
-        the amount of material. Make a <b>1d fortune roll</b>; on a <b>1-5</b>,
-        your use of the ability is your choice of <i>slow</i>{" "}
+        the amount of material. Make a <b>1d fortune roll</b>; on a{" "}
+        <InlineSymbol>
+          <Threat />
+        </InlineSymbol>
+        , your use of the ability is your choice of <i>slow</i>{" "}
         <i className="text-muted-foreground">OR</i> <i>catastrophic</i>.
       </TypographyP>
     </>
