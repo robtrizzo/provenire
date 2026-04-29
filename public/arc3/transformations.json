@@ -10,7 +10,8 @@
         "slug": "donum-corvus",
         "keystone": true
       }
-    ]
+    ],
+    "wip": true
   },
   {
     "name": "Donum Rex",
@@ -22,7 +23,7 @@
       {
         "name": "Donum Rex",
         "slug": "donum-rex",
-        "keystone": true
+        "cost": 0
       },
       {
         "name": "Scent of Prey",
@@ -61,6 +62,7 @@
         "slug": "donum-ursa",
         "keystone": true
       }
-    ]
+    ],
+    "wip": true
   }
 ]

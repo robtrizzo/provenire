@@ -38,6 +38,7 @@ const sourceTypeColors: Record<string, string> = {
   archetype: "text-amber-600",
   skillset: "text-violet-600",
   donum: "text-fuchsia-600",
+  transformation: "text-orange-600",
 };
 
 export default function ConditionOptions() {

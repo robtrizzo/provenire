@@ -105,3 +105,11 @@ export function clientCheckPermission(
   }
   return session.user.permissions.includes(permission);
 }
+
+export function slugify(str: string) {
+  return str
+    .toLowerCase()
+    .trim()
+    .replace(/[\s\W-]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}

@@ -1,34 +1,40 @@
 [
   {
-    "name": "Throatgore",
-    "shortDescription": "Pack tactics, go for the throat",
+    "name": "Backsnap",
+    "shortDescription": "Overwhelming aggression",
     "abilities": [
       {
-        "name": "Pack Tactics",
-        "slug": "pack-tactics",
+        "name": "Reckless Mindset",
+        "slug": "reckless-mindset",
         "cost": 3
       },
       {
-        "name": "Coordinated Assault",
-        "slug": "coordinated-assault",
+        "name": "Immediate Brutality",
+        "slug": "immediate-brutality",
         "cost": 3
       },
       {
-        "name": "Fatal Opening",
-        "slug": "fatal-opening",
+        "name": "Bloody Counter",
+        "slug": "bloody-counter",
         "cost": 4
       },
       {
-        "name": "Isolating Counter",
-        "slug": "isolating-counter",
+        "name": "Reaper's Surge",
+        "slug": "reapers-surge",
         "cost": 3
       },
       {
-        "name": "Fatal Finisher",
-        "slug": "fatal-finisher",
+        "name": "Unstoppable",
+        "slug": "unstoppable",
         "cost": 5
       }
     ]
+  },
+  {
+    "name": "Blazing Arrow",
+    "shortDescription": "",
+    "abilities": [],
+    "wip": true
   },
   {
     "name": "Bleedout",
@@ -57,37 +63,6 @@
       {
         "name": "Deceiver's Surge",
         "slug": "deceivers-surge",
-        "cost": 5
-      }
-    ]
-  },
-  {
-    "name": "Backsnap",
-    "shortDescription": "Overwhelming aggression",
-    "abilities": [
-      {
-        "name": "Reckless Mindset",
-        "slug": "reckless-mindset",
-        "cost": 3
-      },
-      {
-        "name": "Immediate Brutality",
-        "slug": "immediate-brutality",
-        "cost": 3
-      },
-      {
-        "name": "Bloody Counter",
-        "slug": "bloody-counter",
-        "cost": 4
-      },
-      {
-        "name": "Reaper's Surge",
-        "slug": "reapers-surge",
-        "cost": 3
-      },
-      {
-        "name": "Unstoppable",
-        "slug": "unstoppable",
         "cost": 5
       }
     ]
@@ -124,35 +99,35 @@
     ]
   },
   {
-    "name": "Pipedancing",
-    "shortDescription": "Maneuver through the machinery and use it to your advantage",
-    "abilities": [
-      {
-        "name": "Basic Movements",
-        "slug": "basic-movements",
-        "cost": 3
-      },
-      {
-        "name": "Improvised Weaponry",
-        "slug": "improvised-weaponry",
-        "cost": 3
-      },
-      {
-        "name": "Opportunist",
-        "slug": "opportunist",
-        "cost": 4
-      },
-      {
-        "name": "The Dance",
-        "slug": "the-dance",
-        "cost": 4
-      },
-      {
-        "name": "Acrobatic Surge",
-        "slug": "acrobatic-surge",
-        "cost": 4
-      }
-    ]
+    "name": "Desert Fan",
+    "shortDescription": "",
+    "abilities": [],
+    "wip": true
+  },
+  {
+    "name": "Horizon's Edge",
+    "shortDescription": "",
+    "abilities": [],
+    "wip": true
+  },
+  {
+    "name": "Kiss of the Viper",
+    "shortDescription": "",
+    "abilities": [],
+    "wip": true
+  },
+
+  {
+    "name": "Long-knife Style",
+    "shortDescription": "",
+    "abilities": [],
+    "wip": true
+  },
+  {
+    "name": "Mason's Method",
+    "shortDescription": "",
+    "abilities": [],
+    "wip": true
   },
   {
     "name": "Mirado",
@@ -186,43 +161,77 @@
     ]
   },
   {
-    "name": "Blazing Arrow",
-    "shortDescription": "",
-    "abilities": []
-  },
-  {
     "name": "Phalanx",
     "shortDescription": "",
-    "abilities": []
+    "abilities": [],
+    "wip": true
+  },
+  {
+    "name": "Pipedancing",
+    "shortDescription": "Maneuver through the machinery and use it to your advantage",
+    "abilities": [
+      {
+        "name": "Basic Movements",
+        "slug": "basic-movements",
+        "cost": 3
+      },
+      {
+        "name": "Improvised Weaponry",
+        "slug": "improvised-weaponry",
+        "cost": 3
+      },
+      {
+        "name": "Opportunist",
+        "slug": "opportunist",
+        "cost": 4
+      },
+      {
+        "name": "The Dance",
+        "slug": "the-dance",
+        "cost": 4
+      },
+      {
+        "name": "Acrobatic Surge",
+        "slug": "acrobatic-surge",
+        "cost": 4
+      }
+    ]
   },
   {
     "name": "Shadespear",
     "shortDescription": "",
-    "abilities": []
+    "abilities": [],
+    "wip": true
   },
   {
-    "name": "Long-knife Style",
-    "shortDescription": "",
-    "abilities": []
-  },
-  {
-    "name": "Kiss of the Viper",
-    "shortDescription": "",
-    "abilities": []
-  },
-  {
-    "name": "Desert Fan",
-    "shortDescription": "",
-    "abilities": []
-  },
-  {
-    "name": "Horizon's Edge",
-    "shortDescription": "",
-    "abilities": []
-  },
-  {
-    "name": "Mason's Method",
-    "shortDescription": "",
-    "abilities": []
+    "name": "Throatgore",
+    "shortDescription": "Pack tactics, go for the throat",
+    "abilities": [
+      {
+        "name": "Pack Tactics",
+        "slug": "pack-tactics",
+        "cost": 3
+      },
+      {
+        "name": "Coordinated Assault",
+        "slug": "coordinated-assault",
+        "cost": 3
+      },
+      {
+        "name": "Fatal Opening",
+        "slug": "fatal-opening",
+        "cost": 4
+      },
+      {
+        "name": "Isolating Counter",
+        "slug": "isolating-counter",
+        "cost": 3
+      },
+      {
+        "name": "Fatal Finisher",
+        "slug": "fatal-finisher",
+        "cost": 5
+      }
+    ]
   }
 ]

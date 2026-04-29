@@ -41,6 +41,12 @@
       "sourceType": "archetype"
     },
     {
+      "name": "Insatiable",
+      "slug": "insatiable",
+      "source": "Donum Rex",
+      "sourceType": "transformation"
+    },
+    {
       "name": "Lonely",
       "slug": "lonely",
       "source": "Ygg",
