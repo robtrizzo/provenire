@@ -1,3 +1,5 @@
+import { InlineSymbol } from "@/components/dice/dice-borders";
+import { Threat } from "@/components/dice/dice-symbols";
 import Breadcrumbs from "@/components/ui/breadcrumbs";
 import {
   TypographyBlockquote,
@@ -70,10 +72,13 @@ export default async function Page() {
         by spending <b>3 xp clocks</b> during the <b>Train</b> activity.
       </TypographyBlockquote>
       <TypographyP>
-        Anytime you are transformed and roll a <b>1-3</b>, you experience a{" "}
-        <i>mishap</i>. A <i>mishap</i> is a danger or complication spawned from
-        your unfamiliarity with your own power. When <i>mishaps</i> occur,{" "}
-        <b>mark 1 xp</b>; they may be resisted as normal.
+        Anytime you are transformed and roll a{" "}
+        <InlineSymbol>
+          <Threat />
+        </InlineSymbol>
+        , you may experience a <i>mishap</i>. A <i>mishap</i> is a danger or
+        complication spawned from your unfamiliarity with your own power. When{" "}
+        <i>mishaps</i> occur, <b>mark 1 xp</b>; they may be resisted as normal.
       </TypographyP>
       <TypographyP>
         <i>Nascent</i> beasts have a <b>Nascence clock</b>. Each time your
