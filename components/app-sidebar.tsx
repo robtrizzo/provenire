@@ -31,6 +31,7 @@ type NavItem = {
   title: string;
   url: string;
   items?: NavItem[];
+  wip?: boolean;
 };
 
 type AppSidebarProps = React.ComponentProps<typeof Sidebar> & {
@@ -132,9 +133,15 @@ export function AppSidebar({ data, children, ...props }: AppSidebarProps) {
                                           asChild
                                           isActive={nestedItem.url === pathname}
                                         >
-                                          <Link href={nestedItem.url}>
-                                            {nestedItem.title}
-                                          </Link>
+                                          {nestedItem.wip ? (
+                                            <i className="text-muted-foreground!">
+                                              {nestedItem.title} (WIP)
+                                            </i>
+                                          ) : (
+                                            <Link href={nestedItem.url}>
+                                              {nestedItem.title}
+                                            </Link>
+                                          )}
                                         </SidebarMenuSubButton>
                                       </SidebarMenuSubItem>
                                     ))}

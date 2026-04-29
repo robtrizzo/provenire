@@ -4,11 +4,14 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/toaster";
 import Link from "next/link";
 import { ReactNode } from "react";
+import aldams from "@/public/arc3/aldams.json";
 import archetypes from "@/public/arc3/archetypes.json";
+import donums from "@/public/arc3/donums.json";
 import skillsets from "@/public/arc3/skillsets.json";
 import fightingStyles from "@/public/arc3/fighting_styles.json";
 import integrations from "@/public/arc3/integrations.json";
 import remembrances from "@/public/arc3/remembrances.json";
+import transformations from "@/public/arc3/transformations.json";
 import { slugify } from "@/lib/utils";
 
 const navigationData = [
@@ -49,16 +52,20 @@ const navigationData = [
       {
         title: "Aldams",
         url: "/game/arc-three/character-options/aldams",
-        items: [
-          {
-            title: "test",
-            url: "/game/arc-three/character-options/aldams/test",
-          },
-        ],
+        items: aldams.map((a) => ({
+          title: a.name,
+          url: `/game/arc-three/character-options/aldams/${slugify(a.name)}`,
+          wip: a.wip,
+        })),
       },
       {
         title: "Donums",
         url: "/game/arc-three/character-options/donums",
+        items: donums.map((d) => ({
+          title: d.name,
+          url: `/game/arc-three/character-options/donums/${slugify(d.name)}`,
+          wip: d.wip,
+        })),
       },
       {
         title: "Fighting Styles",
@@ -66,6 +73,7 @@ const navigationData = [
         items: fightingStyles.map((f) => ({
           title: f.name,
           url: `/game/arc-three/character-options/fighting-styles#${f.name}`,
+          wip: f.wip,
         })),
       },
       {
@@ -99,6 +107,11 @@ const navigationData = [
       {
         title: "Transformations",
         url: "/game/arc-three/character-options/transformations",
+        items: transformations.map((t) => ({
+          title: t.name,
+          url: `/game/arc-three/character-options/transformations/${slugify(t.name)}`,
+          wip: t.wip,
+        })),
       },
     ],
   },

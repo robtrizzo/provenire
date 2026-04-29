@@ -1,5 +1,17 @@
 [
   {
+    "name": "Blood of the Body",
+    "shortDescription": "",
+    "abilities": [],
+    "wip": true
+  },
+  {
+    "name": "Ghost of the Grasses",
+    "shortDescription": "",
+    "abilities": [],
+    "wip": true
+  },
+  {
     "name": "Gredoran Aldam",
     "shortDescription": "",
     "abilities": [
@@ -30,23 +42,15 @@
     ]
   },
   {
-    "name": "Potentia Humanitas",
-    "shortDescription": "",
-    "abilities": []
-  },
-  {
-    "name": "Blood of the Body",
-    "shortDescription": "",
-    "abilities": []
-  },
-  {
-    "name": "Ghost of the Grasses",
-    "shortDescription": "",
-    "abilities": []
-  },
-  {
     "name": "Inner Rhythm",
     "shortDescription": "",
-    "abilities": []
+    "abilities": [],
+    "wip": true
+  },
+  {
+    "name": "Potentia Humanitas",
+    "shortDescription": "",
+    "abilities": [],
+    "wip": true
   }
 ]

@@ -1,45 +1,42 @@
 [
   {
-    "name": "Donum Vitae",
-    "shortDescription": "Gift of Life",
+    "name": "Donum Aquae",
+    "shortDescription": "Gift of Water",
     "abilities": [
       {
-        "name": "Donum Vitae",
-        "slug": "donum-vitae",
-        "keystone": true
-      }
-    ]
-  },
-  {
-    "name": "Donum Dolus",
-    "shortDescription": "Gift of Deception",
-    "abilities": [
+        "name": "Donum Aquae",
+        "slug": "donum-aquae",
+        "cost": 0
+      },
       {
-        "name": "Donum Dolus",
-        "slug": "donum-dolus",
-        "keystone": true
-      }
-    ]
-  },
-  {
-    "name": "Donum Fornax",
-    "shortDescription": "Gift of the Forge",
-    "abilities": [
+        "name": "Flow",
+        "slug": "flow",
+        "cost": 3
+      },
       {
-        "name": "Donum Fornax",
-        "slug": "donum-fornax",
-        "keystone": true
-      }
-    ]
-  },
-  {
-    "name": "Donum Ossis",
-    "shortDescription": "Gift of Bones",
-    "abilities": [
+        "name": "Form",
+        "slug": "form",
+        "cost": 3
+      },
       {
-        "name": "Donum Ossis",
-        "slug": "donum-ossis",
-        "keystone": true
+        "name": "Finesse",
+        "slug": "finesse",
+        "cost": 3
+      },
+      {
+        "name": "Fabricate",
+        "slug": "fabricate",
+        "cost": 3
+      },
+      {
+        "name": "Force",
+        "slug": "force",
+        "cost": 3
+      },
+      {
+        "name": "Fill",
+        "slug": "fill",
+        "cost": 3
       }
     ]
   },
@@ -50,7 +47,67 @@
       {
         "name": "Donum Cinis",
         "slug": "donum-cinis",
-        "keystone": true
+        "cost": 0
+      }
+    ],
+    "wip": true
+  },
+  {
+    "name": "Donum Dolus",
+    "shortDescription": "Gift of Deception",
+    "abilities": [
+      {
+        "name": "Donum Dolus",
+        "slug": "donum-dolus",
+        "cost": 0
+      }
+    ],
+    "wip": true
+  },
+  {
+    "name": "Donum Fornax",
+    "shortDescription": "Gift of the Forge",
+    "abilities": [
+      {
+        "name": "Donum Fornax",
+        "slug": "donum-fornax",
+        "cost": 0
+      }
+    ],
+    "wip": true
+  },
+  {
+    "name": "Donum Ira",
+    "shortDescription": "Gift of Rage",
+    "abilities": [
+      {
+        "name": "Donum Ira",
+        "slug": "donum-ira",
+        "cost": 0
+      },
+      {
+        "name": "Ira Sympath",
+        "slug": "ira-sympath"
+      },
+      {
+        "name": "Heat Sink",
+        "slug": "heat-sink"
+      },
+      {
+        "name": "Flare",
+        "slug": "flare"
+      },
+      {
+        "name": "Wrathful Hands",
+        "slug": "wrathful-hands"
+      },
+      {
+        "name": "Ira Foci",
+        "slug": "ira-foci"
+      },
+      {
+        "name": "Surpress and Release",
+        "slug": "surpress-and-release"
       }
     ]
   },
@@ -61,7 +118,55 @@
       {
         "name": "Donum Ignis",
         "slug": "donum-ignis",
-        "keystone": true
+        "cost": 0
+      }
+    ],
+    "wip": true
+  },
+  {
+    "name": "Donum Ossis",
+    "shortDescription": "Gift of Bones",
+    "abilities": [
+      {
+        "name": "Donum Ossis",
+        "slug": "donum-ossis",
+        "cost": 0
+      }
+    ],
+    "wip": true
+  },
+  {
+    "name": "Donum Silex",
+    "shortDescription": "Gift of Stone",
+    "abilities": [
+      {
+        "name": "Donum Silex",
+        "slug": "donum-silex",
+        "cost": 0
+      },
+      {
+        "name": "Hidden by the Largeness",
+        "slug": "hidden-by-the-largeness"
+      },
+      {
+        "name": "Fractal Growth",
+        "slug": "fractal-growth"
+      },
+      {
+        "name": "Move Stone",
+        "slug": "move-stone"
+      },
+      {
+        "name": "Santoris Art",
+        "slug": "santoris-art"
+      },
+      {
+        "name": "Latticework",
+        "slug": "latticework"
+      },
+      {
+        "name": "Ancestral Right",
+        "slug": "ancestral-right"
       }
     ]
   },
@@ -72,7 +177,43 @@
       {
         "name": "Donum Ventus",
         "slug": "donum-ventus",
-        "keystone": true
+        "cost": 0
+      }
+    ],
+    "wip": true
+  },
+  {
+    "name": "Donum Vitae",
+    "shortDescription": "Gift of Life",
+    "abilities": [
+      {
+        "name": "Donum Vitae",
+        "slug": "donum-vitae",
+        "cost": 0
+      },
+      {
+        "name": "Euphoria",
+        "slug": "euphoria"
+      },
+      {
+        "name": "Reckless Strength",
+        "slug": "reckless-strength"
+      },
+      {
+        "name": "Endless Energy",
+        "slug": "endless-energy"
+      },
+      {
+        "name": "Inner Sensation",
+        "slug": "inner-sensation"
+      },
+      {
+        "name": "Rapid Vitality",
+        "slug": "rapid-vitality"
+      },
+      {
+        "name": "Grow Reserve",
+        "slug": "grow-reserve"
       }
     ]
   }
