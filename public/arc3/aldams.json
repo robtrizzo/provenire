@@ -2,14 +2,44 @@
   {
     "name": "Blood of the Body",
     "shortDescription": "",
-    "abilities": [],
-    "wip": true
+    "abilities": [
+      {
+        "name": "Nourishing Blood",
+        "slug": "nourishing-blood"
+      },
+      {
+        "name": "Tithe",
+        "slug": "tithe"
+      },
+      {
+        "name": "Excited Blood",
+        "slug": "excited-blood"
+      },
+      {
+        "name": "Quiet Blood",
+        "slug": "quiet-blood"
+      },
+      {
+        "name": "Roaring Blood",
+        "slug": "roaring-blood"
+      },
+      {
+        "name": "Halted Blood",
+        "slug": "halted-blood"
+      }
+    ]
   },
   {
     "name": "Ghost of the Grasses",
     "shortDescription": "",
-    "abilities": [],
-    "wip": true
+    "abilities": [
+      { "name": "Freeze", "slug": "freeze" },
+      { "name": "Persist", "slug": "persist" },
+      { "name": "Seek", "slug": "seek" },
+      { "name": "Flutter", "slug": "flutter" },
+      { "name": "Haul", "slug": "haul" },
+      { "name": "Debt", "slug": "debt" }
+    ]
   },
   {
     "name": "Gredoran Aldam",
@@ -44,13 +74,18 @@
   {
     "name": "Inner Rhythm",
     "shortDescription": "",
-    "abilities": [],
-    "wip": true
+    "abilities": [
+      { "name": "Mother Sun's Smile", "slug": "mother-suns-smile" },
+      { "name": "Sister Shade's Laugh", "slug": "sister-shades-laugh" },
+      { "name": "One Hundred Melodies", "slug": "one-hundred-melodies" },
+      { "name": "Let Loose the Soul", "slug": "let-loose-the-soul" },
+      { "name": "Douse", "slug": "douse" },
+      { "name": "Our Joy", "slug": "our-joy" }
+    ]
   },
   {
     "name": "Potentia Humanitas",
     "shortDescription": "",
-    "abilities": [],
-    "wip": true
+    "abilities": []
   }
 ]

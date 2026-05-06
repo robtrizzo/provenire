@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { TypographyH3 } from "@/components/ui/typography";
 import Link from "next/link";
 import RemembrancePortrait from "./remembrance-portrait";
+import { slugify } from "@/lib/utils";
 
 export default function RemembranceCard({
   name,
@@ -23,7 +24,7 @@ export default function RemembranceCard({
         />
         <div>
           <div className="flex">
-            <Link href={"remembrances/" + name.toLocaleLowerCase()}>
+            <Link href={"remembrances/" + slugify(name)}>
               <TypographyH3 className="font-old hover:underline hover:decoration-orange-500">
                 {name}
               </TypographyH3>
