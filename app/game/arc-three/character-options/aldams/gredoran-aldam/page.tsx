@@ -32,16 +32,20 @@ export default async function Page() {
       </TypographyP>
       <GAldam name="Bronze Bones" />
       <GAldam name="Brass Coils" />
+      <GAldam name="Rose Bronze Body" />
       <TypographyH2>Heart</TypographyH2>
       <TypographyP>Heart is the core, center, the self.</TypographyP>
       <GAldam name="Zinc Pulse" />
       <GAldam name="Nickel Vessel" />
+      <GAldam name="Inconel Core" />
       <TypographyH2>Eyes</TypographyH2>
       <TypographyP>
         Eyes are the mind and the external world brought into the self.
       </TypographyP>
       <GAldam name="Silver Sight" />
       <GAldam name="Mercurial Skull" />
+      <GAldam name="Mercurial Master" />
+      <GAldam name="Arquerite Epiphany" />
     </>
   );
 }

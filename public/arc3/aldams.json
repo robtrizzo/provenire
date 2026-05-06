@@ -3,89 +3,72 @@
     "name": "Blood of the Body",
     "shortDescription": "",
     "abilities": [
-      {
-        "name": "Nourishing Blood",
-        "slug": "nourishing-blood"
-      },
-      {
-        "name": "Tithe",
-        "slug": "tithe"
-      },
-      {
-        "name": "Excited Blood",
-        "slug": "excited-blood"
-      },
-      {
-        "name": "Quiet Blood",
-        "slug": "quiet-blood"
-      },
-      {
-        "name": "Roaring Blood",
-        "slug": "roaring-blood"
-      },
-      {
-        "name": "Halted Blood",
-        "slug": "halted-blood"
-      }
+      { "name": "Nourishing Blood", "slug": "nourishing-blood", "cost": 4 },
+      { "name": "Tithe", "slug": "tithe", "cost": 3 },
+      { "name": "Excited Blood", "slug": "excited-blood", "cost": 3 },
+      { "name": "Quiet Blood", "slug": "quiet-blood", "cost": 3 },
+      { "name": "Roaring Blood", "slug": "roaring-blood", "cost": 4 },
+      { "name": "Halted Blood", "slug": "halted-blood", "cost": 4 }
     ]
   },
   {
     "name": "Ghost of the Grasses",
     "shortDescription": "",
     "abilities": [
-      { "name": "Freeze", "slug": "freeze" },
-      { "name": "Persist", "slug": "persist" },
-      { "name": "Seek", "slug": "seek" },
-      { "name": "Flutter", "slug": "flutter" },
-      { "name": "Haul", "slug": "haul" },
-      { "name": "Debt", "slug": "debt" }
+      { "name": "Freeze", "slug": "freeze", "cost": 4 },
+      { "name": "Persist", "slug": "persist", "cost": 3 },
+      { "name": "Seek", "slug": "seek", "cost": 3 },
+      { "name": "Flutter", "slug": "flutter", "cost": 4 },
+      { "name": "Haul", "slug": "haul", "cost": 3 },
+      { "name": "Debt", "slug": "debt", "cost": 4 }
     ]
   },
   {
     "name": "Gredoran Aldam",
     "shortDescription": "",
     "abilities": [
-      {
-        "name": "Bronze Bones",
-        "slug": "bronze-bones"
-      },
-      {
-        "name": "Brass Coils",
-        "slug": "brass-coils"
-      },
-      {
-        "name": "Zinc Pulse",
-        "slug": "zinc-pulse"
-      },
-      {
-        "name": "Nickel Vessel",
-        "slug": "nickel-vessel"
-      },
-      {
-        "name": "Silver Sight",
-        "slug": "silver-sight"
-      },
-      {
-        "name": "Mercurial Skull",
-        "slug": "mercurial-skull"
-      }
+      { "name": "Bronze Bones", "slug": "bronze-bones", "cost": 4 },
+      { "name": "Brass Coils", "slug": "brass-coils", "cost": 3 },
+      { "name": "Zinc Pulse", "slug": "zinc-pulse", "cost": 3 },
+      { "name": "Nickel Vessel", "slug": "nickel-vessel", "cost": 4 },
+      { "name": "Silver Sight", "slug": "silver-sight", "cost": 3 },
+      { "name": "Mercurial Skull", "slug": "mercurial-skull", "cost": 4 },
+      { "name": "Arquerite Epiphany", "slug": "arquerite-epiphany", "cost": 4 },
+      { "name": "Mercurial Master", "slug": "mercurial-master", "cost": 4 },
+      { "name": "Rose Bronze Body", "slug": "rose-bronze-body", "cost": 4 },
+      { "name": "Inconel Core", "slug": "inconel-core", "cost": 4 }
     ]
   },
   {
     "name": "Inner Rhythm",
     "shortDescription": "",
     "abilities": [
-      { "name": "Mother Sun's Smile", "slug": "mother-suns-smile" },
-      { "name": "Sister Shade's Laugh", "slug": "sister-shades-laugh" },
-      { "name": "One Hundred Melodies", "slug": "one-hundred-melodies" },
-      { "name": "Let Loose the Soul", "slug": "let-loose-the-soul" },
-      { "name": "Douse", "slug": "douse" },
-      { "name": "Our Joy", "slug": "our-joy" }
+      { "name": "Mother Sun's Smile", "slug": "mother-suns-smile", "cost": 4 },
+      {
+        "name": "Sister Shade's Laugh",
+        "slug": "sister-shades-laugh",
+        "cost": 3
+      },
+      {
+        "name": "One Hundred Melodies",
+        "slug": "one-hundred-melodies",
+        "cost": 4
+      },
+      { "name": "Let Loose the Soul", "slug": "let-loose-the-soul", "cost": 3 },
+      { "name": "Douse", "slug": "douse", "cost": 4 },
+      { "name": "Our Joy", "slug": "our-joy", "cost": 3 }
     ]
   },
   {
     "name": "Potentia Humanitas",
     "shortDescription": "",
-    "abilities": []
+    "abilities": [
+      { "name": "Mathematica", "slug": "mathematica", "cost": 3 },
+      { "name": "Prosa", "slug": "prosa", "cost": 4 },
+      { "name": "Athletice", "slug": "athletice", "cost": 3 },
+      { "name": "Subtilitas", "slug": "subtilitas", "cost": 3 },
+      { "name": "Immunitas", "slug": "immunitas", "cost": 4 },
+      { "name": "Fallere", "slug": "fallere", "cost": 4 }
+    ]
   }
 ]

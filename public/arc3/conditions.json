@@ -23,6 +23,12 @@
   ],
   "optional": [
     {
+      "name": "Blood-starved",
+      "slug": "blood-starved",
+      "source": "Gredoran Aldam",
+      "sourceType": "aldam"
+    },
+    {
       "name": "Disinterested",
       "slug": "disinterested",
       "source": "Dunstan",
