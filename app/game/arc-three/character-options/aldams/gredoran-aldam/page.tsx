@@ -2,16 +2,14 @@ import Breadcrumbs from "@/components/ui/breadcrumbs";
 import {
   TypographyH1,
   TypographyH2,
-  TypographyH4,
   TypographyP,
 } from "@/components/ui/typography";
-import Ability from "@/components/abilities/ability";
 import aldams from "@/public/arc3/aldams.json";
-import { Ability as AbilityType } from "@/types/game";
-import { slugify } from "@/lib/utils";
+import { Ability } from "@/types/game";
+import Aldam from "../(components)/aldam";
 
 const gredoranAldams = aldams.find((a) => a.name === "Gredoran Aldam");
-const abilityMap = new Map<string, AbilityType>(
+const abilityMap = new Map<string, Ability>(
   gredoranAldams?.abilities.map((a) => [a.name, a]),
 );
 
@@ -32,32 +30,26 @@ export default async function Page() {
       <TypographyP>
         Limbs are the tools with which the body creates and destroys.
       </TypographyP>
-      <Aldam name="Bronze Bones" />
-      <Aldam name="Brass Coils" />
+      <GAldam name="Bronze Bones" />
+      <GAldam name="Brass Coils" />
+      <GAldam name="Rose Bronze Body" />
       <TypographyH2>Heart</TypographyH2>
       <TypographyP>Heart is the core, center, the self.</TypographyP>
-      <Aldam name="Zinc Pulse" />
-      <Aldam name="Nickel Vessel" />
+      <GAldam name="Zinc Pulse" />
+      <GAldam name="Nickel Vessel" />
+      <GAldam name="Inconel Core" />
       <TypographyH2>Eyes</TypographyH2>
       <TypographyP>
         Eyes are the mind and the external world brought into the self.
       </TypographyP>
-      <Aldam name="Silver Sight" />
-      <Aldam name="Mercurial Skull" />
+      <GAldam name="Silver Sight" />
+      <GAldam name="Mercurial Skull" />
+      <GAldam name="Mercurial Master" />
+      <GAldam name="Arquerite Epiphany" />
     </>
   );
 }
 
-function Aldam({ name }: { name: string }) {
-  return (
-    <>
-      <TypographyH4 id={slugify(name)}>{name}</TypographyH4>
-      <Ability
-        ability={abilityMap.get(name)!}
-        category="aldams"
-        arc="arc3"
-        type="gredoran-aldam"
-      />
-    </>
-  );
+function GAldam({ name }: { name: string }) {
+  return <Aldam ability={abilityMap.get(name)!} aldamSlug="gredoran-aldam" />;
 }

@@ -39,6 +39,7 @@ const sourceTypeColors: Record<string, string> = {
   skillset: "text-violet-600",
   donum: "text-fuchsia-600",
   transformation: "text-orange-600",
+  aldam: "text-rose-600",
 };
 
 export default function ConditionOptions() {

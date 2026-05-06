@@ -31,7 +31,7 @@ export default async function Page() {
       </TypographyP>
 
       <div className="flex flex-col gap-2 mt-4">
-        <RemembranceCard name="Dunstan" img="flower">
+        <RemembranceCard name="Dunstan Prisca" img="flower">
           <span className="text-muted-foreground">
             Argos, post the cataclysm (OSG) and pre Fenrir&apos;s rise.
           </span>
@@ -47,7 +47,7 @@ export default async function Page() {
             knowledge of Helix.
           </TypographyP>
         </RemembranceCard>
-        <RemembranceCard name="Engel" img="chain">
+        <RemembranceCard name="Engel Otto" img="chain">
           <span className="text-muted-foreground">
             Ulgatia, post the cataclysm (OSG) and pre Fenrir&apos;s rise.
           </span>

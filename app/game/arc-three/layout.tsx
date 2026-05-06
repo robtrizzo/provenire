@@ -55,7 +55,6 @@ const navigationData = [
         items: aldams.map((a) => ({
           title: a.name,
           url: `/game/arc-three/character-options/aldams/${slugify(a.name)}`,
-          wip: a.wip,
         })),
       },
       {

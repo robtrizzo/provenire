@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export default function FightingStyles() {
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col">
       <div className="flex flex-col">
         <TypographyH3>Table of Contents</TypographyH3>
         <nav className="flex flex-wrap gap-2">
@@ -34,7 +34,7 @@ export default function FightingStyles() {
 function FightingStyle({ fightingStyle }: { fightingStyle: FightingStyleV3 }) {
   return (
     <div>
-      <TypographyH2 className="border-b-0 pb-0" id={fightingStyle.name}>
+      <TypographyH2 className="border-b-0 pb-0 mt-16!" id={fightingStyle.name}>
         {fightingStyle.name}
       </TypographyH2>
       <span className="text-muted-foreground text-md">
