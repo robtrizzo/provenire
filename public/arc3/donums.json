@@ -60,9 +60,38 @@
         "name": "Donum Dolus",
         "slug": "donum-dolus",
         "cost": 0
+      },
+      {
+        "name": "Veil",
+        "slug": "veil",
+        "cost": 4
+      },
+      {
+        "name": "Glamor",
+        "slug": "glamor",
+        "cost": 3
+      },
+      {
+        "name": "Figment",
+        "slug": "figment",
+        "cost": 4
+      },
+      {
+        "name": "Limn",
+        "slug": "limn",
+        "cost": 3
+      },
+      {
+        "name": "Redolence",
+        "slug": "redolence",
+        "cost": 3
+      },
+      {
+        "name": "Subtlety",
+        "slug": "subtlety",
+        "cost": 4
       }
-    ],
-    "wip": true
+    ]
   },
   {
     "name": "Donum Fornax",
