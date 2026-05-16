@@ -309,6 +309,54 @@
     ]
   },
   {
+    "name": "Well God's Gift",
+    "shortDescription": "One hundred hearts beating in unison.",
+    "histories": [
+      {
+        "name": "Ancient Kilder",
+        "slug": "ancient-kilder",
+        "cost": 3
+      },
+      {
+        "name": "Pre-Cataclysm Kilder",
+        "slug": "pre-cataclysm-kilder",
+        "cost": 3
+      },
+      {
+        "name": "Post-Cataclysm Kilder",
+        "slug": "post-cataclysm-kilder",
+        "cost": 3
+      },
+      {
+        "name": "Pilgrimage to Helix",
+        "slug": "pilgrimage-to-helix",
+        "cost": 3
+      }
+    ],
+    "abilities": [
+      {
+        "name": "Determination",
+        "slug": "determination",
+        "cost": 5
+      },
+      {
+        "name": "Shapes of War",
+        "slug": "shapes-of-war",
+        "cost": 3
+      },
+      {
+        "name": "Snare and Shear",
+        "slug": "snare-and-shear",
+        "cost": 3
+      },
+      {
+        "name": "Collective Good",
+        "slug": "collective-good",
+        "cost": 2
+      }
+    ]
+  },
+  {
     "name": "Ygg",
     "shortDescription": "Bestial and primal. Wounded and lonely.",
     "histories": [

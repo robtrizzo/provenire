@@ -12,6 +12,18 @@
     ]
   },
   {
+    "name": "Determination",
+    "shortDescription": "",
+    "abilities": [
+      { "name": "Ripple", "slug": "ripple", "cost": 4 },
+      { "name": "Blur", "slug": "blur", "cost": 4 },
+      { "name": "Rhythm", "slug": "rhythm", "cost": 3 },
+      { "name": "Hilt", "slug": "hilt", "cost": 3 },
+      { "name": "Trace", "slug": "trace", "cost": 4 },
+      { "name": "Fathom", "slug": "fathom", "cost": 3 }
+    ]
+  },
+  {
     "name": "Ghost of the Grasses",
     "shortDescription": "",
     "abilities": [

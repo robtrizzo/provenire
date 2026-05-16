@@ -87,7 +87,7 @@ export default function Page() {
         <TypographyH3 className="mt-0">Donum Portentum</TypographyH3>
         <ClockCost num={5} ticks={5} />
       </div>
-      <span className="text-fuchsia-500 text-sm font-old">
+      <span className="text-orange-500 text-sm font-old">
         Gift of the Monster
       </span>
       <TypographyP>

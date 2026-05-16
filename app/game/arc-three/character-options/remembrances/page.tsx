@@ -185,6 +185,23 @@ export default async function Page() {
             Kingwulf, and the early days of the Steel Trap.
           </TypographyP>
         </RemembranceCard>
+        <RemembranceCard name="Well God's Gift" img="kilder">
+          <span className="text-muted-foreground">
+            Kilder, Era One, Two, and post cataclysm
+          </span>
+          <TypographyP>
+            Instead of a single legendary figure, the Well God has decided to
+            show you one hundred ordinary lives. Hunters, warriors, weavers;
+            sisters, brothers, parents, children; hale and ill; villain and
+            hero. Individuals each with their own desires, dreams, and ultimate
+            demises. The full spectrum of human experience in the Kilder
+            swamplands, now one hundred hearts entertwined and beating in
+            unison.
+          </TypographyP>
+          <TypographyP>
+            <b className="text-lg">Abilities:</b> survival, community, hunting
+          </TypographyP>
+        </RemembranceCard>
         <RemembranceCard name="Ygg" img="noose">
           <span className="text-muted-foreground">Rath, Era One.</span>
           <TypographyBlockquote className="text-red-500 mb-0 mt-1">

@@ -15,7 +15,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { cn } from "@/lib/utils";
+import { cn, slugify } from "@/lib/utils";
 import ClockCost from "@/components/clock-cost";
 
 const SOURCE_COLORS: Record<keyof UnlockedAbilities, string> = {
@@ -80,7 +80,7 @@ function useUnlockedAbilityGroups(): AbilityGroup[] {
     groups.push({
       label: `${SOURCE_LABEL[source]}: ${entity.name}`,
       source,
-      sourceName: entity.name.toLowerCase(),
+      sourceName: slugify(entity.name),
       category: CATEGORY_MAP[source],
       abilities,
     });
@@ -98,7 +98,7 @@ function useUnlockedAbilityGroups(): AbilityGroup[] {
       groups.push({
         label: `${SOURCE_LABEL[source]}: ${entity.name}`,
         source,
-        sourceName: entity.name.toLowerCase(),
+        sourceName: slugify(entity.name),
         category: CATEGORY_MAP[source],
         abilities,
       });
@@ -116,7 +116,7 @@ function useUnlockedAbilityGroups(): AbilityGroup[] {
       groups.push({
         label: `${SOURCE_LABEL["skillsetSubclass"]}: ${entity.name}`,
         source: "skillsetSubclass" as const,
-        sourceName: sourceKey.toLowerCase().replace(/\s+/g, "-"), // "hammer/slag"
+        sourceName: sourceKey.split("/").map(slugify).join("/"), // "hammer/slag"
         category: CATEGORY_MAP["skillsetSubclass"],
         abilities,
       });
