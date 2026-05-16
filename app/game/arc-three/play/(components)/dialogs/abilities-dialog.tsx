@@ -17,7 +17,7 @@ import AbilityComponent from "@/components/abilities/ability";
 import { TypographyH4 } from "@/components/ui/typography";
 import ClockCost from "@/components/clock-cost";
 import { Switch } from "@/components/ui/switch";
-import { cn } from "@/lib/utils";
+import { cn, slugify } from "@/lib/utils";
 
 interface NavItem {
   key: string;
@@ -238,7 +238,7 @@ function UnlockableAbility({
   const { toggle, isUnlocked } = useUnlockedAbilities();
   const unlocked = isUnlocked(source, sourceKey, ability.slug);
 
-  const type = sourceKey.toLocaleLowerCase().replace(/\s+/g, "-");
+  const type = sourceKey.split("/").map(slugify).join("/");
   return (
     <div className={cn("text-sm", !unlocked && "opacity-50")}>
       <TypographyH4 className="flex items-center justify-between gap-2 text-lg">

@@ -90,9 +90,7 @@ export default function Page() {
         <TypographyH3 className="mt-0">Donum Rex</TypographyH3>
         <ClockCost num={5} ticks={5} />
       </div>
-      <span className="text-fuchsia-500 text-sm font-old">
-        Gift of the King
-      </span>
+      <span className="text-orange-500 text-sm font-old">Gift of the King</span>
       <TypographyP>
         Not only a wolf, but a child of <b>Kingwulf</b> himself. Velda never met
         her father before nearly dying to his rampage, but the power of his

@@ -110,6 +110,7 @@ export function slugify(str: string) {
   return str
     .toLowerCase()
     .trim()
+    .replace(/'/g, "")
     .replace(/[\s\W-]+/g, "-")
     .replace(/^-+|-+$/g, "");
 }

@@ -183,6 +183,10 @@
       "description": "Observe, then act."
     },
     {
+      "name": "Music (Drums)",
+      "description": "Create music with percussion instruments."
+    },
+    {
       "name": "Music (Sing)",
       "description": "Create music with your voice."
     },
@@ -304,6 +308,10 @@
     },
     {
       "name": "Survival (Plains)",
+      "description": "Use your knowledge of the environment to stay alive."
+    },
+    {
+      "name": "Survival (Swamp)",
       "description": "Use your knowledge of the environment to stay alive."
     },
     {
