@@ -97,13 +97,14 @@
     "name": "Donum Fornax",
     "shortDescription": "Gift of the Forge",
     "abilities": [
-      {
-        "name": "Donum Fornax",
-        "slug": "donum-fornax",
-        "cost": 0
-      }
-    ],
-    "wip": true
+      { "name": "Donum Fornax", "slug": "donum-fornax", "cost": 0 },
+      { "name": "Assay", "slug": "assay", "cost": 3 },
+      { "name": "Resolve", "slug": "resolve", "cost": 3 },
+      { "name": "Render", "slug": "render", "cost": 3 },
+      { "name": "Refactor", "slug": "refactor", "cost": 3 },
+      { "name": "Manufacture", "slug": "manufacture", "cost": 3 },
+      { "name": "Anneal", "slug": "anneal", "cost": 3 }
+    ]
   },
   {
     "name": "Donum Ira",

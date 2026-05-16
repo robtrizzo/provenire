@@ -25,7 +25,7 @@ export default function DonumIra() {
       <TypographyP>
         Developing <b>Donum Ira</b> further is a deeply personal task, requiring
         the wielder to reckon with their own emotions as well as the new ones
-        introduced to their psyche. And do a substantial degree, it requires
+        introduced to their psyche. And to a substantial degree, it requires
         understanding others&apos; emotions as well.
       </TypographyP>
     </>
