@@ -44,13 +44,14 @@
     "name": "Donum Cinis",
     "shortDescription": "Gift of Ash",
     "abilities": [
-      {
-        "name": "Donum Cinis",
-        "slug": "donum-cinis",
-        "cost": 0
-      }
-    ],
-    "wip": true
+      { "name": "Donum Cinis", "slug": "donum-cinis", "cost": 0 },
+      { "name": "Shroud", "slug": "shroud", "cost": 3 },
+      { "name": "Eddy", "slug": "eddy", "cost": 4 },
+      { "name": "Billow", "slug": "billow", "cost": 3 },
+      { "name": "Husk", "slug": "husk", "cost": 4 },
+      { "name": "Dessicate", "slug": "dessicate", "cost": 3 },
+      { "name": "Leach", "slug": "leach", "cost": 4 }
+    ]
   },
   {
     "name": "Donum Dolus",
@@ -102,7 +103,7 @@
       { "name": "Resolve", "slug": "resolve", "cost": 3 },
       { "name": "Render", "slug": "render", "cost": 3 },
       { "name": "Refactor", "slug": "refactor", "cost": 3 },
-      { "name": "Manufacture", "slug": "manufacture", "cost": 3 },
+      { "name": "Manufacture", "slug": "manufacture", "cost": 6 },
       { "name": "Anneal", "slug": "anneal", "cost": 3 }
     ]
   },
