@@ -16,6 +16,7 @@ import {
 import {
   AbilityDice,
   BondDice,
+  DonumDie,
   EmotionDie,
   FortuneDice,
   PushDie,
@@ -126,6 +127,9 @@ export default async function Page() {
 
       <TypographyH4>Push Die</TypographyH4>
       <Die die={PushDie} />
+
+      <TypographyH4>Donum Die</TypographyH4>
+      <Die die={DonumDie} />
 
       <Separator className="mt-4" />
 

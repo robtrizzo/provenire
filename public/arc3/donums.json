@@ -21,12 +21,12 @@
       {
         "name": "Finesse",
         "slug": "finesse",
-        "cost": 3
+        "cost": 4
       },
       {
         "name": "Fabricate",
         "slug": "fabricate",
-        "cost": 3
+        "cost": 4
       },
       {
         "name": "Force",
@@ -36,7 +36,7 @@
       {
         "name": "Fill",
         "slug": "fill",
-        "cost": 3
+        "cost": 4
       }
     ]
   },
@@ -44,13 +44,14 @@
     "name": "Donum Cinis",
     "shortDescription": "Gift of Ash",
     "abilities": [
-      {
-        "name": "Donum Cinis",
-        "slug": "donum-cinis",
-        "cost": 0
-      }
-    ],
-    "wip": true
+      { "name": "Donum Cinis", "slug": "donum-cinis", "cost": 0 },
+      { "name": "Shroud", "slug": "shroud", "cost": 3 },
+      { "name": "Eddy", "slug": "eddy", "cost": 4 },
+      { "name": "Billow", "slug": "billow", "cost": 3 },
+      { "name": "Husk", "slug": "husk", "cost": 4 },
+      { "name": "Dessicate", "slug": "dessicate", "cost": 3 },
+      { "name": "Leach", "slug": "leach", "cost": 4 }
+    ]
   },
   {
     "name": "Donum Dolus",
@@ -60,21 +61,51 @@
         "name": "Donum Dolus",
         "slug": "donum-dolus",
         "cost": 0
+      },
+      {
+        "name": "Veil",
+        "slug": "veil",
+        "cost": 4
+      },
+      {
+        "name": "Glamor",
+        "slug": "glamor",
+        "cost": 3
+      },
+      {
+        "name": "Figment",
+        "slug": "figment",
+        "cost": 4
+      },
+      {
+        "name": "Limn",
+        "slug": "limn",
+        "cost": 3
+      },
+      {
+        "name": "Redolence",
+        "slug": "redolence",
+        "cost": 3
+      },
+      {
+        "name": "Subtlety",
+        "slug": "subtlety",
+        "cost": 4
       }
-    ],
-    "wip": true
+    ]
   },
   {
     "name": "Donum Fornax",
     "shortDescription": "Gift of the Forge",
     "abilities": [
-      {
-        "name": "Donum Fornax",
-        "slug": "donum-fornax",
-        "cost": 0
-      }
-    ],
-    "wip": true
+      { "name": "Donum Fornax", "slug": "donum-fornax", "cost": 0 },
+      { "name": "Assay", "slug": "assay", "cost": 3 },
+      { "name": "Resolve", "slug": "resolve", "cost": 3 },
+      { "name": "Render", "slug": "render", "cost": 3 },
+      { "name": "Refactor", "slug": "refactor", "cost": 3 },
+      { "name": "Manufacture", "slug": "manufacture", "cost": 6 },
+      { "name": "Anneal", "slug": "anneal", "cost": 3 }
+    ]
   },
   {
     "name": "Donum Ira",
@@ -91,7 +122,8 @@
       },
       {
         "name": "Heat Sink",
-        "slug": "heat-sink"
+        "slug": "heat-sink",
+        "cost": 4
       },
       {
         "name": "Flare",
@@ -99,7 +131,8 @@
       },
       {
         "name": "Wrathful Hands",
-        "slug": "wrathful-hands"
+        "slug": "wrathful-hands",
+        "cost": 4
       },
       {
         "name": "Ira Foci",
@@ -107,7 +140,8 @@
       },
       {
         "name": "Surpress and Release",
-        "slug": "surpress-and-release"
+        "slug": "surpress-and-release",
+        "cost": 4
       }
     ]
   },
@@ -115,25 +149,27 @@
     "name": "Donum Ignis",
     "shortDescription": "Gift of Fire",
     "abilities": [
-      {
-        "name": "Donum Ignis",
-        "slug": "donum-ignis",
-        "cost": 0
-      }
-    ],
-    "wip": true
+      { "name": "Donum Ignis", "slug": "donum-ignis", "cost": 0 },
+      { "name": "Breathe Flame", "slug": "breathe-flame", "cost": 3 },
+      { "name": "Flash", "slug": "flash", "cost": 3 },
+      { "name": "Mantle", "slug": "mantle", "cost": 4 },
+      { "name": "Retribution", "slug": "retribution", "cost": 4 },
+      { "name": "Forsaken Flame", "slug": "forsaken-flame", "cost": 4 },
+      { "name": "Pass the Torch", "slug": "pass-the-torch", "cost": 3 }
+    ]
   },
   {
     "name": "Donum Ossis",
     "shortDescription": "Gift of Bones",
     "abilities": [
-      {
-        "name": "Donum Ossis",
-        "slug": "donum-ossis",
-        "cost": 0
-      }
-    ],
-    "wip": true
+      { "name": "Donum Ossis", "slug": "donum-ossis", "cost": 0 },
+      { "name": "Rupture", "slug": "rupture", "cost": 4 },
+      { "name": "Remove", "slug": "remove", "cost": 3 },
+      { "name": "Reshape", "slug": "reshape", "cost": 3 },
+      { "name": "Reanimate", "slug": "reanimate", "cost": 4 },
+      { "name": "Regard", "slug": "regard", "cost": 3 },
+      { "name": "Reinforce", "slug": "reinforce", "cost": 4 }
+    ]
   },
   {
     "name": "Donum Silex",
@@ -154,7 +190,8 @@
       },
       {
         "name": "Move Stone",
-        "slug": "move-stone"
+        "slug": "move-stone",
+        "cost": 4
       },
       {
         "name": "Santoris Art",
@@ -162,11 +199,13 @@
       },
       {
         "name": "Latticework",
-        "slug": "latticework"
+        "slug": "latticework",
+        "cost": 4
       },
       {
         "name": "Ancestral Right",
-        "slug": "ancestral-right"
+        "slug": "ancestral-right",
+        "cost": 4
       }
     ]
   },
@@ -193,7 +232,8 @@
       },
       {
         "name": "Euphoria",
-        "slug": "euphoria"
+        "slug": "euphoria",
+        "cost": 4
       },
       {
         "name": "Reckless Strength",
@@ -205,11 +245,13 @@
       },
       {
         "name": "Inner Sensation",
-        "slug": "inner-sensation"
+        "slug": "inner-sensation",
+        "cost": 4
       },
       {
         "name": "Rapid Vitality",
-        "slug": "rapid-vitality"
+        "slug": "rapid-vitality",
+        "cost": 4
       },
       {
         "name": "Grow Reserve",

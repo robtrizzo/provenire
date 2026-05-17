@@ -228,6 +228,52 @@ export const ThreatSpread = () => {
   );
 };
 
+export const ThreatWrapped = () => {
+  return (
+    <g>
+      <path
+        d="M 9 9.5 L 12 11.5 L 15 9.5 L 13.5 9.5 L 12 10.5 L 10.5 9.5 Z"
+        fill="oklch(0.4169 0.1543 29.233880279627922)"
+        stroke="oklch(0.3042 0.1114 29.233880279627922)"
+        strokeWidth={0.2}
+      />
+      <path
+        d="M 15.5 10.5 L 12.5 12.5 L 12.5 16 L 13.4 15.5 L 13.5 13 L 15.5 11.5 Z"
+        fill="oklch(0.4169 0.1543 29.233880279627922)"
+        stroke="oklch(0.3042 0.1114 29.233880279627922)"
+        strokeWidth={0.2}
+      />
+      <path
+        d="M 11.5 16 L 11.5 12.5 L 8.5 10.5 L 8.5 11.5 L 10.5 13 L 10.75 15.5 Z"
+        fill="oklch(0.4169 0.1543 29.233880279627922)"
+        stroke="oklch(0.3042 0.1114 29.233880279627922)"
+        strokeWidth={0.2}
+      />
+      {/* Top triangle - shifted up a tad */}
+      <path
+        d="M 9 5.5 L 12 7.5 L 15 5.5 L 13.5 5.5 L 12 6.5 L 10.5 5.5 Z"
+        fill="oklch(0.4169 0.1543 29.233880279627922)"
+        stroke="oklch(0.3042 0.1114 29.233880279627922)"
+        strokeWidth={0.2}
+      />
+      {/* Right triangle - shifted up a tad */}
+      <path
+        d="M 18.5 13.5 L 15.5 15.5 L 15.5 19 L 16.4 18.5 L 16.5 16 L 18.5 14.5 Z"
+        fill="oklch(0.4169 0.1543 29.233880279627922)"
+        stroke="oklch(0.3042 0.1114 29.233880279627922)"
+        strokeWidth={0.2}
+      />
+      {/* Left triangle - shifted up a tad */}
+      <path
+        d="M 8.5 19 L 8.5 15.5 L 5.5 13.5 L 5.5 14.5 L 7.5 16 L 7.75 18.5 Z"
+        fill="oklch(0.4169 0.1543 29.233880279627922)"
+        stroke="oklch(0.3042 0.1114 29.233880279627922)"
+        strokeWidth={0.2}
+      />
+    </g>
+  );
+};
+
 export const Fang = () => {
   return (
     <g transform="scale(0.028) translate(170, 170)">

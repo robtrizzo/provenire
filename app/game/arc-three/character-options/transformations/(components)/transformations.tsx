@@ -1,13 +1,20 @@
 import Ability from "@/components/abilities/ability";
 import ClockCost from "@/components/clock-cost";
-import { TypographyH3 } from "@/components/ui/typography";
+import { TypographyH2, TypographyH3 } from "@/components/ui/typography";
 import { slugify } from "@/lib/utils";
-import { Ability as AbilityType, DonumV3 } from "@/types/game";
+import {
+  Ability as AbilityType,
+  TransformationSubclass,
+  TransformationV3,
+} from "@/types/game";
 import { Fragment } from "react/jsx-runtime";
+
 export default async function TransformationAbilities({
   transformation,
+  parentName,
 }: {
-  transformation: DonumV3;
+  transformation: TransformationV3 | TransformationSubclass;
+  parentName?: string;
 }) {
   return (
     <>
@@ -20,11 +27,22 @@ export default async function TransformationAbilities({
             {a.name} <ClockCost num={a.cost ?? 3} ticks={5} />
           </TypographyH3>
           <TransformationAbility
-            transformation={transformation.name}
+            transformation={parentName ?? transformation.name}
+            subtype={parentName ? transformation.name : undefined}
             ability={a}
           />
         </Fragment>
       ))}
+      {"subclasses" in transformation &&
+        transformation.subclasses?.map((s, idx) => (
+          <div key={idx}>
+            <TypographyH2>{s.name}</TypographyH2>
+            <TransformationAbilities
+              transformation={s}
+              parentName={transformation.name} // ← pass parent here
+            />
+          </div>
+        ))}
     </>
   );
 }
@@ -32,9 +50,11 @@ export default async function TransformationAbilities({
 function TransformationAbility({
   transformation,
   ability,
+  subtype,
 }: {
   transformation: string;
   ability: AbilityType;
+  subtype?: string;
 }) {
   return (
     <Ability
@@ -42,6 +62,7 @@ function TransformationAbility({
       category="transformations"
       arc="arc3"
       type={slugify(transformation)}
+      subtype={subtype ? slugify(subtype) : undefined}
     />
   );
 }

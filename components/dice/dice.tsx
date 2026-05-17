@@ -7,6 +7,7 @@ import {
   ThetaTriple,
   Threat,
   ThreatSpread,
+  ThreatWrapped,
 } from "./dice-symbols";
 import { ReactNode } from "react";
 import type { Die, DieFace, DieVariant, EffectDegree } from "@/types/dice";
@@ -43,12 +44,20 @@ export function renderFaceSymbols(face: DieFace): ReactNode {
   }
 
   const hasThreat = base.includes("t");
+
   const hasAdvantage = base.includes("a");
   const hasEffect = effectDegree !== null;
 
   // If face has effect, threats are "spread" (use ThreatSpread instead of Threat)
+  const threatCount = (base.match(/t/g) ?? []).length; // 1 for "t", 2 for "tt"
   const threatSymbol =
-    hasEffect || hasAdvantage ? <ThreatSpread /> : <Threat />;
+    threatCount >= 2 ? (
+      <ThreatWrapped />
+    ) : hasEffect || hasAdvantage ? (
+      <ThreatSpread />
+    ) : (
+      <Threat />
+    );
 
   return (
     <>

@@ -229,6 +229,7 @@ function DetailsSection() {
       skill: 1,
       bond: 2,
       push: 3,
+      donum: 4,
       default: 0,
       emotion: 0,
       fortune: 0,
