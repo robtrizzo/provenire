@@ -508,12 +508,18 @@ export type AldamV3 = Described & {
   abilities: Ability[];
 };
 
+export type TransformationSubclass = Described & {
+  description: string;
+  abilities: Ability[];
+};
+
 export type TransformationV3 = Described & {
   abilities: Ability[];
   phase?: DonumPhase;
   progress?: number;
   description?: string;
   provenire?: string;
+  subclasses?: TransformationSubclass[];
 };
 
 export type DonumV3 = Described & {

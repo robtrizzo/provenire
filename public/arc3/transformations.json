@@ -31,11 +31,13 @@
       },
       {
         "name": "Predator's Pulse",
-        "slug": "predators-pulse"
+        "slug": "predators-pulse",
+        "cost": 4
       },
       {
         "name": "Weapons of the Wolf",
-        "slug": "weapons-of-the-wolf"
+        "slug": "weapons-of-the-wolf",
+        "cost": 4
       },
       {
         "name": "Sturdy Skin",
@@ -47,7 +49,8 @@
       },
       {
         "name": "Grand Appetite",
-        "slug": "grand-appetite"
+        "slug": "grand-appetite",
+        "cost": 4
       }
     ]
   },
@@ -64,5 +67,40 @@
       }
     ],
     "wip": true
+  },
+  {
+    "name": "Donum Portentum",
+    "shortDescription": "Gift of the Monster",
+    "description": "",
+    "provenire": "",
+    "abilities": [],
+    "subclasses": [
+      {
+        "name": "Ygg",
+        "shortDescription": "A natural disaster",
+        "description": "",
+        "abilities": [
+          { "name": "Donum Portentum", "slug": "donum-portentum", "cost": 0 },
+          { "name": "Scent of Meat", "slug": "scent-of-meat", "cost": 3 },
+          { "name": "Gluttonous Pulse", "slug": "gluttonous-pulse", "cost": 3 },
+          {
+            "name": "Weapons of the Roil",
+            "slug": "weapons-of-the-roil",
+            "cost": 3
+          },
+          { "name": "Gnarled Skin", "slug": "gnarled-skin", "cost": 4 },
+          {
+            "name": "Explosive Shifting",
+            "slug": "explosive-shifting",
+            "cost": 4
+          },
+          {
+            "name": "Monstrous Appetite",
+            "slug": "monstrous-appetite",
+            "cost": 4
+          }
+        ]
+      }
+    ]
   }
 ]

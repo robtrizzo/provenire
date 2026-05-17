@@ -21,12 +21,12 @@
       {
         "name": "Finesse",
         "slug": "finesse",
-        "cost": 3
+        "cost": 4
       },
       {
         "name": "Fabricate",
         "slug": "fabricate",
-        "cost": 3
+        "cost": 4
       },
       {
         "name": "Force",
@@ -36,7 +36,7 @@
       {
         "name": "Fill",
         "slug": "fill",
-        "cost": 3
+        "cost": 4
       }
     ]
   },
@@ -122,7 +122,8 @@
       },
       {
         "name": "Heat Sink",
-        "slug": "heat-sink"
+        "slug": "heat-sink",
+        "cost": 4
       },
       {
         "name": "Flare",
@@ -130,7 +131,8 @@
       },
       {
         "name": "Wrathful Hands",
-        "slug": "wrathful-hands"
+        "slug": "wrathful-hands",
+        "cost": 4
       },
       {
         "name": "Ira Foci",
@@ -138,7 +140,8 @@
       },
       {
         "name": "Surpress and Release",
-        "slug": "surpress-and-release"
+        "slug": "surpress-and-release",
+        "cost": 4
       }
     ]
   },
@@ -159,13 +162,14 @@
     "name": "Donum Ossis",
     "shortDescription": "Gift of Bones",
     "abilities": [
-      {
-        "name": "Donum Ossis",
-        "slug": "donum-ossis",
-        "cost": 0
-      }
-    ],
-    "wip": true
+      { "name": "Donum Ossis", "slug": "donum-ossis", "cost": 0 },
+      { "name": "Rupture", "slug": "rupture", "cost": 4 },
+      { "name": "Remove", "slug": "remove", "cost": 3 },
+      { "name": "Reshape", "slug": "reshape", "cost": 3 },
+      { "name": "Reanimate", "slug": "reanimate", "cost": 4 },
+      { "name": "Regard", "slug": "regard", "cost": 3 },
+      { "name": "Reinforce", "slug": "reinforce", "cost": 4 }
+    ]
   },
   {
     "name": "Donum Silex",
@@ -186,7 +190,8 @@
       },
       {
         "name": "Move Stone",
-        "slug": "move-stone"
+        "slug": "move-stone",
+        "cost": 4
       },
       {
         "name": "Santoris Art",
@@ -194,11 +199,13 @@
       },
       {
         "name": "Latticework",
-        "slug": "latticework"
+        "slug": "latticework",
+        "cost": 4
       },
       {
         "name": "Ancestral Right",
-        "slug": "ancestral-right"
+        "slug": "ancestral-right",
+        "cost": 4
       }
     ]
   },
@@ -225,7 +232,8 @@
       },
       {
         "name": "Euphoria",
-        "slug": "euphoria"
+        "slug": "euphoria",
+        "cost": 4
       },
       {
         "name": "Reckless Strength",
@@ -237,11 +245,13 @@
       },
       {
         "name": "Inner Sensation",
-        "slug": "inner-sensation"
+        "slug": "inner-sensation",
+        "cost": 4
       },
       {
         "name": "Rapid Vitality",
-        "slug": "rapid-vitality"
+        "slug": "rapid-vitality",
+        "cost": 4
       },
       {
         "name": "Grow Reserve",

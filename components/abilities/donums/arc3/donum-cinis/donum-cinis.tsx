@@ -7,7 +7,7 @@ export default function DonumCinis() {
         hollowing you out, you felt it encounter something which obliterated it
         entirely. You don&apos;t know what it means to hold power over the
         apparent antithesis of the stuff that makes everyone&apos;s power work.
-        But it&apos;s your power nonetheless. The cracks{" "}
+        But that&apos;s your power nonetheless. The cracks{" "}
         <b className="text-blue-500">Water</b> made in your body are still
         there; when you focus you can hold onto some long enough to harness your
         control over ash.
