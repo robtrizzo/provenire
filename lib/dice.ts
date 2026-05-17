@@ -30,6 +30,11 @@ export const PushDie: Die = {
   variant: "push",
 };
 
+export const DonumDie: Die = {
+  faces: ["ttc", "tt", "ta", "t:r", "tc:s", "ec:e"],
+  variant: "donum",
+};
+
 export const EmotionDie: Die = {
   faces: ["t", "t", "t", "t", "tc", "ac"],
   variant: "emotion",

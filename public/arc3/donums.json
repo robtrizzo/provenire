@@ -146,13 +146,14 @@
     "name": "Donum Ignis",
     "shortDescription": "Gift of Fire",
     "abilities": [
-      {
-        "name": "Donum Ignis",
-        "slug": "donum-ignis",
-        "cost": 0
-      }
-    ],
-    "wip": true
+      { "name": "Donum Ignis", "slug": "donum-ignis", "cost": 0 },
+      { "name": "Breathe Flame", "slug": "breathe-flame", "cost": 3 },
+      { "name": "Flash", "slug": "flash", "cost": 3 },
+      { "name": "Mantle", "slug": "mantle", "cost": 4 },
+      { "name": "Retribution", "slug": "retribution", "cost": 4 },
+      { "name": "Forsaken Flame", "slug": "forsaken-flame", "cost": 4 },
+      { "name": "Pass the Torch", "slug": "pass-the-torch", "cost": 3 }
+    ]
   },
   {
     "name": "Donum Ossis",

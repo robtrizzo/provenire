@@ -1,5 +1,5 @@
 // Base faces without any effect
-export type BaseFace = "t" | "a" | "ta" | "_";
+export type BaseFace = "t" | "a" | "ta" | "tt" | "_";
 
 // Effect degrees: r = reduced, s = standard, e = enhanced
 export type EffectDegree = "r" | "s" | "e";
@@ -7,10 +7,10 @@ export type EffectDegree = "r" | "s" | "e";
 export type CritMarker = "c";
 
 // DieFace can be:
-// - A base face with no effect: "t", "a", "ta", "_"
-// - A base face with crit marker: "tc", "ac", "tac", "_c"
-// - A base face with effect: "t:s", "ta:e", etc.
-// - A base face with crit and effect: "tc:s", "tac:e", etc.
+// - A base face with no effect: "t", "a", "ta", "tt", "_"
+// - A base face with crit marker: "tc", "ac", "tac", "ttc", "_c"
+// - A base face with effect: "t:s", "ta:e", "tt:s", etc.
+// - A base face with crit and effect: "tc:s", "tac:e", "ttc:s", etc.
 // - Pure effect: "e:r", "e:s", "e:e"
 // - Pure effect with crit: "ec:r", "ec:s", "ec:e"
 export type DieFace =
@@ -30,4 +30,5 @@ export type DieVariant =
   | "skill"
   | "emotion"
   | "push"
+  | "donum"
   | "fortune";
