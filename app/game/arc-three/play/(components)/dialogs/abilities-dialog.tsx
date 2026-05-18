@@ -100,13 +100,18 @@ function useNavItems(): NavItem[] {
     });
   }
   for (const transformation of state.transformations) {
+    const subclass = state.transformationSubclasses?.[transformation.name];
     items.push({
       key: `transformations-${transformation.name}`,
-      label: transformation.name,
+      label: subclass
+        ? `${transformation.name} (${subclass.name})`
+        : transformation.name,
       sublabel: "Transformation",
       source: "transformations",
-      sourceKey: transformation.name,
-      abilities: transformation.abilities,
+      sourceKey: subclass
+        ? `${transformation.name}/${subclass.name}`
+        : transformation.name,
+      abilities: subclass ? subclass.abilities : transformation.abilities,
     });
   }
   for (const donum of state.donums) {

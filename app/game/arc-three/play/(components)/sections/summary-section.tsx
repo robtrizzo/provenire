@@ -42,6 +42,7 @@ export default function SummarySection() {
       fightingStyles,
       aldams,
       transformations,
+      transformationSubclasses,
       donums,
       name,
       portrait,
@@ -62,6 +63,15 @@ export default function SummarySection() {
     transformations.length > 0 ||
     donums.length > 0;
   const hasExtras = remembrance || integration || responsibility || role;
+
+  const flatTransformationItems = ALL_TRANSFORMATIONS.flatMap((t) =>
+    t.subclasses?.length
+      ? t.subclasses.map((sc) => ({
+          name: `${t.name} (${sc.name})`,
+          shortDescription: sc.shortDescription,
+        }))
+      : [{ name: t.name, shortDescription: t.shortDescription }],
+  );
 
   if (compact) {
     return (
@@ -154,7 +164,13 @@ export default function SummarySection() {
               )}
               {transformations.length > 0 && (
                 <CollapsedBadgeTooltip
-                  items={transformations}
+                  items={transformations.map((t) => ({
+                    name: transformationSubclasses[t.name]
+                      ? `${t.name} (${transformationSubclasses[t.name].name})`
+                      : t.name,
+                    shortDescription: (transformationSubclasses[t.name] ?? t)
+                      .shortDescription,
+                  }))}
                   label="Transformation"
                   className="border-orange-500/40 bg-orange-500/10 text-orange-500 font-bold"
                   decoratorClassName="text-orange-500"
@@ -329,21 +345,43 @@ export default function SummarySection() {
             onClear={() => set({ aldams: [] })}
           />
           <ClearableMultiSelect
-            items={ALL_TRANSFORMATIONS}
-            values={transformations.map((t) => t.name)}
+            items={flatTransformationItems}
+            values={transformations.map((t) =>
+              transformationSubclasses[t.name]
+                ? `${t.name} (${transformationSubclasses[t.name].name})`
+                : t.name,
+            )}
             placeholder={
               <b className="text-orange-500">Select transformations</b>
             }
             triggerClassName="font-bold text-orange-500 w-full bg-background!"
             badgeLabel={(t) => <b className="text-orange-500">{t.name}</b>}
-            onValuesChange={(names) =>
+            onValuesChange={(names) => {
+              const newTransformations: typeof transformations = [];
+              const newSubclasses: typeof transformationSubclasses = {};
+              for (const name of names) {
+                const parent = ALL_TRANSFORMATIONS.find((t) =>
+                  t.subclasses?.some((sc) => `${t.name} (${sc.name})` === name),
+                );
+                if (parent) {
+                  const sc = parent.subclasses!.find(
+                    (sc) => `${parent.name} (${sc.name})` === name,
+                  )!;
+                  newTransformations.push(parent);
+                  newSubclasses[parent.name] = sc;
+                } else {
+                  const t = ALL_TRANSFORMATIONS.find((t) => t.name === name);
+                  if (t) newTransformations.push(t);
+                }
+              }
               set({
-                transformations: ALL_TRANSFORMATIONS.filter((t) =>
-                  names.includes(t.name),
-                ),
-              })
+                transformations: newTransformations,
+                transformationSubclasses: newSubclasses,
+              });
+            }}
+            onClear={() =>
+              set({ transformations: [], transformationSubclasses: {} })
             }
-            onClear={() => set({ transformations: [] })}
             showDescription
           />
           <ClearableMultiSelect

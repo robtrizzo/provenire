@@ -42,6 +42,7 @@ import {
   Role,
   SkillsetSubclass,
   SkillsetV3,
+  TransformationSubclass,
   TransformationV3,
 } from "@/types/game";
 import { useMutation } from "@tanstack/react-query";
@@ -147,6 +148,7 @@ const DEFAULT_STATE = {
   fightingStyles: [],
   aldams: [],
   transformations: [],
+  transformationSubclasses: {},
   donums: [],
   remembrance: undefined,
   integration: undefined,
@@ -205,6 +207,7 @@ interface CharacterSheetState {
   fightingStyles: FightingStyleV3[];
   aldams: AldamV3[];
   transformations: TransformationV3[];
+  transformationSubclasses: Record<string, TransformationSubclass>;
   donums: DonumV3[];
   remembrance?: Remembrance;
   integration?: Integration;
