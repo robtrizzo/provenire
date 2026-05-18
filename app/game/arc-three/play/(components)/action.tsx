@@ -1,6 +1,7 @@
 import {
   Command,
   CommandEmpty,
+  CommandGroup,
   CommandInput,
   CommandItem,
   CommandList,
@@ -131,6 +132,25 @@ function RollableWrapper({ action, children }: RollableWrapperProps) {
               prevBond = bonds.find((b) => b.name === existingBondDie.label);
             }
             swapDice(prevBond, action);
+            break;
+          }
+          case "fightingStyle": {
+            const onlyLeftTaken = rollLeft?.name === action.name && !rollRight;
+            const onlyRightTaken = rollRight?.name === action.name && !rollLeft;
+
+            if (onlyLeftTaken) {
+              setRollLeft(undefined);
+              setRollRight(action);
+            } else if (onlyRightTaken) {
+              setRollRight(undefined);
+              setRollLeft(action);
+            } else if (!rollRight) {
+              setRollRight(action);
+              swapDice(undefined, action);
+            } else if (!rollLeft) {
+              setRollLeft(action);
+              swapDice(undefined, action);
+            }
             break;
           }
           default:
@@ -295,13 +315,13 @@ function ActionLevelStatic({ action }: { action: ActionV3 }) {
       {Array.from({ length: diceLength }).map((_, idx) =>
         idx < action.level.length ? (
           <div className="col-span-1" key={idx}>
-            <div className="border-border border-[1px] rounded-full w-6 h-6 flex items-center justify-center select-none">
+            <div className="border-border border rounded-full w-6 h-6 flex items-center justify-center select-none">
               <code>{action.level[idx]}</code>
             </div>
           </div>
         ) : (
           <div className="col-span-1" key={idx}>
-            <div className="border-border border-[1px] rounded-full w-6 h-6 flex items-center justify-center select-none">
+            <div className="border-border border rounded-full w-6 h-6 flex items-center justify-center select-none">
               <LockKeyholeOpen size={16} />
             </div>
           </div>
@@ -322,7 +342,7 @@ function ActionLevelBubble({
     <Tooltip>
       <TooltipTrigger asChild>
         <div
-          className="border-border hover:border-primary border-[1px] rounded-full w-6 h-6 flex items-center justify-center hover:bg-input hover:cursor-pointer hover:font-bold select-none"
+          className="border-border hover:border-primary border rounded-full w-6 h-6 flex items-center justify-center hover:bg-input hover:cursor-pointer hover:font-bold select-none"
           onClick={(e) => {
             e.stopPropagation();
             handleChange(level + 1);
@@ -335,7 +355,7 @@ function ActionLevelBubble({
           <code>{level}</code>
         </div>
       </TooltipTrigger>
-      <TooltipContent className="flex flex-col items-start gap-1 border-border border-[1px]">
+      <TooltipContent className="flex flex-col items-start gap-1 border-border border">
         <span className="flex items-center gap-1">
           <MousePointerClick size={16} className="text-emerald-600" />
           <b>Left-click</b> to level{" "}
@@ -355,7 +375,7 @@ function UnlockLevelBubble({ handleUnlock }: { handleUnlock: () => void }) {
     <Tooltip>
       <TooltipTrigger asChild>
         <div
-          className="border-border hover:border-primary border-[1px] rounded-full w-6 h-6 flex items-center justify-center hover:bg-input hover:cursor-pointer hover:font-bold select-none"
+          className="border-border hover:border-primary border rounded-full w-6 h-6 flex items-center justify-center hover:bg-input hover:cursor-pointer hover:font-bold select-none"
           onClick={(e) => {
             e.stopPropagation();
             handleUnlock();
@@ -364,7 +384,7 @@ function UnlockLevelBubble({ handleUnlock }: { handleUnlock: () => void }) {
           <LockKeyholeOpen size={16} />
         </div>
       </TooltipTrigger>
-      <TooltipContent className="flex flex-col items-start gap-1 border-border border-[1px]">
+      <TooltipContent className="flex flex-col items-start gap-1 border-border border">
         <span className="flex items-center gap-1">
           <MousePointerClick size={16} className="text-emerald-600" /> unlock
           die
@@ -378,8 +398,6 @@ function UnlockHeaderContent({ className, type }: UnlockActionProps) {
   const { actions, setActions } = useActions();
   const [open, setOpen] = useState(false);
 
-  const allActions = [...actions_list.Aptitudes, ...actions_list.Skills];
-
   const actionNames = new Set(actions.map((a) => a.name));
 
   function handleAddAction(action: { name: string; description: string }) {
@@ -389,7 +407,7 @@ function UnlockHeaderContent({ className, type }: UnlockActionProps) {
       name: action.name,
       description: action.description,
       type,
-      level: type === "skill" ? [1] : [0],
+      level: type === "skill" || type === "fightingStyle" ? [1] : [0],
     };
     setActions([...actions, newAction]);
     setOpen(false);
@@ -400,18 +418,18 @@ function UnlockHeaderContent({ className, type }: UnlockActionProps) {
       <PopoverTrigger asChild>
         <div
           className={cn(
-            "col-span-8 flex justify-center border-border border-dashed border-[1px] rounded-sm hover:bg-secondary/50 hover:cursor-pointer",
+            "col-span-8 flex justify-center border-border border-dashed border rounded-sm hover:bg-secondary/50 hover:cursor-pointer",
             className,
           )}
         >
-          <div className="h-[26px] flex items-center">
+          <div className="h-6.5 flex items-center">
             <span className="text-sm text-muted-foreground uppercase">
               Unlock {type}
             </span>
           </div>
         </div>
       </PopoverTrigger>
-      <PopoverContent className="max-w-screen w-[600px] relative max-h-[500px] overflow-auto">
+      <PopoverContent className="max-w-screen w-150 relative max-h-125 overflow-auto">
         {type === "bond" ? (
           <form
             onSubmit={(e) => {
@@ -434,28 +452,78 @@ function UnlockHeaderContent({ className, type }: UnlockActionProps) {
             <CommandInput placeholder="Search actions..." className="h-9" />
             <CommandList>
               <CommandEmpty>No action found.</CommandEmpty>
-              {allActions.map((action, i) => {
-                const skillUnlocked = actionNames.has(action.name);
-                return (
-                  <CommandItem
-                    key={action.name + i}
-                    value={action.name}
-                    onSelect={() => {
-                      handleAddAction(action);
-                    }}
-                    className={cn(
-                      "hover:cursor-pointer",
-                      skillUnlocked &&
-                        "text-muted-foreground bg-accent/50 hover:cursor-auto data-[selected=true]:bg-accent/50 data-[selected=true]:text-muted-foreground",
-                    )}
-                  >
-                    <div className="grid grid-cols-8 w-full">
-                      <span className="col-span-2">{action.name}</span>
-                      <span className="col-span-6">{action.description}</span>
-                    </div>
-                  </CommandItem>
-                );
-              })}
+              <CommandGroup heading="Aptitudes">
+                {actions_list.Aptitudes.map((action, i) => {
+                  const skillUnlocked = actionNames.has(action.name);
+                  return (
+                    <CommandItem
+                      key={action.name + i}
+                      value={action.name}
+                      onSelect={() => {
+                        handleAddAction(action);
+                      }}
+                      className={cn(
+                        "hover:cursor-pointer",
+                        skillUnlocked &&
+                          "text-muted-foreground bg-accent/50 hover:cursor-auto data-[selected=true]:bg-accent/50 data-[selected=true]:text-muted-foreground",
+                      )}
+                    >
+                      <div className="grid grid-cols-8 w-full">
+                        <span className="col-span-2">{action.name}</span>
+                        <span className="col-span-6">{action.description}</span>
+                      </div>
+                    </CommandItem>
+                  );
+                })}
+              </CommandGroup>
+              <CommandGroup heading="Skills">
+                {actions_list.Skills.map((action, i) => {
+                  const skillUnlocked = actionNames.has(action.name);
+                  return (
+                    <CommandItem
+                      key={action.name + i}
+                      value={action.name}
+                      onSelect={() => {
+                        handleAddAction(action);
+                      }}
+                      className={cn(
+                        "hover:cursor-pointer",
+                        skillUnlocked &&
+                          "text-muted-foreground bg-accent/50 hover:cursor-auto data-[selected=true]:bg-accent/50 data-[selected=true]:text-muted-foreground",
+                      )}
+                    >
+                      <div className="grid grid-cols-8 w-full">
+                        <span className="col-span-2">{action.name}</span>
+                        <span className="col-span-6">{action.description}</span>
+                      </div>
+                    </CommandItem>
+                  );
+                })}
+              </CommandGroup>
+              <CommandGroup heading="Fighting Styles">
+                {actions_list.FightingStyles.map((action, i) => {
+                  const skillUnlocked = actionNames.has(action.name);
+                  return (
+                    <CommandItem
+                      key={action.name + i}
+                      value={action.name}
+                      onSelect={() => {
+                        handleAddAction(action);
+                      }}
+                      className={cn(
+                        "hover:cursor-pointer",
+                        skillUnlocked &&
+                          "text-muted-foreground bg-accent/50 hover:cursor-auto data-[selected=true]:bg-accent/50 data-[selected=true]:text-muted-foreground",
+                      )}
+                    >
+                      <div className="grid grid-cols-8 w-full">
+                        <span className="col-span-2">{action.name}</span>
+                        <span className="col-span-6">{action.description}</span>
+                      </div>
+                    </CommandItem>
+                  );
+                })}
+              </CommandGroup>
             </CommandList>
           </Command>
         )}
@@ -468,7 +536,7 @@ function TooltipWrapper({ action, children }: TooltipWrapperProps) {
   return (
     <Tooltip>
       <TooltipTrigger asChild>{children}</TooltipTrigger>
-      <TooltipContent className="flex flex-col items-start gap-1 border-border border-[1px]">
+      <TooltipContent className="flex flex-col items-start gap-1 border-border border">
         {action.description}
       </TooltipContent>
     </Tooltip>

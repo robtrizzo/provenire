@@ -270,6 +270,7 @@ interface CharacterSheetContextProps {
   aptitudes: ActionV3[];
   skills: ActionV3[];
   bonds: ActionV3[];
+  fightingStyles: ActionV3[];
 }
 
 function reducer(
@@ -577,6 +578,9 @@ export default function CharacterSheetProvider({
   const aptitudes = state.actions.filter((a) => a.type === "aptitude");
   const skills = state.actions.filter((a) => a.type === "skill");
   const bonds = state.actions.filter((a) => a.type === "bond");
+  const fightingStyles = state.actions.filter(
+    (a) => a.type === "fightingStyle",
+  );
 
   return (
     <CharacterSheetContext.Provider
@@ -595,6 +599,7 @@ export default function CharacterSheetProvider({
         aptitudes,
         skills,
         bonds,
+        fightingStyles,
       }}
     >
       {children}

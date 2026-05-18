@@ -7,7 +7,7 @@ import {
 import Action from "../action";
 
 export default function ActionSection() {
-  const { aptitudes, skills } = useCharacterSheet();
+  const { aptitudes, skills, fightingStyles } = useCharacterSheet();
   return (
     <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-1">
       <TypographyH2 className="text-md mt-0 uppercase text-muted-foreground order-1">
@@ -51,6 +51,27 @@ export default function ActionSection() {
             type="skill"
             className="p-2"
             key={`unlock-skill-${idx}`}
+          />
+        ))}
+      </div>
+      <TypographyH2 className="text-md mt-4 uppercase text-muted-foreground order-3 col-span-2">
+        Fighting Styles
+      </TypographyH2>
+      <div className="flex flex-col gap-0.5 order-3 col-span-2">
+        {fightingStyles.map((a, idx) => (
+          <Action.Wrapper.Tooltip action={a} key={idx + a.name}>
+            <Action.Wrapper.Menu action={a}>
+              <Action.Wrapper.Rollable action={a}>
+                <Action.HeaderContent.Simple action={a} />
+              </Action.Wrapper.Rollable>
+            </Action.Wrapper.Menu>
+          </Action.Wrapper.Tooltip>
+        ))}
+        {Array.from({ length: 1 }).map((_, idx) => (
+          <Action.HeaderContent.Unlock
+            type="fightingStyle"
+            className="p-2"
+            key={`unlock-fightingStyle-${idx}`}
           />
         ))}
       </div>
