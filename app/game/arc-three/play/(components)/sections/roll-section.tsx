@@ -123,7 +123,7 @@ const RollSection = () => {
 function RollSelect({ disabled = false }: { disabled?: boolean }) {
   const { rollLeft, rollRight, swapDice, setRollLeft, setRollRight } =
     useRoll();
-  const { aptitudes, skills } = useCharacterSheet();
+  const { aptitudes, skills, fightingStyles } = useCharacterSheet();
 
   return (
     <div className="flex gap-4">
@@ -131,9 +131,11 @@ function RollSelect({ disabled = false }: { disabled?: boolean }) {
         value={rollLeft?.name || ""}
         disabled={disabled}
         onValueChange={(value) => {
-          const foundAction = aptitudes.find((a) => a.name === value);
+          const foundAction =
+            aptitudes.find((a) => a.name === value) ??
+            fightingStyles.find((a) => a.name === value);
           if (!foundAction) {
-            console.error("Could not find action or bond for value", value);
+            console.error("Could not find action for value", value);
             return;
           }
           const prevAction = rollLeft;
@@ -155,6 +157,16 @@ function RollSelect({ disabled = false }: { disabled?: boolean }) {
             </SelectItem>
           ))}
           <SelectSeparator />
+          {fightingStyles.map(({ name }, idx) => (
+            <SelectItem
+              key={name + idx}
+              value={name}
+              disabled={rollRight?.name === name}
+            >
+              {name}
+            </SelectItem>
+          ))}
+          <SelectSeparator />
           <Button
             variant="secondary"
             size="sm"
@@ -172,9 +184,11 @@ function RollSelect({ disabled = false }: { disabled?: boolean }) {
         value={rollRight?.name || ""}
         disabled={disabled}
         onValueChange={(value) => {
-          const foundAction = skills.find((a) => a.name === value);
+          const foundAction =
+            skills.find((a) => a.name === value) ??
+            fightingStyles.find((a) => a.name === value);
           if (!foundAction) {
-            console.error("Could not find action or bond for value", value);
+            console.error("Could not find action for value", value);
             return;
           }
           const prevAction = rollRight;
@@ -192,6 +206,16 @@ function RollSelect({ disabled = false }: { disabled?: boolean }) {
         <SelectContent>
           {skills.map(({ name }, idx) => (
             <SelectItem key={name + idx} value={name}>
+              {name}
+            </SelectItem>
+          ))}
+          <SelectSeparator />
+          {fightingStyles.map(({ name }, idx) => (
+            <SelectItem
+              key={name + idx}
+              value={name}
+              disabled={rollLeft?.name === name}
+            >
               {name}
             </SelectItem>
           ))}
@@ -326,7 +350,7 @@ function BondDiceSection() {
           {bonds.map((b, idx) => (
             <div
               key={b + idx}
-              className="group col-span-1 flex justify-center border-sky-600/50 hover:bg-sky-600/10 hover:cursor-pointer border-[1px] rounded-sm"
+              className="group col-span-1 flex justify-center border-sky-600/50 hover:bg-sky-600/10 hover:cursor-pointer border rounded-sm"
               onClick={() => {
                 removeDiceByLabel(b);
               }}
@@ -362,7 +386,7 @@ function BonusDiceSection() {
             <Button
               variant="outline"
               className={cn(
-                containsPushDie && "!border-emerald-600",
+                containsPushDie && "border-emerald-600!",
                 "flex items-center justify-center",
               )}
               onClick={() => {
@@ -379,7 +403,7 @@ function BonusDiceSection() {
               </div>
             </Button>
           </TooltipTrigger>
-          <TooltipContent className="flex flex-col items-start gap-1 border-border border-[1px]">
+          <TooltipContent className="flex flex-col items-start gap-1 border-border border">
             <span className="flex items-center gap-1">
               <MousePointerClick size={16} className="text-emerald-600" />
               <b>Left-click</b> to <span className="text-emerald-600">add</span>
@@ -434,13 +458,13 @@ function FortuneSection() {
       <div className="flex justify-center">
         <span className="uppercase text-xs text-muted-foreground">Fortune</span>
       </div>
-      <CollapsibleTrigger className="absolute top-[-12px] right-0" asChild>
+      <CollapsibleTrigger className="absolute -top-3 right-0" asChild>
         <Button variant="ghost" size="icon">
           {showFortune ? <Eye /> : <EyeClosed />}
         </Button>
       </CollapsibleTrigger>
       <CollapsibleContent>
-        <div className="flex items-center justify-center gap-1">
+        <div className="mt-2 flex items-center justify-center gap-1">
           <Button
             variant="outline"
             size="icon"

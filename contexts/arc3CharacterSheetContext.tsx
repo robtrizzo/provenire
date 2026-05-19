@@ -42,6 +42,7 @@ import {
   Role,
   SkillsetSubclass,
   SkillsetV3,
+  TransformationSubclass,
   TransformationV3,
 } from "@/types/game";
 import { useMutation } from "@tanstack/react-query";
@@ -147,6 +148,7 @@ const DEFAULT_STATE = {
   fightingStyles: [],
   aldams: [],
   transformations: [],
+  transformationSubclasses: {},
   donums: [],
   remembrance: undefined,
   integration: undefined,
@@ -205,6 +207,7 @@ interface CharacterSheetState {
   fightingStyles: FightingStyleV3[];
   aldams: AldamV3[];
   transformations: TransformationV3[];
+  transformationSubclasses: Record<string, TransformationSubclass>;
   donums: DonumV3[];
   remembrance?: Remembrance;
   integration?: Integration;
@@ -267,6 +270,7 @@ interface CharacterSheetContextProps {
   aptitudes: ActionV3[];
   skills: ActionV3[];
   bonds: ActionV3[];
+  fightingStyles: ActionV3[];
 }
 
 function reducer(
@@ -574,6 +578,9 @@ export default function CharacterSheetProvider({
   const aptitudes = state.actions.filter((a) => a.type === "aptitude");
   const skills = state.actions.filter((a) => a.type === "skill");
   const bonds = state.actions.filter((a) => a.type === "bond");
+  const fightingStyles = state.actions.filter(
+    (a) => a.type === "fightingStyle",
+  );
 
   return (
     <CharacterSheetContext.Provider
@@ -592,6 +599,7 @@ export default function CharacterSheetProvider({
         aptitudes,
         skills,
         bonds,
+        fightingStyles,
       }}
     >
       {children}

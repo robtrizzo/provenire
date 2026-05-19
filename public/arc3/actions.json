@@ -43,16 +43,8 @@
       "description": "Think before acting. Catalog the possible advantages and consequences of a course of action."
     },
     {
-      "name": "Backsnap",
-      "description": "Overwhelming aggression"
-    },
-    {
       "name": "Berate",
       "description": "Use your words to make someone feel small"
-    },
-    {
-      "name": "Bleedout",
-      "description": "Small, precise strikes in vital regions"
     },
     {
       "name": "Botany",
@@ -93,10 +85,6 @@
     {
       "name": "Coordinate",
       "description": "Direct multiple unique entities to act as one."
-    },
-    {
-      "name": "Crowdbreaking",
-      "description": "Maximize damage to groups of surrounding foes"
     },
     {
       "name": "Deal",
@@ -177,10 +165,6 @@
     {
       "name": "Metallurgy",
       "description": "Work with metals to create or repair something."
-    },
-    {
-      "name": "Mirado",
-      "description": "Observe, then act."
     },
     {
       "name": "Music (Drums)",
@@ -317,6 +301,28 @@
     {
       "name": "Tinker",
       "description": "Work to understand or improve a machine or device"
+    }
+  ],
+  "FightingStyles": [
+    {
+      "name": "Backsnap",
+      "description": "Overwhelming aggression"
+    },
+    {
+      "name": "Bleedout",
+      "description": "Small, precise strikes in vital regions"
+    },
+    {
+      "name": "Crowdbreaking",
+      "description": "Maximize damage to groups of surrounding foes"
+    },
+    {
+      "name": "Mirado",
+      "description": "Observe, then act."
+    },
+    {
+      "name": "Pipedancing",
+      "description": "Maneuver through the machinery and use it to your advantage"
     },
     {
       "name": "Throatgore",

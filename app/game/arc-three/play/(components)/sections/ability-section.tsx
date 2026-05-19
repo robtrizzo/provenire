@@ -127,7 +127,39 @@ function useUnlockedAbilityGroups(): AbilityGroup[] {
   addMulti("fightingStyles", state.fightingStyles);
   addMulti("aldams", state.aldams);
   addMulti("donums", state.donums);
-  addMulti("transformations", state.transformations);
+
+  for (const transformation of state.transformations) {
+    const subclass = state.transformationSubclasses?.[transformation.name];
+    if (subclass) {
+      const sourceKey = `${transformation.name}/${subclass.name}`;
+      const slugs = unlockedAbilities["transformations"][sourceKey] ?? [];
+      const abilities = subclass.abilities.filter((a) =>
+        slugs.includes(a.slug),
+      );
+      if (abilities.length === 0) continue;
+      groups.push({
+        label: `${SOURCE_LABEL["transformations"]}: ${transformation.name} (${subclass.name})`,
+        source: "transformations" as const,
+        sourceName: sourceKey.split("/").map(slugify).join("/"),
+        category: CATEGORY_MAP["transformations"],
+        abilities,
+      });
+    } else {
+      const slugs =
+        unlockedAbilities["transformations"][transformation.name] ?? [];
+      const abilities = transformation.abilities.filter((a) =>
+        slugs.includes(a.slug),
+      );
+      if (abilities.length === 0) continue;
+      groups.push({
+        label: `${SOURCE_LABEL["transformations"]}: ${transformation.name}`,
+        source: "transformations" as const,
+        sourceName: slugify(transformation.name),
+        category: CATEGORY_MAP["transformations"],
+        abilities,
+      });
+    }
+  }
 
   return groups;
 }

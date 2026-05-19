@@ -145,6 +145,12 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         label: action.name,
       }));
     }
+    if (action.type === "fightingStyle") {
+      return action.level.map((lvl) => ({
+        ...SkillDice[lvl as 1 | 2 | 3 | 4],
+        label: action.name,
+      }));
+    }
     return [];
   }
 
