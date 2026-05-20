@@ -78,7 +78,7 @@ export default function SummarySection() {
       <div className="mt-1.5 flex gap-4">
         <div className="flex flex-col items-center">
           <Portrait
-            className="mb-1 w-[108px] h-[108px]"
+            className="mb-1 w-27 h-27"
             portrait={portrait}
             name={name || id}
             onPortraitChange={(newPortrait) => set({ portrait: newPortrait })}
@@ -242,7 +242,7 @@ export default function SummarySection() {
   return (
     <div className="flex flex-col md:flex-row items-start gap-1">
       <Portrait
-        className="mb-1 w-[156px] h-[156px]"
+        className="mb-1 w-39 h-39"
         portrait={portrait}
         name={name || id}
         onPortraitChange={(newPortrait) => set({ portrait: newPortrait })}
