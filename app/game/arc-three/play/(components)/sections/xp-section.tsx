@@ -18,7 +18,6 @@ export default function XPSection() {
         </span>
       </TypographyH2>
       <XPClocks key={`xpclocks-${new Date().getTime()}`}>
-        {/* TODO update to isLoading={isFetching} */}
         <LoadingWrapper
           isLoading={false}
           fallback={<XPClocks.Clocks.Skeleton />}
@@ -29,7 +28,7 @@ export default function XPSection() {
           isLoading={false}
           fallback={<XPClocks.Controls.Skeleton />}
         >
-          <XPClocks.Controls initial={xp} setVal={handleSetXP} />
+          <XPClocks.Controls initial={xp} max={5} setVal={handleSetXP} />
         </LoadingWrapper>
       </XPClocks>
     </>
