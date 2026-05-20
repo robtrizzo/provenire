@@ -182,11 +182,13 @@
       },
       {
         "name": "Hidden by the Largeness",
-        "slug": "hidden-by-the-largeness"
+        "slug": "hidden-by-the-largeness",
+        "cost": 3
       },
       {
         "name": "Fractal Growth",
-        "slug": "fractal-growth"
+        "slug": "fractal-growth",
+        "cost": 3
       },
       {
         "name": "Move Stone",
@@ -195,7 +197,8 @@
       },
       {
         "name": "Santoris Art",
-        "slug": "santoris-art"
+        "slug": "santoris-art",
+        "cost": 3
       },
       {
         "name": "Latticework",
