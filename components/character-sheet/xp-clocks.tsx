@@ -115,8 +115,8 @@ const Clocks: Clocks = ({ initial, max = 6, setVal }: ClocksProps) => {
         current={segments}
         clickable={false}
       />
-      <div className="relative h-[35px] w-[35px] border-solid border-2 border-muted-foreground rounded-full bg-red-500">
-        <div className="absolute h-[35px] w-[35px] flex items-center justify-center">
+      <div className="relative h-8.75 w-8.75 border-solid border-2 border-muted-foreground rounded-full bg-red-500">
+        <div className="absolute h-8.75 w-8.75 flex items-center justify-center">
           <span
             className="font-bold z-10 text-black text-2xl mr-0.5"
             style={{
@@ -143,8 +143,8 @@ const Clocks: Clocks = ({ initial, max = 6, setVal }: ClocksProps) => {
 const ClocksSkeleton: FC = () => {
   return (
     <div className="p-1 flex items-center gap-2 select-none">
-      <Skeleton className="h-[35px] w-[35px] rounded-full" />
-      <Skeleton className="h-[35px] w-[35px] rounded-full" />
+      <Skeleton className="h-8.75 w-8.75 rounded-full" />
+      <Skeleton className="h-8.75 w-8.75 rounded-full" />
     </div>
   );
 };
@@ -156,7 +156,7 @@ const Controls: Controls = ({ initial, max = 6, setVal }: ClocksProps) => {
       <Button
         variant="ghost"
         className="text-xs text-muted-foreground text-center"
-        disabled={xp < 6}
+        disabled={xp < max}
         onClick={spendClock}
       >
         spend clock

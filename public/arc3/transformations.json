@@ -27,7 +27,8 @@
       },
       {
         "name": "Scent of Prey",
-        "slug": "scent-of-prey"
+        "slug": "scent-of-prey",
+        "cost": 3
       },
       {
         "name": "Predator's Pulse",
@@ -41,11 +42,13 @@
       },
       {
         "name": "Sturdy Skin",
-        "slug": "sturdy-skin"
+        "slug": "sturdy-skin",
+        "cost": 3
       },
       {
         "name": "Skillful Shifting",
-        "slug": "skillful-shifting"
+        "slug": "skillful-shifting",
+        "cost": 3
       },
       {
         "name": "Grand Appetite",

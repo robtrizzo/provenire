@@ -241,6 +241,10 @@ function ActionLevel({ action }: { action: ActionV3 }) {
         maxLevel = getMaxDieLevel(BondDice);
         minLevel = getMinDieLevel(BondDice);
         break;
+      case "fightingStyle":
+        maxLevel = getMaxDieLevel(SkillDice);
+        minLevel = getMinDieLevel(SkillDice);
+        break;
       default:
         console.error("Invalid action type: ", action.type);
         return;
@@ -272,6 +276,9 @@ function ActionLevel({ action }: { action: ActionV3 }) {
         break;
       case "bond":
         minLevel = getMinDieLevel(BondDice);
+        break;
+      case "fightingStyle":
+        minLevel = getMinDieLevel(SkillDice);
         break;
       default:
         console.error("Invalid action type: ", action.type);
