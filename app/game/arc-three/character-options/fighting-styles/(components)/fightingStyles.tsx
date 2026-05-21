@@ -6,6 +6,7 @@ import { Fragment } from "react/jsx-runtime";
 import Ability from "@/components/abilities/ability";
 import fightingStyles from "@/public/arc3/fighting_styles.json";
 import Link from "next/link";
+import { slugify } from "@/lib/utils";
 
 export default function FightingStyles() {
   return (
@@ -50,7 +51,7 @@ function FightingStyle({ fightingStyle }: { fightingStyle: FightingStyleV3 }) {
             <Ability
               category="fighting-styles"
               arc="arc3"
-              type={fightingStyle.name.toLocaleLowerCase()}
+              type={slugify(fightingStyle.name)}
               ability={ability}
             />
           </Fragment>

@@ -101,33 +101,69 @@
   {
     "name": "Desert Fan",
     "shortDescription": "",
-    "abilities": [],
-    "wip": true
+    "abilities": [
+      { "name": "Dancing Fan", "slug": "dancing-fan", "cost": 3 },
+      {
+        "name": "Circles in the Sand",
+        "slug": "circles-in-the-sand",
+        "cost": 3
+      },
+      { "name": "Battle Rhythm", "slug": "battle-rhythm", "cost": 4 },
+      { "name": "Vortex of Blades", "slug": "vortex-of-blades", "cost": 4 },
+      { "name": "Part the Wind", "slug": "part-the-wind", "cost": 4 }
+    ]
   },
   {
     "name": "Horizon's Edge",
     "shortDescription": "",
-    "abilities": [],
-    "wip": true
+    "abilities": [
+      { "name": "The Line", "slug": "the-line", "cost": 3 },
+      { "name": "Snap", "slug": "snap", "cost": 3 },
+      { "name": "Aftershock", "slug": "aftershock", "cost": 5 },
+      { "name": "Reactive Edge", "slug": "reactive-edge", "cost": 3 },
+      {
+        "name": "One Decisive Strike",
+        "slug": "one-decisive-strike",
+        "cost": 5
+      }
+    ]
   },
   {
     "name": "Kiss of the Viper",
     "shortDescription": "",
-    "abilities": [],
-    "wip": true
+    "abilities": [
+      {
+        "name": "The Factory Has Fangs",
+        "slug": "the-factory-has-fangs",
+        "cost": 3
+      },
+      { "name": "Kiss", "slug": "kiss", "cost": 3 },
+      { "name": "Viper Strike", "slug": "viper-strike", "cost": 3 },
+      { "name": "Patience", "slug": "patience", "cost": 4 },
+      { "name": "Blood Alchemy", "slug": "blood-alchemy", "cost": 5 }
+    ]
   },
-
   {
     "name": "Long-knife Style",
     "shortDescription": "",
-    "abilities": [],
-    "wip": true
+    "abilities": [
+      { "name": "Spacing", "slug": "spacing", "cost": 3 },
+      { "name": "Open Hand", "slug": "open-hand", "cost": 3 },
+      { "name": "Ruiner", "slug": "ruiner", "cost": 4 },
+      { "name": "Leverage", "slug": "leverage", "cost": 4 },
+      { "name": "Lesson", "slug": "lesson", "cost": 4 }
+    ]
   },
   {
     "name": "Mason's Method",
-    "shortDescription": "",
-    "abilities": [],
-    "wip": true
+    "shortDescription": "Pick away at your foe's defenses",
+    "abilities": [
+      { "name": "Dead Weight", "slug": "dead-weight", "cost": 3 },
+      { "name": "Chilseling Strikes", "slug": "chiseling-strikes", "cost": 3 },
+      { "name": "Trickster's Grin", "slug": "tricksters-grin", "cost": 4 },
+      { "name": "Breakpoint", "slug": "breakpoint", "cost": 4 },
+      { "name": "The Method", "slug": "the-method", "cost": 4 }
+    ]
   },
   {
     "name": "Mirado",
@@ -199,6 +235,31 @@
   },
   {
     "name": "Shadespear",
+    "shortDescription": "",
+    "abilities": [
+      {
+        "name": "Sister Shade Isn't Smiling",
+        "slug": "sister-shade-isnt-smiling",
+        "cost": 3
+      },
+      { "name": "Count the Shapes", "slug": "count-the-shapes", "cost": 3 },
+      {
+        "name": "Use Your Imagination",
+        "slug": "use-your-imagination",
+        "cost": 4
+      },
+      { "name": "Hollow", "slug": "hollow", "cost": 4 },
+      { "name": "Terror in the Dark", "slug": "terror-in-the-dark", "cost": 4 }
+    ]
+  },
+  {
+    "name": "Shapes of War",
+    "shortDescription": "",
+    "abilities": [],
+    "wip": true
+  },
+  {
+    "name": "Snare and Shear",
     "shortDescription": "",
     "abilities": [],
     "wip": true
