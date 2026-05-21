@@ -113,10 +113,18 @@
   {
     "name": "Kiss of the Viper",
     "shortDescription": "",
-    "abilities": [],
-    "wip": true
+    "abilities": [
+      {
+        "name": "The Factory Has Fangs",
+        "slug": "the-factory-has-fangs",
+        "cost": 3
+      },
+      { "name": "Kiss", "slug": "kiss", "cost": 3 },
+      { "name": "Viper Strike", "slug": "viper-strike", "cost": 3 },
+      { "name": "Patience", "slug": "patience", "cost": 4 },
+      { "name": "Blood Alchemy", "slug": "blood-alchemy", "cost": 5 }
+    ]
   },
-
   {
     "name": "Long-knife Style",
     "shortDescription": "",
@@ -125,9 +133,14 @@
   },
   {
     "name": "Mason's Method",
-    "shortDescription": "",
-    "abilities": [],
-    "wip": true
+    "shortDescription": "Pick away at your foe's defenses",
+    "abilities": [
+      { "name": "Dead Weight", "slug": "dead-weight", "cost": 3 },
+      { "name": "Chilseling Strikes", "slug": "chiseling-strikes", "cost": 3 },
+      { "name": "Trickster's Grin", "slug": "tricksters-grin", "cost": 4 },
+      { "name": "Breakpoint", "slug": "breakpoint", "cost": 4 },
+      { "name": "The Method", "slug": "the-method", "cost": 4 }
+    ]
   },
   {
     "name": "Mirado",
