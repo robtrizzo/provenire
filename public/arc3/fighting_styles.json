@@ -101,14 +101,32 @@
   {
     "name": "Desert Fan",
     "shortDescription": "",
-    "abilities": [],
-    "wip": true
+    "abilities": [
+      { "name": "Dancing Fan", "slug": "dancing-fan", "cost": 3 },
+      {
+        "name": "Circles in the Sand",
+        "slug": "circles-in-the-sand",
+        "cost": 3
+      },
+      { "name": "Battle Rhythm", "slug": "battle-rhythm", "cost": 4 },
+      { "name": "Vortex of Blades", "slug": "vortex-of-blades", "cost": 4 },
+      { "name": "Part the Wind", "slug": "part-the-wind", "cost": 4 }
+    ]
   },
   {
     "name": "Horizon's Edge",
     "shortDescription": "",
-    "abilities": [],
-    "wip": true
+    "abilities": [
+      { "name": "The Line", "slug": "the-line", "cost": 3 },
+      { "name": "Snap", "slug": "snap", "cost": 3 },
+      { "name": "Aftershock", "slug": "aftershock", "cost": 5 },
+      { "name": "Reactive Edge", "slug": "reactive-edge", "cost": 3 },
+      {
+        "name": "One Decisive Strike",
+        "slug": "one-decisive-strike",
+        "cost": 5
+      }
+    ]
   },
   {
     "name": "Kiss of the Viper",
