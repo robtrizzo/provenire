@@ -146,8 +146,13 @@
   {
     "name": "Long-knife Style",
     "shortDescription": "",
-    "abilities": [],
-    "wip": true
+    "abilities": [
+      { "name": "Spacing", "slug": "spacing", "cost": 3 },
+      { "name": "Open Hand", "slug": "open-hand", "cost": 3 },
+      { "name": "Ruiner", "slug": "ruiner", "cost": 4 },
+      { "name": "Leverage", "slug": "leverage", "cost": 4 },
+      { "name": "Lesson", "slug": "lesson", "cost": 4 }
+    ]
   },
   {
     "name": "Mason's Method",
@@ -230,6 +235,31 @@
   },
   {
     "name": "Shadespear",
+    "shortDescription": "",
+    "abilities": [
+      {
+        "name": "Sister Shade Isn't Smiling",
+        "slug": "sister-shade-isnt-smiling",
+        "cost": 3
+      },
+      { "name": "Count the Shapes", "slug": "count-the-shapes", "cost": 3 },
+      {
+        "name": "Use Your Imagination",
+        "slug": "use-your-imagination",
+        "cost": 4
+      },
+      { "name": "Hollow", "slug": "hollow", "cost": 4 },
+      { "name": "Terror in the Dark", "slug": "terror-in-the-dark", "cost": 4 }
+    ]
+  },
+  {
+    "name": "Shapes of War",
+    "shortDescription": "",
+    "abilities": [],
+    "wip": true
+  },
+  {
+    "name": "Snare and Shear",
     "shortDescription": "",
     "abilities": [],
     "wip": true
