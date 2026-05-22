@@ -118,7 +118,8 @@
       },
       {
         "name": "Ira Sympath",
-        "slug": "ira-sympath"
+        "slug": "ira-sympath",
+        "cost": 3
       },
       {
         "name": "Heat Sink",
@@ -127,7 +128,8 @@
       },
       {
         "name": "Flare",
-        "slug": "flare"
+        "slug": "flare",
+        "cost": 3
       },
       {
         "name": "Wrathful Hands",
@@ -136,7 +138,8 @@
       },
       {
         "name": "Ira Foci",
-        "slug": "ira-foci"
+        "slug": "ira-foci",
+        "cost": 3
       },
       {
         "name": "Surpress and Release",
@@ -240,11 +243,13 @@
       },
       {
         "name": "Reckless Strength",
-        "slug": "reckless-strength"
+        "slug": "reckless-strength",
+        "cost": 3
       },
       {
         "name": "Endless Energy",
-        "slug": "endless-energy"
+        "slug": "endless-energy",
+        "cost": 3
       },
       {
         "name": "Inner Sensation",
@@ -258,7 +263,8 @@
       },
       {
         "name": "Grow Reserve",
-        "slug": "grow-reserve"
+        "slug": "grow-reserve",
+        "cost": 3
       }
     ]
   }
