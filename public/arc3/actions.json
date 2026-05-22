@@ -317,12 +317,44 @@
       "description": "Maximize damage to groups of surrounding foes"
     },
     {
+      "name": "Desert Fan",
+      "description": ""
+    },
+    {
+      "name": "Horizon's Edge",
+      "description": ""
+    },
+    {
+      "name": "Kiss of the Viper",
+      "description": ""
+    },
+    {
+      "name": "Long-knife Style",
+      "description": ""
+    },
+    {
+      "name": "Mason's Method",
+      "description": ""
+    },
+    {
       "name": "Mirado",
       "description": "Observe, then act."
     },
     {
       "name": "Pipedancing",
       "description": "Maneuver through the machinery and use it to your advantage"
+    },
+    {
+      "name": "Shadespear",
+      "description": ""
+    },
+    {
+      "name": "Shapes of War",
+      "description": ""
+    },
+    {
+      "name": "Snare and Shear",
+      "description": ""
     },
     {
       "name": "Throatgore",
