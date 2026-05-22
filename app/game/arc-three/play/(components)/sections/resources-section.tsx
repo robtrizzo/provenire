@@ -94,7 +94,7 @@ function ResourceEntry({
 
   return (
     <TooltipProvider>
-      <Tooltip>
+      <Tooltip delayDuration={0}>
         <TooltipTrigger asChild>
           <div
             className={cn(
