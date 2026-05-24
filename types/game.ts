@@ -544,6 +544,7 @@ export type History = {
 export type Remembrance = Described & {
   histories: History[];
   abilities: Ability[];
+  skills: { name: string; level: number[] }[];
 };
 
 export type Integration = Described;

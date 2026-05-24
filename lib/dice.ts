@@ -26,17 +26,17 @@ export const BondDice: Record<0 | 1 | 2 | 3 | 4, Die> = {
 };
 
 export const PushDie: Die = {
-  faces: ["t", "t", "t", "t", "tac:r", "ec:e"],
+  faces: ["t", "t", "t", "_", "tac:r", "ec:e"],
   variant: "push",
 };
 
 export const DonumDie: Die = {
-  faces: ["ttc", "tt", "ta", "t:r", "tc:s", "ec:e"],
+  faces: ["ttc", "tt", "a", "t:r", "tc:s", "ec:e"],
   variant: "donum",
 };
 
 export const EmotionDie: Die = {
-  faces: ["t", "t", "t", "t", "tc", "ac"],
+  faces: ["t", "t", "t", "tc", "tc", "ac"],
   variant: "emotion",
 };
 

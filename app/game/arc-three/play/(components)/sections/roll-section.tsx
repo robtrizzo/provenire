@@ -23,6 +23,7 @@ import {
   calculateCritProbability,
   calculateEffectProbability,
   calculateThreatProbability,
+  DonumDie,
   FortuneDice,
   PushDie,
 } from "@/lib/dice";
@@ -374,6 +375,11 @@ function BonusDiceSection() {
     0,
   );
   const containsPushDie = numPushDie > 0;
+  const numDonumDie = dice.reduce(
+    (acc, d) => (d.variant === "donum" ? acc + 1 : acc),
+    0,
+  );
+  const containsDonumDie = numDonumDie > 0;
 
   return (
     <>
@@ -415,16 +421,29 @@ function BonusDiceSection() {
           </TooltipContent>
         </Tooltip>
         <Button variant="outline" disabled>
-          {" "}
           <b className="uppercase text-orange-600">Transformation</b>
         </Button>
         <Button variant="outline" disabled>
-          {" "}
           <b className="uppercase text-red-600">Aldam</b>
         </Button>
-        <Button variant="outline" disabled>
-          {" "}
+        <Button
+          variant="outline"
+          className={cn(
+            containsDonumDie && "border-fuchsia-600!",
+            "flex items-center justify-center",
+          )}
+          onClick={() => {
+            addDice([{ ...DonumDie, label: "donum" }]);
+          }}
+          onContextMenu={(e) => {
+            e.preventDefault();
+            removeDieByLabel("donum");
+          }}
+        >
           <b className="uppercase text-fuchsia-600">Donum</b>
+          <div className="rounded-full bg-fuchsia-600 text-white dark:text-black font-extrabold w-4 h-4 flex items-center justify-center">
+            <code>{numDonumDie}</code>
+          </div>
         </Button>
       </div>
     </>
