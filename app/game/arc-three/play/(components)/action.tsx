@@ -33,6 +33,7 @@ import {
   MousePointer2,
   MousePointerClick,
   Plus,
+  Star,
   Trash,
 } from "lucide-react";
 import { FC, ReactNode, useState } from "react";
@@ -50,6 +51,8 @@ import {
   ContextMenuItem,
   ContextMenuTrigger,
 } from "@/components/ui/context-menu";
+import { useDirectionalTooltip } from "@/hooks/use-directional-tooltip";
+import ClockCost from "@/components/clock-cost";
 
 interface ActionProps {
   action: ActionV3;
@@ -225,24 +228,34 @@ function ActionLevel({ action }: { action: ActionV3 }) {
   const { updateAction } = useActions();
   const [xpSpent, setXpSpent] = useField("xpSpent");
   const diceLength = action.type === "bond" ? MAX_BOND_DICE : MAX_ACTION_DICE;
+  let maxLevel = 0;
+  switch (action.type) {
+    case "aptitude":
+      maxLevel = getMaxDieLevel(AbilityDice);
+      break;
+    case "skill":
+      maxLevel = getMaxDieLevel(SkillDice);
+      break;
+    case "bond":
+      maxLevel = getMaxDieLevel(BondDice);
+      break;
+    case "fightingStyle":
+      maxLevel = getMaxDieLevel(SkillDice);
+      break;
+  }
   const handleActionLevelChange = (index: number) => (newLevel: number) => {
-    let maxLevel = 0;
     let minLevel = 0;
     switch (action.type) {
       case "aptitude":
-        maxLevel = getMaxDieLevel(AbilityDice);
         minLevel = getMinDieLevel(AbilityDice);
         break;
       case "skill":
-        maxLevel = getMaxDieLevel(SkillDice);
         minLevel = getMinDieLevel(SkillDice);
         break;
       case "bond":
-        maxLevel = getMaxDieLevel(BondDice);
         minLevel = getMinDieLevel(BondDice);
         break;
       case "fightingStyle":
-        maxLevel = getMaxDieLevel(SkillDice);
         minLevel = getMinDieLevel(SkillDice);
         break;
       default:
@@ -302,6 +315,7 @@ function ActionLevel({ action }: { action: ActionV3 }) {
           <div className="col-span-1" key={idx}>
             <ActionLevelBubble
               level={action.level[idx]}
+              isAtMax={action.level[idx] >= maxLevel}
               handleChange={handleActionLevelChange(idx)}
             />
           </div>
@@ -340,16 +354,22 @@ function ActionLevelStatic({ action }: { action: ActionV3 }) {
 
 function ActionLevelBubble({
   level,
+  isAtMax,
   handleChange,
 }: {
   level: number;
+  isAtMax: boolean;
   handleChange: (newLevel: number) => void;
 }) {
+  const { side, onMouseMove, onMouseLeave } = useDirectionalTooltip();
+
   return (
     <Tooltip>
       <TooltipTrigger asChild>
         <div
           className="border-border hover:border-primary border rounded-full w-6 h-6 flex items-center justify-center hover:bg-input hover:cursor-pointer hover:font-bold select-none"
+          onMouseMove={onMouseMove}
+          onMouseLeave={onMouseLeave}
           onClick={(e) => {
             e.stopPropagation();
             handleChange(level + 1);
@@ -362,12 +382,22 @@ function ActionLevelBubble({
           <code>{level}</code>
         </div>
       </TooltipTrigger>
-      <TooltipContent className="flex flex-col items-start gap-1 border-border border">
-        <span className="flex items-center gap-1">
-          <MousePointerClick size={16} className="text-emerald-600" />
-          <b>Left-click</b> to level{" "}
-          <span className="text-emerald-600">up</span>
-        </span>
+      <TooltipContent
+        side={side}
+        className="flex flex-col items-start gap-1 border-border border"
+      >
+        {isAtMax ? (
+          <span className="flex items-center gap-1 text-muted-foreground">
+            <Star size={16} className="text-yellow-400" /> Max level reached!
+          </span>
+        ) : (
+          <span className="flex items-center gap-1">
+            <MousePointerClick size={16} className="text-emerald-600" />
+            <b>Left-click</b> to level{" "}
+            <span className="text-emerald-600">up</span>
+            <ClockCost ticks={5} num={level + 1} r={20} />
+          </span>
+        )}
         <span className="flex items-center gap-1">
           <MousePointer2 size={16} className="text-red-600" />
           <b>Right-click</b> to level <span className="text-red-600">down</span>
@@ -378,9 +408,14 @@ function ActionLevelBubble({
 }
 
 function UnlockLevelBubble({ handleUnlock }: { handleUnlock: () => void }) {
+  const { side, onMouseMove, onMouseLeave } = useDirectionalTooltip();
   return (
     <Tooltip>
-      <TooltipTrigger asChild>
+      <TooltipTrigger
+        asChild
+        onMouseMove={onMouseMove}
+        onMouseLeave={onMouseLeave}
+      >
         <div
           className="border-border hover:border-primary border rounded-full w-6 h-6 flex items-center justify-center hover:bg-input hover:cursor-pointer hover:font-bold select-none"
           onClick={(e) => {
@@ -391,7 +426,10 @@ function UnlockLevelBubble({ handleUnlock }: { handleUnlock: () => void }) {
           <LockKeyholeOpen size={16} />
         </div>
       </TooltipTrigger>
-      <TooltipContent className="flex flex-col items-start gap-1 border-border border">
+      <TooltipContent
+        side={side}
+        className="flex flex-col items-start gap-1 border-border border"
+      >
         <span className="flex items-center gap-1">
           <MousePointerClick size={16} className="text-emerald-600" /> unlock
           die
@@ -540,10 +578,20 @@ function UnlockHeaderContent({ className, type }: UnlockActionProps) {
 }
 
 function TooltipWrapper({ action, children }: TooltipWrapperProps) {
+  const { side, onMouseMove, onMouseLeave } = useDirectionalTooltip();
   return (
     <Tooltip>
-      <TooltipTrigger asChild>{children}</TooltipTrigger>
-      <TooltipContent className="flex flex-col items-start gap-1 border-border border">
+      <TooltipTrigger
+        asChild
+        onMouseMove={onMouseMove}
+        onMouseLeave={onMouseLeave}
+      >
+        {children}
+      </TooltipTrigger>
+      <TooltipContent
+        side={side}
+        className="flex flex-col items-start gap-1 border-border border"
+      >
         {action.description}
       </TooltipContent>
     </Tooltip>

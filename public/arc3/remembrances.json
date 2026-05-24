@@ -35,6 +35,14 @@
         "slug": "dilettantes-ego",
         "cost": 2
       }
+    ],
+    "skills": [
+      { "name": "Botany", "level": [3, 1] },
+      { "name": "Drama", "level": [2] },
+      { "name": "Mathematics", "level": [1] },
+      { "name": "Obfuscate", "level": [2, 1] },
+      { "name": "Poetry", "level": [2] },
+      { "name": "Stubborn", "level": [2, 2] }
     ]
   },
   {
@@ -73,6 +81,14 @@
         "slug": "horizons-edge",
         "cost": 3
       }
+    ],
+    "skills": [
+      { "name": "Coordinate", "level": [2, 1] },
+      { "name": "Command", "level": [3] },
+      { "name": "Disconnect", "level": [2] },
+      { "name": "Encourage", "level": [2, 2] },
+      { "name": "Rally", "level": [1, 1] },
+      { "name": "Relate", "level": [2] }
     ]
   },
   {
@@ -111,6 +127,14 @@
         "slug": "art-war-works",
         "cost": 3
       }
+    ],
+    "skills": [
+      { "name": "Metallurgy", "level": [3, 2] },
+      { "name": "Pretense", "level": [2] },
+      { "name": "Sabotage", "level": [2, 2] },
+      { "name": "Study", "level": [1, 1] },
+      { "name": "Survival (Mesa)", "level": [1] },
+      { "name": "Tinker", "level": [2] }
     ]
   },
   {
@@ -159,6 +183,14 @@
         "slug": "archive-at-the-edge-of-the-world",
         "cost": 2
       }
+    ],
+    "skills": [
+      { "name": "Disconnect", "level": [2] },
+      { "name": "Hide", "level": [1, 1] },
+      { "name": "Loyalty", "level": [4] },
+      { "name": "Study", "level": [3, 1] },
+      { "name": "Survival (Mountains)", "level": [2] },
+      { "name": "Survival (Plains)", "level": [2] }
     ]
   },
   {
@@ -192,6 +224,14 @@
         "slug": "punish-the-wrongdoers",
         "cost": 3
       }
+    ],
+    "skills": [
+      { "name": "Acrobatics", "level": [2] },
+      { "name": "Ambush", "level": [3] },
+      { "name": "Lift", "level": [2, 1] },
+      { "name": "Lurk", "level": [1] },
+      { "name": "Scheme", "level": [1, 1] },
+      { "name": "Stubborn", "level": [1, 1] }
     ]
   },
   {
@@ -225,6 +265,14 @@
         "slug": "mantle-of-duty",
         "cost": 3
       }
+    ],
+    "skills": [
+      { "name": "Frighten", "level": [2] },
+      { "name": "Music (Flute)", "level": [1] },
+      { "name": "Navigate", "level": [2, 1] },
+      { "name": "Stalk", "level": [2] },
+      { "name": "Stubborn", "level": [1, 1] },
+      { "name": "Survival (Desert)", "level": [4, 1] }
     ]
   },
   {
@@ -263,6 +311,14 @@
         "slug": "cutthroat-politics",
         "cost": 3
       }
+    ],
+    "skills": [
+      { "name": "Authority", "level": [2] },
+      { "name": "Candor", "level": [2] },
+      { "name": "Consort", "level": [3] },
+      { "name": "Coordinate", "level": [3] },
+      { "name": "Loyalty", "level": [2, 1] },
+      { "name": "Manipulate", "level": [2, 2] }
     ]
   },
   {
@@ -306,6 +362,14 @@
         "slug": "ferocious-protector",
         "cost": 3
       }
+    ],
+    "skills": [
+      { "name": "Berate", "level": [1, 1] },
+      { "name": "Challenge", "level": [3] },
+      { "name": "Comfort", "level": [2, 1] },
+      { "name": "Frighten", "level": [2] },
+      { "name": "Prowl", "level": [2] },
+      { "name": "Survival (Jungle)", "level": [2, 2] }
     ]
   },
   {
@@ -354,6 +418,14 @@
         "slug": "collective-good",
         "cost": 2
       }
+    ],
+    "skills": [
+      { "name": "Encourage", "level": [2] },
+      { "name": "Logic", "level": [2] },
+      { "name": "Loyalty", "level": [3] },
+      { "name": "Music (Drums)", "level": [2] },
+      { "name": "Stalk", "level": [3] },
+      { "name": "Survival (Swamp)", "level": [4, 1] }
     ]
   },
   {
@@ -392,6 +464,14 @@
         "slug": "savage-instinct",
         "cost": 3
       }
+    ],
+    "skills": [
+      { "name": "Brawl", "level": [4] },
+      { "name": "Challenge", "level": [1, 1] },
+      { "name": "Frighten", "level": [2] },
+      { "name": "Initiate", "level": [2] },
+      { "name": "Smash", "level": [3] },
+      { "name": "Survival (Jungle)", "level": [2, 1] }
     ]
   },
   {
@@ -430,6 +510,14 @@
         "slug": "animal-empath",
         "cost": 3
       }
+    ],
+    "skills": [
+      { "name": "Connect", "level": [2, 2] },
+      { "name": "Galvanize", "level": [1, 1] },
+      { "name": "Initiate", "level": [2] },
+      { "name": "Music (Sing)", "level": [3] },
+      { "name": "Skirmish", "level": [2] },
+      { "name": "Survival (Desert)", "level": [2] }
     ]
   }
 ]
