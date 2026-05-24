@@ -5,7 +5,7 @@ import { useCharacterSheet } from "@/contexts/arc3CharacterSheetContext";
 export default function BondsSection() {
   const { bonds } = useCharacterSheet();
   return (
-    <div className="mt-4">
+    <div>
       <TypographyH2 className="text-md mt-0 uppercase text-muted-foreground">
         Bonds
       </TypographyH2>
