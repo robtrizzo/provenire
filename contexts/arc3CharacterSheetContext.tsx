@@ -118,6 +118,31 @@ export interface UnlockedAbilities {
   transformations: Record<string, string[]>;
 }
 
+export type ClockType = "clock" | "accumulation" | "tracker";
+
+export interface ClockEntry {
+  id: string;
+  name: string;
+  current: number;
+  max: number;
+  type: ClockType;
+  labels?: {
+    spend?: string;
+    add?: string;
+    remove?: string;
+  };
+}
+
+export const CLOCK_TEMPLATES: {
+  label: string;
+  defaultMax: number;
+  type: ClockType;
+}[] = [
+  { label: "Clock", defaultMax: 6, type: "clock" },
+  { label: "Accumulation Clock", defaultMax: 5, type: "accumulation" },
+  { label: "Tracker", defaultMax: 8, type: "tracker" },
+];
+
 const DEFAULT_ARMOR = {
   light: false,
   heavy: false,
@@ -193,6 +218,7 @@ const DEFAULT_STATE = {
   healing: 0,
   armor: DEFAULT_ARMOR,
   unlockedAbilities: DEFAULT_UNLOCKED_ABILITIES,
+  clocks: [],
 };
 
 interface CharacterSheetState {
@@ -226,6 +252,7 @@ interface CharacterSheetState {
   maxHealing: number;
   armor: Armor;
   unlockedAbilities: UnlockedAbilities;
+  clocks: ClockEntry[];
 }
 
 // Actions — add new cases here
@@ -250,6 +277,13 @@ type CharacterSheetAction =
       sourceKey: string;
       slug: string;
       cost?: number;
+    }
+  | { type: "ADD_CLOCK"; payload: ClockEntry }
+  | { type: "REMOVE_CLOCK"; id: string }
+  | {
+      type: "UPDATE_CLOCK";
+      id: string;
+      changes: Partial<Omit<ClockEntry, "id">>;
     };
 
 interface CharacterSheetContextProps {
@@ -369,6 +403,20 @@ function reducer(
         },
       };
     }
+    case "ADD_CLOCK":
+      return { ...state, clocks: [...state.clocks, action.payload] };
+    case "REMOVE_CLOCK":
+      return {
+        ...state,
+        clocks: state.clocks.filter((c) => c.id !== action.id),
+      };
+    case "UPDATE_CLOCK":
+      return {
+        ...state,
+        clocks: state.clocks.map((c) =>
+          c.id === action.id ? { ...c, ...action.changes } : c,
+        ),
+      };
   }
 }
 
@@ -793,4 +841,24 @@ export function useUnlockedAbilities() {
   );
 
   return { unlockedAbilities: state.unlockedAbilities, toggle, isUnlocked };
+}
+
+export function useClocks() {
+  const { state, dispatch } = useCharacterSheet();
+  return {
+    clocks: state.clocks,
+    addClock: useCallback(
+      (entry: ClockEntry) => dispatch({ type: "ADD_CLOCK", payload: entry }),
+      [dispatch],
+    ),
+    removeClock: useCallback(
+      (id: string) => dispatch({ type: "REMOVE_CLOCK", id }),
+      [dispatch],
+    ),
+    updateClock: useCallback(
+      (id: string, changes: Partial<Omit<ClockEntry, "id">>) =>
+        dispatch({ type: "UPDATE_CLOCK", id, changes }),
+      [dispatch],
+    ),
+  };
 }
