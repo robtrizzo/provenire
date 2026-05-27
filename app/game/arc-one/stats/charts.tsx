@@ -2120,12 +2120,7 @@ function RollsByCharacter({ data }: { data: Roll[] }) {
           cursor={false}
           content={<ChartTooltipContent indicator="line" />}
         />
-        <Bar
-          dataKey="numRolls"
-          layout="vertical"
-          fill="var(--color-numRolls)"
-          radius={4}
-        >
+        <Bar dataKey="numRolls" fill="var(--color-numRolls)" radius={4}>
           <LabelList
             dataKey="charName"
             position="insideLeft"
@@ -2152,11 +2147,11 @@ function DiceByColorAndShift({ data }: { data: Roll[] }) {
     return {
       totalNightshiftDice: diceByColorAndShift.nightshift.reduce(
         (acc, curr) => acc + curr.total,
-        0
+        0,
       ),
       totalDayshiftDice: diceByColorAndShift.dayshift.reduce(
         (acc, curr) => acc + curr.total,
-        0
+        0,
       ),
     };
   }, [diceByColorAndShift]);
@@ -2409,7 +2404,14 @@ function RollsByResultAndType({ data }: { data: Roll[] }) {
         <Bar dataKey="project" fill="var(--color-project)" radius={4} />
         <Bar dataKey="action" fill="var(--color-action)" radius={4} />
         <Bar dataKey="fortune" fill="var(--color-fortune)" radius={4} />
-        <ChartLegend content={<ChartLegendContent />} />
+        <ChartLegend
+          content={(props) => (
+            <ChartLegendContent
+              payload={props.payload}
+              verticalAlign={props.verticalAlign}
+            />
+          )}
+        />
       </BarChart>
     </ChartContainer>
   );
@@ -2453,7 +2455,14 @@ function DiceByType({ data }: { data: Roll[] }) {
         <Bar dataKey="project" fill="var(--color-project)" radius={4} />
         <Bar dataKey="action" fill="var(--color-action)" radius={4} />
         <Bar dataKey="fortune" fill="var(--color-fortune)" radius={4} />
-        <ChartLegend content={<ChartLegendContent />} />
+        <ChartLegend
+          content={(props) => (
+            <ChartLegendContent
+              payload={props.payload}
+              verticalAlign={props.verticalAlign}
+            />
+          )}
+        />
       </BarChart>
     </ChartContainer>
   );
@@ -2529,7 +2538,14 @@ function ActionRollsByResult({ data }: { data: Roll[] }) {
             }}
           />
         </Pie>
-        <ChartLegend content={<ChartLegendContent />} />
+        <ChartLegend
+          content={(props) => (
+            <ChartLegendContent
+              payload={props.payload}
+              verticalAlign={props.verticalAlign}
+            />
+          )}
+        />
       </PieChart>
     </ChartContainer>
   );
@@ -2605,7 +2621,14 @@ function ActionRollsByResultAndShift({ data }: { data: Roll[] }) {
               }}
             />
           </Pie>
-          <ChartLegend content={<ChartLegendContent />} />
+          <ChartLegend
+            content={(props) => (
+              <ChartLegendContent
+                payload={props.payload}
+                verticalAlign={props.verticalAlign}
+              />
+            )}
+          />
         </PieChart>
       </ChartContainer>
       <ChartContainer
@@ -2654,7 +2677,14 @@ function ActionRollsByResultAndShift({ data }: { data: Roll[] }) {
               }}
             />
           </Pie>
-          <ChartLegend content={<ChartLegendContent />} />
+          <ChartLegend
+            content={(props) => (
+              <ChartLegendContent
+                payload={props.payload}
+                verticalAlign={props.verticalAlign}
+              />
+            )}
+          />
         </PieChart>
       </ChartContainer>
     </div>
@@ -2707,12 +2737,7 @@ function RollsByAction({ data }: { data: Roll[] }) {
           cursor={false}
           content={<ChartTooltipContent indicator="line" />}
         />
-        <Bar
-          dataKey="total"
-          layout="vertical"
-          fill="var(--color-total)"
-          radius={4}
-        >
+        <Bar dataKey="total" fill="var(--color-total)" radius={4}>
           <LabelList
             dataKey="action"
             position="insideLeft"
@@ -2774,12 +2799,7 @@ function RollsByActionNightshift({ data }: { data: Roll[] }) {
           cursor={false}
           content={<ChartTooltipContent indicator="line" />}
         />
-        <Bar
-          dataKey="nightshift"
-          layout="vertical"
-          fill="var(--color-nightshift)"
-          radius={4}
-        >
+        <Bar dataKey="nightshift" fill="var(--color-nightshift)" radius={4}>
           <LabelList
             dataKey="action"
             position="insideLeft"
@@ -2841,12 +2861,7 @@ function RollsByActionDayshift({ data }: { data: Roll[] }) {
           cursor={false}
           content={<ChartTooltipContent indicator="line" />}
         />
-        <Bar
-          dataKey="dayshift"
-          layout="vertical"
-          fill="var(--color-dayshift)"
-          radius={4}
-        >
+        <Bar dataKey="dayshift" fill="var(--color-dayshift)" radius={4}>
           <LabelList
             dataKey="action"
             position="insideLeft"
@@ -2906,12 +2921,7 @@ function RollsByActionAction({ data }: { data: Roll[] }) {
           cursor={false}
           content={<ChartTooltipContent indicator="line" />}
         />
-        <Bar
-          dataKey="total"
-          layout="vertical"
-          fill="var(--color-total)"
-          radius={4}
-        >
+        <Bar dataKey="total" fill="var(--color-total)" radius={4}>
           <LabelList
             dataKey="action"
             position="insideLeft"
@@ -2971,12 +2981,7 @@ function RollsByActionResist({ data }: { data: Roll[] }) {
           cursor={false}
           content={<ChartTooltipContent indicator="line" />}
         />
-        <Bar
-          dataKey="total"
-          layout="vertical"
-          fill="var(--color-total)"
-          radius={4}
-        >
+        <Bar dataKey="total" fill="var(--color-total)" radius={4}>
           <LabelList
             dataKey="action"
             position="insideLeft"
@@ -3239,7 +3244,7 @@ function DiceByNumberInfo({ data, c }: { data: Roll[]; c: string }) {
   const averageRoll = Number(
     (
       rollsByNumber.reduce((acc, e) => acc + e.count * e.number, 0) / totalRolls
-    ).toFixed(3)
+    ).toFixed(3),
   );
 
   const partyAvg = 3.4992;
@@ -3280,7 +3285,7 @@ function RollsByNumberOfDiceInfo({ data, c }: { data: Roll[]; c: string }) {
     (
       rollsByNumberOfDice.reduce((acc, e) => acc + e.count * e.numDice, 0) /
       totalRolls
-    ).toFixed(3)
+    ).toFixed(3),
   );
 
   const partyAvg = 2.23;
@@ -3387,7 +3392,7 @@ function RollsByResultInfo({ data, c }: { data: Roll[]; c: string }) {
   const averageResult = Number(
     (
       rollsByResult.reduce((acc, e) => acc + e.count * e.number, 0) / totalRolls
-    ).toFixed(3)
+    ).toFixed(3),
   );
   const ratio = getRatio(averageResult, 4.406);
   const rMore = ratio < 0;

@@ -115,24 +115,34 @@ const navigationData = [
     ],
   },
   {
-    title: "Neighborhoods",
+    title: "The Faction Game",
     url: "#",
     items: [
       {
-        title: "Lofts",
-        url: "/game/arc-three/neighborhoods/lofts",
+        title: "Neighborhoods",
+        url: "#",
+        items: [
+          {
+            title: "Lofts",
+            url: "/game/arc-three/faction-game/neighborhoods/lofts",
+          },
+          {
+            title: "The Bends",
+            url: "/game/arc-three/faction-game/neighborhoods/the-bends",
+          },
+          {
+            title: "Fab Floor",
+            url: "/game/arc-three/faction-game/neighborhoods/fab-floor",
+          },
+          {
+            title: "Stairwell",
+            url: "/game/arc-three/faction-game/neighborhoods/stairwell",
+          },
+        ],
       },
       {
-        title: "The Bends",
-        url: "/game/arc-three/neighborhoods/the-bends",
-      },
-      {
-        title: "Fab Floor",
-        url: "/game/arc-three/neighborhoods/fab-floor",
-      },
-      {
-        title: "Stairwell",
-        url: "/game/arc-three/neighborhoods/stairwell",
+        title: "Resources",
+        url: "/game/arc-three/faction-game/resources",
       },
     ],
   },

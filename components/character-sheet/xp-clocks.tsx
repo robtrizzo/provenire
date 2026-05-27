@@ -19,7 +19,7 @@ type Clocks = FC<ClocksProps> & {
   Skeleton: FC;
 };
 
-type Controls = FC<ClocksProps> & {
+type Controls = FC<ControlsProps> & {
   Skeleton: FC;
 };
 
@@ -27,6 +27,12 @@ type XPClocks = FC<XPClocksProps> & {
   Clocks: Clocks;
   Controls: Controls;
 };
+
+interface ControlsProps extends ClocksProps {
+  spendLabel?: string;
+  addLabel?: string;
+  removeLabel?: string;
+}
 
 function useXPClocks(
   initial: number,
@@ -149,7 +155,14 @@ const ClocksSkeleton: FC = () => {
   );
 };
 
-const Controls: Controls = ({ initial, max = 6, setVal }: ClocksProps) => {
+const Controls: Controls = ({
+  initial,
+  max = 6,
+  setVal,
+  spendLabel = "spend clock",
+  addLabel = "+xp",
+  removeLabel = "-xp",
+}: ControlsProps) => {
   const { xp, addXP, removeXP, spendClock } = useXPClocks(initial, max, setVal);
   return (
     <div className="flex flex-wrap">
@@ -159,14 +172,14 @@ const Controls: Controls = ({ initial, max = 6, setVal }: ClocksProps) => {
         disabled={xp < max}
         onClick={spendClock}
       >
-        spend clock
+        {spendLabel}
       </Button>
       <Button
         variant="ghost"
         className="text-xs text-muted-foreground text-center"
         onClick={addXP}
       >
-        +xp
+        {addLabel}
       </Button>
       <Button
         variant="ghost"
@@ -174,7 +187,7 @@ const Controls: Controls = ({ initial, max = 6, setVal }: ClocksProps) => {
         disabled={xp <= 0}
         onClick={removeXP}
       >
-        -xp
+        {removeLabel}
       </Button>
     </div>
   );

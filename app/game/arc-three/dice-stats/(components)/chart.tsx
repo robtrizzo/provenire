@@ -135,7 +135,12 @@ export function DiceStatsChart({
         />
         <ChartTooltip content={<ChartTooltipContent />} />
         <ChartLegend
-          content={<ChartLegendContent />}
+          content={(props) => (
+            <ChartLegendContent
+              payload={props.payload}
+              verticalAlign={props.verticalAlign}
+            />
+          )}
           wrapperStyle={{ marginTop: 40 }}
           className="mt-4"
         />
