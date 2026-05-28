@@ -100,7 +100,7 @@
   },
   {
     "name": "Desert Fan",
-    "shortDescription": "",
+    "shortDescription": "Hold your ground beautifully",
     "abilities": [
       { "name": "Dancing Fan", "slug": "dancing-fan", "cost": 3 },
       {
@@ -115,7 +115,7 @@
   },
   {
     "name": "Horizon's Edge",
-    "shortDescription": "",
+    "shortDescription": "Single powerful strikes",
     "abilities": [
       { "name": "The Line", "slug": "the-line", "cost": 3 },
       { "name": "Snap", "slug": "snap", "cost": 3 },
@@ -130,7 +130,7 @@
   },
   {
     "name": "Kiss of the Viper",
-    "shortDescription": "",
+    "shortDescription": "Bring foes low with venomed weaponry",
     "abilities": [
       {
         "name": "The Factory Has Fangs",
@@ -145,7 +145,7 @@
   },
   {
     "name": "Long-knife Style",
-    "shortDescription": "",
+    "shortDescription": "Fight dirty and leave grisly wounds",
     "abilities": [
       { "name": "Spacing", "slug": "spacing", "cost": 3 },
       { "name": "Open Hand", "slug": "open-hand", "cost": 3 },
@@ -235,7 +235,7 @@
   },
   {
     "name": "Shadespear",
-    "shortDescription": "",
+    "shortDescription": "Wield disorientation and fear as weapons",
     "abilities": [
       {
         "name": "Sister Shade Isn't Smiling",
