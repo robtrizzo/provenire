@@ -116,6 +116,7 @@ export interface UnlockedAbilities {
   aldams: Record<string, string[]>;
   donums: Record<string, string[]>;
   transformations: Record<string, string[]>;
+  universal: Record<string, string[]>;
 }
 
 export type ClockType = "clock" | "accumulation" | "tracker";
@@ -159,6 +160,7 @@ const DEFAULT_UNLOCKED_ABILITIES: UnlockedAbilities = {
   aldams: {},
   donums: {},
   transformations: {},
+  universal: {},
 };
 
 const DEFAULT_STATE = {
@@ -461,7 +463,16 @@ export default function CharacterSheetProvider({
         setCloudUpdatedAt(savedCloudAt);
         cloudUpdatedAtRef.current = savedCloudAt;
       }
-      dispatch({ type: "SET_FIELDS", payload: parsed });
+      dispatch({
+        type: "SET_FIELDS",
+        payload: {
+          ...parsed,
+          unlockedAbilities: {
+            ...DEFAULT_UNLOCKED_ABILITIES,
+            ...parsed.unlockedAbilities,
+          },
+        },
+      });
       if (savedAt) setLocalUpdatedAt(savedAt);
     } catch {
       // ignore malformed data
@@ -487,7 +498,14 @@ export default function CharacterSheetProvider({
 
         dispatch({
           type: "SET_FIELDS",
-          payload: { ...DEFAULT_STATE, ...parsed },
+          payload: {
+            ...DEFAULT_STATE,
+            ...parsed,
+            unlockedAbilities: {
+              ...DEFAULT_UNLOCKED_ABILITIES,
+              ...parsed.unlockedAbilities,
+            },
+          },
         });
 
         // Write localStorage manually since we suppressed the effect
@@ -496,6 +514,10 @@ export default function CharacterSheetProvider({
           JSON.stringify({
             ...DEFAULT_STATE,
             ...parsed,
+            unlockedAbilities: {
+              ...DEFAULT_UNLOCKED_ABILITIES,
+              ...parsed.unlockedAbilities,
+            },
             localUpdatedAt: savedCloud ?? null,
             cloudUpdatedAt: savedCloud ?? null,
           }),
@@ -836,7 +858,7 @@ export function useUnlockedAbilities() {
       sourceKey: string,
       slug: string,
     ): boolean =>
-      (state.unlockedAbilities[source][sourceKey] ?? []).includes(slug),
+      (state.unlockedAbilities[source]?.[sourceKey] ?? []).includes(slug),
     [state.unlockedAbilities],
   );
 

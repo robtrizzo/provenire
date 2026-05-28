@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/popover";
 import { cn, slugify } from "@/lib/utils";
 import ClockCost from "@/components/clock-cost";
+import universalAbilities from "@/public/arc3/universal.json";
 
 const SOURCE_COLORS: Record<keyof UnlockedAbilities, string> = {
   archetype: "text-amber-500",
@@ -28,6 +29,7 @@ const SOURCE_COLORS: Record<keyof UnlockedAbilities, string> = {
   donums: "text-fuchsia-600",
   remembrance: "text-purple-600",
   role: "text-sky-500",
+  universal: "text-teal-500",
 };
 
 const CATEGORY_MAP: Record<keyof UnlockedAbilities, string> = {
@@ -40,6 +42,7 @@ const CATEGORY_MAP: Record<keyof UnlockedAbilities, string> = {
   aldams: "aldams",
   donums: "donums",
   transformations: "transformations",
+  universal: "universal",
 };
 
 const SOURCE_LABEL: Record<keyof UnlockedAbilities, string> = {
@@ -52,6 +55,7 @@ const SOURCE_LABEL: Record<keyof UnlockedAbilities, string> = {
   aldams: "Aldam",
   donums: "Donum",
   transformations: "Transformation",
+  universal: "Universal",
 };
 
 interface AbilityGroup {
@@ -156,6 +160,22 @@ function useUnlockedAbilityGroups(): AbilityGroup[] {
         source: "transformations" as const,
         sourceName: slugify(transformation.name),
         category: CATEGORY_MAP["transformations"],
+        abilities,
+      });
+    }
+  }
+
+  const universalSlugs = unlockedAbilities["universal"]["universal"] ?? [];
+  if (universalSlugs.length > 0) {
+    const abilities = (universalAbilities as Ability[]).filter((a) =>
+      universalSlugs.includes(a.slug),
+    );
+    if (abilities.length > 0) {
+      groups.push({
+        label: "Universal",
+        source: "universal",
+        sourceName: "universal",
+        category: CATEGORY_MAP["skillset"],
         abilities,
       });
     }

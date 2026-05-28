@@ -18,6 +18,7 @@ import { TypographyH4 } from "@/components/ui/typography";
 import ClockCost from "@/components/clock-cost";
 import { Switch } from "@/components/ui/switch";
 import { cn, slugify } from "@/lib/utils";
+import universal from "@/public/arc3/universal.json";
 
 interface NavItem {
   key: string;
@@ -39,6 +40,7 @@ const SOURCE_COLORS: Record<keyof UnlockedAbilities, string> = {
   donums: "text-fuchsia-600",
   remembrance: "text-purple-600",
   role: "text-sky-500",
+  universal: "text-teal-500",
 };
 
 function useNavItems(): NavItem[] {
@@ -146,6 +148,15 @@ function useNavItems(): NavItem[] {
       abilities: state.role.abilities,
     });
   }
+  items.push({
+    key: "universal",
+    label: "Universal",
+    sublabel: "Universal",
+    source: "universal",
+    categoryOverride: "skillsets",
+    sourceKey: "universal",
+    abilities: universal,
+  });
 
   return items;
 }
@@ -158,7 +169,7 @@ export default function AbilitiesDialog({ open, onOpenChange }: DialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-lg lg:max-w-2xl p-0 gap-0 overflow-hidden">
-        <div className="flex h-[520px]">
+        <div className="flex h-130">
           <nav className="flex flex-col w-44 border-r shrink-0">
             <DialogHeader className="px-4 py-4 border-b">
               <DialogTitle>Abilities</DialogTitle>

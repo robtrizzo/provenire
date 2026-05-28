@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { ClearableMultiSelect } from "@/components/character-sheet/clearable-multiselect";
 import ClearableSelect from "@/components/character-sheet/clearable-select";
@@ -30,7 +30,12 @@ import {
 import Controls from "./controls-section";
 
 export default function SummarySection() {
-  const [compact, setCompact] = useState(true);
+  const [compact, setCompact] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("summary-compact");
+    if (saved !== null) setCompact(saved === "true");
+  }, []);
 
   const [
     {
@@ -54,6 +59,11 @@ export default function SummarySection() {
     },
     set,
   ] = useFields({ debounceMs: 300 });
+
+  const toggleCompact = (value: boolean) => {
+    setCompact(value);
+    localStorage.setItem("summary-compact", String(value));
+  };
 
   const hasIdentity =
     heritage || background || archetype || skillset || skillsetSubclass;
@@ -232,7 +242,7 @@ export default function SummarySection() {
         <div className="ml-auto shrink-0">
           <Controls
             isCompact={compact}
-            onToggleView={() => setCompact(false)}
+            onToggleView={() => toggleCompact(false)}
           />
         </div>
       </div>
@@ -257,7 +267,10 @@ export default function SummarySection() {
             onChange={(e) => set({ name: e.target.value })}
             className="grow"
           />
-          <Controls isCompact={compact} onToggleView={() => setCompact(true)} />
+          <Controls
+            isCompact={compact}
+            onToggleView={() => toggleCompact(true)}
+          />
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-4 gap-1 w-full mb-1">
           <ClearableSelect
