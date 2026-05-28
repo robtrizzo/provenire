@@ -83,9 +83,9 @@ export default async function Page() {
           <CardContent>
             <TypographyP>
               The dregs of Audo&apos;s Gorgers, conquered by Hrodulfr and beaten
-              down by the <b>Delivery</b> riots. A strict Rathi hierarchy
-              teeming with thickblooded and thinblooded shifters starving for
-              their alpha&apos;s approval.
+              down by the <b className="mr-1">Delivery</b> riots. A strict Rathi
+              hierarchy teeming with thickblooded and thinblooded shifters
+              starving for their alpha&apos;s approval.
             </TypographyP>
             <TypographyUnorderedList>
               <li>
