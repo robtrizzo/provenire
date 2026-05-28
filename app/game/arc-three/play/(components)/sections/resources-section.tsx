@@ -30,7 +30,7 @@ export default function ResourcesSection() {
       </TypographyH2>
       <div className="mt-2 flex items-center gap-2 flex-wrap">
         <ResourceEntry name="advantage">
-          <div className="ml-[-4px]">
+          <div className="-ml-1">
             <InlineSymbol size={24}>
               <Advantage />
             </InlineSymbol>
