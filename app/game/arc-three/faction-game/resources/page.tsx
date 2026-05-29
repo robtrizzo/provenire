@@ -3,6 +3,7 @@ import { TypographyH1, TypographyH2 } from "@/components/ui/typography";
 import ResourceSunburstChart from "./(components)/sunburst-chart";
 import SankeyChart from "./(components)/sankey-chart";
 import { SankeyInput } from "@/lib/sankey";
+import EditableSankeyChart from "./(components)/editable-sankey-chart";
 
 const materialsData: SankeyInput = [
   {
@@ -179,10 +180,6 @@ const bloodData: SankeyInput = [
     ],
   },
   {
-    name: "Tithing",
-    targets: [{ name: "Storage", value: 7, color: "var(--color-red-500)" }],
-  },
-  {
     name: "Raiding",
     role: "Auger",
     targets: [
@@ -199,7 +196,7 @@ const bloodData: SankeyInput = [
     name: "Storage",
     targets: [
       { name: "Lair", value: 2, color: "var(--color-red-500)" },
-      { name: "Misc Stashes", value: 17, color: "var(--color-red-500)" },
+      { name: "Misc Stashes", value: 10, color: "var(--color-red-500)" },
     ],
   },
   {
@@ -215,9 +212,9 @@ const bloodData: SankeyInput = [
     name: "Misc Stashes",
     role: "Scaffold",
     targets: [
-      { name: "Available", value: 3, color: "var(--color-red-500)" },
-      { name: "Attacks", value: 10, color: "var(--color-mauve-500)" },
-      { name: "Stolen", value: 4, color: "var(--color-slate-500)" },
+      { name: "Available", value: 1, color: "var(--color-red-500)" },
+      { name: "Attacks", value: 7, color: "var(--color-mauve-500)" },
+      { name: "Stolen", value: 2, color: "var(--color-slate-500)" },
     ],
   },
 ];
@@ -281,7 +278,7 @@ export default async function Page() {
       </div>
       <TypographyH2>Food</TypographyH2>
       <div className="mt-8">
-        <SankeyChart data={foodData} />
+        <EditableSankeyChart initialData={foodData} />
       </div>
       <TypographyH2>Blood</TypographyH2>
       <div className="mt-8">
