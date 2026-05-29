@@ -1,158 +1,170 @@
 import Breadcrumbs from "@/components/ui/breadcrumbs";
 import { TypographyH1, TypographyH2 } from "@/components/ui/typography";
 import ResourceSunburstChart from "./(components)/sunburst-chart";
-import SankeyChart from "./(components)/sankey-chart";
 import { SankeyInput } from "@/lib/sankey";
 import EditableSankeyChart from "./(components)/editable-sankey-chart";
 
 const materialsData: SankeyInput = [
   {
     name: "Scrapyard",
-    role: "Wright",
+    roles: ["Wright"],
+    produces: 40,
     targets: [
-      { name: "Scrapping", value: 15 },
-      { name: "Slag", value: 10, color: "var(--color-olive-500)" },
-      { name: "Lost", value: 5, color: "var(--color-neutral-500)" },
-      { name: "Attacks", value: 5, color: "var(--color-mauve-500)" },
-      { name: "Stolen", value: 5, color: "var(--color-slate-500)" },
+      { name: "Scrapping", weight: 15 },
+      { name: "Slag", weight: 10, color: "var(--color-olive-500)" },
+      { name: "Lost", weight: 5, color: "var(--color-neutral-500)" },
+      { name: "Attacks", weight: 5, color: "var(--color-mauve-500)" },
+      { name: "Stolen", weight: 5, color: "var(--color-slate-500)" },
     ],
   },
   {
     name: "Shanty Houses",
-    role: "Scaffold",
+    roles: ["Scaffold"],
+    produces: 25,
     targets: [
-      { name: "Scrapping", value: 10 },
-      { name: "Slag", value: 1, color: "var(--color-olive-500)" },
-      { name: "Lost", value: 5, color: "var(--color-neutral-500)" },
-      { name: "Attacks", value: 6, color: "var(--color-mauve-500)" },
-      { name: "Stolen", value: 3, color: "var(--color-slate-500)" },
+      { name: "Scrapping", weight: 10 },
+      { name: "Slag", weight: 1, color: "var(--color-olive-500)" },
+      { name: "Lost", weight: 5, color: "var(--color-neutral-500)" },
+      { name: "Attacks", weight: 6, color: "var(--color-mauve-500)" },
+      { name: "Stolen", weight: 3, color: "var(--color-slate-500)" },
     ],
   },
   {
     name: "Scrapping",
     targets: [
-      { name: "Storage", value: 5 },
-      { name: "Workshops", value: 10 },
-      { name: "Machines", value: 10 },
+      { name: "Storage", weight: 5 },
+      { name: "Workshops", weight: 10 },
+      { name: "Machines", weight: 10 },
     ],
   },
   {
     name: "Workshops",
-    role: "Wright",
+    roles: ["Wright"],
     targets: [
-      { name: "Manufacturing", value: 5 },
-      { name: "Slag", value: 4, color: "var(--color-olive-500)" },
-      { name: "Lost", value: 1, color: "var(--color-neutral-500)" },
-      { name: "Stolen", value: 5, color: "var(--color-slate-500)" },
-      { name: "Attacks", value: 5, color: "var(--color-mauve-500)" },
+      { name: "Manufacturing", weight: 5 },
+      { name: "Slag", weight: 4, color: "var(--color-olive-500)" },
+      { name: "Lost", weight: 1, color: "var(--color-neutral-500)" },
+      { name: "Stolen", weight: 5, color: "var(--color-slate-500)" },
+      { name: "Attacks", weight: 5, color: "var(--color-mauve-500)" },
     ],
   },
   {
     name: "Machines",
-    role: "Cipher",
+    roles: ["Cipher"],
     targets: [
-      { name: "Manufacturing", value: 8 },
-      { name: "Slag", value: 5, color: "var(--color-olive-500)" },
-      { name: "Stolen", value: 1, color: "var(--color-slate-500)" },
-      { name: "Attacks", value: 1, color: "var(--color-mauve-500)" },
+      { name: "Manufacturing", weight: 8 },
+      { name: "Slag", weight: 5, color: "var(--color-olive-500)" },
+      { name: "Stolen", weight: 1, color: "var(--color-slate-500)" },
+      { name: "Attacks", weight: 1, color: "var(--color-mauve-500)" },
     ],
   },
   {
     name: "Manufacturing",
-    targets: [{ name: "Storage", value: 13 }],
+    targets: [{ name: "Storage", weight: 13 }],
   },
   {
     name: "Crew Theft",
-    role: "Shade",
-    targets: [{ name: "Lair", value: 2 }],
+    roles: ["Shade"],
+    produces: 2,
+    targets: [{ name: "Lair", weight: 1 }],
   },
   {
     name: "Storage",
     targets: [
-      { name: "Vault", value: 6 },
-      { name: "Lair", value: 2 },
-      { name: "Misc Stashes", value: 12 },
+      { name: "Vault", weight: 6 },
+      { name: "Lair", weight: 2 },
+      { name: "Misc Stashes", weight: 12 },
     ],
   },
   {
     name: "Vault",
-    role: "Vault",
-    targets: [{ name: "Available", value: 6 }],
+    roles: ["Vault"],
+    targets: [{ name: "Available", weight: 1 }],
   },
   {
     name: "Misc Stashes",
-    role: "Scaffold",
+    roles: ["Scaffold"],
     targets: [
-      { name: "Stolen", value: 6, color: "var(--color-slate-500)" },
-      { name: "Attacks", value: 2, color: "var(--color-mauve-500)" },
-      { name: "Available", value: 4 },
+      { name: "Stolen", weight: 6, color: "var(--color-slate-500)" },
+      { name: "Attacks", weight: 2, color: "var(--color-mauve-500)" },
+      { name: "Available", weight: 4 },
     ],
   },
   {
     name: "Lair",
-    targets: [{ name: "Available", value: 4 }],
+    targets: [{ name: "Available", weight: 1 }],
   },
   {
     name: "Raiding",
-    role: "Auger",
-    targets: [{ name: "Storage", value: 2 }],
+    roles: ["Auger"],
+    produces: 2,
+    targets: [{ name: "Storage", weight: 1 }],
   },
 ];
 
 const foodData: SankeyInput = [
   {
     name: "Delivered Shipment",
+    roles: ["Cipher", "Wright"],
+    produces: 150,
     targets: [
-      { name: "Storage", value: 14, color: "var(--color-amber-500)" },
-      { name: "Destroyed", value: 11, color: "var(--color-olive-500)" },
-      { name: "Lost", value: 25, color: "var(--color-neutral-500)" },
-      { name: "Attacks", value: 50, color: "var(--color-mauve-500)" },
-      { name: "Stolen", value: 50, color: "var(--color-slate-500)" },
+      { name: "Storage", weight: 14, color: "var(--color-amber-500)" },
+      { name: "Destroyed", weight: 11, color: "var(--color-olive-500)" },
+      { name: "Lost", weight: 25, color: "var(--color-neutral-500)" },
+      { name: "Attacks", weight: 50, color: "var(--color-mauve-500)" },
+      { name: "Stolen", weight: 50, color: "var(--color-slate-500)" },
     ],
   },
   {
     name: "Raiding",
-    role: "Auger",
-    targets: [{ name: "Murder", value: 2, color: "var(--color-amber-500)" }],
+    roles: ["Auger"],
+    produces: 2,
+    targets: [{ name: "Murder", weight: 1, color: "var(--color-amber-500)" }],
   },
   {
     name: "Slain Attackers",
-    role: "Lock",
-    targets: [{ name: "Murder", value: 1, color: "var(--color-amber-500)" }],
+    roles: ["Lock"],
+    produces: 1,
+    targets: [{ name: "Murder", weight: 1, color: "var(--color-amber-500)" }],
   },
   {
     name: "Murder",
-    targets: [{ name: "Storage", value: 3, color: "var(--color-amber-500)" }],
+    targets: [{ name: "Storage", weight: 1, color: "var(--color-amber-500)" }],
   },
   {
     name: "Crew Theft",
-    role: "Shade",
-    targets: [{ name: "Lair", value: 3, color: "var(--color-amber-500)" }],
+    roles: ["Shade"],
+    produces: 3,
+    targets: [{ name: "Lair", weight: 1, color: "var(--color-amber-500)" }],
   },
   {
     name: "Storage",
     targets: [
-      { name: "Vault", value: 6, color: "var(--color-amber-500)" },
-      { name: "Lair", value: 1, color: "var(--color-amber-500)" },
-      { name: "Misc Stashes", value: 13, color: "var(--color-amber-500)" },
+      { name: "Vault", weight: 6, color: "var(--color-amber-500)" },
+      { name: "Lair", weight: 1, color: "var(--color-amber-500)" },
+      { name: "Misc Stashes", weight: 13, color: "var(--color-amber-500)" },
     ],
   },
   {
     name: "Vault",
-    role: "Vault",
-    targets: [{ name: "Available", value: 6, color: "var(--color-amber-500)" }],
+    roles: ["Vault"],
+    targets: [
+      { name: "Available", weight: 1, color: "var(--color-amber-500)" },
+    ],
   },
   {
     name: "Lair",
-    targets: [{ name: "Available", value: 4, color: "var(--color-amber-500)" }],
+    targets: [
+      { name: "Available", weight: 1, color: "var(--color-amber-500)" },
+    ],
   },
   {
     name: "Misc Stashes",
-    role: "Scaffold",
+    roles: ["Scaffold"],
     targets: [
-      { name: "Available", value: 2, color: "var(--color-amber-500)" },
-      { name: "Attacks", value: 6, color: "var(--color-mauve-500)" },
-      { name: "Stolen", value: 5, color: "var(--color-slate-500)" },
+      { name: "Available", weight: 2, color: "var(--color-amber-500)" },
+      { name: "Attacks", weight: 6, color: "var(--color-mauve-500)" },
+      { name: "Stolen", weight: 5, color: "var(--color-slate-500)" },
     ],
   },
 ];
@@ -160,61 +172,65 @@ const foodData: SankeyInput = [
 const bloodData: SankeyInput = [
   {
     name: "Volunteers",
-    role: "Vault",
+    roles: ["Vault"],
+    produces: 30,
     targets: [
-      { name: "Vault", value: 6, color: "var(--color-red-500)" },
-      { name: "Storage", value: 4, color: "var(--color-red-500)" },
-      { name: "Lost", value: 5, color: "var(--color-neutral-500)" },
-      { name: "Attacks", value: 5, color: "var(--color-mauve-500)" },
-      { name: "Stolen", value: 10, color: "var(--color-slate-500)" },
+      { name: "Vault", weight: 6, color: "var(--color-red-500)" },
+      { name: "Storage", weight: 4, color: "var(--color-red-500)" },
+      { name: "Lost", weight: 5, color: "var(--color-neutral-500)" },
+      { name: "Attacks", weight: 5, color: "var(--color-mauve-500)" },
+      { name: "Stolen", weight: 10, color: "var(--color-slate-500)" },
     ],
   },
   {
     name: "Prisoners",
-    role: "Lock",
+    roles: ["Lock"],
+    produces: 8,
     targets: [
-      { name: "Storage", value: 3, color: "var(--color-red-500)" },
-      { name: "Lost", value: 1, color: "var(--color-neutral-500)" },
-      { name: "Attacks", value: 1, color: "var(--color-mauve-500)" },
-      { name: "Stolen", value: 3, color: "var(--color-slate-500)" },
+      { name: "Storage", weight: 3, color: "var(--color-red-500)" },
+      { name: "Lost", weight: 1, color: "var(--color-neutral-500)" },
+      { name: "Attacks", weight: 1, color: "var(--color-mauve-500)" },
+      { name: "Stolen", weight: 3, color: "var(--color-slate-500)" },
     ],
   },
   {
     name: "Raiding",
-    role: "Auger",
+    roles: ["Auger"],
+    produces: 7,
     targets: [
-      { name: "Storage", value: 5, color: "var(--color-red-500)" },
-      { name: "Lost", value: 2, color: "var(--color-neutral-500)" },
+      { name: "Storage", weight: 5, color: "var(--color-red-500)" },
+      { name: "Lost", weight: 2, color: "var(--color-neutral-500)" },
     ],
   },
   {
     name: "Crew Theft",
-    role: "Shade",
-    targets: [{ name: "Lair", value: 2, color: "var(--color-red-500)" }],
+    roles: ["Shade"],
+    produces: 2,
+    targets: [{ name: "Lair", weight: 1, color: "var(--color-red-500)" }],
   },
   {
     name: "Storage",
     targets: [
-      { name: "Lair", value: 2, color: "var(--color-red-500)" },
-      { name: "Misc Stashes", value: 10, color: "var(--color-red-500)" },
+      { name: "Lair", weight: 2, color: "var(--color-red-500)" },
+      { name: "Misc Stashes", weight: 10, color: "var(--color-red-500)" },
     ],
   },
   {
     name: "Vault",
-    role: "Vault",
-    targets: [{ name: "Available", value: 6, color: "var(--color-red-500)" }],
+    roles: ["Vault"],
+    targets: [{ name: "Available", weight: 1, color: "var(--color-red-500)" }],
   },
   {
     name: "Lair",
-    targets: [{ name: "Available", value: 4, color: "var(--color-red-500)" }],
+    targets: [{ name: "Available", weight: 1, color: "var(--color-red-500)" }],
   },
   {
     name: "Misc Stashes",
-    role: "Scaffold",
+    roles: ["Scaffold"],
     targets: [
-      { name: "Available", value: 1, color: "var(--color-red-500)" },
-      { name: "Attacks", value: 7, color: "var(--color-mauve-500)" },
-      { name: "Stolen", value: 2, color: "var(--color-slate-500)" },
+      { name: "Available", weight: 1, color: "var(--color-red-500)" },
+      { name: "Attacks", weight: 7, color: "var(--color-mauve-500)" },
+      { name: "Stolen", weight: 2, color: "var(--color-slate-500)" },
     ],
   },
 ];
@@ -222,45 +238,46 @@ const bloodData: SankeyInput = [
 const waterData: SankeyInput = [
   {
     name: "Rain Chamber",
-    role: "Cipher",
+    roles: ["Cipher"],
+    produces: 50,
     targets: [
-      { name: "Carried", value: 5, color: "var(--color-blue-500)" },
-      { name: "Pipeline", value: 6, color: "var(--color-blue-500)" },
-      { name: "Wasted", value: 39, color: "var(--color-olive-500)" },
+      { name: "Carried", weight: 5, color: "var(--color-blue-500)" },
+      { name: "Pipeline", weight: 6, color: "var(--color-blue-500)" },
+      { name: "Wasted", weight: 39, color: "var(--color-olive-500)" },
     ],
   },
   {
     name: "Carried",
-    role: "Seeker",
+    roles: ["Seeker"],
     targets: [
-      { name: "Storage", value: 3, color: "var(--color-blue-500)" },
-      { name: "Lost", value: 2, color: "var(--color-neutral-500)" },
+      { name: "Storage", weight: 3, color: "var(--color-blue-500)" },
+      { name: "Lost", weight: 2, color: "var(--color-neutral-500)" },
     ],
   },
   {
     name: "Pipeline",
-    role: "Scaffold",
+    roles: ["Scaffold"],
     targets: [
-      { name: "Storage", value: 2, color: "var(--color-blue-500)" },
-      { name: "Lost", value: 2, color: "var(--color-neutral-500)" },
-      { name: "Stolen", value: 2, color: "var(--color-slate-500)" },
+      { name: "Storage", weight: 2, color: "var(--color-blue-500)" },
+      { name: "Lost", weight: 2, color: "var(--color-neutral-500)" },
+      { name: "Stolen", weight: 2, color: "var(--color-slate-500)" },
     ],
   },
   {
     name: "Storage",
     targets: [
-      { name: "Lair", value: 4, color: "var(--color-blue-500)" },
-      { name: "Vault", value: 1, color: "var(--color-blue-500)" },
+      { name: "Lair", weight: 4, color: "var(--color-blue-500)" },
+      { name: "Vault", weight: 1, color: "var(--color-blue-500)" },
     ],
   },
   {
     name: "Vault",
-    role: "Vault",
-    targets: [{ name: "Available", value: 1, color: "var(--color-blue-500)" }],
+    roles: ["Vault"],
+    targets: [{ name: "Available", weight: 1, color: "var(--color-blue-500)" }],
   },
   {
     name: "Lair",
-    targets: [{ name: "Available", value: 4, color: "var(--color-blue-500)" }],
+    targets: [{ name: "Available", weight: 1, color: "var(--color-blue-500)" }],
   },
 ];
 
@@ -274,7 +291,7 @@ export default async function Page() {
       </div>
       <TypographyH2>Materials</TypographyH2>
       <div className="mt-8">
-        <SankeyChart data={materialsData} />
+        <EditableSankeyChart initialData={materialsData} />
       </div>
       <TypographyH2>Food</TypographyH2>
       <div className="mt-8">
@@ -282,11 +299,11 @@ export default async function Page() {
       </div>
       <TypographyH2>Blood</TypographyH2>
       <div className="mt-8">
-        <SankeyChart data={bloodData} />
+        <EditableSankeyChart initialData={bloodData} />
       </div>
       <TypographyH2>Water</TypographyH2>
       <div className="mt-8">
-        <SankeyChart data={waterData} />
+        <EditableSankeyChart initialData={waterData} />
       </div>
     </>
   );

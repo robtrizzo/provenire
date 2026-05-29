@@ -15,14 +15,16 @@ import {
 } from "@/components/ui/select";
 import { X, Plus } from "lucide-react";
 
-const ATTRITION_COLORS: Record<string, string> = {
-  Lost: "var(--color-neutral-500)",
-  Attacks: "var(--color-mauve-500)",
-  Stolen: "var(--color-slate-500)",
-  Wasted: "var(--color-olive-500)",
-  Destroyed: "var(--color-olive-500)",
-  Slag: "var(--color-olive-500)",
-};
+const COLOR_OPTIONS = [
+  { label: "None", value: "_none" },
+  { label: "Amber", value: "var(--color-amber-500)" },
+  { label: "Red", value: "var(--color-red-500)" },
+  { label: "Blue", value: "var(--color-blue-500)" },
+  { label: "Olive", value: "var(--color-olive-500)" },
+  { label: "Neutral", value: "var(--color-neutral-500)" },
+  { label: "Mauve", value: "var(--color-mauve-500)" },
+  { label: "Slate", value: "var(--color-slate-500)" },
+];
 
 interface NodeEditorProps {
   nodes: DynamicNode[];
@@ -80,16 +82,6 @@ export function NodeEditor({ nodes, onChange }: NodeEditorProps) {
   return (
     <div className="space-y-3 p-4 mb-4">
       {nodes.map((node) => {
-        const attritionWeight = node.targets
-          .filter((t) => t.isAttrition)
-          .reduce((s, t) => s + (t.weight ?? 1), 0);
-        const producerWeight = node.weight ?? 1;
-        const totalWeight = producerWeight + attritionWeight;
-        const effectivePct =
-          attritionWeight > 0
-            ? Math.round((producerWeight / totalWeight) * 100)
-            : null;
-
         return (
           <Card key={node.id}>
             <CardContent className="pt-4 space-y-3">
@@ -100,24 +92,6 @@ export function NodeEditor({ nodes, onChange }: NodeEditorProps) {
                   value={node.name}
                   onChange={(e) => update(node.id, { name: e.target.value })}
                 />
-                <Select
-                  value={node.role ?? "_none"}
-                  onValueChange={(val) =>
-                    update(node.id, { role: val === "_none" ? undefined : val })
-                  }
-                >
-                  <SelectTrigger className="w-28">
-                    <SelectValue placeholder="No Role" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="_none">No Role</SelectItem>
-                    {ROLES.map((r) => (
-                      <SelectItem key={r} value={r}>
-                        {r}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
                 <Input
                   className="w-28"
                   placeholder="Location"
@@ -162,11 +136,6 @@ export function NodeEditor({ nodes, onChange }: NodeEditorProps) {
                     }
                   />
                 </div>
-                {effectivePct !== null && (
-                  <Badge variant="outline" className="font-mono text-xs">
-                    {effectivePct}% productive
-                  </Badge>
-                )}
                 <Button
                   variant="ghost"
                   size="sm"
@@ -177,25 +146,33 @@ export function NodeEditor({ nodes, onChange }: NodeEditorProps) {
                 >
                   Remove
                 </Button>
-              </div>
-
-              {/* Productive weight — only shown when attrition is present */}
-              {attritionWeight > 0 && (
-                <div className="flex items-center gap-2">
-                  <Label className="text-muted-foreground whitespace-nowrap">
-                    Productive Weight
-                  </Label>
-                  <Input
-                    type="number"
-                    min={1}
-                    className="w-16 font-mono"
-                    value={node.weight ?? 1}
-                    onChange={(e) =>
-                      update(node.id, { weight: Number(e.target.value) })
-                    }
-                  />
+                <div className="flex flex-wrap gap-1">
+                  {ROLES.map((r) => {
+                    const active = node.roles?.includes(r) ?? false;
+                    return (
+                      <button
+                        key={r}
+                        type="button"
+                        onClick={() => {
+                          const current = node.roles ?? [];
+                          update(node.id, {
+                            roles: active
+                              ? current.filter((x) => x !== r)
+                              : [...current, r],
+                          });
+                        }}
+                        className={`px-2 py-0.5 rounded text-xs font-medium transition-colors ${
+                          active
+                            ? "bg-primary text-primary-foreground"
+                            : "bg-muted text-muted-foreground hover:bg-muted/70"
+                        }`}
+                      >
+                        {r}
+                      </button>
+                    );
+                  })}
                 </div>
-              )}
+              </div>
 
               {/* Targets */}
               <div className="pl-2 space-y-1.5">
@@ -205,58 +182,66 @@ export function NodeEditor({ nodes, onChange }: NodeEditorProps) {
                       className="w-32"
                       placeholder="Destination"
                       value={t.name}
-                      onChange={(e) => {
-                        const name = e.target.value;
-                        const isAttrition = name in ATTRITION_COLORS;
-                        updateTarget(node.id, t.id, {
-                          name,
-                          isAttrition,
-                          color: ATTRITION_COLORS[name] ?? t.color,
-                          weight: t.weight ?? 1,
-                        });
-                      }}
+                      onChange={(e) =>
+                        updateTarget(node.id, t.id, { name: e.target.value })
+                      }
                     />
-                    {t.isAttrition ? (
-                      <>
-                        <span className="text-muted-foreground text-xs whitespace-nowrap">
-                          weight
-                        </span>
-                        <Input
-                          type="number"
-                          min={1}
-                          className="w-14 font-mono text-center"
-                          value={t.weight ?? 1}
-                          onChange={(e) =>
-                            updateTarget(node.id, t.id, {
-                              weight: Number(e.target.value),
-                            })
-                          }
-                        />
-                        <Badge
-                          variant="outline"
-                          className="text-yellow-500 border-yellow-500/30 whitespace-nowrap"
-                        >
-                          attrition
-                        </Badge>
-                      </>
-                    ) : (
-                      <>
-                        <span className="text-muted-foreground text-xs whitespace-nowrap">
-                          weight
-                        </span>
-                        <Input
-                          type="number"
-                          min={1}
-                          className="w-16 font-mono text-center"
-                          value={t.weight ?? 1}
-                          onChange={(e) =>
-                            updateTarget(node.id, t.id, {
-                              weight: Number(e.target.value),
-                            })
-                          }
-                        />
-                      </>
-                    )}
+                    <span className="text-muted-foreground text-xs whitespace-nowrap">
+                      weight
+                    </span>
+                    <Input
+                      type="number"
+                      min={1}
+                      className="w-16 font-mono text-center"
+                      value={t.weight ?? 1}
+                      onChange={(e) =>
+                        updateTarget(node.id, t.id, {
+                          weight: Number(e.target.value),
+                        })
+                      }
+                    />
+                    <Select
+                      value={t.color ?? "_none"}
+                      onValueChange={(val) =>
+                        updateTarget(node.id, t.id, {
+                          color: val === "_none" ? undefined : val,
+                        })
+                      }
+                    >
+                      <SelectTrigger className="w-32">
+                        <SelectValue>
+                          {t.color ? (
+                            <span className="flex items-center gap-1.5">
+                              <span
+                                className="inline-block h-3 w-3 rounded-full shrink-0"
+                                style={{ backgroundColor: t.color }}
+                              />
+                              {COLOR_OPTIONS.find((o) => o.value === t.color)
+                                ?.label ?? "Custom"}
+                            </span>
+                          ) : (
+                            <span className="text-muted-foreground">
+                              No color
+                            </span>
+                          )}
+                        </SelectValue>
+                      </SelectTrigger>
+                      <SelectContent>
+                        {COLOR_OPTIONS.map((o) => (
+                          <SelectItem key={o.value} value={o.value}>
+                            <span className="flex items-center gap-1.5">
+                              {o.value !== "_none" && (
+                                <span
+                                  className="inline-block h-3 w-3 rounded-full shrink-0"
+                                  style={{ backgroundColor: o.value }}
+                                />
+                              )}
+                              {o.label}
+                            </span>
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                     <Button
                       variant="ghost"
                       size="icon"

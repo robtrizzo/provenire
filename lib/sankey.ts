@@ -1,36 +1,97 @@
 export type SankeyInput = {
   name: string;
-  color?: string;
-  role?: string;
-  targets: { name: string; value: number; color?: string }[];
+  roles?: string[];
+  produces?: number; // total output for source nodes
+  location?: string;
+  targets: { name: string; weight: number; color?: string }[];
 }[];
 
 export function toSankeyData(input: SankeyInput) {
-  // Strip zero-value and nameless targets before recharts sees them
   const validInput = input.map((node) => ({
     ...node,
-    targets: node.targets.filter((t) => t.value > 0 && t.name.trim() !== ""),
+    targets: node.targets.filter((t) => t.weight > 0 && t.name.trim() !== ""),
   }));
 
+  const nodeMap = new Map(validInput.map((n) => [n.name, n]));
   const nameSet = new Set<string>();
   for (const node of validInput) {
-    if (node.targets.length === 0) continue; // skip nodes that only sent 0-value links
     nameSet.add(node.name);
     for (const t of node.targets) nameSet.add(t.name);
   }
 
-  const nodes = Array.from(nameSet).map((name) => ({ name }));
-  const indexMap = new Map(nodes.map((n, i) => [n.name, i]));
-
-  const links = validInput.flatMap((node) =>
-    node.targets.map((t) => ({
-      source: indexMap.get(node.name)!,
-      target: indexMap.get(t.name)!,
-      value: t.value,
-      color: t.color ?? node.color,
-    })),
+  // Kahn's topological sort
+  const inDegree = new Map<string, number>(
+    Array.from(nameSet).map((n) => [n, 0]),
   );
+  for (const node of validInput)
+    for (const t of node.targets)
+      inDegree.set(t.name, inDegree.get(t.name)! + 1);
 
+  const queue = [...inDegree.entries()]
+    .filter(([, d]) => d === 0)
+    .map(([n]) => n);
+  const order: string[] = [];
+  const rem = new Map(inDegree);
+  while (queue.length > 0) {
+    const name = queue.shift()!;
+    order.push(name);
+    for (const t of nodeMap.get(name)?.targets ?? []) {
+      const d = rem.get(t.name)! - 1;
+      rem.set(t.name, d);
+      if (d === 0) queue.push(t.name);
+    }
+  }
+
+  // Flow propagation
+  const inflows = new Map<string, number>();
+  const resolvedLinks = new Map<
+    string,
+    { name: string; value: number; color?: string }[]
+  >();
+  for (const name of order) {
+    const node = nodeMap.get(name);
+    if (!node || node.targets.length === 0) continue;
+    const output = node.produces ?? inflows.get(name) ?? 0;
+    const totalWeight = node.targets.reduce((s, t) => s + t.weight, 0);
+    const values = distributeByWeight(
+      output,
+      node.targets.map((t) => t.weight),
+      totalWeight,
+    );
+    resolvedLinks.set(
+      name,
+      node.targets.map((t, i) => ({
+        name: t.name,
+        value: values[i],
+        color: t.color,
+      })),
+    );
+    for (let i = 0; i < node.targets.length; i++)
+      inflows.set(
+        node.targets[i].name,
+        (inflows.get(node.targets[i].name) ?? 0) + values[i],
+      );
+  }
+
+  const visibleNames = new Set<string>();
+  for (const [src, links] of resolvedLinks) {
+    if (links.some((l) => l.value > 0)) {
+      visibleNames.add(src);
+      for (const l of links) if (l.value > 0) visibleNames.add(l.name);
+    }
+  }
+  const nodes = Array.from(visibleNames).map((name) => ({ name }));
+  const indexMap = new Map(nodes.map((n, i) => [n.name, i]));
+  const links = [...resolvedLinks.entries()].flatMap(([src, targets]) =>
+    targets
+      .filter((t) => t.value > 0)
+      .map((t) => ({
+        source: indexMap.get(src)!,
+        target: indexMap.get(t.name)!,
+        value: t.value,
+        color: t.color,
+      })),
+  );
   return { nodes, links };
 }
 
@@ -42,30 +103,19 @@ export type DynamicTarget = {
   id: string;
   name: string;
   color?: string;
-  isAttrition?: boolean;
   weight?: number; // attrition targets only — relative pressure
 };
 
 export type DynamicNode = {
   id: string;
   name: string;
-  role?: string;
+  roles?: string[];
   color?: string;
   location?: string;
   totalOutput?: number;
-  weight?: number; // productive pressure — compared against attrition weights
   max?: number; // productive targets only — hard cap on flow received};
   targets: DynamicTarget[];
 };
-
-const ATTRITION_NAMES = new Set([
-  "Lost",
-  "Attacks",
-  "Stolen",
-  "Wasted",
-  "Destroyed",
-  "Slag",
-]);
 
 /** Convert static SankeyInput to editable DynamicNode[]. */
 export function toDynamicNodes(input: SankeyInput): DynamicNode[] {
@@ -74,53 +124,19 @@ export function toDynamicNodes(input: SankeyInput): DynamicNode[] {
   );
   return input.map((node) => {
     const isSource = !targetNames.has(node.name);
-    const total = node.targets.reduce((s, t) => s + t.value, 0);
-
-    const attritionTargets = node.targets.filter((t) =>
-      ATTRITION_NAMES.has(t.name),
-    );
-    const productiveTargets = node.targets.filter(
-      (t) => !ATTRITION_NAMES.has(t.name),
-    );
-    const productiveTotal = productiveTargets.reduce((s, t) => s + t.value, 0);
-
-    const allWeights = [
-      productiveTotal,
-      ...attritionTargets.map((t) => t.value),
-    ].filter((v) => v > 0);
-    const g = allWeights.length > 0 ? allWeights.reduce(gcd) : 1;
-
-    const prodValues = productiveTargets
-      .map((t) => t.value)
-      .filter((v) => v > 0);
-    const gcdProd = prodValues.length > 0 ? prodValues.reduce(gcd) : 1;
-
+    const total = node.targets.reduce((s, t) => s + t.weight, 0);
     return {
       id: node.name,
       name: node.name,
-      role: node.role,
-      color: node.color,
-      totalOutput: isSource ? total : undefined,
-      weight: productiveTotal > 0 ? productiveTotal / g : 1,
-      targets: node.targets.map((t) => {
-        const isAttrition = ATTRITION_NAMES.has(t.name);
-        if (isAttrition) {
-          return {
-            id: `${node.name}->${t.name}`,
-            name: t.name,
-            color: t.color,
-            isAttrition: true,
-            weight: g > 0 ? t.value / g : t.value,
-          };
-        }
-        return {
-          id: `${node.name}->${t.name}`,
-          name: t.name,
-          color: t.color,
-          isAttrition: false,
-          weight: t.value > 0 ? t.value / gcdProd : 1,
-        };
-      }),
+      roles: node.roles,
+      location: node.location,
+      totalOutput: node.produces ?? (isSource ? total : undefined),
+      targets: node.targets.map((t) => ({
+        id: `${node.name}->${t.name}`,
+        name: t.name,
+        color: t.color,
+        weight: t.weight,
+      })),
     };
   });
 }
@@ -191,39 +207,18 @@ function resolveTargetValues(
   output: number,
   remainingCapacity: Map<string, number>,
 ) {
-  const attrition = node.targets.filter((t) => t.isAttrition);
-  const productive = node.targets.filter((t) => !t.isAttrition);
-
-  const producerWeight = productive.length > 0 ? (node.weight ?? 1) : 0;
-  const attritionWeight = attrition.reduce((s, t) => s + (t.weight ?? 1), 0);
-  const totalWeight = producerWeight + attritionWeight;
-
-  const allWeights = [producerWeight, ...attrition.map((t) => t.weight ?? 1)];
-  const distributed = distributeByWeight(output, allWeights, totalWeight);
-  const productiveOutput = distributed[0];
-
-  const productiveValues = distributeWithCaps(
-    productiveOutput,
-    productive.map((t) => ({
+  const values = distributeWithCaps(
+    output,
+    node.targets.map((t) => ({
       weight: t.weight ?? 1,
-      max: remainingCapacity.has(t.name)
-        ? remainingCapacity.get(t.name)!
-        : undefined,
+      max: remainingCapacity.get(t.name),
     })),
   );
-
-  return [
-    ...attrition.map((t, i) => ({
-      name: t.name,
-      value: distributed[i + 1],
-      color: t.color,
-    })),
-    ...productive.map((t, i) => ({
-      name: t.name,
-      value: productiveValues[i],
-      color: t.color ?? node.color,
-    })),
-  ];
+  return node.targets.map((t, i) => ({
+    name: t.name,
+    weight: values[i],
+    color: t.color ?? node.color,
+  }));
 }
 
 /**
@@ -277,20 +272,23 @@ export function computeDynamicSankey(nodes: DynamicNode[]): SankeyInput {
     const targets = resolveTargetValues(node, output, remainingCapacity);
     resolvedTargets.set(name, targets);
     for (const tv of targets) {
-      inflows.set(tv.name, (inflows.get(tv.name) ?? 0) + tv.value);
+      inflows.set(tv.name, (inflows.get(tv.name) ?? 0) + tv.weight);
       if (remainingCapacity.has(tv.name)) {
         remainingCapacity.set(
           tv.name,
-          Math.max(0, remainingCapacity.get(tv.name)! - tv.value),
+          Math.max(0, remainingCapacity.get(tv.name)! - tv.weight),
         );
       }
     }
   }
 
-  return nodes.map((node) => ({
-    name: node.name,
-    role: node.role,
-    color: node.color,
-    targets: resolvedTargets.get(node.name) ?? [],
-  }));
+  return nodes.map((node) => {
+    const targets = resolvedTargets.get(node.name) ?? [];
+    return {
+      name: node.name,
+      roles: node.roles,
+      produces: targets.reduce((s, t) => s + t.weight, 0),
+      targets,
+    };
+  });
 }

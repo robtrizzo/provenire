@@ -33,8 +33,10 @@ export default function EditableSankeyChart({
           {editing ? "Hide Editor" : "Edit"}
         </button>
       </div>
+      <div className="sticky top-0 z-10 bg-background">
+        <SankeyChart data={derived} />
+      </div>
       {editing && <NodeEditor nodes={nodes} onChange={setNodes} />}
-      <SankeyChart data={derived} />
     </div>
   );
 }

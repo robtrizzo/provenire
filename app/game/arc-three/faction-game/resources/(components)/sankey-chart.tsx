@@ -30,10 +30,9 @@ export default function SankeyChart({ data }: SankeyChartProps) {
         ...node,
         targets: node.targets.map((t) => ({
           ...t,
-          color:
-            node.role && selectedRoles.has(node.role as Role)
-              ? (t.color ?? node.color)
-              : DIM_COLOR,
+          color: node.roles?.some((r) => selectedRoles.has(r as Role))
+            ? t.color
+            : DIM_COLOR,
         })),
       })),
     );
