@@ -5,23 +5,33 @@ import {
   DynamicNode,
   toDynamicNodes,
   computeDynamicSankey,
+  SankeyLocation,
+  applyLocationTargets,
+  dynamicNodesToRawInput,
 } from "@/lib/sankey";
 import SankeyChart from "./sankey-chart";
 import { NodeEditor } from "./node-editor";
 
 interface EditableSankeyChartProps {
   initialData: SankeyInput;
+  locationNames: string[];
+  locationDefs: SankeyLocation[];
 }
 
 export default function EditableSankeyChart({
   initialData,
+  locationNames,
+  locationDefs,
 }: EditableSankeyChartProps) {
   const [nodes, setNodes] = useState<DynamicNode[]>(() =>
     toDynamicNodes(initialData),
   );
   const [editing, setEditing] = useState(false);
 
-  const derived = useMemo(() => computeDynamicSankey(nodes), [nodes]);
+  const derived = useMemo(
+    () => applyLocationTargets(dynamicNodesToRawInput(nodes), locationDefs),
+    [nodes, locationDefs],
+  );
 
   return (
     <div>
@@ -36,7 +46,14 @@ export default function EditableSankeyChart({
       <div className="sticky top-0 z-10 bg-background">
         <SankeyChart data={derived} />
       </div>
-      {editing && <NodeEditor nodes={nodes} onChange={setNodes} />}
+      {editing && (
+        <NodeEditor
+          nodes={nodes}
+          onChange={setNodes}
+          locations={locationNames}
+          locationDefs={locationDefs}
+        />
+      )}
     </div>
   );
 }

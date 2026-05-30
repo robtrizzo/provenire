@@ -1,32 +1,52 @@
 import Breadcrumbs from "@/components/ui/breadcrumbs";
 import { TypographyH1, TypographyH2 } from "@/components/ui/typography";
 import ResourceSunburstChart from "./(components)/sunburst-chart";
-import { SankeyInput } from "@/lib/sankey";
+import {
+  applyLocationTargets,
+  SankeyInput,
+  SankeyLocation,
+} from "@/lib/sankey";
 import EditableSankeyChart from "./(components)/editable-sankey-chart";
+import ResourcesView from "./(components)/resources-view";
 
-const materialsData: SankeyInput = [
+const locations: SankeyLocation[] = [
   {
-    name: "Scrapyard",
-    roles: ["Wright"],
-    produces: 40,
+    name: "Fab Floor",
     targets: [
-      { name: "Scrapping", weight: 15 },
-      { name: "Slag", weight: 10, color: "var(--color-olive-500)" },
       { name: "Lost", weight: 5, color: "var(--color-neutral-500)" },
       { name: "Attacks", weight: 5, color: "var(--color-mauve-500)" },
       { name: "Stolen", weight: 5, color: "var(--color-slate-500)" },
     ],
   },
   {
-    name: "Shanty Houses",
-    roles: ["Scaffold"],
-    produces: 25,
+    name: "Lofts",
     targets: [
-      { name: "Scrapping", weight: 10 },
-      { name: "Slag", weight: 1, color: "var(--color-olive-500)" },
       { name: "Lost", weight: 5, color: "var(--color-neutral-500)" },
       { name: "Attacks", weight: 6, color: "var(--color-mauve-500)" },
       { name: "Stolen", weight: 3, color: "var(--color-slate-500)" },
+    ],
+  },
+];
+
+const materialsData: SankeyInput = [
+  {
+    name: "Scrapyard",
+    roles: ["Wright"],
+    produces: 40,
+    location: ["Fab Floor"],
+    targets: [
+      { name: "Scrapping", weight: 15 },
+      { name: "Slag", weight: 10, color: "var(--color-olive-500)" },
+    ],
+  },
+  {
+    name: "Shanty Houses",
+    roles: ["Scaffold"],
+    produces: 25,
+    location: ["Lofts"],
+    targets: [
+      { name: "Scrapping", weight: 10 },
+      { name: "Slag", weight: 1, color: "var(--color-olive-500)" },
     ],
   },
   {
@@ -40,22 +60,21 @@ const materialsData: SankeyInput = [
   {
     name: "Workshops",
     roles: ["Wright"],
+    produces: "4:5",
+    location: ["Fab Floor"],
     targets: [
       { name: "Manufacturing", weight: 5 },
       { name: "Slag", weight: 4, color: "var(--color-olive-500)" },
-      { name: "Lost", weight: 1, color: "var(--color-neutral-500)" },
-      { name: "Stolen", weight: 5, color: "var(--color-slate-500)" },
-      { name: "Attacks", weight: 5, color: "var(--color-mauve-500)" },
     ],
   },
   {
     name: "Machines",
     roles: ["Cipher"],
+    produces: "2:3",
+    location: ["Fab Floor"],
     targets: [
       { name: "Manufacturing", weight: 8 },
       { name: "Slag", weight: 5, color: "var(--color-olive-500)" },
-      { name: "Stolen", weight: 1, color: "var(--color-slate-500)" },
-      { name: "Attacks", weight: 1, color: "var(--color-mauve-500)" },
     ],
   },
   {
@@ -79,19 +98,19 @@ const materialsData: SankeyInput = [
   {
     name: "Vault",
     roles: ["Vault"],
+    max: 6,
+    location: ["The Bends"],
     targets: [{ name: "Available", weight: 1 }],
   },
   {
     name: "Misc Stashes",
     roles: ["Scaffold"],
-    targets: [
-      { name: "Stolen", weight: 6, color: "var(--color-slate-500)" },
-      { name: "Attacks", weight: 2, color: "var(--color-mauve-500)" },
-      { name: "Available", weight: 4 },
-    ],
+    location: ["Stairwell", "Fab Floor", "The Bends", "Lofts"],
+    targets: [{ name: "Available", weight: 4 }],
   },
   {
     name: "Lair",
+    max: 4,
     targets: [{ name: "Available", weight: 1 }],
   },
   {
@@ -102,11 +121,14 @@ const materialsData: SankeyInput = [
   },
 ];
 
+// TODO! refactor the rest of the data to use the location defs
+
 const foodData: SankeyInput = [
   {
     name: "Delivered Shipment",
     roles: ["Cipher", "Wright"],
     produces: 150,
+    location: ["Delivery Vault"],
     targets: [
       { name: "Storage", weight: 14, color: "var(--color-amber-500)" },
       { name: "Destroyed", weight: 11, color: "var(--color-olive-500)" },
@@ -161,6 +183,7 @@ const foodData: SankeyInput = [
   {
     name: "Misc Stashes",
     roles: ["Scaffold"],
+    location: ["Stairwell", "Fab Floor", "The Bends", "Lofts"],
     targets: [
       { name: "Available", weight: 2, color: "var(--color-amber-500)" },
       { name: "Attacks", weight: 6, color: "var(--color-mauve-500)" },
@@ -227,6 +250,7 @@ const bloodData: SankeyInput = [
   {
     name: "Misc Stashes",
     roles: ["Scaffold"],
+    location: ["Stairwell", "Fab Floor", "The Bends", "Lofts"],
     targets: [
       { name: "Available", weight: 1, color: "var(--color-red-500)" },
       { name: "Attacks", weight: 7, color: "var(--color-mauve-500)" },
@@ -257,6 +281,7 @@ const waterData: SankeyInput = [
   {
     name: "Pipeline",
     roles: ["Scaffold"],
+    location: ["Lofts", "The Bends"],
     targets: [
       { name: "Storage", weight: 2, color: "var(--color-blue-500)" },
       { name: "Lost", weight: 2, color: "var(--color-neutral-500)" },
@@ -289,22 +314,13 @@ export default async function Page() {
       <div className="mt-8">
         <ResourceSunburstChart />
       </div>
-      <TypographyH2>Materials</TypographyH2>
-      <div className="mt-8">
-        <EditableSankeyChart initialData={materialsData} />
-      </div>
-      <TypographyH2>Food</TypographyH2>
-      <div className="mt-8">
-        <EditableSankeyChart initialData={foodData} />
-      </div>
-      <TypographyH2>Blood</TypographyH2>
-      <div className="mt-8">
-        <EditableSankeyChart initialData={bloodData} />
-      </div>
-      <TypographyH2>Water</TypographyH2>
-      <div className="mt-8">
-        <EditableSankeyChart initialData={waterData} />
-      </div>
+      <ResourcesView
+        materialsData={materialsData}
+        foodData={foodData}
+        bloodData={bloodData}
+        waterData={waterData}
+        locationDefs={locations}
+      />
     </>
   );
 }
