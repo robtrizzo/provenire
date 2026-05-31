@@ -16,12 +16,14 @@ interface EditableSankeyChartProps {
   initialData: SankeyInput;
   locationNames: string[];
   locationDefs: SankeyLocation[];
+  exemptions?: string[];
 }
 
 export default function EditableSankeyChart({
   initialData,
   locationNames,
   locationDefs,
+  exemptions,
 }: EditableSankeyChartProps) {
   const [nodes, setNodes] = useState<DynamicNode[]>(() =>
     toDynamicNodes(initialData),
@@ -29,8 +31,13 @@ export default function EditableSankeyChart({
   const [editing, setEditing] = useState(false);
 
   const derived = useMemo(
-    () => applyLocationTargets(dynamicNodesToRawInput(nodes), locationDefs),
-    [nodes, locationDefs],
+    () =>
+      applyLocationTargets(
+        dynamicNodesToRawInput(nodes),
+        locationDefs,
+        exemptions,
+      ),
+    [nodes, locationDefs, exemptions],
   );
 
   return (

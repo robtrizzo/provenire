@@ -1,3 +1,5 @@
+import type { SunburstData } from "recharts";
+
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 export type SankeyInput = {
@@ -362,6 +364,7 @@ export function dynamicNodesToRawInput(nodes: DynamicNode[]): SankeyInput {
 export function applyLocationTargets(
   input: SankeyInput,
   locations: SankeyLocation[],
+  exemptions: string[] = [],
 ): SankeyInput {
   const locationMap = new Map(locations.map((l) => [l.name, l]));
 
@@ -383,6 +386,7 @@ export function applyLocationTargets(
     );
 
     const locationDerivedTargets = Array.from(byName.entries())
+      .filter(([name]) => !exemptions.includes(name))
       .map(([name, entries]) => {
         const avgWeight =
           entries.reduce((s, e) => s + e.weight, 0) / entries.length;
@@ -400,4 +404,74 @@ export function applyLocationTargets(
       targets: [...node.targets, ...locationDerivedTargets],
     };
   });
+}
+
+export function sankeyToSunburstData(
+  input: SankeyInput,
+  label: string,
+  fill: string,
+  rootNodeName = "Available",
+): SunburstData {
+  const { nodes, links } = toSankeyData(input);
+
+  // Map: node index → sources that feed it (with actual computed flow values)
+  const incomingLinks = new Map<number, { source: number; value: number }[]>();
+  for (const link of links) {
+    if (!incomingLinks.has(link.target)) incomingLinks.set(link.target, []);
+    incomingLinks
+      .get(link.target)!
+      .push({ source: link.source, value: link.value });
+  }
+
+  // Build a name→roles map for role-filter annotation
+  const rolesMap = new Map(input.map((n) => [n.name, n.roles]));
+
+  const rootIdx = nodes.findIndex((n) => n.name === rootNodeName);
+  if (rootIdx === -1) return { name: label, fill, value: 0 };
+
+  const rootValue = (incomingLinks.get(rootIdx) ?? []).reduce(
+    (s, l) => s + l.value,
+    0,
+  );
+
+  let counter = 0;
+  const visited = new Set<number>();
+
+  function buildTree(nodeIdx: number, allocatedValue: number): SunburstData {
+    visited.add(nodeIdx);
+
+    const nodeName = nodes[nodeIdx].name;
+    const roles = rolesMap.get(nodeName);
+    const displayName = roles?.length
+      ? `${nodeName} (${roles.join(", ")})`
+      : nodeName;
+    const uniqueName = `${label}/${displayName}__${counter++}`;
+
+    const sources = incomingLinks.get(nodeIdx) ?? [];
+    const unvisited = sources.filter(
+      (l) => l.value > 0 && !visited.has(l.source),
+    );
+
+    if (unvisited.length === 0)
+      return { name: uniqueName, label: displayName, value: allocatedValue };
+
+    const totalInflow = sources.reduce((s, l) => s + l.value, 0);
+    const children = unvisited.map((l) => {
+      const childAlloc = Math.round((l.value / totalInflow) * allocatedValue);
+      return buildTree(l.source, childAlloc);
+    });
+
+    return {
+      name: uniqueName,
+      label: displayName,
+      value: allocatedValue,
+      children,
+    };
+  }
+
+  const children = (incomingLinks.get(rootIdx) ?? [])
+    .filter((l) => l.value > 0)
+    .map((l) => buildTree(l.source, l.value));
+
+  return { name: label, fill, value: rootValue, children };
 }

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { SankeyInput, SankeyLocation } from "@/lib/sankey";
 import EditableSankeyChart from "./editable-sankey-chart";
 import { TypographyH2 } from "@/components/ui/typography";
@@ -9,10 +9,7 @@ import { Input } from "@/components/ui/input";
 import { X, Plus } from "lucide-react";
 
 interface ResourcesViewProps {
-  materialsData: SankeyInput;
-  foodData: SankeyInput;
-  bloodData: SankeyInput;
-  waterData: SankeyInput;
+  datasets: { label: string; data: SankeyInput; exemptions?: string[] }[];
   locationDefs: SankeyLocation[];
 }
 
@@ -25,24 +22,18 @@ function collectLocations(datasets: SankeyInput[]): string[] {
 }
 
 export default function ResourcesView({
-  materialsData,
-  foodData,
-  bloodData,
-  waterData,
+  datasets,
   locationDefs,
 }: ResourcesViewProps) {
+  const allData = datasets.map((d) => d.data);
+
   const [locationNames, setLocationNames] = useState<string[]>(() => {
     const fromDefs = locationDefs.map((l) => l.name);
-    const fromNodes = collectLocations([
-      materialsData,
-      foodData,
-      bloodData,
-      waterData,
-    ]);
+    const fromNodes = collectLocations(allData);
     return Array.from(new Set([...fromDefs, ...fromNodes]));
   });
   const [locations, setLocations] = useState<string[]>(() =>
-    collectLocations([materialsData, foodData, bloodData, waterData]),
+    collectLocations(allData),
   );
   const [newLocation, setNewLocation] = useState("");
 
@@ -97,38 +88,19 @@ export default function ResourcesView({
         </div>
       </div>
 
-      <TypographyH2>Materials</TypographyH2>
-      <div className="mt-8">
-        <EditableSankeyChart
-          initialData={materialsData}
-          locationNames={locationNames}
-          locationDefs={activeLocationDefs}
-        />
-      </div>
-      <TypographyH2>Food</TypographyH2>
-      <div className="mt-8">
-        <EditableSankeyChart
-          initialData={foodData}
-          locationNames={locationNames}
-          locationDefs={activeLocationDefs}
-        />
-      </div>
-      <TypographyH2>Blood</TypographyH2>
-      <div className="mt-8">
-        <EditableSankeyChart
-          initialData={bloodData}
-          locationNames={locationNames}
-          locationDefs={activeLocationDefs}
-        />
-      </div>
-      <TypographyH2>Water</TypographyH2>
-      <div className="mt-8">
-        <EditableSankeyChart
-          initialData={waterData}
-          locationNames={locationNames}
-          locationDefs={activeLocationDefs}
-        />
-      </div>
+      {datasets.map(({ label, data, exemptions }) => (
+        <Fragment key={label}>
+          <TypographyH2>{label}</TypographyH2>
+          <div className="mt-8">
+            <EditableSankeyChart
+              initialData={data}
+              locationNames={locationNames}
+              locationDefs={activeLocationDefs}
+              exemptions={exemptions}
+            />
+          </div>
+        </Fragment>
+      ))}
     </>
   );
 }
