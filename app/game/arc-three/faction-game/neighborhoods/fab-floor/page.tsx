@@ -14,9 +14,9 @@ export default async function Page() {
       <Breadcrumbs />
       <TypographyH1>Fab Floor</TypographyH1>
       <TypographyP>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, vitae
-        quia sequi architecto vel nulla. Aspernatur earum suscipit qui vel,
-        dolorem aperiam asperiores quaerat? Quae at eaque dolores labore itaque.
+        Houses stacked on each other between the machines. Always a risky
+        proposition because of the factory's fickleness. This is where the work
+        gets done. Where hands get stained with oil and blood.
       </TypographyP>
       <TypographyH2>Factions</TypographyH2>
       <div className="my-4 flex flex-col gap-2">
@@ -102,7 +102,8 @@ export default async function Page() {
                 <i>(leader, compromising, Duara&apos;s puppet)</i>, <b>Duara</b>{" "}
                 <i>(calculating, paranoid, cruel)</i>, <b>Veria</b>{" "}
                 <i>(irritable, honest)</i>, <b>Oza Kriche</b>{" "}
-                <i>(naysayer, spiteful, subordinate)</i>
+                <i>(naysayer, spiteful, subordinate)</i>, <b>Inga</b>{" "}
+                <i>(survivor, sold to Duara for food)</i>
               </li>
               <li>
                 <b>Notable Assets:</b> massive workforce, established leadership

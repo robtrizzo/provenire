@@ -14,10 +14,11 @@ export default async function Page() {
       <Breadcrumbs />
       <TypographyH1>Lofts</TypographyH1>
       <TypographyP>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusamus
-        perspiciatis dignissimos quae, qui, doloribus dolor aut maiores
-        provident quod commodi nobis iusto quia dolores nostrum fugiat
-        voluptatibus voluptatum voluptate optio.
+        Thousands of homes arranged on catwalks and platforms above the main
+        factory floor. Difficult to tell what was original construction and what
+        has been added over the generations. There are warm patches and a level
+        of security, but the proximity to the upper beast lanes is worth
+        wondering about.
       </TypographyP>
       <TypographyH2>Factions</TypographyH2>
       <div className="my-4 flex flex-col gap-2">
