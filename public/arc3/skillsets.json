@@ -1,5 +1,46 @@
 [
   {
+    "name": "Chisel",
+    "shortDescription": "A crafty saboteur and wright",
+    "description": "The workers of the Steel Trap spend their lives surrounded by the roaring and churning machines of the factory. The Chisel is one of the few who dares to attempt understanding them.",
+    "questions": [
+      "A dangerous machine you were tampering with lashed out at you. What was the machine and how did it scar you?",
+      "The factory's every creation leaves behind piles of refuse. What waste do you see as useful materials that others don't?"
+    ],
+    "abilities": [
+      {
+        "name": "Saboteur",
+        "slug": "saboteur",
+        "cost": 3
+      },
+      {
+        "name": "Forge the Tools of Rebellion",
+        "slug": "forge-the-tools-of-rebellion",
+        "cost": 4
+      },
+      {
+        "name": "Dead Man's Switch",
+        "slug": "dead-mans-switch",
+        "cost": 4
+      },
+      {
+        "name": "Harness",
+        "slug": "harness",
+        "cost": 3
+      },
+      {
+        "name": "Masterwork",
+        "slug": "masterwork",
+        "cost": 2
+      },
+      {
+        "name": "Savant",
+        "slug": "savant",
+        "cost": 2
+      }
+    ]
+  },
+  {
     "name": "Flywheel",
     "shortDescription": "A daring scoundrel and acrobat",
     "description": "The Steel Trap is part factory, part prison, part fortress. Many of its rooms and corridors were never desinged to be traversed by humans. Flywheels are one of the few nimble enough to navigate the parts of the factory made only for crows, wolves, and bears.",

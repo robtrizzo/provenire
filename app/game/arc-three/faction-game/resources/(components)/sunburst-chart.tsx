@@ -224,7 +224,11 @@ function applyRoleHighlight(
   };
 }
 
-export default function ResourceSunburstChart() {
+export default function ResourceSunburstChart({
+  data,
+}: {
+  data: SunburstData;
+}) {
   const [selectedRoles, setSelectedRoles] = useState<Set<Role>>(new Set());
 
   const toggleRole = (role: Role) => {
@@ -236,10 +240,10 @@ export default function ResourceSunburstChart() {
     });
   };
 
-  const data = useMemo<SunburstData>(() => {
-    if (selectedRoles.size === 0) return hierarchy;
-    return applyRoleHighlight(hierarchy, selectedRoles) as SunburstData;
-  }, [selectedRoles]);
+  const highlighted = useMemo<SunburstData>(() => {
+    if (selectedRoles.size === 0) return data;
+    return applyRoleHighlight(data, selectedRoles) as SunburstData;
+  }, [selectedRoles, data]);
 
   return (
     <div>
@@ -268,7 +272,7 @@ export default function ResourceSunburstChart() {
         </button>
       </div>
       <ResponsiveContainer width="100%" height={900}>
-        <SunburstChart startAngle={90} endAngle={330} data={data}>
+        <SunburstChart startAngle={90} endAngle={330} data={highlighted}>
           <Tooltip content={<CustomTooltip />} />
         </SunburstChart>
       </ResponsiveContainer>

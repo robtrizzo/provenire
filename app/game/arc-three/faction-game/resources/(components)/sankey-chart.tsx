@@ -30,14 +30,15 @@ export default function SankeyChart({ data }: SankeyChartProps) {
         ...node,
         targets: node.targets.map((t) => ({
           ...t,
-          color:
-            node.role && selectedRoles.has(node.role as Role)
-              ? (t.color ?? node.color)
-              : DIM_COLOR,
+          color: node.roles?.some((r) => selectedRoles.has(r as Role))
+            ? t.color
+            : DIM_COLOR,
         })),
       })),
     );
-  }, [selectedRoles]);
+  }, [selectedRoles, data]);
+
+  const nodeKey = sankeyData.nodes.map((n) => n.name).join(",");
 
   return (
     <div>
@@ -48,6 +49,7 @@ export default function SankeyChart({ data }: SankeyChartProps) {
       />
       <ResponsiveContainer width="100%" aspect={2}>
         <Sankey
+          key={nodeKey}
           data={sankeyData}
           node={SankeyNode}
           nodePadding={50}

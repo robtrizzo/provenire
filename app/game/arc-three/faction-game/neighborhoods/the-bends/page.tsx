@@ -14,9 +14,11 @@ export default async function Page() {
       <Breadcrumbs />
       <TypographyH1>The Bends</TypographyH1>
       <TypographyP>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus, vitae
-        quia sequi architecto vel nulla. Aspernatur earum suscipit qui vel,
-        dolorem aperiam asperiores quaerat? Quae at eaque dolores labore itaque.
+        A neighborhood built on top of a factory beam that got bent to a near
+        right angle at some point in the past. Some elders still debate wheter
+        it was an overseer or manufacturing defect that caused it. Regardless of
+        the truth, it&apos;s now a community landmark. Rub the bend for good
+        luck...
       </TypographyP>
       <TypographyH2>Factions</TypographyH2>
       <div className="my-4 flex flex-col gap-2">
@@ -83,9 +85,9 @@ export default async function Page() {
           <CardContent>
             <TypographyP>
               The dregs of Audo&apos;s Gorgers, conquered by Hrodulfr and beaten
-              down by the <b>Delivery</b> riots. A strict Rathi hierarchy
-              teeming with thickblooded and thinblooded shifters starving for
-              their alpha&apos;s approval.
+              down by the <b className="mr-1">Delivery</b> riots. A strict Rathi
+              hierarchy teeming with thickblooded and thinblooded shifters
+              starving for their alpha&apos;s approval.
             </TypographyP>
             <TypographyUnorderedList>
               <li>
