@@ -31,4 +31,6 @@ export type DieVariant =
   | "emotion"
   | "push"
   | "donum"
+  | "aldam"
+  | "transformation"
   | "fortune";

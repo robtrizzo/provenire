@@ -12,6 +12,8 @@ const d6Variants = cva("", {
       emotion: "text-pink-700/30",
       push: "text-green-700/30",
       donum: "text-fuchsia-700/30",
+      aldam: "text-red-700/30",
+      transformation: "text-orange-700/30",
       fortune: "text-[oklch(0.3485_0_0)]",
     },
     crit: {

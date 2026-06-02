@@ -28,6 +28,10 @@ const navigationData = [
     url: "#",
     items: [
       {
+        title: "Dice",
+        url: "/game/arc-three/rules/dice",
+      },
+      {
         title: "Downtime",
         url: "/game/arc-three/rules/downtime",
       },
