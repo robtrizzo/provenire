@@ -15,12 +15,13 @@ import {
 } from "../../../../components/dice/dice-symbols";
 import {
   AbilityDice,
+  AldamDie,
   BondDice,
   DonumDie,
-  EmotionDie,
   FortuneDice,
   PushDie,
   SkillDice,
+  TransformationDie,
 } from "@/lib/dice";
 import { Die } from "../../../../components/dice/dice";
 import Breadcrumbs from "@/components/ui/breadcrumbs";
@@ -122,14 +123,17 @@ export default async function Page() {
         </div>
       </div>
 
-      <TypographyH4>Emotion Die (WIP)</TypographyH4>
-      <Die die={EmotionDie} />
-
       <TypographyH4>Push Die</TypographyH4>
       <Die die={PushDie} />
 
       <TypographyH4>Donum Die</TypographyH4>
       <Die die={DonumDie} />
+
+      <TypographyH4>Aldam Die</TypographyH4>
+      <Die die={AldamDie} />
+
+      <TypographyH4>Transformation Die</TypographyH4>
+      <Die die={TransformationDie} />
 
       <Separator className="mt-4" />
 

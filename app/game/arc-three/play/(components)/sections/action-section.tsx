@@ -5,27 +5,19 @@ import {
   MAX_ABILITIES,
   MAX_SKILLS,
   useCharacterSheet,
-  useField,
 } from "@/contexts/arc3CharacterSheetContext";
 import Action from "../action";
-import { getActions } from "@/lib/actions";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { GripHorizontal, Maximize2, Minimize2, X } from "lucide-react";
-import { motion } from "motion/react";
-import { cn } from "@/lib/utils";
+import { BookOpen, Maximize2, Minimize2 } from "lucide-react";
 import BondsSection from "./bonds-section";
 import ActionsWindow from "../windows/action-window";
+import AptitudesDialog from "../dialogs/aptitudes-dialog";
+import SkillsDialog from "../dialogs/skills-dialog";
 
 export default function ActionSection() {
   const { aptitudes, skills, fightingStyles } = useCharacterSheet();
-  const [remembrance] = useField("remembrance");
   const [showActionsWindow, setShowActionsWindow] = useState(false);
-  const [showRemembranceSkills, setShowRemembranceSkills] = useState(false);
-
-  const remembranceSkills = remembrance?.skills
-    ? getActions(remembrance.skills, "skill")
-    : [];
 
   return (
     <div className="mt-4 space-y-1">
@@ -57,8 +49,8 @@ export default function ActionSection() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
             {/* Aptitudes column */}
             <div className="flex flex-col gap-0.5">
-              <TypographyH2 className="text-md mt-0 uppercase text-muted-foreground">
-                Aptitudes
+              <TypographyH2 className="text-md mt-0 uppercase text-muted-foreground flex justify-between items-end">
+                Aptitudes <AptitudesDialog />
               </TypographyH2>
               {aptitudes.map((a, idx) => (
                 <Action.Wrapper.Tooltip action={a} key={idx + a.name}>
@@ -82,8 +74,8 @@ export default function ActionSection() {
 
             {/* Skills column */}
             <div className="flex flex-col gap-0.5">
-              <TypographyH2 className="text-md mt-0 uppercase text-muted-foreground">
-                Skills
+              <TypographyH2 className="text-md mt-0 uppercase text-muted-foreground flex justify-between items-end">
+                <span className="ml-2">Skills</span> <SkillsDialog />
               </TypographyH2>
               {skills.map((a, idx) => (
                 <Action.Wrapper.Tooltip action={a} key={idx + a.name}>
@@ -107,8 +99,8 @@ export default function ActionSection() {
           </div>
 
           {/* Fighting Styles */}
-          <TypographyH2 className="text-md mt-4 uppercase text-muted-foreground">
-            Fighting Styles
+          <TypographyH2 className="text-md mt-0 uppercase text-muted-foreground flex justify-between items-end">
+            Fighting Styles <SkillsDialog />
           </TypographyH2>
           <div className="flex flex-col gap-0.5">
             {fightingStyles.map((a, idx) => (

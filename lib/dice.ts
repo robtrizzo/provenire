@@ -35,9 +35,14 @@ export const DonumDie: Die = {
   variant: "donum",
 };
 
-export const EmotionDie: Die = {
-  faces: ["t", "t", "t", "tc", "tc", "ac"],
-  variant: "emotion",
+export const AldamDie: Die = {
+  faces: ["ttc", "t", "ta", "t:r", "ec:s", "ec:s"],
+  variant: "aldam",
+};
+
+export const TransformationDie: Die = {
+  faces: ["tc", "t", "a", "a", "tc:r", "tc:s"],
+  variant: "transformation",
 };
 
 export const FortuneDice: Record<0 | 1, Die> = {

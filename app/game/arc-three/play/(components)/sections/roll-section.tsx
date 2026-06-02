@@ -19,6 +19,7 @@ import { Switch } from "@/components/ui/switch";
 import { TypographyP } from "@/components/ui/typography";
 import { useRoll } from "@/contexts/arc3RollContext";
 import {
+  AldamDie,
   calculateAdvantageProbability,
   calculateCritProbability,
   calculateEffectProbability,
@@ -26,6 +27,7 @@ import {
   DonumDie,
   FortuneDice,
   PushDie,
+  TransformationDie,
 } from "@/lib/dice";
 import type { DieVariant } from "@/types/dice";
 import {
@@ -254,7 +256,9 @@ function DetailsSection() {
       skill: 1,
       bond: 2,
       push: 3,
-      donum: 4,
+      aldam: 4,
+      donum: 5,
+      transformation: 6,
       default: 0,
       emotion: 0,
       fortune: 0,
@@ -347,7 +351,7 @@ function BondDiceSection() {
         Bonds
       </span>
       {bonds.length > 0 && (
-        <div className="grid grid-cols-3">
+        <div className="grid grid-cols-3 gap-1">
           {bonds.map((b, idx) => (
             <div
               key={b + idx}
@@ -380,6 +384,16 @@ function BonusDiceSection() {
     0,
   );
   const containsDonumDie = numDonumDie > 0;
+  const numAldamDie = dice.reduce(
+    (acc, d) => (d.variant === "aldam" ? acc + 1 : acc),
+    0,
+  );
+  const containsAldamDie = numAldamDie > 0;
+  const numTransformationDie = dice.reduce(
+    (acc, d) => (d.variant === "transformation" ? acc + 1 : acc),
+    0,
+  );
+  const containsTransformationDie = numTransformationDie > 0;
 
   return (
     <>
@@ -420,11 +434,43 @@ function BonusDiceSection() {
             </span>
           </TooltipContent>
         </Tooltip>
-        <Button variant="outline" disabled>
-          <b className="uppercase text-orange-600">Transformation</b>
-        </Button>
-        <Button variant="outline" disabled>
+        <Button
+          variant="outline"
+          className={cn(
+            containsAldamDie && "border-red-600!",
+            "flex items-center justify-center",
+          )}
+          onClick={() => {
+            addDice([{ ...AldamDie, label: "aldam" }]);
+          }}
+          onContextMenu={(e) => {
+            e.preventDefault();
+            removeDieByLabel("aldam");
+          }}
+        >
           <b className="uppercase text-red-600">Aldam</b>
+          <div className="rounded-full bg-red-600 text-white dark:text-black font-extrabold w-4 h-4 flex items-center justify-center">
+            <code>{numAldamDie}</code>
+          </div>
+        </Button>
+        <Button
+          variant="outline"
+          className={cn(
+            containsTransformationDie && "border-orange-600!",
+            "flex items-center justify-center",
+          )}
+          onClick={() => {
+            addDice([{ ...TransformationDie, label: "aldam" }]);
+          }}
+          onContextMenu={(e) => {
+            e.preventDefault();
+            removeDieByLabel("aldam");
+          }}
+        >
+          <b className="uppercase text-orange-600">Transformation</b>
+          <div className="rounded-full bg-orange-600 text-white dark:text-black font-extrabold w-4 h-4 flex items-center justify-center">
+            <code>{numTransformationDie}</code>
+          </div>
         </Button>
         <Button
           variant="outline"

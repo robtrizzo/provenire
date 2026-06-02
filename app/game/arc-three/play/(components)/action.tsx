@@ -109,8 +109,15 @@ function GridWrapper({ className, children }: GridWrapperProps) {
 }
 
 function RollableWrapper({ action, children }: RollableWrapperProps) {
-  const { dice, rollLeft, rollRight, setRollLeft, setRollRight, swapDice } =
-    useRoll();
+  const {
+    dice,
+    rollLeft,
+    rollRight,
+    setRollLeft,
+    setRollRight,
+    swapDice,
+    removeDieByLabel,
+  } = useRoll();
   const { bonds } = useCharacterSheet();
   return (
     <div
@@ -129,12 +136,12 @@ function RollableWrapper({ action, children }: RollableWrapperProps) {
             break;
           }
           case "bond": {
-            const existingBondDie = dice.find((d) => d.variant === "bond");
-            let prevBond;
-            if (existingBondDie) {
-              prevBond = bonds.find((b) => b.name === existingBondDie.label);
+            const bondAlreadyInRoll = dice.some((d) => d.label === action.name);
+            if (bondAlreadyInRoll) {
+              removeDieByLabel(action.name);
+            } else {
+              swapDice(undefined, action);
             }
-            swapDice(prevBond, action);
             break;
           }
           case "fightingStyle": {
@@ -432,7 +439,7 @@ function UnlockLevelBubble({ handleUnlock }: { handleUnlock: () => void }) {
       >
         <span className="flex items-center gap-1">
           <MousePointerClick size={16} className="text-emerald-600" /> unlock
-          die
+          die <ClockCost ticks={5} num={5} r={20} />
         </span>
       </TooltipContent>
     </Tooltip>

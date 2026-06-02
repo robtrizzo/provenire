@@ -1,13 +1,14 @@
 import { TypographyH2 } from "@/components/ui/typography";
 import Action from "../action";
 import { useCharacterSheet } from "@/contexts/arc3CharacterSheetContext";
+import BondsDialog from "../dialogs/bonds-dialog";
 
 export default function BondsSection() {
   const { bonds } = useCharacterSheet();
   return (
     <div>
-      <TypographyH2 className="text-md mt-0 uppercase text-muted-foreground">
-        Bonds
+      <TypographyH2 className="text-md mt-0 uppercase text-muted-foreground flex justify-between items-end">
+        Bonds <BondsDialog />
       </TypographyH2>
       <div className="mt-1" />
       {bonds.map((b, idx) => (
