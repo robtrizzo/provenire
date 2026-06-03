@@ -1,4 +1,4 @@
-import { AbilityDice, BondDice, SkillDice } from "@/lib/dice";
+import { AptitudeDice, BondDice, SkillDice } from "@/lib/dice";
 import { ActionV3 } from "@/types/arc3";
 import type { Die } from "@/types/dice";
 import {
@@ -235,6 +235,14 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     },
   });
 
+  useEffect(() => {
+    if (rollPages?.pages) {
+      // Flatten all pages into a single array of rolls
+      const allRolls = rollPages.pages.flat();
+      setRolls(allRolls);
+    }
+  }, [rollPages, setRolls]);
+
   const handleCurrentDiceFilterChange = (val: string) => {
     queryClient.invalidateQueries({ queryKey: ["rolls", val] });
     setCurrentDiceFilter(val);
@@ -244,7 +252,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   function getDiceFromAction(action: ActionV3): Die[] {
     if (action.type === "aptitude") {
       return action.level.map((lvl) => ({
-        ...AbilityDice[lvl as 0 | 1 | 2 | 3],
+        ...AptitudeDice[lvl as 0 | 1 | 2 | 3],
         label: action.name,
         level: lvl,
       }));
@@ -313,7 +321,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   }
 
   function buildTag(): string {
-    if (rollLeft && rollRight) return `${rollLeft.name}|${rollRight.name}`;
+    if (rollLeft && rollRight) return `${rollLeft.name} | ${rollRight.name}`;
     return rollLeft?.name ?? rollRight?.name ?? "";
   }
 

@@ -252,7 +252,7 @@ function DetailsSection() {
   const sortedDice = () => {
     // Define the order for each type
     const typeOrder: Record<DieVariant, number> = {
-      ability: 0,
+      aptitude: 0,
       skill: 1,
       bond: 2,
       push: 3,
@@ -260,7 +260,6 @@ function DetailsSection() {
       donum: 5,
       transformation: 6,
       default: 0,
-      emotion: 0,
       fortune: 0,
     };
 

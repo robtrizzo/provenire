@@ -21,7 +21,7 @@ import {
   TypographyUnorderedList,
 } from "@/components/ui/typography";
 import {
-  AbilityDice,
+  AptitudeDice,
   AldamDie,
   BondDice,
   DonumDie,
@@ -359,7 +359,7 @@ export default function Page() {
         <code className="text-amber-900 dark:text-amber-200">aptitude die</code>
         :
       </TypographyP>
-      <Die die={AbilityDice[0]} />
+      <Die die={AptitudeDice[0]} />
       <TypographyP>
         You&apos;ll notice a few things about it right off the bat.
       </TypographyP>
@@ -391,7 +391,7 @@ export default function Page() {
         </code>
         :
       </TypographyP>
-      <Die die={AbilityDice[1]} />
+      <Die die={AptitudeDice[1]} />
       <TypographyP>
         As you can see, this one is <i className="mr-1">still</i> worse than a
         red die. That&apos;s true, but fear not, you can go higher.
@@ -405,7 +405,7 @@ export default function Page() {
         </code>
         :
       </TypographyP>
-      <Die die={AbilityDice[2]} />
+      <Die die={AptitudeDice[2]} />
       <TypographyP>
         <b>
           <code>level 3</code>
@@ -415,7 +415,7 @@ export default function Page() {
         </code>
         :
       </TypographyP>
-      <Die die={AbilityDice[3]} />
+      <Die die={AptitudeDice[3]} />
       <TypographyP>
         Okay, so by the time you max out your{" "}
         <code className="text-yellow-900 dark:text-yellow-200">

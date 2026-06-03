@@ -5,6 +5,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TypographyH2 } from "@/components/ui/typography";
 import { useState } from "react";
 import CharacterSheet from "./(components)/character-sheet";
+import DiceSheet from "@/components/character-sheet/dice-history/dice-sheet";
+import { useRoll } from "@/contexts/arc3RollContext";
 
 const tabs = [
   { name: "Character", value: "character" },
@@ -13,10 +15,28 @@ const tabs = [
 
 export default function Page() {
   const [tab, setTab] = useState("character");
+  const {
+    rolls,
+    currentDiceFilter,
+    handleCurrentDiceFilterChange,
+    fetchNextPage,
+    refetchRolls,
+    hasNextPage,
+    rollsArePending,
+  } = useRoll();
   return (
     <>
-      <div className="flex justify-between">
+      <div className="flex items-end justify-between">
         <Breadcrumbs />
+        <DiceSheet
+          rolls={rolls}
+          currentDiceFilter={currentDiceFilter}
+          handleCurrentDiceFilterChange={handleCurrentDiceFilterChange}
+          fetchNextPage={fetchNextPage}
+          refetchRolls={refetchRolls}
+          hasNextPage={hasNextPage}
+          rollsArePending={rollsArePending}
+        />
       </div>
       <Tabs
         defaultValue="character"

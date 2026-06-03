@@ -78,7 +78,7 @@ interface DieFaceProps {
 export function DieFace({
   face,
   size = 84,
-  variant = "ability",
+  variant = "aptitude",
   className,
 }: DieFaceProps) {
   return (

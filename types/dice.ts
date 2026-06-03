@@ -31,9 +31,8 @@ export type Die = {
 export type DieVariant =
   | "default"
   | "bond"
-  | "ability"
+  | "aptitude"
   | "skill"
-  | "emotion"
   | "push"
   | "donum"
   | "aldam"

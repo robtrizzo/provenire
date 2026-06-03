@@ -1,7 +1,7 @@
 "use client";
 import { TypographyH1, TypographyH3 } from "@/components/ui/typography";
 import {
-  AbilityDice,
+  AptitudeDice,
   BondDice,
   calculateAdvantageProbability,
   calculateCritProbability,
@@ -124,23 +124,29 @@ const currentDiceData: DiceDataEntry[] = [
 ];
 
 const level1DiceConfigs: DiceConfig[] = [
-  { label: "1A₀", dice: [AbilityDice[0]] },
-  { label: "1A₁", dice: [AbilityDice[1]] },
-  { label: "1A₁1S₁", dice: [AbilityDice[1], SkillDice[1]] },
-  { label: "2A₁1S₁", dice: [AbilityDice[1], AbilityDice[1], SkillDice[1]] },
+  { label: "1A₀", dice: [AptitudeDice[0]] },
+  { label: "1A₁", dice: [AptitudeDice[1]] },
+  { label: "1A₁1S₁", dice: [AptitudeDice[1], SkillDice[1]] },
+  { label: "2A₁1S₁", dice: [AptitudeDice[1], AptitudeDice[1], SkillDice[1]] },
   {
     label: "2A₁2S₁",
-    dice: [AbilityDice[1], AbilityDice[1], SkillDice[1], SkillDice[1]],
+    dice: [AptitudeDice[1], AptitudeDice[1], SkillDice[1], SkillDice[1]],
   },
   {
     label: "2A₁2S₁P",
-    dice: [AbilityDice[1], AbilityDice[1], SkillDice[1], SkillDice[1], PushDie],
+    dice: [
+      AptitudeDice[1],
+      AptitudeDice[1],
+      SkillDice[1],
+      SkillDice[1],
+      PushDie,
+    ],
   },
   {
     label: "2A₁2S₁P1B₁",
     dice: [
-      AbilityDice[1],
-      AbilityDice[1],
+      AptitudeDice[1],
+      AptitudeDice[1],
       SkillDice[1],
       SkillDice[1],
       PushDie,
@@ -151,47 +157,56 @@ const level1DiceConfigs: DiceConfig[] = [
 
 const level1DiceData = generateDiceData(level1DiceConfigs);
 
-const upgradePathAbilityDiceConfigs: DiceConfig[] = [
-  { label: "2A₁1S₁", dice: [AbilityDice[1], AbilityDice[1], SkillDice[1]] },
-  { label: "1A₁1A₂1S₁", dice: [AbilityDice[1], AbilityDice[2], SkillDice[1]] },
-  { label: "1A₁1A₃1S₁", dice: [AbilityDice[1], AbilityDice[3], SkillDice[1]] },
-  { label: "2A₂1S₁", dice: [AbilityDice[2], AbilityDice[2], SkillDice[1]] },
-  { label: "1A₂1A₃1S₁", dice: [AbilityDice[2], AbilityDice[3], SkillDice[1]] },
-  { label: "2A₃1S₁", dice: [AbilityDice[3], AbilityDice[3], SkillDice[1]] },
+const upgradePathAptitudeDiceConfigs: DiceConfig[] = [
+  { label: "2A₁1S₁", dice: [AptitudeDice[1], AptitudeDice[1], SkillDice[1]] },
+  {
+    label: "1A₁1A₂1S₁",
+    dice: [AptitudeDice[1], AptitudeDice[2], SkillDice[1]],
+  },
+  {
+    label: "1A₁1A₃1S₁",
+    dice: [AptitudeDice[1], AptitudeDice[3], SkillDice[1]],
+  },
+  { label: "2A₂1S₁", dice: [AptitudeDice[2], AptitudeDice[2], SkillDice[1]] },
+  {
+    label: "1A₂1A₃1S₁",
+    dice: [AptitudeDice[2], AptitudeDice[3], SkillDice[1]],
+  },
+  { label: "2A₃1S₁", dice: [AptitudeDice[3], AptitudeDice[3], SkillDice[1]] },
 ];
 
-const upgradePathAbilityDiceData = generateDiceData(
-  upgradePathAbilityDiceConfigs,
+const upgradePathAptitudeDiceData = generateDiceData(
+  upgradePathAptitudeDiceConfigs,
 );
 
 const upgradePathSkillDiceConfigs: DiceConfig[] = [
-  { label: "1A₁2S₁", dice: [AbilityDice[1], SkillDice[1], SkillDice[1]] },
-  { label: "1A₁1S₁1S₂", dice: [AbilityDice[1], SkillDice[1], SkillDice[2]] },
-  { label: "1A₁2S₂", dice: [AbilityDice[1], SkillDice[2], SkillDice[2]] },
-  { label: "1A₁1S₂1S₃", dice: [AbilityDice[1], SkillDice[2], SkillDice[3]] },
-  { label: "1A₁2S₃", dice: [AbilityDice[1], SkillDice[3], SkillDice[3]] },
-  { label: "1A₁1S₃1S₄", dice: [AbilityDice[1], SkillDice[3], SkillDice[4]] },
-  { label: "1A₁2S₄", dice: [AbilityDice[1], SkillDice[4], SkillDice[4]] },
+  { label: "1A₁2S₁", dice: [AptitudeDice[1], SkillDice[1], SkillDice[1]] },
+  { label: "1A₁1S₁1S₂", dice: [AptitudeDice[1], SkillDice[1], SkillDice[2]] },
+  { label: "1A₁2S₂", dice: [AptitudeDice[1], SkillDice[2], SkillDice[2]] },
+  { label: "1A₁1S₂1S₃", dice: [AptitudeDice[1], SkillDice[2], SkillDice[3]] },
+  { label: "1A₁2S₃", dice: [AptitudeDice[1], SkillDice[3], SkillDice[3]] },
+  { label: "1A₁1S₃1S₄", dice: [AptitudeDice[1], SkillDice[3], SkillDice[4]] },
+  { label: "1A₁2S₄", dice: [AptitudeDice[1], SkillDice[4], SkillDice[4]] },
 ];
 
 const upgradePathSkillDiceData = generateDiceData(upgradePathSkillDiceConfigs);
 
 const upgradePathBondDiceConfigs: DiceConfig[] = [
-  { label: "1A₁1S₁1B₀", dice: [AbilityDice[1], SkillDice[1], BondDice[0]] },
-  { label: "1A₁1S₁1B₁", dice: [AbilityDice[1], SkillDice[1], BondDice[1]] },
-  { label: "1A₁1S₁1B₂", dice: [AbilityDice[1], SkillDice[1], BondDice[2]] },
-  { label: "1A₁1S₁1B₃", dice: [AbilityDice[1], SkillDice[1], BondDice[3]] },
-  { label: "1A₁1S₁1B₄", dice: [AbilityDice[1], SkillDice[1], BondDice[4]] },
+  { label: "1A₁1S₁1B₀", dice: [AptitudeDice[1], SkillDice[1], BondDice[0]] },
+  { label: "1A₁1S₁1B₁", dice: [AptitudeDice[1], SkillDice[1], BondDice[1]] },
+  { label: "1A₁1S₁1B₂", dice: [AptitudeDice[1], SkillDice[1], BondDice[2]] },
+  { label: "1A₁1S₁1B₃", dice: [AptitudeDice[1], SkillDice[1], BondDice[3]] },
+  { label: "1A₁1S₁1B₄", dice: [AptitudeDice[1], SkillDice[1], BondDice[4]] },
 ];
 
 const upgradePathBondDiceData = generateDiceData(upgradePathBondDiceConfigs);
 
 const upgradePathIndividualDiceConfigs: DiceConfig[] = [
-  { label: "1A₀1S₁1B₀", dice: [AbilityDice[0], SkillDice[1], BondDice[0]] },
-  { label: "1A₁1S₂1B₁", dice: [AbilityDice[1], SkillDice[2], BondDice[1]] },
-  { label: "1A₂1S₃1B₂", dice: [AbilityDice[2], SkillDice[3], BondDice[2]] },
-  { label: "1A₃1S₄1B₃", dice: [AbilityDice[3], SkillDice[4], BondDice[3]] },
-  { label: "1A₃1S₄1B₄", dice: [AbilityDice[3], SkillDice[4], BondDice[4]] },
+  { label: "1A₀1S₁1B₀", dice: [AptitudeDice[0], SkillDice[1], BondDice[0]] },
+  { label: "1A₁1S₂1B₁", dice: [AptitudeDice[1], SkillDice[2], BondDice[1]] },
+  { label: "1A₂1S₃1B₂", dice: [AptitudeDice[2], SkillDice[3], BondDice[2]] },
+  { label: "1A₃1S₄1B₃", dice: [AptitudeDice[3], SkillDice[4], BondDice[3]] },
+  { label: "1A₃1S₄1B₄", dice: [AptitudeDice[3], SkillDice[4], BondDice[4]] },
 ];
 
 const upgradePathIndividualDiceData = generateDiceData(
@@ -199,16 +214,16 @@ const upgradePathIndividualDiceData = generateDiceData(
 );
 
 const upgradePathMoreDiceConfigs: DiceConfig[] = [
-  { label: "1A₁1S₁1B₁", dice: [AbilityDice[1], SkillDice[1], BondDice[1]] },
+  { label: "1A₁1S₁1B₁", dice: [AptitudeDice[1], SkillDice[1], BondDice[1]] },
   {
     label: "2A₁1S₁1B₁",
-    dice: [AbilityDice[1], AbilityDice[1], SkillDice[1], BondDice[1]],
+    dice: [AptitudeDice[1], AptitudeDice[1], SkillDice[1], BondDice[1]],
   },
   {
     label: "2A₁2S₁1B₁",
     dice: [
-      AbilityDice[1],
-      AbilityDice[1],
+      AptitudeDice[1],
+      AptitudeDice[1],
       SkillDice[1],
       SkillDice[1],
       BondDice[1],
@@ -218,37 +233,40 @@ const upgradePathMoreDiceConfigs: DiceConfig[] = [
 const upgradePathMoreDiceData = generateDiceData(upgradePathMoreDiceConfigs);
 
 const upgradePathFullConfigs: DiceConfig[] = [
-  { label: "1A₀", dice: [AbilityDice[0]] },
-  { label: "1A₀1S₁", dice: [AbilityDice[0], SkillDice[1]] },
-  { label: "1A₁1S₁", dice: [AbilityDice[1], SkillDice[1]] },
-  { label: "1A₁1S₂", dice: [AbilityDice[1], SkillDice[2]] },
-  { label: "1A₂1S₂", dice: [AbilityDice[2], SkillDice[2]] },
-  { label: "1A₂1A₁1S₂", dice: [AbilityDice[2], AbilityDice[1], SkillDice[2]] },
-  { label: "2A₂1S₂", dice: [AbilityDice[2], AbilityDice[2], SkillDice[2]] },
-  { label: "2A₂1S₃", dice: [AbilityDice[2], AbilityDice[2], SkillDice[3]] },
+  { label: "1A₀", dice: [AptitudeDice[0]] },
+  { label: "1A₀1S₁", dice: [AptitudeDice[0], SkillDice[1]] },
+  { label: "1A₁1S₁", dice: [AptitudeDice[1], SkillDice[1]] },
+  { label: "1A₁1S₂", dice: [AptitudeDice[1], SkillDice[2]] },
+  { label: "1A₂1S₂", dice: [AptitudeDice[2], SkillDice[2]] },
+  {
+    label: "1A₂1A₁1S₂",
+    dice: [AptitudeDice[2], AptitudeDice[1], SkillDice[2]],
+  },
+  { label: "2A₂1S₂", dice: [AptitudeDice[2], AptitudeDice[2], SkillDice[2]] },
+  { label: "2A₂1S₃", dice: [AptitudeDice[2], AptitudeDice[2], SkillDice[3]] },
   {
     label: "2A₂1S₃1S₁",
-    dice: [AbilityDice[2], AbilityDice[2], SkillDice[3], SkillDice[1]],
+    dice: [AptitudeDice[2], AptitudeDice[2], SkillDice[3], SkillDice[1]],
   },
   {
     label: "2A₂2S₃",
-    dice: [AbilityDice[2], AbilityDice[2], SkillDice[3], SkillDice[3]],
+    dice: [AptitudeDice[2], AptitudeDice[2], SkillDice[3], SkillDice[3]],
   },
   {
     label: "1A₂1A₃2S₃",
-    dice: [AbilityDice[2], AbilityDice[3], SkillDice[3], SkillDice[3]],
+    dice: [AptitudeDice[2], AptitudeDice[3], SkillDice[3], SkillDice[3]],
   },
   {
     label: "1A₂1A₃1S₃1S₄",
-    dice: [AbilityDice[2], AbilityDice[3], SkillDice[3], SkillDice[4]],
+    dice: [AptitudeDice[2], AptitudeDice[3], SkillDice[3], SkillDice[4]],
   },
   {
     label: "2A₃1S₃1S₄",
-    dice: [AbilityDice[3], AbilityDice[3], SkillDice[3], SkillDice[4]],
+    dice: [AptitudeDice[3], AptitudeDice[3], SkillDice[3], SkillDice[4]],
   },
   {
     label: "2A₃2S₄",
-    dice: [AbilityDice[3], AbilityDice[3], SkillDice[4], SkillDice[4]],
+    dice: [AptitudeDice[3], AptitudeDice[3], SkillDice[4], SkillDice[4]],
   },
 ];
 
@@ -257,25 +275,25 @@ const upgradePathFullDiceData = generateDiceData(upgradePathFullConfigs);
 const diceGremlinConfigs: DiceConfig[] = [
   {
     label: "1A₀1S₁1B₀P",
-    dice: [AbilityDice[0], SkillDice[1], BondDice[0], PushDie],
+    dice: [AptitudeDice[0], SkillDice[1], BondDice[0], PushDie],
   },
   {
     label: "1A₁1S₁1B₀P",
-    dice: [AbilityDice[1], SkillDice[1], BondDice[0], PushDie],
+    dice: [AptitudeDice[1], SkillDice[1], BondDice[0], PushDie],
   },
   {
     label: "1A₁1S₁1B₁P",
-    dice: [AbilityDice[1], SkillDice[1], BondDice[1], PushDie],
+    dice: [AptitudeDice[1], SkillDice[1], BondDice[1], PushDie],
   },
   {
     label: "1A₁2S₁1B₁P",
-    dice: [AbilityDice[1], SkillDice[1], SkillDice[1], BondDice[1], PushDie],
+    dice: [AptitudeDice[1], SkillDice[1], SkillDice[1], BondDice[1], PushDie],
   },
   {
     label: "2A₁2S₁1B₁P",
     dice: [
-      AbilityDice[1],
-      AbilityDice[1],
+      AptitudeDice[1],
+      AptitudeDice[1],
       SkillDice[1],
       SkillDice[1],
       BondDice[1],
@@ -285,8 +303,8 @@ const diceGremlinConfigs: DiceConfig[] = [
   {
     label: "2A₁1S₂1S₁1B₁P",
     dice: [
-      AbilityDice[1],
-      AbilityDice[1],
+      AptitudeDice[1],
+      AptitudeDice[1],
       SkillDice[2],
       SkillDice[1],
       BondDice[1],
@@ -296,8 +314,8 @@ const diceGremlinConfigs: DiceConfig[] = [
   {
     label: "2A₁1S₂1S₁1B₂P",
     dice: [
-      AbilityDice[1],
-      AbilityDice[1],
+      AptitudeDice[1],
+      AptitudeDice[1],
       SkillDice[2],
       SkillDice[1],
       BondDice[2],
@@ -307,8 +325,8 @@ const diceGremlinConfigs: DiceConfig[] = [
   {
     label: "1A₂1A₁1S₂1S₁1B₂P",
     dice: [
-      AbilityDice[2],
-      AbilityDice[1],
+      AptitudeDice[2],
+      AptitudeDice[1],
       SkillDice[2],
       SkillDice[1],
       BondDice[2],
@@ -318,8 +336,8 @@ const diceGremlinConfigs: DiceConfig[] = [
   {
     label: "1A₂1A₁2S₂1B₂P",
     dice: [
-      AbilityDice[2],
-      AbilityDice[1],
+      AptitudeDice[2],
+      AptitudeDice[1],
       SkillDice[2],
       SkillDice[2],
       BondDice[2],
@@ -329,8 +347,8 @@ const diceGremlinConfigs: DiceConfig[] = [
   {
     label: "2A₂2S₂1B₂P",
     dice: [
-      AbilityDice[2],
-      AbilityDice[2],
+      AptitudeDice[2],
+      AptitudeDice[2],
       SkillDice[2],
       SkillDice[2],
       BondDice[2],
@@ -340,8 +358,8 @@ const diceGremlinConfigs: DiceConfig[] = [
   {
     label: "2A₂1S₂1S₃1B₂P",
     dice: [
-      AbilityDice[2],
-      AbilityDice[2],
+      AptitudeDice[2],
+      AptitudeDice[2],
       SkillDice[2],
       SkillDice[3],
       BondDice[2],
@@ -351,8 +369,8 @@ const diceGremlinConfigs: DiceConfig[] = [
   {
     label: "2A₂1S₂1S₃1B₃P",
     dice: [
-      AbilityDice[2],
-      AbilityDice[2],
+      AptitudeDice[2],
+      AptitudeDice[2],
       SkillDice[2],
       SkillDice[3],
       BondDice[3],
@@ -362,8 +380,8 @@ const diceGremlinConfigs: DiceConfig[] = [
   {
     label: "2A₂2S₃1B₃P",
     dice: [
-      AbilityDice[2],
-      AbilityDice[2],
+      AptitudeDice[2],
+      AptitudeDice[2],
       SkillDice[3],
       SkillDice[3],
       BondDice[3],
@@ -373,8 +391,8 @@ const diceGremlinConfigs: DiceConfig[] = [
   {
     label: "1A₂1A₃2S₃1B₃P",
     dice: [
-      AbilityDice[2],
-      AbilityDice[3],
+      AptitudeDice[2],
+      AptitudeDice[3],
       SkillDice[3],
       SkillDice[3],
       BondDice[3],
@@ -384,8 +402,8 @@ const diceGremlinConfigs: DiceConfig[] = [
   {
     label: "1A₂1A₃1S₃1S₄1B₃P",
     dice: [
-      AbilityDice[2],
-      AbilityDice[3],
+      AptitudeDice[2],
+      AptitudeDice[3],
       SkillDice[4],
       SkillDice[3],
       BondDice[3],
@@ -395,8 +413,8 @@ const diceGremlinConfigs: DiceConfig[] = [
   {
     label: "1A₂1A₃1S₃1S₄1B₄P",
     dice: [
-      AbilityDice[2],
-      AbilityDice[3],
+      AptitudeDice[2],
+      AptitudeDice[3],
       SkillDice[4],
       SkillDice[3],
       BondDice[4],
@@ -406,8 +424,8 @@ const diceGremlinConfigs: DiceConfig[] = [
   {
     label: "1A₂1A₃2S₄1B₄P",
     dice: [
-      AbilityDice[2],
-      AbilityDice[3],
+      AptitudeDice[2],
+      AptitudeDice[3],
       SkillDice[4],
       SkillDice[4],
       BondDice[4],
@@ -417,8 +435,8 @@ const diceGremlinConfigs: DiceConfig[] = [
   {
     label: "2A₃2S₄1B₄P",
     dice: [
-      AbilityDice[3],
-      AbilityDice[3],
+      AptitudeDice[3],
+      AptitudeDice[3],
       SkillDice[4],
       SkillDice[4],
       BondDice[4],
@@ -471,7 +489,7 @@ export default function Page() {
         <TypographyH3>Case Study - Upgrade Ability Dice</TypographyH3>
       </div>
       <DiceStatsChart
-        data={upgradePathAbilityDiceData}
+        data={upgradePathAptitudeDiceData}
         metrics={[...standardMetrics]}
         yAxisDomain={[0, 100]}
       />
