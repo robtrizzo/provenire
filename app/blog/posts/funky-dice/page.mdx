@@ -13,7 +13,7 @@ import {
 import { Die, DieFace } from "@/components/dice/dice";
 import { TypographyP } from "@/components/ui/typography";
 import {
-  AbilityDice,
+  AptitudeDice,
   BondDice,
   EmotionDie,
   PushDie,
@@ -261,7 +261,7 @@ Let's begin with <code className="text-amber-900 dark:text-amber-200">ability di
 
 This is the **`level 0`** <code className="text-amber-900 dark:text-amber-200">ability die</code>:
 
-<Die die={AbilityDice[0]} />
+<Die die={AptitudeDice[0]} />
 
 You'll notice a few things about it right off the bat.
 
@@ -273,17 +273,17 @@ That's right. This die is **bad**! With a single die it represents what it's lik
 
 Instead, you'll often be rolling a **`level 1`** <code className="text-yellow-900 dark:text-yellow-200">ability die</code>:
 
-<Die die={AbilityDice[1]} />
+<Die die={AptitudeDice[1]} />
 
 As you can see, this one is *still* worse than a red die. That's true, but fear not, you can go higher.
 
 **`level 2`** <code className="text-yellow-900 dark:text-yellow-200">ability die</code>:
 
-<Die die={AbilityDice[2]} />
+<Die die={AptitudeDice[2]} />
 
 **`level 3`** <code className="text-yellow-900 dark:text-yellow-200">ability die</code>:
 
-<Die die={AbilityDice[3]} />
+<Die die={AptitudeDice[3]} />
 
 Okay, so by the time you max out your <code className="text-yellow-900 dark:text-yellow-200">ability die</code>, you have the equivalent of a blue die in the original system. What is this, if not just a nerf?!
 
