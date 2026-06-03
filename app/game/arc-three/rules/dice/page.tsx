@@ -475,7 +475,7 @@ export default function Page() {
         <code className="text-violet-900 dark:text-violet-300">Skill dice</code>{" "}
         can only be rolled when combined with an{" "}
         <code className="text-yellow-900 dark:text-yellow-200">
-          ability die
+          aptitude die
         </code>{" "}
         or <code className="text-green-900 dark:text-green-300">push die</code>{" "}
         (more on that later), so there&apos;s no such thing as a{" "}
@@ -714,8 +714,8 @@ export default function Page() {
         </b>
       </TypographyP>
       <div className="p-4 flex gap-1">
-        <DieFace face="t" variant="ability" />
-        <DieFace face="t:r" variant="ability" />
+        <DieFace face="t" variant="aptitude" />
+        <DieFace face="t:r" variant="aptitude" />
         <DieFace face="ta" variant="skill" />
         <DieFace face="_" variant="bond" />
       </div>
@@ -742,7 +742,7 @@ export default function Page() {
         </b>
       </TypographyP>
       <div className="p-4 flex gap-1">
-        <DieFace face="t" variant="ability" />
+        <DieFace face="t" variant="aptitude" />
         <DieFace face="ec:s" variant="skill" />
         <DieFace face="ta" variant="skill" />
         <DieFace face="a" variant="bond" />
@@ -765,7 +765,7 @@ export default function Page() {
         </b>
       </TypographyP>
       <div className="p-4 flex gap-1">
-        <DieFace face="ec:r" variant="ability" />
+        <DieFace face="ec:r" variant="aptitude" />
         <DieFace face="t:s" variant="skill" />
         <DieFace face="ta" variant="skill" />
         <DieFace face="_" variant="bond" />
@@ -819,7 +819,7 @@ export default function Page() {
         For example,
       </TypographyP>
       <div className="p-4 flex gap-1">
-        <DieFace face="t" variant="ability" />
+        <DieFace face="t" variant="aptitude" />
         <DieFace face="ec:s" variant="skill" />
         <DieFace face="ta" variant="skill" />
         <DieFace face="a" variant="bond" />
