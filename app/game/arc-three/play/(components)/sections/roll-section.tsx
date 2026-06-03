@@ -510,7 +510,7 @@ function FortuneSection() {
             ...FortuneDice[1],
             label: `fortune-${i + 1}`,
           }));
-    doRoll(dice);
+    doRoll(dice, "Fortune");
     setFortuneDice(0);
   };
 

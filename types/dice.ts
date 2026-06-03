@@ -21,7 +21,12 @@ export type DieFace =
   | `e:${EffectDegree}`
   | `e${CritMarker}:${EffectDegree}`;
 
-export type Die = { faces: DieFace[]; variant: DieVariant; label?: string };
+export type Die = {
+  faces: DieFace[];
+  variant: DieVariant;
+  level?: number;
+  label?: string;
+};
 
 export type DieVariant =
   | "default"
