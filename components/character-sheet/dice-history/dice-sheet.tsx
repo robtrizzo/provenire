@@ -27,10 +27,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ExportMenuItem } from "@/app/game/arc-one/play/(components)/dice-history/export";
 import { debounce, partition } from "@/lib/utils";
-import { Roll } from "@/types/roll";
+import { Roll, RollArc3 } from "@/types/roll";
 
 interface DiceSheetProps {
-  rolls: Roll[];
+  rolls: (Roll | RollArc3)[];
   currentDiceFilter: string;
   handleCurrentDiceFilterChange: (val: string) => void;
   fetchNextPage: () => void;
@@ -72,7 +72,7 @@ export default function DiceSheet(props: DiceSheetProps) {
     const users: User[] = Array.isArray(userData) ? userData : [];
     const [ownUser, otherUsers] = partition(
       users,
-      (u) => u.id === session?.data?.user?.id
+      (u) => u.id === session?.data?.user?.id,
     );
     return [
       ...ownUser,
@@ -97,7 +97,7 @@ export default function DiceSheet(props: DiceSheetProps) {
       return "Yours";
     } else {
       const curUser = allUsers.find(
-        (user: User) => user.id === currentDiceFilter
+        (user: User) => user.id === currentDiceFilter,
       );
 
       return curUser?.name;

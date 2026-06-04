@@ -1,5 +1,5 @@
 import redis from "@/lib/redis";
-import { Roll } from "@/types/roll";
+import { Roll, RollArc3 } from "@/types/roll";
 import { client, Bucket } from "@/lib/s3";
 import { GetObjectCommand } from "@aws-sdk/client-s3";
 
@@ -16,7 +16,7 @@ export async function addRoll(userId: string, roll: Roll): Promise<void> {
 export async function getRolls(
   userId: string,
   cursor = 0,
-  pageSize = 20
+  pageSize = 20,
 ): Promise<Roll[]> {
   const key = `user:${userId}:rolls`;
   return await redis.lrange(key, cursor, cursor + pageSize - 1);
@@ -41,7 +41,7 @@ export async function clearRolls(userId: string): Promise<void> {
 
 export async function getAllRolls(
   cursor: number,
-  pageSize: number
+  pageSize: number,
 ): Promise<Roll[]> {
   return await redis.lrange("rolls", cursor, cursor + pageSize - 1);
 }
@@ -59,4 +59,35 @@ export async function getAggregatedRolls() {
 
   const fileContent = await response.Body.transformToString();
   return JSON.parse(fileContent);
+}
+
+// ARC 3 specific functions
+
+export async function getAllRollsArc3(
+  cursor: number,
+  pageSize: number,
+): Promise<RollArc3[]> {
+  return await redis.lrange("rollsArc3", cursor, cursor + pageSize - 1);
+}
+
+export async function getRollsArc3(
+  userId: string,
+  cursor = 0,
+  pageSize = 20,
+): Promise<RollArc3[]> {
+  const key = `user:${userId}:rollsArc3`;
+  return await redis.lrange(key, cursor, cursor + pageSize - 1);
+}
+
+export async function addRollArc3(
+  userId: string,
+  roll: RollArc3,
+): Promise<void> {
+  const key = `user:${userId}:rollsArc3`;
+  roll.timestamp = new Date().toISOString();
+  await redis.lpush(key, JSON.stringify(roll));
+
+  const strRoll = JSON.stringify(roll);
+  // also push to the global rolls list
+  await redis.lpush("rollsArc3", strRoll);
 }

@@ -1,14 +1,19 @@
 import { useEffect, useRef } from "react";
 import DieTopDetails from "./top-details";
 import DieAccordionDetails from "./accordion-details";
-import { Roll } from "@/types/roll";
+import { Roll, RollArc3 } from "@/types/roll";
+import Arc3DieTopDetails from "./arc3-top-details";
+
+function isRollArc3(roll: Roll | RollArc3): roll is RollArc3 {
+  return "dice" in roll && "rolledFaces" in roll;
+}
 
 export default function DiceHistory({
   rolls,
   rollsUntilNearEnd = 5,
   onNearEnd,
 }: {
-  rolls: Roll[];
+  rolls: (Roll | RollArc3)[];
   rollsUntilNearEnd?: number;
   onNearEnd?: () => void;
 }) {
@@ -21,7 +26,7 @@ export default function DiceHistory({
           onNearEnd();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (observerTarget.current) {
@@ -44,8 +49,16 @@ export default function DiceHistory({
           className="border rounded-lg p-2"
           ref={refIsObserverTarget(index) ? observerTarget : null}
         >
-          <DieTopDetails roll={roll} />
-          <DieAccordionDetails roll={roll} />
+          {isRollArc3(roll) ? (
+            <>
+              <Arc3DieTopDetails roll={roll} />
+            </>
+          ) : (
+            <>
+              <DieTopDetails roll={roll} />
+              <DieAccordionDetails roll={roll} />
+            </>
+          )}
         </div>
       ))}
     </div>

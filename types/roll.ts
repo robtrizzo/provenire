@@ -1,5 +1,6 @@
 import { StringUnion } from "@/lib/utils";
 import { Rollable } from "./game";
+import type { Die } from "@/types/dice";
 
 export const RollType = StringUnion("action", "fortune", "resist", "project");
 export type RollType = typeof RollType.type;
@@ -70,5 +71,24 @@ export function validateRoll(roll: Roll) {
   RollType.assert(roll.type);
   RollResult.assert(roll.result);
   RollEffect.assert(roll.effect);
+  return roll;
+}
+
+export type RollArc3 = {
+  dice: Die[];
+  rolledFaces: number[];
+  charName: string;
+  userid: string;
+  timestamp?: string;
+  tag?: string; // tag is effectively a description of the roll
+  metatags?: string[];
+};
+
+export function validateRollArc3(roll: RollArc3) {
+  let valid = roll.dice && roll.dice.length > 0;
+  valid = valid && roll.userid !== "" && roll.userid !== undefined;
+  if (!valid) {
+    throw new Error("Rolls require at least 1 die roll");
+  }
   return roll;
 }

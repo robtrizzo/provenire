@@ -144,6 +144,12 @@ export const CLOCK_TEMPLATES: {
   { label: "Tracker", defaultMax: 8, type: "tracker" },
 ];
 
+export interface ItemEntry {
+  id: string;
+  name: string;
+  slots: number;
+}
+
 const DEFAULT_ARMOR = {
   light: false,
   heavy: false,
@@ -221,6 +227,7 @@ const DEFAULT_STATE = {
   armor: DEFAULT_ARMOR,
   unlockedAbilities: DEFAULT_UNLOCKED_ABILITIES,
   clocks: [],
+  items: [],
 };
 
 interface CharacterSheetState {
@@ -255,6 +262,7 @@ interface CharacterSheetState {
   armor: Armor;
   unlockedAbilities: UnlockedAbilities;
   clocks: ClockEntry[];
+  items: ItemEntry[];
 }
 
 // Actions — add new cases here
@@ -286,6 +294,13 @@ type CharacterSheetAction =
       type: "UPDATE_CLOCK";
       id: string;
       changes: Partial<Omit<ClockEntry, "id">>;
+    }
+  | { type: "ADD_ITEM"; payload: ItemEntry }
+  | { type: "REMOVE_ITEM"; id: string }
+  | {
+      type: "UPDATE_ITEM";
+      id: string;
+      changes: Partial<Omit<ItemEntry, "id">>;
     };
 
 interface CharacterSheetContextProps {
@@ -417,6 +432,17 @@ function reducer(
         ...state,
         clocks: state.clocks.map((c) =>
           c.id === action.id ? { ...c, ...action.changes } : c,
+        ),
+      };
+    case "ADD_ITEM":
+      return { ...state, items: [...state.items, action.payload] };
+    case "REMOVE_ITEM":
+      return { ...state, items: state.items.filter((i) => i.id !== action.id) };
+    case "UPDATE_ITEM":
+      return {
+        ...state,
+        items: state.items.map((i) =>
+          i.id === action.id ? { ...i, ...action.changes } : i,
         ),
       };
   }
@@ -880,6 +906,26 @@ export function useClocks() {
     updateClock: useCallback(
       (id: string, changes: Partial<Omit<ClockEntry, "id">>) =>
         dispatch({ type: "UPDATE_CLOCK", id, changes }),
+      [dispatch],
+    ),
+  };
+}
+
+export function useItems() {
+  const { state, dispatch } = useCharacterSheet();
+  return {
+    items: state.items,
+    addItem: useCallback(
+      (entry: ItemEntry) => dispatch({ type: "ADD_ITEM", payload: entry }),
+      [dispatch],
+    ),
+    removeItem: useCallback(
+      (id: string) => dispatch({ type: "REMOVE_ITEM", id }),
+      [dispatch],
+    ),
+    updateItem: useCallback(
+      (id: string, changes: Partial<Omit<ItemEntry, "id">>) =>
+        dispatch({ type: "UPDATE_ITEM", id, changes }),
       [dispatch],
     ),
   };

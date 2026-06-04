@@ -14,7 +14,7 @@ import {
   ThreatSpread,
 } from "../../../../components/dice/dice-symbols";
 import {
-  AbilityDice,
+  AptitudeDice,
   AldamDie,
   BondDice,
   DonumDie,
@@ -147,13 +147,13 @@ export default async function Page() {
 
       <TypographyH3>Ability Dice</TypographyH3>
       <TypographyH4>Level 0</TypographyH4>
-      <Die die={AbilityDice[0]} />
+      <Die die={AptitudeDice[0]} />
       <TypographyH4>Level 1</TypographyH4>
-      <Die die={AbilityDice[1]} />
+      <Die die={AptitudeDice[1]} />
       <TypographyH4>Level 2</TypographyH4>
-      <Die die={AbilityDice[2]} />
+      <Die die={AptitudeDice[2]} />
       <TypographyH4>Level 3</TypographyH4>
-      <Die die={AbilityDice[3]} />
+      <Die die={AptitudeDice[3]} />
 
       <Separator className="mt-4" />
 

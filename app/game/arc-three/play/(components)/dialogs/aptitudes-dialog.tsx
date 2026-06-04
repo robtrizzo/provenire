@@ -9,7 +9,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { TypographyP } from "@/components/ui/typography";
-import { AbilityDice } from "@/lib/dice";
+import { AptitudeDice } from "@/lib/dice";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { BookOpen } from "lucide-react";
 
@@ -34,7 +34,7 @@ export default function AptitudesDialog() {
           </code>
           :
         </TypographyP>
-        <Die size={64} die={AbilityDice[0]} />
+        <Die size={64} die={AptitudeDice[0]} />
         <TypographyP>
           <b>
             <code>level 1</code>
@@ -44,7 +44,7 @@ export default function AptitudesDialog() {
           </code>
           :
         </TypographyP>
-        <Die size={64} die={AbilityDice[1]} />
+        <Die size={64} die={AptitudeDice[1]} />
         <TypographyP>
           <b>
             <code>level 2</code>
@@ -54,7 +54,7 @@ export default function AptitudesDialog() {
           </code>
           :
         </TypographyP>
-        <Die size={64} die={AbilityDice[2]} />
+        <Die size={64} die={AptitudeDice[2]} />
         <TypographyP>
           <b>
             <code>level 3</code>
@@ -64,7 +64,7 @@ export default function AptitudesDialog() {
           </code>
           :
         </TypographyP>
-        <Die size={64} die={AbilityDice[3]} />
+        <Die size={64} die={AptitudeDice[3]} />
       </DialogContent>
     </Dialog>
   );

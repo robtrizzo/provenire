@@ -21,7 +21,7 @@ import {
   TypographyUnorderedList,
 } from "@/components/ui/typography";
 import {
-  AbilityDice,
+  AptitudeDice,
   AldamDie,
   BondDice,
   DonumDie,
@@ -359,7 +359,7 @@ export default function Page() {
         <code className="text-amber-900 dark:text-amber-200">aptitude die</code>
         :
       </TypographyP>
-      <Die die={AbilityDice[0]} />
+      <Die die={AptitudeDice[0]} />
       <TypographyP>
         You&apos;ll notice a few things about it right off the bat.
       </TypographyP>
@@ -391,7 +391,7 @@ export default function Page() {
         </code>
         :
       </TypographyP>
-      <Die die={AbilityDice[1]} />
+      <Die die={AptitudeDice[1]} />
       <TypographyP>
         As you can see, this one is <i className="mr-1">still</i> worse than a
         red die. That&apos;s true, but fear not, you can go higher.
@@ -405,7 +405,7 @@ export default function Page() {
         </code>
         :
       </TypographyP>
-      <Die die={AbilityDice[2]} />
+      <Die die={AptitudeDice[2]} />
       <TypographyP>
         <b>
           <code>level 3</code>
@@ -415,7 +415,7 @@ export default function Page() {
         </code>
         :
       </TypographyP>
-      <Die die={AbilityDice[3]} />
+      <Die die={AptitudeDice[3]} />
       <TypographyP>
         Okay, so by the time you max out your{" "}
         <code className="text-yellow-900 dark:text-yellow-200">
@@ -475,7 +475,7 @@ export default function Page() {
         <code className="text-violet-900 dark:text-violet-300">Skill dice</code>{" "}
         can only be rolled when combined with an{" "}
         <code className="text-yellow-900 dark:text-yellow-200">
-          ability die
+          aptitude die
         </code>{" "}
         or <code className="text-green-900 dark:text-green-300">push die</code>{" "}
         (more on that later), so there&apos;s no such thing as a{" "}
@@ -714,8 +714,8 @@ export default function Page() {
         </b>
       </TypographyP>
       <div className="p-4 flex gap-1">
-        <DieFace face="t" variant="ability" />
-        <DieFace face="t:r" variant="ability" />
+        <DieFace face="t" variant="aptitude" />
+        <DieFace face="t:r" variant="aptitude" />
         <DieFace face="ta" variant="skill" />
         <DieFace face="_" variant="bond" />
       </div>
@@ -742,7 +742,7 @@ export default function Page() {
         </b>
       </TypographyP>
       <div className="p-4 flex gap-1">
-        <DieFace face="t" variant="ability" />
+        <DieFace face="t" variant="aptitude" />
         <DieFace face="ec:s" variant="skill" />
         <DieFace face="ta" variant="skill" />
         <DieFace face="a" variant="bond" />
@@ -765,7 +765,7 @@ export default function Page() {
         </b>
       </TypographyP>
       <div className="p-4 flex gap-1">
-        <DieFace face="ec:r" variant="ability" />
+        <DieFace face="ec:r" variant="aptitude" />
         <DieFace face="t:s" variant="skill" />
         <DieFace face="ta" variant="skill" />
         <DieFace face="_" variant="bond" />
@@ -819,7 +819,7 @@ export default function Page() {
         For example,
       </TypographyP>
       <div className="p-4 flex gap-1">
-        <DieFace face="t" variant="ability" />
+        <DieFace face="t" variant="aptitude" />
         <DieFace face="ec:s" variant="skill" />
         <DieFace face="ta" variant="skill" />
         <DieFace face="a" variant="bond" />

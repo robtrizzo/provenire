@@ -18,7 +18,7 @@ import {
 } from "@/contexts/arc3CharacterSheetContext";
 import { useRoll } from "@/contexts/arc3RollContext";
 import {
-  AbilityDice,
+  AptitudeDice,
   BondDice,
   getMaxDieLevel,
   getMinDieLevel,
@@ -238,7 +238,7 @@ function ActionLevel({ action }: { action: ActionV3 }) {
   let maxLevel = 0;
   switch (action.type) {
     case "aptitude":
-      maxLevel = getMaxDieLevel(AbilityDice);
+      maxLevel = getMaxDieLevel(AptitudeDice);
       break;
     case "skill":
       maxLevel = getMaxDieLevel(SkillDice);
@@ -254,7 +254,7 @@ function ActionLevel({ action }: { action: ActionV3 }) {
     let minLevel = 0;
     switch (action.type) {
       case "aptitude":
-        minLevel = getMinDieLevel(AbilityDice);
+        minLevel = getMinDieLevel(AptitudeDice);
         break;
       case "skill":
         minLevel = getMinDieLevel(SkillDice);
@@ -289,7 +289,7 @@ function ActionLevel({ action }: { action: ActionV3 }) {
     let minLevel = 0;
     switch (action.type) {
       case "aptitude":
-        minLevel = getMinDieLevel(AbilityDice);
+        minLevel = getMinDieLevel(AptitudeDice);
         break;
       case "skill":
         minLevel = getMinDieLevel(SkillDice);
