@@ -8,6 +8,9 @@ export default function RecklessMindset() {
         of resolve to risk the body as backsnappers do; and a practiced
         technique to crush foes&apos; bodies in the way they do.
       </TypographyP>
+      <TypographyP>
+        Unlock the <b>Backsnap</b> skill.
+      </TypographyP>
     </>
   );
 }

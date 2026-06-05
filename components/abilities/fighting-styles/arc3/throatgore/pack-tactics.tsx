@@ -7,6 +7,9 @@ export default function PackTactics() {
         opportunities their allies create, or create those opportunities
         themselves. And when the time is right, they pounce.
       </TypographyP>
+      <TypographyP>
+        Unlock the <b>Throatgore</b> skill.
+      </TypographyP>
     </>
   );
 }

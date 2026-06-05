@@ -254,15 +254,65 @@
   },
   {
     "name": "Shapes of War",
-    "shortDescription": "",
-    "abilities": [],
-    "wip": true
+    "shortDescription": "Execute your role in battle formations",
+    "abilities": [
+      {
+        "name": "Drills",
+        "slug": "drills",
+        "cost": 3
+      },
+      {
+        "name": "Gut Cutter",
+        "slug": "gut-cutter",
+        "cost": 3
+      },
+      {
+        "name": "Blister Star",
+        "slug": "blister-star",
+        "cost": 4
+      },
+      {
+        "name": "Needle Wing",
+        "slug": "needle-wing",
+        "cost": 4
+      },
+      {
+        "name": "Crusher",
+        "slug": "crusher",
+        "cost": 4
+      }
+    ]
   },
   {
     "name": "Snare and Shear",
-    "shortDescription": "",
-    "abilities": [],
-    "wip": true
+    "shortDescription": "Drag foes down with every trick in your arsenal",
+    "abilities": [
+      {
+        "name": "By any Means",
+        "slug": "by-any-means",
+        "cost": 3
+      },
+      {
+        "name": "Traps",
+        "slug": "traps",
+        "cost": 4
+      },
+      {
+        "name": "Poisons",
+        "slug": "poisons",
+        "cost": 4
+      },
+      {
+        "name": "Spare the Meat",
+        "slug": "spare-the-meat",
+        "cost": 3
+      },
+      {
+        "name": "Ambush",
+        "slug": "ambush",
+        "cost": 4
+      }
+    ]
   },
   {
     "name": "Throatgore",
