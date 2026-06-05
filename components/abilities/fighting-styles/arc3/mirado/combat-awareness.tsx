@@ -8,6 +8,9 @@ export default function CombatAwareness() {
         centering yourself in the eye of the storm and reacting to the situation
         as it changes.
       </TypographyP>
+      <TypographyP>
+        Unlock the <b>Mirado</b> skill.
+      </TypographyP>
     </>
   );
 }

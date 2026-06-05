@@ -7,6 +7,9 @@ export default function BasicWeaponsTraining() {
         basic motions of crowdbreaking are slow, methodical, powerful, and
         intimidating.
       </TypographyP>
+      <TypographyP>
+        Unlock the <b>Crowdbreaking</b> skill.
+      </TypographyP>
     </>
   );
 }

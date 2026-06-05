@@ -7,6 +7,9 @@ export default function Skirmish() {
         strike and retreat once again. They train to watch their foes closely
         and to stab precisely with quick weapons.
       </TypographyP>
+      <TypographyP>
+        Unlock the <b>Bleedout</b> skill.
+      </TypographyP>
     </>
   );
 }
