@@ -185,7 +185,29 @@ function RollableWrapper({ action, children }: RollableWrapperProps) {
 
 function MenuWrapper({ action, children, ...props }: MenuWrapperProps) {
   const { actions, setActions } = useActions();
+  const [xpSpent, setXpSpent] = useField("xpSpent");
   const handleRemoveAction = () => {
+    let minLevel = 0;
+    switch (action.type) {
+      case "aptitude":
+        minLevel = getMinDieLevel(AptitudeDice);
+        break;
+      case "skill":
+      case "fightingStyle":
+        minLevel = getMinDieLevel(SkillDice);
+        break;
+      case "bond":
+        minLevel = getMinDieLevel(BondDice);
+        break;
+    }
+    // XP spent leveling each die slot (each level-up from L-1→L costs L)
+    const levelXp = action.level.reduce((sum, level) => {
+      for (let i = minLevel + 1; i <= level; i++) sum += i;
+      return sum;
+    }, 0);
+    // 5 XP per additional die slot unlocked beyond the first
+    const slotXp = (action.level.length - 1) * 5;
+    setXpSpent(xpSpent - levelXp - slotXp);
     setActions(actions.filter((a) => a.name !== action.name));
   };
   return (
