@@ -62,7 +62,6 @@ export default function CharacterSheet() {
               <XPSection />
               <ResourcesSection />
               <ActionSection />
-              <BondsSection />
               <AbilitySection />
             </div>
             <div className="mt-4">

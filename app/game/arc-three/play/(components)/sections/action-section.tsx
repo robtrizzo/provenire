@@ -9,7 +9,7 @@ import {
 import Action from "../action";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { BookOpen, Maximize2, Minimize2 } from "lucide-react";
+import { Maximize2, Minimize2 } from "lucide-react";
 import BondsSection from "./bonds-section";
 import ActionsWindow from "../windows/action-window";
 import AptitudesDialog from "../dialogs/aptitudes-dialog";
