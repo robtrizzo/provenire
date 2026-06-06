@@ -722,6 +722,7 @@
   },
   {
     "name": "Hamlin",
+    "fileName": "hamlin.jpg",
     "neighborhood": "Lofts",
     "type": "npc",
     "faction": "Theta"
