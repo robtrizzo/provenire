@@ -722,6 +722,7 @@
   },
   {
     "name": "Hamlin",
+    "fileName": "hamlin.jpg",
     "neighborhood": "Lofts",
     "type": "npc",
     "faction": "Theta"
@@ -936,14 +937,6 @@
   },
   {
     "name": "Naoko",
-    "neighborhood": "Fab Floor",
-    "type": "npc",
-    "faction": "Scarbacks",
-    "job": "Scrapper",
-    "portrait": false
-  },
-  {
-    "name": "Tsuji",
     "neighborhood": "Fab Floor",
     "type": "npc",
     "faction": "Scarbacks",
