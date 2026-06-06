@@ -7,6 +7,7 @@ import { useState } from "react";
 import CharacterSheet from "./(components)/character-sheet";
 import DiceSheet from "@/components/character-sheet/dice-history/dice-sheet";
 import { useRoll } from "@/contexts/arc3RollContext";
+import DramatisPersonae from "./(components)/dramatis-personae";
 
 const tabs = [
   { name: "Character", value: "character" },
@@ -62,7 +63,7 @@ export default function Page() {
           <CharacterSheet />
         </TabsContent>
         <TabsContent value="dramatis-personae" className="w-full">
-          <TypographyH2>Dramatis Personae</TypographyH2>
+          <DramatisPersonae />
         </TabsContent>
       </Tabs>
     </>

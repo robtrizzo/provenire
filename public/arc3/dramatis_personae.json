@@ -1,0 +1,1048 @@
+[
+  {
+    "name": "Gnaeus",
+    "fileName": "gnaeus.jpg",
+    "neighborhood": "Lofts",
+    "faction": "Theta",
+    "job": "",
+    "type": "npc"
+  },
+  {
+    "name": "Nail",
+    "fileName": "6QtA92Z3",
+    "neighborhood": "Lofts",
+    "faction": "Theta",
+    "job": "Operator",
+    "type": "pc"
+  },
+  {
+    "name": "Drusa",
+    "fileName": "LnAouMvp",
+    "neighborhood": "Lofts",
+    "faction": "Theta",
+    "job": "Archivist",
+    "type": "pc"
+  },
+  {
+    "name": "Malgus Veradun",
+    "neighborhood": "Lofts",
+    "faction": "Theta",
+    "job": "Enforcer",
+    "type": "pc",
+    "dead": true
+  },
+  {
+    "name": "Merit",
+    "neighborhood": "Fab Floor",
+    "faction": "Theta",
+    "job": "Scrapper",
+    "type": "pc"
+  },
+  {
+    "name": "Jonah",
+    "neighborhood": "Lofts",
+    "faction": "Theta",
+    "job": "Operator",
+    "type": "pc"
+  },
+  {
+    "name": "Twenty-One",
+    "fileName": "c97EqbSu",
+    "neighborhood": "Lofts",
+    "faction": "Theta",
+    "job": "Stoker",
+    "type": "pc"
+  },
+  {
+    "name": "Aika Drak",
+    "neighborhood": "Lofts",
+    "faction": "Theta",
+    "job": "Machinist",
+    "type": "pc"
+  },
+  {
+    "name": "Bessemer",
+    "neighborhood": "Fab Floor",
+    "faction": "Theta",
+    "job": "Enforcer",
+    "type": "pc"
+  },
+  {
+    "name": "Lilya Amati",
+    "fileName": "Lilya P. Amati",
+    "neighborhood": "The Bends",
+    "faction": "Theta",
+    "job": "Runner",
+    "type": "pc"
+  },
+  {
+    "name": "Von",
+    "neighborhood": "Lofts",
+    "faction": "Theta",
+    "job": "Archivist",
+    "type": "pc"
+  },
+  {
+    "name": "Naaza",
+    "neighborhood": "Lofts",
+    "faction": "Theta",
+    "job": "Enforcer",
+    "type": "pc"
+  },
+  {
+    "name": "Flynn",
+    "neighborhood": "Lofts",
+    "faction": "Theta",
+    "job": "Machinist",
+    "type": "npc",
+    "portrait": false
+  },
+  {
+    "name": "Udigo",
+    "neighborhood": "Lofts",
+    "faction": "Theta",
+    "type": "npc"
+  },
+  {
+    "name": "Lanorella",
+    "neighborhood": "Lofts",
+    "faction": "Theta",
+    "type": "npc"
+  },
+  {
+    "name": "Teia Ild",
+    "neighborhood": "Lofts",
+    "faction": "Theta",
+    "job": "Machinist",
+    "type": "npc"
+  },
+  {
+    "name": "Rhima",
+    "neighborhood": "The Bends",
+    "faction": "Theta",
+    "job": "Scrapper",
+    "type": "npc"
+  },
+  {
+    "name": "Galin",
+    "neighborhood": "Fab Floor",
+    "faction": "Theta",
+    "job": "Operator",
+    "type": "npc"
+  },
+  {
+    "name": "Frax",
+    "neighborhood": "Lofts",
+    "faction": "Theta",
+    "job": "Stoker",
+    "type": "npc"
+  },
+  {
+    "name": "Donios",
+    "neighborhood": "Lofts",
+    "faction": "Theta",
+    "job": "Operator",
+    "type": "npc"
+  },
+  {
+    "name": "Leon",
+    "neighborhood": "Stairwell",
+    "faction": "Theta",
+    "job": "Pit Fighter",
+    "type": "npc"
+  },
+  {
+    "name": "Phaidime",
+    "neighborhood": "Stairwell",
+    "faction": "Theta",
+    "job": "Pit Fighter",
+    "type": "npc"
+  },
+  {
+    "name": "Toric",
+    "neighborhood": "Stairwell",
+    "faction": "Theta",
+    "job": "Pit Fighter",
+    "type": "npc"
+  },
+  {
+    "name": "Marcus",
+    "neighborhood": "Stairwell",
+    "faction": "Theta",
+    "job": "Pit Fighter",
+    "type": "npc"
+  },
+  {
+    "name": "Aabid",
+    "neighborhood": "Stairwell",
+    "faction": "Theta",
+    "job": "Pit Fighter",
+    "type": "npc"
+  },
+  {
+    "name": "Moore",
+    "neighborhood": "Lofts",
+    "faction": "Moore's Gang",
+    "type": "npc",
+    "dead": true
+  },
+  {
+    "name": "Laramie Black",
+    "neighborhood": "Lofts",
+    "faction": "Moore's Gang",
+    "type": "npc"
+  },
+  {
+    "name": "Nichros Perydark",
+    "neighborhood": "Lofts",
+    "faction": "Moore's Gang",
+    "type": "npc"
+  },
+  {
+    "name": "Yewin",
+    "neighborhood": "Lofts",
+    "faction": "Moore's Gang",
+    "type": "npc",
+    "job": "Operator"
+  },
+  {
+    "name": "Zamza Veradun",
+    "neighborhood": "Lofts",
+    "faction": "Moore's Gang",
+    "type": "npc",
+    "portrait": false
+  },
+  {
+    "name": "Enzo",
+    "neighborhood": "Fab Floor",
+    "faction": "Scarbacks",
+    "type": "npc",
+    "job": "Archivist"
+  },
+  {
+    "name": "Veria",
+    "neighborhood": "Fab Floor",
+    "faction": "Scarbacks",
+    "type": "npc",
+    "job": "Operator"
+  },
+  {
+    "name": "Malix",
+    "neighborhood": "Fab Floor",
+    "faction": "Scarbacks",
+    "type": "npc",
+    "job": "Machinist"
+  },
+  {
+    "name": "Oza Kriche",
+    "neighborhood": "Fab Floor",
+    "faction": "Scarbacks",
+    "type": "npc",
+    "job": "Scrapper"
+  },
+  {
+    "name": "Minamo",
+    "neighborhood": "Fab Floor",
+    "faction": "Minamo's Brood",
+    "type": "npc"
+  },
+  {
+    "name": "Nidan",
+    "neighborhood": "Fab Floor",
+    "faction": "Minamo's Brood",
+    "type": "npc",
+    "job": "Operator",
+    "dead": true
+  },
+  {
+    "name": "Ebrimud",
+    "neighborhood": "Fab Floor",
+    "faction": "Minamo's Brood",
+    "type": "npc",
+    "job": "Machinist"
+  },
+  {
+    "name": "Katavida",
+    "neighborhood": "Fab Floor",
+    "faction": "Minamo's Brood",
+    "type": "npc",
+    "job": "Scrapper",
+    "dead": true
+  },
+  {
+    "name": "Athaulf",
+    "neighborhood": "Fab Floor",
+    "faction": "Minamo's Brood",
+    "type": "npc",
+    "job": "Scrapper"
+  },
+  {
+    "name": "Deshald",
+    "neighborhood": "Fab Floor",
+    "faction": "Minamo's Brood",
+    "type": "npc",
+    "job": "Stoker"
+  },
+  {
+    "name": "Phelchen",
+    "neighborhood": "Fab Floor",
+    "faction": "Minamo's Brood",
+    "type": "npc",
+    "job": "Runner"
+  },
+  {
+    "name": "Hesperos",
+    "neighborhood": "Penal Pens",
+    "type": "npc"
+  },
+  {
+    "name": "Vult",
+    "neighborhood": "Penal Pens",
+    "type": "npc"
+  },
+  {
+    "name": "Tallia",
+    "neighborhood": "Penal Pens",
+    "type": "npc"
+  },
+  {
+    "name": "Deritus",
+    "neighborhood": "Penal Pens",
+    "type": "npc",
+    "job": "Enforcer"
+  },
+  {
+    "name": "Wulif",
+    "neighborhood": "Penal Pens",
+    "type": "npc",
+    "job": "Enforcer"
+  },
+  {
+    "name": "Varus",
+    "neighborhood": "Penal Pens",
+    "type": "npc",
+    "job": "Enforcer"
+  },
+  {
+    "name": "Warner",
+    "neighborhood": "Stairwell",
+    "type": "npc",
+    "faction": "Youngers",
+    "dead": true
+  },
+  {
+    "name": "Cyrus",
+    "neighborhood": "Stairwell",
+    "type": "npc",
+    "faction": "Youngers"
+  },
+  {
+    "name": "Sidar",
+    "neighborhood": "Stairwell",
+    "type": "npc",
+    "faction": "Youngers",
+    "job": "Operator",
+    "dead": true
+  },
+  {
+    "name": "Gabe",
+    "neighborhood": "Fab Floor",
+    "type": "npc",
+    "faction": "Youngers",
+    "portrait": false
+  },
+  {
+    "name": "Darius Azad",
+    "neighborhood": "The Bends",
+    "type": "npc",
+    "faction": "Youngers",
+    "job": "Runner"
+  },
+  {
+    "name": "Xan",
+    "neighborhood": "Stairwell",
+    "type": "npc",
+    "faction": "Youngers",
+    "dead": true,
+    "portrait": false
+  },
+  {
+    "name": "Hermesind",
+    "neighborhood": "Stairwell",
+    "type": "npc",
+    "job": "Pit Fighter"
+  },
+  {
+    "name": "Thraus",
+    "neighborhood": "The Bends",
+    "type": "npc",
+    "faction": "Dominion",
+    "job": "Enforcer"
+  },
+  {
+    "name": "Hellet",
+    "neighborhood": "The Bends",
+    "type": "npc",
+    "faction": "Dominion",
+    "job": "Enforcer"
+  },
+  {
+    "name": "Quarrel",
+    "neighborhood": "The Bends",
+    "type": "npc",
+    "job": "Archivist",
+    "portrait": false
+  },
+  {
+    "name": "Lio",
+    "neighborhood": "The Bends",
+    "type": "npc",
+    "faction": "Watering Hole"
+  },
+  {
+    "name": "Kent",
+    "neighborhood": "The Bends",
+    "type": "npc",
+    "faction": "Watering Hole"
+  },
+  {
+    "name": "Gaila the Daft",
+    "neighborhood": "The Bends",
+    "type": "npc",
+    "job": "Enforcer",
+    "faction": "Dominion",
+    "portrait": false
+  },
+  {
+    "name": "Audo the Gorger",
+    "neighborhood": "The Bends",
+    "type": "npc",
+    "job": "Enforcer",
+    "dead": true
+  },
+  {
+    "name": "Gelimer",
+    "neighborhood": "The Bends",
+    "type": "npc"
+  },
+  {
+    "name": "Alma",
+    "neighborhood": "The Bends",
+    "type": "npc",
+    "job": "Archivist",
+    "faction": "Watering Hole"
+  },
+  {
+    "name": "Nimund",
+    "neighborhood": "The Bends",
+    "type": "npc",
+    "job": "Operator"
+  },
+  {
+    "name": "Lorel",
+    "neighborhood": "The Bends",
+    "type": "npc",
+    "job": "Scrapper"
+  },
+  {
+    "name": "Miteri",
+    "neighborhood": "The Bends",
+    "type": "npc",
+    "job": "Machinist",
+    "portrait": false
+  },
+  {
+    "name": "Kian",
+    "neighborhood": "The Bends",
+    "type": "npc",
+    "job": "Runner",
+    "portrait": false
+  },
+  {
+    "name": "Bran",
+    "neighborhood": "The Bends",
+    "type": "npc",
+    "job": "Machinist",
+    "dead": true
+  },
+  {
+    "name": "Gideon",
+    "neighborhood": "The Bends",
+    "type": "npc",
+    "job": "Stoker",
+    "portrait": false
+  },
+  {
+    "name": "Theo",
+    "neighborhood": "The Bends",
+    "type": "npc",
+    "job": "Operator",
+    "portrait": false
+  },
+  {
+    "name": "Hrodulfr the Sire",
+    "neighborhood": "The Bends",
+    "type": "npc",
+    "job": "Enforcer",
+    "faction": "Dominion"
+  },
+  {
+    "name": "Tan",
+    "neighborhood": "The Bends",
+    "type": "npc",
+    "job": "Machinist",
+    "faction": "Shadowfang Justicars",
+    "portrait": false
+  },
+  {
+    "name": "Shiro",
+    "neighborhood": "The Bends",
+    "type": "npc",
+    "job": "Operator",
+    "faction": "Dominion",
+    "portrait": false
+  },
+  {
+    "name": "Isaac",
+    "neighborhood": "The Bends",
+    "type": "npc",
+    "job": "Stoker",
+    "portrait": false
+  },
+  {
+    "name": "Ash Aalart",
+    "neighborhood": "Stairwell",
+    "type": "npc",
+    "faction": "Industry Alley"
+  },
+  {
+    "name": "Sigsvult",
+    "neighborhood": "Stairwell",
+    "type": "npc",
+    "faction": "Pipeways"
+  },
+  {
+    "name": "Hichem",
+    "neighborhood": "Stairwell",
+    "type": "npc",
+    "faction": "Pipeways",
+    "job": "Machinist"
+  },
+  {
+    "name": "Adwil",
+    "neighborhood": "Stairwell",
+    "type": "npc",
+    "faction": "Pipeways",
+    "job": "Runner"
+  },
+  {
+    "name": "Wess the Shark",
+    "neighborhood": "Stairwell",
+    "type": "npc",
+    "faction": "Industry Alley",
+    "job": "Enforcer",
+    "dead": true
+  },
+  {
+    "name": "Svintha the Crumber",
+    "neighborhood": "Stairwell",
+    "type": "npc",
+    "faction": "Pipeways",
+    "job": "Enforcer"
+  },
+  {
+    "name": "Naric the Swindler",
+    "neighborhood": "Stairwell",
+    "type": "npc",
+    "faction": "Pipeways",
+    "job": "Enforcer",
+    "portrait": false
+  },
+  {
+    "name": "Borani",
+    "neighborhood": "Stairwell",
+    "type": "npc",
+    "faction": "Pipeways",
+    "job": "Enforcer"
+  },
+  {
+    "name": "Inga",
+    "fileName": "inga.jpg",
+    "neighborhood": "Stairwell",
+    "type": "npc",
+    "job": "Scrapper"
+  },
+  {
+    "name": "Tovarus",
+    "neighborhood": "Stairwell",
+    "type": "npc",
+    "job": "Runner"
+  },
+  {
+    "name": "Cassian",
+    "neighborhood": "Stairwell",
+    "type": "npc",
+    "job": "Operator",
+    "faction": "Pipeways"
+  },
+  {
+    "name": "Kuni the Rover",
+    "neighborhood": "Stairwell",
+    "type": "npc",
+    "job": "Enforcer",
+    "faction": "Wolfden",
+    "dead": true
+  },
+  {
+    "name": "Lorya",
+    "neighborhood": "Stairwell",
+    "type": "npc",
+    "job": "Enforcer",
+    "faction": "Industry Alley"
+  },
+  {
+    "name": "Mori",
+    "neighborhood": "Stairwell",
+    "type": "npc",
+    "job": "Operator",
+    "faction": "Wolfden",
+    "portrait": false
+  },
+  {
+    "name": "Kaethe",
+    "neighborhood": "Stairwell",
+    "type": "npc",
+    "job": "Enforcer",
+    "faction": "Wolfden",
+    "portrait": false
+  },
+  {
+    "name": "Melisande",
+    "neighborhood": "Stairwell",
+    "type": "npc",
+    "job": "Runner",
+    "faction": "Wolfden",
+    "portrait": false
+  },
+  {
+    "name": "Ivid",
+    "neighborhood": "Stairwell",
+    "type": "npc",
+    "job": "Stoker",
+    "faction": "Pipeways",
+    "portrait": false
+  },
+  {
+    "name": "Ivid",
+    "neighborhood": "Stairwell",
+    "type": "npc",
+    "job": "Stoker",
+    "faction": "Pipeways",
+    "portrait": false
+  },
+  {
+    "name": "Rodulf",
+    "neighborhood": "Stairwell",
+    "type": "npc",
+    "job": "Machinist",
+    "faction": "Youngers",
+    "portrait": false
+  },
+  {
+    "name": "Dunny",
+    "neighborhood": "Stairwell",
+    "type": "npc",
+    "job": "Runner",
+    "faction": "Industry Alley"
+  },
+  {
+    "name": "Hitchen",
+    "neighborhood": "Stairwell",
+    "type": "npc",
+    "faction": "Industry Alley"
+  },
+  {
+    "name": "Sire Ciber",
+    "neighborhood": "Lofts",
+    "type": "npc",
+    "faction": "Congregation of the Well God"
+  },
+  {
+    "name": "Venee Palen",
+    "neighborhood": "Lofts",
+    "type": "npc",
+    "job": "Machinist",
+    "faction": "Raftertown"
+  },
+  {
+    "name": "Pachni",
+    "neighborhood": "Lofts",
+    "type": "npc",
+    "faction": "Theta",
+    "portrait": false
+  },
+  {
+    "name": "Kasr",
+    "neighborhood": "Lofts",
+    "type": "npc",
+    "portrait": false,
+    "dead": true
+  },
+  {
+    "name": "Amalina the Crow",
+    "neighborhood": "Lofts",
+    "type": "npc",
+    "job": "Enforcer",
+    "faction": "Shrikes"
+  },
+  {
+    "name": "Kerrac",
+    "neighborhood": "Lofts",
+    "type": "npc",
+    "job": "Enforcer",
+    "faction": "Raftertown"
+  },
+  {
+    "name": "Noirax Veradun",
+    "neighborhood": "Lofts",
+    "type": "npc",
+    "job": "Enforcer",
+    "faction": "Shrikes",
+    "portrait": false,
+    "dead": true
+  },
+  {
+    "name": "Riks the Rat",
+    "neighborhood": "Lofts",
+    "type": "npc",
+    "job": "Enforcer",
+    "faction": "Raftertown",
+    "portrait": false,
+    "dead": true
+  },
+  {
+    "name": "Hamlin",
+    "neighborhood": "Lofts",
+    "type": "npc",
+    "faction": "Theta"
+  },
+  {
+    "name": "Wilgefort",
+    "neighborhood": "Lofts",
+    "type": "npc",
+    "job": "Stoker",
+    "faction": "Sootstain"
+  },
+  {
+    "name": "Seperi",
+    "neighborhood": "Lofts",
+    "type": "npc",
+    "job": "Runner",
+    "faction": "Raftertown"
+  },
+  {
+    "name": "Adaric",
+    "neighborhood": "Lofts",
+    "type": "npc",
+    "job": "Enforcer",
+    "faction": "Raftertown",
+    "dead": true
+  },
+  {
+    "name": "Theodora",
+    "neighborhood": "Lofts",
+    "type": "npc",
+    "job": "Archivist",
+    "faction": "Raftertown",
+    "portrait": false
+  },
+  {
+    "name": "Elisaweta",
+    "neighborhood": "Lofts",
+    "type": "npc",
+    "job": "Archivist",
+    "faction": "Raftertown",
+    "portrait": false
+  },
+  {
+    "name": "Jeanne",
+    "neighborhood": "Lofts",
+    "type": "npc",
+    "faction": "Raftertown",
+    "portrait": false
+  },
+  {
+    "name": "Melle",
+    "neighborhood": "Lofts",
+    "type": "npc",
+    "faction": "Congregation of the Well God",
+    "job": "Stoker",
+    "portrait": false
+  },
+  {
+    "name": "Hana",
+    "neighborhood": "Lofts",
+    "type": "npc",
+    "faction": "Theta",
+    "portrait": false
+  },
+  {
+    "name": "Gran",
+    "neighborhood": "Lofts",
+    "type": "npc",
+    "faction": "Theta",
+    "portrait": false,
+    "dead": true
+  },
+  {
+    "name": "Alexi",
+    "neighborhood": "Lofts",
+    "type": "npc",
+    "faction": "Moore's Gang",
+    "job": "Machinist",
+    "portrait": false
+  },
+  {
+    "name": "Rodric",
+    "neighborhood": "Lofts",
+    "type": "npc",
+    "faction": "Raftertown",
+    "job": "Enforcer",
+    "portrait": false
+  },
+  {
+    "name": "Luys",
+    "neighborhood": "Lofts",
+    "type": "npc",
+    "faction": "Raftertown",
+    "job": "Enforcer",
+    "portrait": false
+  },
+  {
+    "name": "Lester Aurus",
+    "neighborhood": "Fab Floor",
+    "type": "npc",
+    "faction": "Scarbacks",
+    "portrait": false
+  },
+  {
+    "name": "Seb",
+    "neighborhood": "Fab Floor",
+    "type": "npc",
+    "faction": "Sootstain",
+    "job": "Stoker"
+  },
+  {
+    "name": "Nadia",
+    "neighborhood": "Fab Floor",
+    "type": "npc",
+    "faction": "Sootstain",
+    "job": "Runner"
+  },
+  {
+    "name": "Gisava the Bully",
+    "neighborhood": "Fab Floor",
+    "type": "npc",
+    "faction": "Scarbacks",
+    "job": "Enforcer",
+    "dead": true
+  },
+  {
+    "name": "Felix the Facetious",
+    "neighborhood": "Penal Pens",
+    "type": "npc",
+    "faction": "Scarbacks",
+    "job": "Enforcer"
+  },
+  {
+    "name": "Lorin",
+    "neighborhood": "Fab Floor",
+    "type": "npc",
+    "faction": "Scarbacks",
+    "job": "Operator",
+    "portrait": false
+  },
+  {
+    "name": "Radegond the Stalker",
+    "neighborhood": "Fab Floor",
+    "type": "npc",
+    "faction": "Scarbacks",
+    "job": "Enforcer",
+    "portrait": false
+  },
+  {
+    "name": "Duara the Thinblood",
+    "neighborhood": "Fab Floor",
+    "type": "npc",
+    "faction": "Scarbacks",
+    "job": "Enforcer"
+  },
+  {
+    "name": "Utthas",
+    "neighborhood": "Fab Floor",
+    "type": "npc",
+    "faction": "Scarbacks",
+    "job": "Operator"
+  },
+  {
+    "name": "Rasha of the machines",
+    "neighborhood": "Fab Floor",
+    "type": "npc",
+    "faction": "Wall People",
+    "portrait": false
+  },
+  {
+    "name": "Geleswin",
+    "neighborhood": "Fab Floor",
+    "type": "npc",
+    "faction": "Scarbacks",
+    "job": "Machinist"
+  },
+  {
+    "name": "Gisa",
+    "neighborhood": "Fab Floor",
+    "type": "npc",
+    "faction": "Sootstain",
+    "job": "Stoker"
+  },
+  {
+    "name": "Shal",
+    "neighborhood": "Fab Floor",
+    "type": "npc",
+    "faction": "Scarbacks",
+    "portrait": false
+  },
+  {
+    "name": "Finn",
+    "neighborhood": "Fab Floor",
+    "type": "npc",
+    "faction": "Scarbacks",
+    "job": "Scrapper"
+  },
+  {
+    "name": "Sara",
+    "neighborhood": "Fab Floor",
+    "type": "npc",
+    "faction": "Scarbacks",
+    "job": "Runner"
+  },
+  {
+    "name": "Rasha",
+    "neighborhood": "Fab Floor",
+    "type": "npc",
+    "faction": "Scarbacks",
+    "job": "Runner",
+    "portrait": false
+  },
+  {
+    "name": "Naoko",
+    "neighborhood": "Fab Floor",
+    "type": "npc",
+    "faction": "Scarbacks",
+    "job": "Scrapper",
+    "portrait": false
+  },
+  {
+    "name": "Tsuji",
+    "neighborhood": "Fab Floor",
+    "type": "npc",
+    "faction": "Scarbacks",
+    "job": "Scrapper",
+    "portrait": false
+  },
+  {
+    "name": "Tsuji",
+    "neighborhood": "Fab Floor",
+    "type": "npc",
+    "faction": "Scarbacks",
+    "job": "Scrapper",
+    "portrait": false
+  },
+  {
+    "name": "Conrad",
+    "neighborhood": "Fab Floor",
+    "type": "npc",
+    "faction": "Scarbacks",
+    "job": "Operator",
+    "portrait": false
+  },
+  {
+    "name": "Nibel",
+    "neighborhood": "Fab Floor",
+    "type": "npc",
+    "faction": "Scarbacks",
+    "job": "Machinist",
+    "portrait": false
+  },
+  {
+    "name": "Jyothi",
+    "neighborhood": "Fab Floor",
+    "type": "npc",
+    "faction": "Scarbacks",
+    "job": "Enforcer",
+    "portrait": false
+  },
+  {
+    "name": "Bardolph",
+    "neighborhood": "Fab Floor",
+    "type": "npc",
+    "faction": "Scarbacks",
+    "job": "Enforcer",
+    "portrait": false
+  },
+  {
+    "name": "Corrella",
+    "neighborhood": "Fab Floor",
+    "type": "npc",
+    "faction": "Scarbacks",
+    "job": "Operator",
+    "portrait": false
+  },
+  {
+    "name": "Orin",
+    "neighborhood": "Fab Floor",
+    "type": "npc",
+    "faction": "Scarbacks",
+    "job": "Operator"
+  },
+  {
+    "name": "Laikal",
+    "neighborhood": "Fab Floor",
+    "type": "npc",
+    "faction": "Scarbacks",
+    "job": "Enforcer"
+  },
+  {
+    "name": "Marngil the Bear",
+    "neighborhood": "Fab Floor",
+    "type": "npc",
+    "job": "Enforcer"
+  },
+  {
+    "name": "Ulf the Wolf",
+    "neighborhood": "The Bends",
+    "type": "npc",
+    "job": "Enforcer",
+    "faction": "Dominion"
+  },
+  {
+    "name": "Ridora the Ravenous",
+    "neighborhood": "Stairwell",
+    "type": "npc",
+    "job": "Enforcer",
+    "faction": "Pits"
+  },
+  {
+    "name": "Theodoric the Torturer",
+    "neighborhood": "Fab Floor",
+    "type": "npc",
+    "job": "Enforcer",
+    "dead": true
+  },
+  {
+    "name": "Frida the Cruel",
+    "type": "npc",
+    "job": "Enforcer",
+    "dead": true
+  }
+]
