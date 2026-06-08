@@ -193,7 +193,7 @@ function ClockPreview({
 }) {
   if (type === "clock") {
     return (
-      <Clock width={52} height={52} max={max} current={0} clickable={false} />
+      <Clock width={35} height={35} max={max} current={0} clickable={false} />
     );
   }
   if (type === "accumulation") {
@@ -235,13 +235,15 @@ function ClockRow({
           />
         </XPClocks>
       ) : clock.type === "clock" ? (
-        <Clock
-          width={52}
-          height={52}
-          max={clock.max}
-          current={clock.current}
-          setVal={(n) => onUpdate({ current: n })}
-        />
+        <div className="ml-2">
+          <Clock
+            width={35}
+            height={35}
+            max={clock.max}
+            current={clock.current}
+            setVal={(n) => onUpdate({ current: n })}
+          />
+        </div>
       ) : (
         <BuildupCheckboxes
           max={clock.max}

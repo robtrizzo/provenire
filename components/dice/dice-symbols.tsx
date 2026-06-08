@@ -1,8 +1,11 @@
+import { useId } from "react";
+
 export const Theta = () => {
+  const uid = useId();
   return (
     <g>
       <defs>
-        <mask id="theta-c-mask">
+        <mask id={`theta-mask-left-${uid}`}>
           <rect x="0" y="0" width="24" height="24" fill="white" />
           <ellipse
             cx="10.7"
@@ -13,7 +16,7 @@ export const Theta = () => {
             stroke="black"
           />
         </mask>
-        <mask id="theta-c-mask-right">
+        <mask id={`theta-mask-right-${uid}`}>
           <rect x="0" y="0" width="24" height="24" fill="white" />
           <ellipse
             cx="13.3"
@@ -24,10 +27,10 @@ export const Theta = () => {
             stroke="black"
           />
         </mask>
-        <clipPath id="theta-c-clip-left">
+        <clipPath id={`theta-clip-left-${uid}`}>
           <rect x="0" y="0" width="10.7" height="24" />
         </clipPath>
-        <clipPath id="theta-c-clip-right">
+        <clipPath id={`theta-clip-right-${uid}`}>
           <rect x="13.3" y="0" width="10.7" height="24" />
         </clipPath>
       </defs>
@@ -39,8 +42,8 @@ export const Theta = () => {
         fill="oklch(62.3% 0.214 259.815)"
         stroke="oklch(42.4% 0.199 265.638)"
         strokeWidth={0.3}
-        mask="url(#theta-c-mask)"
-        clipPath="url(#theta-c-clip-left)"
+        mask={`url(#theta-mask-left-${uid}`}
+        clipPath={`url(#theta-clip-left-${uid}`}
       />
       {/* Right half (mirrored) */}
       <circle
@@ -50,18 +53,19 @@ export const Theta = () => {
         fill="oklch(62.3% 0.214 259.815)"
         stroke="oklch(42.4% 0.199 265.638)"
         strokeWidth={0.3}
-        mask="url(#theta-c-mask-right)"
-        clipPath="url(#theta-c-clip-right)"
+        mask={`url(#theta-mask-right-${uid}`}
+        clipPath={`url(#theta-clip-right-${uid}`}
       />
     </g>
   );
 };
 
 export const ThetaDouble = () => {
+  const uid = useId();
   return (
     <g>
       <defs>
-        <mask id="theta-mask">
+        <mask id={`theta-mask-${uid}`}>
           <rect x="0" y="0" width="24" height="24" fill="white" />
           <ellipse
             cx="12"
@@ -81,17 +85,18 @@ export const ThetaDouble = () => {
         fill="oklch(62.3% 0.214 259.815)"
         stroke="oklch(42.4% 0.199 265.638)"
         strokeWidth={0.3}
-        mask="url(#theta-mask)"
+        mask={`url(#theta-mask-${uid}`}
       />
     </g>
   );
 };
 
 export const ThetaTriple = () => {
+  const uid = useId();
   return (
     <g>
       <defs>
-        <mask id="theta-mask">
+        <mask id={`theta-mask-${uid}`}>
           <rect x="0" y="0" width="24" height="24" fill="white" />
           <ellipse
             cx="12"
@@ -111,7 +116,7 @@ export const ThetaTriple = () => {
         fill="oklch(62.3% 0.214 259.815)"
         stroke="oklch(42.4% 0.199 265.638)"
         strokeWidth={0.3}
-        mask="url(#theta-mask)"
+        mask={`url(#theta-mask-${uid}`}
       />
       {/* Horizontal line through circle */}
       <line

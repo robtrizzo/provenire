@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
-import { ReactNode } from "react";
+import { ReactNode, useId } from "react";
 
 const d6Variants = cva("", {
   variants: {
@@ -27,8 +27,8 @@ const d6Variants = cva("", {
   },
 });
 
-const goldToCrimson = (
-  <linearGradient id="crit-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+const goldToCrimson = (id: string) => (
+  <linearGradient id={id} x1="0%" y1="0%" x2="100%" y2="100%">
     <stop offset="0%" stopColor="oklch(0.55 0.12 85)" />
     <stop offset="100%" stopColor="oklch(0.35 0.15 25)" />
   </linearGradient>
@@ -48,6 +48,7 @@ export function D6({
   className?: string;
   children?: ReactNode;
 } & VariantProps<typeof d6Variants>) {
+  const gradientId = useId();
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -61,35 +62,38 @@ export function D6({
       className={cn(d6Variants({ variant }), className)}
       {...props}
     >
-      {crit && <defs>{goldToCrimson}</defs>}
+      {crit && <defs>{goldToCrimson(gradientId)}</defs>}
       <rect
         x="4"
         y="4"
         width="16"
         height="16"
         rx="2"
-        stroke={crit ? "url(#crit-gradient)" : "currentColor"}
+        stroke={crit ? `url(#${gradientId})` : "currentColor"}
       />
       {children}
     </svg>
   );
 }
 
-export const CritBorderGradient = () => (
-  <>
-    <defs>{goldToCrimson}</defs>
-    <rect
-      x="5"
-      y="5"
-      width="14"
-      height="14"
-      rx="1.5"
-      fill="none"
-      stroke="url(#crit-gradient)"
-      strokeWidth={0.5}
-    />
-  </>
-);
+export const CritBorderGradient = () => {
+  const gradientId = useId();
+  return (
+    <>
+      <defs>{goldToCrimson(gradientId)}</defs>
+      <rect
+        x="5"
+        y="5"
+        width="14"
+        height="14"
+        rx="1.5"
+        fill="none"
+        stroke={`url(#${gradientId})`}
+        strokeWidth={0.5}
+      />
+    </>
+  );
+};
 
 export const D8 = ({
   size = 24,

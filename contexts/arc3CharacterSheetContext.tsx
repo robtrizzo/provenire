@@ -81,18 +81,19 @@ export const ALL_INTEGRATIONS = integrations;
 export const ALL_RESPONSIBILITIES = responsibilities;
 export const ALL_ROLES = roles;
 
-const DEFAULT_ACTIONS: ActionV3[] = actions.Aptitudes.map((a) => ({
-  name: a.name,
-  description: a.description,
-  type: "aptitude",
-  level: [0],
-}));
+const getDefaultActions = (): ActionV3[] =>
+  actions.Aptitudes.map((a) => ({
+    name: a.name,
+    description: a.description,
+    type: "aptitude",
+    level: [0],
+  }));
 
-const DEFAULT_HARMS: CharacterHarm = {
+const getDefaultHarms = (): CharacterHarm => ({
   1: { slots: ["", ""], maxSlots: 2 },
   2: { slots: ["", ""], maxSlots: 2 },
   3: { slots: [""], maxSlots: 1 },
-};
+});
 
 interface Resource {
   current: number;
@@ -150,6 +151,13 @@ export interface ItemEntry {
   slots: number;
 }
 
+export interface NoteEntry {
+  id: string;
+  title: string;
+  content: string;
+  pinned: boolean;
+}
+
 const DEFAULT_ARMOR = {
   light: false,
   heavy: false,
@@ -169,7 +177,7 @@ const DEFAULT_UNLOCKED_ABILITIES: UnlockedAbilities = {
   universal: {},
 };
 
-const DEFAULT_STATE = {
+const getDefaultState = () => ({
   id: nanoid(),
   name: "",
   portrait: "",
@@ -187,7 +195,7 @@ const DEFAULT_STATE = {
   integration: undefined,
   responsibility: undefined,
   role: undefined,
-  actions: DEFAULT_ACTIONS,
+  actions: getDefaultActions(),
   xp: 0,
   xpSpent: 0,
   stress: 0,
@@ -221,14 +229,15 @@ const DEFAULT_STATE = {
       default: DEFAULT_MAX_MANPOWER,
     },
   },
-  harms: DEFAULT_HARMS,
+  harms: getDefaultHarms(),
   maxHealing: DEFAULT_MAX_HEALING,
   healing: 0,
   armor: DEFAULT_ARMOR,
   unlockedAbilities: DEFAULT_UNLOCKED_ABILITIES,
   clocks: [],
   items: [],
-};
+  notes: [] as NoteEntry[],
+});
 
 interface CharacterSheetState {
   id: string;
@@ -263,6 +272,7 @@ interface CharacterSheetState {
   unlockedAbilities: UnlockedAbilities;
   clocks: ClockEntry[];
   items: ItemEntry[];
+  notes: NoteEntry[];
 }
 
 // Actions — add new cases here
@@ -301,6 +311,13 @@ type CharacterSheetAction =
       type: "UPDATE_ITEM";
       id: string;
       changes: Partial<Omit<ItemEntry, "id">>;
+    }
+  | { type: "ADD_NOTE"; payload: NoteEntry }
+  | { type: "REMOVE_NOTE"; id: string }
+  | {
+      type: "UPDATE_NOTE";
+      id: string;
+      changes: Partial<Omit<NoteEntry, "id">>;
     };
 
 interface CharacterSheetContextProps {
@@ -445,6 +462,17 @@ function reducer(
           i.id === action.id ? { ...i, ...action.changes } : i,
         ),
       };
+    case "ADD_NOTE":
+      return { ...state, notes: [...state.notes, action.payload] };
+    case "REMOVE_NOTE":
+      return { ...state, notes: state.notes.filter((n) => n.id !== action.id) };
+    case "UPDATE_NOTE":
+      return {
+        ...state,
+        notes: state.notes.map((n) =>
+          n.id === action.id ? { ...n, ...action.changes } : n,
+        ),
+      };
   }
 }
 
@@ -467,7 +495,7 @@ export default function CharacterSheetProvider({
 }: {
   children: ReactNode;
 }) {
-  const [state, dispatch] = useReducer(reducer, DEFAULT_STATE);
+  const [state, dispatch] = useReducer(reducer, getDefaultState());
   const [localUpdatedAt, setLocalUpdatedAt] = useState<string | null>(null);
   const [cloudUpdatedAt, setCloudUpdatedAt] = useState<string | null>(null);
   const cloudUpdatedAtRef = useRef<string | null>(null);
@@ -525,7 +553,7 @@ export default function CharacterSheetProvider({
         dispatch({
           type: "SET_FIELDS",
           payload: {
-            ...DEFAULT_STATE,
+            ...getDefaultState(),
             ...parsed,
             unlockedAbilities: {
               ...DEFAULT_UNLOCKED_ABILITIES,
@@ -538,7 +566,7 @@ export default function CharacterSheetProvider({
         localStorage.setItem(
           LOCAL_STORAGE_KEY,
           JSON.stringify({
-            ...DEFAULT_STATE,
+            ...getDefaultState(),
             ...parsed,
             unlockedAbilities: {
               ...DEFAULT_UNLOCKED_ABILITIES,
@@ -667,7 +695,7 @@ export default function CharacterSheetProvider({
     suppressLocalSaveRef.current = true;
     dispatch({
       type: "SET_FIELDS",
-      payload: { ...DEFAULT_STATE, id: nanoid() },
+      payload: { ...getDefaultState(), id: nanoid() },
     });
   }, [dispatch]);
 
@@ -926,6 +954,26 @@ export function useItems() {
     updateItem: useCallback(
       (id: string, changes: Partial<Omit<ItemEntry, "id">>) =>
         dispatch({ type: "UPDATE_ITEM", id, changes }),
+      [dispatch],
+    ),
+  };
+}
+
+export function useNotes() {
+  const { state, dispatch } = useCharacterSheet();
+  return {
+    notes: state.notes,
+    addNote: useCallback(
+      (entry: NoteEntry) => dispatch({ type: "ADD_NOTE", payload: entry }),
+      [dispatch],
+    ),
+    removeNote: useCallback(
+      (id: string) => dispatch({ type: "REMOVE_NOTE", id }),
+      [dispatch],
+    ),
+    updateNote: useCallback(
+      (id: string, changes: Partial<Omit<NoteEntry, "id">>) =>
+        dispatch({ type: "UPDATE_NOTE", id, changes }),
       [dispatch],
     ),
   };

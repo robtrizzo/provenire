@@ -5,7 +5,6 @@ import { useMediaQuery } from "@/hooks/use-media-query";
 import { Activity } from "react";
 import RollSection from "./sections/roll-section";
 import ActionSection from "./sections/action-section";
-import BondsSection from "./sections/bonds-section";
 import XPSection from "./sections/xp-section";
 import StressSection from "./sections/stress-section";
 import SummarySection from "./sections/summary-section";
@@ -14,6 +13,8 @@ import HarmSection from "./sections/harm-section";
 import AbilitySection from "./sections/ability-section";
 import ClocksSection from "./sections/clocks-section";
 import ItemsSection from "./sections/items-section";
+import DiceHistorySection from "./sections/dice-history-section";
+import NotesSection from "./sections/notes-section";
 
 export default function CharacterSheet() {
   const is2xl = useMediaQuery("(min-width: 96rem)");
@@ -26,7 +27,7 @@ export default function CharacterSheet() {
         <Tabs defaultValue="mission" className="w-full my-3 mx-auto">
           <TabsList className="w-full grid grid-cols-2">
             <TabsTrigger value="mission">Mission</TabsTrigger>
-            <TabsTrigger value="profile">Profile</TabsTrigger>
+            <TabsTrigger value="notes">Notes</TabsTrigger>
           </TabsList>
           <TabsContent value="mission">
             <div className="my-3 grid grid-cols-1 md:grid-cols-2 gap-6 focus-visible:outline-hidden">
@@ -34,21 +35,23 @@ export default function CharacterSheet() {
                 <XPSection />
                 <ResourcesSection />
                 <ActionSection />
-                <AbilitySection />
               </div>
               <div className="mt-4">
                 <StressSection />
-                <ClocksSection />
-                <HarmSection />
                 <RollSection />
+                <AbilitySection />
+                <HarmSection />
                 <ItemsSection />
               </div>
             </div>
           </TabsContent>
-          <TabsContent value="profile">
+          <TabsContent value="notes">
             <div className="my-3 grid grid-cols-1 md:grid-cols-2 gap-6 focus-visible:outline-hidden">
               <div className="mt-4">
-                <ProfileContent />
+                <NotesSection />
+              </div>
+              <div className="mt-4">
+                <ClocksSection />
               </div>
             </div>
           </TabsContent>
@@ -62,24 +65,24 @@ export default function CharacterSheet() {
               <XPSection />
               <ResourcesSection />
               <ActionSection />
-              <AbilitySection />
             </div>
             <div className="mt-4">
               <StressSection />
               <ClocksSection />
-              <HarmSection />
               <RollSection />
+              <AbilitySection />
+              <HarmSection />
+              <ItemsSection />
             </div>
             <div className="mt-4">
-              <ProfileContent />
+              <DiceHistorySection />
+              <div className="mt-4">
+                <NotesSection />
+              </div>
             </div>
           </div>
         </div>
       </Activity>
     </>
   );
-}
-
-function ProfileContent() {
-  return <>CONTENT</>;
 }

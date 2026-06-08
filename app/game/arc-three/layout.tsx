@@ -19,10 +19,6 @@ const navigationData = [
     title: "Introduction",
     url: "/game/arc-three",
   },
-  // {
-  //   title: "Setting",
-  //   url: "#",
-  // },
   {
     title: "Rules",
     url: "#",
@@ -46,12 +42,8 @@ const navigationData = [
     url: "#",
     items: [
       {
-        title: "Archetypes",
-        url: "/game/arc-three/character-options/archetypes",
-        items: archetypes.map((a) => ({
-          title: a.name,
-          url: `/game/arc-three/character-options/archetypes#${a.name}`,
-        })),
+        title: "Actions",
+        url: "/game/arc-three/character-options/actions",
       },
       {
         title: "Aldams",
@@ -59,6 +51,14 @@ const navigationData = [
         items: aldams.map((a) => ({
           title: a.name,
           url: `/game/arc-three/character-options/aldams/${slugify(a.name)}`,
+        })),
+      },
+      {
+        title: "Archetypes",
+        url: "/game/arc-three/character-options/archetypes",
+        items: archetypes.map((a) => ({
+          title: a.name,
+          url: `/game/arc-three/character-options/archetypes#${a.name}`,
         })),
       },
       {
@@ -151,12 +151,12 @@ const navigationData = [
     ],
   },
   {
-    title: "Demo",
+    title: "Setting",
     url: "#",
     items: [
       {
-        title: "Test Dice",
-        url: "/game/arc-three/test-dice",
+        title: "Kilder",
+        url: "/game/arc-three/setting/kilder",
       },
     ],
   },
