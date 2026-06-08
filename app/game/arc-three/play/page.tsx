@@ -29,15 +29,17 @@ export default function Page() {
     <>
       <div className="flex items-end justify-between">
         <Breadcrumbs />
-        <DiceSheet
-          rolls={rolls}
-          currentDiceFilter={currentDiceFilter}
-          handleCurrentDiceFilterChange={handleCurrentDiceFilterChange}
-          fetchNextPage={fetchNextPage}
-          refetchRolls={refetchRolls}
-          hasNextPage={hasNextPage}
-          rollsArePending={rollsArePending}
-        />
+        <div className="2xl:hidden">
+          <DiceSheet
+            rolls={rolls}
+            currentDiceFilter={currentDiceFilter}
+            handleCurrentDiceFilterChange={handleCurrentDiceFilterChange}
+            fetchNextPage={fetchNextPage}
+            refetchRolls={refetchRolls}
+            hasNextPage={hasNextPage}
+            rollsArePending={rollsArePending}
+          />
+        </div>
       </div>
       <Tabs
         defaultValue="character"

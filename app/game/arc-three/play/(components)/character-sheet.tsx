@@ -5,7 +5,6 @@ import { useMediaQuery } from "@/hooks/use-media-query";
 import { Activity } from "react";
 import RollSection from "./sections/roll-section";
 import ActionSection from "./sections/action-section";
-import BondsSection from "./sections/bonds-section";
 import XPSection from "./sections/xp-section";
 import StressSection from "./sections/stress-section";
 import SummarySection from "./sections/summary-section";
@@ -14,6 +13,7 @@ import HarmSection from "./sections/harm-section";
 import AbilitySection from "./sections/ability-section";
 import ClocksSection from "./sections/clocks-section";
 import ItemsSection from "./sections/items-section";
+import DiceHistorySection from "./sections/dice-history-section";
 
 export default function CharacterSheet() {
   const is2xl = useMediaQuery("(min-width: 96rem)");
@@ -72,6 +72,7 @@ export default function CharacterSheet() {
               <ItemsSection />
             </div>
             <div className="mt-4">
+              <DiceHistorySection />
               <ProfileContent />
             </div>
           </div>
