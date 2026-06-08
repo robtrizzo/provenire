@@ -39,8 +39,8 @@ export default function CharacterSheet() {
               <div className="mt-4">
                 <StressSection />
                 <ClocksSection />
-                <HarmSection />
                 <RollSection />
+                <HarmSection />
                 <ItemsSection />
               </div>
             </div>
@@ -67,8 +67,9 @@ export default function CharacterSheet() {
             <div className="mt-4">
               <StressSection />
               <ClocksSection />
-              <HarmSection />
               <RollSection />
+              <HarmSection />
+              <ItemsSection />
             </div>
             <div className="mt-4">
               <ProfileContent />
