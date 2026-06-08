@@ -34,12 +34,12 @@ export default function CharacterSheet() {
                 <XPSection />
                 <ResourcesSection />
                 <ActionSection />
-                <AbilitySection />
               </div>
               <div className="mt-4">
                 <StressSection />
                 <ClocksSection />
                 <RollSection />
+                <AbilitySection />
                 <HarmSection />
                 <ItemsSection />
               </div>
@@ -62,12 +62,12 @@ export default function CharacterSheet() {
               <XPSection />
               <ResourcesSection />
               <ActionSection />
-              <AbilitySection />
             </div>
             <div className="mt-4">
               <StressSection />
               <ClocksSection />
               <RollSection />
+              <AbilitySection />
               <HarmSection />
               <ItemsSection />
             </div>
