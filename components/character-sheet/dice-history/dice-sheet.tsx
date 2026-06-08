@@ -129,7 +129,7 @@ export default function DiceSheet(props: DiceSheetProps) {
                 }}
               >
                 <SelectTrigger
-                  className="w-[180px]"
+                  className="w-45"
                   aria-label="Filter dice history"
                 >
                   <SelectValue placeholder={getPlaceholderText()} />
