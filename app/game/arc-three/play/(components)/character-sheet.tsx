@@ -86,7 +86,3 @@ export default function CharacterSheet() {
     </>
   );
 }
-
-function ProfileContent() {
-  return <>CONTENT</>;
-}
