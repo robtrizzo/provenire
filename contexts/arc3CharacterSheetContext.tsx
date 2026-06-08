@@ -151,6 +151,13 @@ export interface ItemEntry {
   slots: number;
 }
 
+export interface NoteEntry {
+  id: string;
+  title: string;
+  content: string;
+  pinned: boolean;
+}
+
 const DEFAULT_ARMOR = {
   light: false,
   heavy: false,
@@ -229,6 +236,7 @@ const getDefaultState = () => ({
   unlockedAbilities: DEFAULT_UNLOCKED_ABILITIES,
   clocks: [],
   items: [],
+  notes: [] as NoteEntry[],
 });
 
 interface CharacterSheetState {
@@ -264,6 +272,7 @@ interface CharacterSheetState {
   unlockedAbilities: UnlockedAbilities;
   clocks: ClockEntry[];
   items: ItemEntry[];
+  notes: NoteEntry[];
 }
 
 // Actions — add new cases here
@@ -302,6 +311,13 @@ type CharacterSheetAction =
       type: "UPDATE_ITEM";
       id: string;
       changes: Partial<Omit<ItemEntry, "id">>;
+    }
+  | { type: "ADD_NOTE"; payload: NoteEntry }
+  | { type: "REMOVE_NOTE"; id: string }
+  | {
+      type: "UPDATE_NOTE";
+      id: string;
+      changes: Partial<Omit<NoteEntry, "id">>;
     };
 
 interface CharacterSheetContextProps {
@@ -444,6 +460,17 @@ function reducer(
         ...state,
         items: state.items.map((i) =>
           i.id === action.id ? { ...i, ...action.changes } : i,
+        ),
+      };
+    case "ADD_NOTE":
+      return { ...state, notes: [...state.notes, action.payload] };
+    case "REMOVE_NOTE":
+      return { ...state, notes: state.notes.filter((n) => n.id !== action.id) };
+    case "UPDATE_NOTE":
+      return {
+        ...state,
+        notes: state.notes.map((n) =>
+          n.id === action.id ? { ...n, ...action.changes } : n,
         ),
       };
   }
@@ -927,6 +954,26 @@ export function useItems() {
     updateItem: useCallback(
       (id: string, changes: Partial<Omit<ItemEntry, "id">>) =>
         dispatch({ type: "UPDATE_ITEM", id, changes }),
+      [dispatch],
+    ),
+  };
+}
+
+export function useNotes() {
+  const { state, dispatch } = useCharacterSheet();
+  return {
+    notes: state.notes,
+    addNote: useCallback(
+      (entry: NoteEntry) => dispatch({ type: "ADD_NOTE", payload: entry }),
+      [dispatch],
+    ),
+    removeNote: useCallback(
+      (id: string) => dispatch({ type: "REMOVE_NOTE", id }),
+      [dispatch],
+    ),
+    updateNote: useCallback(
+      (id: string, changes: Partial<Omit<NoteEntry, "id">>) =>
+        dispatch({ type: "UPDATE_NOTE", id, changes }),
       [dispatch],
     ),
   };
