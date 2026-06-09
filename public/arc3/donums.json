@@ -162,6 +162,18 @@
     ]
   },
   {
+    "name": "Donum Messis",
+    "shortDescription": "Gift of Harvest",
+    "abilities": [
+      {
+        "name": "Donum Messis",
+        "slug": "donum-messis",
+        "cost": 0
+      }
+    ],
+    "wip": true
+  },
+  {
     "name": "Donum Ossis",
     "shortDescription": "Gift of Bones",
     "abilities": [
@@ -214,6 +226,30 @@
         "cost": 4
       }
     ]
+  },
+  {
+    "name": "Donum Tueor",
+    "shortDescription": "Gift of Beholding",
+    "abilities": [
+      {
+        "name": "Donum Tueor",
+        "slug": "donum-tueor",
+        "cost": 0
+      }
+    ],
+    "wip": true
+  },
+  {
+    "name": "Donum Umbra",
+    "shortDescription": "Gift of Shade",
+    "abilities": [
+      {
+        "name": "Donum Umbra",
+        "slug": "donum-umbra",
+        "cost": 0
+      }
+    ],
+    "wip": true
   },
   {
     "name": "Donum Ventus",
