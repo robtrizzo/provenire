@@ -184,7 +184,7 @@ export default function Page() {
         When you shift blame, you&apos;re trying to reduce the crew&apos;s heat
         generated in missions. You might be spreading rumors, bribing officials,
         or framing someone else for your crimes. Decrease the crew&apos;s{" "}
-        <b>Heat</b> by their <b>Wanted Level</b>.
+        <b>Heat</b> by the <b>Escalation Level</b>.
       </TypographyP>
       <TypographyBlockquote>
         Whatever your approach, you need a scapegoat. Name them and make an{" "}

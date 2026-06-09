@@ -71,9 +71,6 @@ export async function GET(
 
   try {
     let rolls = await getRollsArc3(userid, cursor, pageSize);
-    if (!session?.user?.role.includes("admin")) {
-      rolls = rolls.filter((roll) => roll.userid === session?.user?.id);
-    }
     return NextResponse.json(rolls);
   } catch (error) {
     console.error("Error getting rolls", error);
