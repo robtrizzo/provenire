@@ -31,12 +31,16 @@ const navigationData = [
         title: "Downtime",
         url: "/game/arc-three/rules/downtime",
       },
+      {
+        title: "Missions",
+        url: "/game/arc-three/rules/missions",
+      },
+      {
+        title: "Time Passes",
+        url: "/game/arc-three/rules/time-passes",
+      },
     ],
   },
-  // {
-  //   title: "Cycle of Play",
-  //   url: "#",
-  // },
   {
     title: "Character Options",
     url: "#",
