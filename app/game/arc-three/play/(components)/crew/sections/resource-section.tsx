@@ -17,38 +17,56 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import ResourcesDialog from "../dialogs/resource-dialog";
+import { TypographyH2 } from "@/components/ui/typography";
+import { FieldSeparator } from "@/components/ui/field";
 
 export default function ResourceSection() {
   return (
     <div>
-      <span className="text-xs text-muted-foreground uppercase tracking-wide">
-        Resources
-      </span>
-      <Separator />
+      <TypographyH2 className="text-md text-muted-foreground flex items-end justify-between">
+        Resources <ResourcesDialog />
+      </TypographyH2>
+      <FieldSeparator className="mt-1">Lair</FieldSeparator>
       <div className="mt-1 flex flex-wrap gap-2">
-        <ResourcePill name="blood">
+        <ResourcePill name="blood" location="lair">
           <Droplets className="text-red-500" />
         </ResourcePill>
-        <ResourcePill name="water">
+        <ResourcePill name="water" location="lair">
           <Droplet className="text-blue-500" />
         </ResourcePill>
-        <ResourcePill name="food">
+        <ResourcePill name="food" location="lair">
           <Wheat className="text-amber-500" />
         </ResourcePill>
-        <ResourcePill name="materials">
+        <ResourcePill name="materials" location="lair">
           <Boxes className="text-purple-500" />
         </ResourcePill>
-        <ResourcePill name="rep">
+        <ResourcePill name="rep" location="lair">
           <Speech className="text-lime-500" />
         </ResourcePill>
-        <ResourcePill name="goodwill">
+        <ResourcePill name="goodwill" location="lair">
           <Handshake className="text-pink-500" />
         </ResourcePill>
-        <ResourcePill name="intel">
+        <ResourcePill name="intel" location="lair">
           <Brain className="text-teal-500" />
         </ResourcePill>
-        <ResourcePill name="manpower">
+        <ResourcePill name="manpower" location="lair">
           <ChessPawn className="text-orange-500" />
+        </ResourcePill>
+      </div>
+      <FieldSeparator className="mt-1">Vault</FieldSeparator>
+      <div className="mt-1 flex flex-wrap gap-2">
+        <ResourcePill name="blood" location="vault">
+          <Droplets className="text-red-500" />
+        </ResourcePill>
+        <ResourcePill name="water" location="vault">
+          <Droplet className="text-blue-500" />
+        </ResourcePill>
+        <ResourcePill name="food" location="vault">
+          <Wheat className="text-amber-500" />
+        </ResourcePill>
+        <ResourcePill name="materials" location="vault">
+          <Boxes className="text-purple-500" />
         </ResourcePill>
       </div>
     </div>
@@ -57,12 +75,14 @@ export default function ResourceSection() {
 
 function ResourcePill({
   name,
+  location,
   children,
 }: {
   name: string;
+  location: "vault" | "lair";
   children: React.ReactNode;
 }) {
-  const [res, set] = useCrewResource(name);
+  const [res, set] = useCrewResource(location, name);
   if (!res) return null;
   return (
     <TooltipProvider>

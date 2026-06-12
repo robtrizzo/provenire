@@ -19,6 +19,11 @@ const SAVE_DEBOUNCE_MS = 1500;
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
+export interface ResourceStore {
+  lair: Record<string, Resource>;
+  vault: Record<string, Resource>;
+}
+
 export interface Resource {
   current: number;
   max: number;
@@ -27,20 +32,28 @@ export interface Resource {
 export interface CrewSheetState {
   heat: number;
   escalation: number;
-  resources: Record<string, Resource>;
+  resources: ResourceStore;
 }
 
 // ─── Defaults ─────────────────────────────────────────────────────────────────
 
-export const DEFAULT_RESOURCES: Record<string, Resource> = {
-  blood: { current: 0, max: 2 },
-  water: { current: 0, max: 2 },
-  food: { current: 0, max: 1 },
-  materials: { current: 0, max: 1 },
-  rep: { current: 0, max: 1 },
-  goodwill: { current: 0, max: 1 },
-  intel: { current: 0, max: 1 },
-  manpower: { current: 0, max: 1 },
+export const DEFAULT_RESOURCES: ResourceStore = {
+  lair: {
+    blood: { current: 0, max: 2 },
+    water: { current: 0, max: 2 },
+    food: { current: 0, max: 1 },
+    materials: { current: 0, max: 1 },
+    rep: { current: 0, max: 1 },
+    goodwill: { current: 0, max: 1 },
+    intel: { current: 0, max: 1 },
+    manpower: { current: 0, max: 1 },
+  },
+  vault: {
+    blood: { current: 0, max: 4 },
+    water: { current: 0, max: 4 },
+    food: { current: 0, max: 4 },
+    materials: { current: 0, max: 4 },
+  },
 };
 
 const getDefaultState = (): CrewSheetState => ({
@@ -55,6 +68,7 @@ type CrewSheetAction =
   | { type: "SET_FIELD"; field: "heat" | "escalation"; value: number }
   | {
       type: "UPDATE_RESOURCE";
+      location: "lair" | "vault";
       resource: string;
       field: "current" | "max";
       value: number;
@@ -71,15 +85,19 @@ function reducer(
     case "SET_FIELD":
       return { ...state, [action.field]: Math.max(0, action.value) };
     case "UPDATE_RESOURCE": {
-      const res = state.resources[action.resource];
+      const store = state.resources[action.location];
+      const res = store[action.resource];
       if (!res) return state;
       return {
         ...state,
         resources: {
           ...state.resources,
-          [action.resource]: {
-            ...res,
-            [action.field]: Math.max(0, action.value),
+          [action.location]: {
+            ...store,
+            [action.resource]: {
+              ...res,
+              [action.field]: Math.max(0, action.value),
+            },
           },
         },
       };
@@ -237,12 +255,12 @@ export default function CrewSheetProvider({
 
 // ─── Hooks ────────────────────────────────────────────────────────────────────
 
-export function useCrewResource(resource: string) {
+export function useCrewResource(location: "lair" | "vault", resource: string) {
   const { state, dispatch } = useCrewSheet();
-  const res = state.resources[resource];
+  const res = state.resources[location][resource];
   const set = useCallback(
     (field: "current" | "max", value: number) =>
-      dispatch({ type: "UPDATE_RESOURCE", resource, field, value }),
+      dispatch({ type: "UPDATE_RESOURCE", location, resource, field, value }),
     [dispatch, resource],
   );
   return [res, set] as const;
