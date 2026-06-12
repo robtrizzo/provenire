@@ -2,16 +2,17 @@
 
 import Breadcrumbs from "@/components/ui/breadcrumbs";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { TypographyH2 } from "@/components/ui/typography";
 import { useState } from "react";
 import CharacterSheet from "./(components)/character-sheet";
 import DiceSheet from "@/components/character-sheet/dice-history/dice-sheet";
 import { useRoll } from "@/contexts/arc3RollContext";
 import DramatisPersonae from "./(components)/dramatis-personae";
+import CrewSheet from "./(components)/crew/crew-sheet";
 
 const tabs = [
   { name: "Character", value: "character" },
   { name: "Dramatis Personae", value: "dramatis-personae" },
+  { name: "Crew", value: "crew" },
 ];
 
 export default function Page() {
@@ -46,7 +47,7 @@ export default function Page() {
         value={tab}
         className="w-full my-3 mx-auto"
       >
-        <TabsList className="grid w-full grid-cols-2">
+        <TabsList className="grid w-full grid-cols-3">
           {tabs.map((tab) => (
             <TabsTrigger
               key={tab.value}
@@ -66,6 +67,9 @@ export default function Page() {
         </TabsContent>
         <TabsContent value="dramatis-personae" className="w-full">
           <DramatisPersonae />
+        </TabsContent>
+        <TabsContent value="crew" className="w-full">
+          <CrewSheet />
         </TabsContent>
       </Tabs>
     </>
