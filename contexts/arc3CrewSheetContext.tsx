@@ -101,6 +101,7 @@ function reducer(
 interface CrewSheetContextProps {
   state: CrewSheetState;
   dispatch: Dispatch<CrewSheetAction>;
+  isConnected: boolean;
   isLoading: boolean;
   isSaving: boolean;
   error: string | null;
@@ -125,6 +126,7 @@ export default function CrewSheetProvider({
   children: ReactNode;
 }) {
   const [state, dispatch] = useReducer(reducer, getDefaultState());
+  const [isConnected, setIsConnected] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -183,8 +185,11 @@ export default function CrewSheetProvider({
           if (row.public_data) applyRemoteSync(row.public_data);
         },
       )
-      .subscribe();
+      .subscribe((status) => {
+        setIsConnected(status === "SUBSCRIBED");
+      });
     return () => {
+      setIsConnected(false);
       supabase.removeChannel(channel);
     };
   }, [applyRemoteSync]);
@@ -223,7 +228,7 @@ export default function CrewSheetProvider({
 
   return (
     <CrewSheetContext.Provider
-      value={{ state, dispatch, isLoading, isSaving, error }}
+      value={{ state, dispatch, isConnected, isLoading, isSaving, error }}
     >
       {children}
     </CrewSheetContext.Provider>
