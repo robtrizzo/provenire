@@ -1,0 +1,557 @@
+{
+  "heat": 4,
+  "name": "test",
+  "items": [
+    {
+      "id": "VHQxsLzW",
+      "name": "hand tool",
+      "slots": 1,
+      "ticks": 3,
+      "traits": [
+        {
+          "tag": "negative",
+          "name": "Dull",
+          "description": "can't cut through anything more protective than clothing"
+        },
+        {
+          "tag": "negative",
+          "name": "Unwieldy",
+          "description": "using this item may give quick foes opportunities to react"
+        }
+      ]
+    },
+    {
+      "id": "VT1hiYDN",
+      "name": "tar torch",
+      "slots": 1,
+      "ticks": 3,
+      "traits": [
+        {
+          "tag": "negative",
+          "name": "Dim",
+          "description": "only illuminates immediate surroundings"
+        },
+        {
+          "tag": "negative",
+          "name": "Fragile",
+          "description": "any amount of stress or damage will ruin this item"
+        },
+        {
+          "tag": "negative",
+          "name": "Unreliable",
+          "description": "has a chance of not working, even in ideal circumstances"
+        }
+      ]
+    },
+    {
+      "id": "qoVF67Cz",
+      "name": "rigging",
+      "slots": 2,
+      "ticks": 4,
+      "traits": [
+        {
+          "tag": "negative",
+          "name": "Bulky",
+          "description": "prevents you from squeezing into any tight spaces or moving acrobatically"
+        },
+        {
+          "tag": "negative",
+          "name": "Tangled",
+          "description": "possibly snags on machinery or trips people"
+        },
+        {
+          "tag": "negative",
+          "name": "Unwieldy",
+          "description": "using this item may give quick foes opportunities to react"
+        }
+      ]
+    },
+    {
+      "id": "uAqb7Dyl",
+      "name": "the can can",
+      "slots": 4,
+      "ticks": 3,
+      "traits": [
+        {
+          "tag": "negative",
+          "name": "Bulky",
+          "description": "prevents you from squeezing into any tight spaces or moving acrobatically"
+        },
+        {
+          "tag": "negative",
+          "name": "Heavy",
+          "description": "fatigues you faster while under stress"
+        }
+      ]
+    },
+    {
+      "id": "IoLbEXDF",
+      "name": "demolition tools",
+      "slots": 1,
+      "ticks": 7,
+      "traits": [
+        {
+          "tag": "negative",
+          "name": "Volatile",
+          "description": "explodes when ignited"
+        },
+        {
+          "tag": "negative",
+          "name": "Imprecise",
+          "description": "requires skill to use properly, even in ideal circumstances"
+        }
+      ]
+    },
+    {
+      "id": "Mwivyrkl",
+      "name": "heavy weapons",
+      "slots": 1,
+      "ticks": 5,
+      "traits": [
+        {
+          "tag": "negative",
+          "name": "Heavy",
+          "description": "fatigues you faster while under stress"
+        },
+        {
+          "tag": "negative",
+          "name": "Unwieldy",
+          "description": "using this item may give quick foes opportunities to react"
+        }
+      ]
+    },
+    {
+      "id": "byNUizCC",
+      "name": "subtle weapons",
+      "slots": 1,
+      "ticks": 5,
+      "traits": [
+        {
+          "tag": "positive",
+          "name": "Concealable",
+          "description": "possible to hide on your person"
+        },
+        {
+          "tag": "negative",
+          "name": "Fragile",
+          "description": "any amount of stress or damage will ruin this item"
+        },
+        {
+          "tag": "negative",
+          "name": "Dull",
+          "description": "can't cut through anything more protective than clothing"
+        }
+      ]
+    },
+    {
+      "id": "JbUPT5yZ",
+      "name": "axe of the wolf",
+      "slots": 1,
+      "ticks": 6,
+      "traits": [
+        {
+          "tag": "positive",
+          "name": "Advanced",
+          "description": "experts get better results in dire or pressing circumstances"
+        },
+        {
+          "tag": "negative",
+          "name": "Memorable",
+          "description": "unique design that people will recognize"
+        },
+        {
+          "tag": "negative",
+          "name": "Unwieldy",
+          "description": "using this item may give quick foes opportunities to react"
+        }
+      ]
+    },
+    {
+      "id": "fteQFgEF",
+      "name": "small silver bowl",
+      "slots": 1,
+      "ticks": 8,
+      "traits": [
+        {
+          "tag": "negative",
+          "name": "Convoluted",
+          "description": "involves arbitrary factoids or steps to achieve the desired result"
+        },
+        {
+          "tag": "negative",
+          "name": "Memorable",
+          "description": "unique design that people will recognize"
+        },
+        {
+          "tag": "positive",
+          "name": "Valuable",
+          "description": "easy to trade for resources"
+        }
+      ]
+    },
+    {
+      "id": "pidmIB5v",
+      "name": "large silver bowl",
+      "slots": 3,
+      "ticks": 8,
+      "traits": [
+        {
+          "tag": "negative",
+          "name": "Convoluted",
+          "description": "involves arbitrary factoids or steps to achieve the desired result"
+        },
+        {
+          "tag": "negative",
+          "name": "Memorable",
+          "description": "unique design that people will recognize"
+        },
+        {
+          "tag": "negative",
+          "name": "Bulky",
+          "description": "prevents you from squeezing into any tight spaces or moving acrobatically"
+        },
+        {
+          "tag": "positive",
+          "name": "Valuable",
+          "description": "easy to trade for resources"
+        }
+      ]
+    },
+    {
+      "id": "mbsLJZnv",
+      "name": "crow feather glider",
+      "slots": 2,
+      "ticks": 4,
+      "traits": [
+        {
+          "tag": "positive",
+          "name": "Tailored",
+          "description": "made to suit the style of one particular person. Others find it difficult to use"
+        },
+        {
+          "tag": "negative",
+          "name": "Unwieldy",
+          "description": "using this item may give quick foes opportunities to react"
+        }
+      ]
+    },
+    {
+      "id": "XFbN89HD",
+      "name": "masks",
+      "slots": 0,
+      "ticks": 4,
+      "traits": [
+        {
+          "tag": "negative",
+          "name": "Fragile",
+          "description": "any amount of stress or damage will ruin this item"
+        }
+      ]
+    },
+    {
+      "id": "IM3cXYh9",
+      "name": "lockpicks",
+      "slots": 0,
+      "ticks": 3,
+      "traits": [
+        {
+          "tag": "negative",
+          "name": "Fragile",
+          "description": "any amount of stress or damage will ruin this item"
+        },
+        {
+          "tag": "negative",
+          "name": "Imprecise",
+          "description": "requires skill to use properly, even in ideal circumstances"
+        }
+      ]
+    },
+    {
+      "id": "gUluQ2vC",
+      "name": "armor",
+      "slots": 2,
+      "ticks": 5,
+      "traits": [
+        {
+          "tag": "negative",
+          "name": "Bulky",
+          "description": "prevents you from squeezing into any tight spaces or moving acrobatically"
+        },
+        {
+          "tag": "negative",
+          "name": "Heavy",
+          "description": "fatigues you faster while under stress"
+        },
+        {
+          "tag": "negative",
+          "name": "Noisy",
+          "description": "can be clearly heard from a short distance away"
+        }
+      ]
+    }
+  ],
+  "notes": [],
+  "clocks": [],
+  "factions": [],
+  "resources": {
+    "rep": {
+      "max": 1,
+      "current": 0,
+      "default": 1
+    },
+    "food": {
+      "max": 1,
+      "current": 0,
+      "default": 1
+    },
+    "lair": {
+      "rep": {
+        "max": 1,
+        "current": 0
+      },
+      "food": {
+        "max": 1,
+        "current": 0
+      },
+      "blood": {
+        "max": 2,
+        "current": 0
+      },
+      "intel": {
+        "max": 1,
+        "current": 0
+      },
+      "water": {
+        "max": 2,
+        "current": 0
+      },
+      "goodwill": {
+        "max": 1,
+        "current": 0
+      },
+      "manpower": {
+        "max": 1,
+        "current": 0
+      },
+      "materials": {
+        "max": 1,
+        "current": 0
+      }
+    },
+    "blood": {
+      "max": 6,
+      "current": 2,
+      "default": 2
+    },
+    "intel": {
+      "max": 1,
+      "current": 0,
+      "default": 1
+    },
+    "vault": {
+      "food": {
+        "max": 4,
+        "current": 0
+      },
+      "blood": {
+        "max": 4,
+        "current": 0
+      },
+      "water": {
+        "max": 4,
+        "current": 0
+      },
+      "materials": {
+        "max": 4,
+        "current": 0
+      }
+    },
+    "water": {
+      "max": 2,
+      "current": 1,
+      "default": 2
+    },
+    "goodwill": {
+      "max": 1,
+      "current": 0,
+      "default": 1
+    },
+    "manpower": {
+      "max": 1,
+      "current": 0,
+      "default": 1
+    },
+    "materials": {
+      "max": 1,
+      "current": 0,
+      "default": 1
+    }
+  },
+  "escalation": 0,
+  "operations": [],
+  "communityProjects": [],
+  "crewAdvanceSections": [
+    {
+      "id": "6oS3nIMz",
+      "name": "Lair",
+      "crewAdvanceBlocks": [
+        {
+          "id": "6oS3nIMK",
+          "name": "Living Space",
+          "advances": [
+            {
+              "name": "Rooms",
+              "ticks": {
+                "max": 3,
+                "current": 3
+              },
+              "description": "Crew clears the permanent 1 harm \"tired\" from their sheet."
+            },
+            {
+              "name": "Locked doors",
+              "ticks": {
+                "max": 3,
+                "current": 3
+              },
+              "description": "Crew is no longer vulnerable while resting"
+            },
+            {
+              "name": "Beds",
+              "ticks": {
+                "max": 3,
+                "current": 3
+              },
+              "description": "Crew reduces 1 stress each downtime"
+            },
+            {
+              "name": "Poultices",
+              "ticks": {
+                "max": 3,
+                "current": 3
+              },
+              "description": "gain 4 ticks on your healing clock when you recover"
+            }
+          ],
+          "progression": "sequence"
+        },
+        {
+          "id": "JyR2miF4",
+          "name": "Security",
+          "advances": [
+            {
+              "name": "Stash",
+              "ticks": {
+                "max": 5,
+                "current": 2
+              },
+              "description": "2 slots each for food and materials"
+            },
+            {
+              "name": "Stoker contacts",
+              "ticks": {
+                "max": 5,
+                "current": 0
+              },
+              "description": "+1d to reduce heat after killing"
+            },
+            {
+              "name": "Large Stash",
+              "ticks": {
+                "max": 5,
+                "current": 0
+              },
+              "description": "4 slots each for food and materials"
+            },
+            {
+              "name": "Lookouts",
+              "ticks": {
+                "max": 5,
+                "current": 0
+              },
+              "description": "-2 heat per mission"
+            }
+          ],
+          "progression": "sequence"
+        },
+        {
+          "id": "6l9E67BQ",
+          "name": "Facilities",
+          "advances": [
+            {
+              "name": "Training room",
+              "ticks": {
+                "max": 4,
+                "current": 0
+              },
+              "description": "The crew gains an xp trigger: You put your instructors' lessons into practice"
+            },
+            {
+              "name": "Holding chamber",
+              "ticks": {
+                "max": 4,
+                "current": 0
+              },
+              "description": "Secure place to hold one prisoner"
+            },
+            {
+              "name": "Meeting room",
+              "ticks": {
+                "max": 4,
+                "current": 0
+              },
+              "description": "+1 push when negotiating with hosted factions"
+            },
+            {
+              "name": "Common room",
+              "ticks": {
+                "max": 4,
+                "current": 0
+              },
+              "description": "Group rolls during downtime have push donation cost reduced to 1 stress"
+            }
+          ],
+          "progression": "sequence"
+        },
+        {
+          "id": "m7JRC0jS",
+          "name": "Community",
+          "advances": [
+            {
+              "name": "Meetings",
+              "ticks": {
+                "max": 5,
+                "current": 5
+              },
+              "description": "+1 push to persuade or consort while in the community"
+            },
+            {
+              "name": "Pooled resources",
+              "ticks": {
+                "max": 5,
+                "current": 5
+              },
+              "description": "Crew starvation clocks are 1 larger"
+            },
+            {
+              "name": "Giving back",
+              "ticks": {
+                "max": 5,
+                "current": 2
+              },
+              "description": "Members of the community perform a downtime action for the crew"
+            },
+            {
+              "name": "United front",
+              "ticks": {
+                "max": 5,
+                "current": 0
+              },
+              "description": "Crew gains +1 max stress"
+            }
+          ],
+          "progression": "sequence"
+        }
+      ]
+    }
+  ]
+}
