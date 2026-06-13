@@ -2,7 +2,7 @@
 
 import Breadcrumbs from "@/components/ui/breadcrumbs";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CharacterSheet from "./(components)/character-sheet";
 import DiceSheet from "@/components/character-sheet/dice-history/dice-sheet";
 import { useRoll } from "@/contexts/arc3RollContext";
@@ -26,6 +26,19 @@ export default function Page() {
     hasNextPage,
     rollsArePending,
   } = useRoll();
+
+  useEffect(() => {
+    if (window === undefined) return;
+    // read the hash and set the tab
+    const hash = window.location.hash;
+    if (
+      hash &&
+      ["crew", "character", "dramatis-personae"].includes(hash.substring(1))
+    ) {
+      setTab(hash.substring(1));
+    }
+  }, []);
+
   return (
     <>
       <div className="flex items-end justify-between">
