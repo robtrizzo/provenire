@@ -6,6 +6,7 @@ import StatusIndicator from "./sections/status-indicator";
 import { TypographyH1 } from "@/components/ui/typography";
 import { InlineSymbol } from "@/components/dice/dice-borders";
 import { ThetaTriple } from "@/components/dice/dice-symbols";
+import ItemsSection from "./sections/items-section";
 
 // ─── Root ─────────────────────────────────────────────────────────────────────
 
@@ -19,11 +20,18 @@ export default function CrewSheet() {
           <ThetaTriple />
         </InlineSymbol>
       </TypographyH1>
-      <div className="grid grid-cols-1 md:grid-cols-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
         <div className="mt-4">
           <HeatSection />
         </div>
-        <ResourceSection />
+        <div className="mt-4">
+          <ResourceSection />
+        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+        <div className="col-span-1">
+          <ItemsSection />
+        </div>
       </div>
     </div>
   );

@@ -1,11 +1,15 @@
 import { BuildupCheckboxes } from "@/components/buildup-checkboxes";
+import { TypographyH2 } from "@/components/ui/typography";
 import { useCrewSheet } from "@/contexts/arc3CrewSheetContext";
 
 export default function HeatSection() {
   const { state, dispatch } = useCrewSheet();
   return (
-    <div className="flex flex-col">
-      <span className="text-xs text-muted-foreground uppercase tracking-wide">
+    <div className="mt-3 flex flex-col">
+      <TypographyH2 className="text-md text-muted-foreground flex items-end justify-between">
+        Threats
+      </TypographyH2>
+      <span className="mt-2 text-xs text-muted-foreground uppercase tracking-wide">
         Heat
       </span>
       <BuildupCheckboxes

@@ -213,67 +213,6 @@ function ResourceDetail({ resource }: { resource: Resource }) {
         {resource.label}
       </div>
 
-      {/* <div className="flex items-center justify-center gap-6">
-        <div className="flex flex-col items-center gap-1">
-          <span className="text-xs text-muted-foreground">Current</span>
-          <div className="flex items-center gap-1">
-            <Button
-              size="icon"
-              variant="outline"
-              className="h-7 w-7"
-              onClick={() => set("current", res.current - 1)}
-            >
-              <Minus className="h-3 w-3" />
-            </Button>
-            <span
-              className={cn(
-                "w-6 text-center tabular-nums",
-                res.current === 0 && "text-muted-foreground",
-                res.current > res.max && "text-red-500",
-              )}
-            >
-              {res.current}
-            </span>
-            <Button
-              size="icon"
-              variant="outline"
-              className="h-7 w-7"
-              onClick={() => set("current", res.current + 1)}
-            >
-              <Plus className="h-3 w-3" />
-            </Button>
-          </div>
-        </div>
-        <div className="flex flex-col items-center gap-1">
-          <span className="text-xs text-muted-foreground">Max</span>
-          <div className="flex items-center gap-1">
-            <Button
-              size="icon"
-              variant="outline"
-              className="h-7 w-7"
-              onClick={() => set("max", res.max - 1)}
-            >
-              <Minus className="h-3 w-3" />
-            </Button>
-            <span
-              className={cn(
-                "w-6 text-center tabular-nums",
-                res.max === 0 && "text-muted-foreground",
-              )}
-            >
-              {res.max}
-            </span>
-            <Button
-              size="icon"
-              variant="outline"
-              className="h-7 w-7"
-              onClick={() => set("max", res.max + 1)}
-            >
-              <Plus className="h-3 w-3" />
-            </Button>
-          </div>
-        </div>
-      </div> */}
       <ResourceControls name={resource.key} location="lair" />
       <ResourceControls name={resource.key} location="vault" />
 

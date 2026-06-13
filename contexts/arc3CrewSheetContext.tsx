@@ -29,10 +29,37 @@ export interface Resource {
   max: number;
 }
 
+export interface ItemTrait {
+  name: string;
+  description: string;
+  tag?: "positive" | "negative";
+}
+
+export interface ItemEntry {
+  id: string;
+  name: string;
+  ticks: number;
+  traits: ItemTrait[];
+  slots: number;
+}
+
+export interface CrewAdvance {
+  name: string;
+  description: string;
+  ticks: number;
+}
+
+export interface CrewAdvanceBlock {
+  name: string;
+  advances: CrewAdvance[];
+  progression: "adhoc" | "sequence";
+}
+
 export interface CrewSheetState {
   heat: number;
   escalation: number;
   resources: ResourceStore;
+  items: ItemEntry[];
 }
 
 // ─── Defaults ─────────────────────────────────────────────────────────────────
@@ -60,6 +87,7 @@ const getDefaultState = (): CrewSheetState => ({
   heat: 0,
   escalation: 0,
   resources: DEFAULT_RESOURCES,
+  items: [],
 });
 
 // ─── Actions ──────────────────────────────────────────────────────────────────
@@ -73,6 +101,9 @@ type CrewSheetAction =
       field: "current" | "max";
       value: number;
     }
+  | { type: "ADD_ITEM"; payload: ItemEntry }
+  | { type: "REMOVE_ITEM"; id: string }
+  | { type: "UPDATE_ITEM"; id: string; changes: Partial<Omit<ItemEntry, "id">> }
   | { type: "SYNC_REMOTE"; payload: Partial<CrewSheetState> };
 
 // ─── Reducer ──────────────────────────────────────────────────────────────────
@@ -102,6 +133,17 @@ function reducer(
         },
       };
     }
+    case "ADD_ITEM":
+      return { ...state, items: [...state.items, action.payload] };
+    case "REMOVE_ITEM":
+      return { ...state, items: state.items.filter((i) => i.id !== action.id) };
+    case "UPDATE_ITEM":
+      return {
+        ...state,
+        items: state.items.map((i) =>
+          i.id === action.id ? { ...i, ...action.changes } : i,
+        ),
+      };
     case "SYNC_REMOTE":
       return {
         ...getDefaultState(),
@@ -264,4 +306,24 @@ export function useCrewResource(location: "lair" | "vault", resource: string) {
     [dispatch, resource],
   );
   return [res, set] as const;
+}
+
+export function useItems() {
+  const { state, dispatch } = useCrewSheet();
+  return {
+    items: state.items,
+    addItem: useCallback(
+      (entry: ItemEntry) => dispatch({ type: "ADD_ITEM", payload: entry }),
+      [dispatch],
+    ),
+    removeItem: useCallback(
+      (id: string) => dispatch({ type: "REMOVE_ITEM", id }),
+      [dispatch],
+    ),
+    updateItem: useCallback(
+      (id: string, changes: Partial<Omit<ItemEntry, "id">>) =>
+        dispatch({ type: "UPDATE_ITEM", id, changes }),
+      [dispatch],
+    ),
+  };
 }
