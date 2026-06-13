@@ -38,6 +38,7 @@ export interface ItemTrait {
 export interface ItemEntry {
   id: string;
   name: string;
+  type: "equipment" | "alchemy";
   ticks: number;
   traits: ItemTrait[];
   slots: number;
@@ -46,13 +47,23 @@ export interface ItemEntry {
 export interface CrewAdvance {
   name: string;
   description: string;
-  ticks: number;
+  ticks: {
+    max: number;
+    current: number;
+  };
 }
 
 export interface CrewAdvanceBlock {
+  id: string;
   name: string;
   advances: CrewAdvance[];
   progression: "adhoc" | "sequence";
+}
+
+export interface CrewAdvanceSection {
+  id: string;
+  name: string;
+  crewAdvanceBlocks: CrewAdvanceBlock[];
 }
 
 export interface CrewSheetState {
@@ -60,6 +71,7 @@ export interface CrewSheetState {
   escalation: number;
   resources: ResourceStore;
   items: ItemEntry[];
+  crewAdvanceSections: CrewAdvanceSection[];
 }
 
 // ─── Defaults ─────────────────────────────────────────────────────────────────
@@ -88,6 +100,7 @@ const getDefaultState = (): CrewSheetState => ({
   escalation: 0,
   resources: DEFAULT_RESOURCES,
   items: [],
+  crewAdvanceSections: [],
 });
 
 // ─── Actions ──────────────────────────────────────────────────────────────────
@@ -104,6 +117,21 @@ type CrewSheetAction =
   | { type: "ADD_ITEM"; payload: ItemEntry }
   | { type: "REMOVE_ITEM"; id: string }
   | { type: "UPDATE_ITEM"; id: string; changes: Partial<Omit<ItemEntry, "id">> }
+  | { type: "ADD_SECTION"; payload: CrewAdvanceSection }
+  | { type: "REMOVE_SECTION"; id: string }
+  | {
+      type: "UPDATE_SECTION";
+      id: string;
+      changes: Partial<Pick<CrewAdvanceSection, "name">>;
+    }
+  | { type: "ADD_CAB"; sectionId: string; payload: CrewAdvanceBlock }
+  | { type: "REMOVE_CAB"; sectionId: string; id: string }
+  | {
+      type: "UPDATE_CAB";
+      sectionId: string;
+      id: string;
+      changes: Partial<Omit<CrewAdvanceBlock, "id">>;
+    }
   | { type: "SYNC_REMOTE"; payload: Partial<CrewSheetState> };
 
 // ─── Reducer ──────────────────────────────────────────────────────────────────
@@ -142,6 +170,65 @@ function reducer(
         ...state,
         items: state.items.map((i) =>
           i.id === action.id ? { ...i, ...action.changes } : i,
+        ),
+      };
+    case "ADD_SECTION":
+      return {
+        ...state,
+        crewAdvanceSections: [...state.crewAdvanceSections, action.payload],
+      };
+    case "REMOVE_SECTION":
+      return {
+        ...state,
+        crewAdvanceSections: state.crewAdvanceSections.filter(
+          (s) => s.id !== action.id,
+        ),
+      };
+    case "UPDATE_SECTION":
+      return {
+        ...state,
+        crewAdvanceSections: state.crewAdvanceSections.map((s) =>
+          s.id === action.id ? { ...s, ...action.changes } : s,
+        ),
+      };
+    case "ADD_CAB":
+      return {
+        ...state,
+        crewAdvanceSections: state.crewAdvanceSections.map((s) =>
+          s.id === action.sectionId
+            ? {
+                ...s,
+                crewAdvanceBlocks: [...s.crewAdvanceBlocks, action.payload],
+              }
+            : s,
+        ),
+      };
+    case "REMOVE_CAB":
+      return {
+        ...state,
+        crewAdvanceSections: state.crewAdvanceSections.map((s) =>
+          s.id === action.sectionId
+            ? {
+                ...s,
+                crewAdvanceBlocks: s.crewAdvanceBlocks.filter(
+                  (b) => b.id !== action.id,
+                ),
+              }
+            : s,
+        ),
+      };
+    case "UPDATE_CAB":
+      return {
+        ...state,
+        crewAdvanceSections: state.crewAdvanceSections.map((s) =>
+          s.id === action.sectionId
+            ? {
+                ...s,
+                crewAdvanceBlocks: s.crewAdvanceBlocks.map((b) =>
+                  b.id === action.id ? { ...b, ...action.changes } : b,
+                ),
+              }
+            : s,
         ),
       };
     case "SYNC_REMOTE":
@@ -324,6 +411,49 @@ export function useItems() {
       (id: string, changes: Partial<Omit<ItemEntry, "id">>) =>
         dispatch({ type: "UPDATE_ITEM", id, changes }),
       [dispatch],
+    ),
+  };
+}
+
+export function useCrewAdvanceSections() {
+  const { state, dispatch } = useCrewSheet();
+  return {
+    sections: state.crewAdvanceSections,
+    addSection: useCallback(
+      (entry: CrewAdvanceSection) =>
+        dispatch({ type: "ADD_SECTION", payload: entry }),
+      [dispatch],
+    ),
+    removeSection: useCallback(
+      (id: string) => dispatch({ type: "REMOVE_SECTION", id }),
+      [dispatch],
+    ),
+    updateSection: useCallback(
+      (id: string, changes: Partial<Pick<CrewAdvanceSection, "name">>) =>
+        dispatch({ type: "UPDATE_SECTION", id, changes }),
+      [dispatch],
+    ),
+  };
+}
+
+export function useCrewAdvanceBlocks(sectionId: string) {
+  const { state, dispatch } = useCrewSheet();
+  const section = state.crewAdvanceSections.find((s) => s.id === sectionId);
+  return {
+    crewAdvanceBlocks: section?.crewAdvanceBlocks ?? [],
+    addCAB: useCallback(
+      (entry: CrewAdvanceBlock) =>
+        dispatch({ type: "ADD_CAB", sectionId, payload: entry }),
+      [dispatch, sectionId],
+    ),
+    removeCAB: useCallback(
+      (id: string) => dispatch({ type: "REMOVE_CAB", sectionId, id }),
+      [dispatch, sectionId],
+    ),
+    updateCAB: useCallback(
+      (id: string, changes: Partial<Omit<CrewAdvanceBlock, "id">>) =>
+        dispatch({ type: "UPDATE_CAB", sectionId, id, changes }),
+      [dispatch, sectionId],
     ),
   };
 }

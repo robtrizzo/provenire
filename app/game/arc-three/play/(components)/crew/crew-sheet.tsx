@@ -7,6 +7,7 @@ import { TypographyH1 } from "@/components/ui/typography";
 import { InlineSymbol } from "@/components/dice/dice-borders";
 import { ThetaTriple } from "@/components/dice/dice-symbols";
 import ItemsSection from "./sections/items-section";
+import CrewAdvancesSection from "./sections/crew-advances-section";
 
 // ─── Root ─────────────────────────────────────────────────────────────────────
 
@@ -32,6 +33,7 @@ export default function CrewSheet() {
         <div className="col-span-1">
           <ItemsSection />
         </div>
+        <CrewAdvancesSection />
       </div>
     </div>
   );

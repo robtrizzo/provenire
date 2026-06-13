@@ -35,7 +35,7 @@ import {
 } from "@/components/ui/select";
 import { nanoid } from "@/lib/nanoid";
 
-const POSITIVE_TRAITS: ItemTrait[] = [
+const EQUIPMENT_POSITIVE_TRAITS: ItemTrait[] = [
   {
     name: "Advanced",
     description: "experts get better results in dire or pressing circumstances",
@@ -79,7 +79,7 @@ const POSITIVE_TRAITS: ItemTrait[] = [
   },
 ];
 
-const NEGATIVE_TRAITS: ItemTrait[] = [
+const EQUIPMENT_NEGATIVE_TRAITS: ItemTrait[] = [
   {
     name: "Bulky",
     description:
@@ -149,7 +149,97 @@ const NEGATIVE_TRAITS: ItemTrait[] = [
   },
 ];
 
-const ALL_PRESETS: ItemTrait[] = [...POSITIVE_TRAITS, ...NEGATIVE_TRAITS];
+const EQUIPMENT_ALL_PRESETS: ItemTrait[] = [
+  ...EQUIPMENT_POSITIVE_TRAITS,
+  ...EQUIPMENT_NEGATIVE_TRAITS,
+];
+
+const ALCHEMY_POSITIVE_TRAITS: ItemTrait[] = [
+  {
+    name: "Nutritious",
+    description: "tick healing clock by 1",
+    tag: "positive",
+  },
+  {
+    name: "Potent",
+    description: "lasts longer than normal",
+    tag: "positive",
+  },
+  {
+    name: "Simple",
+    description: "create five doses per batch",
+    tag: "positive",
+  },
+  {
+    name: "Soothing",
+    description: "recover 1 stress",
+    tag: "positive",
+  },
+  {
+    name: "Tasty",
+    description: "can be passed off as a normal drink",
+    tag: "positive",
+  },
+];
+
+const ALCHEMY_NEGATIVE_TRAITS: ItemTrait[] = [
+  {
+    name: "Acrid",
+    description: "difficult to keep down on an empty stomach",
+    tag: "negative",
+  },
+  {
+    name: "Addling",
+    description: "slow to react or think through complex situations",
+    tag: "negative",
+  },
+  {
+    name: "Diluted",
+    description: "not nearly as effective as it could be",
+    tag: "negative",
+  },
+  {
+    name: "Groggy",
+    description:
+      "risk missing details, or falling asleep while doing simple tasks",
+    tag: "negative",
+  },
+  {
+    name: "Imprecise",
+    description: "requires skill to use properly, even in ideal circumstances",
+    tag: "negative",
+  },
+  {
+    name: "Jittery",
+    description: "difficult to remain still or perform precise tasks",
+    tag: "negative",
+  },
+  {
+    name: "Light-blind",
+    description: "difficult to see in illuminated areas",
+    tag: "negative",
+  },
+  {
+    name: "Messy",
+    description: "leaves behind overwhelming amounts of evidence",
+    tag: "negative",
+  },
+  {
+    name: "Stains",
+    description: "difficult to wash off after application",
+    tag: "negative",
+  },
+  {
+    name: "Withdrawal",
+    description: "leaves you feeling worse for wear afterwards",
+    tag: "negative",
+  },
+];
+
+const ALCHEMY_ALL_PRESETS: ItemTrait[] = [
+  ...ALCHEMY_POSITIVE_TRAITS,
+  ...ALCHEMY_NEGATIVE_TRAITS,
+];
 
 interface AddItemDialogProps {
   item?: ItemEntry;
@@ -169,6 +259,7 @@ export default function AddItemDialog({
   const setOpen = onOpenChange ?? setInternalOpen;
 
   const [name, setName] = useState(item?.name ?? "");
+  const [type, setType] = useState(item?.type ?? "equipment");
   const [slots, setSlots] = useState(item?.slots ?? 1);
   const [ticks, setTicks] = useState(item?.ticks ?? 3);
   const [traits, setTraits] = useState<ItemTrait[]>(item?.traits ?? []);
@@ -179,17 +270,23 @@ export default function AddItemDialog({
     "positive",
   );
 
+  const presets =
+    type === "equipment" ? EQUIPMENT_ALL_PRESETS : ALCHEMY_ALL_PRESETS;
+
+  const activePositiveTraits =
+    type === "equipment" ? EQUIPMENT_POSITIVE_TRAITS : ALCHEMY_POSITIVE_TRAITS;
+  const activeNegativeTraits =
+    type === "equipment" ? EQUIPMENT_NEGATIVE_TRAITS : ALCHEMY_NEGATIVE_TRAITS;
+
   const selectedPresetNames = traits
-    .filter((t) => ALL_PRESETS.some((p) => p.name === t.name))
+    .filter((t) => presets.some((p) => p.name === t.name))
     .map((t) => t.name);
 
   function handlePresetChange(names: string[]) {
     const customTraits = traits.filter(
-      (t) => !ALL_PRESETS.some((p) => p.name === t.name),
+      (t) => !presets.some((p) => p.name === t.name),
     );
-    const presetTraits = names.map(
-      (n) => ALL_PRESETS.find((p) => p.name === n)!,
-    );
+    const presetTraits = names.map((n) => presets.find((p) => p.name === n)!);
     setTraits([...presetTraits, ...customTraits]);
   }
 
@@ -214,11 +311,12 @@ export default function AddItemDialog({
 
   const handleSaveItem = () => {
     if (item) {
-      updateItem(item.id, { ...item, name, slots, ticks, traits });
+      updateItem(item.id, { ...item, name, type, slots, ticks, traits });
     } else {
-      addItem({ id: nanoid(), name, slots, ticks, traits });
+      addItem({ id: nanoid(), name, type, slots, ticks, traits });
     }
     setName("");
+    setType("equipment");
     setSlots(1);
     setTicks(3);
     setTraits([]);
@@ -250,6 +348,33 @@ export default function AddItemDialog({
           placeholder="Item name"
         />
 
+        <div className="flex rounded-md border p-1 gap-1">
+          <Button
+            type="button"
+            variant={type === "equipment" ? "default" : "ghost"}
+            size="sm"
+            className="flex-1"
+            onClick={() => {
+              setType("equipment");
+              setTraits([]);
+            }}
+          >
+            Equipment
+          </Button>
+          <Button
+            type="button"
+            variant={type === "alchemy" ? "default" : "ghost"}
+            size="sm"
+            className="flex-1"
+            onClick={() => {
+              setType("alchemy");
+              setTraits([]);
+            }}
+          >
+            Alchemy
+          </Button>
+        </div>
+
         <div className="grid grid-cols-2 gap-2">
           <div className="col-span-1">
             <span className="text-sm text-muted-foreground">slots</span>
@@ -278,7 +403,6 @@ export default function AddItemDialog({
             />
           </div>
         </div>
-
         {/* Preset trait picker */}
         <MultiSelect
           values={selectedPresetNames}
@@ -292,25 +416,27 @@ export default function AddItemDialog({
           </MultiSelectTrigger>
           <MultiSelectContent>
             <MultiSelectGroup heading="Positive">
-              {POSITIVE_TRAITS.map((trait) => (
-                <MultiSelectItem
-                  key={trait.name}
-                  value={trait.name}
-                  badgeLabel={trait.name}
-                >
-                  <div className="flex flex-col py-0.5">
-                    <span className="font-medium text-green-600 dark:text-green-400">
-                      {trait.name}
-                    </span>
-                    <span className="text-xs text-muted-foreground">
-                      {trait.description}
-                    </span>
-                  </div>
-                </MultiSelectItem>
-              ))}
+              {activePositiveTraits.map((trait) => {
+                return (
+                  <MultiSelectItem
+                    key={trait.name}
+                    value={trait.name}
+                    badgeLabel={trait.name}
+                  >
+                    <div className="flex flex-col py-0.5">
+                      <span className="font-medium text-green-600 dark:text-green-400">
+                        {trait.name}
+                      </span>
+                      <span className="text-xs text-muted-foreground">
+                        {trait.description}
+                      </span>
+                    </div>
+                  </MultiSelectItem>
+                );
+              })}
             </MultiSelectGroup>
             <MultiSelectGroup heading="Negative">
-              {NEGATIVE_TRAITS.map((trait) => (
+              {activeNegativeTraits.map((trait) => (
                 <MultiSelectItem
                   key={trait.name}
                   value={trait.name}

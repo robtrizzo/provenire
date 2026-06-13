@@ -71,7 +71,7 @@ export default function ItemsSection() {
                           {trait.description && (
                             <TooltipContent
                               side="top"
-                              className="max-w-[200px] text-xs"
+                              className="max-w-50 text-xs"
                             >
                               {trait.description}
                             </TooltipContent>
