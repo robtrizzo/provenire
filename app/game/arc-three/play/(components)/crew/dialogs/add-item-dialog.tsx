@@ -15,7 +15,7 @@ import {
   useItems,
 } from "@/contexts/arc3CrewSheetContext";
 import { Input } from "@/components/ui/input";
-import { ReactNode, useState } from "react";
+import { useState } from "react";
 import {
   MultiSelect,
   MultiSelectContent,
