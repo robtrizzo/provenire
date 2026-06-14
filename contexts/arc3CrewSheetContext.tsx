@@ -44,6 +44,23 @@ export interface ItemEntry {
   slots: number;
 }
 
+export interface GangTrait {
+  name: string;
+  description: string;
+  tag?: "positive" | "negative";
+}
+
+export interface GangEntry {
+  id: string;
+  name: string;
+  ticks: number;
+  traits: GangTrait[];
+  toughness: {
+    max: number;
+    current: number;
+  };
+}
+
 export interface CrewAdvance {
   name: string;
   description: string;
