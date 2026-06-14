@@ -169,9 +169,38 @@
         "name": "Donum Messis",
         "slug": "donum-messis",
         "cost": 0
+      },
+      {
+        "name": "Sow",
+        "slug": "sow",
+        "cost": 3
+      },
+      {
+        "name": "Flourish",
+        "slug": "flourish",
+        "cost": 3
+      },
+      {
+        "name": "Reap",
+        "slug": "reap",
+        "cost": 3
+      },
+      {
+        "name": "Compost",
+        "slug": "compost",
+        "cost": 4
+      },
+      {
+        "name": "Sprout",
+        "slug": "sprout",
+        "cost": 4
+      },
+      {
+        "name": "Cull",
+        "slug": "cull",
+        "cost": 4
       }
-    ],
-    "wip": true
+    ]
   },
   {
     "name": "Donum Ossis",
@@ -235,9 +264,38 @@
         "name": "Donum Tueor",
         "slug": "donum-tueor",
         "cost": 0
+      },
+      {
+        "name": "Refract",
+        "slug": "refract",
+        "cost": 3
+      },
+      {
+        "name": "Talisman",
+        "slug": "talisman",
+        "cost": 3
+      },
+      {
+        "name": "Recollection",
+        "slug": "recollection",
+        "cost": 3
+      },
+      {
+        "name": "Puppeteer",
+        "slug": "puppeteer",
+        "cost": 4
+      },
+      {
+        "name": "Wraith",
+        "slug": "wraith",
+        "cost": 4
+      },
+      {
+        "name": "Beauty",
+        "slug": "beauty",
+        "cost": 4
       }
-    ],
-    "wip": true
+    ]
   },
   {
     "name": "Donum Umbra",
