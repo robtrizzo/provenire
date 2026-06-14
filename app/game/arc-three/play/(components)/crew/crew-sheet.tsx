@@ -30,8 +30,8 @@ export default function CrewSheet() {
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-        <div className="col-span-1">Experts</div>
-        <div className="col-span-1">Gangs</div>
+        {/* <div className="col-span-1">Experts</div>
+        <div className="col-span-1">Gangs</div> */}
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
         <div className="col-span-1">
