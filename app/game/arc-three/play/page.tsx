@@ -60,7 +60,7 @@ export default function Page() {
         value={tab}
         className="w-full my-3 mx-auto"
       >
-        <TabsList className="grid w-full grid-cols-3">
+        <TabsList className="w-full justify-between">
           {tabs.map((tab) => (
             <TabsTrigger
               key={tab.value}
@@ -70,6 +70,7 @@ export default function Page() {
                 // save the tab to the hash
                 window.location.hash = tab.value;
               }}
+              className="flex-1"
             >
               {tab.name}
             </TabsTrigger>
