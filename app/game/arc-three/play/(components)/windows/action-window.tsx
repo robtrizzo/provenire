@@ -3,7 +3,6 @@
 import { TypographyH2 } from "@/components/ui/typography";
 import {
   MAX_ABILITIES,
-  MAX_SKILLS,
   useCharacterSheet,
   useField,
 } from "@/contexts/arc3CharacterSheetContext";
@@ -117,13 +116,7 @@ export default function ActionsWindow({ onClose }: ActionsWindowProps) {
               </Action.Wrapper.Menu>
             </Action.Wrapper.Tooltip>
           ))}
-          {Array.from({ length: MAX_SKILLS - skills.length }).map((_, idx) => (
-            <Action.HeaderContent.Unlock
-              type="skill"
-              className="p-2"
-              key={`unlock-skill-${idx}`}
-            />
-          ))}
+          <Action.HeaderContent.Unlock type="skill" className="p-2" />
         </div>
 
         {/* Remembrance skills (optional 3rd column) */}
