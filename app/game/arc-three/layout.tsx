@@ -46,10 +46,6 @@ const navigationData = [
     url: "#",
     items: [
       {
-        title: "Actions",
-        url: "/game/arc-three/character-options/actions",
-      },
-      {
         title: "Aldams",
         url: "/game/arc-three/character-options/aldams",
         items: aldams.map((a) => ({
@@ -161,6 +157,20 @@ const navigationData = [
       {
         title: "Kilder",
         url: "/game/arc-three/setting/kilder",
+      },
+    ],
+  },
+  {
+    title: "Appendix",
+    url: "#",
+    items: [
+      {
+        title: "Actions",
+        url: "/game/arc-three/appendix/actions",
+      },
+      {
+        title: "Dice",
+        url: "/game/arc-three/appendix/dice",
       },
     ],
   },

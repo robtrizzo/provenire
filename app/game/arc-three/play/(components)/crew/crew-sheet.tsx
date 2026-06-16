@@ -8,6 +8,8 @@ import { InlineSymbol } from "@/components/dice/dice-borders";
 import { ThetaTriple } from "@/components/dice/dice-symbols";
 import ItemsSection from "./sections/items-section";
 import CrewAdvancesSection from "./sections/crew-advances-section";
+import GangsSection from "./sections/gangs-section";
+import ExpertsSection from "./sections/experts-section";
 
 // ─── Root ─────────────────────────────────────────────────────────────────────
 
@@ -30,8 +32,12 @@ export default function CrewSheet() {
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-        {/* <div className="col-span-1">Experts</div>
-        <div className="col-span-1">Gangs</div> */}
+        <div className="col-span-1">
+          <ExpertsSection />
+        </div>
+        <div className="col-span-1">
+          <GangsSection />
+        </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
         <div className="col-span-1">

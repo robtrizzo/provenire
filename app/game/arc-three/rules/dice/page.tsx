@@ -1,6 +1,10 @@
 import ActionDot from "@/app/blog/posts/funky-dice/(components)/action-dot";
 import SampleActions from "@/app/blog/posts/funky-dice/(components)/sample-actions";
-import { D6, InlineSymbol } from "@/components/dice/dice-borders";
+import {
+  CritBorderGradient,
+  D6,
+  InlineSymbol,
+} from "@/components/dice/dice-borders";
 import {
   Advantage,
   Theta,
@@ -30,6 +34,14 @@ import {
   TransformationDie,
 } from "@/lib/dice";
 import Link from "next/link";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 export default function Page() {
   return (
@@ -911,6 +923,81 @@ export default function Page() {
           consequences.
         </li>
       </TypographyOrderedList>
+      <TypographyH4>Project Rolls</TypographyH4>
+      <TypographyP>
+        Project rolls are advanced identically to how they were in prior arcs,
+        though now they can also suffer consequences - which can be{" "}
+        <b>resisted</b> as normal.
+      </TypographyP>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Effect</TableHead>
+            <TableHead>
+              <D6 size={36}>
+                <Threat />
+              </D6>
+            </TableHead>
+            <TableHead>
+              <D6 size={36}>
+                <Theta />
+              </D6>
+            </TableHead>
+            <TableHead>
+              <D6 size={36}>
+                <ThetaDouble />
+              </D6>
+            </TableHead>
+            <TableHead>
+              <D6 size={36}>
+                <ThetaTriple />
+              </D6>
+            </TableHead>
+            <TableHead>
+              <div className="flex gap-1">
+                <D6 size={36}>
+                  <CritBorderGradient />
+                  <Threat />
+                </D6>
+                <D6 size={36}>
+                  <CritBorderGradient />
+                  <ThetaDouble />
+                </D6>
+                <D6 size={36}>
+                  <CritBorderGradient />
+                  <ThetaTriple />
+                </D6>
+              </div>
+            </TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableCell>Limited</TableCell>
+            <TableCell>0</TableCell>
+            <TableCell>0</TableCell>
+            <TableCell>1</TableCell>
+            <TableCell>2</TableCell>
+            <TableCell>3</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Standard</TableCell>
+            <TableCell>0</TableCell>
+            <TableCell>1</TableCell>
+            <TableCell>3</TableCell>
+            <TableCell>5</TableCell>
+            <TableCell>7</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Greater</TableCell>
+            <TableCell>1</TableCell>
+            <TableCell>2</TableCell>
+            <TableCell>5</TableCell>
+            <TableCell>8</TableCell>
+            <TableCell>12</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
       <div className="mb-16" />
     </>
   );

@@ -2,15 +2,15 @@ import { cn } from "@/lib/utils";
 
 export default function ActionDot({ className }: { className?: string }) {
   return (
-    <div className="inline-block">
-      <div className="flex gap-2">
-        <div
+    <span className="inline-block">
+      <span className="flex gap-2">
+        <span
           className={cn(
-            "rounded-full border-[1px] border-solid border-primary h-4 w-4",
-            className
+            "rounded-full border border-solid border-primary h-4 w-4",
+            className,
           )}
-        ></div>
-      </div>
-    </div>
+        ></span>
+      </span>
+    </span>
   );
 }

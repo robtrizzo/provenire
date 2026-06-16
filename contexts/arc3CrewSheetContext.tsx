@@ -61,6 +61,12 @@ export interface GangEntry {
   };
 }
 
+export interface ExpertEntry {
+  id: string;
+  name: string;
+  traits: string[];
+}
+
 export interface CrewAdvance {
   name: string;
   description: string;
@@ -87,6 +93,8 @@ export interface CrewSheetState {
   heat: number;
   escalation: number;
   resources: ResourceStore;
+  gangs: GangEntry[];
+  experts: ExpertEntry[];
   items: ItemEntry[];
   crewAdvanceSections: CrewAdvanceSection[];
 }
@@ -116,6 +124,8 @@ const getDefaultState = (): CrewSheetState => ({
   heat: 0,
   escalation: 0,
   resources: DEFAULT_RESOURCES,
+  gangs: [],
+  experts: [],
   items: [],
   crewAdvanceSections: [],
 });
@@ -134,6 +144,16 @@ type CrewSheetAction =
   | { type: "ADD_ITEM"; payload: ItemEntry }
   | { type: "REMOVE_ITEM"; id: string }
   | { type: "UPDATE_ITEM"; id: string; changes: Partial<Omit<ItemEntry, "id">> }
+  | { type: "ADD_GANG"; payload: GangEntry }
+  | { type: "REMOVE_GANG"; id: string }
+  | { type: "UPDATE_GANG"; id: string; changes: Partial<Omit<GangEntry, "id">> }
+  | { type: "ADD_EXPERT"; payload: ExpertEntry }
+  | { type: "REMOVE_EXPERT"; id: string }
+  | {
+      type: "UPDATE_EXPERT";
+      id: string;
+      changes: Partial<Omit<ExpertEntry, "id">>;
+    }
   | { type: "ADD_SECTION"; payload: CrewAdvanceSection }
   | { type: "REMOVE_SECTION"; id: string }
   | {
@@ -186,6 +206,31 @@ function reducer(
       return {
         ...state,
         items: state.items.map((i) =>
+          i.id === action.id ? { ...i, ...action.changes } : i,
+        ),
+      };
+    case "ADD_GANG":
+      return { ...state, gangs: [...state.gangs, action.payload] };
+    case "REMOVE_GANG":
+      return { ...state, gangs: state.gangs.filter((i) => i.id !== action.id) };
+    case "UPDATE_GANG":
+      return {
+        ...state,
+        gangs: state.gangs.map((i) =>
+          i.id === action.id ? { ...i, ...action.changes } : i,
+        ),
+      };
+    case "ADD_EXPERT":
+      return { ...state, experts: [...state.experts, action.payload] };
+    case "REMOVE_EXPERT":
+      return {
+        ...state,
+        experts: state.experts.filter((i) => i.id !== action.id),
+      };
+    case "UPDATE_EXPERT":
+      return {
+        ...state,
+        experts: state.experts.map((i) =>
           i.id === action.id ? { ...i, ...action.changes } : i,
         ),
       };
@@ -427,6 +472,46 @@ export function useItems() {
     updateItem: useCallback(
       (id: string, changes: Partial<Omit<ItemEntry, "id">>) =>
         dispatch({ type: "UPDATE_ITEM", id, changes }),
+      [dispatch],
+    ),
+  };
+}
+
+export function useGangs() {
+  const { state, dispatch } = useCrewSheet();
+  return {
+    gangs: state.gangs,
+    addGang: useCallback(
+      (entry: GangEntry) => dispatch({ type: "ADD_GANG", payload: entry }),
+      [dispatch],
+    ),
+    removeGang: useCallback(
+      (id: string) => dispatch({ type: "REMOVE_GANG", id }),
+      [dispatch],
+    ),
+    updateGang: useCallback(
+      (id: string, changes: Partial<Omit<GangEntry, "id">>) =>
+        dispatch({ type: "UPDATE_GANG", id, changes }),
+      [dispatch],
+    ),
+  };
+}
+
+export function useExperts() {
+  const { state, dispatch } = useCrewSheet();
+  return {
+    experts: state.experts,
+    addExpert: useCallback(
+      (entry: ExpertEntry) => dispatch({ type: "ADD_EXPERT", payload: entry }),
+      [dispatch],
+    ),
+    removeExpert: useCallback(
+      (id: string) => dispatch({ type: "REMOVE_EXPERT", id }),
+      [dispatch],
+    ),
+    updateExpert: useCallback(
+      (id: string, changes: Partial<Omit<ExpertEntry, "id">>) =>
+        dispatch({ type: "UPDATE_EXPERT", id, changes }),
       [dispatch],
     ),
   };

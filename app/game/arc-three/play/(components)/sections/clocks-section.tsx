@@ -225,37 +225,48 @@ function ClockRow({
             max={clock.max}
             setVal={(n) => onUpdate({ current: n })}
           />
-          <XPClocks.Controls
-            initial={clock.current}
-            max={clock.max}
-            setVal={(n) => onUpdate({ current: n })}
-            spendLabel={clock.labels?.spend}
-            addLabel={clock.labels?.add}
-            removeLabel={clock.labels?.remove}
-          />
+          <div className="flex flex-col items-center">
+            <span className="text-sm flex-1 min-w-0 truncate">
+              {clock.name}
+            </span>
+            <XPClocks.Controls
+              initial={clock.current}
+              max={clock.max}
+              setVal={(n) => onUpdate({ current: n })}
+              spendLabel={clock.labels?.spend}
+              addLabel={clock.labels?.add}
+              removeLabel={clock.labels?.remove}
+            />
+          </div>
         </XPClocks>
       ) : clock.type === "clock" ? (
-        <div className="ml-2">
-          <Clock
-            width={35}
-            height={35}
+        <>
+          <div className="ml-2">
+            <Clock
+              width={35}
+              height={35}
+              max={clock.max}
+              current={clock.current}
+              setVal={(n) => onUpdate({ current: n })}
+            />
+          </div>
+          <span className="text-sm flex-1 min-w-0 truncate">{clock.name}</span>
+        </>
+      ) : (
+        <>
+          <BuildupCheckboxes
             max={clock.max}
             current={clock.current}
-            setVal={(n) => onUpdate({ current: n })}
+            onChange={(n) => onUpdate({ current: n })}
           />
-        </div>
-      ) : (
-        <BuildupCheckboxes
-          max={clock.max}
-          current={clock.current}
-          onChange={(n) => onUpdate({ current: n })}
-        />
+          <span className="text-sm flex-1 min-w-0 truncate">{clock.name}</span>
+        </>
       )}
-      <span className="text-sm flex-1 min-w-0 truncate">{clock.name}</span>
+
       <Button
         size="icon"
         variant="ghost"
-        className="shrink-0 text-muted-foreground hover:text-destructive h-7 w-7"
+        className="shrink-0 ml-auto text-muted-foreground hover:text-destructive h-7 w-7"
         onClick={onRemove}
       >
         <Trash2 className="h-4 w-4" />
