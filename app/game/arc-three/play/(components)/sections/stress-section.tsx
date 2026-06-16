@@ -11,6 +11,8 @@ export default function StressSection() {
   const [{ stress, maxStress, conditions, currentConditions }, set] =
     useFields();
 
+  console.log("conditions", currentConditions);
+
   return (
     <div className="flex flex-col gap-2">
       <TypographyH2 className="text-md text-muted-foreground flex items-end justify-between">
@@ -30,44 +32,31 @@ export default function StressSection() {
         <StressOptions />
       </div>
       <div className="flex gap-2 flex-wrap mt-2">
-        {false
-          ? conditions.map((c) => {
-              if (!c) return null;
-              return (
-                <Condition
-                  key={c.name}
-                  name={c.name}
-                  active={false}
-                  disabled={true}
-                  onClick={() => {}}
-                />
-              );
-            })
-          : conditions.map((c, idx) => {
-              if (!c) return null;
-              return (
-                <Condition
-                  key={c.name + idx}
-                  name={c.name}
-                  active={currentConditions.includes(c)}
-                  disabled={
-                    currentConditions.length >= maxStress &&
-                    !currentConditions.includes(c)
-                  }
-                  onClick={() => {
-                    if (currentConditions.includes(c)) {
-                      set({
-                        currentConditions: currentConditions.filter(
-                          (con) => con.name !== c.name,
-                        ),
-                      });
-                    } else if (currentConditions.length <= maxStress) {
-                      set({ currentConditions: [...currentConditions, c] });
-                    }
-                  }}
-                />
-              );
-            })}
+        {conditions.map((c, idx) => {
+          if (!c) return null;
+          return (
+            <Condition
+              key={c.name + idx}
+              name={c.name}
+              active={currentConditions.some((cc) => cc.name === c.name)}
+              disabled={
+                currentConditions.length >= maxStress &&
+                !currentConditions.some((cc) => cc.name === c.name)
+              }
+              onClick={() => {
+                if (currentConditions.some((cc) => cc.name === c.name)) {
+                  set({
+                    currentConditions: currentConditions.filter(
+                      (con) => con.name !== c.name,
+                    ),
+                  });
+                } else if (currentConditions.length <= maxStress) {
+                  set({ currentConditions: [...currentConditions, c] });
+                }
+              }}
+            />
+          );
+        })}
       </div>
     </div>
   );
