@@ -11,8 +11,6 @@ import { Button } from "@/components/ui/button";
 import { Maximize2, Minimize2 } from "lucide-react";
 import BondsSection from "./bonds-section";
 import ActionsWindow from "../windows/action-window";
-import AptitudesDialog from "../dialogs/aptitudes-dialog";
-import SkillsDialog from "../dialogs/skills-dialog";
 
 export default function ActionSection() {
   const { aptitudes, skills, fightingStyles } = useCharacterSheet();
@@ -49,7 +47,7 @@ export default function ActionSection() {
             {/* Aptitudes column */}
             <div className="flex flex-col gap-0.5">
               <TypographyH2 className="text-md mt-0 uppercase text-muted-foreground flex justify-between items-end">
-                Aptitudes <AptitudesDialog />
+                Aptitudes
               </TypographyH2>
               {aptitudes.map((a, idx) => (
                 <Action.Wrapper.Tooltip action={a} key={idx + a.name}>
@@ -74,7 +72,7 @@ export default function ActionSection() {
             {/* Skills column */}
             <div className="flex flex-col gap-0.5">
               <TypographyH2 className="text-md mt-0 uppercase text-muted-foreground flex justify-between items-end">
-                <span className="ml-2">Skills</span> <SkillsDialog />
+                <span className="ml-2">Skills</span>
               </TypographyH2>
               {skills.map((a, idx) => (
                 <Action.Wrapper.Tooltip action={a} key={idx + a.name}>
@@ -90,8 +88,8 @@ export default function ActionSection() {
           </div>
 
           {/* Fighting Styles */}
-          <TypographyH2 className="text-md mt-0 uppercase text-muted-foreground flex justify-between items-end">
-            Fighting Styles <SkillsDialog />
+          <TypographyH2 className="text-md mt-4 uppercase text-muted-foreground flex justify-between items-end">
+            Fighting Styles
           </TypographyH2>
           <div className="flex flex-col gap-0.5">
             {fightingStyles.map((a, idx) => (

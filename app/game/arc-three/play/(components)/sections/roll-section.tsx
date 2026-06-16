@@ -51,6 +51,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Input } from "@/components/ui/input";
+import DiceDialog from "../dialogs/dice-dialog";
 
 type RollSection = FC & {};
 
@@ -91,6 +92,9 @@ const RollSection = () => {
             checked={isPrivate}
             onCheckedChange={setIsPrivate}
           />
+          <div className="ml-4">
+            <DiceDialog />
+          </div>
         </div>
       </div>
       <RollSelect />
