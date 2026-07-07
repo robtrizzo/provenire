@@ -34,8 +34,8 @@ export default async function Page() {
         their own ideologies, agendas, and weaknesses.
       </TypographyP>
       <TypographyBlockquote>
-        <b className="text-emerald-500">Advanced:</b> understands the system
-        must be destroyed and something radically new must take its place
+        <b className="text-lime-500">Advanced:</b> understands the system must
+        be destroyed and something radically new must take its place
         <br />
         <b className="text-cyan-500">Sympathetic:</b> understands the system is
         broken but doesn't know exactly why this is the case or how they can
@@ -47,17 +47,17 @@ export default async function Page() {
         <b className="text-amber-500">Reformist:</b> believes that the system
         will work with proper leadership or some tweaks around the edges
         <br />
-        <b className="text-orange-500">Backwards:</b> prefers the current system
-        or wants to make it even more oppressive to the workers
+        <b className="text-red-500">Backwards:</b> prefers the current system or
+        wants to make it even more oppressive to the workers
       </TypographyBlockquote>
       <div className="px-2 grid grid-cols-1 md:grid-cols-2 gap-2">
         <TypographyP className="mt-2">
-          <b className="text-emerald-500">Merit</b>: well known amongst workers
-          for earnest kindness and having the strength to smile even during the{" "}
+          <b className="text-lime-500">Merit</b>: well known amongst workers for
+          earnest kindness and having the strength to smile even during the{" "}
           <i>Drone</i>.
         </TypographyP>
         <TypographyP>
-          <b className="text-emerald-500">
+          <b className="text-lime-500">
             Naaza<sup className="text-amber-500">*</sup>
           </b>
           : known amongst enforcers as a clever wright with a keen mind and a
@@ -69,18 +69,18 @@ export default async function Page() {
           </i>
         </TypographyP>
         <TypographyP>
-          <b className="text-emerald-500">Drusa Santoris</b>: known for
-          efficient operations and a ruthless decisiveness.
+          <b className="text-lime-500">Drusa Santoris</b>: known for efficient
+          operations and a ruthless decisiveness.
         </TypographyP>
         <TypographyP>
-          <b className="text-emerald-500">Laramie Black</b>: known to be an
+          <b className="text-lime-500">Laramie Black</b>: known to be an
           unforgiving pragmatist. Prefers to maintain Moore's Gang's affluence.
           Can be swayed by threats against her people.
         </TypographyP>
         <TypographyP>
-          <b className="text-orange-500">Amalina the Crow</b>: mostly absorbed
-          with her personal wealth and entertainment. Willing to engage in
-          politics to further her ambitions.
+          <b className="text-red-500">Amalina the Crow</b>: mostly absorbed with
+          her personal wealth and entertainment. Willing to engage in politics
+          to further her ambitions.
         </TypographyP>
         <TypographyP>
           <b className="text-cyan-500">Sire Ciber</b>: only interested in
@@ -99,13 +99,13 @@ export default async function Page() {
           or de-escalation.
         </TypographyP>
         <TypographyP>
-          <b className="text-orange-500">Hrodulfr</b>: power hungry, conniving,
-          and impatient. Can be swayed with personal gifts or with promises of
+          <b className="text-red-500">Hrodulfr</b>: power hungry, conniving, and
+          impatient. Can be swayed with personal gifts or with promises of
           violence on his foes.
         </TypographyP>
         <TypographyP>
-          <b className="text-orange-500">Ulf</b>: not smart enough for politics
-          and unaware of it. Will trend towards votes which crush those already
+          <b className="text-red-500">Ulf</b>: not smart enough for politics and
+          unaware of it. Will trend towards votes which crush those already
           beneath him. Can be swayed with influence or aggrandizement.
         </TypographyP>
         <TypographyP>
@@ -125,8 +125,8 @@ export default async function Page() {
           promises of protection.
         </TypographyP>
         <TypographyP>
-          <b className="text-emerald-500">Minamo</b>: not interested in
-          politics. Likely won't show up at all.
+          <b className="text-lime-500">Minamo</b>: not interested in politics.
+          Likely won't show up at all.
         </TypographyP>
         <TypographyP>
           <b className="text-amber-500">Enzo</b>: preoccupied with maintaining
@@ -148,9 +148,9 @@ export default async function Page() {
           patterns. Will likely vote against anything his enemies vote for.
         </TypographyP>
         <TypographyP>
-          <b className="text-orange-500">Yulgar</b>: reasonable and charming.
-          Wants to remove Fabrication's current power structures in favor of a
-          more fundamentalist Rathi hierarchy. Can be swayed by Rathi purist
+          <b className="text-red-500">Yulgar</b>: reasonable and charming. Wants
+          to remove Fabrication's current power structures in favor of a more
+          fundamentalist Rathi hierarchy. Can be swayed by Rathi purist
           rhetoric.
         </TypographyP>
         <TypographyP>
@@ -164,9 +164,9 @@ export default async function Page() {
           swayed by access to resources or trade routes.
         </TypographyP>
         <TypographyP>
-          <b className="text-orange-500">Ridora</b>: not interested in politics
-          and hates the existence of the council in the first place. Will work
-          to undermine it as swiftly as he can.
+          <b className="text-red-500">Ridora</b>: not interested in politics and
+          hates the existence of the council in the first place. Will work to
+          undermine it as swiftly as he can.
         </TypographyP>
       </div>
       <TypographyH2>
