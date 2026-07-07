@@ -123,6 +123,10 @@ const navigationData = [
     url: "#",
     items: [
       {
+        title: "Council",
+        url: "/game/arc-three/faction-game/council",
+      },
+      {
         title: "Neighborhoods",
         url: "/game/arc-three/faction-game/neighborhoods",
         items: [
