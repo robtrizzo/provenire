@@ -347,9 +347,9 @@
   {
     "name": "Gabe",
     "neighborhood": "Fab Floor",
+    "job": "Operator",
     "type": "npc",
-    "faction": "Youngers",
-    "portrait": false
+    "faction": "Scarbacks"
   },
   {
     "name": "Darius Azad",
@@ -390,8 +390,7 @@
     "name": "Quarrel",
     "neighborhood": "The Bends",
     "type": "npc",
-    "job": "Archivist",
-    "portrait": false
+    "job": "Archivist"
   },
   {
     "name": "Lio",
@@ -868,8 +867,7 @@
     "neighborhood": "Fab Floor",
     "type": "npc",
     "faction": "Scarbacks",
-    "job": "Enforcer",
-    "portrait": false
+    "job": "Enforcer"
   },
   {
     "name": "Duara the Thinblood",
@@ -1037,5 +1035,59 @@
     "type": "npc",
     "job": "Enforcer",
     "dead": true
+  },
+  {
+    "name": "Klaud",
+    "neighborhood": "The Bends",
+    "faction": "Dominion",
+    "type": "npc",
+    "job": "Enforcer"
+  },
+  {
+    "name": "Morlana",
+    "neighborhood": "The Bends",
+    "faction": "Dominion",
+    "type": "npc",
+    "job": "Enforcer"
+  },
+  {
+    "name": "Mediciner",
+    "neighborhood": "The Bends",
+    "faction": "Dominion",
+    "type": "npc"
+  },
+  {
+    "name": "Johnny Fang",
+    "neighborhood": "Stairwell",
+    "faction": "Theta",
+    "type": "npc"
+  },
+  {
+    "name": "Manfred",
+    "neighborhood": "Fab Floor",
+    "faction": "Scarbacks",
+    "type": "npc",
+    "job": "Enforcer"
+  },
+  {
+    "name": "Liah",
+    "neighborhood": "Fab Floor",
+    "faction": "Scarbacks",
+    "type": "npc",
+    "job": "Enforcer"
+  },
+  {
+    "name": "Srauf",
+    "neighborhood": "Fab Floor",
+    "faction": "Scarbacks",
+    "type": "npc",
+    "job": "Enforcer",
+    "dead": true
+  },
+  {
+    "name": "Troy",
+    "neighborhood": "Fab Floor",
+    "type": "npc",
+    "job": "Machinist"
   }
 ]
