@@ -867,7 +867,8 @@
     "neighborhood": "Fab Floor",
     "type": "npc",
     "faction": "Scarbacks",
-    "job": "Enforcer"
+    "job": "Enforcer",
+    "dead": true
   },
   {
     "name": "Duara the Thinblood",
