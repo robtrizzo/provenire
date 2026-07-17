@@ -63,13 +63,22 @@
     "description": "",
     "provenire": "Strength, sturdiness, and the tickling warmth of sleep. Your body grows heavy and large. Your belly rumbles with a fathomless hunger.",
     "abilities": [
+      { "name": "Donum Ursa", "slug": "donum-ursa", "cost": 0 },
       {
-        "name": "Donum Ursa",
-        "slug": "donum-ursa",
-        "keystone": true
+        "name": "Scent of Sustenance",
+        "slug": "scent-of-sustenance",
+        "cost": 3
+      },
+      { "name": "Predator's Slumber", "slug": "predators-slumber", "cost": 4 },
+      { "name": "Might of the Bear", "slug": "might-of-the-bear", "cost": 3 },
+      { "name": "Deep Skin", "slug": "deep-skin", "cost": 3 },
+      { "name": "Immense Shifting", "slug": "immense-shifting", "cost": 4 },
+      {
+        "name": "Bottomless Appetite",
+        "slug": "bottomless-appetite",
+        "cost": 4
       }
-    ],
-    "wip": true
+    ]
   },
   {
     "name": "Donum Portentum",
