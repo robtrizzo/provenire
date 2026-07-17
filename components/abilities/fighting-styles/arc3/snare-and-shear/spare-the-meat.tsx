@@ -13,8 +13,8 @@ export default function PreserveTheMeat() {
         <InlineSymbol>
           <Advantage />
         </InlineSymbol>{" "}
-        while you already have it, the next strike by you or an ally avoids
-        spoiling the meat.
+        while you already have it, you may designate a foe. Strikes from you and
+        your allies avoid spoiling the meat of designated foes.
       </TypographyP>
       <TypographyP>
         If you finish combat without spoiling the meat, the foe provides{" "}
