@@ -40,9 +40,10 @@ export default async function Page() {
         The crew is one of many factions within Fabrication vying for influence
         and power. Each one has their own agendas and will be working diligently
         to complete them. This will manifest in the form of factions advancing
-        each of their clocks by <b>1 tick</b> whenever <b>time passes</b>. When
-        clocks complete, the <b>Narrator</b> will announce it to the crew and
-        the results of that clock happen; it cannot be <b>resisted</b>.
+        each of their clocks by <b>1 tick</b> for each <b>downtime</b> since the
+        previous <b>time passes</b>. When clocks complete, the <b>Narrator</b>{" "}
+        will announce it to the crew and the results of that clock happen; it
+        cannot be <b>resisted</b>.
       </TypographyP>
       <TypographyP>
         The faction game isn't all about other factions. The crew must also
