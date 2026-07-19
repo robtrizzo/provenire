@@ -8,6 +8,7 @@ import {
 
 import { D6 } from "@/components/dice/dice-borders";
 import { Threat } from "@/components/dice/dice-symbols";
+import Link from "next/link";
 
 export default async function Page() {
   return (
@@ -26,7 +27,11 @@ export default async function Page() {
       </TypographyBlockquote>
       <TypographyP>
         Each resource has special rules for what happens at different stockpile
-        values when <b>time passes</b>.
+        values when{" "}
+        <Link href="/game/arc-three/rules/time-passes">
+          <b className="text-red-500 underline">time passes</b>
+        </Link>{" "}
+        .
       </TypographyP>
 
       <TypographyH3>Advisors</TypographyH3>

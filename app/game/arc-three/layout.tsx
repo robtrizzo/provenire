@@ -38,6 +38,20 @@ const navigationData = [
       {
         title: "Time Passes",
         url: "/game/arc-three/rules/time-passes",
+        items: [
+          {
+            title: "Managing a Faction",
+            url: "/game/arc-three/rules/time-passes/managing-a-faction",
+          },
+          {
+            title: "Managing Fabrication",
+            url: "/game/arc-three/rules/time-passes/managing-fabrication",
+          },
+          {
+            title: "Managing the Crew",
+            url: "/game/arc-three/rules/time-passes/managing-the-crew",
+          },
+        ],
       },
     ],
   },
@@ -175,6 +189,10 @@ const navigationData = [
       {
         title: "Dice",
         url: "/game/arc-three/appendix/dice",
+      },
+      {
+        title: "Traits",
+        url: "/game/arc-three/appendix/traits",
       },
     ],
   },
