@@ -24,10 +24,15 @@ export default async function Page() {
       <div className="my-4 flex flex-col gap-2">
         <Card>
           <CardHeader>
-            <TypographyH3>Theta</TypographyH3>
-            <span className="text-muted-foreground">
-              <b>Tier II</b>, <i>The Crew</i>
-            </span>
+            <div className="flex justify-between">
+              <div>
+                <TypographyH3>Theta</TypographyH3>
+                <span className="text-muted-foreground">
+                  <b>Tier II</b>, <i>The Crew</i>
+                </span>
+              </div>
+              <div></div>
+            </div>
           </CardHeader>
           <CardContent>
             <TypographyP>
@@ -76,11 +81,27 @@ export default async function Page() {
           </CardContent>
         </Card>
         <Card>
-          <CardHeader>
-            <TypographyH3>Moore&apos;s Gang</TypographyH3>
-            <span className="text-muted-foreground">
-              <b>Tier II</b>, <i>Advanced</i>
-            </span>
+          <CardHeader className="flex justify-between">
+            <div>
+              <TypographyH3>Moore&apos;s Gang</TypographyH3>
+              <span className="text-muted-foreground">
+                <b>Tier II</b>, <i>Advanced</i>
+              </span>
+            </div>
+            <div className="grid grid-cols-2 gap-x-2">
+              <span className="text-muted-foreground">
+                <b>Blood:</b> <b>0</b> = <i>None</i>
+              </span>
+              <span className="text-muted-foreground">
+                <b>Food:</b> <b>4</b> = <i>Stockpile</i>
+              </span>
+              <span className="text-muted-foreground">
+                <b>Materials:</b> <b>2</b> = <i>Adequate</i>
+              </span>
+              <span className="text-muted-foreground">
+                <b>Water:</b> <b>0</b> = <i>None</i>
+              </span>
+            </div>
           </CardHeader>
           <CardContent>
             <TypographyP>
@@ -129,11 +150,27 @@ export default async function Page() {
           </CardContent>
         </Card>
         <Card>
-          <CardHeader>
-            <TypographyH3>Shrikes</TypographyH3>
-            <span className="text-muted-foreground">
-              <b>Tier II</b>, <i>Backwards</i>
-            </span>
+          <CardHeader className="flex justify-between">
+            <div>
+              <TypographyH3>Shrikes</TypographyH3>
+              <span className="text-muted-foreground">
+                <b>Tier II</b>, <i>Backwards</i>
+              </span>
+            </div>
+            <div className="grid grid-cols-2 gap-x-2">
+              <span className="text-muted-foreground">
+                <b>Blood:</b> ???
+              </span>
+              <span className="text-muted-foreground">
+                <b>Food:</b> ???
+              </span>
+              <span className="text-muted-foreground">
+                <b>Materials:</b> ???
+              </span>
+              <span className="text-muted-foreground">
+                <b>Water:</b> ???
+              </span>
+            </div>
           </CardHeader>
           <CardContent>
             <TypographyP>
@@ -174,11 +211,27 @@ export default async function Page() {
           </CardContent>
         </Card>
         <Card>
-          <CardHeader>
-            <TypographyH3>Congregation of the Well God</TypographyH3>
-            <span className="text-muted-foreground">
-              <b>Tier 0</b>, <i>Unconcious</i>
-            </span>
+          <CardHeader className="flex justify-between">
+            <div>
+              <TypographyH3>Congregation of the Well God</TypographyH3>
+              <span className="text-muted-foreground">
+                <b>Tier 0</b>, <i>Unconcious</i>
+              </span>
+            </div>
+            <div className="grid grid-cols-2 gap-x-2">
+              <span className="text-muted-foreground">
+                <b>Blood:</b> <b>1</b> = <i>Scarce</i>
+              </span>
+              <span className="text-muted-foreground">
+                <b>Food:</b> <b>2</b> = <i>Adequate</i>
+              </span>
+              <span className="text-muted-foreground">
+                <b>Materials:</b> <b>0</b> = <i>None</i>
+              </span>
+              <span className="text-muted-foreground">
+                <b>Water:</b> <b>1</b> = <i>Scarce</i>
+              </span>
+            </div>
           </CardHeader>
           <CardContent>
             <TypographyP>
@@ -217,11 +270,27 @@ export default async function Page() {
           </CardContent>
         </Card>
         <Card>
-          <CardHeader>
-            <TypographyH3>Raftertown</TypographyH3>
-            <span className="text-muted-foreground">
-              <b>Tier I</b>, <i>Unconcious</i>
-            </span>
+          <CardHeader className="flex justify-between">
+            <div>
+              <TypographyH3>Raftertown</TypographyH3>
+              <span className="text-muted-foreground">
+                <b>Tier I</b>, <i>Unconcious</i>
+              </span>
+            </div>
+            <div className="grid grid-cols-2 gap-x-2">
+              <span className="text-muted-foreground">
+                <b>Blood:</b> <b>1</b> = <i>Scarce</i>
+              </span>
+              <span className="text-muted-foreground">
+                <b>Food:</b> <b>2</b> = <i>Adequate</i>
+              </span>
+              <span className="text-muted-foreground">
+                <b>Materials:</b> <b>2</b> = <i>Adequate</i>
+              </span>
+              <span className="text-muted-foreground">
+                <b>Water:</b> <b>0</b> = <i>None</i>
+              </span>
+            </div>
           </CardHeader>
           <CardContent>
             <TypographyP>

@@ -18,6 +18,34 @@ export default async function Page() {
         in the Steel Trap. During this time, the crew can't murder their way out
         of all of their problems. They have to rely on the people around them.
       </TypographyP>
+      <TypographyH2>Actions</TypographyH2>
+      <TypographyP>
+        Actions during <b>time passes</b> will most often be handled
+        asynchronously before the next session. The number of actions your
+        character has during this phase is determined by their <b>Influence</b>.
+      </TypographyP>
+      <TypographyP>
+        <b>Operatives</b> have <b>3</b> actions which they can use on crew
+        projects or faction projects as they please.
+      </TypographyP>
+      <TypographyP>
+        <b>Advisors</b> have <b>3</b> actions. <b>1</b> must be used to manage
+        their faction (determine tier change, disperse resources, manage
+        alliances). The other <b>2</b> actions may be spent on crew projects or
+        their own faction's projects.
+      </TypographyP>
+      <TypographyP>
+        <b>Councilors</b> have <b>3</b> actions. <b>1</b> must be used to manage
+        their domain of Fabrication. <b>1</b> must be used on Fabrication
+        projects or projects within factions they have close ties with. <b>1</b>{" "}
+        action may be spent on Fabrication projects or crew projects.
+      </TypographyP>
+      <TypographyBlockquote>
+        <b>Advisors</b> and <b>Councilors</b> may eschew their action
+        restrictions by paying <b>2 stress</b> each. Anyone may spend an action
+        to embed themselves in a project or gang to reduce its <b>manpower</b>{" "}
+        cost by <b>1</b>.
+      </TypographyBlockquote>
       <TypographyH2>Entanglements</TypographyH2>
       <TypographyP>
         Your crew didn't just spring into existence overnight. You have a
@@ -40,9 +68,10 @@ export default async function Page() {
         The crew is one of many factions within Fabrication vying for influence
         and power. Each one has their own agendas and will be working diligently
         to complete them. This will manifest in the form of factions advancing
-        each of their clocks by <b>1 tick</b> whenever <b>time passes</b>. When
-        clocks complete, the <b>Narrator</b> will announce it to the crew and
-        the results of that clock happen; it cannot be <b>resisted</b>.
+        each of their clocks by <b>1 tick</b> for each <b>downtime</b> since the
+        previous <b>time passes</b>. When clocks complete, the <b>Narrator</b>{" "}
+        will announce it to the crew and the results of that clock happen; it
+        cannot be <b>resisted</b>.
       </TypographyP>
       <TypographyP>
         The faction game isn't all about other factions. The crew must also
@@ -65,6 +94,22 @@ export default async function Page() {
         rely on the labor of their family members to survive. Your character
         works not only to feed themselves, but to feed their loved ones, and
         perhaps their communities as well.
+      </TypographyP>
+      <TypographyP>
+        Each character's family is represented by a five piece{" "}
+        <b>starvation clock</b>. When <b>time passes</b>, tick it a number of
+        times equal to <b>3</b> minus your faction's <b>food stockpile</b>.
+        Negative values remove ticks. Characters may spend <b>1 food</b> at any
+        time to remove ticks from their <b>starvation clock</b>.
+      </TypographyP>
+      <TypographyBlockquote>
+        <b>0</b> = None; <b>1</b> = Scarce; <b>2</b> = Adequate; <b>3</b> =
+        Surplus; <b>4</b> = Stockpile
+      </TypographyBlockquote>
+      <TypographyP>
+        If a <b>starvation clock</b> becomes full, this represents a member of
+        that character's family starving and passing away. Afterwards, reset the
+        clock.
       </TypographyP>
       <TypographyH2>Fabrication's Council</TypographyH2>
       <TypographyP>
