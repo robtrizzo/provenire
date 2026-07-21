@@ -14,6 +14,7 @@ import {
   TypographyH2,
   TypographyH3,
   TypographyH4,
+  TypographyOrderedList,
   TypographyP,
   TypographyUnorderedList,
 } from "@/components/ui/typography";
@@ -347,6 +348,176 @@ export default async function Page() {
           </TypographyP>
         </div>
       </div>
+      <Separator className="mt-4" />
+      <TypographyH3>Auger's Projects</TypographyH3>
+      <TypographyH4>Train a Gang</TypographyH4>
+      <TypographyP>
+        When the <b>Auger</b> trains a gang, they have the option to add the{" "}
+        <b>Veterans</b> trait.
+      </TypographyP>
+      <TypographyBlockquote>
+        <b>Veterans</b>: whenever the gang survives a scrap, tick its{" "}
+        <b>improvement clock</b> by the gang's remaining wounds
+      </TypographyBlockquote>
+      <Separator className="mt-4" />
+      <TypographyH4>Raid</TypographyH4>
+      <TypographyP>
+        A lightning strike on storehouses between shifts. An ambush on a trade
+        convoy. Direct extortion of a faction's workers. You get your resources
+        any way you need to. When you prepare for a raid, pick a gang and build
+        up a <b>fortune roll</b> with the following questions:
+      </TypographyP>
+      <TypographyUnorderedList>
+        <li>
+          Is your gang particularly stealthy or organized? <b>+1d</b>
+        </li>
+        <li>
+          Is a member of the crew embedded in the gang? <b>+1d</b>
+        </li>
+        <li>
+          <b>+1d</b> per tier higher your faction is than theirs.
+        </li>
+        <li>
+          Are they expecting you? <b>-1d</b>
+        </li>
+        <li>
+          Does the target have special defenses? <b>-1d</b>
+        </li>
+        <li>
+          Do you know of a weak spot in their defenses? <b>+1d</b>
+        </li>
+      </TypographyUnorderedList>
+      <div className="grid grid-cols-1 sm:grid-cols-2 border rounded-md border-border p-2">
+        <div className="col-span-1">
+          <TypographyP>
+            <InlineSymbol>
+              <Theta />
+            </InlineSymbol>{" "}
+            : choose one
+          </TypographyP>
+          <TypographyP>
+            <InlineSymbol>
+              <ThetaDouble />
+            </InlineSymbol>{" "}
+            : choose two
+          </TypographyP>
+        </div>
+        <div className="col-span-1">
+          <TypographyUnorderedList>
+            <li>
+              steal <b>1 blood</b>, <b>food</b>, or <b>material</b> stockpile
+            </li>
+            <li>
+              the target doesn't know it was your faction (otherwise, take{" "}
+              <b>2 rep</b>)
+            </li>
+            <li>the target increases their security</li>
+          </TypographyUnorderedList>
+          <TypographyP>
+            On a{" "}
+            <InlineSymbol>
+              <Threat />
+            </InlineSymbol>
+            , there was a scrap and your gang takes wounds equal to the number
+            of{" "}
+            <InlineSymbol>
+              <Threat />
+            </InlineSymbol>
+            .
+          </TypographyP>
+        </div>
+      </div>
+      <Separator className="mt-4" />
+      <TypographyH4>Assault</TypographyH4>
+      <TypographyP>
+        Raids and skirmishes can build an advantage, but sometimes you have to
+        take the fight to where your foe is strongest.
+      </TypographyP>
+      <TypographyOrderedList>
+        <li>
+          <b>Scout their fortifications</b> (
+          <span className="text-muted-foreground">
+            <div className="inline-block">
+              <Clock
+                max={3}
+                current={0}
+                clickable={false}
+                width={20}
+                height={20}
+              />
+            </div>
+            , <b>1 intel</b>, <b>1 manpower</b>
+          </span>
+          )
+        </li>
+        <li>
+          <b>Probe their defenses</b> (
+          <span className="text-muted-foreground">
+            <div className="inline-block">
+              <Clock
+                max={3}
+                current={0}
+                clickable={false}
+                width={20}
+                height={20}
+              />
+            </div>
+            , <b>1 manpower</b>
+          </span>
+          )
+        </li>
+        <li>
+          <b>Gather equipment</b> (
+          <span className="text-muted-foreground">
+            <div className="inline-block">
+              <Clock
+                max={3}
+                current={0}
+                clickable={false}
+                width={20}
+                height={20}
+              />
+            </div>
+            , <b>2 materials</b>
+          </span>
+          )
+        </li>
+        <li>
+          <b>Muster your forces</b> (
+          <span className="text-muted-foreground">
+            <b>1 rep</b> per tier of the target
+          </span>
+          )
+        </li>
+      </TypographyOrderedList>
+      <TypographyP>
+        You may launch your assault without completing any of the setup
+        projects. Each one you complete eliminates a <b>gang combat roll</b> you
+        would have to make. If your gang(s) get wiped out at any point during
+        the assault, your forces are shattered and the attack is over. If your
+        attack succeeds, gain <b>rep</b> and <b>heat</b> equal to twice their
+        tier, then choose one:
+      </TypographyP>
+      <TypographyUnorderedList>
+        <li>
+          Their defenses are devastated. They drop by <b>1</b> tier.
+        </li>
+        <li>
+          You loot the treasury (pick <b>3</b> from their <b>blood</b>,{" "}
+          <b>food</b>, and <b>materials)</b>
+        </li>
+        <li>
+          You give the crew a chance to attack their leaders without the backup
+          of their gangs.
+        </li>
+      </TypographyUnorderedList>
+      <Separator className="mt-4" />
+      <TypographyH3>Lock's Projects</TypographyH3>
+      <Separator className="mt-4" />
+      <TypographyH3>Seeker's Projects</TypographyH3>
+      <Separator className="mt-4" />
+      <TypographyH3>Vault's Projects</TypographyH3>
+      <Separator className="mt-4" />
       <div className="mb-8" />
     </>
   );
