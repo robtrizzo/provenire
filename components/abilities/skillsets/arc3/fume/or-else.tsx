@@ -18,7 +18,7 @@ export default function OrElse() {
         any <b>Faction clock</b> that you are aware of up or down. Make an{" "}
         <b>action roll</b>.
       </TypographyP>
-      <div className="grid grid-cols-1 sm:grid-cols-2 border-1 rounded-md border-border p-2">
+      <div className="grid grid-cols-1 sm:grid-cols-2 border rounded-md border-border p-2">
         <div className="col-span-1">
           <TypographyP>
             <InlineSymbol>
