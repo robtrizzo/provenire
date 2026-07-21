@@ -1,8 +1,14 @@
+import Clock from "@/components/clock";
+import { InlineSymbol } from "@/components/dice/dice-borders";
+import { Advantage, ThetaDouble } from "@/components/dice/dice-symbols";
 import Breadcrumbs from "@/components/ui/breadcrumbs";
+import { Separator } from "@/components/ui/separator";
 import {
+  TypographyBlockquote,
   TypographyH1,
   TypographyH2,
   TypographyH3,
+  TypographyH4,
   TypographyP,
 } from "@/components/ui/typography";
 import Link from "next/link";
@@ -54,14 +60,237 @@ export default async function Page() {
       </TypographyP>
       <TypographyH2>Projects</TypographyH2>
       <TypographyP>
-        The crew's projects are listed{" "}
-        <Link href="game/arc-three/play#crew">
+        Active crew projects are listed{" "}
+        <Link href="/game/arc-three/play#crew">
           <b className="text-red-500">
             <u>here</u>
           </b>
         </Link>
-        . And more coming soon.
+        . Additional projects can be added by the crew's <b>Operatives</b>, but
+        worked by anyone. Projects may require resources, <b>project clocks</b>,
+        and/or staff.
       </TypographyP>
+      <TypographyH3>Shade's Projects</TypographyH3>
+      <Separator className="mt-4" />
+      <TypographyH4>Infiltrate a Faction</TypographyH4>
+      <span className="text-muted-foreground">
+        <b>
+          <u>Cost</u>
+        </b>
+        :{" "}
+        <div className="inline-block">
+          <Clock max={3} current={0} clickable={false} width={20} height={20} />
+        </div>{" "}
+        per faction tier;{" "}
+        <b>
+          <u>Staff</u>
+        </b>
+        : 1 <b>manpower</b>
+      </span>
+      <TypographyP>
+        Once infiltrated, the crew may spend <b>intel</b> to affect this
+        faction:
+      </TypographyP>
+      <TypographyP>
+        <b>Learn faction secrets</b> (
+        <b className="text-muted-foreground">1 intel</b>): reveal a faction
+        secret project or resource stores
+      </TypographyP>
+      <TypographyP>
+        <b>Create back doors</b> (
+        <b className="text-muted-foreground">2 intel</b>): entering this
+        faction's stronghold is not an obstacle for the crew
+      </TypographyP>
+      <TypographyP>
+        <b>Confound the chain of command</b> (
+        <b className="text-muted-foreground">2 intel</b>): a gang that would
+        show up is instead late
+      </TypographyP>
+      <TypographyP>
+        <b>Foment dissent</b> (<b className="text-muted-foreground">3 intel</b>
+        ): add a <b>faction clock</b>{" "}
+        <div className="inline-block">
+          <Clock max={3} current={0} clickable={false} width={20} height={20} />
+        </div>
+        : this faction loses a tier
+      </TypographyP>
+
+      <TypographyH4>Build a Network of Informants</TypographyH4>
+      <span className="text-muted-foreground">
+        <b>
+          <u>Cost</u>
+        </b>
+        :{" "}
+        <div className="inline-block">
+          <Clock max={3} current={0} clickable={false} width={20} height={20} />
+        </div>
+        , 2 rep;{" "}
+        <b>
+          <u>Staff</u>
+        </b>
+        : X <b>manpower</b>;
+      </span>
+      <TypographyP>
+        <b>The rumor mill</b>: gain <b>1 intel</b> per staff
+      </TypographyP>
+      <TypographyP>
+        <b>Literacy</b> (
+        <span className="text-muted-foreground">
+          requires <b>Drusa's</b> assistance
+        </span>
+        ): informants can make records and pass notes. Increase the Crew's{" "}
+        <b>max intel</b> by the number of staff
+      </TypographyP>
+      <TypographyP>
+        <b>Monitor workplaces</b>:{" "}
+        <b>
+          <code className="text-emerald-500">+1 push</code>
+        </b>{" "}
+        per staff on gather information checks to locate a worker or enforcer
+      </TypographyP>
+      <TypographyP>
+        <b>Monitor the beast lanes</b> (
+        <span className="text-muted-foreground">
+          requires <b>Lilya's</b> assistance
+        </span>
+        ): learn about a faction's trade routes. Requires staff equal to the
+        faction's tier.
+      </TypographyP>
+      <TypographyP>
+        <b>Beast informants</b> (
+        <span className="text-muted-foreground">
+          costs an additional{" "}
+          <div className="inline-block">
+            <Clock
+              max={6}
+              current={0}
+              clickable={false}
+              width={20}
+              height={20}
+            />
+          </div>{" "}
+          and <b>4 rep</b>
+        </span>
+        ): <b>+1d</b> to engagement rolls when the target is a beast or faction
+        of beasts
+      </TypographyP>
+      <TypographyH4>Train a Gang</TypographyH4>
+      <TypographyP>
+        When the <b>Shade</b> trains a gang, they have the option to add the{" "}
+        <b>Subtle</b> trait.
+      </TypographyP>
+      <TypographyBlockquote>
+        <b>Subtle</b>: it's not obvious to your foes that the gang is with you
+      </TypographyBlockquote>
+      <Separator className="mt-4" />
+      <TypographyH3>Scaffold's Projects</TypographyH3>
+      <TypographyH4>Improved Living Spaces</TypographyH4>
+      <span className="text-muted-foreground">
+        <b>
+          <u>Cost</u>
+        </b>
+        :{" "}
+        <div className="inline-block">
+          <Clock max={3} current={0} clickable={false} width={20} height={20} />
+        </div>
+        , 3 materials
+      </span>
+      <TypographyBlockquote>
+        These upgrades are on top of the living space improvements the crew has
+        already completed.
+      </TypographyBlockquote>
+      <TypographyP>
+        <b>Trunks</b>: Each crew member picks a piece of signature equipment.
+        This item doesn't cost an item slot to bring on missions.
+      </TypographyP>
+      <TypographyP>
+        <b>Stashes</b>: increase each crew member's max <b>food</b> and{" "}
+        <b>materials</b> by <b>1</b>
+      </TypographyP>
+      <TypographyP>
+        <b>Memorial</b>: Once this arc, each member of the crew can pay their
+        respects to the fallen. Clear <b>2 conditions</b>.
+      </TypographyP>
+      <TypographyP>
+        <b>Common Room</b>: it only costs <b>1 stress</b> to donate a{" "}
+        <b>push</b> to group rolls during <b>downtime</b>
+      </TypographyP>
+      <TypographyH4>Facilities</TypographyH4>
+      <span className="text-muted-foreground">
+        <b>
+          <u>Cost</u>
+        </b>
+        :{" "}
+        <div className="inline-block">
+          <Clock max={4} current={0} clickable={false} width={20} height={20} />
+        </div>
+        , 2 materials
+      </span>
+      <TypographyP>
+        <b>Pipeline to the water chamber</b>: each time the chamber is
+        activated, fill the crew's <b>water</b> to max
+      </TypographyP>
+      <TypographyP>
+        <b>
+          Storage (
+          <span className="text-muted-foreground">can be taken twice</span>)
+        </b>
+        : increase the crew's max <b>blood</b>, <b>food</b>, <b>materials</b>,
+        and <b>water</b> by <b>1</b>; by <b>2</b> the second time this is taken
+      </TypographyP>
+      <TypographyP>
+        <b>Training Room</b>: the crew may train each other and the crew's gangs
+        in their <b>fighting styles</b> and <b>Aldams</b>
+      </TypographyP>
+      <TypographyP>
+        <b>Laundry</b>: you look the part. <b>+1 rep</b> on missions which the
+        crew makes a public appearance
+      </TypographyP>
+
+      <TypographyH4>Security</TypographyH4>
+      <span className="text-muted-foreground">
+        <b>
+          <u>Cost</u>
+        </b>
+        :{" "}
+        <div className="inline-block">
+          <Clock max={3} current={0} clickable={false} width={20} height={20} />
+        </div>
+        , 1 material, applies to one outpost
+      </span>
+      <TypographyP>
+        <b>Traps</b> (
+        <span className="text-muted-foreground">
+          requires <b>Nail's</b> assistance
+        </span>
+        ): unprepared assailants are your choice of <i>hampered</i> or{" "}
+        <i>dazed</i>
+      </TypographyP>
+      <TypographyP>
+        <b>Emergency Exit</b>: dramatically reduces the time to evacuate
+        noncombatants
+      </TypographyP>
+      <TypographyP>
+        <b>Lookout perches</b>: enemies take <b>-1d</b> on their engagement roll
+        to assault the lair
+      </TypographyP>
+      <TypographyP>
+        <b>Well disguised</b>: even as foes watch the crew come and go, they
+        can't easily locate the lair
+      </TypographyP>
+      <TypographyH4>Train a Gang</TypographyH4>
+      <TypographyP>
+        When the <b>Scaffold</b> trains a gang, they have the option to add the{" "}
+        <b>Builders</b> trait.
+      </TypographyP>
+      <TypographyBlockquote>
+        <b>Builders</b>:{" "}
+        <b>
+          <code className="text-emerald-500">+1 push</code>
+        </b>{" "}
+        to construction projects for each staff
+      </TypographyBlockquote>
+      <div className="mb-8" />
     </>
   );
 }
