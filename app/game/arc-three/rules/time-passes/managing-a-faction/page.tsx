@@ -797,6 +797,14 @@ export default async function Page() {
           Kiposi, Kilder, and Ulgatians have cultural exchange. The Pits and the
           Scarbacks come into conflict.
         </li>
+        <li>
+          <b>Fabrication to the Penal Pens</b>: the crew can conceivably lead an
+          assaulting force to free the prisoners trapped in the pens.
+        </li>
+        <li>
+          <b>Fabrication to Liberty City</b>: the workers of Fabrication can
+          finally be free... <i>expect considerable opposition</i>
+        </li>
       </TypographyUnorderedList>
       <Separator className="mt-4" />
       <div className="mb-8" />
