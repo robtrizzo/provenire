@@ -514,6 +514,89 @@ export default async function Page() {
       <Separator className="mt-4" />
       <TypographyH3>Lock's Projects</TypographyH3>
       <Separator className="mt-4" />
+      <TypographyH4>Train a Gang</TypographyH4>
+      <TypographyP>
+        When the <b>Lock</b> trains a gang, they have the option to add the{" "}
+        <b>Defender</b> trait.
+      </TypographyP>
+      <TypographyBlockquote>
+        <b>Defender</b>: noncombatants can't be harmed so long as the gang is
+        standing
+      </TypographyBlockquote>
+      <Separator className="mt-4" />
+      <TypographyH4>Patrols</TypographyH4>
+      <TypographyP>
+        Every day there is incredible material waste and loss of life due to
+        systemic wanton violence. Many have tried to stem the flow and died in
+        their heroic pursuit. It's time to pick up the mantle and carry it
+        farther.
+      </TypographyP>
+      <TypographyP>
+        Once you have staffed your gangs, you may designate one faction's area
+        for each gang to patrol. For each of these gangs, you may choose any
+        number of threats they protect the workers from. Each one you choose
+        adds additional combats they will have to survive. If they survive a
+        combat, you gain the reward for their patrol.
+      </TypographyP>
+      <TypographyUnorderedList>
+        <li>
+          <b>Enforcers extoring workers for food:</b> that faction's{" "}
+          <b>food stockpile</b> is <b>1</b> higher this cycle;{" "}
+          <b>+1 goodwill</b>
+        </li>
+        <li>
+          <b>Beasts hunting workers for sport:</b> that faction contributes{" "}
+          <b>1</b> additional <b>manpower</b> this cycle; <b>+1 goodwill</b>
+        </li>
+        <li>
+          <b>Warring factions catching workers in the crossfire:</b> prevent the
+          war from impacting structures and crew projects; <b>+2 rep</b>
+        </li>
+      </TypographyUnorderedList>
+      <Separator className="mt-4" />
+      <TypographyH4>Prison</TypographyH4>
+      <span className="text-muted-foreground">
+        <b>
+          <u>Improve</u>
+        </b>
+        :{" "}
+        <div className="inline-block">
+          <Clock max={3} current={0} clickable={false} width={20} height={20} />
+        </div>
+        , 1 material;{" "}
+        <b>
+          <u>Staff</u>
+        </b>
+        : <b>1 manpower</b>
+      </span>
+      <TypographyP>
+        A prison inside of a prison. And distinct from the Penal Pens. A place
+        for punishment, reform, or to hold someone awaiting judgement. A far
+        sight from how the enforcers treat you - they would execute you on the
+        spot.
+      </TypographyP>
+      <TypographyP>
+        <b>A few rooms with big locks</b>: you can hold a gang of workers here
+      </TypographyP>
+      <TypographyP>
+        <b>Shackles</b>: you don't have to beat people to a pulp to move them
+      </TypographyP>
+      <TypographyP>
+        <b>Sturdy cage</b>: you can hold a single beast
+      </TypographyP>
+      <TypographyP>
+        <b>Stockades</b>: you can deliver justice in public. When you do,{" "}
+        <b>+1 rep</b>; <b>+1 scorn</b>
+      </TypographyP>
+      <Separator className="mt-4" />
+      <TypographyH4>Judgements</TypographyH4>
+      <TypographyP>
+        Whenever <b>time passes</b>, the <b>Lock</b> will be faced with open
+        ended choices about what to do with the crew's captured enemies and bad
+        actors within their own communities. These choices will affect the shape
+        of justice in Fabrication and how the crew is seen as a governing body.
+      </TypographyP>
+      <Separator className="mt-4" />
       <TypographyH3>Seeker's Projects</TypographyH3>
       <Separator className="mt-4" />
       <TypographyH3>Vault's Projects</TypographyH3>
