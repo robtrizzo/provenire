@@ -191,6 +191,10 @@ const navigationData = [
         url: "/game/arc-three/appendix/dice",
       },
       {
+        title: "Factory Map",
+        url: "/game/arc-three/appendix/factory-map",
+      },
+      {
         title: "Traits",
         url: "/game/arc-three/appendix/traits",
       },

@@ -545,6 +545,10 @@ export default async function Page() {
           <b>+1 goodwill</b>
         </li>
         <li>
+          <b>Infiltrators:</b> catch enemy spies and sabatours in the act;{" "}
+          <b>+1 intel</b>
+        </li>
+        <li>
           <b>Beasts hunting workers for sport:</b> that faction contributes{" "}
           <b>1</b> additional <b>manpower</b> this cycle; <b>+1 goodwill</b>
         </li>
@@ -598,6 +602,107 @@ export default async function Page() {
       </TypographyP>
       <Separator className="mt-4" />
       <TypographyH3>Seeker's Projects</TypographyH3>
+      <Separator className="mt-4" />
+      <TypographyH4>Heights and Depths</TypographyH4>
+      <TypographyP>
+        The <b>Seeker</b> can press on into parts unknown, finding secret
+        pathways between factory sectors. Each sector has one or more{" "}
+        <b>exploration clocks</b> necessary to complete before the route is
+        established. You can see the factory's sectors and connections{" "}
+        <Link href="/game/arc-three/appendix/factory-map">
+          <b className="text-red-500">
+            <u>here</u>
+          </b>
+        </Link>
+        .
+      </TypographyP>
+      <TypographyP>
+        The <b>Seeker</b> can recruit teams to help them in their travels. For
+        each <b>manpower</b> the <b>Seeker</b> spends, they advance an{" "}
+        <b>exploration clock</b> of their choice by <b>1</b>.
+      </TypographyP>
+      <Separator className="mt-4" />
+      <TypographyH4>Nooks and Crannies</TypographyH4>
+      <TypographyP>
+        Once the <b>Seeker</b> has discovered a pathway to a new sector, they
+        may begin to learn more about it. As they spend more time there, they
+        learn the sector's way of life, power structures, and supposed purpose.
+      </TypographyP>
+      <TypographyUnorderedList>
+        <li>
+          <b>Discover the sector's unique contact:</b> (
+          <span className="text-muted-foreground">
+            <div className="inline-block">
+              <Clock
+                max={3}
+                current={0}
+                clickable={false}
+                width={20}
+                height={20}
+              />
+            </div>
+          </span>
+          )
+        </li>
+        <li>
+          <b>Discover the sector's unique danger:</b> (
+          <span className="text-muted-foreground">
+            <div className="inline-block">
+              <Clock
+                max={3}
+                current={0}
+                clickable={false}
+                width={20}
+                height={20}
+              />
+            </div>
+          </span>
+          )
+        </li>
+        <li>
+          <b>Discover the sector's special feature:</b> (
+          <span className="text-muted-foreground">
+            <div className="inline-block">
+              <Clock
+                max={3}
+                current={0}
+                clickable={false}
+                width={20}
+                height={20}
+              />
+            </div>
+          </span>
+          )
+        </li>
+        <li>
+          <b>Discover the sector's special mission:</b> (
+          <span className="text-muted-foreground">
+            <div className="inline-block">
+              <Clock
+                max={5}
+                current={0}
+                clickable={false}
+                width={20}
+                height={20}
+              />
+            </div>
+          </span>
+          )
+        </li>
+      </TypographyUnorderedList>
+      <Separator className="mt-4" />
+      <TypographyH4>Trespass Unseen</TypographyH4>
+      <TypographyP>
+        The Steel Trap is guarded as heavily on the outside as it is on the
+        interior. But out there, there are are no machines and alleyways to hide
+        in. The sides of the factory are sheer metal and long drops. Coming and
+        going is a daunting prospect for even a single person.
+      </TypographyP>
+      <TypographyP>
+        But with the <b>Seeker's</b> guidance, it's possible. Each person who
+        wants to cross from the Steel Trap into Libery City or vice versa
+        requires <b>1 material</b> and <b>1 blood</b> or <b>1 water</b> apiece.
+      </TypographyP>
       <Separator className="mt-4" />
       <TypographyH3>Vault's Projects</TypographyH3>
       <Separator className="mt-4" />
