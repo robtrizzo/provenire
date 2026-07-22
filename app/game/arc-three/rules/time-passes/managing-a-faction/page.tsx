@@ -353,7 +353,8 @@ export default async function Page() {
       <TypographyH4>Train a Gang</TypographyH4>
       <TypographyP>
         When the <b>Auger</b> trains a gang, they have the option to add the{" "}
-        <b>Veterans</b> trait.
+        <b>Veterans</b> trait. They may train gangs in <b>fighting styles</b>{" "}
+        and <b>Aldams</b>.
       </TypographyP>
       <TypographyBlockquote>
         <b>Veterans</b>: whenever the gang survives a scrap, tick its{" "}
@@ -705,6 +706,98 @@ export default async function Page() {
       </TypographyP>
       <Separator className="mt-4" />
       <TypographyH3>Vault's Projects</TypographyH3>
+      <Separator className="mt-4" />
+      <TypographyH4>The Vault</TypographyH4>
+      <span className="text-muted-foreground">
+        <b>
+          <u>Improve</u>
+        </b>
+        :{" "}
+        <div className="inline-block">
+          <Clock max={3} current={0} clickable={false} width={20} height={20} />
+        </div>
+        , <b>1 material</b>, must be completed in order;{" "}
+        <b>
+          <u>Staff</u>
+        </b>
+        : <b>1 manpower</b>
+      </span>
+      <TypographyP>
+        The crew needs a place to store its most valuable assets, its armory,
+        and house its secret projects. But the Vault can be even more than that.
+        It could be the difference between life and death if the food situation
+        in Fabrication takes a turn for the worse.
+      </TypographyP>
+      <TypographyP>
+        The Vault stores resources like a faction does{" "}
+        <i className="text-muted-foreground">AND</i> has separate room for crew
+        resources. However, the Vault's <b>stockpiles</b> are not affected by
+        the <b>resource deltas</b> that affect factions. Its <b>stockpiles</b>{" "}
+        only change when resources are deliberately delivered or taken.
+      </TypographyP>
+      <TypographyBlockquote>
+        <b>The Vault</b> begins play with <b>1 stockpile</b> of{" "}
+        <b>blood, food, material,</b> and <b>water</b>.{" "}
+        <span className="text-muted-foreground">AND</span> space for the crew to
+        store up to <b>4</b> of each of those resources.
+      </TypographyBlockquote>
+      <TypographyOrderedList>
+        <li>
+          <b>Sturdy foundations:</b> walls sturdy enough to withstand the blows
+          of beasts. For a time.
+        </li>
+        <li>
+          <b>Strongboxes:</b> the crew can store up to <b>8 blood</b>,{" "}
+          <b>food</b>, <b>materials</b>, and <b>water</b>.
+        </li>
+        <li>
+          <b>Bunks:</b> a handful of rebels could lay low in here.
+        </li>
+        <li>
+          <b>Fortifications:</b> even particularly large beasts would struggle
+          to break through the layers of reinforced steel.
+        </li>
+      </TypographyOrderedList>
+      <Separator className="mt-4" />
+      <TypographyH4>Highways</TypographyH4>
+      <span className="text-muted-foreground">
+        <b>
+          <u>Cost</u>
+        </b>
+        :{" "}
+        <div className="inline-block">
+          <Clock max={7} current={0} clickable={false} width={20} height={20} />
+        </div>
+        , <b>3 material</b>, <b>1 manpower</b>
+      </span>
+      <TypographyP>
+        As it stands, there are no safe and reliable pathways to carry resources
+        between the neighborhoods of Fabrication. Without those, each
+        neighborhood is an island of drought or glut.
+      </TypographyP>
+      <TypographyP>
+        Once a highway has been established, trade can take place. But that's
+        not all - a maintained route is the destruction of a divide between
+        groups of people who have lived a lifetime in the artificial separation.
+        More workers will realize they descend from or identify with non-Rathi
+        cultural groups. Hostile factions will come into conflict.
+      </TypographyP>
+      <TypographyUnorderedList>
+        <li>
+          <b>Lofts to The Bends</b>: Cumerians, Anidinians, and Argosi have
+          cultural exchange; the Shrikes and Dominion come into conflict.
+        </li>
+        <li>
+          <b>The Bends to Fab Floor</b>: Anidinians, Argosi, Narscillians, and
+          Heians have cultural exchange; Dominion and the Scarbacks come into
+          conflict.
+        </li>
+        <li>
+          <b>Fab Floor to Stairwell</b>: Narscillians, Heians, Gredorans,
+          Kiposi, Kilder, and Ulgatians have cultural exchange. The Pits and the
+          Scarbacks come into conflict.
+        </li>
+      </TypographyUnorderedList>
       <Separator className="mt-4" />
       <div className="mb-8" />
     </>

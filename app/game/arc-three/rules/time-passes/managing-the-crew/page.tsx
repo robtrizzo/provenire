@@ -239,12 +239,13 @@ export default async function Page() {
         and <b>water</b> by <b>1</b>; by <b>2</b> the second time this is taken
       </TypographyP>
       <TypographyP>
-        <b>Training Room</b>: the crew may train each other and the crew's gangs
-        in their <b>fighting styles</b> and <b>Aldams</b>
+        <b>Training Room</b>: the crew may train its gangs during{" "}
+        <b>downtime</b> as a <b>project</b>. Gangs may learn{" "}
+        <b>fighting styles</b> and <b>Aldams</b>.
       </TypographyP>
       <TypographyP>
-        <b>Laundry</b>: you look the part. <b>+1 rep</b> on missions which the
-        crew makes a public appearance
+        <b>Workshops</b>: the crew can craft and improve its equipment during{" "}
+        <b>downtime</b> as a <b>project</b>.
       </TypographyP>
 
       <TypographyH4>Security</TypographyH4>
