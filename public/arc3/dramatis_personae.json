@@ -94,8 +94,7 @@
     "neighborhood": "Lofts",
     "faction": "Theta",
     "job": "Machinist",
-    "type": "npc",
-    "portrait": false
+    "type": "pc"
   },
   {
     "name": "Udigo",
@@ -128,7 +127,8 @@
     "neighborhood": "Fab Floor",
     "faction": "Theta",
     "job": "Operator",
-    "type": "npc"
+    "type": "npc",
+    "dead": true
   },
   {
     "name": "Frax",
@@ -149,7 +149,8 @@
     "neighborhood": "Stairwell",
     "faction": "Theta",
     "job": "Pit Fighter",
-    "type": "npc"
+    "type": "npc",
+    "dead": true
   },
   {
     "name": "Phaidime",
@@ -1055,7 +1056,8 @@
     "name": "Mediciner",
     "neighborhood": "The Bends",
     "faction": "Dominion",
-    "type": "npc"
+    "type": "npc",
+    "dead": true
   },
   {
     "name": "Johnny Fang",
@@ -1088,7 +1090,64 @@
   {
     "name": "Troy",
     "neighborhood": "Fab Floor",
+    "faction": "Theta",
     "type": "npc",
     "job": "Machinist"
+  },
+  {
+    "name": "Drew",
+    "neighborhood": "Fab Floor",
+    "faction": "Theta",
+    "type": "npc",
+    "job": "Stoker"
+  },
+  {
+    "name": "Nikki",
+    "neighborhood": "Fab Floor",
+    "faction": "Theta",
+    "type": "npc",
+    "job": "Scrapper"
+  },
+  {
+    "name": "Tenk",
+    "neighborhood": "Fab Floor",
+    "faction": "Theta",
+    "type": "npc",
+    "job": "Scrapper"
+  },
+  {
+    "name": "Lark",
+    "neighborhood": "Fab Floor",
+    "faction": "Theta",
+    "type": "npc",
+    "job": "Machinist"
+  },
+  {
+    "name": "Lashma",
+    "neighborhood": "Lofts",
+    "faction": "Raftertown",
+    "type": "npc",
+    "job": "Enforcer"
+  },
+  {
+    "name": "Lexus Buteo",
+    "neighborhood": "The Bends",
+    "faction": "Arbor Street",
+    "type": "npc",
+    "job": "Scrapper"
+  },
+  {
+    "name": "Yulgar",
+    "neighborhood": "Stairwell",
+    "faction": "Wolfden",
+    "type": "npc",
+    "job": "Enforcer"
+  },
+  {
+    "name": "Giacomo",
+    "neighborhood": "Liberty City",
+    "faction": "North Wind",
+    "type": "npc",
+    "job": "Spy"
   }
 ]

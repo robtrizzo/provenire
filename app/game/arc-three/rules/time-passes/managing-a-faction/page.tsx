@@ -353,7 +353,8 @@ export default async function Page() {
       <TypographyH4>Train a Gang</TypographyH4>
       <TypographyP>
         When the <b>Auger</b> trains a gang, they have the option to add the{" "}
-        <b>Veterans</b> trait.
+        <b>Veterans</b> trait. They may train gangs in <b>fighting styles</b>{" "}
+        and <b>Aldams</b>.
       </TypographyP>
       <TypographyBlockquote>
         <b>Veterans</b>: whenever the gang survives a scrap, tick its{" "}
@@ -514,9 +515,297 @@ export default async function Page() {
       <Separator className="mt-4" />
       <TypographyH3>Lock's Projects</TypographyH3>
       <Separator className="mt-4" />
+      <TypographyH4>Train a Gang</TypographyH4>
+      <TypographyP>
+        When the <b>Lock</b> trains a gang, they have the option to add the{" "}
+        <b>Defender</b> trait.
+      </TypographyP>
+      <TypographyBlockquote>
+        <b>Defender</b>: noncombatants can't be harmed so long as the gang is
+        standing
+      </TypographyBlockquote>
+      <Separator className="mt-4" />
+      <TypographyH4>Patrols</TypographyH4>
+      <TypographyP>
+        Every day there is incredible material waste and loss of life due to
+        systemic wanton violence. Many have tried to stem the flow and died in
+        their heroic pursuit. It's time to pick up the mantle and carry it
+        farther.
+      </TypographyP>
+      <TypographyP>
+        Once you have staffed your gangs, you may designate one faction's area
+        for each gang to patrol. For each of these gangs, you may choose any
+        number of threats they protect the workers from. Each one you choose
+        adds additional combats they will have to survive. If they survive a
+        combat, you gain the reward for their patrol.
+      </TypographyP>
+      <TypographyUnorderedList>
+        <li>
+          <b>Enforcers extoring workers for food:</b> that faction's{" "}
+          <b>food stockpile</b> is <b>1</b> higher this cycle;{" "}
+          <b>+1 goodwill</b>
+        </li>
+        <li>
+          <b>Infiltrators:</b> catch enemy spies and sabatours in the act;{" "}
+          <b>+1 intel</b>
+        </li>
+        <li>
+          <b>Beasts hunting workers for sport:</b> that faction contributes{" "}
+          <b>1</b> additional <b>manpower</b> this cycle; <b>+1 goodwill</b>
+        </li>
+        <li>
+          <b>Warring factions catching workers in the crossfire:</b> prevent the
+          war from impacting structures and crew projects; <b>+2 rep</b>
+        </li>
+      </TypographyUnorderedList>
+      <Separator className="mt-4" />
+      <TypographyH4>Prison</TypographyH4>
+      <span className="text-muted-foreground">
+        <b>
+          <u>Improve</u>
+        </b>
+        :{" "}
+        <div className="inline-block">
+          <Clock max={3} current={0} clickable={false} width={20} height={20} />
+        </div>
+        , 1 material;{" "}
+        <b>
+          <u>Staff</u>
+        </b>
+        : <b>1 manpower</b>
+      </span>
+      <TypographyP>
+        A prison inside of a prison. And distinct from the Penal Pens. A place
+        for punishment, reform, or to hold someone awaiting judgement. A far
+        sight from how the enforcers treat you - they would execute you on the
+        spot.
+      </TypographyP>
+      <TypographyP>
+        <b>A few rooms with big locks</b>: you can hold a gang of workers here
+      </TypographyP>
+      <TypographyP>
+        <b>Shackles</b>: you don't have to beat people to a pulp to move them
+      </TypographyP>
+      <TypographyP>
+        <b>Sturdy cage</b>: you can hold a single beast
+      </TypographyP>
+      <TypographyP>
+        <b>Stockades</b>: you can deliver justice in public. When you do,{" "}
+        <b>+1 rep</b>; <b>+1 scorn</b>
+      </TypographyP>
+      <Separator className="mt-4" />
+      <TypographyH4>Judgements</TypographyH4>
+      <TypographyP>
+        Whenever <b>time passes</b>, the <b>Lock</b> will be faced with open
+        ended choices about what to do with the crew's captured enemies and bad
+        actors within their own communities. These choices will affect the shape
+        of justice in Fabrication and how the crew is seen as a governing body.
+      </TypographyP>
+      <Separator className="mt-4" />
       <TypographyH3>Seeker's Projects</TypographyH3>
       <Separator className="mt-4" />
+      <TypographyH4>Heights and Depths</TypographyH4>
+      <TypographyP>
+        The <b>Seeker</b> can press on into parts unknown, finding secret
+        pathways between factory sectors. Each sector has one or more{" "}
+        <b>exploration clocks</b> necessary to complete before the route is
+        established. You can see the factory's sectors and connections{" "}
+        <Link href="/game/arc-three/appendix/factory-map">
+          <b className="text-red-500">
+            <u>here</u>
+          </b>
+        </Link>
+        .
+      </TypographyP>
+      <TypographyP>
+        The <b>Seeker</b> can recruit teams to help them in their travels. For
+        each <b>manpower</b> the <b>Seeker</b> spends, they advance an{" "}
+        <b>exploration clock</b> of their choice by <b>1</b>.
+      </TypographyP>
+      <Separator className="mt-4" />
+      <TypographyH4>Nooks and Crannies</TypographyH4>
+      <TypographyP>
+        Once the <b>Seeker</b> has discovered a pathway to a new sector, they
+        may begin to learn more about it. As they spend more time there, they
+        learn the sector's way of life, power structures, and supposed purpose.
+      </TypographyP>
+      <TypographyUnorderedList>
+        <li>
+          <b>Discover the sector's unique contact:</b> (
+          <span className="text-muted-foreground">
+            <div className="inline-block">
+              <Clock
+                max={3}
+                current={0}
+                clickable={false}
+                width={20}
+                height={20}
+              />
+            </div>
+          </span>
+          )
+        </li>
+        <li>
+          <b>Discover the sector's unique danger:</b> (
+          <span className="text-muted-foreground">
+            <div className="inline-block">
+              <Clock
+                max={3}
+                current={0}
+                clickable={false}
+                width={20}
+                height={20}
+              />
+            </div>
+          </span>
+          )
+        </li>
+        <li>
+          <b>Discover the sector's special feature:</b> (
+          <span className="text-muted-foreground">
+            <div className="inline-block">
+              <Clock
+                max={3}
+                current={0}
+                clickable={false}
+                width={20}
+                height={20}
+              />
+            </div>
+          </span>
+          )
+        </li>
+        <li>
+          <b>Discover the sector's special mission:</b> (
+          <span className="text-muted-foreground">
+            <div className="inline-block">
+              <Clock
+                max={5}
+                current={0}
+                clickable={false}
+                width={20}
+                height={20}
+              />
+            </div>
+          </span>
+          )
+        </li>
+      </TypographyUnorderedList>
+      <Separator className="mt-4" />
+      <TypographyH4>Trespass Unseen</TypographyH4>
+      <TypographyP>
+        The Steel Trap is guarded as heavily on the outside as it is on the
+        interior. But out there, there are are no machines and alleyways to hide
+        in. The sides of the factory are sheer metal and long drops. Coming and
+        going is a daunting prospect for even a single person.
+      </TypographyP>
+      <TypographyP>
+        But with the <b>Seeker's</b> guidance, it's possible. Each person who
+        wants to cross from the Steel Trap into Libery City or vice versa
+        requires <b>1 material</b> and <b>1 blood</b> or <b>1 water</b> apiece.
+      </TypographyP>
+      <Separator className="mt-4" />
       <TypographyH3>Vault's Projects</TypographyH3>
+      <Separator className="mt-4" />
+      <TypographyH4>The Vault</TypographyH4>
+      <span className="text-muted-foreground">
+        <b>
+          <u>Improve</u>
+        </b>
+        :{" "}
+        <div className="inline-block">
+          <Clock max={3} current={0} clickable={false} width={20} height={20} />
+        </div>
+        , <b>1 material</b>, must be completed in order;{" "}
+        <b>
+          <u>Staff</u>
+        </b>
+        : <b>1 manpower</b>
+      </span>
+      <TypographyP>
+        The crew needs a place to store its most valuable assets, its armory,
+        and house its secret projects. But the Vault can be even more than that.
+        It could be the difference between life and death if the food situation
+        in Fabrication takes a turn for the worse.
+      </TypographyP>
+      <TypographyP>
+        The Vault stores resources like a faction does{" "}
+        <i className="text-muted-foreground">AND</i> has separate room for crew
+        resources. However, the Vault's <b>stockpiles</b> are not affected by
+        the <b>resource deltas</b> that affect factions. Its <b>stockpiles</b>{" "}
+        only change when resources are deliberately delivered or taken.
+      </TypographyP>
+      <TypographyBlockquote>
+        <b>The Vault</b> begins play with <b>1 stockpile</b> of{" "}
+        <b>blood, food, material,</b> and <b>water</b>.{" "}
+        <span className="text-muted-foreground">AND</span> space for the crew to
+        store up to <b>4</b> of each of those resources.
+      </TypographyBlockquote>
+      <TypographyOrderedList>
+        <li>
+          <b>Sturdy foundations:</b> walls sturdy enough to withstand the blows
+          of beasts. For a time.
+        </li>
+        <li>
+          <b>Strongboxes:</b> the crew can store up to <b>8 blood</b>,{" "}
+          <b>food</b>, <b>materials</b>, and <b>water</b>.
+        </li>
+        <li>
+          <b>Bunks:</b> a handful of rebels could lay low in here.
+        </li>
+        <li>
+          <b>Fortifications:</b> even particularly large beasts would struggle
+          to break through the layers of reinforced steel.
+        </li>
+      </TypographyOrderedList>
+      <Separator className="mt-4" />
+      <TypographyH4>Highways</TypographyH4>
+      <span className="text-muted-foreground">
+        <b>
+          <u>Cost</u>
+        </b>
+        :{" "}
+        <div className="inline-block">
+          <Clock max={7} current={0} clickable={false} width={20} height={20} />
+        </div>
+        , <b>3 material</b>, <b>1 manpower</b>
+      </span>
+      <TypographyP>
+        As it stands, there are no safe and reliable pathways to carry resources
+        between the neighborhoods of Fabrication. Without those, each
+        neighborhood is an island of drought or glut.
+      </TypographyP>
+      <TypographyP>
+        Once a highway has been established, trade can take place. But that's
+        not all - a maintained route is the destruction of a divide between
+        groups of people who have lived a lifetime in the artificial separation.
+        More workers will realize they descend from or identify with non-Rathi
+        cultural groups. Hostile factions will come into conflict.
+      </TypographyP>
+      <TypographyUnorderedList>
+        <li>
+          <b>Lofts to The Bends</b>: Cumerians, Anidinians, and Argosi have
+          cultural exchange; the Shrikes and Dominion come into conflict.
+        </li>
+        <li>
+          <b>The Bends to Fab Floor</b>: Anidinians, Argosi, Narscillians, and
+          Heians have cultural exchange; Dominion and the Scarbacks come into
+          conflict.
+        </li>
+        <li>
+          <b>Fab Floor to Stairwell</b>: Narscillians, Heians, Gredorans,
+          Kiposi, Kilder, and Ulgatians have cultural exchange. The Pits and the
+          Scarbacks come into conflict.
+        </li>
+        <li>
+          <b>Fabrication to the Penal Pens</b>: the crew can conceivably lead an
+          assaulting force to free the prisoners trapped in the pens.
+        </li>
+        <li>
+          <b>Fabrication to Liberty City</b>: the workers of Fabrication can
+          finally be free... <i>expect considerable opposition</i>
+        </li>
+      </TypographyUnorderedList>
       <Separator className="mt-4" />
       <div className="mb-8" />
     </>
