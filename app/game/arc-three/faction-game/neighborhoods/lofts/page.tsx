@@ -223,7 +223,7 @@ export default async function Page() {
                 <b>Blood:</b> <b>1</b> = <i>Scarce</i>
               </span>
               <span className="text-muted-foreground">
-                <b>Food:</b> <b>2</b> = <i>Adequate</i>
+                <b>Food:</b> <b>3</b> = <i>Surplus</i>
               </span>
               <span className="text-muted-foreground">
                 <b>Materials:</b> <b>0</b> = <i>None</i>
@@ -282,7 +282,7 @@ export default async function Page() {
                 <b>Blood:</b> <b>1</b> = <i>Scarce</i>
               </span>
               <span className="text-muted-foreground">
-                <b>Food:</b> <b>2</b> = <i>Adequate</i>
+                <b>Food:</b> <b>3</b> = <i>Surplus</i>
               </span>
               <span className="text-muted-foreground">
                 <b>Materials:</b> <b>2</b> = <i>Adequate</i>
