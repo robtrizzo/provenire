@@ -20,16 +20,11 @@ import { TypographyP } from "@/components/ui/typography";
 import { useRoll } from "@/contexts/arc3RollContext";
 import {
   AldamDie,
-  calculateAdvantageProbability,
-  calculateCritProbability,
-  calculateEffectProbability,
-  calculateThreatProbability,
   DonumDie,
   FortuneDice,
   PushDie,
   TransformationDie,
 } from "@/lib/dice";
-import type { DieVariant } from "@/types/dice";
 import {
   Clover,
   Dices,
@@ -42,7 +37,6 @@ import {
   X,
 } from "lucide-react";
 import { FC, useState } from "react";
-import { Die } from "../../../../../../components/dice/dice";
 import { cn } from "@/lib/utils";
 import { useCharacterSheet } from "@/contexts/arc3CharacterSheetContext";
 import {
@@ -117,12 +111,9 @@ const RollSection = () => {
           <X /> Clear
         </Button>
       </div>
-      <BondDiceSection />
-      <Separator />
       <BonusDiceSection />
       <Separator />
-      <FortuneSection />
-      {/* <DetailsSection /> */}
+      <BondDiceSection />
     </Card>
   );
 };
@@ -244,103 +235,6 @@ function RollSelect({ disabled = false }: { disabled?: boolean }) {
   );
 }
 
-/**
- * Only use this for debugging. Currently the calculations are fairly poorly optimized
- * and will lock out the browser at ~9 dice
- */
-function DetailsSection() {
-  const { dice } = useRoll();
-
-  const [showDetails, setShowDetails] = useState(false);
-
-  const sortedDice = () => {
-    // Define the order for each type
-    const typeOrder: Record<DieVariant, number> = {
-      aptitude: 0,
-      skill: 1,
-      bond: 2,
-      push: 3,
-      aldam: 4,
-      donum: 5,
-      transformation: 6,
-      default: 0,
-      fortune: 0,
-    };
-
-    // If your dice have a 'type' or 'variant' property, adjust accordingly
-    return [...dice].sort((a, b) => {
-      // Use 'variant' or 'type' as appropriate for your dice objects
-      const aType = typeOrder[a.variant] ?? 99;
-      const bType = typeOrder[b.variant] ?? 99;
-      return aType - bType;
-    });
-  };
-
-  const successStats = calculateEffectProbability(dice);
-  const threatStats = calculateThreatProbability(dice);
-  const advantageStats = calculateAdvantageProbability(dice);
-  const critStats = calculateCritProbability(dice);
-
-  return (
-    <Collapsible
-      className="relative"
-      open={showDetails}
-      onOpenChange={setShowDetails}
-    >
-      <Separator />
-      <div className="flex justify-center mt-4">
-        <span className="uppercase text-xs text-muted-foreground">Details</span>
-      </div>
-      <CollapsibleTrigger className="absolute top-1 right-0" asChild>
-        <Button variant="ghost" size="icon">
-          {showDetails ? <Eye /> : <EyeClosed />}
-        </Button>
-      </CollapsibleTrigger>
-      <CollapsibleContent>
-        <div className="mt-2 flex flex-col gap-1">
-          {sortedDice().map((d, idx) => (
-            <div className="mx-auto" key={idx + (d.label || "")}>
-              <Die die={d} size={64} />
-            </div>
-          ))}
-        </div>
-        <div className="mt-2 flex flex-col text-sm gap-1">
-          <code className="text-sky-600 font-bold">
-            Success: {successStats.anyEffectProbability.toFixed(2)}%{" | "}
-            <span className="text-sky-700">
-              Reduced: {successStats.reducedEffectProbability.toFixed(2)}%
-            </span>{" "}
-            <span className="text-sky-500">
-              Standard: {successStats.standardEffectProbability.toFixed(2)}%
-            </span>{" "}
-            <span className="text-sky-300">
-              Enhanced: {successStats.enhancedEffectProbability.toFixed(2)}%
-            </span>
-          </code>
-          <code className="text-red-600 font-bold">
-            Threat: {threatStats.threatProbability.toFixed(2)}%{" | "}
-            {threatStats.threatCountDistribution.map((tp, idx) => {
-              const colorValue = Math.min(400 + idx * 100, 900);
-              const color = `text-red-${colorValue}`;
-              return (
-                <span className={color}>
-                  {idx} Threat{idx !== 1 ? "s" : ""}: {tp.toFixed(2)}%{" "}
-                </span>
-              );
-            })}
-          </code>
-          <code className="text-yellow-600 font-bold">
-            Advantage: {advantageStats.advantageProbability.toFixed(2)}%
-          </code>
-          <code className="text-emerald-600 font-bold">
-            Crit: {critStats.critProbability.toFixed(2)}%
-          </code>
-        </div>
-      </CollapsibleContent>
-    </Collapsible>
-  );
-}
-
 function BondDiceSection() {
   const { dice, removeDiceByLabel } = useRoll();
   const bonds = dice.reduce(
@@ -397,6 +291,11 @@ function BonusDiceSection() {
     0,
   );
   const containsTransformationDie = numTransformationDie > 0;
+  const numFortuneDie = dice.reduce(
+    (acc, d) => (d.variant === "fortune" ? acc + 1 : acc),
+    0,
+  );
+  const containsFortuneDie = numFortuneDie > 0;
 
   return (
     <>
@@ -494,78 +393,27 @@ function BonusDiceSection() {
             <code>{numDonumDie}</code>
           </div>
         </Button>
+        <Button
+          variant="outline"
+          className={cn(
+            containsFortuneDie && "border-slate-600!",
+            "flex items-center justify-center",
+          )}
+          onClick={() => {
+            addDice([{ ...FortuneDice[1], label: "fortune", level: 1 }]);
+          }}
+          onContextMenu={(e) => {
+            e.preventDefault();
+            removeDieByLabel("fortune-1");
+          }}
+        >
+          <b className="uppercase text-slate-600">Fortune</b>
+          <div className="rounded-full bg-slate-600 text-white dark:text-black font-extrabold w-4 h-4 flex items-center justify-center">
+            <code>{numFortuneDie}</code>
+          </div>
+        </Button>
       </div>
     </>
-  );
-}
-
-function FortuneSection() {
-  const { doRoll } = useRoll();
-
-  const [showFortune, setShowFortune] = useState(false);
-  const [fortuneDice, setFortuneDice] = useState(0);
-
-  const handleFortuneRoll = () => {
-    const dice =
-      fortuneDice === 0
-        ? [{ ...FortuneDice[0], label: "fortune" }]
-        : Array.from({ length: fortuneDice }, (_, i) => ({
-            ...FortuneDice[1],
-            label: `fortune-${i + 1}`,
-          }));
-    doRoll(dice, "Fortune");
-    setFortuneDice(0);
-  };
-
-  return (
-    <Collapsible
-      className="relative"
-      open={showFortune}
-      onOpenChange={setShowFortune}
-    >
-      <div className="flex justify-center">
-        <span className="uppercase text-xs text-muted-foreground">Fortune</span>
-      </div>
-      <CollapsibleTrigger className="absolute -top-3 right-0" asChild>
-        <Button variant="ghost" size="icon">
-          {showFortune ? <Eye /> : <EyeClosed />}
-        </Button>
-      </CollapsibleTrigger>
-      <CollapsibleContent>
-        <div className="mt-2 flex items-center justify-center gap-1">
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={() => {
-              setFortuneDice(Math.max(0, fortuneDice - 1));
-            }}
-          >
-            <Minus />
-          </Button>
-          <Input
-            type="number"
-            className="w-18"
-            value={fortuneDice}
-            onChange={(e) => {
-              e.preventDefault();
-              setFortuneDice(parseInt(e.target.value));
-            }}
-          />
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={() => {
-              setFortuneDice(fortuneDice + 1);
-            }}
-          >
-            <Plus />
-          </Button>
-          <Button variant="secondary" onClick={handleFortuneRoll}>
-            <Clover /> Roll
-          </Button>
-        </div>
-      </CollapsibleContent>
-    </Collapsible>
   );
 }
 
