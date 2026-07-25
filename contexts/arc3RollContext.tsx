@@ -1,4 +1,4 @@
-import { AptitudeDice, BondDice, SkillDice } from "@/lib/dice";
+import { AptitudeDice, BondDice, FortuneDice, SkillDice } from "@/lib/dice";
 import { ActionV3 } from "@/types/arc3";
 import type { Die } from "@/types/dice";
 import {
@@ -326,7 +326,11 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   }
 
   async function doRoll(diceOverride?: Die[], tagOverride?: string) {
-    const diceToRoll = !!diceOverride ? diceOverride : dice;
+    let diceToRoll = !!diceOverride ? diceOverride : dice;
+    if (diceToRoll.length === 0) {
+      diceToRoll = [{ ...FortuneDice[0], level: 0 }];
+      tagOverride = "Desperation";
+    }
     const rolledFaces: number[] = diceToRoll.reduce(
       (acc: number[], die) => [
         ...acc,

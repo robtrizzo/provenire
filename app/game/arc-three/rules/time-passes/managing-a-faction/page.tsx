@@ -358,7 +358,7 @@ export default async function Page() {
       </TypographyP>
       <TypographyBlockquote>
         <b>Veterans</b>: whenever the gang survives a scrap, tick its{" "}
-        <b>improvement clock</b> by the gang's remaining wounds
+        <b>improvement clock</b> by the gang's remaining <b>toughness</b>
       </TypographyBlockquote>
       <Separator className="mt-4" />
       <TypographyH4>Raid</TypographyH4>

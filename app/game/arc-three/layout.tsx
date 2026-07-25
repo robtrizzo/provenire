@@ -141,6 +141,10 @@ const navigationData = [
         url: "/game/arc-three/faction-game/council",
       },
       {
+        title: "Gangs",
+        url: "/game/arc-three/faction-game/gangs",
+      },
+      {
         title: "Neighborhoods",
         url: "/game/arc-three/faction-game/neighborhoods",
         items: [
