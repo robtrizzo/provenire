@@ -338,13 +338,18 @@
     "name": "Donum Ventus",
     "shortDescription": "Gift of Wind",
     "abilities": [
+      { "name": "Donum Ventus", "slug": "donum-ventus", "cost": 0 },
+      { "name": "Burst", "slug": "burst", "cost": 3 },
+      { "name": "Hover", "slug": "hover", "cost": 3 },
+      { "name": "Doldrum", "slug": "doldrum", "cost": 3 },
+      { "name": "Windworn", "slug": "windworn", "cost": 3 },
+      { "name": "Keel", "slug": "keel", "cost": 3 },
       {
-        "name": "Donum Ventus",
-        "slug": "donum-ventus",
-        "cost": 0
+        "name": "Devilish Winds",
+        "slug": "devilish-winds",
+        "cost": 3
       }
-    ],
-    "wip": true
+    ]
   },
   {
     "name": "Donum Vitae",
