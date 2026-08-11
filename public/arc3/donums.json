@@ -301,10 +301,36 @@
     "name": "Donum Umbra",
     "shortDescription": "Gift of Shade",
     "abilities": [
+      { "name": "Donum Umbra", "slug": "donum-umbra", "cost": 0 },
       {
-        "name": "Donum Umbra",
-        "slug": "donum-umbra",
-        "cost": 0
+        "name": "Summon Sister Shade",
+        "slug": "summon-sister-shade",
+        "cost": 3
+      },
+      {
+        "name": "Shade Shield",
+        "slug": "shade-shield",
+        "cost": 3
+      },
+      {
+        "name": "Disperse",
+        "slug": "disperse",
+        "cost": 3
+      },
+      {
+        "name": "Coalesce",
+        "slug": "coalesce",
+        "cost": 3
+      },
+      {
+        "name": "Cocoon",
+        "slug": "cocoon",
+        "cost": 3
+      },
+      {
+        "name": "Creatures of the Dark",
+        "slug": "creatures-of-the-dark",
+        "cost": 3
       }
     ],
     "wip": true
