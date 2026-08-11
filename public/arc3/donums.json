@@ -301,25 +301,55 @@
     "name": "Donum Umbra",
     "shortDescription": "Gift of Shade",
     "abilities": [
+      { "name": "Donum Umbra", "slug": "donum-umbra", "cost": 0 },
       {
-        "name": "Donum Umbra",
-        "slug": "donum-umbra",
-        "cost": 0
+        "name": "Summon Sister Shade",
+        "slug": "summon-sister-shade",
+        "cost": 3
+      },
+      {
+        "name": "Shade Shield",
+        "slug": "shade-shield",
+        "cost": 3
+      },
+      {
+        "name": "Disperse",
+        "slug": "disperse",
+        "cost": 3
+      },
+      {
+        "name": "Coalesce",
+        "slug": "coalesce",
+        "cost": 4
+      },
+      {
+        "name": "Cocoon",
+        "slug": "cocoon",
+        "cost": 4
+      },
+      {
+        "name": "Creatures of the Dark",
+        "slug": "creatures-of-the-dark",
+        "cost": 4
       }
-    ],
-    "wip": true
+    ]
   },
   {
     "name": "Donum Ventus",
     "shortDescription": "Gift of Wind",
     "abilities": [
+      { "name": "Donum Ventus", "slug": "donum-ventus", "cost": 0 },
+      { "name": "Burst", "slug": "burst", "cost": 3 },
+      { "name": "Hover", "slug": "hover", "cost": 3 },
+      { "name": "Doldrum", "slug": "doldrum", "cost": 3 },
+      { "name": "Windworn", "slug": "windworn", "cost": 3 },
+      { "name": "Keel", "slug": "keel", "cost": 3 },
       {
-        "name": "Donum Ventus",
-        "slug": "donum-ventus",
-        "cost": 0
+        "name": "Devilish Winds",
+        "slug": "devilish-winds",
+        "cost": 3
       }
-    ],
-    "wip": true
+    ]
   },
   {
     "name": "Donum Vitae",
