@@ -320,20 +320,19 @@
       {
         "name": "Coalesce",
         "slug": "coalesce",
-        "cost": 3
+        "cost": 4
       },
       {
         "name": "Cocoon",
         "slug": "cocoon",
-        "cost": 3
+        "cost": 4
       },
       {
         "name": "Creatures of the Dark",
         "slug": "creatures-of-the-dark",
-        "cost": 3
+        "cost": 4
       }
-    ],
-    "wip": true
+    ]
   },
   {
     "name": "Donum Ventus",
