@@ -81,7 +81,6 @@ const navigationData = [
         items: donums.map((d) => ({
           title: d.name,
           url: `/game/arc-three/character-options/donums/${slugify(d.name)}`,
-          wip: d.wip,
         })),
       },
       {
