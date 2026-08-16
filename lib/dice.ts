@@ -26,7 +26,7 @@ export const BondDice: Record<0 | 1 | 2 | 3 | 4, Die> = {
 };
 
 export const PushDie: Die = {
-  faces: ["t", "t", "t", "_", "tac:r", "ec:e"],
+  faces: ["t", "t", "t", "_", "ac:r", "ec:e"],
   variant: "push",
 };
 
