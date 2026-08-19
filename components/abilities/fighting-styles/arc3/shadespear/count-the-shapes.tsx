@@ -4,9 +4,6 @@ import { TypographyP } from "@/components/ui/typography";
 export default function CountTheShapes() {
   return (
     <>
-      <span className="text-sm text-muted-foreground">
-        <u>Prerequisite:</u> Sister Shade Isn&apos;t Smiling
-      </span>
       <TypographyP>
         Unsettled and frightened foes have no way of knowing how many opponents
         they face. While you have{" "}

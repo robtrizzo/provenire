@@ -4,9 +4,6 @@ import { TypographyP } from "@/components/ui/typography";
 export default function FatalOpening() {
   return (
     <>
-      <span className="text-sm text-muted-foreground">
-        <u>Prerequisite:</u> Pack Tactics
-      </span>
       <TypographyP>
         When you feint a charge, you grant an ally{" "}
         <InlineSymbol>

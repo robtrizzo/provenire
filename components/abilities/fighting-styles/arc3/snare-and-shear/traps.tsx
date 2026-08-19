@@ -2,9 +2,6 @@ import { TypographyP } from "@/components/ui/typography";
 export default function Traps() {
   return (
     <>
-      <span className="text-sm text-muted-foreground">
-        <u>Prerequisite:</u> By any Means
-      </span>
       <TypographyP>
         Most prey in the swamplands are too fast or durable to be killed
         outright, so laying traps is a fundamental skill for Kilder hunters.

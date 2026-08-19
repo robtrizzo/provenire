@@ -4,9 +4,6 @@ import { TypographyP } from "@/components/ui/typography";
 export default function CirclesInTheSand() {
   return (
     <>
-      <span className="text-sm text-muted-foreground">
-        <u>Prerequisite:</u> Dancing Fan
-      </span>
       <TypographyP>
         The foundation of the dance is circles. The reach of your blade, the
         flow of your footwork, the angle of your attacks. Putting it all

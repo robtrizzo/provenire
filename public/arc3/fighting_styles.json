@@ -2,12 +2,8 @@
   {
     "name": "Backsnap",
     "shortDescription": "Overwhelming aggression",
+    "description": "Backsnappers utilize such a frightening recklessness that most think their tactics thoughtless. Much to the contrary, it takes a special kind of resolve to risk the body as backsnappers do; and a practiced technique to crush foes' bodies in the way they do.",
     "abilities": [
-      {
-        "name": "Reckless Mindset",
-        "slug": "reckless-mindset",
-        "cost": 3
-      },
       {
         "name": "Immediate Brutality",
         "slug": "immediate-brutality",
@@ -33,18 +29,15 @@
   {
     "name": "Blazing Arrow",
     "shortDescription": "",
+    "description": "",
     "abilities": [],
     "wip": true
   },
   {
     "name": "Bleedout",
     "shortDescription": "Small, precise strikes in vital regions",
+    "description": "Bleedouts lurk on the periphery of battle, waiting for their chance to strike and retreat once again. They train to watch their foes closely and to stab precisely with quick weapons.",
     "abilities": [
-      {
-        "name": "Skirmish",
-        "slug": "skirmish",
-        "cost": 3
-      },
       {
         "name": "Debilitating Strikes",
         "slug": "debilitating-strikes",
@@ -70,12 +63,8 @@
   {
     "name": "Crowdbreaking",
     "shortDescription": "Maximize damage to groups of surrounding foes",
+    "description": "Crowdbreakers utilize large sweeping weapons like chains and whips. The basic motions of crowdbreaking are slow, methodical, powerful, and intimidating.",
     "abilities": [
-      {
-        "name": "Basic Weapons Training",
-        "slug": "basic-weapons-training",
-        "cost": 3
-      },
       {
         "name": "Cascade",
         "slug": "cascade",
@@ -101,8 +90,8 @@
   {
     "name": "Desert Fan",
     "shortDescription": "Hold your ground beautifully",
+    "description": "There are few things Engel and his fellow Ulgatians loved more than Narscillian song and dance. Engel became so fascinated by the playful twirls that he adapted it into his own domain of sword arts.",
     "abilities": [
-      { "name": "Dancing Fan", "slug": "dancing-fan", "cost": 3 },
       {
         "name": "Circles in the Sand",
         "slug": "circles-in-the-sand",
@@ -116,8 +105,8 @@
   {
     "name": "Horizon's Edge",
     "shortDescription": "Single powerful strikes",
+    "description": "One decisive strike is greater than a thousand shallow cuts. But before pupils even pick up a sword, Engel trains them to see <i>the line</i>. It's not just an angle of attack - it's the precise moment your opponent has over-committed to a motion.",
     "abilities": [
-      { "name": "The Line", "slug": "the-line", "cost": 3 },
       { "name": "Snap", "slug": "snap", "cost": 3 },
       { "name": "Aftershock", "slug": "aftershock", "cost": 5 },
       { "name": "Reactive Edge", "slug": "reactive-edge", "cost": 3 },
@@ -131,12 +120,8 @@
   {
     "name": "Kiss of the Viper",
     "shortDescription": "Bring foes low with venomed weaponry",
+    "description": "The Bwarhein taught Engel how to extract and mix venoms from their jungle. There are no flowers, snakes, or frogs in the Steel Trap. But through ceaseless experimentation, Engel taught himself how to mix toxins born from reagents, runoff, and tar.",
     "abilities": [
-      {
-        "name": "The Factory Has Fangs",
-        "slug": "the-factory-has-fangs",
-        "cost": 3
-      },
       { "name": "Kiss", "slug": "kiss", "cost": 3 },
       { "name": "Viper Strike", "slug": "viper-strike", "cost": 3 },
       { "name": "Patience", "slug": "patience", "cost": 4 },
@@ -146,8 +131,8 @@
   {
     "name": "Long-knife Style",
     "shortDescription": "Fight dirty and leave grisly wounds",
+    "description": "Why play anyone else's game? You work to make them fight in the way that suits you best. It's all about footwork and quick slashes.",
     "abilities": [
-      { "name": "Spacing", "slug": "spacing", "cost": 3 },
       { "name": "Open Hand", "slug": "open-hand", "cost": 3 },
       { "name": "Ruiner", "slug": "ruiner", "cost": 4 },
       { "name": "Leverage", "slug": "leverage", "cost": 4 },
@@ -157,8 +142,8 @@
   {
     "name": "Mason's Method",
     "shortDescription": "Pick away at your foe's defenses",
+    "description": "You aren't so much of a warrior as you are a methodical artisan. You manage momentum, implacably maneuvering your oponents into a corner. Then you guide blunt objects to ring their bones like brittle bells.",
     "abilities": [
-      { "name": "Dead Weight", "slug": "dead-weight", "cost": 3 },
       { "name": "Chilseling Strikes", "slug": "chiseling-strikes", "cost": 3 },
       { "name": "Trickster's Grin", "slug": "tricksters-grin", "cost": 4 },
       { "name": "Breakpoint", "slug": "breakpoint", "cost": 4 },
@@ -168,12 +153,8 @@
   {
     "name": "Mirado",
     "shortDescription": "Situational awareness and adaptability",
+    "description": "Mirado is the hand to hand martial art which compliments soldiers equipped with integrated combat awareness systems. Mirado is about centering yourself in the eye of the storm and reacting to the situation as it changes.",
     "abilities": [
-      {
-        "name": "Combat Awareness",
-        "slug": "combat-awareness",
-        "cost": 3
-      },
       {
         "name": "Combat Instinct",
         "slug": "combat-instinct",
@@ -199,18 +180,15 @@
   {
     "name": "Phalanx",
     "shortDescription": "",
+    "description": "",
     "abilities": [],
     "wip": true
   },
   {
     "name": "Pipedancing",
     "shortDescription": "Maneuver through the machinery and use it to your advantage",
+    "description": "Pipedancers dart and tumble through the twisted machinery. They evade attacks and stay one step ahead of their pursuers. When they bring the attack to their foes, it's with quick thinking and whatever they can find at hand.",
     "abilities": [
-      {
-        "name": "Basic Movements",
-        "slug": "basic-movements",
-        "cost": 3
-      },
       {
         "name": "Improvised Weaponry",
         "slug": "improvised-weaponry",
@@ -236,12 +214,8 @@
   {
     "name": "Shadespear",
     "shortDescription": "Wield disorientation and fear as weapons",
+    "description": "Shadespear's doctrine isn't about fighting <i>despite</i> the dark - it's about wielding disorientation and fear. Blossoming a bead of uncertainty into panicked hesitations. Then you can give Sister Shade something to smile about.",
     "abilities": [
-      {
-        "name": "Sister Shade Isn't Smiling",
-        "slug": "sister-shade-isnt-smiling",
-        "cost": 3
-      },
       { "name": "Count the Shapes", "slug": "count-the-shapes", "cost": 3 },
       {
         "name": "Use Your Imagination",
@@ -255,11 +229,12 @@
   {
     "name": "Shapes of War",
     "shortDescription": "Execute your role in battle formations",
+    "description": "What the Kilder lack in Donums and equipment they make up for with discipline and teamwork. Kilder's armies drilled their soldiers in a variety of formations; each one tailored to the weaknesses of a particular foe.",
     "abilities": [
       {
         "name": "Drills",
         "slug": "drills",
-        "cost": 3
+        "cost": 0
       },
       {
         "name": "Gut Cutter",
@@ -286,12 +261,8 @@
   {
     "name": "Snare and Shear",
     "shortDescription": "Drag foes down with every trick in your arsenal",
+    "description": "There's no such thing as honor in a hunt. Kilder hunters use every dirty trick available to them; advantages are foolish to disregard. And when the quarry is sufficiently weakened, that's when it&apos;s time to finish them.",
     "abilities": [
-      {
-        "name": "By any Means",
-        "slug": "by-any-means",
-        "cost": 3
-      },
       {
         "name": "Traps",
         "slug": "traps",
@@ -317,12 +288,8 @@
   {
     "name": "Throatgore",
     "shortDescription": "Pack tactics, go for the throat",
+    "description": "Throatgores train to fight as part of a small unit. They watch for opportunities their allies create, or create those opportunities themselves. And when the time is right, they pounce.",
     "abilities": [
-      {
-        "name": "Pack Tactics",
-        "slug": "pack-tactics",
-        "cost": 3
-      },
       {
         "name": "Coordinated Assault",
         "slug": "coordinated-assault",

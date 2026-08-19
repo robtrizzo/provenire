@@ -4,9 +4,6 @@ import { TypographyP } from "@/components/ui/typography";
 export default function UseYourImagination() {
   return (
     <>
-      <span className="text-sm text-muted-foreground">
-        <u>Prerequisite:</u> Sister Shade Isn&apos;t Smiling
-      </span>
       <TypographyP>
         If you simply wait and watch, the murderous silence unsettles or
         frightens your foes. Gain{" "}

@@ -4,9 +4,6 @@ import { TypographyP } from "@/components/ui/typography";
 export default function IsolatingCounter() {
   return (
     <>
-      <span className="text-sm text-muted-foreground">
-        <u>Prerequisite:</u> Pack Tactics
-      </span>
       <TypographyP>
         If an isolated foe attacks an ally, you gain an opportunity to interfere
         with <b>-1 stress cost</b> on a{" "}

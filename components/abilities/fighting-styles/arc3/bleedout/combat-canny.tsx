@@ -4,9 +4,6 @@ import { TypographyP } from "@/components/ui/typography";
 export default function CombatCanny() {
   return (
     <>
-      <span className="text-sm text-muted-foreground">
-        <u>Prerequisite:</u> Skirmish
-      </span>
       <TypographyP>
         After spending some time fighting a foe, gain{" "}
         <InlineSymbol>

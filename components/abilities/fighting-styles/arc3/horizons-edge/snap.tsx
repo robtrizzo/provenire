@@ -3,7 +3,7 @@ export default function Snap() {
   return (
     <>
       <span className="text-sm text-muted-foreground">
-        <u>Prerequisite:</u> The Line, an Aldam
+        <u>Prerequisite:</u> an Aldam
       </span>
       <TypographyP>
         Nicknamed <i>&quot;snap&quot;</i> for the sound novices&apos; bodies

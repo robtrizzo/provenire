@@ -4,9 +4,6 @@ import { TypographyP } from "@/components/ui/typography";
 export default function TrickstersGrin() {
   return (
     <>
-      <span className="text-sm text-muted-foreground">
-        <u>Prerequisite:</u> Dead Weight
-      </span>
       <TypographyP>
         It&apos;s like you said, you&apos;re not a warrior; you&apos;re an
         artisan... of lies. Your posture carries no killer intent; your

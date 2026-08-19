@@ -5,9 +5,6 @@ import { TypographyP } from "@/components/ui/typography";
 export default function TheDance() {
   return (
     <>
-      <span className="text-sm text-muted-foreground">
-        <u>Prerequisite:</u> Basic Movements
-      </span>
       <TypographyP>
         For as long as you choose to evade attacks instead of attacking a foe,
         you cannot be caught by someone without special training (

@@ -1,6 +1,10 @@
 import ClockCost from "@/components/clock-cost";
 import { Separator } from "@/components/ui/separator";
-import { TypographyH2, TypographyH3 } from "@/components/ui/typography";
+import {
+  TypographyH2,
+  TypographyH3,
+  TypographyP,
+} from "@/components/ui/typography";
 import { FightingStyleV3 } from "@/types/game";
 import { Fragment } from "react/jsx-runtime";
 import Ability from "@/components/abilities/ability";
@@ -42,6 +46,7 @@ function FightingStyle({ fightingStyle }: { fightingStyle: FightingStyleV3 }) {
         {fightingStyle.shortDescription}
       </span>
       <Separator />
+      <TypographyP>{fightingStyle.description}</TypographyP>
       <>
         {fightingStyle.abilities.map((ability, idx) => (
           <Fragment key={idx}>
