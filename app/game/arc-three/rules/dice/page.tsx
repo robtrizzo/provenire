@@ -12,6 +12,7 @@ import {
   ThetaTriple,
   Threat,
   ThreatSpread,
+  XP,
 } from "@/components/dice/dice-symbols";
 import { Die, DieFace } from "@/components/dice/dice";
 import Breadcrumbs from "@/components/ui/breadcrumbs";
@@ -32,6 +33,7 @@ import {
   PushDie,
   SkillDice,
   TransformationDie,
+  DefianceDie,
 } from "@/lib/dice";
 import Link from "next/link";
 import {
@@ -998,6 +1000,22 @@ export default function Page() {
           </TableRow>
         </TableBody>
       </Table>
+      <TypographyH4>Defiance</TypographyH4>
+      <TypographyP>
+        When a player rolls three consecutive failures, they gain a defiance
+        die. When they roll a success, they lose a defiance die. Fortune rolls
+        don't contribute towards or benefit from defiance dice.
+      </TypographyP>
+      <div className="my-4">
+        <Die die={DefianceDie} />
+      </div>
+      <TypographyP>
+        So what's the new face for? For each{" "}
+        <InlineSymbol>
+          <XP />
+        </InlineSymbol>{" "}
+        you roll, mark <b>1 xp</b> or clear <b>1 stress</b>: your choice.
+      </TypographyP>
       <div className="mb-16" />
     </>
   );

@@ -236,6 +236,8 @@ const getDefaultState = () => ({
   clocks: [],
   items: [],
   notes: [] as NoteEntry[],
+  failStreak: 0,
+  defianceCount: 0,
 });
 
 interface CharacterSheetState {
@@ -272,6 +274,8 @@ interface CharacterSheetState {
   clocks: ClockEntry[];
   items: ItemEntry[];
   notes: NoteEntry[];
+  failStreak: number;
+  defianceCount: number;
 }
 
 // Actions — add new cases here

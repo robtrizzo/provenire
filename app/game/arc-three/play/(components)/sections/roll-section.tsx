@@ -1,10 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
 import { Label } from "@/components/ui/label";
 import {
   Select,
@@ -25,18 +20,8 @@ import {
   PushDie,
   TransformationDie,
 } from "@/lib/dice";
-import {
-  Clover,
-  Dices,
-  Eye,
-  EyeClosed,
-  Minus,
-  MousePointer2,
-  MousePointerClick,
-  Plus,
-  X,
-} from "lucide-react";
-import { FC, useState } from "react";
+import { Dices, MousePointer2, MousePointerClick, X } from "lucide-react";
+import { FC } from "react";
 import { cn } from "@/lib/utils";
 import { useCharacterSheet } from "@/contexts/arc3CharacterSheetContext";
 import {
@@ -44,7 +29,6 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Input } from "@/components/ui/input";
 import DiceDialog from "../dialogs/dice-dialog";
 
 type RollSection = FC & {};
@@ -270,6 +254,7 @@ function BondDiceSection() {
 
 function BonusDiceSection() {
   const { dice, addDice, removeDieByLabel } = useRoll();
+  const { state } = useCharacterSheet();
 
   const numPushDie = dice.reduce(
     (acc, d) => (d.variant === "push" ? acc + 1 : acc),
@@ -296,6 +281,8 @@ function BonusDiceSection() {
     0,
   );
   const containsFortuneDie = numFortuneDie > 0;
+
+  const numDefianceDice = state.defianceCount;
 
   return (
     <>
@@ -410,6 +397,18 @@ function BonusDiceSection() {
           <b className="uppercase text-slate-600">Fortune</b>
           <div className="rounded-full bg-slate-600 text-white dark:text-black font-extrabold w-4 h-4 flex items-center justify-center">
             <code>{numFortuneDie}</code>
+          </div>
+        </Button>
+        <Button
+          variant="outline"
+          className={cn(
+            numDefianceDice > 0 && "border-rose-600!",
+            "flex items-center justify-center",
+          )}
+        >
+          <b className="uppercase text-rose-600">Defiance</b>
+          <div className="rounded-full bg-rose-600 text-white dark:text-black font-extrabold w-4 h-4 flex items-center justify-center">
+            <code>{numDefianceDice}</code>
           </div>
         </Button>
       </div>
