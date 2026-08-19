@@ -8,6 +8,7 @@ import {
   Threat,
   ThreatSpread,
   ThreatWrapped,
+  XP,
 } from "./dice-symbols";
 import { ReactNode } from "react";
 import type { Die, DieFace, DieVariant, EffectDegree } from "@/types/dice";
@@ -46,6 +47,7 @@ export function renderFaceSymbols(face: DieFace): ReactNode {
   const hasThreat = base.includes("t");
 
   const hasAdvantage = base.includes("a");
+  const hasXP = base.includes("x");
   const hasEffect = effectDegree !== null;
 
   // If face has effect, threats are "spread" (use ThreatSpread instead of Threat)
@@ -63,6 +65,7 @@ export function renderFaceSymbols(face: DieFace): ReactNode {
     <>
       {hasThreat && threatSymbol}
       {hasAdvantage && <Advantage />}
+      {hasXP && <XP />}
       {getEffectSymbol(effectDegree)}
     </>
   );

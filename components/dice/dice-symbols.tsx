@@ -311,3 +311,16 @@ export const Sun = () => {
     </g>
   );
 };
+
+export const XP = () => {
+  return (
+    <g transform="rotate(45, 12, 12)">
+      <path
+        d="M 12 6 L 12.85 11.15 L 18 12 L 12.85 12.85 L 12 18 L 11.15 12.85 L 6 12 L 11.15 11.15 Z"
+        fill="oklch(.606 .25 292.717)"
+        stroke="oklch(.38 .189 293.745)"
+        strokeWidth={0.3}
+      />
+    </g>
+  );
+};

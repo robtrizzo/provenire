@@ -1,4 +1,10 @@
-import { AptitudeDice, BondDice, FortuneDice, SkillDice } from "@/lib/dice";
+import {
+  AptitudeDice,
+  BondDice,
+  DefianceDie,
+  FortuneDice,
+  SkillDice,
+} from "@/lib/dice";
 import { ActionV3 } from "@/types/arc3";
 import type { Die } from "@/types/dice";
 import {
@@ -19,7 +25,7 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { DieFace } from "@/components/dice/dice";
 import { RollArc3 } from "@/types/roll";
-import { useField } from "./arc3CharacterSheetContext";
+import { useCharacterSheet, useField } from "./arc3CharacterSheetContext";
 import { RealtimeChannel } from "@supabase/supabase-js";
 import supabase from "@/lib/supabase";
 import { getActionsFromTag } from "@/lib/roll";
@@ -66,6 +72,7 @@ export default function RollProvider({ children }: { children: ReactNode }) {
   const { toast } = useToast();
   const [name] = useField("name");
   const [rolls, setRolls] = useState<RollArc3[]>([]);
+  const { state, dispatch } = useCharacterSheet();
 
   const isAuthenticated = !!session?.data?.user?.id;
   const username = session?.data?.user.name || "";
@@ -325,11 +332,30 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     return rollLeft?.name ?? rollRight?.name ?? "";
   }
 
+  function hasSuccess(dice: Die[], rolledFaces: number[]) {
+    return dice.some((die, i) => die.faces[rolledFaces[i]].includes(":"));
+  }
+
+  function isFortuneOnlyRoll(dice: Die[]) {
+    return dice.every((d) => d.variant === "fortune");
+  }
+
   async function doRoll(diceOverride?: Die[], tagOverride?: string) {
     let diceToRoll = !!diceOverride ? diceOverride : dice;
     if (diceToRoll.length === 0) {
       diceToRoll = [{ ...FortuneDice[0], level: 0 }];
       tagOverride = "Desperation";
+    }
+    const isFortuneOnly = isFortuneOnlyRoll(diceToRoll);
+    if (!isFortuneOnly) {
+      const defianceDice = Array.from(
+        { length: state.defianceCount },
+        (_, i) => ({
+          ...DefianceDie,
+          label: `defiance-${i}`,
+        }),
+      );
+      diceToRoll.push(...defianceDice);
     }
     const rolledFaces: number[] = diceToRoll.reduce(
       (acc: number[], die) => [
@@ -354,6 +380,30 @@ export default function RollProvider({ children }: { children: ReactNode }) {
             event: "roll",
             payload: JSON.stringify(roll),
           });
+        }
+      }
+      if (!isPrivate && !isFortuneOnly) {
+        if (hasSuccess(diceToRoll, rolledFaces)) {
+          dispatch({ type: "SET_FIELD", field: "failStreak", value: 0 });
+          dispatch({
+            type: "SET_FIELD",
+            field: "defianceCount",
+            value: Math.max(0, state.defianceCount - 1),
+          });
+        } else {
+          const newStreak = state.failStreak + 1;
+          dispatch({
+            type: "SET_FIELD",
+            field: "failStreak",
+            value: newStreak,
+          });
+          if (newStreak % 3 === 0) {
+            dispatch({
+              type: "SET_FIELD",
+              field: "defianceCount",
+              value: state.defianceCount + 1,
+            });
+          }
         }
       }
     } catch (error) {

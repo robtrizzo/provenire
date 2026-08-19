@@ -1,5 +1,5 @@
 // Base faces without any effect
-export type BaseFace = "t" | "a" | "ta" | "tt" | "_";
+export type BaseFace = "t" | "a" | "ta" | "tt" | "x" | "_";
 
 // Effect degrees: r = reduced, s = standard, e = enhanced
 export type EffectDegree = "r" | "s" | "e";
@@ -37,4 +37,5 @@ export type DieVariant =
   | "donum"
   | "aldam"
   | "transformation"
-  | "fortune";
+  | "fortune"
+  | "defiance";

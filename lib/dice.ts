@@ -50,6 +50,11 @@ export const FortuneDice: Record<0 | 1, Die> = {
   1: { faces: ["tc", "t", "t", "t:r", "t:r", "ec:s"], variant: "fortune" },
 };
 
+export const DefianceDie: Die = {
+  faces: ["x", "x", "x", "a", "a", "ec:s"],
+  variant: "defiance",
+};
+
 // Helper to get max die level from a dice set
 export function getMaxDieLevel(diceSet: Record<number, Die>): number {
   return Math.max(...Object.keys(diceSet).map(Number));
