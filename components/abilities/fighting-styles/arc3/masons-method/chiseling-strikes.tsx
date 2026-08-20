@@ -4,9 +4,6 @@ import { TypographyP } from "@/components/ui/typography";
 export default function ChiselingStrikes() {
   return (
     <>
-      <span className="text-sm text-muted-foreground">
-        <u>Prerequisite:</u> Dead Weight
-      </span>
       <TypographyP>
         The second time you strike a foe, you may spend{" "}
         <InlineSymbol>

@@ -588,11 +588,8 @@ export default function Page() {
         Instead, enjoy your access to advantage and enhanced effect!
       </TypographyP>
       <TypographyP>
-        There are a few other dice which can be added to your rolls in certain
-        circumstances. You will either have abilities which explicitly tell you
-        to add one of these to a roll or we can use these in circumstances where
-        it makes sense that a power would grant you a bonus but there&apos;s no
-        explicit rule for it. These dice have no levels.
+        Alternatively, when already using an <b>aldam</b>, <b>donum</b>, or{" "}
+        <b>transformation</b>, you may push yourself for the respective die.
       </TypographyP>
       <TypographyP>
         <code className="text-red-900 dark:text-red-300">aldam die</code>

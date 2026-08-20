@@ -4,9 +4,6 @@ import { TypographyP } from "@/components/ui/typography";
 export default function Kiss() {
   return (
     <>
-      <span className="text-sm text-muted-foreground">
-        <u>Prerequisite:</u> The Factory Has Fangs
-      </span>
       <TypographyP>
         When you strike a foe you can spend{" "}
         <InlineSymbol>

@@ -2,9 +2,6 @@ import { TypographyP } from "@/components/ui/typography";
 export default function PredatoryFocus() {
   return (
     <>
-      <span className="text-sm text-muted-foreground">
-        <u>Prerequisite:</u> Skirmish
-      </span>
       <TypographyP>
         If you choose to focus your attention on a single foe, you gain an
         opportunity to strike them unless they also devote their full attention

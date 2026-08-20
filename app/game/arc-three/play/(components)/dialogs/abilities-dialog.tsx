@@ -14,7 +14,7 @@ import {
 import type { Ability } from "@/types/game";
 import { useState } from "react";
 import AbilityComponent from "@/components/abilities/ability";
-import { TypographyH4 } from "@/components/ui/typography";
+import { TypographyH4, TypographyP } from "@/components/ui/typography";
 import ClockCost from "@/components/clock-cost";
 import { Switch } from "@/components/ui/switch";
 import { cn, slugify } from "@/lib/utils";
@@ -28,6 +28,7 @@ interface NavItem {
   categoryOverride?: string;
   sourceKey: string;
   abilities: Ability[];
+  description?: string;
 }
 
 const SOURCE_COLORS: Record<keyof UnlockedAbilities, string> = {
@@ -89,6 +90,7 @@ function useNavItems(): NavItem[] {
       categoryOverride: "fighting-styles",
       sourceKey: fs.name,
       abilities: fs.abilities,
+      description: fs.description,
     });
   }
   for (const aldam of state.aldams) {
@@ -219,6 +221,7 @@ function AbilityDetail({ item }: { item: NavItem }) {
           {item.sublabel}
         </p>
       </div>
+      <TypographyP className="text-sm">{item.description}</TypographyP>
       {item.abilities.length === 0 ? (
         <p className="text-sm text-muted-foreground">No abilities available.</p>
       ) : (

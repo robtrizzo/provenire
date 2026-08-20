@@ -9,8 +9,8 @@
       "description": "Stand strong in the face of a higher authority or insurmountable odds."
     },
     {
-      "name": "Stealth",
-      "description": "Employ subtlety; avoid notice."
+      "name": "Prowl",
+      "description": "Skirt the edges of danger unnoticed."
     },
     {
       "name": "Survey",
@@ -215,10 +215,6 @@
       "description": "Present a false front or disguise your true intentions."
     },
     {
-      "name": "Prowl",
-      "description": "Skirt the edges of danger unnoticed."
-    },
-    {
       "name": "Rally",
       "description": "Inspire others to come together and act as one."
     },
@@ -261,6 +257,10 @@
     {
       "name": "Stalk",
       "description": "Follow someone or something without being noticed."
+    },
+    {
+      "name": "Stealth",
+      "description": "Employ subtlety; avoid notice."
     },
     {
       "name": "Step",

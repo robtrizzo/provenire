@@ -4,9 +4,6 @@ import { TypographyP } from "@/components/ui/typography";
 export default function OpenHand() {
   return (
     <>
-      <span className="text-sm text-muted-foreground">
-        <u>Prerequisite:</u> Spacing
-      </span>
       <TypographyP>
         When you strike a foe who you&apos;ve forced into awkward spacing, you
         may spend{" "}

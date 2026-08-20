@@ -4,9 +4,6 @@ import { TypographyP } from "@/components/ui/typography";
 export default function CoordinatedAssault() {
   return (
     <>
-      <span className="text-sm text-muted-foreground">
-        <u>Prerequisite:</u> Pack Tactics
-      </span>
       <TypographyP>
         When you assist a teammate on an attack, on a{" "}
         <InlineSymbol>

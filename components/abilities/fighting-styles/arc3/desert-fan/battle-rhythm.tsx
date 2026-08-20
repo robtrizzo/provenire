@@ -4,9 +4,6 @@ import { TypographyP } from "@/components/ui/typography";
 export default function BattleRhythm() {
   return (
     <>
-      <span className="text-sm text-muted-foreground">
-        <u>Prerequisite:</u> Dancing Fan
-      </span>
       <TypographyP>
         Your swirling blades can be dangerous to allies just as much as foes.
         But to the initiated, the blades swing to a predictable beat. Allies

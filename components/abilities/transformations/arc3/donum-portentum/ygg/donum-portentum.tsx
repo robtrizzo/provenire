@@ -18,11 +18,12 @@ export default function DonumPortentumYgg() {
         <i>painful</i>, and <i>destructive</i>. It can take several minutes, but
         once complete it comes with all the power of this ravenous flesh. Your
         sense of smell, strength, and natural healing are enhanced. For the
-        duration of your transformation, gain{" "}
+        duration of your transformation, you may spend <b>1 stress</b> to push
+        for{" "}
         <code>
           <b className="text-orange-500">+1 transformation</b>
         </code>{" "}
-        to rolls which your form is suited to.
+        on a roll.
       </TypographyP>
       <TypographyP>
         The way you sense living things fundamentally changes. You cannot

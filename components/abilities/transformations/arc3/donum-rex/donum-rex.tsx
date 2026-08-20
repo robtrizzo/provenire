@@ -20,12 +20,13 @@ export default function DonumRex() {
       </TypographyP>
       <TypographyP>
         While in wolf form, your sense of smell, strength, and natural healing
-        are enhanced. For the duration of your transformation, gain{" "}
+        are enhanced. For the duration of your transformation, you may spend{" "}
+        <b>1 stress</b> to push for{" "}
         <code>
           <b className="text-orange-500">+1 transformation</b>
         </code>{" "}
-        to rolls which your form is suited to. At the end of your
-        transformation, tick your <b>healing clock</b> by <b>2</b>.
+        on a roll. At the end of your transformation, tick your{" "}
+        <b>healing clock</b> by <b>2</b>.
       </TypographyP>
     </>
   );

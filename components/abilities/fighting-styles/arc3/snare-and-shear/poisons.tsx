@@ -4,9 +4,6 @@ import { TypographyP } from "@/components/ui/typography";
 export default function Poisons() {
   return (
     <>
-      <span className="text-sm text-muted-foreground">
-        <u>Prerequisite:</u> By any Means
-      </span>
       <TypographyP>
         The swamplands holds an abundance of deadly toxins and creatures who use
         them. The Steel Trap&apos;s predators may be incredibly different, but

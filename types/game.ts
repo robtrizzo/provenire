@@ -501,6 +501,7 @@ export type BackgroundV3 = Described & {
 
 export type FightingStyleV3 = Described & {
   abilities: Ability[];
+  description: string;
 };
 
 export type AldamV3 = Described & {

@@ -368,7 +368,7 @@
       { "name": "Challenge", "level": [3] },
       { "name": "Comfort", "level": [2, 1] },
       { "name": "Frighten", "level": [2] },
-      { "name": "Prowl", "level": [2] },
+      { "name": "Stalk", "level": [2] },
       { "name": "Survival (Jungle)", "level": [2, 2] }
     ]
   },
