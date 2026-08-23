@@ -37,7 +37,7 @@ export default async function Page() {
       <TypographyP>
         A concrete structure nearly a quarter the size of Foundry in its
         entirety. Within Complex are dormitories, meal halls and social spaces.
-        Bbeasts and their chosen enforcer pets manage Foundry from the lap of
+        Beasts and their chosen enforcer pets manage Foundry from the lap of
         luxury.
       </TypographyP>
       <TypographyP>
