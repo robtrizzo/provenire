@@ -7,11 +7,15 @@ export default function FactoryMap() {
         <div className="h-36 w-36 bg-muted-foreground text-primary-foreground flex items-center justify-center">
           FOUNDRY
         </div>
-        <Clock max={5} current={0} clickable={false} width={32} height={32} />
+        <div className="h-8 w-36 flex items-center justify-center">
+          <div className="w-2 h-8 bg-muted-foreground" />
+        </div>
         <div className="h-36 w-36 bg-secondary text-secondary-foreground flex items-center justify-center">
           FABRICATION
         </div>
-        <Clock max={5} current={4} clickable={false} width={32} height={32} />
+        <div className="h-8 w-36 flex items-center justify-center">
+          <div className="w-2 h-8 bg-muted-foreground" />
+        </div>
         <div className="h-36 w-36 bg-muted-foreground text-primary-foreground flex items-center justify-center">
           FORGE
         </div>
