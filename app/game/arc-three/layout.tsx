@@ -144,26 +144,38 @@ const navigationData = [
         url: "/game/arc-three/faction-game/gangs",
       },
       {
-        title: "Neighborhoods",
-        url: "/game/arc-three/faction-game/neighborhoods",
+        title: "Fabrication",
+        url: "/game/arc-three/faction-game/fabrication",
         items: [
           {
             title: "Lofts",
-            url: "/game/arc-three/faction-game/neighborhoods/lofts",
+            url: "/game/arc-three/faction-game/fabrication/lofts",
           },
           {
             title: "The Bends",
-            url: "/game/arc-three/faction-game/neighborhoods/the-bends",
+            url: "/game/arc-three/faction-game/fabrication/the-bends",
           },
           {
             title: "Fab Floor",
-            url: "/game/arc-three/faction-game/neighborhoods/fab-floor",
+            url: "/game/arc-three/faction-game/fabrication/fab-floor",
           },
           {
             title: "Stairwell",
-            url: "/game/arc-three/faction-game/neighborhoods/stairwell",
+            url: "/game/arc-three/faction-game/fabrication/stairwell",
           },
         ],
+      },
+      {
+        title: "Forge",
+        url: "/game/arc-three/faction-game/forge",
+      },
+      {
+        title: "Foundry",
+        url: "/game/arc-three/faction-game/foundry",
+      },
+      {
+        title: "Penal Pens",
+        url: "/game/arc-three/faction-game/penal-pens",
       },
       {
         title: "Resources",
