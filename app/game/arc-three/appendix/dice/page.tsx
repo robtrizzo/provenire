@@ -9,6 +9,7 @@ import {
   AldamDie,
   AptitudeDice,
   BondDice,
+  DefianceDie,
   DonumDie,
   FortuneDice,
   PushDie,
@@ -166,6 +167,12 @@ export default async function Page() {
         <code className="text-gray-900 dark:text-gray-200">fortune die</code>:
       </TypographyP>
       <Die size={64} die={FortuneDice[1]} />
+      <TypographyH2>Defiance Dice</TypographyH2>
+      <TypographyP>
+        <code className="text-rose-900 dark:text-rose-200">defiance die</code>:
+      </TypographyP>
+      <Die size={64} die={DefianceDie} />
+      <div className="mt-8" />
     </>
   );
 }

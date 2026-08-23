@@ -11,7 +11,7 @@ export default async function Page() {
   return (
     <>
       <Breadcrumbs />
-      <TypographyH1>Neighborhoods</TypographyH1>
+      <TypographyH1>Fabrication</TypographyH1>
       <TypographyH2>Lofts</TypographyH2>
       <TypographyP>
         Thousands of homes arranged on catwalks and platforms above the main
@@ -35,7 +35,7 @@ export default async function Page() {
         rafters that extends far past where the eye can see. Presumably where
         Amalina and her flock lives.
       </TypographyP>
-      <Link href="neighborhoods/lofts">
+      <Link href="fabrication/lofts">
         <TypographyP>
           <b className="text-red-500">
             <u>Factions</u> <ChevronRight className="inline-block" />
@@ -65,7 +65,7 @@ export default async function Page() {
         life. Some kind of incident burnt the residents alive and now it&apos;s
         encased in still-smoldering tar.
       </TypographyP>
-      <Link href="neighborhoods/the-bends">
+      <Link href="fabrication/the-bends">
         <TypographyP>
           <b className="text-red-500">
             <u>Factions</u> <ChevronRight className="inline-block" />
@@ -95,7 +95,7 @@ export default async function Page() {
         also the floor itself for a decent swath of the area. Tara is
         notoriously tempermental and requires offerings to keep her happy.
       </TypographyP>
-      <Link href="neighborhoods/fab-floor">
+      <Link href="fabrication/fab-floor">
         <TypographyP>
           <b className="text-red-500">
             <u>Factions</u> <ChevronRight className="inline-block" />
@@ -126,7 +126,7 @@ export default async function Page() {
         hot and freezing cold pipes creating an interesting battlefield that
         changes a bit every time the machines decide to shift.
       </TypographyP>
-      <Link href="neighborhoods/stairwell">
+      <Link href="fabrication/stairwell">
         <TypographyP>
           <b className="text-red-500">
             <u>Factions</u> <ChevronRight className="inline-block" />
