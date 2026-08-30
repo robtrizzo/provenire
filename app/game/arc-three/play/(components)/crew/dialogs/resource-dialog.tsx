@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { useCrewResource } from "@/contexts/arc3CrewSheetContext";
 import { ReactNode, useState } from "react";
 import {
   BookOpen,
@@ -12,9 +11,9 @@ import {
   Minus,
   Plus,
   Speech,
+  Trash2,
   Wheat,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
 import {
   Dialog,
   DialogContent,
@@ -22,7 +21,25 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { FieldSeparator } from "@/components/ui/field";
+import {
+  ResourceProject,
+  useResourceProjects,
+} from "@/contexts/arc3CrewSheetContext";
+import { nanoid } from "@/lib/nanoid";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import Clock from "@/components/clock";
+import ClockCost from "@/components/clock-cost";
+import { Switch } from "@/components/ui/switch";
+import { cn } from "@/lib/utils";
+import XPClocks from "@/components/character-sheet/xp-clocks";
+import { useResource } from "@/contexts/arc3CrewSheetContext";
 
 type Resource = {
   key: string;
@@ -174,7 +191,7 @@ export default function ResourcesDialog() {
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-lg p-0 gap-0 overflow-hidden">
-        <div className="flex h-[460px]">
+        <div className="flex h-115">
           {/* Sidebar */}
           <nav className="flex flex-col w-36 border-r shrink-0">
             <DialogHeader className="px-4 py-4 border-b">
@@ -205,99 +222,187 @@ export default function ResourcesDialog() {
 }
 
 function ResourceDetail({ resource }: { resource: Resource }) {
-  console.log("resource", resource);
+  const { resource: crewResource, updateResource } = useResource(
+    resource.label.toLocaleLowerCase(),
+  );
   return (
-    <div className="flex flex-col flex-1 p-6 gap-5 overflow-y-auto">
+    <div className="max-w-90 flex flex-col flex-1 p-6 gap-5 overflow-y-auto">
       <div className="flex items-center justify-center gap-2 font-semibold">
         {resource.icon}
         {resource.label}
       </div>
 
-      <ResourceControls name={resource.key} location="lair" />
-      <ResourceControls name={resource.key} location="vault" />
+      <XPClocks key={resource.label + crewResource.current}>
+        <XPClocks.Clocks
+          initial={crewResource.current}
+          max={crewResource.max}
+          setVal={(n) => updateResource({ current: n })}
+        />
+        <XPClocks.Controls
+          initial={crewResource.current}
+          setVal={(n) => updateResource({ current: n })}
+          addLabel="+"
+          removeLabel="-"
+        />
+      </XPClocks>
 
       {resource.description}
+
+      <ResourceProjects name={resource.key} />
     </div>
   );
 }
 
-function ResourceControls({
-  name,
-  location,
-}: {
-  name: string;
-  location: "vault" | "lair";
-}) {
-  const [res, set] = useCrewResource(location, name);
+function ResourceProjects({ name }: { name: string }) {
+  const { projects, addProject, removeProject, updateProject } =
+    useResourceProjects(name);
+  const [projectName, setProjectName] = useState("");
+  const [projectDescription, setProjectDescription] = useState("");
+  const [cost, setCost] = useState(1);
+  const [type, setType] = useState<"repeatable" | "unlockable">("repeatable");
 
-  if (!res) return null;
+  function handleAdd() {
+    const trimmed = projectName.trim();
+    if (!trimmed) return;
+    addProject({
+      id: nanoid(),
+      type,
+      name: trimmed,
+      description: projectDescription.trim() || undefined,
+      cost: Math.max(1, cost),
+      ...(type === "unlockable" ? { unlocked: false } : {}),
+    });
+    setProjectName("");
+    setProjectDescription("");
+    setCost(1);
+  }
 
   return (
-    <>
-      <FieldSeparator>
-        <span className="uppercase">{location}</span>
-      </FieldSeparator>
-      <div className="flex items-center justify-center gap-6">
-        <div className="flex flex-col items-center gap-1">
-          <span className="text-xs text-muted-foreground">Current</span>
-          <div className="flex items-center gap-1">
-            <Button
-              size="icon"
-              variant="outline"
-              className="h-7 w-7"
-              onClick={() => set("current", res.current - 1)}
-            >
-              <Minus className="h-3 w-3" />
-            </Button>
-            <span
-              className={cn(
-                "w-6 text-center tabular-nums",
-                res.current === 0 && "text-muted-foreground",
-                res.current > res.max && "text-red-500",
-              )}
-            >
-              {res.current}
-            </span>
-            <Button
-              size="icon"
-              variant="outline"
-              className="h-7 w-7"
-              onClick={() => set("current", res.current + 1)}
-            >
-              <Plus className="h-3 w-3" />
-            </Button>
-          </div>
-        </div>
-        <div className="flex flex-col items-center gap-1">
-          <span className="text-xs text-muted-foreground">Max</span>
-          <div className="flex items-center gap-1">
-            <Button
-              size="icon"
-              variant="outline"
-              className="h-7 w-7"
-              onClick={() => set("max", res.max - 1)}
-            >
-              <Minus className="h-3 w-3" />
-            </Button>
-            <span
-              className={cn(
-                "w-6 text-center tabular-nums",
-                res.max === 0 && "text-muted-foreground",
-              )}
-            >
-              {res.max}
-            </span>
-            <Button
-              size="icon"
-              variant="outline"
-              className="h-7 w-7"
-              onClick={() => set("max", res.max + 1)}
-            >
-              <Plus className="h-3 w-3" />
-            </Button>
-          </div>
-        </div>
+    <div className="flex flex-col gap-3">
+      <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+        Projects
+      </span>
+
+      <div className="flex items-center gap-2">
+        <Select value={type} onValueChange={(v) => setType(v as typeof type)}>
+          <SelectTrigger className="h-8 w-32 text-xs">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="repeatable">Repeatable</SelectItem>
+            <SelectItem value="unlockable">Unlockable</SelectItem>
+          </SelectContent>
+        </Select>
+        <Input
+          placeholder="Project name…"
+          value={projectName}
+          onChange={(e) => setProjectName(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && handleAdd()}
+          className="h-8 text-sm"
+        />
+        <Input
+          type="number"
+          min={1}
+          value={cost}
+          onChange={(e) => setCost(Math.max(1, Number(e.target.value)))}
+          className="h-8 w-16 text-sm"
+          aria-label="Clock cost"
+        />
+        <Button
+          size="sm"
+          className="h-8"
+          disabled={!projectName.trim()}
+          onClick={handleAdd}
+        >
+          Add
+        </Button>
       </div>
-    </>
+      <Input
+        placeholder="Description (optional)…"
+        value={projectDescription}
+        onChange={(e) => setProjectDescription(e.target.value)}
+        className="h-8 text-sm"
+      />
+
+      {projects.length > 0 && (
+        <div className="flex flex-col gap-2">
+          {projects.map((p) => (
+            <ProjectRow
+              key={p.id}
+              project={p}
+              onUpdate={(changes) => updateProject(p.id, changes)}
+              onRemove={() => removeProject(p.id)}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ProjectRow({
+  project,
+  onUpdate,
+  onRemove,
+}: {
+  project: ResourceProject;
+  onUpdate: (changes: Partial<Omit<ResourceProject, "id">>) => void;
+  onRemove: () => void;
+}) {
+  if (project.type === "unlockable") {
+    return (
+      <div
+        className={cn(
+          "flex items-start gap-3",
+          !project.unlocked && "opacity-50",
+        )}
+      >
+        <Switch
+          checked={project.unlocked ?? false}
+          onCheckedChange={(checked) => onUpdate({ unlocked: checked })}
+          aria-label={project.unlocked ? "Lock project" : "Unlock project"}
+        />
+        <div className="flex flex-col flex-1 min-w-0">
+          <span className="text-sm font-medium">{project.name}</span>
+          {project.description && (
+            <span className="text-xs text-muted-foreground wrap">
+              {project.description}
+            </span>
+          )}
+        </div>
+        <ClockCost r={24} ticks={6} num={project.cost} />
+        <Button
+          size="icon"
+          variant="ghost"
+          className="h-7 w-7 shrink-0 text-muted-foreground hover:text-destructive"
+          onClick={onRemove}
+        >
+          <Trash2 className="h-3.5 w-3.5" />
+        </Button>
+      </div>
+    );
+  }
+
+  // repeatable
+  return (
+    <div className="flex items-start gap-3">
+      <ClockCost r={24} ticks={6} num={project.cost} />
+      <div className="flex flex-col flex-1 min-w-0">
+        <span className="text-sm font-medium truncate">{project.name}</span>
+        {project.description && (
+          <span className="text-xs text-muted-foreground">
+            {project.description}
+          </span>
+        )}
+      </div>
+      <Button
+        size="icon"
+        variant="ghost"
+        className="h-7 w-7 shrink-0 text-muted-foreground hover:text-destructive"
+        onClick={onRemove}
+      >
+        <Trash2 className="h-3.5 w-3.5" />
+      </Button>
+    </div>
   );
 }

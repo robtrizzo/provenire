@@ -19,14 +19,20 @@ const SAVE_DEBOUNCE_MS = 1500;
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-export interface ResourceStore {
-  lair: Record<string, Resource>;
-  vault: Record<string, Resource>;
-}
-
 export interface Resource {
   current: number;
   max: number;
+  projects: ResourceProject[];
+}
+export type ResourceStore = Record<string, Resource>;
+
+export interface ResourceProject {
+  id: string;
+  type: "repeatable" | "unlockable";
+  name: string;
+  description?: string;
+  cost: number;
+  unlocked?: boolean; // only meaningful when type === "unlockable"
 }
 
 export interface ItemTrait {
@@ -102,22 +108,14 @@ export interface CrewSheetState {
 // ─── Defaults ─────────────────────────────────────────────────────────────────
 
 export const DEFAULT_RESOURCES: ResourceStore = {
-  lair: {
-    blood: { current: 0, max: 2 },
-    water: { current: 0, max: 2 },
-    food: { current: 0, max: 1 },
-    materials: { current: 0, max: 1 },
-    rep: { current: 0, max: 1 },
-    goodwill: { current: 0, max: 1 },
-    intel: { current: 0, max: 1 },
-    manpower: { current: 0, max: 1 },
-  },
-  vault: {
-    blood: { current: 0, max: 4 },
-    water: { current: 0, max: 4 },
-    food: { current: 0, max: 4 },
-    materials: { current: 0, max: 4 },
-  },
+  blood: { current: 0, max: 6, projects: [] },
+  water: { current: 0, max: 6, projects: [] },
+  food: { current: 0, max: 6, projects: [] },
+  materials: { current: 0, max: 6, projects: [] },
+  rep: { current: 0, max: 6, projects: [] },
+  goodwill: { current: 0, max: 6, projects: [] },
+  intel: { current: 0, max: 6, projects: [] },
+  manpower: { current: 0, max: 6, projects: [] },
 };
 
 const getDefaultState = (): CrewSheetState => ({
@@ -136,10 +134,16 @@ type CrewSheetAction =
   | { type: "SET_FIELD"; field: "heat" | "escalation"; value: number }
   | {
       type: "UPDATE_RESOURCE";
-      location: "lair" | "vault";
       resource: string;
-      field: "current" | "max";
-      value: number;
+      changes: Partial<Pick<Resource, "current" | "max">>;
+    }
+  | { type: "ADD_RESOURCE_PROJECT"; resource: string; payload: ResourceProject }
+  | { type: "REMOVE_RESOURCE_PROJECT"; resource: string; id: string }
+  | {
+      type: "UPDATE_RESOURCE_PROJECT";
+      resource: string;
+      id: string;
+      changes: Partial<Omit<ResourceProject, "id">>;
     }
   | { type: "ADD_ITEM"; payload: ItemEntry }
   | { type: "REMOVE_ITEM"; id: string }
@@ -181,19 +185,54 @@ function reducer(
     case "SET_FIELD":
       return { ...state, [action.field]: Math.max(0, action.value) };
     case "UPDATE_RESOURCE": {
-      const store = state.resources[action.location];
-      const res = store[action.resource];
-      if (!res) return state;
+      const res =
+        state.resources[action.resource] ?? DEFAULT_RESOURCES[action.resource];
       return {
         ...state,
         resources: {
           ...state.resources,
-          [action.location]: {
-            ...store,
-            [action.resource]: {
-              ...res,
-              [action.field]: Math.max(0, action.value),
-            },
+          [action.resource]: { ...res, ...action.changes },
+        },
+      };
+    }
+    case "ADD_RESOURCE_PROJECT": {
+      const res =
+        state.resources[action.resource] ?? DEFAULT_RESOURCES[action.resource];
+      return {
+        ...state,
+        resources: {
+          ...state.resources,
+          [action.resource]: {
+            ...res,
+            projects: [...res.projects, action.payload],
+          },
+        },
+      };
+    }
+    case "REMOVE_RESOURCE_PROJECT": {
+      const res = state.resources[action.resource];
+      return {
+        ...state,
+        resources: {
+          ...state.resources,
+          [action.resource]: {
+            ...res,
+            projects: res.projects.filter((p) => p.id !== action.id),
+          },
+        },
+      };
+    }
+    case "UPDATE_RESOURCE_PROJECT": {
+      const res = state.resources[action.resource];
+      return {
+        ...state,
+        resources: {
+          ...state.resources,
+          [action.resource]: {
+            ...res,
+            projects: res.projects.map((p) =>
+              p.id === action.id ? { ...p, ...action.changes } : p,
+            ),
           },
         },
       };
@@ -293,15 +332,31 @@ function reducer(
             : s,
         ),
       };
-    case "SYNC_REMOTE":
+    case "SYNC_REMOTE": {
+      const incoming = action.payload.resources ?? {};
+      const sanitized: ResourceStore = {};
+      for (const key of Object.keys(DEFAULT_RESOURCES)) {
+        const val = incoming[key];
+        sanitized[key] =
+          val &&
+          typeof val === "object" &&
+          !Array.isArray(val) &&
+          "current" in val
+            ? {
+                current: (val as Resource).current ?? 0,
+                max: (val as Resource).max ?? 8,
+                projects: Array.isArray((val as Resource).projects)
+                  ? (val as Resource).projects
+                  : [],
+              }
+            : { ...DEFAULT_RESOURCES[key] };
+      }
       return {
         ...getDefaultState(),
         ...action.payload,
-        resources: {
-          ...DEFAULT_RESOURCES,
-          ...(action.payload.resources ?? {}),
-        },
+        resources: sanitized,
       };
+    }
   }
 }
 
@@ -446,15 +501,35 @@ export default function CrewSheetProvider({
 
 // ─── Hooks ────────────────────────────────────────────────────────────────────
 
-export function useCrewResource(location: "lair" | "vault", resource: string) {
+export function useResource(resource: string) {
   const { state, dispatch } = useCrewSheet();
-  const res = state.resources[location][resource];
-  const set = useCallback(
-    (field: "current" | "max", value: number) =>
-      dispatch({ type: "UPDATE_RESOURCE", location, resource, field, value }),
+  const res = state.resources[resource] ?? DEFAULT_RESOURCES[resource];
+  const updateResource = useCallback(
+    (changes: Partial<Pick<Resource, "current" | "max">>) =>
+      dispatch({ type: "UPDATE_RESOURCE", resource, changes }),
     [dispatch, resource],
   );
-  return [res, set] as const;
+  return { resource: res, updateResource };
+}
+
+export function useResourceProjects(resource: string) {
+  const { state, dispatch } = useCrewSheet();
+  const projects = state.resources[resource]?.projects ?? [];
+  const addProject = useCallback(
+    (p: ResourceProject) =>
+      dispatch({ type: "ADD_RESOURCE_PROJECT", resource, payload: p }),
+    [dispatch, resource],
+  );
+  const removeProject = useCallback(
+    (id: string) => dispatch({ type: "REMOVE_RESOURCE_PROJECT", resource, id }),
+    [dispatch, resource],
+  );
+  const updateProject = useCallback(
+    (id: string, changes: Partial<Omit<ResourceProject, "id">>) =>
+      dispatch({ type: "UPDATE_RESOURCE_PROJECT", resource, id, changes }),
+    [dispatch, resource],
+  );
+  return { projects, addProject, removeProject, updateProject };
 }
 
 export function useItems() {
