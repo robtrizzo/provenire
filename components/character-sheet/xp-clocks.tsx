@@ -4,6 +4,7 @@ import Clock from "@/components/clock";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import { Skeleton } from "@/components/ui/skeleton";
+import { cn } from "@/lib/utils";
 
 interface XPClocksProps {
   children: ReactNode;
@@ -13,6 +14,7 @@ interface ClocksProps {
   initial: number;
   max?: number;
   setVal: (n: number) => void;
+  r?: number;
 }
 
 type Clocks = FC<ClocksProps> & {
@@ -78,7 +80,7 @@ const XPClocks: XPClocks = ({ children }: XPClocksProps) => {
   );
 };
 
-const Clocks: Clocks = ({ initial, max = 6, setVal }: ClocksProps) => {
+const Clocks: Clocks = ({ initial, max = 6, setVal, r = 35 }: ClocksProps) => {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
   const { resolvedTheme } = useTheme();
@@ -88,8 +90,8 @@ const Clocks: Clocks = ({ initial, max = 6, setVal }: ClocksProps) => {
 
   const borderThickness = 2;
 
-  const adjustedWidth = 35 - 2 * borderThickness;
-  const adjustedHeight = 35 - 2 * borderThickness;
+  const adjustedWidth = r - 2 * borderThickness;
+  const adjustedHeight = r - 2 * borderThickness;
 
   const cx = adjustedWidth / 2;
   const cy = adjustedHeight / 2;
@@ -115,14 +117,17 @@ const Clocks: Clocks = ({ initial, max = 6, setVal }: ClocksProps) => {
   return (
     <div className="p-1 flex items-center gap-2 select-none">
       <Clock
-        width={35}
-        height={35}
+        width={r}
+        height={r}
         max={max}
         current={segments}
         clickable={false}
       />
-      <div className="relative h-8.75 w-8.75 border-solid border-2 border-muted-foreground rounded-full bg-red-500">
-        <div className="absolute h-8.75 w-8.75 flex items-center justify-center">
+      <div
+        style={{ "--clock-size": `${r}px` } as React.CSSProperties}
+        className="relative w-(--clock-size) h-(--clock-size) border-solid border-2 border-muted-foreground rounded-full bg-red-500"
+      >
+        <div className="absolute w-(--clock-size) h-(--clock-size) flex items-center justify-center">
           <span
             className="font-bold z-10 text-black text-2xl mr-0.5"
             style={{
@@ -134,9 +139,9 @@ const Clocks: Clocks = ({ initial, max = 6, setVal }: ClocksProps) => {
           </span>
         </div>
         <svg
-          width={35}
-          height={35}
-          viewBox={`0 0 ${35} ${35}`}
+          width={r}
+          height={r}
+          viewBox={`0 0 ${r} ${r}`}
           className="absolute z-0"
         >
           <g>{spokes}</g>

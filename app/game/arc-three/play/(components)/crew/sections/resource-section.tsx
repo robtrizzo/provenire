@@ -21,33 +21,42 @@ import { useResource } from "@/contexts/arc3CrewSheetContext";
 
 export default function ResourceSection() {
   return (
-    <div>
+    <div className="@container">
       <TypographyH2 className="text-md text-muted-foreground flex items-end justify-between">
         Resources <ResourcesDialog />
       </TypographyH2>
-      <div className="mt-2 grid grid-cols-3 gap-2">
+      <div className="mt-2 grid grid-cols-2 @lg:grid-cols-3 gap-2">
         <ResourceRow
           name="blood"
-          icon={<Droplets className="text-red-500" />}
+          icon={<Droplets size={28} className="text-red-500 shrink-0" />}
         />
         <ResourceRow
           name="water"
-          icon={<Droplet className="text-blue-500" />}
+          icon={<Droplet size={28} className="text-blue-500" />}
         />
-        <ResourceRow name="food" icon={<Wheat className="text-amber-500" />} />
+        <ResourceRow
+          name="food"
+          icon={<Wheat size={28} className="text-amber-500 shrink-0" />}
+        />
         <ResourceRow
           name="materials"
-          icon={<Boxes className="text-purple-500" />}
+          icon={<Boxes size={28} className="text-purple-500 shrink-0" />}
         />
-        <ResourceRow name="rep" icon={<Speech className="text-lime-500" />} />
+        <ResourceRow
+          name="rep"
+          icon={<Speech size={28} className="text-lime-500 shrink-0" />}
+        />
         <ResourceRow
           name="goodwill"
-          icon={<Handshake className="text-pink-500" />}
+          icon={<Handshake className="text-pink-500 shrink-0" />}
         />
-        <ResourceRow name="intel" icon={<Brain className="text-teal-500" />} />
+        <ResourceRow
+          name="intel"
+          icon={<Brain size={28} className="text-teal-500 shrink-0" />}
+        />
         <ResourceRow
           name="manpower"
-          icon={<ChessPawn className="text-orange-500" />}
+          icon={<ChessPawn size={28} className="text-orange-500 shrink-0" />}
         />
       </div>
     </div>
@@ -58,11 +67,11 @@ function ResourceRow({ name, icon }: { name: string; icon: React.ReactNode }) {
   const { resource, updateResource } = useResource(name);
 
   return (
-    <div className="flex items-center gap-1">
+    <div className="flex items-center justify-between gap-1">
       <TooltipProvider>
         <Tooltip delayDuration={0}>
           <TooltipTrigger asChild>
-            <span className="flex items-center gap-1 text-xs font-semibold capitalize text-muted-foreground w-20 shrink-0">
+            <span className="flex items-center gap-1.5 text-sm font-semibold capitalize text-muted-foreground w-20">
               {icon} {name}
             </span>
           </TooltipTrigger>
@@ -74,6 +83,7 @@ function ResourceRow({ name, icon }: { name: string; icon: React.ReactNode }) {
           initial={resource.current}
           max={resource.max}
           setVal={(n) => updateResource({ current: n })}
+          r={28}
         />
       </XPClocks>
     </div>
