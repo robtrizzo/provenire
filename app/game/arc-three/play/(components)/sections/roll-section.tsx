@@ -391,7 +391,7 @@ function BonusDiceSection() {
           }}
           onContextMenu={(e) => {
             e.preventDefault();
-            removeDieByLabel("fortune-1");
+            removeDieByLabel("fortune");
           }}
         >
           <b className="uppercase text-slate-600">Fortune</b>
