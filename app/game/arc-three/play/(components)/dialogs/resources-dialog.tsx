@@ -207,7 +207,7 @@ export default function ResourcesDialog({ open, onOpenChange }: DialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-lg p-0 gap-0 overflow-hidden">
-        <div className="flex h-[460px]">
+        <div className="flex h-115">
           {/* Sidebar */}
           <nav className="flex flex-col w-36 border-r shrink-0">
             <DialogHeader className="px-4 py-4 border-b">
