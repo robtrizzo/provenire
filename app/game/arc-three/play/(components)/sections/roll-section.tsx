@@ -253,7 +253,8 @@ function BondDiceSection() {
 }
 
 function BonusDiceSection() {
-  const { dice, addDice, removeDieByLabel } = useRoll();
+  const { dice, addDice, removeDieByLabel, addDefianceDie, removeDefianceDie } =
+    useRoll();
   const { state } = useCharacterSheet();
 
   const numPushDie = dice.reduce(
@@ -281,8 +282,6 @@ function BonusDiceSection() {
     0,
   );
   const containsFortuneDie = numFortuneDie > 0;
-
-  const numDefianceDice = state.defianceCount;
 
   return (
     <>
@@ -402,13 +401,20 @@ function BonusDiceSection() {
         <Button
           variant="outline"
           className={cn(
-            numDefianceDice > 0 && "border-rose-600!",
+            state.defianceCount > 0 && "border-rose-600!",
             "flex items-center justify-center",
           )}
+          onClick={() => {
+            addDefianceDie();
+          }}
+          onContextMenu={(e) => {
+            e.preventDefault();
+            removeDefianceDie();
+          }}
         >
           <b className="uppercase text-rose-600">Defiance</b>
           <div className="rounded-full bg-rose-600 text-white dark:text-black font-extrabold w-4 h-4 flex items-center justify-center">
-            <code>{numDefianceDice}</code>
+            <code>{state.defianceCount}</code>
           </div>
         </Button>
       </div>

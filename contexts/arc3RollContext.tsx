@@ -51,6 +51,8 @@ interface RollContextProps {
   addDice: (dice: Die[]) => void;
   removeDiceByLabel: (labelToRemove: string) => void;
   removeDieByLabel: (labelToRemove: string) => void;
+  addDefianceDie: () => void;
+  removeDefianceDie: () => void;
   doRoll: (diceOverride?: Die[], tagOverride?: string) => void;
 }
 
@@ -416,6 +418,22 @@ export default function RollProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  function addDefianceDie() {
+    dispatch({
+      type: "SET_FIELD",
+      field: "defianceCount",
+      value: state.defianceCount + 1,
+    });
+  }
+
+  function removeDefianceDie() {
+    dispatch({
+      type: "SET_FIELD",
+      field: "defianceCount",
+      value: Math.max(0, state.defianceCount - 1),
+    });
+  }
+
   return (
     <RollContext.Provider
       value={{
@@ -439,6 +457,8 @@ export default function RollProvider({ children }: { children: ReactNode }) {
         addDice,
         removeDiceByLabel,
         removeDieByLabel,
+        addDefianceDie,
+        removeDefianceDie,
         doRoll,
       }}
     >
