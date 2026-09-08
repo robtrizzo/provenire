@@ -198,7 +198,7 @@ export default function ResourcesDialog() {
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-lg p-0 gap-0 overflow-hidden">
-        <div className="flex h-115">
+        <div className="flex h-135">
           {/* Sidebar */}
           <nav className="flex flex-col w-36 border-r shrink-0">
             <DialogHeader className="px-4 py-4 border-b">
@@ -233,7 +233,7 @@ function ResourceDetail({ resource }: { resource: Resource }) {
     resource.label.toLocaleLowerCase(),
   );
   return (
-    <div className="max-w-90 flex flex-col flex-1 p-6 gap-5 overflow-y-auto">
+    <div className="max-w-120 flex flex-col flex-1 p-6 gap-5 overflow-y-auto">
       <div className="flex items-center justify-center gap-2 font-semibold">
         {resource.icon}
         {resource.label}
