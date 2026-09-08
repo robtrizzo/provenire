@@ -13,7 +13,7 @@ import BondsSection from "./bonds-section";
 import ActionsWindow from "../windows/action-window";
 
 export default function ActionSection() {
-  const { aptitudes, skills, fightingStyles } = useCharacterSheet();
+  const { aptitudes, skills } = useCharacterSheet();
   const [showActionsWindow, setShowActionsWindow] = useState(false);
 
   return (
@@ -85,29 +85,6 @@ export default function ActionSection() {
               ))}
               <Action.HeaderContent.Unlock type="skill" className="p-2" />
             </div>
-          </div>
-
-          {/* Fighting Styles */}
-          <TypographyH2 className="text-md mt-4 uppercase text-muted-foreground flex justify-between items-end">
-            Fighting Styles
-          </TypographyH2>
-          <div className="flex flex-col gap-0.5">
-            {fightingStyles.map((a, idx) => (
-              <Action.Wrapper.Tooltip action={a} key={idx + a.name}>
-                <Action.Wrapper.Menu action={a}>
-                  <Action.Wrapper.Rollable action={a}>
-                    <Action.HeaderContent.Simple action={a} />
-                  </Action.Wrapper.Rollable>
-                </Action.Wrapper.Menu>
-              </Action.Wrapper.Tooltip>
-            ))}
-            {Array.from({ length: 1 }).map((_, idx) => (
-              <Action.HeaderContent.Unlock
-                type="fightingStyle"
-                className="p-2"
-                key={`unlock-fightingStyle-${idx}`}
-              />
-            ))}
           </div>
 
           <div className="mt-4">

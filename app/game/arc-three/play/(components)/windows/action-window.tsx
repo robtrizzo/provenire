@@ -4,15 +4,11 @@ import { TypographyH2 } from "@/components/ui/typography";
 import {
   MAX_ABILITIES,
   useCharacterSheet,
-  useField,
 } from "@/contexts/arc3CharacterSheetContext";
 import Action from "../action";
-import { getActions } from "@/lib/actions";
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { GripHorizontal, X } from "lucide-react";
 import { motion } from "motion/react";
-import { cn } from "@/lib/utils";
 import BondsSection from "../sections/bonds-section";
 
 interface ActionsWindowProps {
@@ -21,12 +17,6 @@ interface ActionsWindowProps {
 
 export default function ActionsWindow({ onClose }: ActionsWindowProps) {
   const { aptitudes, skills, fightingStyles } = useCharacterSheet();
-  const [remembrance] = useField("remembrance");
-  const [showRemembranceSkills, setShowRemembranceSkills] = useState(false);
-
-  const remembranceSkills = remembrance?.skills
-    ? getActions(remembrance.skills, "skill")
-    : [];
 
   return (
     <motion.div
@@ -47,17 +37,6 @@ export default function ActionsWindow({ onClose }: ActionsWindowProps) {
           className="flex items-center gap-1"
           onPointerDown={(e) => e.stopPropagation()}
         >
-          {remembrance && (
-            <Button
-              variant="ghost"
-              className="h-auto text-xs py-1 text-indigo-500 hover:text-indigo-400"
-              onClick={() => setShowRemembranceSkills((v) => !v)}
-            >
-              {showRemembranceSkills
-                ? `Hide ${remembrance.name}`
-                : remembrance.name}
-            </Button>
-          )}
           <Button
             variant="ghost"
             size="icon"
@@ -71,10 +50,7 @@ export default function ActionsWindow({ onClose }: ActionsWindowProps) {
 
       {/* Columns */}
       <div
-        className={cn(
-          "grid gap-3 p-3 overflow-y-auto max-h-[75vh]",
-          showRemembranceSkills && remembrance ? "grid-cols-3" : "grid-cols-2",
-        )}
+        className="grid gap-3 p-3 overflow-y-auto max-h-[75vh] grid-cols-2"
         onPointerDown={(e) => e.stopPropagation()}
       >
         {/* Aptitudes */}
@@ -119,48 +95,7 @@ export default function ActionsWindow({ onClose }: ActionsWindowProps) {
           <Action.HeaderContent.Unlock type="skill" className="p-2" />
         </div>
 
-        {/* Remembrance skills (optional 3rd column) */}
-        {showRemembranceSkills && remembrance && (
-          <div className="flex flex-col gap-0.5">
-            <TypographyH2 className="text-md mt-0 uppercase text-indigo-500">
-              {remembrance.name}
-            </TypographyH2>
-            {remembranceSkills.map((a, idx) => (
-              <Action.Wrapper.Tooltip action={a} key={idx + a.name}>
-                <div>
-                  <Action.Wrapper.Rollable action={a}>
-                    <Action.HeaderContent.Static action={a} />
-                  </Action.Wrapper.Rollable>
-                </div>
-              </Action.Wrapper.Tooltip>
-            ))}
-          </div>
-        )}
-
         <BondsSection />
-
-        {/* Fighting Styles */}
-        <div className="flex flex-col gap-0.5">
-          <TypographyH2 className="text-md mt-0 uppercase text-muted-foreground">
-            Fighting Styles
-          </TypographyH2>
-          {fightingStyles.map((a, idx) => (
-            <Action.Wrapper.Tooltip action={a} key={idx + a.name}>
-              <Action.Wrapper.Menu action={a}>
-                <Action.Wrapper.Rollable action={a}>
-                  <Action.HeaderContent.Simple action={a} />
-                </Action.Wrapper.Rollable>
-              </Action.Wrapper.Menu>
-            </Action.Wrapper.Tooltip>
-          ))}
-          {Array.from({ length: 1 }).map((_, idx) => (
-            <Action.HeaderContent.Unlock
-              type="fightingStyle"
-              className="p-2"
-              key={`unlock-fightingStyle-${idx}`}
-            />
-          ))}
-        </div>
       </div>
     </motion.div>
   );
