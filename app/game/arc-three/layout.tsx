@@ -76,6 +76,10 @@ const navigationData = [
         })),
       },
       {
+        title: "Crucible",
+        url: "/game/arc-three/character-options/crucible",
+      },
+      {
         title: "Donums",
         url: "/game/arc-three/character-options/donums",
         items: donums.map((d) => ({
@@ -90,14 +94,6 @@ const navigationData = [
           title: f.name,
           url: `/game/arc-three/character-options/fighting-styles#${f.name}`,
           wip: f.wip,
-        })),
-      },
-      {
-        title: "Integrations",
-        url: "/game/arc-three/character-options/integrations",
-        items: integrations.map((i) => ({
-          title: i.name,
-          url: `/game/arc-three/character-options/integrations#${i.name}`,
         })),
       },
       {

@@ -8,21 +8,8 @@ import {
 } from "@/components/ui/typography";
 import RemembrancePortrait from "../(components)/remembrance-portrait";
 import ClockCost from "@/components/clock-cost";
-import Action from "../../../play/(components)/action";
-import { ActionV3 } from "@/types/arc3";
-import { getActions } from "@/lib/actions";
-
-const actions: ActionV3[] = getActions(
-  [
-    { name: "Acrobatics", level: [2] },
-    { name: "Ambush", level: [3] },
-    { name: "Lift", level: [2, 1] },
-    { name: "Lurk", level: [1] },
-    { name: "Scheme", level: [1, 1] },
-    { name: "Stubborn", level: [1, 1] },
-  ],
-  "skill",
-);
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
 export default function Page() {
   return (
@@ -51,33 +38,16 @@ export default function Page() {
         </div>
         <RemembrancePortrait width={200} height={200} img="skeletons" />
       </div>
-      <div className="mt-4 grid grid-cols-8 gap-2">
-        <div className="col-span-5">
-          <TypographyH2 className="font-old">Histories</TypographyH2>
-          <div className="mt-2 flex items-center gap-4">
-            <TypographyH3 className="mt-0">The Hidden City</TypographyH3>
-            <ClockCost num={3} ticks={5} />
-          </div>
-        </div>
-        <div className="col-span-3">
-          <TypographyH2 className="font-old">Skills</TypographyH2>
-          <div className="flex flex-col">
-            {actions.map((a, idx) => (
-              <Action.Wrapper.Tooltip action={a} key={idx + a.name}>
-                <div>
-                  <Action.Wrapper.Grid>
-                    <Action.HeaderContent.Static action={a} />
-                  </Action.Wrapper.Grid>
-                </div>
-              </Action.Wrapper.Tooltip>
-            ))}
-          </div>
-        </div>
-      </div>
       <TypographyH2 className="font-old">Abilities</TypographyH2>
       <div className="mt-2 flex items-center gap-4">
-        <TypographyH3 className="mt-0">Ghost of the Grasses</TypographyH3>
-        <ClockCost num={4} ticks={5} />
+        <TypographyH3 className="mt-0">
+          Ghost of the Grasses{" "}
+          <Link href="/game/arc-three/character-options/aldams/ghost-of-the-grasses">
+            <span className="text-sm underline text-red-500 font-bold">
+              details <ChevronRight className="inline-block mb-1" size={16} />
+            </span>
+          </Link>
+        </TypographyH3>
       </div>
       <span className="text-red-500 text-sm font-old">Aldam</span>
       <TypographyP>
@@ -89,8 +59,14 @@ export default function Page() {
         never went to school.
       </TypographyP>
       <div className="mt-2 flex items-center gap-4">
-        <TypographyH3 className="mt-0">Donum Cinis</TypographyH3>
-        <ClockCost num={5} ticks={5} />
+        <TypographyH3 className="mt-0">
+          Donum Cinis{" "}
+          <Link href="/game/arc-three/character-options/donums/donum-cinis">
+            <span className="text-sm underline text-red-500 font-bold">
+              details <ChevronRight className="inline-block mb-1" size={16} />
+            </span>
+          </Link>
+        </TypographyH3>
       </div>
       <span className="text-fuchsia-500 text-sm font-old">The Gift of Ash</span>
       <TypographyP>
@@ -102,8 +78,14 @@ export default function Page() {
         Maybe when people judged it they weren&apos;t thinking like a thief.
       </TypographyP>
       <div className="mt-2 flex items-center gap-4">
-        <TypographyH3 className="mt-0">Long-knife Style</TypographyH3>
-        <ClockCost num={3} ticks={5} />
+        <TypographyH3 className="mt-0">
+          Long-knife Style{" "}
+          <Link href="/game/arc-three/character-options/fighting-styles#Long-knife%20Style">
+            <span className="text-sm underline text-red-500 font-bold">
+              details <ChevronRight className="inline-block mb-1" size={16} />
+            </span>
+          </Link>
+        </TypographyH3>
       </div>
       <span className="text-emerald-500 text-sm font-old">Fighting Style</span>
       <TypographyP>
@@ -126,6 +108,11 @@ export default function Page() {
         end. Justice is the example they leave for others.{" "}
         <b>Clear a condition</b>.
       </TypographyP>
+      <div className="mt-2 flex items-center gap-4">
+        <TypographyH3 className="mt-0">The Hidden City</TypographyH3>
+        <ClockCost num={3} ticks={5} />
+      </div>
+      <span className="text-sky-500 text-sm font-old">History</span>
     </>
   );
 }

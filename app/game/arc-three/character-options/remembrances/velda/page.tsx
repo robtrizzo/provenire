@@ -11,6 +11,8 @@ import ClockCost from "@/components/clock-cost";
 import Action from "../../../play/(components)/action";
 import { ActionV3 } from "@/types/arc3";
 import { getActions } from "@/lib/actions";
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
 const actions: ActionV3[] = getActions(
   [
@@ -50,45 +52,16 @@ export default function Page() {
         </div>
         <RemembrancePortrait width={200} height={200} img="crow" />
       </div>
-      <div className="mt-4 grid grid-cols-8 gap-2">
-        <div className="col-span-5">
-          <TypographyH2 className="font-old">Histories</TypographyH2>
-          <div className="mt-2 flex items-center gap-4">
-            <TypographyH3 className="mt-0">
-              Fenrir (Post Cataclysm)
-            </TypographyH3>
-            <ClockCost num={3} ticks={5} />
-          </div>
-          <div className="mt-2 flex items-center gap-4">
-            <TypographyH3 className="mt-0">
-              Kingwulf&apos;s Court (Post Cataclysm)
-            </TypographyH3>
-            <ClockCost num={3} ticks={5} />
-          </div>
-          <div className="mt-2 flex items-center gap-4">
-            <TypographyH3 className="mt-0">The Steel Trap</TypographyH3>
-            <ClockCost num={3} ticks={5} />
-          </div>
-        </div>
-        <div className="col-span-3">
-          <TypographyH2 className="font-old">Skills</TypographyH2>
-          <div className="flex flex-col">
-            {actions.map((a, idx) => (
-              <Action.Wrapper.Tooltip action={a} key={idx + a.name}>
-                <div>
-                  <Action.Wrapper.Grid>
-                    <Action.HeaderContent.Static action={a} />
-                  </Action.Wrapper.Grid>
-                </div>
-              </Action.Wrapper.Tooltip>
-            ))}
-          </div>
-        </div>
-      </div>
       <TypographyH2 className="font-old">Abilities</TypographyH2>
       <div className="mt-2 flex items-center gap-4">
-        <TypographyH3 className="mt-0">Donum Rex</TypographyH3>
-        <ClockCost num={5} ticks={5} />
+        <TypographyH3 className="mt-0">
+          Donum Rex{" "}
+          <Link href="/game/arc-three/character-options/transformations/donum-rex">
+            <span className="text-sm underline text-red-500 font-bold">
+              details <ChevronRight className="inline-block mb-1" size={16} />
+            </span>
+          </Link>
+        </TypographyH3>
       </div>
       <span className="text-orange-500 text-sm font-old">Gift of the King</span>
       <TypographyP>
@@ -97,8 +70,14 @@ export default function Page() {
         blood runs through her veins.
       </TypographyP>
       <div className="mt-2 flex items-center gap-4">
-        <TypographyH3 className="mt-0">Donum Ignis</TypographyH3>
-        <ClockCost num={5} ticks={5} />
+        <TypographyH3 className="mt-0">
+          Donum Ignis{" "}
+          <Link href="/game/arc-three/character-options/donums/donum-ignis">
+            <span className="text-sm underline text-red-500 font-bold">
+              details <ChevronRight className="inline-block mb-1" size={16} />
+            </span>
+          </Link>
+        </TypographyH3>
       </div>
       <span className="text-fuchsia-500 text-sm font-old">
         The Gift of Fire
@@ -116,8 +95,14 @@ export default function Page() {
         <b>bonds</b>.
       </TypographyP>
       <div className="mt-2 flex items-center gap-4">
-        <TypographyH3 className="mt-0">Throatgore</TypographyH3>
-        <ClockCost num={3} ticks={5} />
+        <TypographyH3 className="mt-0">
+          Throatgore{" "}
+          <Link href="/game/arc-three/character-options/fighting-styles#Throatgore">
+            <span className="text-sm underline text-red-500 font-bold">
+              details <ChevronRight className="inline-block mb-1" size={16} />
+            </span>
+          </Link>
+        </TypographyH3>
       </div>
       <span className="text-emerald-500 text-sm font-old">Fighting Style</span>
       <TypographyP>
@@ -138,6 +123,23 @@ export default function Page() {
         You gain an <b>xp trigger:</b>{" "}
         <i>Did you save children from monsters?</i>
       </TypographyP>
+      <div className="mt-2 flex items-center gap-4">
+        <TypographyH3 className="mt-0">Fenrir (Post Cataclysm)</TypographyH3>
+        <ClockCost num={3} ticks={5} />
+      </div>
+      <span className="text-sky-500 text-sm font-old">History</span>
+      <div className="mt-2 flex items-center gap-4">
+        <TypographyH3 className="mt-0">
+          Kingwulf&apos;s Court (Post Cataclysm)
+        </TypographyH3>
+        <ClockCost num={3} ticks={5} />
+      </div>
+      <span className="text-sky-500 text-sm font-old">History</span>
+      <div className="mt-2 flex items-center gap-4">
+        <TypographyH3 className="mt-0">The Steel Trap</TypographyH3>
+        <ClockCost num={3} ticks={5} />
+      </div>
+      <span className="text-sky-500 text-sm font-old">History</span>
     </>
   );
 }

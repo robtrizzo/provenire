@@ -8,21 +8,8 @@ import {
 } from "@/components/ui/typography";
 import RemembrancePortrait from "../(components)/remembrance-portrait";
 import ClockCost from "@/components/clock-cost";
-import Action from "../../../play/(components)/action";
-import { ActionV3 } from "@/types/arc3";
-import { getActions } from "@/lib/actions";
-
-const actions: ActionV3[] = getActions(
-  [
-    { name: "Coordinate", level: [2, 1] },
-    { name: "Command", level: [3] },
-    { name: "Disconnect", level: [2] },
-    { name: "Encourage", level: [2, 2] },
-    { name: "Rally", level: [1, 1] },
-    { name: "Relate", level: [2] },
-  ],
-  "skill",
-);
+import { ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 export default function Page() {
   return (
@@ -51,39 +38,16 @@ export default function Page() {
         </div>
         <RemembrancePortrait width={200} height={200} img="chain" />
       </div>
-      <div className="mt-4 grid grid-cols-8 gap-2">
-        <div className="col-span-5">
-          <TypographyH2 className="font-old">Histories</TypographyH2>
-          <div className="mt-2 flex items-center gap-4">
-            <TypographyH3 className="mt-0">
-              Ulgatia (Post Cataclysm)
-            </TypographyH3>
-            <ClockCost num={3} ticks={5} />
-          </div>
-          <div className="mt-2 flex items-center gap-4">
-            <TypographyH3 className="mt-0">The Steel Trap</TypographyH3>
-            <ClockCost num={3} ticks={5} />
-          </div>
-        </div>
-        <div className="col-span-3">
-          <TypographyH2 className="font-old">Skills</TypographyH2>
-          <div className="flex flex-col">
-            {actions.map((a, idx) => (
-              <Action.Wrapper.Tooltip action={a} key={idx + a.name}>
-                <div>
-                  <Action.Wrapper.Grid>
-                    <Action.HeaderContent.Static action={a} />
-                  </Action.Wrapper.Grid>
-                </div>
-              </Action.Wrapper.Tooltip>
-            ))}
-          </div>
-        </div>
-      </div>
       <TypographyH2 className="font-old">Abilities</TypographyH2>
-      <div className="mt-2 flex items-center gap-4">
-        <TypographyH3 className="mt-0">Blood of the Body</TypographyH3>
-        <ClockCost num={4} ticks={5} />
+      <div className="mt-4 flex items-center gap-4">
+        <TypographyH3 className="mt-0">
+          Blood of the Body{" "}
+          <Link href="/game/arc-three/character-options/aldams/blood-of-the-body">
+            <span className="text-sm underline text-red-500 font-bold">
+              details <ChevronRight className="inline-block mb-1" size={16} />
+            </span>
+          </Link>
+        </TypographyH3>
       </div>
       <span className="text-red-500 text-sm font-old">Aldam</span>
       <TypographyP>
@@ -94,8 +58,14 @@ export default function Page() {
         their Aldams efficiently.
       </TypographyP>
       <div className="mt-2 flex items-center gap-4">
-        <TypographyH3 className="mt-0">Kiss of the Viper</TypographyH3>
-        <ClockCost num={3} ticks={5} />
+        <TypographyH3 className="mt-0">
+          Kiss of the Viper{" "}
+          <Link href="/game/arc-three/character-options/fighting-styles#Kiss%20of%20the%20Viper">
+            <span className="text-sm underline text-red-500 font-bold">
+              details <ChevronRight className="inline-block mb-1" size={16} />
+            </span>
+          </Link>
+        </TypographyH3>
       </div>
       <span className="text-emerald-500 text-sm font-old">Fighting Style</span>
       <TypographyP>
@@ -105,8 +75,14 @@ export default function Page() {
         poisons harvested from the jungle.
       </TypographyP>
       <div className="mt-2 flex items-center gap-4">
-        <TypographyH3 className="mt-0">Desert Fan</TypographyH3>
-        <ClockCost num={3} ticks={5} />
+        <TypographyH3 className="mt-0">
+          Desert Fan{" "}
+          <Link href="/game/arc-three/character-options/fighting-styles#Desert%20Fan">
+            <span className="text-sm underline text-red-500 font-bold">
+              details <ChevronRight className="inline-block mb-1" size={16} />
+            </span>
+          </Link>
+        </TypographyH3>
       </div>
       <span className="text-emerald-500 text-sm font-old">Fighting Style</span>
       <TypographyP>
@@ -115,14 +91,30 @@ export default function Page() {
         found to be effective at holding ground.
       </TypographyP>
       <div className="mt-2 flex items-center gap-4">
-        <TypographyH3 className="mt-0">Horizon&apos;s Edge</TypographyH3>
-        <ClockCost num={3} ticks={5} />
+        <TypographyH3 className="mt-0">
+          Horizon's Edge{" "}
+          <Link href="/game/arc-three/character-options/fighting-styles#Horizon's%20Edge">
+            <span className="text-sm underline text-red-500 font-bold">
+              details <ChevronRight className="inline-block mb-1" size={16} />
+            </span>
+          </Link>
+        </TypographyH3>
       </div>
       <span className="text-emerald-500 text-sm font-old">Fighting Style</span>
       <TypographyP>
         This fighting style is quintessentially Ulgatian. It relies on heavy use
         of Aldams to end a battle in a single decisive strike.
       </TypographyP>
+      <div className="mt-2 flex items-center gap-4">
+        <TypographyH3 className="mt-0">Ulgatia (Post Cataclysm)</TypographyH3>
+        <ClockCost num={3} ticks={5} />
+      </div>
+      <span className="text-sky-500 text-sm font-old">History</span>
+      <div className="mt-2 flex items-center gap-4">
+        <TypographyH3 className="mt-0">The Steel Trap</TypographyH3>
+        <ClockCost num={3} ticks={5} />
+      </div>
+      <span className="text-sky-500 text-sm font-old">History</span>
     </>
   );
 }
