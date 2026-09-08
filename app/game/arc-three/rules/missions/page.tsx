@@ -348,7 +348,10 @@ export default async function Page() {
           <i>You expressed your dream, heritage, or background.</i>
         </li>
         <li>
-          <i>You struggled with your hurt or conditions.</i>
+          <i>
+            You struggled with your hurt, conditions, or crucible. If you
+            disrespected them, <b>strain your bond</b>.
+          </i>
         </li>
         <li>
           <i>You grew closer to someone in your crew.</i>
