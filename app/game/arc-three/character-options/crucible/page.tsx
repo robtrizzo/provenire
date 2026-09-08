@@ -41,6 +41,12 @@ export default async function Page() {
         remembrance's powers for a scene. When the scene ends, unlock one
         ability permanently and clear the <b>trauma clock</b>.
       </TypographyBlockquote>
+      <TypographyP>
+        But what if a character desperately needs access to their remembrance's
+        powers outside of a <b>surge</b>? It's possible, though they'll have to
+        barter with the psyche for access. Make a <b>Devil's Bargain</b>; if you
+        accept, gain access to your remembrance's abilities for a scene.
+      </TypographyP>
       <TypographyH2>Bond</TypographyH2>
       <TypographyP>
         Create a <b>bond</b> for your remembrance; it starts at{" "}
