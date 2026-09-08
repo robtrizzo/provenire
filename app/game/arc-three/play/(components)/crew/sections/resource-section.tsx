@@ -67,17 +67,19 @@ function ResourceRow({ name, icon }: { name: string; icon: React.ReactNode }) {
   const { resource, updateResource } = useResource(name);
 
   return (
-    <div className="flex items-center justify-between gap-1">
-      <TooltipProvider>
-        <Tooltip delayDuration={0}>
-          <TooltipTrigger asChild>
-            <span className="flex items-center gap-1.5 text-sm font-semibold capitalize text-muted-foreground w-20">
-              {icon} {name}
-            </span>
-          </TooltipTrigger>
-          <TooltipContent>{name}</TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+    <div
+      className="px-1 flex items-center justify-between gap-1 cursor-pointer rounded-md hover:bg-secondary"
+      onClick={() => updateResource({ current: resource.current + 1 })}
+      onContextMenu={(e) => {
+        e.preventDefault();
+        if (resource.current > 0)
+          updateResource({ current: resource.current - 1 });
+      }}
+    >
+      <span className="flex items-center gap-1.5 text-sm font-semibold capitalize text-muted-foreground w-20">
+        {icon} {name}
+      </span>
+
       <XPClocks key={name.toLocaleLowerCase() + resource.current}>
         <XPClocks.Clocks
           initial={resource.current}

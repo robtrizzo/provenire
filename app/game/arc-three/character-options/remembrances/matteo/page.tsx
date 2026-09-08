@@ -8,21 +8,8 @@ import {
 } from "@/components/ui/typography";
 import RemembrancePortrait from "../(components)/remembrance-portrait";
 import ClockCost from "@/components/clock-cost";
-import Action from "../../../play/(components)/action";
-import { ActionV3 } from "@/types/arc3";
-import { getActions } from "@/lib/actions";
-
-const actions: ActionV3[] = getActions(
-  [
-    { name: "Frighten", level: [2] },
-    { name: "Music (Flute)", level: [1] },
-    { name: "Navigate", level: [2, 1] },
-    { name: "Stalk", level: [2] },
-    { name: "Stubborn", level: [1, 1] },
-    { name: "Survival (Desert)", level: [4, 1] },
-  ],
-  "skill",
-);
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
 export default function Page() {
   return (
@@ -53,33 +40,16 @@ export default function Page() {
         </div>
         <RemembrancePortrait width={200} height={200} img="desert" />
       </div>
-      <div className="mt-4 grid grid-cols-8 gap-2">
-        <div className="col-span-5">
-          <TypographyH2 className="font-old">Histories</TypographyH2>
-          <div className="mt-2 flex items-center gap-4">
-            <TypographyH3 className="mt-0">Narscillia (Era One)</TypographyH3>
-            <ClockCost num={3} ticks={5} />
-          </div>
-        </div>
-        <div className="col-span-3">
-          <TypographyH2 className="font-old">Skills</TypographyH2>
-          <div className="flex flex-col">
-            {actions.map((a, idx) => (
-              <Action.Wrapper.Tooltip action={a} key={idx + a.name}>
-                <div>
-                  <Action.Wrapper.Grid>
-                    <Action.HeaderContent.Static action={a} />
-                  </Action.Wrapper.Grid>
-                </div>
-              </Action.Wrapper.Tooltip>
-            ))}
-          </div>
-        </div>
-      </div>
       <TypographyH2 className="font-old">Abilities</TypographyH2>
       <div className="mt-2 flex items-center gap-4">
-        <TypographyH3 className="mt-0">Inner Rhythm</TypographyH3>
-        <ClockCost num={4} ticks={5} />
+        <TypographyH3 className="mt-0">
+          Inner Rhythm{" "}
+          <Link href="/game/arc-three/character-options/aldams/inner-rhythm">
+            <span className="text-sm underline text-red-500 font-bold">
+              details <ChevronRight className="inline-block mb-1" size={16} />
+            </span>
+          </Link>
+        </TypographyH3>
       </div>
       <span className="text-red-500 text-sm font-old">Aldam</span>
       <TypographyP>
@@ -91,8 +61,14 @@ export default function Page() {
         rhythm.
       </TypographyP>
       <div className="mt-2 flex items-center gap-4">
-        <TypographyH3 className="mt-0">Shadespear</TypographyH3>
-        <ClockCost num={3} ticks={5} />
+        <TypographyH3 className="mt-0">
+          Shadespear{" "}
+          <Link href="/game/arc-three/character-options/fighting-styles#Shadespear">
+            <span className="text-sm underline text-red-500 font-bold">
+              details <ChevronRight className="inline-block mb-1" size={16} />
+            </span>
+          </Link>
+        </TypographyH3>
       </div>
       <span className="text-emerald-500 text-sm font-old">Fighting Style</span>
       <TypographyP>
@@ -132,6 +108,11 @@ export default function Page() {
         <b>1 stress</b> less. If you ever form a bond or neglect your duty, you
         lose this ability.
       </TypographyP>
+      <div className="mt-2 flex items-center gap-4">
+        <TypographyH3 className="mt-0">Narscillia (Era One)</TypographyH3>
+        <ClockCost num={3} ticks={5} />
+      </div>
+      <span className="text-sky-500 text-sm font-old">History</span>
     </>
   );
 }

@@ -40,6 +40,13 @@ import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
 import XPClocks from "@/components/character-sheet/xp-clocks";
 import { useResource } from "@/contexts/arc3CrewSheetContext";
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuSeparator,
+  ContextMenuTrigger,
+} from "@/components/ui/context-menu";
 
 type Resource = {
   key: string;
@@ -191,7 +198,7 @@ export default function ResourcesDialog() {
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-lg p-0 gap-0 overflow-hidden">
-        <div className="flex h-115">
+        <div className="flex h-135">
           {/* Sidebar */}
           <nav className="flex flex-col w-36 border-r shrink-0">
             <DialogHeader className="px-4 py-4 border-b">
@@ -226,7 +233,7 @@ function ResourceDetail({ resource }: { resource: Resource }) {
     resource.label.toLocaleLowerCase(),
   );
   return (
-    <div className="max-w-90 flex flex-col flex-1 p-6 gap-5 overflow-y-auto">
+    <div className="max-w-120 flex flex-col flex-1 p-6 gap-5 overflow-y-auto">
       <div className="flex items-center justify-center gap-2 font-semibold">
         {resource.icon}
         {resource.label}
@@ -349,8 +356,33 @@ function ProjectRow({
   onUpdate: (changes: Partial<Omit<ResourceProject, "id">>) => void;
   onRemove: () => void;
 }) {
-  if (project.type === "unlockable") {
-    return (
+  const [editing, setEditing] = useState(false);
+  const [editName, setEditName] = useState(project.name);
+  const [editDescription, setEditDescription] = useState(
+    project.description ?? "",
+  );
+  const [editCost, setEditCost] = useState(project.cost);
+
+  function openEdit() {
+    setEditName(project.name);
+    setEditDescription(project.description ?? "");
+    setEditCost(project.cost);
+    setEditing(true);
+  }
+
+  function handleSave() {
+    const trimmed = editName.trim();
+    if (!trimmed) return;
+    onUpdate({
+      name: trimmed,
+      description: editDescription.trim() || undefined,
+      cost: Math.max(1, editCost),
+    });
+    setEditing(false);
+  }
+
+  const row =
+    project.type === "unlockable" ? (
       <div
         className={cn(
           "flex items-start gap-3",
@@ -380,29 +412,74 @@ function ProjectRow({
           <Trash2 className="h-3.5 w-3.5" />
         </Button>
       </div>
-    );
-  }
-
-  // repeatable
-  return (
-    <div className="flex items-start gap-3">
-      <ClockCost r={24} ticks={6} num={project.cost} />
-      <div className="flex flex-col flex-1 min-w-0">
-        <span className="text-sm font-medium truncate">{project.name}</span>
-        {project.description && (
-          <span className="text-xs text-muted-foreground">
-            {project.description}
-          </span>
-        )}
+    ) : (
+      <div className="flex items-start gap-3">
+        <ClockCost r={24} ticks={6} num={project.cost} />
+        <div className="flex flex-col flex-1 min-w-0">
+          <span className="text-sm font-medium truncate">{project.name}</span>
+          {project.description && (
+            <span className="text-xs text-muted-foreground">
+              {project.description}
+            </span>
+          )}
+        </div>
+        <Button
+          size="icon"
+          variant="ghost"
+          className="h-7 w-7 shrink-0 text-muted-foreground hover:text-destructive"
+          onClick={onRemove}
+        >
+          <Trash2 className="h-3.5 w-3.5" />
+        </Button>
       </div>
-      <Button
-        size="icon"
-        variant="ghost"
-        className="h-7 w-7 shrink-0 text-muted-foreground hover:text-destructive"
-        onClick={onRemove}
-      >
-        <Trash2 className="h-3.5 w-3.5" />
-      </Button>
-    </div>
+    );
+
+  return (
+    <>
+      <ContextMenu>
+        <ContextMenuTrigger asChild>{row}</ContextMenuTrigger>
+        <ContextMenuContent>
+          <ContextMenuItem onClick={openEdit}>Edit</ContextMenuItem>
+          <ContextMenuSeparator />
+          <ContextMenuItem variant="destructive" onClick={onRemove}>
+            Remove
+          </ContextMenuItem>
+        </ContextMenuContent>
+      </ContextMenu>
+
+      <Dialog open={editing} onOpenChange={setEditing}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Edit Project</DialogTitle>
+          </DialogHeader>
+          <div className="flex flex-col gap-3">
+            <Input
+              placeholder="Project name…"
+              value={editName}
+              onChange={(e) => setEditName(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleSave()}
+              className="h-8 text-sm"
+            />
+            <Input
+              placeholder="Description (optional)…"
+              value={editDescription}
+              onChange={(e) => setEditDescription(e.target.value)}
+              className="h-8 text-sm"
+            />
+            <Input
+              type="number"
+              min={1}
+              value={editCost}
+              onChange={(e) => setEditCost(Math.max(1, Number(e.target.value)))}
+              className="h-8 w-16 text-sm"
+              aria-label="Clock cost"
+            />
+            <Button size="sm" disabled={!editName.trim()} onClick={handleSave}>
+              Save
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }

@@ -9,21 +9,8 @@ import {
 } from "@/components/ui/typography";
 import RemembrancePortrait from "../(components)/remembrance-portrait";
 import ClockCost from "@/components/clock-cost";
-import Action from "../../../play/(components)/action";
-import { ActionV3 } from "@/types/arc3";
-import { getActions } from "@/lib/actions";
-
-const actions: ActionV3[] = getActions(
-  [
-    { name: "Botany", level: [3, 1] },
-    { name: "Drama", level: [2] },
-    { name: "Mathematics", level: [1] },
-    { name: "Obfuscate", level: [2, 1] },
-    { name: "Poetry", level: [2] },
-    { name: "Stubborn", level: [2, 2] },
-  ],
-  "skill",
-);
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
 export default function Page() {
   return (
@@ -51,37 +38,16 @@ export default function Page() {
         </div>
         <RemembrancePortrait width={200} height={200} img="flower" />
       </div>
-      <div className="mt-4 grid grid-cols-8 gap-2">
-        <div className="col-span-5">
-          <TypographyH2 className="font-old">Histories</TypographyH2>
-          <div className="mt-2 flex items-center gap-4">
-            <TypographyH3 className="mt-0">Argos (Post Cataclysm)</TypographyH3>
-            <ClockCost num={3} ticks={5} />
-          </div>
-          <div className="mt-2 flex items-center gap-4">
-            <TypographyH3 className="mt-0">Helix</TypographyH3>
-            <ClockCost num={3} ticks={5} />
-          </div>
-        </div>
-        <div className="col-span-3">
-          <TypographyH2 className="font-old">Skills</TypographyH2>
-          <div className="flex flex-col">
-            {actions.map((a, idx) => (
-              <Action.Wrapper.Tooltip action={a} key={idx + a.name}>
-                <div>
-                  <Action.Wrapper.Grid>
-                    <Action.HeaderContent.Static action={a} />
-                  </Action.Wrapper.Grid>
-                </div>
-              </Action.Wrapper.Tooltip>
-            ))}
-          </div>
-        </div>
-      </div>
       <TypographyH2 className="font-old">Abilities</TypographyH2>
-      <div className="mt-2 flex items-center gap-4">
-        <TypographyH3 className="mt-0">Potentia Humanitas</TypographyH3>
-        <ClockCost num={3} ticks={5} />
+      <div className="mt-4 flex items-center gap-4">
+        <TypographyH3 className="mt-0">
+          Potentia Humanitas{" "}
+          <Link href="/game/arc-three/character-options/aldams/potentia-humanitas">
+            <span className="text-sm underline text-red-500 font-bold">
+              details <ChevronRight className="inline-block mb-1" size={16} />
+            </span>
+          </Link>
+        </TypographyH3>
       </div>
       <span className="text-red-500 text-sm font-old">Aldam</span>
       <TypographyP>
@@ -93,8 +59,14 @@ export default function Page() {
         sensibilities.
       </TypographyP>
       <div className="mt-2 flex items-center gap-4">
-        <TypographyH3 className="mt-0">Donum Dolus</TypographyH3>
-        <ClockCost num={5} ticks={5} />
+        <TypographyH3 className="mt-0">
+          Donum Dolus{" "}
+          <Link href="/game/arc-three/character-options/donums/donum-dolus">
+            <span className="text-sm underline text-red-500 font-bold">
+              details <ChevronRight className="inline-block mb-1" size={16} />
+            </span>
+          </Link>
+        </TypographyH3>
       </div>
       <span className="text-fuchsia-500 text-sm font-old">
         The Gift of Deception
@@ -107,8 +79,14 @@ export default function Page() {
         exclusively in <i>glammers</i>.
       </TypographyP>
       <div className="mt-2 flex items-center gap-4">
-        <TypographyH3 className="mt-0">Mason&apos;s Method</TypographyH3>
-        <ClockCost num={3} ticks={5} />
+        <TypographyH3 className="mt-0">
+          Mason&apos;s Method{" "}
+          <Link href="/game/arc-three/character-options/fighting-styles#Mason's%20Method">
+            <span className="text-sm underline text-red-500 font-bold">
+              details <ChevronRight className="inline-block mb-1" size={16} />
+            </span>
+          </Link>
+        </TypographyH3>
       </div>
       <span className="text-emerald-500 text-sm font-old">Fighting Style</span>
       <TypographyP>
@@ -131,6 +109,16 @@ export default function Page() {
         <b>Disinterested:</b> clear with <b>1 Food</b> or <b>1 Material</b>, and
         by refusing to do something important asked of you.
       </TypographyBlockquote>
+      <div className="mt-2 flex items-center gap-4">
+        <TypographyH3 className="mt-0">Argos (Post Cataclysm)</TypographyH3>
+        <ClockCost num={3} ticks={5} />
+      </div>
+      <span className="text-sky-500 text-sm font-old">History</span>
+      <div className="mt-2 flex items-center gap-4">
+        <TypographyH3 className="mt-0">Helix</TypographyH3>
+        <ClockCost num={3} ticks={5} />
+      </div>
+      <span className="text-sky-500 text-sm font-old">History</span>
     </>
   );
 }

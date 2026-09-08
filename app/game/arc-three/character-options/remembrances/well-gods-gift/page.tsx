@@ -9,21 +9,8 @@ import {
 } from "@/components/ui/typography";
 import RemembrancePortrait from "../(components)/remembrance-portrait";
 import ClockCost from "@/components/clock-cost";
-import Action from "../../../play/(components)/action";
-import { ActionV3 } from "@/types/arc3";
-import { getActions } from "@/lib/actions";
-
-const actions: ActionV3[] = getActions(
-  [
-    { name: "Encourage", level: [2] },
-    { name: "Logic", level: [2] },
-    { name: "Loyalty", level: [3] },
-    { name: "Music (Drums)", level: [2] },
-    { name: "Stalk", level: [3] },
-    { name: "Survival (Swamp)", level: [4, 1] },
-  ],
-  "skill",
-);
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
 export default function Page() {
   return (
@@ -121,45 +108,16 @@ export default function Page() {
         </div>
         <RemembrancePortrait width={200} height={200} img="kilder" />
       </div>
-      <div className="mt-4 grid grid-cols-8 gap-2">
-        <div className="col-span-5">
-          <TypographyH2 className="font-old">Histories</TypographyH2>
-          <div className="mt-2 flex items-center gap-4">
-            <TypographyH3 className="mt-0">Ancient Kilder</TypographyH3>
-            <ClockCost num={3} ticks={5} />
-          </div>
-          <div className="mt-2 flex items-center gap-4">
-            <TypographyH3 className="mt-0">Pre-Cataclysm Kilder</TypographyH3>
-            <ClockCost num={3} ticks={5} />
-          </div>
-          <div className="mt-2 flex items-center gap-4">
-            <TypographyH3 className="mt-0">Post-Cataclysm Kilder</TypographyH3>
-            <ClockCost num={3} ticks={5} />
-          </div>
-          <div className="mt-2 flex items-center gap-4">
-            <TypographyH3 className="mt-0">Pilgrimage to Helix</TypographyH3>
-            <ClockCost num={3} ticks={5} />
-          </div>
-        </div>
-        <div className="col-span-3">
-          <TypographyH2 className="font-old">Skills</TypographyH2>
-          <div className="flex flex-col">
-            {actions.map((a, idx) => (
-              <Action.Wrapper.Tooltip action={a} key={idx + a.name}>
-                <div>
-                  <Action.Wrapper.Grid>
-                    <Action.HeaderContent.Static action={a} />
-                  </Action.Wrapper.Grid>
-                </div>
-              </Action.Wrapper.Tooltip>
-            ))}
-          </div>
-        </div>
-      </div>
       <TypographyH2 className="font-old">Abilities</TypographyH2>
       <div className="mt-2 flex items-center gap-4">
-        <TypographyH3 className="mt-0">Determination</TypographyH3>
-        <ClockCost num={5} ticks={5} />
+        <TypographyH3 className="mt-0">
+          Determination{" "}
+          <Link href="/game/arc-three/character-options/aldams/determination">
+            <span className="text-sm underline text-red-500 font-bold">
+              details <ChevronRight className="inline-block mb-1" size={16} />
+            </span>
+          </Link>
+        </TypographyH3>
       </div>
       <span className="text-red-500 text-sm font-old">Aldam</span>
       <TypographyP>
@@ -171,8 +129,14 @@ export default function Page() {
         utmost potential.
       </TypographyP>
       <div className="mt-2 flex items-center gap-4">
-        <TypographyH3 className="mt-0">Shapes of War</TypographyH3>
-        <ClockCost num={3} ticks={5} />
+        <TypographyH3 className="mt-0">
+          Shapes of War{" "}
+          <Link href="/game/arc-three/character-options/fighting-styles#Shapes%20of%20War">
+            <span className="text-sm underline text-red-500 font-bold">
+              details <ChevronRight className="inline-block mb-1" size={16} />
+            </span>
+          </Link>
+        </TypographyH3>
       </div>
       <span className="text-emerald-500 text-sm font-old">Fighting Style</span>
       <TypographyP>
@@ -183,8 +147,14 @@ export default function Page() {
         winning the fight before it has begun.
       </TypographyP>
       <div className="mt-2 flex items-center gap-4">
-        <TypographyH3 className="mt-0">Snare and Shear</TypographyH3>
-        <ClockCost num={3} ticks={5} />
+        <TypographyH3 className="mt-0">
+          Snare and Shear{" "}
+          <Link href="/game/arc-three/character-options/fighting-styles#Snare%20and%20Shear">
+            <span className="text-sm underline text-red-500 font-bold">
+              details <ChevronRight className="inline-block mb-1" size={16} />
+            </span>
+          </Link>
+        </TypographyH3>
       </div>
       <span className="text-emerald-500 text-sm font-old">Fighting Style</span>
       <TypographyP>
@@ -213,6 +183,26 @@ export default function Page() {
         At the end of <b>downtime</b>, ask yourself{" "}
         <i>&ldquo;Have I played my role?&rdquo;</i> If yes, <b>mark 1xp</b>.
       </TypographyP>
+      <div className="mt-2 flex items-center gap-4">
+        <TypographyH3 className="mt-0">Ancient Kilder</TypographyH3>
+        <ClockCost num={3} ticks={5} />
+      </div>
+      <span className="text-sky-500 text-sm font-old">History</span>
+      <div className="mt-2 flex items-center gap-4">
+        <TypographyH3 className="mt-0">Pre-Cataclysm Kilder</TypographyH3>
+        <ClockCost num={3} ticks={5} />
+      </div>
+      <span className="text-sky-500 text-sm font-old">History</span>
+      <div className="mt-2 flex items-center gap-4">
+        <TypographyH3 className="mt-0">Post-Cataclysm Kilder</TypographyH3>
+        <ClockCost num={3} ticks={5} />
+      </div>
+      <span className="text-sky-500 text-sm font-old">History</span>
+      <div className="mt-2 flex items-center gap-4">
+        <TypographyH3 className="mt-0">Pilgrimage to Helix</TypographyH3>
+        <ClockCost num={3} ticks={5} />
+      </div>
+      <span className="text-sky-500 text-sm font-old">History</span>
     </>
   );
 }
