@@ -249,13 +249,16 @@ export default async function Page() {
         The crew has wrested Fabrication from the overseers&apos; clutches and
         given its workers a chance at their own destiny. <b>THE MASTER</b> and
         his servants seem more intent on containing this news than actually
-        addressing the issue. But the Steel Trap is a place of prying eyes,
-        informants, and conniving overseers. Rumors of liberation can spread to
-        even the most unlikely places.
+        addressing the issue.
       </TypographyP>
       <TypographyP>
-        After a <b>mission</b> or conflict with an opponent, the crew takes{" "}
-        <b>heat</b> according to the following:
+        Outside of Fabrication though, the crew isn't a known quantity. They
+        have a chance to operate in the shadows before the powers that be bring
+        their weapons to bear.
+      </TypographyP>
+      <TypographyP>
+        After a <b>mission</b> or conflict outside of Fabrication, the crew
+        takes <b>heat</b> according to the following:
       </TypographyP>
       <TypographyUnorderedList>
         <li>
@@ -272,25 +275,20 @@ export default async function Page() {
         </li>
       </TypographyUnorderedList>
       <TypographyP>
-        <i>
-          Did you keep your crew&apos;s involvement in the mission under wraps?
-        </i>{" "}
-        <b>-4 heat</b>.
-      </TypographyP>
-      <TypographyP>
         Add <b>+1 heat</b> if an overseer was the target.
-      </TypographyP>
-      <TypographyP>
-        Add <b>+1 heat</b> if the mission took place outside of Fabrication.
       </TypographyP>
       <TypographyP>
         Add <b>+1 heat</b> if combat was involved; an additional <b>+1 heat</b>{" "}
         if there were enemy survivors.
       </TypographyP>
       <TypographyP>
-        When the crew reaches <b>9 heat</b>, <b className="mr-1">THE MASTER</b>{" "}
-        escalates his efforts to contain Fabrication. Clear the crew&apos;s{" "}
-        <b>heat</b>. Excess <b>heat</b> rolls over.
+        <i>Did you keep your crew's involvement in the mission under wraps?</i>{" "}
+        <b>-4 heat</b>.
+      </TypographyP>
+      <TypographyP>
+        When the crew reaches <b>9 heat</b>, the overseers in that sector{" "}
+        escalate their efforts to find and kill members of the crew. Clear the
+        crew's <b>heat</b>. Excess <b>heat</b> rolls over.
       </TypographyP>
       <TypographyH3>Crackdowns</TypographyH3>
       <TypographyP>

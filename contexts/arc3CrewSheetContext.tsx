@@ -17,6 +17,8 @@ export const CREW_SHEET_TABLE = "arc3_crew_sheets";
 export const CREW_SHEET_ID = "arc3-main";
 const SAVE_DEBOUNCE_MS = 1500;
 
+export const MAX_ESCALATION = 4;
+
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 export interface Resource {
@@ -95,14 +97,35 @@ export interface CrewAdvanceSection {
   crewAdvanceBlocks: CrewAdvanceBlock[];
 }
 
-export interface CrewSheetState {
+export interface SectorEntry {
+  id: string;
+  name: string;
   heat: number;
-  escalation: number;
+}
+
+export const CRACKDOWNS = [
+  {
+    id: "news-spread",
+    label: "News of the crew's victory spread to another sector.",
+  },
+  { id: "way-out", label: "The workers know there's a way out." },
+  { id: "reject-kingwulf", label: "The workers reject Kingwulf." },
+  {
+    id: "sustain-without-master",
+    label: "The workers can sustain themselves without THE MASTER's shipments.",
+  },
+] as const;
+
+export type CrackdownId = (typeof CRACKDOWNS)[number]["id"];
+
+export interface CrewSheetState {
   resources: ResourceStore;
   gangs: GangEntry[];
   experts: ExpertEntry[];
   items: ItemEntry[];
   crewAdvanceSections: CrewAdvanceSection[];
+  sectors: SectorEntry[];
+  crackdowns: CrackdownId[];
 }
 
 // ─── Defaults ─────────────────────────────────────────────────────────────────
@@ -119,19 +142,18 @@ export const DEFAULT_RESOURCES: ResourceStore = {
 };
 
 const getDefaultState = (): CrewSheetState => ({
-  heat: 0,
-  escalation: 0,
   resources: DEFAULT_RESOURCES,
   gangs: [],
   experts: [],
   items: [],
   crewAdvanceSections: [],
+  sectors: [],
+  crackdowns: [],
 });
 
 // ─── Actions ──────────────────────────────────────────────────────────────────
 
 type CrewSheetAction =
-  | { type: "SET_FIELD"; field: "heat" | "escalation"; value: number }
   | {
       type: "UPDATE_RESOURCE";
       resource: string;
@@ -173,6 +195,14 @@ type CrewSheetAction =
       id: string;
       changes: Partial<Omit<CrewAdvanceBlock, "id">>;
     }
+  | { type: "ADD_SECTOR"; payload: SectorEntry }
+  | { type: "REMOVE_SECTOR"; id: string }
+  | {
+      type: "UPDATE_SECTOR";
+      id: string;
+      changes: Partial<Omit<SectorEntry, "id">>;
+    }
+  | { type: "SET_CRACKDOWN"; id: CrackdownId; triggered: boolean }
   | { type: "SYNC_REMOTE"; payload: Partial<CrewSheetState> };
 
 // ─── Reducer ──────────────────────────────────────────────────────────────────
@@ -182,8 +212,6 @@ function reducer(
   action: CrewSheetAction,
 ): CrewSheetState {
   switch (action.type) {
-    case "SET_FIELD":
-      return { ...state, [action.field]: Math.max(0, action.value) };
     case "UPDATE_RESOURCE": {
       const res =
         state.resources[action.resource] ?? DEFAULT_RESOURCES[action.resource];
@@ -331,6 +359,30 @@ function reducer(
               }
             : s,
         ),
+      };
+    case "ADD_SECTOR":
+      return {
+        ...state,
+        sectors: [...state.sectors, action.payload],
+      };
+    case "REMOVE_SECTOR":
+      return {
+        ...state,
+        sectors: state.sectors.filter((s) => s.id !== action.id),
+      };
+    case "UPDATE_SECTOR":
+      return {
+        ...state,
+        sectors: state.sectors.map((s) =>
+          s.id === action.id ? { ...s, ...action.changes } : s,
+        ),
+      };
+    case "SET_CRACKDOWN":
+      return {
+        ...state,
+        crackdowns: action.triggered
+          ? [...new Set([...state.crackdowns, action.id])]
+          : state.crackdowns.filter((id) => id !== action.id),
       };
     case "SYNC_REMOTE": {
       const incoming = action.payload.resources ?? {};
