@@ -1,5 +1,3 @@
-import { InlineSymbol } from "@/components/dice/dice-borders";
-import { Advantage } from "@/components/dice/dice-symbols";
 import { TypographyP } from "@/components/ui/typography";
 export default function Empathize() {
   return (
@@ -10,15 +8,11 @@ export default function Empathize() {
       </TypographyP>
       <TypographyP>
         If they answer it, you may advance your <b>bond</b> with one another and
-        choose one other <b>comfort</b> option.
+        choose two other <b>comfort</b> options.
       </TypographyP>
       <TypographyP>
-        If they reject it, the Idealist marks <b>1 stress</b> and the character
-        they were trying to <b>comfort</b> gains{" "}
-        <InlineSymbol>
-          <Advantage />
-        </InlineSymbol>
-        .
+        If they reject it, the Idealist marks <b>3 stress</b> and both
+        characters gain <b>2 defiance dice</b>.
       </TypographyP>
     </>
   );
