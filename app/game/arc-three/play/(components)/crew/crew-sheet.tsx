@@ -10,6 +10,7 @@ import ItemsSection from "./sections/items-section";
 import CrewAdvancesSection from "./sections/crew-advances-section";
 import GangsSection from "./sections/gangs-section";
 import ExpertsSection from "./sections/experts-section";
+import CrackdownsSection from "./sections/crackdowns-section";
 
 // ─── Root ─────────────────────────────────────────────────────────────────────
 
@@ -26,6 +27,7 @@ export default function CrewSheet() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
         <div className="mt-4">
           <HeatSection />
+          <CrackdownsSection />
         </div>
         <div className="mt-4">
           <ResourceSection />

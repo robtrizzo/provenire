@@ -1,4 +1,6 @@
+import { InlineSymbol } from "@/components/dice/dice-borders";
 import {
+  Advantage,
   Theta,
   ThetaDouble,
   ThetaTriple,
@@ -31,61 +33,28 @@ export default function Page() {
         through this difficult moment.
       </TypographyBlockquote>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <div className="flex items-end gap-1">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="4 4 16 16"
-              width={50}
-              height={50}
-              fill="white"
-              stroke="white"
-              strokeWidth={0.8}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-white"
-            >
+        <div className="space-y-1">
+          <div className="flex items-end gap-2">
+            <InlineSymbol size={40}>
               <Theta />
-            </svg>
-            <span className="mb-2">pick one</span>
+            </InlineSymbol>
+            <span className="mb-2">one additional pick</span>
           </div>
-          <div className="flex items-end gap-1">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="4 4 16 16"
-              width={50}
-              height={50}
-              fill="white"
-              stroke="white"
-              strokeWidth={0.8}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-white"
-            >
+          <div className="flex items-end gap-2">
+            <InlineSymbol size={40}>
               <ThetaDouble />
-            </svg>
-            <span className="mb-2">pick two</span>
+            </InlineSymbol>
+            <span className="mb-2">two additional picks</span>
           </div>
-          <div className="flex items-end gap-1">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="4 4 16 16"
-              width={50}
-              height={50}
-              fill="white"
-              stroke="white"
-              strokeWidth={0.8}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-white"
-            >
+          <div className="flex items-end gap-2">
+            <InlineSymbol size={40}>
               <ThetaTriple />
-            </svg>
-            <span className="mb-2">pick three</span>
+            </InlineSymbol>
+            <span className="mb-2">three additional picks</span>
           </div>
         </div>
         <div>
-          <TypographyP>On a success, pick one or more:</TypographyP>
+          <TypographyP>Pick one or more:</TypographyP>
           <TypographyUnorderedList>
             <li>
               they don&apos;t have to <b>do something shitty</b>
@@ -96,23 +65,18 @@ export default function Page() {
             <li>
               you may both <b>advance your bond</b>
             </li>
+            <li>
+              you may both gain{" "}
+              <InlineSymbol size={24}>
+                <Advantage />
+              </InlineSymbol>
+            </li>
           </TypographyUnorderedList>
           <TypographyP>
             On a{" "}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="4 4 16 16"
-              width={50}
-              height={50}
-              fill="white"
-              stroke="white"
-              strokeWidth={0.8}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="inline align-middle"
-            >
+            <InlineSymbol>
               <Threat />
-            </svg>
+            </InlineSymbol>
             , <b>resist</b> or <b>strain your bond</b> with them.
           </TypographyP>
         </div>
@@ -141,7 +105,7 @@ export default function Page() {
       <div className="mt-2">
         <TypographyP className="mb-1">
           When you recover in a safe location, you seek treatment and heal your
-          harm. You gain <b>2 ticks</b> on your <b>healing clock</b>. When you
+          harm. You gain <b>4 ticks</b> on your <b>healing clock</b>. When you
           fill your <b>healing clock</b>, reduce each instance of harm on your
           sheet by one level, then clear the clock. If you have more ticks to
           mark, they &quot;roll over.&quot;
@@ -191,56 +155,23 @@ export default function Page() {
         <b>action roll</b>.
       </TypographyBlockquote>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <div className="flex items-end gap-1">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="4 4 16 16"
-              width={50}
-              height={50}
-              fill="white"
-              stroke="white"
-              strokeWidth={0.8}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-white"
-            >
+        <div className="space-y-1">
+          <div className="flex items-end gap-2">
+            <InlineSymbol size={40}>
               <Theta />
-            </svg>
+            </InlineSymbol>
             <span className="mb-2">pick one</span>
           </div>
-          <div className="flex items-end gap-1">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="4 4 16 16"
-              width={50}
-              height={50}
-              fill="white"
-              stroke="white"
-              strokeWidth={0.8}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-white"
-            >
+          <div className="flex items-end gap-2">
+            <InlineSymbol size={40}>
               <ThetaDouble />
-            </svg>
+            </InlineSymbol>
             <span className="mb-2">pick two</span>
           </div>
-          <div className="flex items-end gap-1">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="4 4 16 16"
-              width={50}
-              height={50}
-              fill="white"
-              stroke="white"
-              strokeWidth={0.8}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-white"
-            >
+          <div className="flex items-end gap-2">
+            <InlineSymbol size={40}>
               <ThetaTriple />
-            </svg>
+            </InlineSymbol>
             <span className="mb-2">pick three</span>
           </div>
         </div>
@@ -257,20 +188,9 @@ export default function Page() {
           </TypographyUnorderedList>
           <TypographyP>
             On a{" "}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="6 6 12 12"
-              width={30}
-              height={30}
-              fill="white"
-              stroke="white"
-              strokeWidth={0.8}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="inline align-middle"
-            >
+            <InlineSymbol>
               <Threat />
-            </svg>
+            </InlineSymbol>
             , <b>resist</b> or they know who scapegoated them.
           </TypographyP>
         </div>
