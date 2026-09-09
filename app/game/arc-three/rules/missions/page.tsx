@@ -168,7 +168,7 @@ export default async function Page() {
             Are any of your friends or contacts providing aid for this operation
             (at risk to their safety)? Take <b>+1d</b>. Are any enemies or
             rivals interfering in this operation? Take <b>-1d</b>. Anyone who
-            volunteers an enemy or rival takes <b>+1 xp</b>.
+            volunteers an enemy or rival takes <b>2 defiance dice</b>.
           </TypographyP>
         </li>
         <li>
@@ -413,47 +413,12 @@ export default async function Page() {
               </InlineSymbol>
             </TableCell>
             <TableCell className="w-20">
-              You shut out the world; <b>strain your bond</b> with someone
-              depending on you
+              You indulge lavishly; spend an additional <b>food</b>,{" "}
+              <b>material</b>, or <b>goodwill</b>
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">
-              <InlineSymbol>
-                <Threat />
-              </InlineSymbol>
-              <InlineSymbol>
-                <Threat />
-              </InlineSymbol>
-            </TableCell>
-            <TableCell className="w-20">
-              You indulge lavishly; spend <b>1 food</b> or <b>1 material</b>
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">
-              <InlineSymbol>
-                <Threat />
-              </InlineSymbol>
-              <InlineSymbol>
-                <Threat />
-              </InlineSymbol>
-              <InlineSymbol>
-                <Threat />
-              </InlineSymbol>
-            </TableCell>
-            <TableCell className="w-20">
-              You brag about your exploits: <b>+2 heat</b>
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">
-              <InlineSymbol>
-                <Threat />
-              </InlineSymbol>
-              <InlineSymbol>
-                <Threat />
-              </InlineSymbol>
               <InlineSymbol>
                 <Threat />
               </InlineSymbol>
@@ -464,6 +429,42 @@ export default async function Page() {
             <TableCell className="w-20">
               You forget something important to your loved ones; mark{" "}
               <b>2 stress</b>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">
+              <InlineSymbol>
+                <Threat />
+              </InlineSymbol>
+              <InlineSymbol>
+                <Threat />
+              </InlineSymbol>
+              <InlineSymbol>
+                <Threat />
+              </InlineSymbol>
+            </TableCell>
+            <TableCell className="w-20">
+              You brag about your exploits: <b>+3 heat</b>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell className="w-16 font-medium border-r-slate-800 border-r-[1px]">
+              <InlineSymbol>
+                <Threat />
+              </InlineSymbol>
+              <InlineSymbol>
+                <Threat />
+              </InlineSymbol>
+              <InlineSymbol>
+                <Threat />
+              </InlineSymbol>
+              <InlineSymbol>
+                <Threat />
+              </InlineSymbol>
+            </TableCell>
+            <TableCell className="w-20">
+              You shut out the world; <b>strain your bond</b> with someone
+              depending on you
             </TableCell>
           </TableRow>
           <TableRow>
