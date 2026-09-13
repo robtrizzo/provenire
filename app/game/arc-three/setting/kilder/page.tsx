@@ -1,6 +1,7 @@
 import { checkAuth } from "@/lib/auth";
 import Breadcrumbs from "@/components/ui/breadcrumbs";
 import {
+  TypographyBlockquote,
   TypographyH1,
   TypographyH2,
   TypographyH3,
@@ -294,6 +295,173 @@ async function Ancient() {
             Once again to the surprise of all but Ghodbane, the Imperator
             accepted. Malak Ghodbane and his forces left Helix and he released
             his vassals back to their homelands.
+          </TypographyP>
+        </div>
+      </div>
+      <TypographyH2>Kilder, Pre-Cataclysm</TypographyH2>
+      <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="col-span-1">
+          <TypographyBlockquote>
+            Something is very, fundamentally, wrong with the world.
+          </TypographyBlockquote>
+          <TypographyP>
+            History begins with the arrival of the <b>Talis</b>, beings of
+            supreme knowledge and capability. They walked the world and
+            bequeathed innumerable gifts and powers to their chosen peoples. To
+            those peoples of other lands, this earned the <b>Talis</b> reverant
+            or deific names. But to the Kilder, they are remembered for their
+            crimes. The <b>Talis</b> translates to <i>Great Neglectors</i>.
+          </TypographyP>
+          <TypographyP>
+            <b>Akil the Conqueror</b> was the chiefest amongst the <b>Talis</b>.
+            His powers were vast, and many strange. The strangest and most
+            devastating of his arsenal was a gift which he coined{" "}
+            <b>Donum Duellum</b>. It was this which he wielded to conquer most
+            of the known world with impunity. Once satisfied with his empire, he
+            bequeathed his chosen people with cities and armies equipped with
+            artifacts of incredible might.
+          </TypographyP>
+          <TypographyP>
+            <b>Asherah, Beloved by All</b>, was betrothed to and later betrayed
+            by <b>Akil</b>. Everywhere she soared on her griffon mount, she
+            blessed with health and heartiness. While <b>Akil</b> conquered the
+            peoples of the world, <b>Asherah</b> hunted its greatest beasts,
+            exterminating them and decorating her hall with their trophies. She
+            bequeathed her faithful a core of priests she made to be immortal
+            and impervious to harm.
+          </TypographyP>
+          <TypographyP>
+            <b>Anya Arbor, Bringer of Gifts</b>, walked from the gates of
+            paradise and blessed the world with water and wondrous power.
+            Though, just as all the other <b>Talis</b>, her generosity ceased at
+            the border of the dread swamp.
+          </TypographyP>
+        </div>
+        <div className="col-span-1">
+          <TypographyP>
+            <b>Midir the Silent</b> is a <b>Talis</b> shrouded in mystery. He
+            accompanied <b>Akil</b> on his exploits, but never once joined a
+            battle. He left behind no great works or gifts to any people in
+            particular. But, he was known to be one being which the other{" "}
+            <b>Talis</b> feared.
+          </TypographyP>
+          <TypographyP>
+            <b>Kingwulf</b>. There are two great empires in the world: Anidine
+            and Fenrir. Anidine is the empire founded by <b>Akil</b> and{" "}
+            <b>Asherah</b>; Fenrir by <b>Kingwulf</b>. <b>Kingwulf</b>{" "}
+            bequeathed his peoples with supremacy over the jungle and a
+            bloodline of bestial might. <b>Kingwulf</b> also remains the only{" "}
+            <b>Talis</b> not to abandon his people.
+          </TypographyP>
+          <TypographyBlockquote>
+            Fenri bards will claim that their god's eldest sons are older than
+            even the <b>Talis</b>. A devoted embellishment, or a strand of
+            truth?
+          </TypographyBlockquote>
+          <TypographyP>
+            <b>Qorrin the Destroyer</b> was a raw force of creation and
+            destruction. He rent mountains and churned fields. He summoned water
+            from the skies, then vanished never to be seen again. Farms
+            flourished in paradise while the Kilder became beset by floods and
+            heinous winds.
+          </TypographyP>
+          <TypographyP>
+            <b>Vinicent Greenwake</b> traveled the length of Narscillia's
+            deserts and left behind a heaven of abundance. Perhaps Kilder's
+            greatest envy: Narscillia was forever transformed from a harsh
+            wasteland into a place of peace and bottomless plenty.
+          </TypographyP>
+          <TypographyBlockquote>
+            A serpent must hatch from an egg laid by another. The <b>Talis</b>{" "}
+            left behind a handful of children, yes, but they cannot have been
+            the point which...
+            <br />
+            Something is very, fundamentally, wrong.
+          </TypographyBlockquote>
+        </div>
+      </div>
+      <div className="my-4">
+        <Separator />
+      </div>
+      <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="col-span-1">
+          <TypographyH3>Neglect</TypographyH3>
+          <TypographyP>
+            One by one, the <b>Talis</b> disappeared. Not a word, not a sign.
+            Their peoples who'd tread a path paved by their gods became listless
+            and uncertain. Uncertainty devolved into pandemonium. <b>Akil's</b>{" "}
+            great empire fractured. Beasts which <b>Asherah</b> had thought
+            extinct returned. Mass migration and upheaval eviscerated the world
+            as it had been. But for the Kilder, nothing changed.
+          </TypographyP>
+          <TypographyP>
+            While the rest of the world built grand temples to summon their
+            absent gods, the Kilder thrashed against the swamp. While civil war
+            tore civilizations apart, the Kilder were torn limb from limb by the
+            predators they had been left to. And generation by generation, as
+            the rest of the world healed, Kilder honed its prowess. Step by
+            arduous step, the people of the swamp became better warriors, better
+            hunters, better weavers, and better survivors.
+          </TypographyP>
+          <TypographyH3>Aalia</TypographyH3>
+          <TypographyP>
+            The rest of the world may be callous to Kilder's suffering, but the
+            canny leaders amongst them noticed Kilder's steady growth in
+            military might. Anidine, Gredora, Heia, and Yama forged the Cardinal
+            Concord in secret; a pact to unite and crush Kilder should one of
+            its generals ever become ambitious beyond their homeland's borders.
+          </TypographyP>
+          <TypographyP>
+            Just as it had always been, Kilder remained peaceful with its
+            neighbors. And so the Concord remained inert for generations. That
+            is, until the birth of a savior.
+          </TypographyP>
+          <TypographyP>
+            From a young age, Aalia demonstrated strategic and tactical genius
+            never before seen. It was on her fourteenth birthday when Kilder's
+            philosophers made it known that Aalia is an unprecedented chosen
+            one. Her talent could only be <b>Akil's</b> greatest power: the one
+            which vanished with him and has somehow reemerged in a Kilder child.
+            With the power of a <b>Telis</b>, the Kilder would be unstoppable.
+          </TypographyP>
+        </div>
+        <div className="col-span-1">
+          <TypographyP>
+            Though she did not have to, Aalia spent her next ten years not
+            conquering, but earning the trust and adoration of her people. Once
+            unified through peace, she lead them into Kilder's northern reaches.
+            The most viscous and untamed wilderness became a haven newly named
+            Tria Aderfia. But as the celebration of victory concluded, Kilder
+            was met with four armies at its doorstep. The Cardinal Concord had
+            come.
+          </TypographyP>
+          <TypographyP>
+            Aalia alongside her best negotiators desperately sued for diplomacy;
+            she had no plans of expanding Kilder's borders. The Concord had no
+            intention of backing down, however. They brazenly marched their
+            armies into the swamps. Aalia's armies marched to meet them.
+          </TypographyP>
+          <TypographyBlockquote>
+            Foreign scholars will claim that victory was imminent that day, but
+            the Kilder knew differently. Despite the superior numbers of the
+            enemy and their powerful channelers, every soldier under Aalia's
+            command knew they would be led to exterminate their foes.
+          </TypographyBlockquote>
+          <TypographyP>
+            But luckily for the Cardinal Concord and Kilder soldiers alike, the
+            battle was not to be. On the morning of the impending conflict,
+            Aalia walked alone into the center of the two armies and took her
+            own life where all could see. The Cardinal Concord began the march
+            home the next day, leaving the Kilder to grieve the loss of their
+            savior. The city of Tria Aderfia was renamed Aalia City in her
+            honor.
+          </TypographyP>
+          <TypographyH3>Onward</TypographyH3>
+          <TypographyP>
+            The loss of their gods brought empires to ruin. But the Kilder
+            spirit soldiers on. They will continue to survive as they always
+            have. But they will not forget the world's neglect, and then the
+            world's unification against them.
           </TypographyP>
         </div>
       </div>
