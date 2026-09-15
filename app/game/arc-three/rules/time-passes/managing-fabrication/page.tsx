@@ -401,8 +401,8 @@ export default async function Page() {
           </div>
           , <b>1</b> Fabrication <b>material</b>, <b>1 staff</b>
         </span>
-        ): while staffed the <b>Pact's</b> and the crew's <b>max goodwill</b>{" "}
-        increases to <b>4</b>.
+        ): while staffed the <b>Pact's</b> vote counts for <b>2</b> during
+        council sessions.
       </TypographyP>
       <TypographyP>
         <b>Giving back</b> (
