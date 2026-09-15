@@ -458,8 +458,8 @@ export default async function Page() {
         <span className="text-muted-foreground">
           <b>3</b> Fabrication <b>food</b>, <b>+9 heat</b>
         </span>
-        ): spirits soar. The crew gains max <b>goodwill</b> and everyone may
-        clear their <b>stress</b> and a <b>condition</b>.
+        ): win favor and influence with workers in an oppressed sector. The crew
+        clears its stress; each member gains <b>1 rep</b> and <b>1 goodwill</b>.
       </TypographyP>
       <Separator className="mt-4" />
       <TypographyH3>Wright's Projects</TypographyH3>
