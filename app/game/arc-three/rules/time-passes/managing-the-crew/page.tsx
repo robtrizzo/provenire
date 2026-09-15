@@ -138,8 +138,8 @@ export default async function Page() {
         <span className="text-muted-foreground">
           requires <b>Drusa's</b> assistance
         </span>
-        ): informants can make records and pass notes. Increase the Crew's{" "}
-        <b>max intel</b> by the number of staff
+        ): informants can make records and pass notes. Informants are far more
+        safe from suspicion
       </TypographyP>
       <TypographyP>
         <b>Monitor workplaces</b>:{" "}
@@ -204,8 +204,7 @@ export default async function Page() {
         This item doesn't cost an item slot to bring on missions.
       </TypographyP>
       <TypographyP>
-        <b>Stashes</b>: increase each crew member's max <b>food</b> and{" "}
-        <b>materials</b> by <b>1</b>
+        <b>Stashes</b>: increase the crew's <b>load</b> by <b>1</b>.
       </TypographyP>
       <TypographyP>
         <b>Memorial</b>: Once this arc, each member of the crew can pay their
@@ -227,16 +226,12 @@ export default async function Page() {
         , 2 materials
       </span>
       <TypographyP>
-        <b>Pipeline to the water chamber</b>: each time the chamber is
-        activated, fill the crew's <b>water</b> to max
+        <b>Archive</b>: the crew may research the machines, the drone, water,
+        and other phenomenon during <b>downtime</b> as a <b>project</b>.
       </TypographyP>
       <TypographyP>
-        <b>
-          Storage (
-          <span className="text-muted-foreground">can be taken twice</span>)
-        </b>
-        : increase the crew's max <b>blood</b>, <b>food</b>, <b>materials</b>,
-        and <b>water</b> by <b>1</b>; by <b>2</b> the second time this is taken
+        <b>Hall</b>: the crew is capable of hosting Council meetings in the
+        Lair.
       </TypographyP>
       <TypographyP>
         <b>Training Room</b>: the crew may train its gangs during{" "}

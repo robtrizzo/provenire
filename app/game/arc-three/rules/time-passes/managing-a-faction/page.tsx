@@ -429,92 +429,58 @@ export default async function Page() {
         </div>
       </div>
       <Separator className="mt-4" />
-      <TypographyH4>Assault</TypographyH4>
+      <TypographyH4>Army</TypographyH4>
       <TypographyP>
-        Raids and skirmishes can build an advantage, but sometimes you have to
-        take the fight to where your foe is strongest.
+        Raids and skirmishes can build an advantage, but sometimes a greater
+        force is necessary to deliver the final blow.
       </TypographyP>
+      <span className="text-muted-foreground">
+        <b>
+          <u>Improve:</u>
+        </b>{" "}
+        <div className="inline-block">
+          <Clock max={5} current={0} clickable={false} width={20} height={20} />
+        </div>
+        , 2 food/blood, must be completed in order
+      </span>
       <TypographyOrderedList>
         <li>
-          <b>Scout their fortifications</b> (
-          <span className="text-muted-foreground">
-            <div className="inline-block">
+          <b>Levies</b>: raise an unskilled, poorly equipped, but maximum
+          staffed gang for <b>1 rep</b> or <b>1 food</b>
+        </li>
+        <li>
+          <b>Professional Core</b>: each <b>Time Passes</b>, the Auger gains{" "}
+          <b>4 manpower</b> which must be spent to staff gangs
+        </li>
+        <li>
+          <b>Chain of command</b>: the Auger leaving the battle doesn't shatter
+          the army
+        </li>
+        <li>
+          <b>Drill field</b>: <b>Levies</b> (meaning all levies) can be trained
+          like a gang for <b>3 food</b> and{" "}
+          <div className="inline-block">
+            <div className="flex gap-0.5">
               <Clock
-                max={3}
+                max={4}
+                current={0}
+                clickable={false}
+                width={20}
+                height={20}
+              />
+              <Clock
+                max={4}
                 current={0}
                 clickable={false}
                 width={20}
                 height={20}
               />
             </div>
-            , <b>1 intel</b>, <b>1 manpower</b>
-          </span>
-          )
-        </li>
-        <li>
-          <b>Probe their defenses</b> (
-          <span className="text-muted-foreground">
-            <div className="inline-block">
-              <Clock
-                max={3}
-                current={0}
-                clickable={false}
-                width={20}
-                height={20}
-              />
-            </div>
-            , <b>1 manpower</b>
-          </span>
-          )
-        </li>
-        <li>
-          <b>Gather equipment</b> (
-          <span className="text-muted-foreground">
-            <div className="inline-block">
-              <Clock
-                max={3}
-                current={0}
-                clickable={false}
-                width={20}
-                height={20}
-              />
-            </div>
-            , <b>2 materials</b>
-          </span>
-          )
-        </li>
-        <li>
-          <b>Muster your forces</b> (
-          <span className="text-muted-foreground">
-            <b>1 rep</b> per tier of the target
-          </span>
-          )
+          </div>
         </li>
       </TypographyOrderedList>
-      <TypographyP>
-        You may launch your assault without completing any of the setup
-        projects. Each one you complete eliminates a <b>gang combat roll</b> you
-        would have to make. If your gang(s) get wiped out at any point during
-        the assault, your forces are shattered and the attack is over. If your
-        attack succeeds, gain <b>rep</b> and <b>heat</b> equal to twice their
-        tier, then choose one:
-      </TypographyP>
-      <TypographyUnorderedList>
-        <li>
-          Their defenses are devastated. They drop by <b>1</b> tier.
-        </li>
-        <li>
-          You loot the treasury (pick <b>3</b> from their <b>blood</b>,{" "}
-          <b>food</b>, and <b>materials)</b>
-        </li>
-        <li>
-          You give the crew a chance to attack their leaders without the backup
-          of their gangs.
-        </li>
-      </TypographyUnorderedList>
       <Separator className="mt-4" />
       <TypographyH3>Lock's Projects</TypographyH3>
-      <Separator className="mt-4" />
       <TypographyH4>Train a Gang</TypographyH4>
       <TypographyP>
         When the <b>Lock</b> trains a gang, they have the option to add the{" "}
@@ -708,56 +674,79 @@ export default async function Page() {
       <TypographyH3>Vault's Projects</TypographyH3>
       <Separator className="mt-4" />
       <TypographyH4>The Vault</TypographyH4>
-      <span className="text-muted-foreground">
-        <b>
-          <u>Improve</u>
-        </b>
-        :{" "}
-        <div className="inline-block">
-          <Clock max={3} current={0} clickable={false} width={20} height={20} />
-        </div>
-        , <b>1 material</b>, must be completed in order;{" "}
-        <b>
-          <u>Staff</u>
-        </b>
-        : <b>1 manpower</b>
-      </span>
       <TypographyP>
-        The crew needs a place to store its most valuable assets, its armory,
-        and house its secret projects. But the Vault can be even more than that.
-        It could be the difference between life and death if the food situation
-        in Fabrication takes a turn for the worse.
-      </TypographyP>
-      <TypographyP>
-        The Vault stores resources like a faction does{" "}
-        <i className="text-muted-foreground">AND</i> has separate room for crew
-        resources. However, the Vault's <b>stockpiles</b> are not affected by
-        the <b>resource deltas</b> that affect factions. Its <b>stockpiles</b>{" "}
-        only change when resources are deliberately delivered or taken.
+        The crew needs a place to store its most valuable assets, stockpile
+        resources, and house its secret projects. But the Vault can be even more
+        than that. It could be the difference between life and death if the food
+        situation in Fabrication takes a turn for the worse.
       </TypographyP>
       <TypographyBlockquote>
         <b>The Vault</b> begins play with <b>1 stockpile</b> of{" "}
-        <b>blood, food, material,</b> and <b>water</b>.{" "}
-        <span className="text-muted-foreground">AND</span> space for the crew to
-        store up to <b>4</b> of each of those resources.
+        <b>blood, food, material,</b> and <b>water</b>. <b>1 stockpile</b>{" "}
+        represents one cycle of <b>Time Passes</b> which <b>The Vault</b> could
+        sustain Fabrication in case of emergency.
       </TypographyBlockquote>
-      <TypographyOrderedList>
+      <TypographyP>
+        Improving The Vault isn't a matter of increased capacity; orchestrating
+        supply lines and implementing logistics is a gargantuan task. Thankless,
+        perhaps. Impactful? Certainly.
+      </TypographyP>
+
+      <TypographyUnorderedList>
         <li>
-          <b>Sturdy foundations:</b> walls sturdy enough to withstand the blows
-          of beasts. For a time.
+          <b>Thorough catalog:</b> the crew gains{" "}
+          <code>
+            <b>+1 push</b>
+          </code>{" "}
+          on <b>project rolls</b> which cost <b>materials</b>. (
+          <span className="text-muted-foreground">
+            <b>
+              <u>Staff</u>
+            </b>
+            : <b>1 manpower</b>
+          </span>
+          )
         </li>
         <li>
-          <b>Strongboxes:</b> the crew can store up to <b>8 blood</b>,{" "}
-          <b>food</b>, <b>materials</b>, and <b>water</b>.
+          <b>Blood Tithes:</b> choose a willing faction per <b>staff</b>; gain{" "}
+          <b>1 blood</b> per <b>tier</b>. (
+          <span className="text-muted-foreground">
+            <b>
+              <u>Staff</u>
+            </b>
+            : <b>1+ manpower</b>
+          </span>
+          )
         </li>
         <li>
-          <b>Bunks:</b> a handful of rebels could lay low in here.
+          <b>Meal lines:</b> choose a faction per <b>staff</b>; their least
+          fortunate subsist off distributed rations. (
+          <span className="text-muted-foreground">
+            <b>
+              <u>Staff</u>
+            </b>
+            : <b>1+ manpower</b>, max = Vault's <b>food stockpile</b>
+          </span>
+          )
         </li>
         <li>
-          <b>Fortifications:</b> even particularly large beasts would struggle
-          to break through the layers of reinforced steel.
+          <b>Pipeline to the water chamber</b>: each time the chamber is
+          activated, increase the Vault's <b>water stockpile</b> by <b>1</b>. (
+          <span className="text-muted-foreground">
+            <div className="inline-block">
+              <Clock
+                max={4}
+                current={0}
+                clickable={false}
+                width={20}
+                height={20}
+              />
+            </div>
+            , <b>2 materials</b>
+          </span>
+          )
         </li>
-      </TypographyOrderedList>
+      </TypographyUnorderedList>
       <Separator className="mt-4" />
       <TypographyH4>Highways</TypographyH4>
       <span className="text-muted-foreground">
