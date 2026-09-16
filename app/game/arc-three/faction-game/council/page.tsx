@@ -72,33 +72,38 @@ export default async function Page() {
           <b className="text-lime-500">Drusa Santoris</b>: known for efficient
           operations and a ruthless decisiveness.
         </TypographyP>
-        <TypographyP>
+        <TypographyP className="line-through decoration-muted-foreground opacity-70">
           <b className="text-lime-500">Laramie Black</b>: known to be an
           unforgiving pragmatist. Prefers to maintain Moore's Gang's affluence.
           Can be swayed by threats against her people.
         </TypographyP>
         <TypographyP>
-          <b className="text-red-500">Amalina the Crow</b>: mostly absorbed with
-          her personal wealth and entertainment. Willing to engage in politics
-          to further her ambitions.
+          <b className="text-red-500">
+            Amalina the Crow<sup className="text-amber-500">*</sup>
+          </b>
+          : mostly absorbed with her personal wealth and entertainment. Willing
+          to engage in politics to further her ambitions.
+          <br />
+          <sup className="text-amber-500">*</sup>
+          <i className="text-muted-foreground text-xs">vote counts for two</i>
         </TypographyP>
         <TypographyP>
           <b className="text-cyan-500">Sire Ciber</b>: only interested in
           politics insofar as pushing events closer to prophesized{" "}
           <i>"great and terrible change"</i>
         </TypographyP>
-        <TypographyP>
+        <TypographyP className="line-through decoration-muted-foreground opacity-70">
           <b className="text-amber-500">Lashma</b>: delusionally self important.
           Seeks to acquire gravitas by siding with whichever side is likely to
           win the vote. Will likely be swayed by whoever has her ear closest to
           voting.
         </TypographyP>
-        <TypographyP>
+        <TypographyP className="line-through decoration-muted-foreground opacity-70">
           <b className="text-cyan-500">Taj Amati</b>: views himself as a
           peacemaker amongst workers. Can be swayed with promises of alliances
           or de-escalation.
         </TypographyP>
-        <TypographyP>
+        <TypographyP className="line-through decoration-muted-foreground opacity-70">
           <b className="text-red-500">Hrodulfr</b>: power hungry, conniving, and
           impatient. Can be swayed with personal gifts or with promises of
           violence on his foes.
@@ -128,14 +133,14 @@ export default async function Page() {
           <b className="text-lime-500">Minamo</b>: not interested in politics.
           Likely won't show up at all.
         </TypographyP>
-        <TypographyP>
+        <TypographyP className="line-through decoration-muted-foreground opacity-70">
           <b className="text-amber-500">Enzo</b>: preoccupied with maintaining
           his position as the reasonable middle-ground between beasts and
           workers. Will attempt to vote with each side equally. Can be swayed by
           legitimacy or authority.
         </TypographyP>
         <TypographyP>
-          <b className="text-amber-500">Duara</b>: competently plays the
+          <b className="text-stone-500">Duara</b>: competently plays the
           political game in pursuit of her own accumulation of power.
         </TypographyP>
         <TypographyP>
@@ -169,6 +174,61 @@ export default async function Page() {
           undermine it as swiftly as he can.
         </TypographyP>
       </div>
+      <TypographyH2>
+        Sophomore Session of the Fabrication Grand Council
+      </TypographyH2>
+      <TypographyP>
+        Theta is well and truly in a position of strength within Fabrication.
+        Hrodulfr is slain and his beasts are on the run. Theta's members
+        solidify their power across the entire sector, and in a way which has
+        earned the respect of their fellow workers.
+      </TypographyP>
+      <TypographyP>
+        There are a few places where Fabrication's powers can gather and debate
+        the issues at hand. Yulgar offered to host in his hall, Kent has put
+        forward the Watering Hole, and Sire Ciber advocates for his perch.
+        Ultimately, this decision falls onto the council's arbiter, <b>Merit</b>
+        .
+      </TypographyP>
+      <TypographyP>
+        Unlike last time, the beasts are scattered and disorganized. It's clear
+        they have no cohesive plan worked out amonst themselves. Perhaps this
+        will lead to a more honest account of their priorities?
+      </TypographyP>
+      <TypographyH3>Proposed Issues</TypographyH3>
+      <TypographyP>
+        <i>Beasts should have first right to corpses.</i> -{" "}
+        <span className="text-muted-foreground">Ulf</span>
+      </TypographyP>
+      <TypographyP>
+        <i>
+          A one-tenth tithe should be collected and offered to <b>KINGWULF</b>.
+        </i>{" "}
+        - <span className="text-muted-foreground">Yulgar</span>
+      </TypographyP>
+      <TypographyP>
+        <i>How should the enforcer hierarchy be reestablished?</i> -{" "}
+        <span className="text-muted-foreground">Borani</span>
+      </TypographyP>
+      <TypographyP>
+        <i>Who will assume Frida's role?</i> -{" "}
+        <span className="text-muted-foreground">Amalina</span>
+      </TypographyP>
+      <TypographyP>
+        <i>Extra manpower and resources should be allocated to the furnaces.</i>{" "}
+        - <span className="text-muted-foreground">Wilgefort</span>
+      </TypographyP>
+      <TypographyP>
+        <i>One in ten days should be spent relaxing.</i> -{" "}
+        <span className="text-muted-foreground">Kent</span>
+      </TypographyP>
+      <TypographyP>
+        <i>
+          Schoolchildren should spend one in ten days learning practical skills
+          in workshops.
+        </i>{" "}
+        - <span className="text-muted-foreground">Hitchen</span>
+      </TypographyP>
       <TypographyH2>
         Inaugural Session of the Fabrication Grand Council
       </TypographyH2>
