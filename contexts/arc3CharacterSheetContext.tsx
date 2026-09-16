@@ -64,6 +64,9 @@ export const DEFAULT_MAX_INTEL = 1;
 export const DEFAULT_MAX_MANPOWER = 1;
 export const DEFAULT_MAX_HEALING = 4;
 
+export const DEFAULT_BLOOD_MISSION_LIMIT = 2;
+export const DEFAULT_WATER_MISSION_LIMIT = 2;
+
 export const OPTIONAL_CONDITONS = conditions.optional;
 
 export const ALL_CONDITIONS = conditions;
@@ -96,8 +99,11 @@ const getDefaultHarms = (): CharacterHarm => ({
 
 interface Resource {
   current: number;
-  max: number;
-  default: number;
+  max?: number;
+  default?: number;
+  missionLimit?: number;
+  defaultMissionLimit?: number;
+  missionUsed?: number;
 }
 
 interface Armor {
@@ -207,26 +213,24 @@ const getDefaultState = () => ({
       max: DEFAULT_MAX_ADVANTAGE,
       default: DEFAULT_MAX_ADVANTAGE,
     },
-    blood: { current: 0, max: DEFAULT_MAX_BLOOD, default: DEFAULT_MAX_BLOOD },
-    water: { current: 0, max: DEFAULT_MAX_WATER, default: DEFAULT_MAX_WATER },
-    food: { current: 0, max: DEFAULT_MAX_FOOD, default: DEFAULT_MAX_FOOD },
-    materials: {
+    blood: {
       current: 0,
-      max: DEFAULT_MAX_MATERIALS,
-      default: DEFAULT_MAX_MATERIALS,
+      missionLimit: DEFAULT_BLOOD_MISSION_LIMIT,
+      missionUsed: 0,
+      defaultMissionLimit: DEFAULT_BLOOD_MISSION_LIMIT,
     },
-    rep: { current: 0, max: DEFAULT_MAX_REP, default: DEFAULT_MAX_REP },
-    goodwill: {
+    water: {
       current: 0,
-      max: DEFAULT_MAX_GOODWILL,
-      default: DEFAULT_MAX_GOODWILL,
+      missionLimit: DEFAULT_WATER_MISSION_LIMIT,
+      missionUsed: 0,
+      defaultMissionLimit: DEFAULT_WATER_MISSION_LIMIT,
     },
-    intel: { current: 0, max: DEFAULT_MAX_INTEL, default: DEFAULT_MAX_INTEL },
-    manpower: {
-      current: 0,
-      max: DEFAULT_MAX_MANPOWER,
-      default: DEFAULT_MAX_MANPOWER,
-    },
+    food: { current: 0 },
+    materials: { current: 0 },
+    rep: { current: 0 },
+    goodwill: { current: 0 },
+    intel: { current: 0 },
+    manpower: { current: 0 },
   },
   harms: getDefaultHarms(),
   maxHealing: DEFAULT_MAX_HEALING,
@@ -287,7 +291,7 @@ type CharacterSheetAction =
   | {
       type: "UPDATE_RESOURCE";
       resource: string;
-      field: "current" | "max";
+      field: "current" | "max" | "missionUsed" | "missionLimit";
       value: number;
     }
   | { type: "UPDATE_HARM"; level: number; slotIndex: number; value: string }
@@ -364,14 +368,15 @@ function reducer(
       return { ...state, ...action.payload };
     case "UPDATE_RESOURCE": {
       const res = state.resources[action.resource];
-      const max = action.field === "max" ? Math.max(0, action.value) : res.max;
-      const current =
-        action.field === "current" ? Math.max(0, action.value) : res.current;
+      if (!res) return state;
       return {
         ...state,
         resources: {
           ...state.resources,
-          [action.resource]: { current, max, default: res.default },
+          [action.resource]: {
+            ...res,
+            [action.field]: Math.max(0, action.value),
+          },
         },
       };
     }
@@ -524,6 +529,9 @@ export default function CharacterSheetProvider({
         type: "SET_FIELDS",
         payload: {
           ...parsed,
+          resources: parsed.resources
+            ? migrateResources(parsed.resources)
+            : getDefaultState().resources,
           unlockedAbilities: {
             ...DEFAULT_UNLOCKED_ABILITIES,
             ...parsed.unlockedAbilities,
@@ -558,6 +566,9 @@ export default function CharacterSheetProvider({
           payload: {
             ...getDefaultState(),
             ...parsed,
+            resources: parsed.resources
+              ? migrateResources(parsed.resources)
+              : getDefaultState().resources,
             unlockedAbilities: {
               ...DEFAULT_UNLOCKED_ABILITIES,
               ...parsed.unlockedAbilities,
@@ -857,8 +868,10 @@ export function useResource(resource: string) {
   const { state, dispatch } = useCharacterSheet();
   const res = state.resources[resource];
   const set = useCallback(
-    (field: "current" | "max", value: number) =>
-      dispatch({ type: "UPDATE_RESOURCE", resource, field, value }),
+    (
+      field: "current" | "max" | "missionUsed" | "missionLimit",
+      value: number,
+    ) => dispatch({ type: "UPDATE_RESOURCE", resource, field, value }),
     [dispatch, resource],
   );
   return [res, set] as const;
@@ -884,6 +897,32 @@ export function useHarms() {
       [dispatch],
     ),
   };
+}
+
+function migrateResources(
+  resources: Record<string, any>,
+): Record<string, Resource> {
+  const result: Record<string, Resource> = {};
+  for (const [key, res] of Object.entries(resources)) {
+    if (key === "blood" || key === "water") {
+      // Old sheets had max/default; new shape for blood/water uses missionLimit/defaultMissionLimit
+      result[key] = {
+        current: res.current ?? 0,
+        missionLimit:
+          res.missionLimit ?? res.max ?? DEFAULT_BLOOD_MISSION_LIMIT,
+        defaultMissionLimit:
+          res.defaultMissionLimit ?? res.default ?? DEFAULT_BLOOD_MISSION_LIMIT,
+        missionUsed: res.missionUsed ?? 0,
+      };
+    } else if (key === "advantage") {
+      result[key] = res;
+    } else {
+      // Drop legacy max/default fields that only belong on advantage
+      const { max: _max, default: _default, ...rest } = res;
+      result[key] = rest;
+    }
+  }
+  return result;
 }
 
 export function useArmor() {

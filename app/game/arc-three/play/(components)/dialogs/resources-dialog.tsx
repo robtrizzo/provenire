@@ -239,6 +239,7 @@ export default function ResourcesDialog({ open, onOpenChange }: DialogProps) {
 
 function ResourceDetail({ resource }: { resource: Resource }) {
   const [res, set] = useResource(resource.key);
+  const hasMissionLimit = res?.missionLimit !== undefined;
 
   return (
     <div className="flex flex-col flex-1 p-6 gap-5 overflow-y-auto">
@@ -263,7 +264,6 @@ function ResourceDetail({ resource }: { resource: Resource }) {
               className={cn(
                 "w-6 text-center tabular-nums",
                 res.current === 0 && "text-muted-foreground",
-                res.current > res.max && "text-red-500",
               )}
             >
               {res.current}
@@ -278,46 +278,126 @@ function ResourceDetail({ resource }: { resource: Resource }) {
             </Button>
           </div>
         </div>
-        <div className="flex flex-col items-center gap-1">
-          <span className="text-xs text-muted-foreground">Max</span>
-          <div className="flex items-center gap-1">
-            <Button
-              size="icon"
-              variant="outline"
-              className="h-7 w-7"
-              onClick={() => set("max", res.max - 1)}
-            >
-              <Minus className="h-3 w-3" />
-            </Button>
-            <span
-              className={cn(
-                "w-6 text-center tabular-nums",
-                res.max === 0 && "text-muted-foreground",
-              )}
-            >
-              {res.max}
-            </span>
-            <Button
-              size="icon"
-              variant="outline"
-              className="h-7 w-7"
-              onClick={() => set("max", res.max + 1)}
-            >
-              <Plus className="h-3 w-3" />
-            </Button>
+
+        {res.max !== undefined && (
+          <div className="flex flex-col items-center gap-1">
+            <span className="text-xs text-muted-foreground">Max</span>
+            <div className="flex items-center gap-1">
+              <Button
+                size="icon"
+                variant="outline"
+                className="h-7 w-7"
+                onClick={() => set("max", res.max! - 1)}
+              >
+                <Minus />
+              </Button>
+              <span
+                className={cn(
+                  "w-6 text-center tabular-nums",
+                  res.max! === 0 && "text-muted-foreground",
+                )}
+              >
+                {res.max}
+              </span>
+              <Button
+                size="icon"
+                variant="outline"
+                className="h-7 w-7"
+                onClick={() => set("max", res.max! + 1)}
+              >
+                <Plus />
+              </Button>
+            </div>
           </div>
-        </div>
+        )}
+
+        {hasMissionLimit && (
+          <>
+            <div className="flex flex-col items-center gap-1">
+              <span className="text-xs text-muted-foreground">
+                Mission Used
+              </span>
+              <div className="flex items-center gap-1">
+                <Button
+                  size="icon"
+                  variant="outline"
+                  className="h-7 w-7"
+                  onClick={() => set("missionUsed", (res.missionUsed ?? 0) - 1)}
+                >
+                  <Minus className="h-3 w-3" />
+                </Button>
+                <span
+                  className={cn(
+                    "w-6 text-center tabular-nums",
+                    (res.missionUsed ?? 0) === 0 && "text-muted-foreground",
+                    (res.missionUsed ?? 0) >= res.missionLimit! &&
+                      "text-amber-500",
+                  )}
+                >
+                  {res.missionUsed ?? 0}
+                </span>
+                <Button
+                  size="icon"
+                  variant="outline"
+                  className="h-7 w-7"
+                  onClick={() => set("missionUsed", (res.missionUsed ?? 0) + 1)}
+                >
+                  <Plus className="h-3 w-3" />
+                </Button>
+              </div>
+            </div>
+
+            <div className="flex flex-col items-center gap-1">
+              <span className="text-xs text-muted-foreground">
+                Mission Limit
+              </span>
+              <div className="flex items-center gap-1">
+                <Button
+                  size="icon"
+                  variant="outline"
+                  className="h-7 w-7"
+                  onClick={() => set("missionLimit", res.missionLimit! - 1)}
+                >
+                  <Minus className="h-3 w-3" />
+                </Button>
+                <span
+                  className={cn(
+                    "w-6 text-center tabular-nums",
+                    res.missionLimit === 0 && "text-muted-foreground",
+                  )}
+                >
+                  {res.missionLimit}
+                </span>
+                <Button
+                  size="icon"
+                  variant="outline"
+                  className="h-7 w-7"
+                  onClick={() => set("missionLimit", res.missionLimit! + 1)}
+                >
+                  <Plus className="h-3 w-3" />
+                </Button>
+              </div>
+            </div>
+          </>
+        )}
       </div>
+
       <Button
         size="sm"
         variant="outline"
         className="text-xs text-muted-foreground"
         onClick={() => {
           set("current", 0);
-          set("max", res.default);
+          if (hasMissionLimit) {
+            set("missionUsed", 0);
+            set("missionLimit", res.defaultMissionLimit!);
+          }
+          if (res.max !== undefined) {
+            set("max", res.default!);
+          }
         }}
       >
-        Reset to default
+        Reset
       </Button>
 
       {resource.description}

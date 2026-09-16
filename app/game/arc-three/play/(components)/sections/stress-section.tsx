@@ -11,8 +11,6 @@ export default function StressSection() {
   const [{ stress, maxStress, conditions, currentConditions }, set] =
     useFields();
 
-  console.log("conditions", currentConditions);
-
   return (
     <div className="flex flex-col gap-2">
       <TypographyH2 className="text-md text-muted-foreground flex items-end justify-between">
