@@ -6,9 +6,8 @@ import {
   TypographyP,
 } from "@/components/ui/typography";
 
-import { D6 } from "@/components/dice/dice-borders";
-import { Threat } from "@/components/dice/dice-symbols";
-import Link from "next/link";
+import { Boxes, Droplet, Droplets, Wheat } from "lucide-react";
+import ClockCost from "@/components/clock-cost";
 
 export default async function Page() {
   return (
@@ -25,35 +24,49 @@ export default async function Page() {
         <b>0</b> = None; <b>1</b> = Scarce; <b>2</b> = Adequate; <b>3</b> =
         Surplus; <b>4</b> = Stockpile
       </TypographyBlockquote>
-      <TypographyP>
-        Each resource has special rules for what happens at different stockpile
-        values when{" "}
-        <Link href="/game/arc-three/rules/time-passes">
-          <b className="text-red-500 underline">time passes</b>
-        </Link>{" "}
-        .
-      </TypographyP>
 
       <TypographyH3>Advisors</TypographyH3>
       <TypographyP>
-        Some members of the crew lead a faction or they're responsible for their
-        resources. They may use their faction's resources at their discretion.
-      </TypographyP>
-      <TypographyP>
-        Whenever a faction's resource is used for a project, to accomplish a
-        goal, or to be traded to another faction, make a <b>fortune roll</b>{" "}
-        with dice equal to that resource's value. On a{" "}
-        <div className="inline-block mx-1">
-          <D6>
-            <Threat />
-          </D6>
+        First, each crew member in the faction receives resources equal to the
+        faction's stockpile values. Some members of the crew lead a faction or
+        they're responsible for their resources. Once per <b>time passes</b>,
+        they may requisition one of their faction's stockpiles for{" "}
+        <div className="inline-block">
+          <div className="flex items-center">
+            <div className="text-red-500">
+              <Droplets size={20} />
+            </div>{" "}
+            <ClockCost num={1} ticks={6} r={20} />
+          </div>
         </div>
-        , the value drops by <b>1</b>.
-      </TypographyP>
-      <TypographyP>
-        Whenever <b>time passes</b>, advisors may have the ability to adjust how
-        resources are distributed; otherwise, each crew member of the faction
-        receives resources equal to the faction's stockpile values.
+        ,{" "}
+        <div className="inline-block">
+          <div className="flex items-center">
+            <div className="text-amber-500">
+              <Wheat size={20} />
+            </div>{" "}
+            <ClockCost num={1} ticks={6} r={20} />
+          </div>
+        </div>
+        ,{" "}
+        <div className="inline-block">
+          <div className="flex items-center">
+            <div className="text-purple-500">
+              <Boxes size={20} />
+            </div>{" "}
+            <ClockCost num={1} ticks={6} r={20} />
+          </div>
+        </div>
+        , or{" "}
+        <div className="inline-block">
+          <div className="flex items-center">
+            <div className="text-blue-500">
+              <Droplet size={20} />
+            </div>{" "}
+            <ClockCost num={1} ticks={6} r={20} />
+          </div>
+        </div>{" "}
+        respectively.
       </TypographyP>
 
       <TypographyH3>Councilors</TypographyH3>
@@ -69,20 +82,50 @@ export default async function Page() {
       </TypographyBlockquote>
       <TypographyP>
         Whenever <b>time passes</b>, the <b>Narrator</b> will inform councilors
-        of their managed resource's delta. They may have the ability to adjust
-        how it is distributed; otherwise, each faction's resource stockpile
-        changes by the delta.
+        of their managed resource's delta. Each councilor gains{" "}
+        <div className="inline-block">
+          <div className="flex items-center">
+            <div className="text-purple-500">
+              <Boxes size={20} />
+            </div>{" "}
+            <ClockCost num={1} ticks={6} r={20} />
+          </div>
+        </div>{" "}
+        and{" "}
+        <div className="inline-block">
+          <div className="flex items-center">
+            <div className="text-amber-500">
+              <Wheat size={20} />
+            </div>{" "}
+            <ClockCost num={1} ticks={6} r={20} />
+          </div>
+        </div>{" "}
+        according to the delta. This is the amount which can be safely allocated
+        towards projects without negatively impacting factions.
       </TypographyP>
       <TypographyP>
-        Councilors may use Fabrication-wide resources to accomplish sweeping
-        projects. When they do, they make a <b>fortune roll</b> with dice equal
-        to the delta <b>+2</b>. On a{" "}
-        <div className="inline-block mx-1">
-          <D6>
-            <Threat />
-          </D6>
-        </div>
-        , the delta decreases by <b>1</b>.
+        <b>Councilors</b> can of course decide they need more resources and pull
+        them from a loyal faction. Once per <b>time passes</b> per{" "}
+        <b>loyalty clock</b>, each councilor may deplete a loyal faction's{" "}
+        <b>food</b> or <b>materials</b> stockpile by <b>1</b> to gain{" "}
+        <div className="inline-block">
+          <div className="flex items-center">
+            <div className="text-purple-500">
+              <Boxes size={20} />
+            </div>{" "}
+            <ClockCost num={1} ticks={6} r={20} />
+          </div>
+        </div>{" "}
+        or{" "}
+        <div className="inline-block">
+          <div className="flex items-center">
+            <div className="text-amber-500">
+              <Wheat size={20} />
+            </div>{" "}
+            <ClockCost num={1} ticks={6} r={20} />
+          </div>
+        </div>{" "}
+        accordingly.
       </TypographyP>
     </>
   );

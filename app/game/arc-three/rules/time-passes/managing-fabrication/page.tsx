@@ -1,15 +1,11 @@
 import Clock from "@/components/clock";
+import ClockCost from "@/components/clock-cost";
 import {
   CritBorderGradient,
   D6,
   InlineSymbol,
 } from "@/components/dice/dice-borders";
-import {
-  Theta,
-  ThetaDouble,
-  ThetaTriple,
-  Threat,
-} from "@/components/dice/dice-symbols";
+import { Theta, ThetaDouble, Threat } from "@/components/dice/dice-symbols";
 import Breadcrumbs from "@/components/ui/breadcrumbs";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -21,6 +17,7 @@ import {
   TypographyP,
   TypographyUnorderedList,
 } from "@/components/ui/typography";
+import { Boxes, Brain, Droplets, Handshake, Wheat } from "lucide-react";
 
 export default async function Page() {
   return (
@@ -49,58 +46,58 @@ export default async function Page() {
       </TypographyBlockquote>
       <TypographyP>
         Whenever <b>time passes</b>, the <b>Narrator</b> will inform councilors
-        of their managed resource's delta.
+        of their managed resource's delta. Each councilor gains{" "}
+        <div className="inline-block">
+          <div className="flex items-center">
+            <div className="text-purple-500">
+              <Boxes size={20} />
+            </div>{" "}
+            <ClockCost num={1} ticks={6} r={20} />
+          </div>
+        </div>{" "}
+        and{" "}
+        <div className="inline-block">
+          <div className="flex items-center">
+            <div className="text-amber-500">
+              <Wheat size={20} />
+            </div>{" "}
+            <ClockCost num={1} ticks={6} r={20} />
+          </div>
+        </div>{" "}
+        according to the delta. This is the amount which can be safely allocated
+        towards projects without negatively impacting factions.
       </TypographyP>
       <TypographyP>
-        <b>Councilors</b> have access to Fabrication-wide <b>food</b> and{" "}
-        <b>materials</b> to accomplish their projects. When they do, they make a{" "}
-        <b>fortune roll</b> with dice equal to the delta <b>+2</b>. On a{" "}
-        <div className="inline-block mx-1">
-          <D6>
-            <Threat />
-          </D6>
-        </div>
-        , the delta decreases by <b>1</b>.
+        <b>Councilors</b> can of course decide they need more resources and pull
+        them from a loyal faction. Once per <b>time passes</b> per{" "}
+        <b>loyalty clock</b>, each councilor may deplete a loyal faction's{" "}
+        <b>food</b> or <b>materials</b> stockpile by <b>1</b> to gain{" "}
+        <div className="inline-block">
+          <div className="flex items-center">
+            <div className="text-purple-500">
+              <Boxes size={20} />
+            </div>{" "}
+            <ClockCost num={1} ticks={6} r={20} />
+          </div>
+        </div>{" "}
+        or{" "}
+        <div className="inline-block">
+          <div className="flex items-center">
+            <div className="text-amber-500">
+              <Wheat size={20} />
+            </div>{" "}
+            <ClockCost num={1} ticks={6} r={20} />
+          </div>
+        </div>{" "}
+        accordingly.
       </TypographyP>
       <TypographyH3>Distribution</TypographyH3>
       <TypographyP>
-        Resources may be distributed as follows, though each method requires a
-        different degree of staff:
+        Distribution of resources is never a trivial task even in the best of
+        times. As the seasons and situation in Fabrication changes, the
+        councilors will be posed with one of more dilemmas they will need to
+        make choices on. This will impact distribution for this cycle.
       </TypographyP>
-      <TypographyUnorderedList>
-        <li>
-          <b>Let someone else sort it out:</b> Not your problem.{" "}
-          <b>+1 manpower; +2 spite</b>.
-        </li>
-        <li>
-          <b>
-            First come first serve (
-            <span className="text-muted-foreground">1 manpower</span>):
-          </b>{" "}
-          The workers sort it out amongst themselves. <b>+1 intel</b>.
-        </li>
-        <li>
-          <b>
-            Faction-based (
-            <span className="text-muted-foreground">2 manpower</span>):
-          </b>{" "}
-          Every faction gets an equal share. <b>+2 loyalty</b>.
-        </li>
-        <li>
-          <b>
-            Those in need (
-            <span className="text-muted-foreground">3 manpower</span>):
-          </b>{" "}
-          Factions below <b>2</b> take <b>+1</b>; factions above <b>2</b> take{" "}
-          <b>-1</b>. <b>+1 goodwill</b> from factions in need.
-        </li>
-        <li>
-          <b>Prioritize the loyal</b> (
-          <span className="text-muted-foreground">3 manpower</span>): Loyal
-          factions take <b>+1</b>; disloyal factions take <b>-1</b>.{" "}
-          <b>+1 rep</b> from loyal factions.
-        </li>
-      </TypographyUnorderedList>
       <TypographyH3>Manpower and Loyalty</TypographyH3>
       <TypographyP>
         Unlike faction leaders who command the workers within their
@@ -142,9 +139,12 @@ export default async function Page() {
       </TypographyP>
       <TypographyUnorderedList>
         <li>
-          Are you a member of Theta? <b>-1 loyalty</b> per{" "}
-          <b>escalation level</b>. <b>-1 loyalty</b> for each mission since{" "}
-          <b>time passed</b> last.
+          Are you publicly a member of Theta? <b>+1 loyalty</b> per{" "}
+          <b>escalation level</b>.
+        </li>
+        <li>
+          Have workers died as a consequence of Theta's missions?{" "}
+          <b>-1 loyalty</b> for each mission this was the case in.
         </li>
         <li>
           Have you materially improved conditions for workers? <b>+1 loyalty</b>
@@ -259,7 +259,15 @@ export default async function Page() {
               height={20}
             />
           </div>
-          , 1 Fabrication <b>material</b>
+          ,{" "}
+          <div className="inline-block">
+            <div className="flex items-center">
+              <div className="text-purple-500">
+                <Boxes size={20} />
+              </div>{" "}
+              <ClockCost num={1} ticks={6} r={20} />
+            </div>
+          </div>
         </span>
         ): get one step closer to learning what this wretched factory produces.{" "}
         <b>+2 ticks</b> on the <b>delivery clock</b>.
@@ -276,7 +284,15 @@ export default async function Page() {
               height={20}
             />
           </div>
-          , 1 Fabrication <b>material</b>
+          ,{" "}
+          <div className="inline-block">
+            <div className="flex items-center">
+              <div className="text-purple-500">
+                <Boxes size={20} />
+              </div>{" "}
+              <ClockCost num={1} ticks={6} r={20} />
+            </div>
+          </div>
         </span>
         ): learn how to open and close a single portal to Fabrication (vault
         door, elevator to the Master's office, etc).
@@ -309,7 +325,24 @@ export default async function Page() {
               />
             </div>
           </div>
-          , <b>1</b> Fabrication <b>material</b>, <b>2 intel</b>
+          ,{" "}
+          <div className="inline-block">
+            <div className="flex items-center">
+              <div className="text-purple-500">
+                <Boxes size={20} />
+              </div>{" "}
+              <ClockCost num={1} ticks={6} r={20} />
+            </div>
+          </div>
+          ,{" "}
+          <div className="inline-block">
+            <div className="flex items-center">
+              <div className="text-teal-500">
+                <Brain size={20} />
+              </div>{" "}
+              <ClockCost num={1} ticks={6} r={20} />
+            </div>
+          </div>
         </span>
         ): the symbols must mean something. There must be a purpose to this
         madness.
@@ -326,7 +359,25 @@ export default async function Page() {
               height={20}
             />
           </div>
-          , 2 Fabrication <b>material</b>
+          ,{" "}
+          <div className="inline-block">
+            <div className="flex items-center">
+              <div className="text-purple-500">
+                <Boxes size={20} />
+              </div>{" "}
+              <ClockCost num={1} ticks={6} r={20} />
+            </div>
+          </div>
+          ,
+          <div className="inline-block">
+            <div className="flex items-center">
+              <div className="text-red-500">
+                <Droplets size={20} />
+              </div>{" "}
+              <ClockCost num={1} ticks={6} r={20} />
+            </div>
+          </div>
+          ,
         </span>
         ): the machines are adaptable and can be made to work for you. You may
         spend <b>2 manpower</b> and <b>4 blood</b> to produce <b>materials</b>{" "}
@@ -399,7 +450,16 @@ export default async function Page() {
               height={20}
             />
           </div>
-          , <b>1</b> Fabrication <b>material</b>, <b>1 staff</b>
+          ,{" "}
+          <div className="inline-block">
+            <div className="flex items-center">
+              <div className="text-purple-500">
+                <Boxes size={20} />
+              </div>{" "}
+              <ClockCost num={1} ticks={6} r={20} />
+            </div>
+          </div>
+          , <b>1 staff</b>
         </span>
         ): while staffed the <b>Pact's</b> vote counts for <b>2</b> during
         council sessions.
@@ -416,7 +476,15 @@ export default async function Page() {
               height={20}
             />
           </div>
-          , <b>1</b> Fabrication <b>food</b>
+          ,{" "}
+          <div className="inline-block">
+            <div className="flex items-center">
+              <div className="text-amber-500">
+                <Wheat size={20} />
+              </div>{" "}
+              <ClockCost num={1} ticks={6} r={20} />
+            </div>
+          </div>
         </span>
         ): members of the crew can exchange <b>2 goodwill</b> for{" "}
         <b>1 manpower</b>
@@ -433,7 +501,15 @@ export default async function Page() {
               height={20}
             />
           </div>
-          , <b>3 heat</b>
+          ,{" "}
+          <div className="inline-block">
+            <div className="flex items-center">
+              <div className="text-pink-500">
+                <Handshake size={20} />
+              </div>{" "}
+              <ClockCost num={1} ticks={6} r={20} />
+            </div>
+          </div>
         </span>
         ): crew gains <b>+1 max stress</b>
       </TypographyP>
@@ -456,7 +532,15 @@ export default async function Page() {
       <TypographyP>
         <b>Festival</b> (
         <span className="text-muted-foreground">
-          <b>3</b> Fabrication <b>food</b>, <b>+9 heat</b>
+          <div className="inline-block">
+            <div className="flex items-center">
+              <div className="text-amber-500">
+                <Wheat size={20} />
+              </div>{" "}
+              <ClockCost num={3} ticks={6} r={20} />
+            </div>
+          </div>
+          , <b>+9 heat</b>
         </span>
         ): win favor and influence with workers in an oppressed sector. The crew
         clears its stress; each member gains <b>1 rep</b> and <b>1 goodwill</b>.
@@ -494,7 +578,15 @@ export default async function Page() {
               height={20}
             />
           </div>
-          , <b>1 staff</b>, <b>1</b> Fabrication <b>material</b>
+          , <b>1 staff</b>,{" "}
+          <div className="inline-block">
+            <div className="flex items-center">
+              <div className="text-purple-500">
+                <Boxes size={20} />
+              </div>{" "}
+              <ClockCost num={1} ticks={6} r={20} />
+            </div>
+          </div>
         </span>
         ): workers can move through the factory easier than ever before. Faction
         populations will shift.
@@ -511,7 +603,15 @@ export default async function Page() {
               height={20}
             />
           </div>
-          , <b>1 staff</b>, <b>1</b> Fabrication <b>material</b>
+          , <b>1 staff</b>,{" "}
+          <div className="inline-block">
+            <div className="flex items-center">
+              <div className="text-purple-500">
+                <Boxes size={20} />
+              </div>{" "}
+              <ClockCost num={1} ticks={6} r={20} />
+            </div>
+          </div>
         </span>
         ): workers will stay warm through the factory's cold season
       </TypographyP>
@@ -527,8 +627,16 @@ export default async function Page() {
               height={20}
             />
           </div>
-          , <b>1 staff</b>, <b>1</b> Fabrication <b>material</b>, equips{" "}
-          <b>1</b> gang
+          , <b>1 staff</b>,{" "}
+          <div className="inline-block">
+            <div className="flex items-center">
+              <div className="text-purple-500">
+                <Boxes size={20} />
+              </div>{" "}
+              <ClockCost num={1} ticks={6} r={20} />
+            </div>
+          </div>
+          , equips <b>1</b> gang
         </span>
         ): victories while in sharp uniforms grant <b>+1 rep</b>
       </TypographyP>
@@ -544,7 +652,15 @@ export default async function Page() {
               height={20}
             />
           </div>
-          , <b>1 staff</b>, <b>2</b> Fabrication <b>material</b>
+          , <b>1 staff</b>,{" "}
+          <div className="inline-block">
+            <div className="flex items-center">
+              <div className="text-purple-500">
+                <Boxes size={20} />
+              </div>{" "}
+              <ClockCost num={2} ticks={6} r={20} />
+            </div>
+          </div>
         </span>
         ): suspension harnesses, helmets, aprons - equipment that saves
         countless lives. All factions grant <b>+1 manpower</b> to their leaders
@@ -564,7 +680,15 @@ export default async function Page() {
               height={20}
             />
           </div>
-          , <b>1 staff</b>, <b>2</b> Fabrication <b>material</b>
+          , <b>1 staff</b>,{" "}
+          <div className="inline-block">
+            <div className="flex items-center">
+              <div className="text-purple-500">
+                <Boxes size={20} />
+              </div>{" "}
+              <ClockCost num={2} ticks={6} r={20} />
+            </div>
+          </div>
         </span>
         ): work made substantially less grueling. For the first time it becomes
         possible to reduce shift times.
@@ -581,8 +705,16 @@ export default async function Page() {
               height={20}
             />
           </div>
-          , <b>1 staff</b>, <b>1</b> Fabrication <b>material</b>, equips{" "}
-          <b>1</b> gang
+          , <b>1 staff</b>,{" "}
+          <div className="inline-block">
+            <div className="flex items-center">
+              <div className="text-purple-500">
+                <Boxes size={20} />
+              </div>{" "}
+              <ClockCost num={1} ticks={6} r={20} />
+            </div>
+          </div>
+          , equips <b>1</b> gang
         </span>
         ): crude weapons, but better than nothing. More sophisticated loadouts
         may require larger clocks.
@@ -599,8 +731,16 @@ export default async function Page() {
               height={20}
             />
           </div>
-          , <b>2 staff</b>, <b>2</b> Fabrication <b>material</b>, equips{" "}
-          <b>1</b> gang
+          , <b>2 staff</b>,{" "}
+          <div className="inline-block">
+            <div className="flex items-center">
+              <div className="text-purple-500">
+                <Boxes size={20} />
+              </div>{" "}
+              <ClockCost num={2} ticks={6} r={20} />
+            </div>
+          </div>
+          , equips <b>1</b> gang
         </span>
         ): incredibly labor intensive and costly in materials, but grants quite
         the advantage in a scrap.

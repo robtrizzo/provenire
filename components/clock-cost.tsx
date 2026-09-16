@@ -32,6 +32,7 @@ export default function ClockCost({
     );
   });
   const fontSize = r * 0.6; // e.g. 21px when r=35
+  const textPadding = r * 0.01;
   const shadowBlur = r * 0.06; // e.g. 2px when r=35
 
   return (
@@ -40,14 +41,14 @@ export default function ClockCost({
         className="relative border-solid border-2 border-muted-foreground rounded-full bg-red-500"
         style={{ height: r, width: r }}
       >
-        <div
-          className="absolute flex items-center justify-center"
-          style={{ height: r, width: r }}
-        >
+        <div className="absolute inset-0 flex items-center justify-center">
           <span
-            className="font-bold z-10 text-black mr-0.5"
+            className="font-bold z-10 text-black leading-none"
             style={{
               fontSize,
+              lineHeight: 1,
+              transform: "translateY(0.05em)",
+              WebkitTextStroke: `${textPadding}px black`,
               textShadow: `0px 0px ${shadowBlur}px white, 0px 0px ${shadowBlur}px white, 0px 0px ${shadowBlur}px white`,
             }}
           >

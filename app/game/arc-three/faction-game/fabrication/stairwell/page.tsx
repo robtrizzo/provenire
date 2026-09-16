@@ -120,10 +120,10 @@ export default async function Page() {
                 pipeways
               </li>
               <li>
-                <b>Population:</b> ~1100.{" "}
+                <b>Population:</b> ~1300.{" "}
                 <i>
-                  80% worker, 50% thinblooded shifter, 10% thickblooded shifter,
-                  20% enforcer
+                  75% worker, 58% thinblooded shifter, 10% thickblooded shifter,
+                  25% enforcer
                 </i>
               </li>
               <li>
@@ -187,9 +187,9 @@ export default async function Page() {
                 pipeheads
               </li>
               <li>
-                <b>Population:</b> ~4000.{" "}
+                <b>Population:</b> ~3600.{" "}
                 <i>
-                  92% worker, 20% thinblooded shifter, 2% Kiposi, 1% Kilder, 8%
+                  97% worker, 18% thinblooded shifter, 2% Kiposi, 1% Kilder, 3%
                   enforcer
                 </i>
               </li>
@@ -209,9 +209,10 @@ export default async function Page() {
                 <b>Enemies:</b> None
               </li>
               <li>
-                <b>Situation:</b> The Pipeways have been caught between the
-                Youngers and the Scarbacks for some months now. The upper
-                flights have been devastated and supplies are running very low.
+                <b>Situation:</b> Under Nail's leadership, the Pipeways have
+                stabilized and adopted a new cultural paradigm. Having enough
+                food is enough to earn loyalty from most, but the faction's
+                shifters quietly abandon Pipeways for more hospitable homes.
               </li>
               <li>
                 <b>Faction Clocks:</b> acts of depseration [3], refugees join
@@ -236,7 +237,7 @@ export default async function Page() {
                 <b>Food:</b> <b>4</b> = <i>Stockpile</i>
               </span>
               <span className="text-muted-foreground">
-                <b>Materials:</b> <b>4</b> = <i>Stockpile</i>
+                <b>Materials:</b> <b>1</b> = <i>Scarce</i>
               </span>
               <span className="text-muted-foreground">
                 <b>Water:</b> <b>0</b> = <i>None</i>
@@ -254,9 +255,9 @@ export default async function Page() {
                 their workshops here
               </li>
               <li>
-                <b>Population:</b> ~300.{" "}
+                <b>Population:</b> ~400.{" "}
                 <i>
-                  90% worker, 5% thinblooded shifter, 2% Gredoran, 10% enforcer
+                  67% worker, 15% thinblooded shifter, 2% Gredoran, 33% enforcer
                 </i>
               </li>
               <li>
@@ -275,10 +276,11 @@ export default async function Page() {
                 <b>Enemies:</b> None
               </li>
               <li>
-                <b className="mr-1">Situation:</b> the turmoil in Fabrication
-                has been great for business, but it&apos;s not sustainable.
-                Someone needs to make sure food is flowing, else no one will be
-                able to buy anything.
+                <b className="mr-1">Situation:</b> Hitchen has made an absolute
+                killing, nearly running out of materials because business was so
+                good. Theta's leadership in Fab has created a furtive
+                environment for commerce. Hitchen is happy as long as this keeps
+                up.
               </li>
               <li>
                 <b>Faction Clocks:</b> advocate for peace [3], equip the highest
@@ -343,9 +345,9 @@ export default async function Page() {
                 <b>Enemies:</b> None
               </li>
               <li>
-                <b className="mr-1">Situation:</b> Frida&apos;s death heralded
-                Ridora&apos;s ascent. She simply watched here; Ridora has larger
-                plans for the Pits.
+                <b className="mr-1">Situation:</b> Ridora's humiliation has sent
+                him into drawn out benders and isolation. Stronger fighters
+                begin posturing to take his place.
               </li>
               <li>
                 <b>Faction Clocks:</b> host fights [1], execute captured

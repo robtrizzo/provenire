@@ -36,9 +36,9 @@ export default async function Page() {
           </CardHeader>
           <CardContent>
             <TypographyP>
-              A small handfull of fledgeling rebels and the community
-              they&apos;ve built around them. No strict hierarchy, though the
-              core team of active rebels are given deference by the rest.
+              A small handfull of fledgeling rebels and the community they've
+              built around them. No strict hierarchy, though the core team of
+              active rebels are given deference by the rest.
             </TypographyP>
             <TypographyUnorderedList>
               <li>
@@ -62,89 +62,19 @@ export default async function Page() {
                 contacts, Fabrication-wide notoriety
               </li>
               <li>
-                <b className="mr-1">Allies:</b> Minamo&apos;s Brood,
-                Moore&apos;s Gang
+                <b className="mr-1">Allies:</b> Minamo's Brood
               </li>
               <li>
                 <b>Enemies:</b> Dominion, Youngers
               </li>
               <li>
-                <b>Situation:</b> The Lair is devastated, allies scattered,
-                enemies licking their wounds, and the workers of Fabrication are
-                looking to Theta for all the answers
+                <b>Situation:</b> The Lair is rebuilt, allies gathered, enemies
+                scattered, and the workers of Fabrication are looking to Theta
+                for all the answers
               </li>
               <li>
                 <b className="mr-1">Faction Clocks:</b> Daring missions [1],
-                Shade&apos;s Projects [X], Scaffold&apos;s Projects [Y]
-              </li>
-            </TypographyUnorderedList>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex justify-between">
-            <div>
-              <TypographyH3>Moore&apos;s Gang</TypographyH3>
-              <span className="text-muted-foreground">
-                <b>Tier II</b>, <i>Advanced</i>
-              </span>
-            </div>
-            <div className="grid grid-cols-2 gap-x-2">
-              <span className="text-muted-foreground">
-                <b>Blood:</b> <b>0</b> = <i>None</i>
-              </span>
-              <span className="text-muted-foreground">
-                <b>Food:</b> <b>4</b> = <i>Stockpile</i>
-              </span>
-              <span className="text-muted-foreground">
-                <b>Materials:</b> <b>2</b> = <i>Adequate</i>
-              </span>
-              <span className="text-muted-foreground">
-                <b>Water:</b> <b>0</b> = <i>None</i>
-              </span>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <TypographyP>
-              An elected council of a well fortified community built around the
-              Loft&apos;s only remaining ladder to Fab Floor. Protects its
-              people at the price of a steep and non-negotiable tax.
-            </TypographyP>
-            <TypographyUnorderedList>
-              <li>
-                <b>Turf:</b> walled and barbed southside of the Lofts.
-              </li>
-              <li>
-                <b>Population:</b> ~800.{" "}
-                <i>
-                  98% worker, 4% Cumerian, 12% thinblooded shifter, 2% enforcer
-                </i>
-              </li>
-              <li>
-                <b>NPCs:</b> <b>Laramie Black</b>{" "}
-                <i>(leader, severe, capable, filling big shoes)</i>,{" "}
-                <b>Nichros Perydark</b> <i>(leader, soft, mourning)</i>,{" "}
-                <b>Yewin</b> <i>(ambitious, kind, afraid)</i>, <b>Aldara</b>{" "}
-                <i>(brutal, persuasive)</i>
-              </li>
-              <li>
-                <b>Notable Assets:</b> fortifications, toll on ladder to Fab
-                Floor, sizeable stash of food and gear.
-              </li>
-              <li>
-                <b>Allies:</b> Theta
-              </li>
-              <li>
-                <b>Enemies:</b> Shrikes, Dominion, Youngers, Scarbacks
-              </li>
-              <li>
-                <b className="mr-1">Situation:</b> fighting force depleted by
-                ongoing conflicts, enemies on all sides tantalized by the
-                relative wealth Moore&apos;s holds, internal conflict on
-                identity of the faction
-              </li>
-              <li>
-                <b>Faction Clocks:</b> tax residents [2], negotiate with an
-                enemy faction [4], begin forced conscriptions [8]
+                Shade's Projects [X], Scaffold's Projects [Y]
               </li>
             </TypographyUnorderedList>
           </CardContent>
@@ -180,7 +110,7 @@ export default async function Page() {
             </TypographyP>
             <TypographyUnorderedList>
               <li>
-                <b className="mr-1">Turf:</b> Bell&apos;s Chute, an expansive
+                <b className="mr-1">Turf:</b> Bell's Chute, an expansive
                 cyllindrical opening in the rafters that extends far past where
                 the eye can see.
               </li>
@@ -196,7 +126,7 @@ export default async function Page() {
                 <i>(leader, sadistic, greedy)</i>
               </li>
               <li>
-                <b className="mr-1">Enemies:</b> Moore&apos;s Gang, Raftertown
+                <b className="mr-1">Enemies:</b> Raftertown
               </li>
               <li>
                 <b className="mr-1">Situation:</b> With the chaos in Fabrication
@@ -235,16 +165,16 @@ export default async function Page() {
           </CardHeader>
           <CardContent>
             <TypographyP>
-              Residents across all of Fabrication&apos;s neighborhoods who spend
-              their hours between shifts in prayer under Sire Cyber&apos;s wing.
+              Residents across all of Fabrication's neighborhoods who spend
+              their hours between shifts in prayer under Sire Cyber's wing.
             </TypographyP>
             <TypographyUnorderedList>
               <li>
-                <b className="mr-1">Turf:</b> Well God&apos;s Altar and Sire
-                Cyber&apos;s perch
+                <b className="mr-1">Turf:</b> Well God's Altar and Sire Cyber's
+                perch
               </li>
               <li>
-                <b>Population:</b> ~60.{" "}
+                <b>Population:</b> ~100.{" "}
                 <i>97% worker, 12% thinblooded shifter, 3% enforcer</i>
               </li>
               <li>
@@ -259,9 +189,8 @@ export default async function Page() {
                 <b>Allies:</b> None
               </li>
               <li>
-                <b className="mr-1">Situation:</b> The Well God&apos;s messages
-                have reached a fevered intensity - a direct call to action in
-                the time of Great and Terrible Change.
+                <b className="mr-1">Situation:</b> His first ritual completed,
+                Sire Ciber seeks oracular guidance from his god once more.
               </li>
               <li>
                 <b>Faction Clocks:</b> sermon [1], proselytize [3], ritual [6]
@@ -282,10 +211,10 @@ export default async function Page() {
                 <b>Blood:</b> <b>1</b> = <i>Scarce</i>
               </span>
               <span className="text-muted-foreground">
-                <b>Food:</b> <b>3</b> = <i>Surplus</i>
+                <b>Food:</b> <b>2</b> = <i>Adequate</i>
               </span>
               <span className="text-muted-foreground">
-                <b>Materials:</b> <b>2</b> = <i>Adequate</i>
+                <b>Materials:</b> <b>1</b> = <i>Scarce</i>
               </span>
               <span className="text-muted-foreground">
                 <b>Water:</b> <b>0</b> = <i>None</i>
@@ -302,16 +231,15 @@ export default async function Page() {
                 scrap
               </li>
               <li>
-                <b>Population:</b> ~1700.{" "}
+                <b>Population:</b> ~1900.{" "}
                 <i>
-                  94% worker, 22% thinblooded shifter, 14% Cumerian, 6% enforcer
+                  95% worker, 20% thinblooded shifter, 17% Cumerian, 5% enforcer
                 </i>
               </li>
               <li>
-                <b>NPCs:</b> <b>Lashma</b>{" "}
-                <i>(enforcer &quot;in-charge,&quot; bullish, formidable)</i>,{" "}
-                <b>Luys</b> <i>(posing as an enforcer, stressed)</i>,{" "}
-                <b>Elisaweta</b>{" "}
+                <b>NPCs:</b> <b>Luys</b>{" "}
+                <i>(posing as an enforcer, somehow elected leader, stressed)</i>
+                , <b>Elisaweta</b>{" "}
                 <i>(Wisdom of the Cumerians, fearless, sees the symbols)</i>,{" "}
                 <b>Jeanne</b>{" "}
                 <i>(discrete companion, observant, quiet genius)</i>
@@ -325,7 +253,7 @@ export default async function Page() {
               <li>
                 <b className="mr-1">Situation:</b> With no leader or unifying
                 cause, Raftertown is mostly made up of folk who keep their heads
-                down and don&apos;t want to pay the Moore&apos;s Gang tax.
+                down and stay out of the factory's conflicts.
               </li>
               <li>
                 <b>Faction Clocks:</b> Lashma tries to violently grab more power

@@ -1,6 +1,4 @@
 import Clock from "@/components/clock";
-import { InlineSymbol } from "@/components/dice/dice-borders";
-import { Advantage, ThetaDouble } from "@/components/dice/dice-symbols";
 import Breadcrumbs from "@/components/ui/breadcrumbs";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -134,12 +132,8 @@ export default async function Page() {
         <b>The rumor mill</b>: gain <b>1 intel</b> per staff
       </TypographyP>
       <TypographyP>
-        <b>Literacy</b> (
-        <span className="text-muted-foreground">
-          requires <b>Drusa's</b> assistance
-        </span>
-        ): informants can make records and pass notes. Informants are far more
-        safe from suspicion
+        <b>Literacy</b>: gain advanced notice of one of <b>THE MASTER's</b>{" "}
+        and/or the Wall People's schemes per <b>2 staff</b>.
       </TypographyP>
       <TypographyP>
         <b>Monitor workplaces</b>:{" "}
@@ -149,12 +143,9 @@ export default async function Page() {
         per staff on gather information checks to locate a worker or enforcer
       </TypographyP>
       <TypographyP>
-        <b>Monitor the beast lanes</b> (
-        <span className="text-muted-foreground">
-          requires <b>Lilya's</b> assistance
-        </span>
-        ): learn about a faction's trade routes. Requires staff equal to the
-        faction's tier.
+        <b>Monitor the beast lanes</b>: The crew can retreat out of a{" "}
+        <b>desperate position</b> via an emergency escape route you plotted.
+        Usable once per <b>2 staff</b>.
       </TypographyP>
       <TypographyP>
         <b>Beast informants</b> (
@@ -223,7 +214,7 @@ export default async function Page() {
         <div className="inline-block">
           <Clock max={4} current={0} clickable={false} width={20} height={20} />
         </div>
-        , 2 materials
+        , 4 materials
       </span>
       <TypographyP>
         <b>Archive</b>: the crew may research the machines, the drone, water,
@@ -252,7 +243,7 @@ export default async function Page() {
         <div className="inline-block">
           <Clock max={3} current={0} clickable={false} width={20} height={20} />
         </div>
-        , 1 material, applies to one outpost
+        , 2 material, applies to one outpost
       </span>
       <TypographyP>
         <b>Traps</b> (

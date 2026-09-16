@@ -23,7 +23,7 @@ export default async function Page() {
         <Card>
           <CardHeader className="flex justify-between">
             <div>
-              <TypographyH3>Minamo&apos;s Brood</TypographyH3>
+              <TypographyH3>Minamo's Brood</TypographyH3>
               <span className="text-muted-foreground">
                 <b>Tier I</b>, <i>Advanced</i>
               </span>
@@ -46,8 +46,7 @@ export default async function Page() {
           <CardContent>
             <TypographyP>
               A Dire Wife matriarch and her devoted extended family. They fight
-              for what&apos;s right; not what&apos;s easy or likely to help them
-              survive.
+              for what's right; not what's easy or likely to help them survive.
             </TypographyP>
             <TypographyUnorderedList>
               <li>
@@ -62,7 +61,7 @@ export default async function Page() {
                 <b>NPCs:</b> <b>Minamo</b>{" "}
                 <i>(matriarch, ruthless, decisive, loving)</i>, <b>Ebrimud</b>{" "}
                 <i>(naive, generous, spry)</i>, <b>Phelchen</b>{" "}
-                <i>(cynical, protective, Minamo&apos;s second)</i>
+                <i>(cynical, protective, Minamo's second)</i>
               </li>
               <li>
                 <b>Notable Assets:</b> unshakeable trust in each other,
@@ -72,12 +71,11 @@ export default async function Page() {
                 <b>Allies:</b> Theta
               </li>
               <li>
-                <b>Enemies:</b> Scarbacks, Dominion
+                <b>Enemies:</b> Dominion
               </li>
               <li>
-                <b className="mr-1">Situation:</b> ever since Nidan&apos;s
-                funeral, the family has sworn death to the enforcers or die
-                trying.
+                <b className="mr-1">Situation:</b> ever since Nidan's funeral,
+                the family has sworn death to the enforcers or die trying.
               </li>
               <li>
                 <b>Faction Clocks:</b> brazen attack on enforcers [4]
@@ -90,7 +88,7 @@ export default async function Page() {
             <div>
               <TypographyH3>Scarbacks</TypographyH3>
               <span className="text-muted-foreground">
-                <b>Tier III</b>, <i>Reformist</i>
+                <b>Tier III</b>, <i>Unconcious</i>
               </span>
             </div>
             <div className="grid grid-cols-2 gap-x-2">
@@ -98,10 +96,10 @@ export default async function Page() {
                 <b>Blood:</b> <b>1</b> = <i>Scarce</i>
               </span>
               <span className="text-muted-foreground">
-                <b>Food:</b> <b>3</b> = <i>Surplus</i>
+                <b>Food:</b> <b>2</b> = <i>Adequate</i>
               </span>
               <span className="text-muted-foreground">
-                <b>Materials:</b> <b>3</b> = <i>Surplus</i>
+                <b>Materials:</b> <b>2</b> = <i>Adequate</i>
               </span>
               <span className="text-muted-foreground">
                 <b>Water:</b> <b>0</b> = <i>None</i>
@@ -110,30 +108,28 @@ export default async function Page() {
           </CardHeader>
           <CardContent>
             <TypographyP>
-              They patrol the Floor&apos;s streets. Everyone works: most get
-              fed. That's the way of things. No one slacks off on their watch.
-              No one makes trouble for Fab. Or else. Their leader Enzo thinks of
+              They patrol the Floor's streets. Everyone works: most get fed.
+              That's the way of things. No one slacks off on their watch. No one
+              makes trouble for Fab. Or else. Their leader Enzo thinks of
               himself as a peacemaker in Fabrication. He's as likely to order
               his thugs to protect a worker as he is to order them to hand them
               over to the overseers.
             </TypographyP>
             <TypographyUnorderedList>
               <li>
-                <b className="mr-1">Turf:</b> Fabrication&apos;s production
-                floor, its machines, and all of the surrounding neighborhoods
+                <b className="mr-1">Turf:</b> Fabrication's production floor,
+                its machines, and all of the surrounding neighborhoods
               </li>
               <li>
-                <b>Population:</b> ~8000.{" "}
+                <b>Population:</b> ~7800.{" "}
                 <i>
                   90% worker, 21% thinblooded shifter, 3% thickblooded shifter,
                   1% Narscillian, 10% enforcer
                 </i>
               </li>
               <li>
-                <b>NPCs:</b> <b>Enzo</b>{" "}
-                <i>(leader, compromising, Duara&apos;s puppet)</i>, <b>Duara</b>{" "}
-                <i>(calculating, paranoid, cruel)</i>, <b>Veria</b>{" "}
-                <i>(irritable, honest)</i>, <b>Oza Kriche</b>{" "}
+                <b>NPCs:</b> <b>Duara</b> <i>(calculating, paranoid, cruel)</i>,{" "}
+                <b>Veria</b> <i>(irritable, honest)</i>, <b>Oza Kriche</b>{" "}
                 <i>(naysayer, spiteful, subordinate)</i>, <b>Inga</b>{" "}
                 <i>(survivor, sold to Duara for food)</i>
               </li>
@@ -145,12 +141,12 @@ export default async function Page() {
                 <b>Allies:</b> Dominion, Shrikes, Industry Alley
               </li>
               <li>
-                <b className="mr-1">Enemies:</b> Youngers, Minamo&apos;s Brood
+                <b className="mr-1">Enemies:</b> Youngers, Minamo's Brood
               </li>
               <li>
-                <b className="mr-1">Situation:</b> Delivery Day has put everyone
-                at risk. This could be the last food Fabrication ever gets if
-                order isn&apos;t restored and production resumes.
+                <b className="mr-1">Situation:</b> Enzo is outcast and Duara has
+                formally siezed control. The destiny of the Scarbacks is
+                uncertain, though Duara will certainly decide upon it soon.
               </li>
               <li>
                 <b>Faction Clocks:</b> anti-rebellion propaganda [2], negotiate
@@ -172,7 +168,7 @@ export default async function Page() {
                 <b>Blood:</b> <b>0</b> = <i>None</i>
               </span>
               <span className="text-muted-foreground">
-                <b>Food:</b> <b>3</b> = <i>Surplus</i>
+                <b>Food:</b> <b>2</b> = <i>Adequate</i>
               </span>
               <span className="text-muted-foreground">
                 <b>Materials:</b> <b>1</b> = <i>Scarce</i>
@@ -193,9 +189,10 @@ export default async function Page() {
                 the Furnaces
               </li>
               <li>
-                <b>Population:</b> ~500.{" "}
+                <b>Population:</b> ~700.{" "}
                 <i>
-                  98% worker, 16% thinblooded shifter, 3% Heian, 2% enforcer
+                  98% worker, 16% thinblooded shifter, 1% Heian, 1% Narscillian,
+                  2% enforcer
                 </i>
               </li>
               <li>
@@ -207,7 +204,7 @@ export default async function Page() {
               </li>
               <li>
                 <b className="mr-1">Notable Assets:</b> overseers are afraid of
-                the furnace&apos;s flames, passages too tight for large beasts
+                the furnace's flames, passages too tight for large beasts
               </li>
               <li>
                 <b>Allies:</b> None
@@ -218,8 +215,8 @@ export default async function Page() {
               <li>
                 <b className="mr-1">Situation:</b> Violence and uncertainty has
                 drawn dozens more to Sootstain in just the past few weeks. If
-                this keeps up, it won&apos;t be the quiet and private place it
-                once was.
+                this keeps up, it won't be the quiet and private place it once
+                was.
               </li>
               <li>
                 <b>Faction Clocks:</b> stoke the furnaces [1], increase tier [4]
@@ -252,9 +249,9 @@ export default async function Page() {
           </CardHeader>
           <CardContent>
             <TypographyBlockquote>
-              &quot;Wolves like us are the oppressed class. The thinbloods hate
-              our strength, so they cowardly drove us out. But we&apos;ll be
-              back. We are shadow. We are justice.&quot;
+              "Wolves like us are the oppressed class. The thinbloods hate our
+              strength, so they cowardly drove us out. But we'll be back. We are
+              shadow. We are justice."
             </TypographyBlockquote>
             <TypographyUnorderedList>
               <li>
@@ -317,7 +314,7 @@ export default async function Page() {
           </CardHeader>
           <CardContent>
             <TypographyP>
-              Enigmatic temptors and meddlers in Fabrication&apos;s events.
+              Enigmatic temptors and meddlers in Fabrication's events.
             </TypographyP>
             <TypographyUnorderedList>
               <li>
@@ -339,9 +336,9 @@ export default async function Page() {
                 <b>Enemies:</b> None
               </li>
               <li>
-                <b className="mr-1">Situation:</b> Root&apos;s soldiers implied
-                that this place is run by people from the future. Could that be
-                why the <b>Wall People</b> can do the impossible?
+                <b className="mr-1">Situation:</b>: Turns out the Wall People
+                are made up of multiple factions, each with their own agendas
+                here.
               </li>
               <li>
                 <b>Faction Clocks:</b> ??? [3], ??? [7]

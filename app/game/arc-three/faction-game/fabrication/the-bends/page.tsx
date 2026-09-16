@@ -35,7 +35,7 @@ export default async function Page() {
                 <b>Blood:</b> <b>0</b> = <i>None</i>
               </span>
               <span className="text-muted-foreground">
-                <b>Food:</b> <b>3</b> = <i>Surplus</i>
+                <b>Food:</b> <b>1</b> = <i>Scarce</i>
               </span>
               <span className="text-muted-foreground">
                 <b>Materials:</b> <b>1</b> = <i>Scarce</i>
@@ -57,16 +57,15 @@ export default async function Page() {
                 side of The Bends
               </li>
               <li>
-                <b>Population</b>: ~800.{" "}
+                <b>Population</b>: ~1200.{" "}
                 <i>
-                  98% worker, 10% Anidinian, 14% thinblooded shifter, 2%
-                  enforcer
+                  98% worker, 6% Anidinian, 12% thinblooded shifter, 2% enforcer
                 </i>
               </li>
               <li>
-                <b>NPCs:</b> <b>Taj Amati</b>{" "}
-                <i>(leader, middle-aged, shaken, cautious, fair)</i>,{" "}
-                <b>Haidi Mysmida</b> <i>(councilor, elder, stern, patient)</i>,{" "}
+                <b>NPCs:</b>
+                <b>Haidi Mysmida</b>{" "}
+                <i>(temporary leader, elder, stern, patient)</i>,{" "}
                 <b>Sandi Var</b> <i>(upstart, teenager, observant, reckless)</i>
                 , <b>Salonte</b> <i>(enforcer, elder, pragmatic)</i>
               </li>
@@ -81,8 +80,10 @@ export default async function Page() {
                 <b>Enemies:</b> Dominion, Youngers
               </li>
               <li>
-                <b>Situation:</b> Dominion has been extracting ever-escalating
-                taxes and liberties from the Southside Council
+                <b>Situation:</b> Dominion has been devastated and Southside's
+                leader wandered away into the matrix. Southside's councilors
+                scramble to hold an election, though there are those who would
+                grab power for themselves.
               </li>
               <li>
                 <b>Faction Clocks:</b> small council election [6], celebrate
@@ -96,18 +97,18 @@ export default async function Page() {
             <div>
               <TypographyH3>Dominion</TypographyH3>
               <span className="text-muted-foreground">
-                <b>Tier II</b>, <i>Backwards</i>
+                <b>Tier I</b>, <i>Backwards</i>
               </span>
             </div>
             <div className="grid grid-cols-2 gap-x-2">
               <span className="text-muted-foreground">
-                <b>Blood:</b> <b>2</b> = <i>Adequate</i>
+                <b>Blood:</b> <b>3</b> = <i>Surplus</i>
               </span>
               <span className="text-muted-foreground">
-                <b>Food:</b> <b>4</b> = <i>Stockpile</i>
+                <b>Food:</b> <b>3</b> = <i>Surplus</i>
               </span>
               <span className="text-muted-foreground">
-                <b>Materials:</b> <b>3</b> = <i>Surplus</i>
+                <b>Materials:</b> <b>1</b> = <i>Scarce</i>
               </span>
               <span className="text-muted-foreground">
                 <b>Water:</b> <b>0</b> = <i>None</i>
@@ -134,10 +135,8 @@ export default async function Page() {
                 </i>
               </li>
               <li>
-                <b>NPCs:</b> <b>Hrodulfr</b>{" "}
-                <i>(leader, prideful, cruel, arrogant)</i>, <b>Thraus</b>{" "}
-                <i>(thickblooded wolf, cowardly, conniving)</i>, <b>Radegond</b>{" "}
-                <i>(thickblooded wolf, stalker, sadistic)</i>, <b>Bruno</b>{" "}
+                <b>NPCs:</b> <b>Thraus</b>{" "}
+                <i>(thickblooded wolf, cowardly, conniving)</i>, <b>Bruno</b>{" "}
                 <i>(worker, adult, placating, smooth-talker)</i>
               </li>
               <li>
@@ -148,11 +147,13 @@ export default async function Page() {
                 <b>Allies:</b> <i>none</i>
               </li>
               <li>
-                <b>Enemies:</b> Southside Council, Moore&apos;s Gang, Theta
+                <b>Enemies:</b> Southside Council, Theta
               </li>
               <li>
-                <b>Situation:</b> after <b>Delivery</b>, Dominion&apos;s
-                fighters are wounded and morale is shaky.
+                <b>Situation:</b> the palace is blasted into a thousand pieces
+                and so is the faction. Wolves do as is tradition and tear each
+                other apart in ritualistic conflicts for dominance. Workers are
+                getting caught between their teeth.
               </li>
               <li>
                 <b>Faction Clocks:</b> tax surrounding factions [2], increase
@@ -221,10 +222,10 @@ export default async function Page() {
                 <b>Enemies:</b> Dominion
               </li>
               <li>
-                <b>Situation:</b> after Jonah drove the enforcers out of
-                Kent&apos;s, Dominion hasn&apos;t dedicated the men to retaking
-                control. Can the Watering Hole come together in time to maintain
-                its fragile independence?
+                <b>Situation:</b> Under Jonah's leadership, Watering Hole has
+                its independance and an identity to unify around. The next
+                question is, can this be developed into something more. And
+                should it be?
               </li>
               <li>
                 <b>Faction Clocks:</b> Kent throws a party [2], enforcers return
@@ -288,8 +289,8 @@ export default async function Page() {
                 <b>Enemies:</b> Dominion
               </li>
               <li>
-                <b>Situation:</b> Dominion&apos;s wolves are hunting for Arbor
-                Street&apos;s location. It&apos;s only a matter of time.
+                <b>Situation:</b> Dominion's wolves roam the labyrinth aimlessly
+                and prey on anyone who crosses their path.
               </li>
               <li>
                 <b>Faction Clocks</b>: Celebrate Argosi culture [8]

@@ -1,5 +1,6 @@
 import Clock from "@/components/clock";
-import { D6, InlineSymbol } from "@/components/dice/dice-borders";
+import ClockCost from "@/components/clock-cost";
+import { InlineSymbol } from "@/components/dice/dice-borders";
 import {
   Theta,
   ThetaDouble,
@@ -18,6 +19,7 @@ import {
   TypographyP,
   TypographyUnorderedList,
 } from "@/components/ui/typography";
+import { Boxes, Droplet, Droplets, Wheat } from "lucide-react";
 import Link from "next/link";
 
 export default async function Page() {
@@ -98,61 +100,56 @@ export default async function Page() {
         Surplus; <b>4</b> = Stockpile
       </TypographyBlockquote>
       <TypographyP>
-        Each resource has special rules for what happens at different stockpile
-        values when{" "}
-        <Link href="/game/arc-three/rules/time-passes">
-          <b className="text-red-500 underline">time passes</b>
-        </Link>{" "}
-        .
-      </TypographyP>
-      <TypographyP>
-        Some members of the crew lead a faction or they're responsible for their
-        resources. They may use their faction's resources at their discretion.
-      </TypographyP>
-      <TypographyP>
-        Whenever a faction's resource is used for a project, to accomplish a
-        goal, or to be traded to another faction, make a <b>fortune roll</b>{" "}
-        with dice equal to that resource's value. On a{" "}
-        <div className="inline-block mx-1">
-          <D6>
-            <Threat />
-          </D6>
+        First, each crew member in the faction receives resources equal to the
+        faction's stockpile values. Some members of the crew lead a faction or
+        they're responsible for their resources. Once per <b>time passes</b>,
+        they may requisition one of their faction's stockpiles for{" "}
+        <div className="inline-block">
+          <div className="flex items-center">
+            <div className="text-red-500">
+              <Droplets size={20} />
+            </div>{" "}
+            <ClockCost num={1} ticks={6} r={20} />
+          </div>
         </div>
-        , the value drops by <b>1</b>.
+        ,{" "}
+        <div className="inline-block">
+          <div className="flex items-center">
+            <div className="text-amber-500">
+              <Wheat size={20} />
+            </div>{" "}
+            <ClockCost num={1} ticks={6} r={20} />
+          </div>
+        </div>
+        ,{" "}
+        <div className="inline-block">
+          <div className="flex items-center">
+            <div className="text-purple-500">
+              <Boxes size={20} />
+            </div>{" "}
+            <ClockCost num={1} ticks={6} r={20} />
+          </div>
+        </div>
+        , or{" "}
+        <div className="inline-block">
+          <div className="flex items-center">
+            <div className="text-blue-500">
+              <Droplet size={20} />
+            </div>{" "}
+            <ClockCost num={1} ticks={6} r={20} />
+          </div>
+        </div>{" "}
+        respectively.
       </TypographyP>
+
       <TypographyP>
         Many of the factors that dictate your faction's wealth of resources are
         largely out of your control. Many will still hold you personally
         accountable for this though. Something that <i>is</i> within your
-        control is how these resources are distributed. First, each crew member
-        in the faction receives resources equal to the faction's stockpile
-        values.
+        control is how these resources are distributed. The <b>Narrator</b> will
+        present the advisor with a situation related to resources and
+        distribution.
       </TypographyP>
-      <TypographyUnorderedList>
-        <li>
-          <b>Even:</b> Everyone gets an equal share.
-        </li>
-        <li>
-          <b>Those in need:</b> Everyone is in need, but you can ease the
-          suffering for the worst-off among you. <b>+2 goodwill</b>.
-        </li>
-        <li>
-          <b>The able-bodied:</b> Workers and fighters get priority.{" "}
-          <b>+2 manpower</b>.
-        </li>
-        <li>
-          <b>The loyal inner circle:</b> Rewarding dedication can attract more
-          loyal followers. <b>+2 rep</b>. Fill your <b>food</b>,{" "}
-          <b>materials</b>, <b>blood</b>, and <b>water</b> to their max. Your
-          faction's stores for each resource fall by <b>1</b>.
-        </li>
-        <li>
-          <b>For the cause</b>: Fill Theta's storehouses' and members'{" "}
-          <b>food</b>, <b>materials</b>, <b>blood</b>, and <b>water</b> to their
-          max. Your faction's stores for each resource fall by <b>3</b>.{" "}
-          <b>+3 spite</b>.
-        </li>
-      </TypographyUnorderedList>
       <TypographyH3>Manpower</TypographyH3>
       <TypographyP>
         <b>Manpower</b> is a resource which represents the number of workers
@@ -189,6 +186,11 @@ export default async function Page() {
         Advanced = <b>0</b>; Sympathetic = <b>1</b>; Unconcious = <b>2</b>;
         Reformist = <b>3</b>; Backwards = <b>4</b>
       </TypographyBlockquote>
+      <TypographyP>
+        Though arduous to maintain, alliances are greater than the sum of their
+        parts. For each allied faction, tick one of your faction projects by{" "}
+        <b>1</b>.
+      </TypographyP>
 
       <TypographyH2>Projects</TypographyH2>
       <TypographyP>
@@ -229,7 +231,7 @@ export default async function Page() {
         <b>
           <u>Cost:</u>
         </b>{" "}
-        3 materials;{" "}
+        4 materials;{" "}
         <b>
           <u>Staff</u>: 1 manpower
         </b>
@@ -534,7 +536,7 @@ export default async function Page() {
         <div className="inline-block">
           <Clock max={3} current={0} clickable={false} width={20} height={20} />
         </div>
-        , 1 material;{" "}
+        , 2 material;{" "}
         <b>
           <u>Staff</u>
         </b>
@@ -742,7 +744,7 @@ export default async function Page() {
                 height={20}
               />
             </div>
-            , <b>2 materials</b>
+            , <b>3 materials</b>
           </span>
           )
         </li>
