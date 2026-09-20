@@ -3,7 +3,7 @@ import { auth, BASE_PATH } from "@/auth";
 
 export const config = {
   matcher: [
-    "/((?!api|signin|_next/static|_next/image|favicon.ico|discord.svg).*)",
+    "/((?!api|auth|signin|_next/static|_next/image|favicon.ico|discord.svg).*)",
   ],
 };
 
@@ -26,7 +26,7 @@ const authMiddleware = auth((req) => {
         typeof callbackUrl === "string" ? encodeURIComponent(callbackUrl) : "";
 
       return NextResponse.redirect(
-        new URL(`${basePath}/signin?callbackUrl=${encodedCallback}`, req.url)
+        new URL(`${basePath}/signin?callbackUrl=${encodedCallback}`, req.url),
       );
     }
   } catch (error) {
