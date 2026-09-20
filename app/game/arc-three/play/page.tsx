@@ -8,11 +8,13 @@ import DiceSheet from "@/components/character-sheet/dice-history/dice-sheet";
 import { useRoll } from "@/contexts/arc3RollContext";
 import DramatisPersonae from "./(components)/dramatis-personae";
 import CrewSheet from "./(components)/crew/crew-sheet";
+import PartyOverview from "./(components)/party/party-overview";
 
 const tabs = [
   { name: "Character", value: "character" },
   { name: "Dramatis Personae", value: "dramatis-personae" },
   { name: "Crew", value: "crew" },
+  { name: "Party", value: "party" },
 ];
 
 export default function Page() {
@@ -33,7 +35,9 @@ export default function Page() {
     const hash = window.location.hash;
     if (
       hash &&
-      ["crew", "character", "dramatis-personae"].includes(hash.substring(1))
+      ["crew", "character", "dramatis-personae", "party"].includes(
+        hash.substring(1),
+      )
     ) {
       setTab(hash.substring(1));
     }
@@ -84,6 +88,9 @@ export default function Page() {
         </TabsContent>
         <TabsContent value="crew" className="w-full">
           <CrewSheet />
+        </TabsContent>
+        <TabsContent value="party" className="w-full">
+          <PartyOverview />
         </TabsContent>
       </Tabs>
     </>
