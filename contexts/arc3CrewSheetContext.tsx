@@ -103,6 +103,30 @@ export interface SectorEntry {
   heat: number;
 }
 
+export interface NpcSummaryCard {
+  id: string;
+  name: string;
+  dramatisPersonaeName?: string; // links to a DP entry for portrait art
+  stress: number;
+  maxStress: number;
+  conditions: string[];
+  harms: Record<number, { slots: string[]; maxSlots: number }>;
+  abilities: NpcAbility[];
+  defenses: NpcDefense[];
+  active: boolean;
+}
+
+export interface NpcAbility {
+  name: string;
+  description?: string;
+}
+
+export interface NpcDefense {
+  name: string;
+  description?: string;
+  active: boolean;
+}
+
 export const CRACKDOWNS = [
   {
     id: "news-spread",
@@ -126,6 +150,8 @@ export interface CrewSheetState {
   crewAdvanceSections: CrewAdvanceSection[];
   sectors: SectorEntry[];
   crackdowns: CrackdownId[];
+  npcSummaryCards: NpcSummaryCard[];
+  activePcIds: string[];
 }
 
 // ─── Defaults ─────────────────────────────────────────────────────────────────
@@ -149,6 +175,8 @@ const getDefaultState = (): CrewSheetState => ({
   crewAdvanceSections: [],
   sectors: [],
   crackdowns: [],
+  npcSummaryCards: [],
+  activePcIds: [],
 });
 
 // ─── Actions ──────────────────────────────────────────────────────────────────
@@ -203,6 +231,15 @@ type CrewSheetAction =
       changes: Partial<Omit<SectorEntry, "id">>;
     }
   | { type: "SET_CRACKDOWN"; id: CrackdownId; triggered: boolean }
+  | { type: "ADD_NPC_CARD"; payload: NpcSummaryCard }
+  | { type: "REMOVE_NPC_CARD"; id: string }
+  | {
+      type: "UPDATE_NPC_CARD";
+      id: string;
+      changes: Partial<Omit<NpcSummaryCard, "id">>;
+    }
+  | { type: "ADD_ACTIVE_PC"; id: string }
+  | { type: "REMOVE_ACTIVE_PC"; id: string }
   | { type: "SYNC_REMOTE"; payload: Partial<CrewSheetState> };
 
 // ─── Reducer ──────────────────────────────────────────────────────────────────
@@ -383,6 +420,35 @@ function reducer(
         crackdowns: action.triggered
           ? [...new Set([...state.crackdowns, action.id])]
           : state.crackdowns.filter((id) => id !== action.id),
+      };
+    case "ADD_NPC_CARD":
+      return {
+        ...state,
+        npcSummaryCards: [...state.npcSummaryCards, action.payload],
+      };
+    case "REMOVE_NPC_CARD":
+      return {
+        ...state,
+        npcSummaryCards: state.npcSummaryCards.filter(
+          (c) => c.id !== action.id,
+        ),
+      };
+    case "UPDATE_NPC_CARD":
+      return {
+        ...state,
+        npcSummaryCards: state.npcSummaryCards.map((c) =>
+          c.id === action.id ? { ...c, ...action.changes } : c,
+        ),
+      };
+    case "ADD_ACTIVE_PC":
+      return {
+        ...state,
+        activePcIds: [...new Set([...state.activePcIds, action.id])],
+      };
+    case "REMOVE_ACTIVE_PC":
+      return {
+        ...state,
+        activePcIds: state.activePcIds.filter((id) => id !== action.id),
       };
     case "SYNC_REMOTE": {
       const incoming = action.payload.resources ?? {};
@@ -683,6 +749,42 @@ export function useCrewAdvanceBlocks(sectionId: string) {
       (id: string, changes: Partial<Omit<CrewAdvanceBlock, "id">>) =>
         dispatch({ type: "UPDATE_CAB", sectionId, id, changes }),
       [dispatch, sectionId],
+    ),
+  };
+}
+
+export function useNpcSummaryCards() {
+  const { state, dispatch } = useCrewSheet();
+  return {
+    npcSummaryCards: state.npcSummaryCards,
+    addNpcCard: useCallback(
+      (entry: NpcSummaryCard) =>
+        dispatch({ type: "ADD_NPC_CARD", payload: entry }),
+      [dispatch],
+    ),
+    removeNpcCard: useCallback(
+      (id: string) => dispatch({ type: "REMOVE_NPC_CARD", id }),
+      [dispatch],
+    ),
+    updateNpcCard: useCallback(
+      (id: string, changes: Partial<Omit<NpcSummaryCard, "id">>) =>
+        dispatch({ type: "UPDATE_NPC_CARD", id, changes }),
+      [dispatch],
+    ),
+  };
+}
+
+export function useActivePcs() {
+  const { state, dispatch } = useCrewSheet();
+  return {
+    activePcIds: state.activePcIds,
+    addActivePc: useCallback(
+      (id: string) => dispatch({ type: "ADD_ACTIVE_PC", id }),
+      [dispatch],
+    ),
+    removeActivePc: useCallback(
+      (id: string) => dispatch({ type: "REMOVE_ACTIVE_PC", id }),
+      [dispatch],
     ),
   };
 }
