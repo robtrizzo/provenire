@@ -88,69 +88,84 @@ export function AppSidebar({ data, children, ...props }: AppSidebarProps) {
                   {item.items?.length ? (
                     <CollapsibleContent>
                       <SidebarMenuSub className="ml-0 border-l-0 px-1.5">
-                        {item.items.map((subItem) => (
-                          <Collapsible
-                            key={subItem.title}
-                            defaultOpen={false}
-                            className="group/subcollapsible"
-                          >
-                            <SidebarMenuSubItem>
-                              {subItem.items?.length ? (
-                                <div className="flex items-center">
+                        {item.items.map((subItem) => {
+                          if (subItem.wip) {
+                            return (
+                              <SidebarMenuSubItem>
+                                <SidebarMenuSubButton asChild isActive={false}>
+                                  <i className="text-muted-foreground!">
+                                    {subItem.title} (WIP)
+                                  </i>
+                                </SidebarMenuSubButton>
+                              </SidebarMenuSubItem>
+                            );
+                          }
+                          return (
+                            <Collapsible
+                              key={subItem.title}
+                              defaultOpen={false}
+                              className="group/subcollapsible"
+                            >
+                              <SidebarMenuSubItem>
+                                {subItem.items?.length ? (
+                                  <div className="flex items-center">
+                                    <SidebarMenuSubButton
+                                      asChild
+                                      isActive={subItem.url === pathname}
+                                      className="flex-1"
+                                    >
+                                      <Link href={subItem.url}>
+                                        {subItem.title}
+                                      </Link>
+                                    </SidebarMenuSubButton>
+                                    <CollapsibleTrigger asChild>
+                                      <button className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md hover:bg-sidebar-accent">
+                                        <ChevronRight className="size-3.5 transition-transform group-data-[state=open]/subcollapsible:rotate-90" />
+                                      </button>
+                                    </CollapsibleTrigger>
+                                  </div>
+                                ) : (
                                   <SidebarMenuSubButton
                                     asChild
                                     isActive={subItem.url === pathname}
-                                    className="flex-1"
                                   >
                                     <Link href={subItem.url}>
                                       {subItem.title}
                                     </Link>
                                   </SidebarMenuSubButton>
-                                  <CollapsibleTrigger asChild>
-                                    <button className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md hover:bg-sidebar-accent">
-                                      <ChevronRight className="size-3.5 transition-transform group-data-[state=open]/subcollapsible:rotate-90" />
-                                    </button>
-                                  </CollapsibleTrigger>
-                                </div>
-                              ) : (
-                                <SidebarMenuSubButton
-                                  asChild
-                                  isActive={subItem.url === pathname}
-                                >
-                                  <Link href={subItem.url}>
-                                    {subItem.title}
-                                  </Link>
-                                </SidebarMenuSubButton>
-                              )}
-                              {subItem.items?.length ? (
-                                <CollapsibleContent>
-                                  <SidebarMenuSub>
-                                    {subItem.items.map((nestedItem) => (
-                                      <SidebarMenuSubItem
-                                        key={nestedItem.title}
-                                      >
-                                        <SidebarMenuSubButton
-                                          asChild
-                                          isActive={nestedItem.url === pathname}
+                                )}
+                                {subItem.items?.length ? (
+                                  <CollapsibleContent>
+                                    <SidebarMenuSub>
+                                      {subItem.items.map((nestedItem) => (
+                                        <SidebarMenuSubItem
+                                          key={nestedItem.title}
                                         >
-                                          {nestedItem.wip ? (
-                                            <i className="text-muted-foreground!">
-                                              {nestedItem.title} (WIP)
-                                            </i>
-                                          ) : (
-                                            <Link href={nestedItem.url}>
-                                              {nestedItem.title}
-                                            </Link>
-                                          )}
-                                        </SidebarMenuSubButton>
-                                      </SidebarMenuSubItem>
-                                    ))}
-                                  </SidebarMenuSub>
-                                </CollapsibleContent>
-                              ) : null}
-                            </SidebarMenuSubItem>
-                          </Collapsible>
-                        ))}
+                                          <SidebarMenuSubButton
+                                            asChild
+                                            isActive={
+                                              nestedItem.url === pathname
+                                            }
+                                          >
+                                            {nestedItem.wip ? (
+                                              <i className="text-muted-foreground!">
+                                                {nestedItem.title} (WIP)
+                                              </i>
+                                            ) : (
+                                              <Link href={nestedItem.url}>
+                                                {nestedItem.title}
+                                              </Link>
+                                            )}
+                                          </SidebarMenuSubButton>
+                                        </SidebarMenuSubItem>
+                                      ))}
+                                    </SidebarMenuSub>
+                                  </CollapsibleContent>
+                                ) : null}
+                              </SidebarMenuSubItem>
+                            </Collapsible>
+                          );
+                        })}
                       </SidebarMenuSub>
                     </CollapsibleContent>
                   ) : null}

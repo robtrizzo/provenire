@@ -54,7 +54,7 @@ export default function LoadCharacterDialog({
   const { data, isLoading, isError } = useQuery({
     queryKey: ["characters", "arc3"],
     queryFn: async () => {
-      const res = await fetch("/api/characters/arc3");
+      const res = await fetch("/api/characters/arc3/users");
       if (!res.ok) throw new Error("Failed to fetch");
       const { characters } = await res.json();
       return characters as LoadableCharacter[];
