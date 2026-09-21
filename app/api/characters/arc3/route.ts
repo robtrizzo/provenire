@@ -1,11 +1,6 @@
 import { NextResponse } from "next/server";
 import { checkAuth } from "@/lib/auth";
-import {
-  getAllCharacters,
-  getAllCharactersForUser,
-  insertCharacter,
-} from "@/handlers/characters";
-import { CharacterV3 } from "@/types/game";
+import { getAllCharacters, insertCharacter } from "@/handlers/characters";
 
 export async function POST(request: Request): Promise<NextResponse> {
   const { session, error } = await checkAuth("player");
@@ -52,18 +47,13 @@ export async function POST(request: Request): Promise<NextResponse> {
 }
 
 export async function GET() {
-  const { session, error } = await checkAuth("player");
+  const { error } = await checkAuth("player");
   if (error) return error;
 
   try {
-    let characters =
-      session.user.role === "admin"
-        ? await getAllCharacters()
-        : await getAllCharactersForUser(session.user.id);
+    let characters = await getAllCharacters();
 
-    characters = characters
-      .map((c) => c as CharacterV3)
-      .filter((c) => c.version === 3);
+    characters = characters.filter((c) => c.version === 3);
 
     return NextResponse.json({ characters });
   } catch (error) {
