@@ -190,6 +190,46 @@ const navigationData = [
     ],
   },
   {
+    title: "Discoveries",
+    url: "#",
+    items: [
+      {
+        title: "Aldams",
+        url: "/game/arc-three/discoveries/aldams",
+        wip: true,
+      },
+      {
+        title: "Donums",
+        url: "/game/arc-three/discoveries/donums",
+        wip: true,
+      },
+      {
+        title: "Dreamspace",
+        url: "/game/arc-three/discoveries/dreamspace",
+        wip: true,
+      },
+      {
+        title: "Steel Trap",
+        url: "/game/arc-three/discoveries/steel-trap",
+        wip: true,
+      },
+      {
+        title: "Transformations",
+        url: "/game/arc-three/discoveries/aldams",
+        wip: true,
+      },
+      {
+        title: "Wall People",
+        url: "/game/arc-three/discoveries/wall-people",
+        wip: true,
+      },
+      {
+        title: "Wider World",
+        url: "/game/arc-three/discoveries/wider-world",
+      },
+    ],
+  },
+  {
     title: "Appendix",
     url: "#",
     items: [
