@@ -465,6 +465,175 @@ async function Ancient() {
           </TypographyP>
         </div>
       </div>
+      <div className="my-4">
+        <Separator />
+      </div>
+      <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="col-span-1">
+          <TypographyH3>Philosophy</TypographyH3>
+          <TypographyP>
+            Kilder society is shaped by discipline, community, and ration.
+            Philosophers ponder and debate the rations in a traditional test of
+            ideas. As the soldiers adapt and invent new techniques, so too must
+            the thought leaders of society with their ideas. In this age of
+            Kilder, major philosophical consensus had three distinct eras.
+          </TypographyP>
+          <TypographyP>
+            <b>Disciplinism</b>: a mantra of life duty and acceptance of what
+            one cannot control. Perfection means perfect survival; we all accept
+            that this will never come to pass. Death to predators is part of
+            life and this is natural. The betterment of our survival is an
+            essential good which must be done in concert with others to succeed.
+          </TypographyP>
+          <TypographyP>
+            <b>Epiphanism</b>: later renamed <b>Nazirism</b> after its founder
+            passed away. Scattered across the world are <i>Life Ducts</i>:
+            portals through which water, flows when proper rituals are
+            completed. Portals which required{" "}
+            <b>Anya Arbor, Bringer of Gifts</b> open them in the first place.
+            And since she abandoned her journey before Kilder, the homeland's{" "}
+            <i>Life Ducts</i> remain inert.
+          </TypographyP>
+          <TypographyP>
+            That is, until the great philosopher <b>Nazir</b> opened one. In his
+            own words:
+          </TypographyP>
+          <TypographyBlockquote>
+            Unlike my thousand failures, this time I saw a shimmer the length
+            and breadth of a hair. Like the smallest crack in a great stone, it
+            split the air and a drop of water rolled into my palm.
+          </TypographyBlockquote>
+          <TypographyP>
+            <b>Nazir</b> swore the other philosophers to secrecy. The only
+            defense keeping Kilder safe from invasion is its lack of anything
+            the foreign powers wish to take. They can never hear of a new duct.
+          </TypographyP>
+        </div>
+        <div className="col-span-1">
+          <TypographyP>
+            Kilder's cosmic tragedy continues. Despite decades of ritual and
+            experimentation, there was no power to be gained in drinking this
+            water. Instead, they found something else. A creature, or being,
+            trapped behind the hairline crack.
+          </TypographyP>
+          <TypographyBlockquote>
+            It cannot speak in words like you or I. It speaks in generations.
+            Through it, we could feel the spiderweb of our linneage, both past
+            and future. The thousand thousand ways which our blood would spread
+            or cease. Interpreting the knowledge shared became our life's work.
+          </TypographyBlockquote>
+          <TypographyP>
+            It was named <b>The Proclamation of Generations</b> or the{" "}
+            <b>Great Proclamation</b>. Its existence and its messages a
+            ferociously guarded secret. In communing with it, <b>Nazir</b>{" "}
+            learned:
+          </TypographyP>
+          <TypographyP className="uppercase">
+            <b>Humanity predates the Talis.</b>
+          </TypographyP>
+          <TypographyP className="uppercase">
+            <b>We have been robbed of our history predating the Talis.</b>
+          </TypographyP>
+          <TypographyP className="uppercase">
+            <b>
+              Akil's Donum Duellum does not belong to him. It was Kilder's
+              first.
+            </b>
+          </TypographyP>
+          <TypographyP className="uppercase">
+            <b>There will be a savior born with Donum Duellum in our time.</b>
+          </TypographyP>
+          <TypographyP>
+            These revelations were not made known to the Kilder people as a
+            whole, but it had an incredible impact on Kilder philosophy. The
+            Kilder people must be prepared to follow a savior once they arise.
+            Since humanity predates the <b>Talis</b>, perhaps they were men
+            before they were gods. If so, it is the philosophers' sworn duty to
+            raise the savior into a god.
+          </TypographyP>
+          <TypographyP>
+            <b>Periahism</b>: with <b>Aalia</b> the savior dead, the
+            philosophers can only conclude that Kilder people is the ultimate
+            outlier amongst peoples. The world will ignore and neglect Kilder
+            while it languishes; if Kilder is known to flourish, it must be
+            crushed.{" "}
+            <b>
+              <i>
+                If Kilder is ever to flourish, it will be only after defeating
+                all others.
+              </i>
+            </b>
+          </TypographyP>
+        </div>
+      </div>
+      <div className="my-4">
+        <Separator />
+      </div>
+      <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="col-span-1">
+          <TypographyH3>Nations</TypographyH3>
+          <TypographyP>
+            <b>Anidine</b>: the core of <b>Akil's</b> once great empire, not
+            collapsed into a small, though mighty, territory. They claim the
+            divine right of soveriens is bestowed via meritocracy, though this
+            identity is at odds with their zealous reverence for their
+            conqueror-gods.
+          </TypographyP>
+          <TypographyP>
+            <b>Argos</b>: formerly the <b>Arborians</b> until the great houses
+            of Helix poisoned their own water to cull foreigners from the city.
+            Anyone living outside Helix's walls was forever barred. Arboria
+            split into <b>Argos</b> and <b>Kipos</b>.
+          </TypographyP>
+          <TypographyP>
+            <b>Bwarhei</b>: untamed jungle filled with what the Fenri claim to
+            be demons spawned from corrupted wombs. The Kilder are not so naive;
+            they feel a kinship with a fellow pariah people.
+          </TypographyP>
+          <TypographyP>
+            <b>Cumeria</b>: decentralized tribes living amongst massive trees.
+            Reverence for <b>Asherah</b>, even while harboring a hatred for{" "}
+            <b>Akil</b> and <b>Anidine</b>, their former conquerors. Their
+            liberation war cost them dearly - Fenrir chose that moment to attack
+            and took a heavy swath of territory.
+          </TypographyP>
+          <TypographyP>
+            <b>Fenrir</b>: a culture of dominance and subservience to
+            hierarchical bloodlines. Men, wolves, and above all, Kingwulf have
+            authority in the empire.
+          </TypographyP>
+        </div>
+        <div className="col-span-1">
+          <TypographyP>
+            <b>Gredora</b>: nomadic mercenary-mercantile caravans lead by
+            merchant-generals. A deep resentment of <b>Anidine</b> even while
+            being economically shackled to it.
+          </TypographyP>
+          <TypographyP>
+            <b>Heia</b>: Once dominated by <b>Akil</b>, now a feudal nobility
+            without a monarch. Perpetual infighting and civil wars decimate its
+            population. Its only saving grace is a high level of development
+            left by its founder god.
+          </TypographyP>
+          <TypographyP>
+            <b>Kipos</b>: after a few generations of fruitless attempts to
+            breach Helix's walls, the Kiposi are mostly peaceful farmers. Very
+            little government other than local councils and economic guilds.
+          </TypographyP>
+          <TypographyP>
+            <b>Narscillia</b>: three distinct biomes governed by a secret
+            society of seers. On the Green Path there are thriving cities; in
+            the dunes live caravans; and in the interior wasteland are creatures
+            fabled to be too monstrous for <b>Asherah</b> to slay.
+          </TypographyP>
+          <TypographyP>
+            <b>Yama</b>: scattered hamlets and thorps surviving harsh
+            conditions. Their governing body is a mystery, secreted away in the
+            Hidden City constructed for them by their gods. The Kilder felt a
+            degree of comraderie for the Yamans before the Concord.
+          </TypographyP>
+        </div>
+      </div>
     </>
   );
 }

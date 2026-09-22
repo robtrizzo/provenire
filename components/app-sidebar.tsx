@@ -62,9 +62,9 @@ export function AppSidebar({ data, children, ...props }: AppSidebarProps) {
       <SidebarContent>
         <SidebarGroup>
           <SidebarMenu className="gap-3">
-            {data?.map((item) => (
+            {data?.map((item, i) => (
               <Collapsible
-                key={item.title}
+                key={item.title + i}
                 defaultOpen
                 className="group/collapsible"
               >
@@ -88,7 +88,7 @@ export function AppSidebar({ data, children, ...props }: AppSidebarProps) {
                   {item.items?.length ? (
                     <CollapsibleContent>
                       <SidebarMenuSub className="ml-0 border-l-0 px-1.5">
-                        {item.items.map((subItem) => {
+                        {item.items.map((subItem, i) => {
                           if (subItem.wip) {
                             return (
                               <SidebarMenuSubItem>
@@ -102,7 +102,7 @@ export function AppSidebar({ data, children, ...props }: AppSidebarProps) {
                           }
                           return (
                             <Collapsible
-                              key={subItem.title}
+                              key={subItem.title + i}
                               defaultOpen={false}
                               className="group/subcollapsible"
                             >
@@ -137,9 +137,9 @@ export function AppSidebar({ data, children, ...props }: AppSidebarProps) {
                                 {subItem.items?.length ? (
                                   <CollapsibleContent>
                                     <SidebarMenuSub>
-                                      {subItem.items.map((nestedItem) => (
+                                      {subItem.items.map((nestedItem, i) => (
                                         <SidebarMenuSubItem
-                                          key={nestedItem.title}
+                                          key={nestedItem.title + i}
                                         >
                                           <SidebarMenuSubButton
                                             asChild
